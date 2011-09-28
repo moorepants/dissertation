@@ -14,6 +14,7 @@ Contents:
    :maxdepth: 2
 
    src/text/outline.rst
+   src/text/preface.rst
 
 Indices and tables
 ==================

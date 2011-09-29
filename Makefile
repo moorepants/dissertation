@@ -130,7 +130,7 @@ doctest:
 	      "results in $(BUILDDIR)/doctest/output.txt."
 
 gh-pages: clean html
-	git checkout gh-pages
+	git checkout -f gh-pages
 	git rm -r .
 	git checkout HEAD -- .gitignore README .nojekyll
 	cp -r _build/html/* .

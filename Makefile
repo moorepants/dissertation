@@ -132,7 +132,8 @@ doctest:
 gh-pages: clean html
 	git symbolic-ref HEAD refs/heads/gh-pages
 	rm .git/index
-	git clean -fdx -e _build/ -e .gitignore -e README -e .nojekyll
+	git clean -fdx -e _build/ -e .gitignore -e README
+	touch .nojekyll
 	cp -r _build/html/* .
 	rm -r _build/
 	git add .

@@ -130,9 +130,10 @@ doctest:
 	      "results in $(BUILDDIR)/doctest/output.txt."
 
 gh-pages: clean html
-	git checkout -f gh-pages
-	git rm -r .
-	git checkout HEAD -- .gitignore README .nojekyll
+	git symbolic-ref HEAD refs/heads/gh-pages
+	rm .git/index
+	git clean -fdx -e _build/ -e .gitignore -e README -e .nojekyll
 	cp -r _build/html/* .
-	git stage .
+	rm -r _build/
+	git add .
 	@echo 'Commit and push when ready or git reset --hard && git checkout master to revert'

@@ -128,3 +128,11 @@ doctest:
 	$(SPHINXBUILD) -b doctest $(ALLSPHINXOPTS) $(BUILDDIR)/doctest
 	@echo "Testing of doctests in the sources finished, look at the " \
 	      "results in $(BUILDDIR)/doctest/output.txt."
+
+gh-pages: clean html
+	git checkout gh-pages
+	git rm -r .
+	git checkout HEAD -- .gitignore README .nojekyll
+	cp -r _build/html/* .
+	git stage .
+	@echo 'Commit and push when ready or git reset --hard && git checkout master to revert'

@@ -31,7 +31,6 @@ Reproducibility
    Talk about the attempt for the majority of the work in the disseratation to
    be reproducible.
 
-
 .. rubric:: Footnotes
 
 .. [#tubes] It wasn't till after welding the bicycle frame together did I

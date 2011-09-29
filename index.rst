@@ -13,8 +13,8 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   src/text/outline.rst
-   src/text/preface.rst
+   outline.rst
+   preface.rst
 
 Indices and tables
 ==================

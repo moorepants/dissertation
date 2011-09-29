@@ -8,6 +8,10 @@ Human Control of a Bicycle
 
 This is the University of California, Davis doctoral dissertation of Jason K. Moore.
 
+.. warning::
+
+   This document is a draft and currently in development.
+
 Contents:
 
 .. toctree::

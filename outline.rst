@@ -2,6 +2,23 @@
 Outline
 =======
 
+Preface
+=======
+
+* Reproducibility
+* Host while I write
+
+Acknowledgements
+================
+
+* Hubbard
+* Luke
+* Arend
+* Jodi
+* Jim
+* interns: Danique, Peter, Chris, Gilbert
+* undergrad helpers
+
 Introduction
 ============
 
@@ -38,6 +55,8 @@ Bicycle Equations of Motion
 
     * Meijaard 2007
     * Basu-Mandal 2007
+
+  * Linearizatoin
 
 * Addition of a lateral force input
 * Leaning rider extension

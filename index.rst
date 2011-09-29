@@ -11,9 +11,13 @@ This is the University of California, Davis doctoral dissertation of Jason K. Mo
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    outline.rst
+
+.. toctree::
+   :maxdepth: 2
+
    preface.rst
 
 Indices and tables

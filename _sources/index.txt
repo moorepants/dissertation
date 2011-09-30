@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Human Control of a Bicycle
-==========================
+University of California, Davis Doctoral Dissertation
+=====================================================
 
 This is the University of California, Davis doctoral dissertation of Jason K. Moore.
 

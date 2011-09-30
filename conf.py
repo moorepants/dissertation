@@ -60,7 +60,7 @@ release = '1.0dev'
 # non-false value, then it is used:
 #today = ''
 # Else, today_fmt is used as the format for a strftime call.
-#today_fmt = '%B %d, %Y'
+today_fmt =  '%B %d, %Y at %X %Z'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.

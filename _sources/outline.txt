@@ -60,7 +60,7 @@ Bicycle Equations of Motion
 
 * Addition of a lateral force input
 * Leaning rider extension
-* de Lorenzo extension
+* David de Lorenzo extension
 * Arm extension
 * Gryo bike extension
 * Swing bike

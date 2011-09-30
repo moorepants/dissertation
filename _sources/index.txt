@@ -11,7 +11,7 @@ This is the University of California, Davis doctoral dissertation of Jason K. Mo
 .. warning::
 
    This document is a draft which is updated regularly (Last updated |today|). Once I submit if for my
-   doctoral degree at UC Davis, it will be done. So use at your own risk!
+   doctoral degree at UC Davis, it will be done. So for now use at your own risk!
 
 .. toctree::
    :maxdepth: 2

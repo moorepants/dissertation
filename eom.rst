@@ -2,6 +2,9 @@
 Bicycle Equations Of Motion
 ===========================
 
+Introduction
+============
+
 As was mentioned in the introduction, the bicycle has been studied by many
 scientists over the years. The bicycle is a rich dynamic system that is
 difficult to model accurately.  [Meijaard2007]_ did an excellent job of sorting
@@ -71,6 +74,21 @@ studies include ones developed by [Koenen1983]_ and [CossalterLot2002]_.
 Whipple Model
 =============
 
+Attempting to derive the equations of motion of the Whipple model is pretty
+much what got me hooked into bicycle dynamics. I attempted it for my class
+project in Mont Hubbard's winter 2006 multi-body dynamics class and struggle
+with it well into the summer before finally getting a mostly correct answer.
+After the fact, I realized much of my pain was cause by a single missing
+apostrophe in my Autolev computer code[#]_. Another student, Thomas Englehardt,
+in the class also derived the equations and helped me debug by sharing his code
+and going over his methods. It turned out that my orignial equations weren't
+"exactly" correct and it wasn't until Luke Peterson joined our lab and got the
+bicycle dynamics itch did I get the bugs sorted out in my derivation.
+Conversations and collaboration with Luke have improved the derivation
+significantly and influence much of what follows. Luke has also continued to
+improve the derivation with the goal of printing the first compact symbolic
+result.
+
 Derivation of the Non-linear Equations of Motion
 ------------------------------------------------
 
@@ -94,6 +112,7 @@ My definition of the Whipple Bicycle Model includes these requirements:
 * The bodies are connected to each other by frictionless revolute joints.
 * The wheels contact the ground under pure rolling and no sideslip conditions.
 * The bicycle is assumed to be laterally symmetric.
+* Flat ground.
 
 .. todo::
    Figure of the bicycle geometry with caption: The bicycle in the upright no
@@ -134,24 +153,165 @@ the rear and front offset lines.
 Generalized Coordinates
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Four rigid bodies (the rear wheel, C, frame/rider, D, fork/handlebar, F and
-front wheel, G), three intermediate reference frames (yaw, A, lean, B and steer
-axis, E) and eight generalized coordinates (:math:`q_i`, :math:`i =
-1,\ldots,8`) were used to characterize the bicycle configuration
-(Fig. fig:genCoord) within the Newtonian reference frame, N. The generalized
-coordinates are defined as follows: :math:`q_1` and :math:`q_2` locate the
-rear wheel contact point in the ground plane, :math:`q_3` the yaw angle,
-:math:`q_4` the lean angle, :math:`q_5` the rotation angle of the rear
-wheel relative to the lean frame B, :math:`q_6` the frame pitch angle,
-:math:`q_7` the steer angle and :math:`q_8` the rotation of the front wheel.
-The wheel contact points for the front and rear wheel are :math:`C_n` and
-:math:`G_n`, respectively. The Whipple model is further characterized by a
-non-minimum set of physical parameters which include geometry, mass, and
-moments of inertia. The geometrical parameters are depicted in Fig. fig:bikeDim
-where each body (C, D, F and G) has mass and moment of inertia.
+I use eight generalized coordinates to develop the bicycle configuration. This
+is not the miminal set in terms of holonomic constraints or in terms of
+ignorable coordinates, but is useful none-the-less primarily due to the nature of
+deriving the equations with a CAS.
+
+Before time, there first was the Newtonian reference frame. We chose the
+coordiates to fit the ____ standard as in [Meijaard2007]_. I start with
+locating the rear wheel contact point in the ground plane of the Newtonian
+reference frame, :math:`N`, longitudinal and lateral coordinates :math:`q_1`
+and :math:`q_2`, which turn out to be ignorable coordinates. I then orient the
+bicycle rear frame reference frame, :math:`C`, with respect to the newtonian
+reference frame through a body fixed 3-1-2 rotation defining the yaw angle,
+:math:`q_3`, the roll angle, :math:`q_4`, and the pitch angle, :math:`q_5`. The
+intermediate frames yaw, :math:`A` and roll, :math:`B`, are implicitly
+generated along the way. The rotation matrix of :math:`C` relative to :math:`N`
+is then:
+
+.. math::
+   :label: NtoC
+
+   ^NR^C =
+   \left[
+   \begin{array}{c}
+   -s_3s_4s_5 + c_5c_3 & -s_3c_4 & s_3s_4c_5 + s_5c_3\\
+   c_3s_4s_5 + c5s_3 & c_3c_4 & -c_3s_4c_5 + s_5s_4\\
+   -c_4s_5 & s_4 & c_4c_5
+   \end{array}
+   \right]
+
+The rear wheel reference frame, :math:`D`, rotates with repect to the bicycle
+frame about the :math:`\hat{c}_2` axis through :math:`q_6`.
+
+.. math::
+   :label: CtoD
+
+   ^CR^D =
+   \left[
+   \begin{array}{c}
+   c_6 & 0 & -s_6\\
+   0 & 1 & 0\\
+   s_6 & 0 & c_6
+   \end{array}
+   \right]
+
+The fork/handlebar reference frame, :math:`E`, rotates with respect to the
+bicycle reference frame about the :math:`\hat{c}_3` axis through :math:`q_7`.
+
+.. math::
+   :label: CtoE
+
+   ^CR^E =
+   \begin{array}{c}
+   c_7 & s_7 & 0\\
+   -s_7 & c_7 & 0\\
+   0 & 0 & 1
+   \end{array}
+
+Finally, the front wheel, :math:`F`, rotates with respect to the fork/handlebar
+through
+:math:`q_8` about the :math:`\hat{e}_2` axis.
+
+.. math::
+   :label: EtoF
+
+   ^ER^F =
+   \begin{array}{c}
+   c_8 & 0 & -s_8\\
+   0 & 1 & 0\\
+   s_8 & 0 & c_8
+   \end{array}
+
+The first two coordinates locate the the system in the Newtownian reference
+frame and the remaing six coordinates orient the four rigid bodies within the
+Newtonian reference frame.
 
 .. todo::
    Diagram of the bicycle showing each generalized coordinate.
+
+Position
+~~~~~~~~
+
+The positions of the various points on the bicycle must be defined with respect
+to the Newtonian reference frame. There are six primary points of interest: the
+four mass centers and the two ground contact points.
+
+The point of contact for the bicyle wheels are one of techincally abstract
+points in dynamics. There are four distinct points of concern. The first being
+the point in the ground plane that instanteously contacts the wheel at any
+given time, the point in the ground plane that tracks the contact point, the
+point on the wheel that instataneously contacts the ground at any given time,
+and the point on the wheel ...
+
+.. todo::
+   Contact points need better explanations.
+
+The location of the contact point in the newtonian frame is defined by:
+
+.. math::
+   :label: rearWheelContact
+
+   \bar{r}^{D_n/N_o} = q_1\hat{n}_1 + q_2\hat{n}_2
+
+This encompasses a holonomic constraint (the contact point can't move in the n3
+direction.
+
+The mass center of the rear wheel, :math:`D_o`, is assumed to be at the center of the wheel:
+
+.. math::
+   :label: rearWheelMassCenter
+
+   \bar{r}^{D_o/D_n} = -r_F\hat{b}_3
+
+The mass center of the front wheel, :math:`F_o`, is located by the frame and
+fork dimensions:
+
+.. math::
+   :label: frontWheelMassCenter
+
+   \bar{r}^{F_o/D_o} = d_1\hat{c}_1 + d_2\hat{c}_3 + d_3\hat{e}_1
+
+The bicycle frame mass center, :math:`C_o`, is located by two additional
+parameters:
+
+.. math::
+   :label: frameMassCenter
+
+   \bar{r}^{C_o/D_o} = l_1\hat{c}_1 + l_2\hat{c}_3
+
+Similarly the fork mass center, :math:`E_o`, is located by two more additional
+parameters.
+
+.. math::
+   :label: forkMassCenter
+
+   \bar{r}^{E_o/F_o} = l_3\hat{e}_1 + l_4\hat{e}_3
+
+The location of the front wheel contact point is less trivial. The vector from
+the front wheel center to the contact point is defined as:
+
+.. math::
+   :label: frontWheelContact
+
+   \bar{r}^{F_n/F_o} = r_F(\hat{e}_2\times\hat{n}_3)\times\hat{e}_2
+
+Where the triple cross product represents the unit vector pointing from the
+front wheel center to the front wheel contact. [Basu-Mandal2007]_ give an
+explanation and diagram. The equation can also be though of in terms of dot
+products:
+
+.. math::
+   :label: frontWheelContactDot
+
+   \bar{r}^{F_n/F_o} = -r_F\hat{e}_2(\hat{e}_2\cdot\hat{n}_3)
+
+.. todo::
+   Check this equation.
+
+Holonomic Constraints
+~~~~~~~~~~~~~~~~~~~~~
 
 A holonomic configuration constraint, arising from the fact that
 both wheels must touch the ground, complicates the model
@@ -178,6 +338,9 @@ allows an explicit solution for the pitch angular velocity
 .. math::
    \frac{d}{dt}_\left(\bar{\mathbf{r}}^{G_n/C_n}\cdot\hat{\mathbf{n}}_3\right)=a\cdot u_4+b\cdot u_5+c\cdot u_7=0
    :label: {eq:pitchVelCon}
+
+Non-holonomic Constraints
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Four nonholomic constraints (Eq.eq:noSlip) further reduce the
 locally achievable configuration space to three degrees of freedom.
@@ -281,4 +444,7 @@ significant figures.
 .. [#] My colleague, Dale L. Peterson, has made significant progress
        formulating the equations of motion in a readable and compact form, which will
        most likely be published soon.
+.. [#] Luke and I have dreamed of developing an open source version of Autolev
+       for years and that has finally culminated through primarily Luke and Gilber
+       Gede's efforts in the creation of sympy.physics.mechanics.
 

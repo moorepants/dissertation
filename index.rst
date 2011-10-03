@@ -14,9 +14,9 @@ This is the University of California, Davis doctoral dissertation of Jason K. Mo
 Committee
 =========
 
-* Mont Hubbard, UC Davis (Chair)
-* Ron Hess, UC Davis
-* A. L. Schwab, TU Delft
+* Dr. Mont Hubbard, UC Davis (Chair)
+* Dr. Ron Hess, UC Davis
+* Dr. A. L. Schwab, TU Delft
 
 Table of Contents
 =================

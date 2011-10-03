@@ -86,6 +86,9 @@ pygments_style = 'sphinx'
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
 
+# Shows all todo listings
+todo_include_todos = True
+
 
 # -- Options for HTML output ---------------------------------------------------
 

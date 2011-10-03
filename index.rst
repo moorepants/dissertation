@@ -25,6 +25,7 @@ Table of Contents
    :maxdepth: 2
 
    preface.rst
+   acknowledgements.rst
 
 .. toctree::
    :maxdepth: 1

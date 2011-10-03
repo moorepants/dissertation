@@ -70,7 +70,8 @@ Steer Torque From Experiments
   change maneuvers. The steady turning produced torques in the range of -10 to
   30 Nm and the lane change produced -20 to 55 Nm.
 
-  .. image:: http://biosport.ucdavis.edu/research-projects/bicycle/instrumented-bicycle/steer-torque-measurement/weirSteerTorque.png
+  .. todo::
+     http://biosport.ucdavis.edu/research-projects/bicycle/instrumented-bicycle/steer-torque-measurement/weirSteerTorque.png
 
 [Lorenzo1997]_
   David de Lorenzo instrumeted a bike to measure pedal forces, handlebar forces,
@@ -95,14 +96,14 @@ Steer Torque From Experiments
   predictions very well. The measure torques from -20 to 20 Nm for a slalom
   maneuver at 13 m/s.
 
-  .. image:: Biral's Steer Torque Design
+  .. todo:: Biral's Steer Torque Design
 
 [Astrom2005]_
   Åström et al. shows a steer torque measurement system constructed for the UCSB
   instrumented bicycle but with little extra information. They use a linear force
   transducer of some sort mounted on the handlebars.
 
-  .. image:: UCSB Steer Torque Measurement
+  .. todo:: UCSB Steer Torque Measurement
 
 [Cheng2003]_
   This is a report about a design project at UCSB to develop and implement a
@@ -156,12 +157,12 @@ The following are some basic designs we are working with:
 
 Åström Design
   This is a sketch of what was designed for the UCSB instrumented bicycle and
-  presented in a `2005 paper by Karl Åström et al <../references#Astrom2005>`_.
+  presented in a `2005 paper by Karl Åström et al`.
   It uses an off-the-shelf axial load cell mounted between a floating handlebar
   and a bar extending from the steer tube. This seems to be a good design, but
   it would be nice to eliminate the handlebar bearings and the rod ends.
 
-  .. image:: Astrom Design
+  .. todo:: Astrom Design
 
 Landman Design
   My professor, `Drew Landman
@@ -169,27 +170,27 @@ Landman Design
   worked with designed force balances for wind tunnel testing at the `LFST
   <http://www.nasa.gov/vision/earth/improvingflight/fst_overview.html>`_
   suggested a `redesign that eliminates the bearings and replaces them with
-  flexures <resolveuid/dd2f3c8a73e2229352bbc0320e6d4df5>`_ .
+  flexures` .
 
 Weir Design
   David Weir designed a motorcycle steer torque measurement system in his `1979
-  technical repor <../references#Weir1979a>`_ t that also floats the handlebars
+  technical repor` t that also floats the handlebars
   on bearings but uses an off-the-shelf torque sensor instead. The sketch shows
   the basic concept. The handlebars are floating on bearings and the torque
   sensor connects the handlebars to the steer tube. He claimed that the design
   lacked low range resolution. Motorcycles can experience torques that are as
   high as 50 Nm according to some models.
 
-  .. image:: Weir Design
+  .. todo:: Weir Design
 
 Internal Stem Design
   This is a design that we came up with when preparing our abstract on the topic.
   It is fundamentally the same as the Åström design but includes flexure elements
   instead of rod ends and is a bit smaller in scale.
 
-  .. image:: Internal Stem Design
+  .. todo:: Internal Stem Design
 
-  .. image:: steerTorque.png
+  .. todo:: steerTorque.png
 
 Double Steer Design
   This design separates the handlebar and stem's rotation axis from the steer
@@ -197,7 +198,7 @@ Double Steer Design
   bakfiets are designed. The load cell is then place on the connecting rod. This
   design is is prone to slop in the steer mechanism.
 
-    .. image:: Double Steer Design
+    .. todo:: Double Steer Design
 
 Bearing-less design
   Luke came up with this design and was able to eliminate the need for bearings.
@@ -205,7 +206,7 @@ Bearing-less design
   arms. The difference in this is that not all of the torque is transferred
   through the load cell, but maybe enough is that we can measure it.
 
-  .. image:: Bearing-less Design
+  .. todo:: Bearing-less Design
 
 Forces on the steer tube
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -219,7 +220,7 @@ also put the steer tube into bending and compression. It turns out that the
 moments in the steer tube can be as high as 200 times the steer torques we are
 trying to measure.
 
-.. image:: Basic Bicycle Forces
+.. todo:: Basic Bicycle Forces
 
 There are ways to apply strain gauges to a bar in torsion that would
 theorectically cancel all of the axial and bending strain components. Both
@@ -229,7 +230,7 @@ comes from Beckwith and Margoni's Mechanical Measurements and shows two
 possible strain gage bridge configurations that can reduce or eliminate strains
 not due to torsion.
 
-.. image:: Strain Bridge Configuration for Torsion
+.. todo:: Strain Bridge Configuration for Torsion
 
 L seems to be a good choice for the steer torque measurement, but in reality it
 is impossible to align strain gages perfectly. This can introduce
@@ -242,17 +243,17 @@ We modeled the fork as a basic beam supported by the headset bearings (points
 C and D) and the forces/moments due to the ground reaction force and force
 applied to the handlebars were calculated.
 
-.. image:: Fork Modeled as a Beam
+.. todo:: Fork Modeled as a Beam
 
 The following graphs show what the shear and bending moment diagrams for
 various loadings look like both from the side and the front of the bike.
 
-.. image:: mvdiagram01.png
-.. image:: mvdiagram02.png
-.. image:: mvdiagram03.png
-.. image:: mvdiagram04.png
-.. image:: mvdiagram05.png
-.. image:: mvdiagram06.png
+.. todo:: mvdiagram01.png
+.. todo:: mvdiagram02.png
+.. todo:: mvdiagram03.png
+.. todo:: mvdiagram04.png
+.. todo:: mvdiagram05.png
+.. todo:: mvdiagram06.png
 
 These graphs show that the bending moments and shear stresses can be of much
 larger magnitude than the steer torques, so cross talk is a major concern.
@@ -275,7 +276,7 @@ best range and accuracy for these measurements are since there seems to be no
 public data from bicycle steer torque measurements.
 
 
-.. image:: Torque Measurement Design
+.. todo:: Torque Measurement Design
 
 Torque Wrench Experiments
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -288,13 +289,13 @@ wrench, handlebars and speedometer relative to the bicycle frame. The torque
 wrench had a range from 0 to 8.5 Nm and a +/- 2% accuracy of full scale (+/-
 0.17 Nm). The speed was maintained by an electric hub motor (i.e. no pedaling).
 
-.. image:: Torque wrench mount
+.. todo:: Torque wrench mount
 
-.. image:: Torque wrench face
+.. todo:: Torque wrench face
 
-.. image:: Torque camera
+.. todo:: Torque camera
 
-The `data file <>`_ includes the run
+The `data file` includes the run
 number that corresponds to the video number, the rider's estimate of the speed
 after the run in miles per hour, the maximum reading from the torque needle
 after the run in inch-lbs, the rider's name, the maneuver, the minimum speed
@@ -308,26 +309,26 @@ line, straight to a 2 meter lane change, slalom with 3 meter spacing, steady
 circle tracking (radius = 5 and 10 meters). All of the videos and data can be
 downloaded `here
 <http://www.archive.org/details/BicycleSteerTorqueExperiment01>`_ . The results
-( `R code <>`_ ), are shown in the
+( `R code` ), are shown in the
 following graphs:
 
-.. image:: torqueHist.png
+.. todo:: torqueHist.png
 
-.. image:: torqueSpeed.png
+.. todo:: torqueSpeed.png
 
-.. image:: Circle5.png
+.. todo:: Circle5.png
 
-.. image:: Circle10.png
+.. todo:: Circle10.png
 
-.. image:: HalfCircle6.png
+.. todo:: HalfCircle6.png
 
-.. image:: HalfCircle10.png
+.. todo:: HalfCircle10.png
 
-.. image:: LaneChange.png
+.. todo:: LaneChange.png
 
-.. image:: LineTrack.png
+.. todo:: LineTrack.png
 
-.. image:: Slalom.png
+.. todo:: Slalom.png
 
 The primary goal was to determine the maximum torques we will see for the types
 of maneuvers we are interested in. The histograms shows that we never recorded
@@ -385,7 +386,7 @@ There seems to be little to no speed dependency on the max and min torque values
 Final Steer Assembly Design
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. image:: Final Steer Torque Measurement Design
+.. todo:: Final Steer Torque Measurement Design
 
 Steer Dynamics
 --------------
@@ -446,7 +447,8 @@ measure the angular rate of the handlebar about the steer axis directly with a
 rate gyro. The angular rate of the handlebar can be written as follows:
 
 .. math::
-   :lable: handlebarrate
+   :label: handlebarrate
+
    ^N\bar{\omega}^H = (w_{b1}\cos(\delta) + w_{b2}\sin(\delta))\hat{h}_1
    + (-w_{b1}\sin(\delta) + w_{b2}\cos(\delta))\hat{h}_2 + w_{h3}\hat{h}_3
 
@@ -510,7 +512,7 @@ Looking at only the 3 component of the equation of motion gives the following
 relationship:
 
 .. math::
-   T_\delta - F\sgn({\dot{\delta}}) - T_M - c(w_{h3} - w_{b3}) = (^N\dot{\bar{H}}^{H/h_o} + ^s\bar{r}^h_o \times m_H
+   T_\delta - F\operatorname{sgn}({\dot{\delta}}) - T_M - c(w_{h3} - w_{b3}) = (^N\dot{\bar{H}}^{H/h_o} + ^s\bar{r}^h_o \times m_H
    \ ^N\bar{a}^s) \cdot \hat{h}_3
 
 And :math:`T_\delta` can be solved for:

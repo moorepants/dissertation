@@ -22,12 +22,6 @@ Table of Contents
 =================
 
 .. toctree::
-   :maxdepth: 2
-
-   preface.rst
-   acknowledgements.rst
-
-.. toctree::
    :maxdepth: 1
 
    outline.rst
@@ -35,6 +29,9 @@ Table of Contents
 .. toctree::
    :maxdepth: 2
 
+   preface.rst
+   acknowledgements.rst
+   introduction.rst
    eom.rst
    davisbicycle.rst
 

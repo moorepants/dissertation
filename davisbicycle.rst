@@ -70,7 +70,7 @@ Steer Torque From Experiments
   change maneuvers. The steady turning produced torques in the range of -10 to
   30 Nm and the lane change produced -20 to 55 Nm.
 
-  .. image:: weirSteerTorque.png
+  .. image:: http://biosport.ucdavis.edu/research-projects/bicycle/instrumented-bicycle/steer-torque-measurement/weirSteerTorque.png
 
 [Lorenzo1997]_
   David de Lorenzo instrumeted a bike to measure pedal forces, handlebar forces,

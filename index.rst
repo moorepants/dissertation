@@ -25,6 +25,7 @@ Table of Contents
    :maxdepth: 1
 
    outline.rst
+   todo.rst
 
 .. toctree::
    :maxdepth: 2

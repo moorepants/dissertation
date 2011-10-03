@@ -30,6 +30,7 @@ Introduction
 * The bicycle as a dynamic system
 * Motivation
 * General literature review
+* Syntax and variables
 
 Bicycle Equations of Motion
 ===========================

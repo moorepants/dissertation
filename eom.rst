@@ -71,22 +71,68 @@ studies include ones developed by [Koenen1983]_ and [CossalterLot2002]_.
 Whipple Model
 =============
 
-Derivation
-----------
+Derivation of the Non-linear Equations of Motion
+------------------------------------------------
 
 The Whipple Model will be the foundation for any extensions we develop. This
-section details a brief description of the model derivation using Kane's
-method [KaneLevinson1985]_. The Whipple model (Fig. fig:bikeDim) is made up of
-four rigid bodies (frame/rider, fork/handlebar and two wheels) connected to
-each other by frictionless revolute joints. The wheels contact the ground under
-pure rolling and no sideslip conditions. The bicycle is assumed to be laterally
-symmetric.
+section details derivation of the non-linear equatios of motion using Kane's
+method [KaneLevinson1985]_. The equations of motion are algrebracally unwieldy
+and no one so far has publicly shown them in a form compact enough to print for
+analytical understanding[#]_. My methodology relies heavily on computer aided
+algebra to do the bookkeeping in the deviration, so I will only describe the
+necessary details to derive the equations, leaving the algebra and derivatives
+to the computer. The symbolic equations of motion herin were developed within
+the frame work of Autolev.
+
+Model
+~~~~~
+
+My definition of the Whipple Bicycle Model includes these requirements:
+
+* The Whipple model is made up of four rigid bodies (frame/rider,
+  fork/handlebar and two wheels)
+* The bodies are connected to each other by frictionless revolute joints.
+* The wheels contact the ground under pure rolling and no sideslip conditions.
+* The bicycle is assumed to be laterally symmetric.
 
 .. todo::
    Figure of the bicycle geometry with caption: The bicycle in the upright no
    steer configuration. The rigid bodies are the rear wheel, C, frame/rider, D,
    fork/handlebar, F and front wheel, G. The geometric parameters are also
    shown.
+
+Geometry
+~~~~~~~~
+
+The geometry of the whipple model can be parameterized in an infinite amount of
+ways. It is typical and natural to define the geometry with respect to the modern
+descriptions of bicycle geometry that is used in the bicyle fabrication world,
+such as wheel diameter/radius, head tube angle, trail and or rake. These
+parameterizations pose a problem when developing the non-linear equations of
+motion because they are typically defined with respect to a nominal
+configuration of the bicycle. The benchmark derivation of the linear whipple
+model about the nominal configuration uses a set of non-minimal parameters to
+to parameterize the model. These are a bad choice of parameters when looking at
+the model from a non-linear perspective, as they vary with time. These
+parameters have also been minimized by [Sharp2008]_ by making use of gyrostats.
+This formulation helps to simplify the model, but also does not simplify the
+non-linear formulation. The motorcycle treatement of geometry is a good
+reference [xxxx]_.
+
+.. todo::
+   Find the reference to the paper on motorcycle geometry by a italian guy.
+
+With that in mind after using various parameterizations, Luke and I have
+settled on the geometric formulation presented by [Psiaki]_. The wheels are
+described by their radius (> = 0) and the remaining geometry is defined by
+three distances which are time invariant. The distance :math:`d_1` is the
+offset to the center of the rear wheel from the steer axis and :math:`d_3` is
+the offset of the front wheel from the steering axis. :math:`d_2` is then the
+distance along the steer axis from the point of perpendicular intersection to
+the rear and front offset lines.
+
+Generalized Coordinates
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Four rigid bodies (the rear wheel, C, frame/rider, D, fork/handlebar, F and
 front wheel, G), three intermediate reference frames (yaw, A, lean, B and steer
@@ -229,4 +275,10 @@ significant figures.
    sinusoidal motion of the roll and steer, with steer lagging the roll. This
    mode becomes stable at a higher speed. The weave and capsize critical speeds
    bound a stable speed range.
+
+.. rubric:: Footnotes
+
+.. [#] My colleague, Dale L. Peterson, has made significant progress
+       formulating the equations of motion in a readable and compact form, which will
+       most likely be published soon.
 

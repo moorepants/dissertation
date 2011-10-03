@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>University of California, Davis Doctoral Dissertation &mdash; Human Control of a Bicycle v1.0dev</title>
+    <title>Human Control of a Bicycle &mdash; Human Control of a Bicycle: Jason K. Moore</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -28,13 +28,13 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/theme_extras.js"></script>
-    <link rel="top" title="Human Control of a Bicycle v1.0dev" href="#" />
+    <link rel="top" title="Human Control of a Bicycle: Jason K. Moore" href="#" />
     <link rel="next" title="Preface" href="preface.html" /> 
   </head>
   <body>
       <div class="header"><h1 class="heading"><a href="#">
-          <span>Human Control of a Bicycle v1.0dev</span></a></h1>
-        <h2 class="heading"><span>University of California, Davis Doctoral Dissertation</span></h2>
+          <span>Human Control of a Bicycle: Jason K. Moore</span></a></h1>
+        <h2 class="heading"><span>Human Control of a Bicycle</span></h2>
       </div>
       <div class="topnav">
       
@@ -48,14 +48,33 @@
       <div class="content">
         
         
-  <div class="section" id="university-of-california-davis-doctoral-dissertation">
-<h1>University of California, Davis Doctoral Dissertation<a class="headerlink" href="#university-of-california-davis-doctoral-dissertation" title="Permalink to this headline">¶</a></h1>
-<p>This is the University of California, Davis doctoral dissertation of Jason K. Moore.</p>
+
+  <div class="section" id="human-control-of-a-bicycle">
+<h1>Human Control of a Bicycle<a class="headerlink" href="#human-control-of-a-bicycle" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated September 30, 2011 at 15:00:11 PDT). Once I submit if for my
-doctoral degree at UC Davis, it will be done. So for now use at your own risk!</p>
+<p class="last">This document is a draft which is updated regularly (Last updated October 02, 2011 at 21:37:33 PDT).
+Once I submit if for my doctoral degree at UC Davis, it will be done. So for
+now use at your own risk. The information may or may not be correct.
+Reviews, comments and suggestions are welcome.</p>
 </div>
+<p>This is the University of California, Davis doctoral dissertation of Jason K. Moore.</p>
+<div class="section" id="committee">
+<h2>Committee<a class="headerlink" href="#committee" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Mont Hubbard, UC Davis (Chair)</li>
+<li>Ron Hess, UC Davis</li>
+<li><ol class="first upperalpha">
+<li><ol class="first upperalpha" start="12">
+<li>Schwab, TU Delft</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+</div>
+<div class="section" id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a><ul>
@@ -71,6 +90,14 @@ doctoral degree at UC Davis, it will be done. So for now use at your own risk!</
 </div>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="eom.html">Bicycle Equations Of Motion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eom.html#simple-models">Simple Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eom.html#whipple-model">Whipple Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eom.html#motorcycle-models">Motorcycle Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eom.html#derivation">Derivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eom.html#validation">Validation</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="davisbicycle.html">Davis Instrumented Bicycle</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="davisbicycle.html#steer-torque">Steer Torque</a></li>
 </ul>
@@ -81,6 +108,28 @@ doctoral degree at UC Davis, it will be done. So for now use at your own risk!</
 <li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
 </ul>
 </div>
+</div>
+
+
+<!--
+<script type="text/javascript">
+	var disqus_developer = 1;
+</script>
+-->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /**
+    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
+    */
+  (function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = 'http://jkm-dissertation.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a
+		href="http://disqus.com/?ref_noscript=jkm-dissertation">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
       </div>
@@ -94,9 +143,19 @@ doctoral degree at UC Davis, it will be done. So for now use at your own risk!</
 
       </div>
 
+
     <div class="footer">
         &copy; Copyright 2011, Jason K. Moore.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1pre.
     </div>
+<script type="text/javascript">
+var disqus_shortname = 'jkm-dissertation';
+(function () {
+  var s = document.createElement('script'); s.async = true;
+  s.src = 'http://disqus.com/forums/jkm-dissertation/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
   </body>
 </html>

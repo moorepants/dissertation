@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Outline &mdash; Human Control of a Bicycle v1.0dev</title>
+    <title>Outline &mdash; Human Control of a Bicycle: Jason K. Moore</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -28,13 +28,13 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/theme_extras.js"></script>
-    <link rel="top" title="Human Control of a Bicycle v1.0dev" href="index.html" />
-    <link rel="next" title="Davis Instrumented Bicycle" href="davisbicycle.html" />
+    <link rel="top" title="Human Control of a Bicycle: Jason K. Moore" href="index.html" />
+    <link rel="next" title="Bicycle Equations Of Motion" href="eom.html" />
     <link rel="prev" title="Preface" href="preface.html" /> 
   </head>
   <body>
       <div class="header"><h1 class="heading"><a href="index.html">
-          <span>Human Control of a Bicycle v1.0dev</span></a></h1>
+          <span>Human Control of a Bicycle: Jason K. Moore</span></a></h1>
         <h2 class="heading"><span>Outline</span></h2>
       </div>
       <div class="topnav">
@@ -44,18 +44,20 @@
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="davisbicycle.html">Davis Instrumented Bicycle</a>&#160;&#160;»
+        <a href="eom.html">Bicycle Equations Of Motion</a>&#160;&#160;»
         </p>
 
       </div>
       <div class="content">
         
         
+
   <div class="section" id="outline">
 <h1>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="preface">
 <h2>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
+<li>Intro</li>
 <li>Reproducibility</li>
 <li>Host while I write</li>
 </ul>
@@ -68,14 +70,15 @@
 <li>Arend</li>
 <li>Jodi</li>
 <li>Jim</li>
-<li>interns: Danique, Peter, Chris, Gilbert</li>
-<li>undergrad helpers</li>
+<li>Grad interns: Danique, Peter, Chris, Gilbert</li>
+<li>Undergrad interns</li>
+<li>Others...</li>
 </ul>
 </div>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>The bicycle</li>
+<li>The bicycle as a dynamic system</li>
 <li>Motivation</li>
 <li>General literature review</li>
 </ul>
@@ -83,10 +86,23 @@
 <div class="section" id="bicycle-equations-of-motion">
 <h2>Bicycle Equations of Motion<a class="headerlink" href="#bicycle-equations-of-motion" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Introduction to the Whipple Model</li>
+<li>Overview of general types of bicylce models<ul>
+<li>Simple bicycle models</li>
+<li>Bicycle models with stability</li>
+<li>Complex models (motorcycle)<ul>
+<li>Tire models</li>
+<li>Flexible rider</li>
+<li>Shocks and flexible frames</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>Derivation of the Whipple model<ul>
-<li>Geometry and positions</li>
+<li>Geometry and positions<ul>
 <li>Parameter choice</li>
+<li>Symmetry</li>
+</ul>
+</li>
 <li>Inertial<ul>
 <li>Mass</li>
 <li>Center of mass</li>
@@ -104,29 +120,41 @@
 </li>
 <li>Holonomic constraint</li>
 <li>Non-holonomic constraints</li>
+<li>Fr + Fr* = 0</li>
+<li>Non-linear simulation</li>
+<li>Linearization</li>
+<li>Linear simulation</li>
 <li>Comparison to benchmarks<ul>
 <li>Meijaard 2007</li>
 <li>Basu-Mandal 2007</li>
 </ul>
 </li>
-<li>Linearizatoin</li>
 </ul>
 </li>
+</ul>
+</div>
+<div class="section" id="extensions-and-modifcations-to-the-whipple-model">
+<h2>Extensions and modifcations to the Whipple Model<a class="headerlink" href="#extensions-and-modifcations-to-the-whipple-model" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
 <li>Addition of a lateral force input</li>
 <li>Leaning rider extension</li>
-<li>David de Lorenzo extension</li>
-<li>Arm extension</li>
-<li>Gryo bike extension</li>
+<li>David de Lorenzo extension (3 rider dof)</li>
+<li>Addition of rider arms</li>
+<li>Flywheel in the front wheel</li>
 <li>Swing bike</li>
-<li>Flexible rider</li>
+<li>Flexible rider (hip rotation, back lean and twist)</li>
+<li>Roll angle trailer</li>
 </ul>
 </div>
 <div class="section" id="measurement-and-calculation-of-physical-parameters">
 <h2>Measurement and Calculation of Physical Parameters<a class="headerlink" href="#measurement-and-calculation-of-physical-parameters" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Introduction</li>
+<li>Introduction<ul>
 <li>Motivation</li>
 <li>Literature review</li>
+</ul>
+</li>
+<li>Bicycle parameters<ul>
 <li>Measurement methods and experimental setup</li>
 <li>Bicycles<ul>
 <li>Fisher</li>
@@ -141,20 +169,29 @@
 <li>Gyrobike</li>
 </ul>
 </li>
-<li>Comparison to other measured bikes</li>
-<li>Uncertatinties in parameters</li>
-<li>Human<ul>
-<li>Method 1: Moore</li>
-<li>Method 2: Yeadon</li>
+<li>Calculations<ul>
+<li>Uncertainties in parameters</li>
+<li>Geometry</li>
+<li>Mass</li>
+<li>Center of mass</li>
+<li>Inertia</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Human Parameters<ul>
+<li>Simple geometrical method by Moore</li>
+<li>Complex geometrical method by Yeadon</li>
 </ul>
 </li>
 <li>Combining bike and rider</li>
-<li>Extracting different parameters for different models</li>
+<li>Extracting different parameters for different models (rider parameters)</li>
 <li>Parameter conversions</li>
+<li>Comparison to other measured bikes</li>
 </ul>
 </div>
-<div class="section" id="parameter-study">
-<h2>Parameter Study<a class="headerlink" href="#parameter-study" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="parameter-studies">
+<h2>Parameter Studies<a class="headerlink" href="#parameter-studies" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Variation of parameters and effects to linear stability</li>
 <li>Comparison of the linear properties of real bicycles</li>
@@ -164,15 +201,25 @@
 <h2>Delft Instrumented Bicycle<a class="headerlink" href="#delft-instrumented-bicycle" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Sensor and instrumentation design</li>
-<li>Experiment design</li>
-<li>Data visualization design</li>
+<li>Experiment design<ul>
+<li>Treadmill</li>
+<li>Around town</li>
+</ul>
+</li>
+<li>Data visualization GUI</li>
+<li>Data analysis</li>
 <li>Results</li>
 </ul>
 </div>
 <div class="section" id="motion-capture">
 <h2>Motion Capture<a class="headerlink" href="#motion-capture" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Experiment design</li>
+<li>Experiment design<ul>
+<li>Equipment</li>
+<li>Manuevers</li>
+<li>Riders</li>
+</ul>
+</li>
 <li>Principal Component Analysis</li>
 <li>Simple Statistics</li>
 </ul>
@@ -181,11 +228,15 @@
 <h2>Davis Instrumented Bicycle<a class="headerlink" href="#davis-instrumented-bicycle" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Instrumentation design<ul>
+<li>Bicycle frame</li>
 <li>Steer torque</li>
 <li>Rates and accelerations</li>
 <li>Lateral Force</li>
 <li>Rider rigidification</li>
 <li>Wiring diagram</li>
+<li>Data aquisition</li>
+<li>Time sychronization</li>
+<li>Roll angle trailer</li>
 </ul>
 </li>
 <li>DAQ Software</li>
@@ -194,7 +245,7 @@
 <div class="section" id="control">
 <h2>Control<a class="headerlink" href="#control" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Review of other types of control models</li>
+<li>Review of control models</li>
 <li>Review of manual control</li>
 <li>Our manual control model</li>
 <li>Manuevers<ul>
@@ -208,8 +259,9 @@
 <h2>Handling<a class="headerlink" href="#handling" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Review of handling</li>
-<li>Thought on bicycle handling</li>
+<li>Thoughts on bicycle handling</li>
 <li>Ron&#8217;s analytical method</li>
+<li>Comparison of different bicycles</li>
 </ul>
 </div>
 <div class="section" id="davis-experiments">
@@ -228,6 +280,7 @@
 <li>Track Line</li>
 <li>Disturbance</li>
 <li>Blind</li>
+<li>Riders</li>
 </ul>
 </li>
 </ul>
@@ -235,12 +288,34 @@
 <div class="section" id="system-identification">
 <h2>System Identification<a class="headerlink" href="#system-identification" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
+<li>Introduction and review</li>
 <li>Model fitting</li>
 <li>Control parameter estimation</li>
 <li>Effects of rider, environment, speed and manuever to human control</li>
 </ul>
 </div>
 </div>
+
+
+<!--
+<script type="text/javascript">
+	var disqus_developer = 1;
+</script>
+-->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /**
+    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
+    */
+  (function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = 'http://jkm-dissertation.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a
+		href="http://disqus.com/?ref_noscript=jkm-dissertation">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
       </div>
@@ -251,14 +326,24 @@
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="davisbicycle.html">Davis Instrumented Bicycle</a>&#160;&#160;»
+        <a href="eom.html">Bicycle Equations Of Motion</a>&#160;&#160;»
         </p>
 
       </div>
+
 
     <div class="footer">
         &copy; Copyright 2011, Jason K. Moore.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1pre.
     </div>
+<script type="text/javascript">
+var disqus_shortname = 'jkm-dissertation';
+(function () {
+  var s = document.createElement('script'); s.async = true;
+  s.src = 'http://disqus.com/forums/jkm-dissertation/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
   </body>
 </html>

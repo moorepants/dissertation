@@ -126,11 +126,11 @@ allows an explicit solution for the pitch angular velocity
 :math:`u_6`, making it a dependent generalized speed.
 
 .. math::
-   \bar{\mathbf[r]_}^{G_n/C_n}\cdot\hat{\mathbf[n]_}_3=f\left(q_4,q_6,q_7\right)=0
+   \bar{\mathbf{r}}^{G_n/C_n}\cdot\hat{\mathbf{n}}_3=f\left(q_4,q_6,q_7\right)=0
    :label: eq:wheelsTouch
 
 .. math::
-   \frac[d]_[dt]_\left(\bar{\mathbf[r]_}^{G_n/C_n}\cdot\hat{\mathbf[n]_}_3\right)=a\cdot u_4+b\cdot u_5+c\cdot u_7=0
+   \frac{d}{dt}_\left(\bar{\mathbf{r}}^{G_n/C_n}\cdot\hat{\mathbf{n}}_3\right)=a\cdot u_4+b\cdot u_5+c\cdot u_7=0
    :label: {eq:pitchVelCon}
 
 Four nonholomic constraints (Eq.eq:noSlip) further reduce the
@@ -138,17 +138,17 @@ locally achievable configuration space to three degrees of freedom.
 The pure rolling, no side-slip, contact of the knife-edge wheels
 with the ground plane requires that there are no components of
 velocity of the wheel contact points in the
-:math:`{\mathbf[n]_}_1` and :math:`{\mathbf[n]_}_2` directions.
+:math:`{\mathbf{n}}_1` and :math:`{\mathbf{n}}_2` directions.
 
 .. math::
-   ^N\bar{\mathbf[v]_}^[C_n]_\cdot\hat{\mathbf[n]_}_1=
-   ^N\bar{\mathbf[v]_}^[C_n]_\cdot\hat{\mathbf[n]_}_2=
-   ^N\bar{\mathbf[v]_}^[G_n]_\cdot\hat{\mathbf[n]_}_1=
-   ^N\bar{\mathbf[v]_}^[G_n]_\cdot\hat{\mathbf[n]_}_2=0
+   ^N\bar{\mathbf{v}}^{C_n}\cdot\hat{\mathbf{n}}_1=
+   ^N\bar{\mathbf{v}}^{C_n}\cdot\hat{\mathbf{n}}_2=
+   ^N\bar{\mathbf{v}}^{G_n}\cdot\hat{\mathbf{n}}_1=
+   ^N\bar{\mathbf{v}}^{G_n}\cdot\hat{\mathbf{n}}_2=0
    :label: {eq:noSlip}
 
 Eight generalized coordinates, one of which is dependent, and three
-independent generalized speeds (:math:`u_i=\dot[q]__i` where
+independent generalized speeds (:math:`u_i=\dot{q}_i` where
 :math:`i = 4,5,7`) describe the system. Five of these are
 ignorable coordinates (:math:`q_i`, :math:`i = 1,2,3,5,8`),
 that is they do not occur in the dynamical equations of motion. The
@@ -160,11 +160,11 @@ numerically for its initial condition when simulating and for the
 fixed point when linearizing.
 
 .. math::
-   \dot[u]__i=f\left(u_4,u_5,u_7,q_4,q_6,q_7\right)\textrm{ where }i=4,5,7
+   \dot{u}_i=f\left(u_4,u_5,u_7,q_4,q_6,q_7\right)\textrm{ where }i=4,5,7
    :label: {eq:accels}
 
 .. math::
-   \dot[q]__i=u_i\textrm{ where }i=4,5,6,7
+   \dot{q}_i=u_i\textrm{ where }i=4,5,6,7
    :label: {eq:speeds}
 
 The equations of motion can then be linearized by calculating the
@@ -176,18 +176,18 @@ speed of the bicycle. This reduces the system to four linear first
 order differential equations in the form:
 
 .. math::
-   \frac[d]_[dt]_
+   \frac{d}{dt}
     \left[
-    \begin[array]_[c]_
+    \begin{array}{c}
         q_4\\q_5\\q_6\\q_7\\u_4\\u_5\\u_7
-    \end[array]_
+    \end{array}
     \right]
     =
-    \mathbf[A]_
+    \mathbf{A}
     \left[
-    \begin[array]_[c]_
+    \begin{array}{c}
         q_4\\q_5\\q_6\\q_7\\u_4\\u_5\\u_7
-    \end[array]_
+    \end{array}
     \right]
     \label{eq:linearEq}
 
@@ -200,13 +200,13 @@ of motion (Eq. eq:linearEq) were formulated into two second order
 differential equations in the more familiar canonical form
 (Eq. eq:canonical) used in [MeijaardPapadopoulosRuinaSchwab2007]_.
 They present the values for the coefficient matrices
-(:math:`\mathbf[M]`, :math:`\mathbf[C]_1`,
-:math:`\mathbf[K]_0` and :math:`\mathbf[K]_2`) for the
+(:math:`\mathbf{M}`, :math:`\mathbf{C}_1`,
+:math:`\mathbf{K}_0` and :math:`\mathbf{K}_2`) for the
 benchmark parameter set at least 15 significant figures and my
 model matched all of the significant figures.
 
 .. math::
-   \mathbf{M\dot[u]_}+v\mathbf[C]__1\mathbf[u]_+\left[g\mathbf[K]__0+v^2\mathbf[K]__2\right]\mathbf[q]_=0
+   \mathbf{M\dot{u}}+v\mathbf{C}_1\mathbf{u}+\left[g\mathbf{K}_0+v^2\mathbf{K}_2\right]\mathbf{q}=0
    :label: {eq:canonical}
 
 The eigenvalues of the system of linear equations can be calculated

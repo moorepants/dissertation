@@ -54,6 +54,8 @@
 
   <div class="section" id="bicycle-equations-of-motion">
 <h1>Bicycle Equations Of Motion<a class="headerlink" href="#bicycle-equations-of-motion" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>As was mentioned in the introduction, the bicycle has been studied by many
 scientists over the years. The bicycle is a rich dynamic system that is
 difficult to model accurately.  [Meijaard2007] did an excellent job of sorting
@@ -65,7 +67,7 @@ All of these models can be extended by adding additional dynamics such as
 tire-road interactions, frame flexibility, and human biomechanics. These
 extensions can have effects on the stability and control of the bicycle.</p>
 <div class="section" id="simple-models">
-<h2>Simple Models<a class="headerlink" href="#simple-models" title="Permalink to this headline">¶</a></h2>
+<h3>Simple Models<a class="headerlink" href="#simple-models" title="Permalink to this headline">¶</a></h3>
 <p>Typically a one degree of freedom model that produces a roll equation of motion
 is used to model a bicycle in its most basic form. This model has been derived
 and analyzed by many including, but not limited to, [Timoshenko1948],
@@ -79,7 +81,7 @@ been used on actual experimental control models [Suryanarayanan2002]. This
 type of model will not be used in my studies.</p>
 </div>
 <div class="section" id="whipple-model">
-<h2>Whipple Model<a class="headerlink" href="#whipple-model" title="Permalink to this headline">¶</a></h2>
+<h3>Whipple Model<a class="headerlink" href="#whipple-model" title="Permalink to this headline">¶</a></h3>
 <p>The lowest order model that has had some experimental validation
 [Kooijman2008], is able to predict speed dependent stability and includes a
 complete physical description of the four rigid bodies is typically referred to
@@ -102,7 +104,7 @@ derivation of the Whipple Model are the basis for using this model in my
 research.</p>
 </div>
 <div class="section" id="motorcycle-models">
-<h2>Motorcycle Models<a class="headerlink" href="#motorcycle-models" title="Permalink to this headline">¶</a></h2>
+<h3>Motorcycle Models<a class="headerlink" href="#motorcycle-models" title="Permalink to this headline">¶</a></h3>
 <p>The motorcycle is modeled in much the same fashion as the bicycle except that
 tire-road interactions and suspension are included.  Also, the human&#8217;s
 biomechanical motions play a smaller role because the motorcycle typically
@@ -115,19 +117,46 @@ also the first to give names to the eigenmodes of the Whipple Model
 [Sharp1975]. He and David Limebeer give a review of bicycle and motorcycle
 modeling in [LimebeerSharp2006] covering much of their work. Other notable
 studies include ones developed by [Koenen1983] and [CossalterLot2002].</p>
+</div>
+</div>
 <div class="section" id="id19">
-<h3>Whipple Model<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
-</div>
-</div>
-<div class="section" id="derivation">
-<h2>Derivation<a class="headerlink" href="#derivation" title="Permalink to this headline">¶</a></h2>
+<h2>Whipple Model<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<p>Attempting to derive the equations of motion of the Whipple model is pretty
+much what got me hooked into bicycle dynamics. I attempted it for my class
+project in Mont Hubbard&#8217;s winter 2006 multi-body dynamics class and struggle
+with it well into the summer before finally getting a mostly correct answer.
+After the fact, I realized much of my pain was cause by a single missing
+apostrophe in my Autolev computer code[#]_. Another student, Thomas Englehardt,
+in the class also derived the equations and helped me debug by sharing his code
+and going over his methods. It turned out that my orignial equations weren&#8217;t
+&#8220;exactly&#8221; correct and it wasn&#8217;t until Luke Peterson joined our lab and got the
+bicycle dynamics itch did I get the bugs sorted out in my derivation.
+Conversations and collaboration with Luke have improved the derivation
+significantly and influence much of what follows. Luke has also continued to
+improve the derivation with the goal of printing the first compact symbolic
+result.</p>
+<div class="section" id="derivation-of-the-non-linear-equations-of-motion">
+<h3>Derivation of the Non-linear Equations of Motion<a class="headerlink" href="#derivation-of-the-non-linear-equations-of-motion" title="Permalink to this headline">¶</a></h3>
 <p>The Whipple Model will be the foundation for any extensions we develop. This
-section details a brief description of the model derivation using Kane&#8217;s
-method [KaneLevinson1985]. The Whipple model (Fig. fig:bikeDim) is made up of
-four rigid bodies (frame/rider, fork/handlebar and two wheels) connected to
-each other by frictionless revolute joints. The wheels contact the ground under
-pure rolling and no sideslip conditions. The bicycle is assumed to be laterally
-symmetric.</p>
+section details derivation of the non-linear equatios of motion using Kane&#8217;s
+method [KaneLevinson1985]. The equations of motion are algrebracally unwieldy
+and no one so far has publicly shown them in a form compact enough to print for
+analytical understanding[#]_. My methodology relies heavily on computer aided
+algebra to do the bookkeeping in the deviration, so I will only describe the
+necessary details to derive the equations, leaving the algebra and derivatives
+to the computer. The symbolic equations of motion herin were developed within
+the frame work of Autolev.</p>
+<div class="section" id="model">
+<h4>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h4>
+<p>My definition of the Whipple Bicycle Model includes these requirements:</p>
+<ul class="simple">
+<li>The Whipple model is made up of four rigid bodies (frame/rider,
+fork/handlebar and two wheels)</li>
+<li>The bodies are connected to each other by frictionless revolute joints.</li>
+<li>The wheels contact the ground under pure rolling and no sideslip conditions.</li>
+<li>The bicycle is assumed to be laterally symmetric.</li>
+<li>Flat ground.</li>
+</ul>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
 <p class="last">Figure of the bicycle geometry with caption: The bicycle in the upright no
@@ -135,25 +164,152 @@ steer configuration. The rigid bodies are the rear wheel, C, frame/rider, D,
 fork/handlebar, F and front wheel, G. The geometric parameters are also
 shown.</p>
 </div>
-<p>Four rigid bodies (the rear wheel, C, frame/rider, D, fork/handlebar, F and
-front wheel, G), three intermediate reference frames (yaw, A, lean, B and steer
-axis, E) and eight generalized coordinates (<span class="math">\(q_i\)</span>, <span class="math">\(i =
-1,\ldots,8\)</span>) were used to characterize the bicycle configuration
-(Fig.&nbsp;fig:genCoord) within the Newtonian reference frame, N. The generalized
-coordinates are defined as follows: <span class="math">\(q_1\)</span> and <span class="math">\(q_2\)</span> locate the
-rear wheel contact point in the ground plane, <span class="math">\(q_3\)</span> the yaw angle,
-<span class="math">\(q_4\)</span> the lean angle, <span class="math">\(q_5\)</span> the rotation angle of the rear
-wheel relative to the lean frame B, <span class="math">\(q_6\)</span> the frame pitch angle,
-<span class="math">\(q_7\)</span> the steer angle and <span class="math">\(q_8\)</span> the rotation of the front wheel.
-The wheel contact points for the front and rear wheel are <span class="math">\(C_n\)</span> and
-<span class="math">\(G_n\)</span>, respectively. The Whipple model is further characterized by a
-non-minimum set of physical parameters which include geometry, mass, and
-moments of inertia. The geometrical parameters are depicted in Fig. fig:bikeDim
-where each body (C, D, F and G) has mass and moment of inertia.</p>
+</div>
+<div class="section" id="geometry">
+<h4>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h4>
+<p>The geometry of the whipple model can be parameterized in an infinite amount of
+ways. It is typical and natural to define the geometry with respect to the modern
+descriptions of bicycle geometry that is used in the bicyle fabrication world,
+such as wheel diameter/radius, head tube angle, trail and or rake. These
+parameterizations pose a problem when developing the non-linear equations of
+motion because they are typically defined with respect to a nominal
+configuration of the bicycle. The benchmark derivation of the linear whipple
+model about the nominal configuration uses a set of non-minimal parameters to
+to parameterize the model. These are a bad choice of parameters when looking at
+the model from a non-linear perspective, as they vary with time. These
+parameters have also been minimized by [Sharp2008] by making use of gyrostats.
+This formulation helps to simplify the model, but also does not simplify the
+non-linear formulation. The motorcycle treatement of geometry is a good
+reference [xxxx].</p>
 <div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">Find the reference to the paper on motorcycle geometry by a italian guy.</p>
+</div>
+<p>With that in mind after using various parameterizations, Luke and I have
+settled on the geometric formulation presented by [Psiaki]. The wheels are
+described by their radius (&gt; = 0) and the remaining geometry is defined by
+three distances which are time invariant. The distance <span class="math">\(d_1\)</span> is the
+offset to the center of the rear wheel from the steer axis and <span class="math">\(d_3\)</span> is
+the offset of the front wheel from the steering axis. <span class="math">\(d_2\)</span> is then the
+distance along the steer axis from the point of perpendicular intersection to
+the rear and front offset lines.</p>
+</div>
+<div class="section" id="generalized-coordinates">
+<h4>Generalized Coordinates<a class="headerlink" href="#generalized-coordinates" title="Permalink to this headline">¶</a></h4>
+<p>I use eight generalized coordinates to develop the bicycle configuration. This
+is not the miminal set in terms of holonomic constraints or in terms of
+ignorable coordinates, but is useful none-the-less primarily due to the nature of
+deriving the equations with a CAS.</p>
+<p>Before time, there first was the Newtonian reference frame. We chose the
+coordiates to fit the ____ standard as in [Meijaard2007]. I start with
+locating the rear wheel contact point in the ground plane of the Newtonian
+reference frame, <span class="math">\(N\)</span>, longitudinal and lateral coordinates <span class="math">\(q_1\)</span>
+and <span class="math">\(q_2\)</span>, which turn out to be ignorable coordinates. I then orient the
+bicycle rear frame reference frame, <span class="math">\(C\)</span>, with respect to the newtonian
+reference frame through a body fixed 3-1-2 rotation defining the yaw angle,
+<span class="math">\(q_3\)</span>, the roll angle, <span class="math">\(q_4\)</span>, and the pitch angle, <span class="math">\(q_5\)</span>. The
+intermediate frames yaw, <span class="math">\(A\)</span> and roll, <span class="math">\(B\)</span>, are implicitly
+generated along the way. The rotation matrix of <span class="math">\(C\)</span> relative to <span class="math">\(N\)</span>
+is then:</p>
+<div class="math" id="equation-NtoC">
+<span class="eqno">(1)</span>\[\begin{split}^NR^C =
+\left[
+\begin{array}{c}
+-s_3s_4s_5 + c_5c_3 &amp; -s_3c_4 &amp; s_3s_4c_5 + s_5c_3\\
+c_3s_4s_5 + c5s_3 &amp; c_3c_4 &amp; -c_3s_4c_5 + s_5s_4\\
+-c_4s_5 &amp; s_4 &amp; c_4c_5
+\end{array}
+\right]\end{split}\]</div>
+<p>The rear wheel reference frame, <span class="math">\(D\)</span>, rotates with repect to the bicycle
+frame about the <span class="math">\(\hat{c}_2\)</span> axis through <span class="math">\(q_6\)</span>.</p>
+<div class="math" id="equation-CtoD">
+<span class="eqno">(2)</span>\[\begin{split}^CR^D =
+\left[
+\begin{array}{c}
+c_6 &amp; 0 &amp; -s_6\\
+0 &amp; 1 &amp; 0\\
+s_6 &amp; 0 &amp; c_6
+\end{array}
+\right]\end{split}\]</div>
+<p>The fork/handlebar reference frame, <span class="math">\(E\)</span>, rotates with respect to the
+bicycle reference frame about the <span class="math">\(\hat{c}_3\)</span> axis through <span class="math">\(q_7\)</span>.</p>
+<div class="math" id="equation-CtoE">
+<span class="eqno">(3)</span>\[\begin{split}^CR^E =
+\begin{array}{c}
+c_7 &amp; s_7 &amp; 0\\
+-s_7 &amp; c_7 &amp; 0\\
+0 &amp; 0 &amp; 1
+\end{array}\end{split}\]</div>
+<p>Finally, the front wheel, <span class="math">\(F\)</span>, rotates with respect to the fork/handlebar
+through
+<span class="math">\(q_8\)</span> about the <span class="math">\(\hat{e}_2\)</span> axis.</p>
+<div class="math" id="equation-EtoF">
+<span class="eqno">(4)</span>\[\begin{split}^ER^F =
+\begin{array}{c}
+c_8 &amp; 0 &amp; -s_8\\
+0 &amp; 1 &amp; 0\\
+s_8 &amp; 0 &amp; c_8
+\end{array}\end{split}\]</div>
+<p>The first two coordinates locate the the system in the Newtownian reference
+frame and the remaing six coordinates orient the four rigid bodies within the
+Newtonian reference frame.</p>
+<div class="admonition-todo admonition" id="index-2">
 <p class="first admonition-title">Todo</p>
 <p class="last">Diagram of the bicycle showing each generalized coordinate.</p>
 </div>
+</div>
+<div class="section" id="position">
+<h4>Position<a class="headerlink" href="#position" title="Permalink to this headline">¶</a></h4>
+<p>The positions of the various points on the bicycle must be defined with respect
+to the Newtonian reference frame. There are six primary points of interest: the
+four mass centers and the two ground contact points.</p>
+<p>The point of contact for the bicyle wheels are one of techincally abstract
+points in dynamics. There are four distinct points of concern. The first being
+the point in the ground plane that instanteously contacts the wheel at any
+given time, the point in the ground plane that tracks the contact point, the
+point on the wheel that instataneously contacts the ground at any given time,
+and the point on the wheel ...</p>
+<div class="admonition-todo admonition" id="index-3">
+<p class="first admonition-title">Todo</p>
+<p class="last">Contact points need better explanations.</p>
+</div>
+<p>The location of the contact point in the newtonian frame is defined by:</p>
+<div class="math" id="equation-rearWheelContact">
+<span class="eqno">(5)</span>\[\bar{r}^{D_n/N_o} = q_1\hat{n}_1 + q_2\hat{n}_2\]</div>
+<p>This encompasses a holonomic constraint (the contact point can&#8217;t move in the n3
+direction.</p>
+<p>The mass center of the rear wheel, <span class="math">\(D_o\)</span>, is assumed to be at the center of the wheel:</p>
+<div class="math" id="equation-rearWheelMassCenter">
+<span class="eqno">(6)</span>\[\bar{r}^{D_o/D_n} = -r_F\hat{b}_3\]</div>
+<p>The mass center of the front wheel, <span class="math">\(F_o\)</span>, is located by the frame and
+fork dimensions:</p>
+<div class="math" id="equation-frontWheelMassCenter">
+<span class="eqno">(7)</span>\[\bar{r}^{F_o/D_o} = d_1\hat{c}_1 + d_2\hat{c}_3 + d_3\hat{e}_1\]</div>
+<p>The bicycle frame mass center, <span class="math">\(C_o\)</span>, is located by two additional
+parameters:</p>
+<div class="math" id="equation-frameMassCenter">
+<span class="eqno">(8)</span>\[\bar{r}^{C_o/D_o} = l_1\hat{c}_1 + l_2\hat{c}_3\]</div>
+<p>Similarly the fork mass center, <span class="math">\(E_o\)</span>, is located by two more additional
+parameters.</p>
+<div class="math" id="equation-forkMassCenter">
+<span class="eqno">(9)</span>\[\bar{r}^{E_o/F_o} = l_3\hat{e}_1 + l_4\hat{e}_3\]</div>
+<p>The location of the front wheel contact point is less trivial. The vector from
+the front wheel center to the contact point is defined as:</p>
+<div class="math" id="equation-frontWheelContact">
+<span class="eqno">(10)</span>\[\bar{r}^{F_n/F_o} = r_F(\hat{e}_2\times\hat{n}_3)\times\hat{e}_2\]</div>
+<p>Where the triple cross product represents the unit vector pointing from the
+front wheel center to the front wheel contact. [Basu-Mandal2007] give an
+explanation and diagram. The equation can also be though of in terms of dot
+products:</p>
+<div class="math" id="equation-frontWheelContactDot">
+<span class="eqno">(11)</span>\[\bar{r}^{F_n/F_o} = -r_F\hat{e}_2(\hat{e}_2\cdot\hat{n}_3)\]</div>
+<div class="admonition-todo admonition" id="index-4">
+<p class="first admonition-title">Todo</p>
+<p class="last">Check this equation.</p>
+</div>
+</div>
+<div class="section" id="holonomic-constraints">
+<h4>Holonomic Constraints<a class="headerlink" href="#holonomic-constraints" title="Permalink to this headline">¶</a></h4>
 <p>A holonomic configuration constraint, arising from the fact that
 both wheels must touch the ground, complicates the model
 derivation. The constraint (Eq. eq:wheelsTouch) is characterized by
@@ -171,9 +327,12 @@ are functions of the coordinates and geometric parameters. This
 allows an explicit solution for the pitch angular velocity
 <span class="math">\(u_6\)</span>, making it a dependent generalized speed.</p>
 <div class="math" id="equation-eq:wheelsTouch">
-<span class="eqno">(1)</span>\[\bar{\mathbf{r}}^{G_n/C_n}\cdot\hat{\mathbf{n}}_3=f\left(q_4,q_6,q_7\right)=0\]</div>
+<span class="eqno">(12)</span>\[\bar{\mathbf{r}}^{G_n/C_n}\cdot\hat{\mathbf{n}}_3=f\left(q_4,q_6,q_7\right)=0\]</div>
 <div class="math" id="equation-{eq:pitchVelCon}">
-<span class="eqno">(2)</span>\[\frac{d}{dt}_\left(\bar{\mathbf{r}}^{G_n/C_n}\cdot\hat{\mathbf{n}}_3\right)=a\cdot u_4+b\cdot u_5+c\cdot u_7=0\]</div>
+<span class="eqno">(13)</span>\[\frac{d}{dt}_\left(\bar{\mathbf{r}}^{G_n/C_n}\cdot\hat{\mathbf{n}}_3\right)=a\cdot u_4+b\cdot u_5+c\cdot u_7=0\]</div>
+</div>
+<div class="section" id="non-holonomic-constraints">
+<h4>Non-holonomic Constraints<a class="headerlink" href="#non-holonomic-constraints" title="Permalink to this headline">¶</a></h4>
 <p>Four nonholomic constraints (Eq.eq:noSlip) further reduce the
 locally achievable configuration space to three degrees of freedom.
 The pure rolling, no side-slip, contact of the knife-edge wheels
@@ -181,7 +340,7 @@ with the ground plane requires that there are no components of
 velocity of the wheel contact points in the
 <span class="math">\({\mathbf{n}}_1\)</span> and <span class="math">\({\mathbf{n}}_2\)</span> directions.</p>
 <div class="math" id="equation-{eq:noSlip}">
-<span class="eqno">(3)</span>\[^N\bar{\mathbf{v}}^{C_n}\cdot\hat{\mathbf{n}}_1=
+<span class="eqno">(14)</span>\[^N\bar{\mathbf{v}}^{C_n}\cdot\hat{\mathbf{n}}_1=
 ^N\bar{\mathbf{v}}^{C_n}\cdot\hat{\mathbf{n}}_2=
 ^N\bar{\mathbf{v}}^{G_n}\cdot\hat{\mathbf{n}}_1=
 ^N\bar{\mathbf{v}}^{G_n}\cdot\hat{\mathbf{n}}_2=0\]</div>
@@ -197,9 +356,9 @@ With this set of equations one must calculate the pitch angle
 numerically for its initial condition when simulating and for the
 fixed point when linearizing.</p>
 <div class="math" id="equation-{eq:accels}">
-<span class="eqno">(4)</span>\[\dot{u}_i=f\left(u_4,u_5,u_7,q_4,q_6,q_7\right)\textrm{ where }i=4,5,7\]</div>
+<span class="eqno">(15)</span>\[\dot{u}_i=f\left(u_4,u_5,u_7,q_4,q_6,q_7\right)\textrm{ where }i=4,5,7\]</div>
 <div class="math" id="equation-{eq:speeds}">
-<span class="eqno">(5)</span>\[\dot{q}_i=u_i\textrm{ where }i=4,5,6,7\]</div>
+<span class="eqno">(16)</span>\[\dot{q}_i=u_i\textrm{ where }i=4,5,6,7\]</div>
 <p>The equations of motion can then be linearized by calculating the
 Jacobian of the system of equations. The partial derivatives were
 evaluated at the following fixed point: <span class="math">\(q_i=0\)</span> where
@@ -223,8 +382,9 @@ order differential equations in the form:</p>
  \right]
  \label{eq:linearEq}\end{split}\]</div>
 </div>
+</div>
 <div class="section" id="validation">
-<h2>Validation<a class="headerlink" href="#validation" title="Permalink to this headline">¶</a></h2>
+<h3>Validation<a class="headerlink" href="#validation" title="Permalink to this headline">¶</a></h3>
 <p>The linearized model was checked for accuracy against
 the benchmark bicycle in two ways. First the linearized equations
 of motion (Eq.&nbsp;eq:linearEq) were formulated into two second order
@@ -236,7 +396,7 @@ They present the values for the coefficient matrices
 benchmark parameter set at least 15 significant figures and my
 model matched all of the significant figures.</p>
 <div class="math" id="equation-{eq:canonical}">
-<span class="eqno">(6)</span>\[\mathbf{M\dot{u}}+v\mathbf{C}_1\mathbf{u}+\left[g\mathbf{K}_0+v^2\mathbf{K}_2\right]\mathbf{q}=0\]</div>
+<span class="eqno">(17)</span>\[\mathbf{M\dot{u}}+v\mathbf{C}_1\mathbf{u}+\left[g\mathbf{K}_0+v^2\mathbf{K}_2\right]\mathbf{q}=0\]</div>
 <p>The eigenvalues of the system of linear equations can be calculated
 and are typically plotted versus forward speed for the linear
 upright constant speed configuration (Fig.&nbsp;fig:eigenvalues).
@@ -244,7 +404,7 @@ upright constant speed configuration (Fig.&nbsp;fig:eigenvalues).
 calculations at various speeds of the benchmark bicycle for model
 comparison. The eigenvalues for my model matched to at least 15
 significant figures.</p>
-<div class="admonition-todo admonition" id="index-2">
+<div class="admonition-todo admonition" id="index-5">
 <p class="first admonition-title">Todo</p>
 <p class="last">Eigenvalues versus speed for an example bicycle. The four modes of
 motion are identified. \emph[Caster]_ is stable and real for all positive
@@ -257,6 +417,24 @@ the eigenvalues coalesce into a complex conjugate pair that describes a
 sinusoidal motion of the roll and steer, with steer lagging the roll. This
 mode becomes stable at a higher speed. The weave and capsize critical speeds
 bound a stable speed range.</p>
+</div>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="id29" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td>My colleague, Dale L. Peterson, has made significant progress
+formulating the equations of motion in a readable and compact form, which will
+most likely be published soon.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id30" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td>Luke and I have dreamed of developing an open source version of Autolev
+for years and that has finally culminated through primarily Luke and Gilber
+Gede&#8217;s efforts in the creation of sympy.physics.mechanics.</td></tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>

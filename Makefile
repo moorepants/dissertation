@@ -138,3 +138,7 @@ gh-pages: clean html
 	rm -r _build/
 	git add .
 	@echo 'Commit and push when ready or git reset --hard && git checkout master to revert'
+
+pushpdf: clean latexpdf
+	scp _build/latex/HumanControlofaBicycle.pdf biosport@mae.ucdavis.edu:/home/grads/biosport/public_html/jkm/disseration/
+	@echo "The pdf has been pushed to the mae server."

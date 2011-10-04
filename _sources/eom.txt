@@ -105,14 +105,20 @@ the frame work of Autolev.
 Model
 ~~~~~
 
-My definition of the Whipple Bicycle Model includes these requirements:
+The definition of the Whipple Bicycle Model that I use includes these requirements:
 
 * The Whipple model is made up of four rigid bodies (frame/rider,
   fork/handlebar and two wheels)
 * The bodies are connected to each other by frictionless revolute joints.
 * The wheels contact the ground under pure rolling and no sideslip conditions.
 * The bicycle is assumed to be laterally symmetric.
-* Flat ground.
+* Flat ground?.
+
+Unfortunately the word "model" will be use in varying contexts when speaking. I
+consider a model to be the same if the minimal equation of motion are the same.
+This means that the Whipple Bicycle Model linearized about the nominal
+configuation is a different model than thet non-linear Whipple Bicycle Model. I
+will try to be explicit when refering to the various models.
 
 .. todo::
    Figure of the bicycle geometry with caption: The bicycle in the upright no
@@ -204,11 +210,13 @@ bicycle reference frame about the :math:`\hat{c}_3` axis through :math:`q_7`.
    :label: CtoE
 
    ^CR^E =
+   \left[
    \begin{array}{c}
    c_7 & s_7 & 0\\
    -s_7 & c_7 & 0\\
    0 & 0 & 1
    \end{array}
+   \right]
 
 Finally, the front wheel, :math:`F`, rotates with respect to the fork/handlebar
 through
@@ -218,11 +226,13 @@ through
    :label: EtoF
 
    ^ER^F =
+   \left[
    \begin{array}{c}
    c_8 & 0 & -s_8\\
    0 & 1 & 0\\
    s_8 & 0 & c_8
    \end{array}
+   \right]
 
 The first two coordinates locate the the system in the Newtownian reference
 frame and the remaing six coordinates orient the four rigid bodies within the
@@ -305,7 +315,8 @@ products:
 .. math::
    :label: frontWheelContactDot
 
-   \bar{r}^{F_n/F_o} = -r_F\hat{e}_2(\hat{e}_2\cdot\hat{n}_3)
+   \bar{x} = (\hat{a}_3 - (\hat{e}_2 \cdot\ hat{a}_3)\hat{e}_2)
+   \bar{r}^{F_n/F_o} = r_F\frac{\bar{x}}{||\bar{x}||}
 
 .. todo::
    Check this equation.
@@ -313,16 +324,153 @@ products:
 Holonomic Constraints
 ~~~~~~~~~~~~~~~~~~~~~
 
-A holonomic configuration constraint, arising from the fact that
-both wheels must touch the ground, complicates the model
-derivation. The constraint (Eq. eq:wheelsTouch) is characterized by
-a nonlinear relationship between the lean angle :math:`q_4`,
-steer angle :math:`q_7` and pitch angle :math:`q_6`. Pitch,
-:math:`q_6`, is taken as the dependent coordinate and the
-constraint equation can be formulated into a quartic in the sine of
-the pitch [Psiaki1979]_, [Peterson2007]_. To avoid having to
-solve the quartic algebraically, the derivative of the constraint
-equation is taken.
+Two holonomic configuration constraints, arising from the fact that both wheels
+must touch the ground, complicates the model derivation. The first holonomic
+equation is encompassed in the definition of the rear wheel contact point
+:eq:`rearWheelContact`. This constraint enforces that the contact point cannot
+have an displacement in the :math:`\hat{n}_3` direction[#]_. The second
+holonomic constraint is enforced by requiring the front wheel to touch the
+ground plane.  The constraint is characterized by a nonlinear relationship
+between the roll angle :math:`q_4`, steer angle :math:`q_7` and pitch angle
+:math:`q_5`.
+
+.. math::
+   :label: holonomicConstraint
+
+   \bar{r}^{G_n/D_n}\cdot\hat{a}_3 =
+   d_2c_4c_5 + d_3(s_4s_7-s_5s_4s_7) + r_F(1-(s_4s_7+s_5s_7s_4)^2)^{1/2} -
+   r_Rs_4 - d_1s_5s_4 = 0
+
+I choose pitch, :math:`q_6`, as the dependent coordinate. This choice of pitch
+has some to do with the fact that in "normal" bicycle configurations, pitch is
+constant to the first order. This is not universal and it may be smart to
+choose the dependent coordinate differently for other cases.  The constraint
+equation can be formulated into a quartic in the sine of the pitch
+[Psiaki1979]_, [Peterson2007]_ which is theorectically analytically solveable.
+But I do not do this, instead I make us of a new velocity contraint described
+in :ref:`nonholonomic`.
+
+Kinematical Differential Equations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The choice of generalized speeds can significantly reduce the
+length of the equations of motion [Mitiguy1996]. This is benefical for both
+working with the analytical forms of the equations of motion and the efficiency
+in computing them. This is true, but I took the easy way out and chose to not
+attempt to select optimum kinematical differerntial equations and select the
+generalized speeds to simply be equal to the derivatives of the generalized
+coordinates.
+
+.. math::
+   :label: generlizedSpeeds
+
+   u_i = \dot{q}_i
+
+Velocities
+~~~~~~~~~~
+
+The angular and linear velocities of each rigid body are required as usual.
+Also the velocities of the points on the wheel at the ground contact points are
+required for the developement of the nonholomic constraints. The angular
+velocity of the bicycle frame, :math:`C`, in :math:`N` is:
+
+.. math::
+   :label: omegaCinN
+
+   ^N\omega^C = (c_5u_4-s_5c_4u_3)\hat{c}_1 + (u_5+s_4u_3)\hat{c}_2 + (s_5u_4+c_4c_5u_3)\hat{c}_3
+
+Each the fork and the rear wheel are connected to the bicycle frame by simple revolute joints.
+
+.. math::
+   :label: omegaDinC
+
+   ^C\omega^D = u_6\hat{c}_2
+
+.. math::
+   :label: omegaEinC
+
+   ^C\omega^E = u_7\hat{c}_3
+
+The front wheel has simple rotation relative to the fork.
+
+.. math::
+   :label: omegaFinE
+
+   ^E\omega^F = u_8\hat{e}_2
+
+The angular velocity of any of the bodies can now be computed with respect to
+the newtonian reference frame. For example:
+
+.. math::
+   :label: omegaFinN
+
+   ^F\omega^N = ^N\omega^C + ^C\omega^E + ^E\omega^F
+
+Using the angular velcoties and the position vectors the velocities of the
+mass centers can be computed. Starting with mass center of the rear wheel:
+
+.. math::
+   :label: DoInN
+
+   ^N\bar{v}^{D_o} = -r_Rs_4u_3\hat{b}_1 + r_Ru_4\hat{b}_2 + u_1\hat{n}_1 + u_2\hat{n}_2
+
+The mass center of the rear wheel, :math:`D_o` and the mass center of bicycle frame,
+:math:`C_o`,  both lie on the bicycle frame so the velocity can easily be
+computed using:
+
+.. math::
+   :label: CoInN
+
+   ^N\bar{v}^{C_o} = ^N\bar{v}^{D_o} + ^N\bar\omega^C\times\bar{r}^{C_o/D_o}
+
+where:
+
+.. math::
+   :label: omegaCinNcrossedRDoCo
+
+   ^N\bar\omega^C\times\bar{r}^{C_o/D_o} = l_2(u_5+s_4u_3)\hat{c}_1 +
+   (l_1(s_5u_4+c_4c_5u_3)-l_2(c_5u_4-s_5c_4u_3))\hat{c}_2
+   - l_1(u_5+s_4u_3)\hat{c}_3
+
+It is useful to define a point on the steer axis, :math:`C_e`, such that:
+
+.. math::
+   :label: DoToCe
+
+   \bar{r}^{C_e/D_o} = d_1\hat{c}_1
+
+The velocity is then:
+
+.. math::
+   :label: test
+
+   ^N\bar{v}^{C_e} = ^N\bar{v}^{D_o} + ^N\bar\omega^C\times\bar{r}^{C_e/D_o}
+
+Then the velocity of the fork mass center can be defined as:
+
+.. math::
+   :label: test2
+
+   ^N\bar{v}^{E_o} = ^N\bar{v}^{C_e} + ^N\omega^E\times\bar{r}^{E_o/C_e}
+
+.. math::
+   :label: EoInN
+
+   ^N\bar{v}^{E_o} = -rRs_4u_3\hat{b}_1 + rRu_4\hat{b}_2 +
+   d1(s_5u_4 + c_4c_5u_3)\hat{c}_2 - d1(u_5+s_4u_3)\hat{c}_3 -
+   (d2 + l4)(s_7c_5u_4 - c_7u_5 - (s_4c_7 + s_5s_7c_4)u_3)\hat{e}_1 +
+   ((d3+l3)(u_7+s_5u_4+c_4c_5u_3)-(d2+l4)(s_7u_5+c_5c_7u_4+
+   (s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 +
+   (d3+l3)(s_7c_5u_4-c_7u_5
+   -(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3 + u_1\hat{n}_1 + u_2\hat{n}_2
+
+.. _nonholonomic:
+
+Non-holonomic Constraints
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To avoid having to solve the quartic algebraically, the derivative
+of the constraint equation is taken.
 
 This produces a velocity constraint equation that is linear in the
 derivatives of the pitch angle, steer angle and lean angle
@@ -338,9 +486,6 @@ allows an explicit solution for the pitch angular velocity
 .. math::
    \frac{d}{dt}_\left(\bar{\mathbf{r}}^{G_n/C_n}\cdot\hat{\mathbf{n}}_3\right)=a\cdot u_4+b\cdot u_5+c\cdot u_7=0
    :label: {eq:pitchVelCon}
-
-Non-holonomic Constraints
-~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Four nonholomic constraints (Eq.eq:noSlip) further reduce the
 locally achievable configuration space to three degrees of freedom.
@@ -447,4 +592,4 @@ significant figures.
 .. [#] Luke and I have dreamed of developing an open source version of Autolev
        for years and that has finally culminated through primarily Luke and Gilber
        Gede's efforts in the creation of sympy.physics.mechanics.
-
+.. [#] This contraint can readily be modified to support a non-flat ground.

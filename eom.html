@@ -148,15 +148,20 @@ to the computer. The symbolic equations of motion herin were developed within
 the frame work of Autolev.</p>
 <div class="section" id="model">
 <h4>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h4>
-<p>My definition of the Whipple Bicycle Model includes these requirements:</p>
+<p>The definition of the Whipple Bicycle Model that I use includes these requirements:</p>
 <ul class="simple">
 <li>The Whipple model is made up of four rigid bodies (frame/rider,
 fork/handlebar and two wheels)</li>
 <li>The bodies are connected to each other by frictionless revolute joints.</li>
 <li>The wheels contact the ground under pure rolling and no sideslip conditions.</li>
 <li>The bicycle is assumed to be laterally symmetric.</li>
-<li>Flat ground.</li>
+<li>Flat ground?.</li>
 </ul>
+<p>Unfortunately the word &#8220;model&#8221; will be use in varying contexts when speaking. I
+consider a model to be the same if the minimal equation of motion are the same.
+This means that the Whipple Bicycle Model linearized about the nominal
+configuation is a different model than thet non-linear Whipple Bicycle Model. I
+will try to be explicit when refering to the various models.</p>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
 <p class="last">Figure of the bicycle geometry with caption: The bicycle in the upright no
@@ -235,21 +240,25 @@ s_6 &amp; 0 &amp; c_6
 bicycle reference frame about the <span class="math">\(\hat{c}_3\)</span> axis through <span class="math">\(q_7\)</span>.</p>
 <div class="math" id="equation-CtoE">
 <span class="eqno">(3)</span>\[\begin{split}^CR^E =
+\left[
 \begin{array}{c}
 c_7 &amp; s_7 &amp; 0\\
 -s_7 &amp; c_7 &amp; 0\\
 0 &amp; 0 &amp; 1
-\end{array}\end{split}\]</div>
+\end{array}
+\right]\end{split}\]</div>
 <p>Finally, the front wheel, <span class="math">\(F\)</span>, rotates with respect to the fork/handlebar
 through
 <span class="math">\(q_8\)</span> about the <span class="math">\(\hat{e}_2\)</span> axis.</p>
 <div class="math" id="equation-EtoF">
 <span class="eqno">(4)</span>\[\begin{split}^ER^F =
+\left[
 \begin{array}{c}
 c_8 &amp; 0 &amp; -s_8\\
 0 &amp; 1 &amp; 0\\
 s_8 &amp; 0 &amp; c_8
-\end{array}\end{split}\]</div>
+\end{array}
+\right]\end{split}\]</div>
 <p>The first two coordinates locate the the system in the Newtownian reference
 frame and the remaing six coordinates orient the four rigid bodies within the
 Newtonian reference frame.</p>
@@ -302,7 +311,8 @@ front wheel center to the front wheel contact. [Basu-Mandal2007] give an
 explanation and diagram. The equation can also be though of in terms of dot
 products:</p>
 <div class="math" id="equation-frontWheelContactDot">
-<span class="eqno">(11)</span>\[\bar{r}^{F_n/F_o} = -r_F\hat{e}_2(\hat{e}_2\cdot\hat{n}_3)\]</div>
+<span class="eqno">(11)</span>\[\bar{x} = (\hat{a}_3 - (\hat{e}_2 \cdot\ hat{a}_3)\hat{e}_2)
+\bar{r}^{F_n/F_o} = r_F\frac{\bar{x}}{||\bar{x}||}\]</div>
 <div class="admonition-todo admonition" id="index-4">
 <p class="first admonition-title">Todo</p>
 <p class="last">Check this equation.</p>
@@ -310,16 +320,96 @@ products:</p>
 </div>
 <div class="section" id="holonomic-constraints">
 <h4>Holonomic Constraints<a class="headerlink" href="#holonomic-constraints" title="Permalink to this headline">¶</a></h4>
-<p>A holonomic configuration constraint, arising from the fact that
-both wheels must touch the ground, complicates the model
-derivation. The constraint (Eq. eq:wheelsTouch) is characterized by
-a nonlinear relationship between the lean angle <span class="math">\(q_4\)</span>,
-steer angle <span class="math">\(q_7\)</span> and pitch angle <span class="math">\(q_6\)</span>. Pitch,
-<span class="math">\(q_6\)</span>, is taken as the dependent coordinate and the
-constraint equation can be formulated into a quartic in the sine of
-the pitch [Psiaki1979], [Peterson2007]. To avoid having to
-solve the quartic algebraically, the derivative of the constraint
-equation is taken.</p>
+<p>Two holonomic configuration constraints, arising from the fact that both wheels
+must touch the ground, complicates the model derivation. The first holonomic
+equation is encompassed in the definition of the rear wheel contact point
+<a href="#equation-rearWheelContact">(5)</a>. This constraint enforces that the contact point cannot
+have an displacement in the <span class="math">\(\hat{n}_3\)</span> direction[#]_. The second
+holonomic constraint is enforced by requiring the front wheel to touch the
+ground plane.  The constraint is characterized by a nonlinear relationship
+between the roll angle <span class="math">\(q_4\)</span>, steer angle <span class="math">\(q_7\)</span> and pitch angle
+<span class="math">\(q_5\)</span>.</p>
+<div class="math" id="equation-holonomicConstraint">
+<span class="eqno">(12)</span>\[\bar{r}^{G_n/D_n}\cdot\hat{a}_3 =
+d_2c_4c_5 + d_3(s_4s_7-s_5s_4s_7) + r_F(1-(s_4s_7+s_5s_7s_4)^2)^{1/2} -
+r_Rs_4 - d_1s_5s_4 = 0\]</div>
+<p>I choose pitch, <span class="math">\(q_6\)</span>, as the dependent coordinate. This choice of pitch
+has some to do with the fact that in &#8220;normal&#8221; bicycle configurations, pitch is
+constant to the first order. This is not universal and it may be smart to
+choose the dependent coordinate differently for other cases.  The constraint
+equation can be formulated into a quartic in the sine of the pitch
+[Psiaki1979], [Peterson2007] which is theorectically analytically solveable.
+But I do not do this, instead I make us of a new velocity contraint described
+in <a class="reference internal" href="#nonholonomic"><em>Non-holonomic Constraints</em></a>.</p>
+</div>
+<div class="section" id="kinematical-differential-equations">
+<h4>Kinematical Differential Equations<a class="headerlink" href="#kinematical-differential-equations" title="Permalink to this headline">¶</a></h4>
+<p>The choice of generalized speeds can significantly reduce the
+length of the equations of motion [Mitiguy1996]. This is benefical for both
+working with the analytical forms of the equations of motion and the efficiency
+in computing them. This is true, but I took the easy way out and chose to not
+attempt to select optimum kinematical differerntial equations and select the
+generalized speeds to simply be equal to the derivatives of the generalized
+coordinates.</p>
+<div class="math" id="equation-generlizedSpeeds">
+<span class="eqno">(13)</span>\[u_i = \dot{q}_i\]</div>
+</div>
+<div class="section" id="velocities">
+<h4>Velocities<a class="headerlink" href="#velocities" title="Permalink to this headline">¶</a></h4>
+<p>The angular and linear velocities of each rigid body are required as usual.
+Also the velocities of the points on the wheel at the ground contact points are
+required for the developement of the nonholomic constraints. The angular
+velocity of the bicycle frame, <span class="math">\(C\)</span>, in <span class="math">\(N\)</span> is:</p>
+<div class="math" id="equation-omegaCinN">
+<span class="eqno">(14)</span>\[^N\omega^C = (c_5u_4-s_5c_4u_3)\hat{c}_1 + (u_5+s_4u_3)\hat{c}_2 + (s_5u_4+c_4c_5u_3)\hat{c}_3\]</div>
+<p>Each the fork and the rear wheel are connected to the bicycle frame by simple revolute joints.</p>
+<div class="math" id="equation-omegaDinC">
+<span class="eqno">(15)</span>\[^C\omega^D = u_6\hat{c}_2\]</div>
+<div class="math" id="equation-omegaEinC">
+<span class="eqno">(16)</span>\[^C\omega^E = u_7\hat{c}_3\]</div>
+<p>The front wheel has simple rotation relative to the fork.</p>
+<div class="math" id="equation-omegaFinE">
+<span class="eqno">(17)</span>\[^E\omega^F = u_8\hat{e}_2\]</div>
+<p>The angular velocity of any of the bodies can now be computed with respect to
+the newtonian reference frame. For example:</p>
+<div class="math" id="equation-omegaFinN">
+<span class="eqno">(18)</span>\[^F\omega^N = ^N\omega^C + ^C\omega^E + ^E\omega^F\]</div>
+<p>Using the angular velcoties and the position vectors the velocities of the
+mass centers can be computed. Starting with mass center of the rear wheel:</p>
+<div class="math" id="equation-DoInN">
+<span class="eqno">(19)</span>\[^N\bar{v}^{D_o} = -r_Rs_4u_3\hat{b}_1 + r_Ru_4\hat{b}_2 + u_1\hat{n}_1 + u_2\hat{n}_2\]</div>
+<p>The mass center of the rear wheel, <span class="math">\(D_o\)</span> and the mass center of bicycle frame,
+<span class="math">\(C_o\)</span>,  both lie on the bicycle frame so the velocity can easily be
+computed using:</p>
+<div class="math" id="equation-CoInN">
+<span class="eqno">(20)</span>\[^N\bar{v}^{C_o} = ^N\bar{v}^{D_o} + ^N\bar\omega^C\times\bar{r}^{C_o/D_o}\]</div>
+<p>where:</p>
+<div class="math" id="equation-omegaCinNcrossedRDoCo">
+<span class="eqno">(21)</span>\[^N\bar\omega^C\times\bar{r}^{C_o/D_o} = l_2(u_5+s_4u_3)\hat{c}_1 +
+(l_1(s_5u_4+c_4c_5u_3)-l_2(c_5u_4-s_5c_4u_3))\hat{c}_2
+- l_1(u_5+s_4u_3)\hat{c}_3\]</div>
+<p>It is useful to define a point on the steer axis, <span class="math">\(C_e\)</span>, such that:</p>
+<div class="math" id="equation-DoToCe">
+<span class="eqno">(22)</span>\[\bar{r}^{C_e/D_o} = d_1\hat{c}_1\]</div>
+<p>The velocity is then:</p>
+<div class="math" id="equation-test">
+<span class="eqno">(23)</span>\[^N\bar{v}^{C_e} = ^N\bar{v}^{D_o} + ^N\bar\omega^C\times\bar{r}^{C_e/D_o}\]</div>
+<p>Then the velocity of the fork mass center can be defined as:</p>
+<div class="math" id="equation-test2">
+<span class="eqno">(24)</span>\[^N\bar{v}^{E_o} = ^N\bar{v}^{C_e} + ^N\omega^E\times\bar{r}^{E_o/C_e}\]</div>
+<div class="math" id="equation-EoInN">
+<span class="eqno">(25)</span>\[^N\bar{v}^{E_o} = -rRs_4u_3\hat{b}_1 + rRu_4\hat{b}_2 +
+d1(s_5u_4 + c_4c_5u_3)\hat{c}_2 - d1(u_5+s_4u_3)\hat{c}_3 -
+(d2 + l4)(s_7c_5u_4 - c_7u_5 - (s_4c_7 + s_5s_7c_4)u_3)\hat{e}_1 +
+((d3+l3)(u_7+s_5u_4+c_4c_5u_3)-(d2+l4)(s_7u_5+c_5c_7u_4+
+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 +
+(d3+l3)(s_7c_5u_4-c_7u_5
+-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3 + u_1\hat{n}_1 + u_2\hat{n}_2\]</div>
+</div>
+<div class="section" id="non-holonomic-constraints">
+<span id="nonholonomic"></span><h4>Non-holonomic Constraints<a class="headerlink" href="#non-holonomic-constraints" title="Permalink to this headline">¶</a></h4>
+<p>To avoid having to solve the quartic algebraically, the derivative
+of the constraint equation is taken.</p>
 <p>This produces a velocity constraint equation that is linear in the
 derivatives of the pitch angle, steer angle and lean angle
 (Eq.&nbsp;eq:pitchVelCon) where <span class="math">\(a\)</span>, <span class="math">\(b\)</span> and <span class="math">\(c\)</span>
@@ -327,12 +417,9 @@ are functions of the coordinates and geometric parameters. This
 allows an explicit solution for the pitch angular velocity
 <span class="math">\(u_6\)</span>, making it a dependent generalized speed.</p>
 <div class="math" id="equation-eq:wheelsTouch">
-<span class="eqno">(12)</span>\[\bar{\mathbf{r}}^{G_n/C_n}\cdot\hat{\mathbf{n}}_3=f\left(q_4,q_6,q_7\right)=0\]</div>
+<span class="eqno">(26)</span>\[\bar{\mathbf{r}}^{G_n/C_n}\cdot\hat{\mathbf{n}}_3=f\left(q_4,q_6,q_7\right)=0\]</div>
 <div class="math" id="equation-{eq:pitchVelCon}">
-<span class="eqno">(13)</span>\[\frac{d}{dt}_\left(\bar{\mathbf{r}}^{G_n/C_n}\cdot\hat{\mathbf{n}}_3\right)=a\cdot u_4+b\cdot u_5+c\cdot u_7=0\]</div>
-</div>
-<div class="section" id="non-holonomic-constraints">
-<h4>Non-holonomic Constraints<a class="headerlink" href="#non-holonomic-constraints" title="Permalink to this headline">¶</a></h4>
+<span class="eqno">(27)</span>\[\frac{d}{dt}_\left(\bar{\mathbf{r}}^{G_n/C_n}\cdot\hat{\mathbf{n}}_3\right)=a\cdot u_4+b\cdot u_5+c\cdot u_7=0\]</div>
 <p>Four nonholomic constraints (Eq.eq:noSlip) further reduce the
 locally achievable configuration space to three degrees of freedom.
 The pure rolling, no side-slip, contact of the knife-edge wheels
@@ -340,7 +427,7 @@ with the ground plane requires that there are no components of
 velocity of the wheel contact points in the
 <span class="math">\({\mathbf{n}}_1\)</span> and <span class="math">\({\mathbf{n}}_2\)</span> directions.</p>
 <div class="math" id="equation-{eq:noSlip}">
-<span class="eqno">(14)</span>\[^N\bar{\mathbf{v}}^{C_n}\cdot\hat{\mathbf{n}}_1=
+<span class="eqno">(28)</span>\[^N\bar{\mathbf{v}}^{C_n}\cdot\hat{\mathbf{n}}_1=
 ^N\bar{\mathbf{v}}^{C_n}\cdot\hat{\mathbf{n}}_2=
 ^N\bar{\mathbf{v}}^{G_n}\cdot\hat{\mathbf{n}}_1=
 ^N\bar{\mathbf{v}}^{G_n}\cdot\hat{\mathbf{n}}_2=0\]</div>
@@ -356,9 +443,9 @@ With this set of equations one must calculate the pitch angle
 numerically for its initial condition when simulating and for the
 fixed point when linearizing.</p>
 <div class="math" id="equation-{eq:accels}">
-<span class="eqno">(15)</span>\[\dot{u}_i=f\left(u_4,u_5,u_7,q_4,q_6,q_7\right)\textrm{ where }i=4,5,7\]</div>
+<span class="eqno">(29)</span>\[\dot{u}_i=f\left(u_4,u_5,u_7,q_4,q_6,q_7\right)\textrm{ where }i=4,5,7\]</div>
 <div class="math" id="equation-{eq:speeds}">
-<span class="eqno">(16)</span>\[\dot{q}_i=u_i\textrm{ where }i=4,5,6,7\]</div>
+<span class="eqno">(30)</span>\[\dot{q}_i=u_i\textrm{ where }i=4,5,6,7\]</div>
 <p>The equations of motion can then be linearized by calculating the
 Jacobian of the system of equations. The partial derivatives were
 evaluated at the following fixed point: <span class="math">\(q_i=0\)</span> where
@@ -396,7 +483,7 @@ They present the values for the coefficient matrices
 benchmark parameter set at least 15 significant figures and my
 model matched all of the significant figures.</p>
 <div class="math" id="equation-{eq:canonical}">
-<span class="eqno">(17)</span>\[\mathbf{M\dot{u}}+v\mathbf{C}_1\mathbf{u}+\left[g\mathbf{K}_0+v^2\mathbf{K}_2\right]\mathbf{q}=0\]</div>
+<span class="eqno">(31)</span>\[\mathbf{M\dot{u}}+v\mathbf{C}_1\mathbf{u}+\left[g\mathbf{K}_0+v^2\mathbf{K}_2\right]\mathbf{q}=0\]</div>
 <p>The eigenvalues of the system of linear equations can be calculated
 and are typically plotted versus forward speed for the linear
 upright constant speed configuration (Fig.&nbsp;fig:eigenvalues).
@@ -433,6 +520,12 @@ most likely be published soon.</td></tr>
 <tr><td class="label">[2]</td><td>Luke and I have dreamed of developing an open source version of Autolev
 for years and that has finally culminated through primarily Luke and Gilber
 Gede&#8217;s efforts in the creation of sympy.physics.mechanics.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id31" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[3]</td><td>This contraint can readily be modified to support a non-flat ground.</td></tr>
 </tbody>
 </table>
 </div>

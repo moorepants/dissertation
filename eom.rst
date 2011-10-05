@@ -283,6 +283,13 @@ fork dimensions:
 
    \bar{r}^{F_o/D_o} = d_1\hat{c}_1 + d_2\hat{c}_3 + d_3\hat{e}_1
 
+It is useful to define a point on the steer axis, :math:`C_e`, such that:
+
+.. math::
+   :label: DoToCe
+
+   \bar{r}^{C_e/D_o} = d_1\hat{c}_1
+
 The bicycle frame mass center, :math:`C_o`, is located by two additional
 parameters:
 
@@ -307,19 +314,22 @@ the front wheel center to the contact point is defined as:
 
    \bar{r}^{F_n/F_o} = r_F(\hat{e}_2\times\hat{n}_3)\times\hat{e}_2
 
+   \bar{r}^{F_n/F_o} = r_F(s_4s_7-s_5c_4c_7)\hat{e}_1 + r_Fc_4c_5\hat{e}_3
+
 Where the triple cross product represents the unit vector pointing from the
 front wheel center to the front wheel contact. [Basu-Mandal2007]_ give an
 explanation and diagram. The equation can also be though of in terms of dot
-products:
+products such that you subtract the :math:`\hat{n}_3` component of
+:math:`\hat{e}_2` from :math:`\hat{n}_3` to get a vector that points from the
+front wheel center to the contact point, :math:`\bar{x}`. The vector of
+interest can then be formed by multiplying :math:`r_F` by the unit vector in
+the direction of :math:`\bar{x}`:
 
 .. math::
    :label: frontWheelContactDot
 
    \bar{x} = (\hat{a}_3 - (\hat{e}_2 \cdot\ hat{a}_3)\hat{e}_2)
    \bar{r}^{F_n/F_o} = r_F\frac{\bar{x}}{||\bar{x}||}
-
-.. todo::
-   Check this equation.
 
 Holonomic Constraints
 ~~~~~~~~~~~~~~~~~~~~~
@@ -353,13 +363,14 @@ in :ref:`nonholonomic`.
 Kinematical Differential Equations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The choice of generalized speeds can significantly reduce the
-length of the equations of motion [Mitiguy1996]. This is benefical for both
-working with the analytical forms of the equations of motion and the efficiency
-in computing them. This is true, but I took the easy way out and chose to not
-attempt to select optimum kinematical differerntial equations and select the
-generalized speeds to simply be equal to the derivatives of the generalized
-coordinates.
+The choice of generalized speeds can significantly reduce the length of the
+equations of motion [Mitiguy1996]. This is benefical for both working with the
+analytical forms of the equations of motion and the efficiency in computing
+them. This is true, but I took the easy way out and chose to not attempt to
+select optimum kinematical differerntial equations and select the generalized
+speeds to simply be equal to the derivatives of the generalized coordinates. My
+only excuse is that computers are fast these days and this may or may not
+matter much.
 
 .. math::
    :label: generlizedSpeeds
@@ -377,9 +388,10 @@ velocity of the bicycle frame, :math:`C`, in :math:`N` is:
 .. math::
    :label: omegaCinN
 
-   ^N\omega^C = (c_5u_4-s_5c_4u_3)\hat{c}_1 + (u_5+s_4u_3)\hat{c}_2 + (s_5u_4+c_4c_5u_3)\hat{c}_3
+   ^N\omega^C = (c_5u_4-s_5c_4u_3)\hat{c}_1 + (u_5+s_4u_3)\hat{c}_2 +
+   (s_5u_4+c_4c_5u_3)\hat{c}_3
 
-Each the fork and the rear wheel are connected to the bicycle frame by simple revolute joints.
+Both the fork and the rear wheel are connected to the bicycle frame by simple revolute joints.
 
 .. math::
    :label: omegaDinC
@@ -406,63 +418,82 @@ the newtonian reference frame. For example:
 
    ^F\omega^N = ^N\omega^C + ^C\omega^E + ^E\omega^F
 
-Using the angular velcoties and the position vectors the velocities of the
+Using the angular velocities and the position vectors the velocities of the
 mass centers can be computed. Starting with mass center of the rear wheel:
 
 .. math::
    :label: DoInN
 
-   ^N\bar{v}^{D_o} = -r_Rs_4u_3\hat{b}_1 + r_Ru_4\hat{b}_2 + u_1\hat{n}_1 + u_2\hat{n}_2
+   ^N\bar{v}^{D_o} = u_1\hat{n}_1 + u_2\hat{n}_2 -
+   r_Rs_4u_3\hat{b}_1 + r_Ru_4\hat{b}_2
 
-The mass center of the rear wheel, :math:`D_o` and the mass center of bicycle frame,
-:math:`C_o`,  both lie on the bicycle frame so the velocity can easily be
-computed using:
+The mass center of the rear wheel, :math:`D_o` and the mass center of bicycle
+frame, :math:`C_o`,  both lie on the bicycle frame so the velocity can easily
+be computed:
 
 .. math::
    :label: CoInN
 
    ^N\bar{v}^{C_o} = ^N\bar{v}^{D_o} + ^N\bar\omega^C\times\bar{r}^{C_o/D_o}
 
-where:
-
-.. math::
-   :label: omegaCinNcrossedRDoCo
-
    ^N\bar\omega^C\times\bar{r}^{C_o/D_o} = l_2(u_5+s_4u_3)\hat{c}_1 +
    (l_1(s_5u_4+c_4c_5u_3)-l_2(c_5u_4-s_5c_4u_3))\hat{c}_2
    - l_1(u_5+s_4u_3)\hat{c}_3
 
-It is useful to define a point on the steer axis, :math:`C_e`, such that:
-
-.. math::
-   :label: DoToCe
-
-   \bar{r}^{C_e/D_o} = d_1\hat{c}_1
-
-The velocity is then:
+The velocity of the steer axis point is computed in the same fashion:
 
 .. math::
    :label: test
 
    ^N\bar{v}^{C_e} = ^N\bar{v}^{D_o} + ^N\bar\omega^C\times\bar{r}^{C_e/D_o}
 
-Then the velocity of the fork mass center can be defined as:
+   ^N\bar\omega^C\times\bar{r}^{C_e/D_o} = d_1(s_5u_4+c_4c_5u_3)\hat{c}_2 -
+   d_1(u_5+s_4u_3)\hat{c}_3
+
+The velocity of the front wheel center is:
 
 .. math::
-   :label: test2
+   :label: test
 
-   ^N\bar{v}^{E_o} = ^N\bar{v}^{C_e} + ^N\omega^E\times\bar{r}^{E_o/C_e}
+   ^N\bar{v}^{F_o} = ^N\bar{v}^{C_e} + ^N\bar\omega^E\times\bar{r}^{F_o/C_e}
+
+   ^N\bar\omega^E\times\bar{r}^{F_o/C_e} = -d_2(s_7c_5u_4-c_7u_5-
+   (s_4c_7+s_5s_7c_4)u_3)\hat{e}_1 + (d_3(u_7+s_5u_4+c_4c_5u_3)-
+   d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 +
+   d_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3
+
+Then the velocity of the fork mass center can be defined as:
 
 .. math::
    :label: EoInN
 
-   ^N\bar{v}^{E_o} = -rRs_4u_3\hat{b}_1 + rRu_4\hat{b}_2 +
-   d1(s_5u_4 + c_4c_5u_3)\hat{c}_2 - d1(u_5+s_4u_3)\hat{c}_3 -
-   (d2 + l4)(s_7c_5u_4 - c_7u_5 - (s_4c_7 + s_5s_7c_4)u_3)\hat{e}_1 +
-   ((d3+l3)(u_7+s_5u_4+c_4c_5u_3)-(d2+l4)(s_7u_5+c_5c_7u_4+
-   (s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 +
-   (d3+l3)(s_7c_5u_4-c_7u_5
-   -(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3 + u_1\hat{n}_1 + u_2\hat{n}_2
+   ^N\bar{v}^{E_o} = ^N\bar{v}^{F_o} + ^N\omega^E\times\bar{r}^{E_o/F_o}
+
+   ^N\omega^E\times\bar{r}^{E_o/F_o} =
+   -l4(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_1 +
+   (l3(u_7+s_5u_4+c_4c_5u_3)-l4(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 +
+   l3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3
+
+Finally the velocities of the wheel contact points are computed:
+
+.. math::
+   :label: DnInN
+
+   ^N\bar{v}^{D_n} = ^N\bar{v}^{D_o} + ^N\omega^D\times\bar{r}^{D_n/D_o}
+
+   ^N\omega^D\times\bar{r}^{D_n/D_o} = r_R*(u_5+u_6+s_4*u_3)*\hat{b}_1 - r_R*u_4*\hat{b}_2
+
+   ^N\bar{v}^{D_n} = r_R(u_5+u_6)\hat{b}_1 + u_1\hat{n}_1 + u_2\hat{n}_2
+
+.. math::
+   :label: FnInN
+
+   ^N\bar{v}^{F_n} = ^N\bar{v}^{F_o} + ^N\omega^F\times\bar{r}^{F_n/F_o}
+
+   ^N\omega^F\times\bar{r}^{F_n/F_o} =
+   -r_Fc_4c_5(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_1 -
+   r_F(c_4c_7u_4+s_7c_4c_5u_5-s_4s_5s_7u_4-(s_4s_7-s_5c_4c_7)u_7)\hat{e}_2 +
+   r_F(s_4s_7-s_5c_4c_7)(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3
 
 .. _nonholonomic:
 

@@ -219,8 +219,7 @@ bicycle reference frame about the :math:`\hat{c}_3` axis through :math:`q_7`.
    \right]
 
 Finally, the front wheel, :math:`F`, rotates with respect to the fork/handlebar
-through
-:math:`q_8` about the :math:`\hat{e}_2` axis.
+through :math:`q_8` about the :math:`\hat{e}_2` axis.
 
 .. math::
    :label: EtoF
@@ -531,6 +530,21 @@ velocity of the wheel contact points in the
    ^N\bar{\mathbf{v}}^{G_n}\cdot\hat{\mathbf{n}}_1=
    ^N\bar{\mathbf{v}}^{G_n}\cdot\hat{\mathbf{n}}_2=0
    :label: {eq:noSlip}
+
+Mass
+~~~~
+
+Inertia
+~~~~~~~
+
+Forces
+~~~~~~
+
+Torques
+~~~~~~~
+
+Fr
+~~
 
 Eight generalized coordinates, one of which is dependent, and three
 independent generalized speeds (:math:`u_i=\dot{q}_i` where

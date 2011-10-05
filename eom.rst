@@ -692,22 +692,29 @@ These five equations are linear in the generalized speeds. I chose the roll
 rate, :math:`u_4`, the rear wheel rate, :math:`u_6`, and the steer rate,
 :math:`u_7`, as my independent generalized speeds following convention.
 
-At this point the solution to the equations  becomes analytically long and it
-is not necessarily trivial to reduce their length. A smarter choice of
-generalized speeds could certainly help, but I did not spend great effort to
-search for an optimum set. From this point on, I will not show the analytical
-results of the equations of motion, but will only walk through the remainder of
-the theory, as all of the building blocks are in place to derive the equations
-with Kane's method (or any other method). I highly recommend the use of
-computer aided algebra to continue on, but for the diehard you certainly could
-write them by hand.
+At this point, you can find the solution for the dependent speeds as a function
+of the independent speeds but it  becomes analytically long and it is not
+necessarily trivial to reduce their length. A smarter choice of generalized
+speeds could certainly help, but I did not spend great effort to search for an
+optimum set. From this point on, I will not show the analytical results of the
+equations of motion, but will only walk through the remainder of the theory, as
+all of the building blocks are in place to derive the equations with Kane's
+method (or any other method). I highly recommend the use of computer aided
+algebra to continue on, but for the diehard you certainly could write them by
+hand.
+
+The dependent speeds take this form:
 
 .. math::
-   u_4 = f(u_1, u_2, u_3, u_5, u_8, q_1, \ldots, q_8)
+   u_1 = f(u_4, u_6, u_7, q_1, \ldots, q_8)
 
-   u_6 = f(u_1, u_2, u_3, u_5, u_8, q_1, \ldots, q_8)
+   u_2 = f(u_4, u_6, u_7, q_1, \ldots, q_8)
 
-   u_7 = f(u_1, u_2, u_3, u_5, u_8, q_1, \ldots, q_8)
+   u_3 = f(u_4, u_6, u_7, q_1, \ldots, q_8)
+
+   u_5 = f(u_4, u_7, q_1, \ldots, q_8)
+
+   u_8 = f(u_4, u_6, u_7, q_1, \ldots, q_8)
 
 
 Fr

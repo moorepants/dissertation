@@ -5,75 +5,6 @@ Bicycle Equations Of Motion
 Introduction
 ============
 
-As was mentioned in the introduction, the bicycle has been studied by many
-scientists over the years. The bicycle is a rich dynamic system that is
-difficult to model accurately.  [Meijaard2007]_ did an excellent job of sorting
-through 140 years of bicycle dynamics papers and providing a benchmarked
-bicycle that finally verified the correct equations of the linearized Whipple
-Model [Whipple1899]_. Bicycle-only models can be divided into two main
-categories: models that do not exhibit open loop stability and models that do.
-All of these models can be extended by adding additional dynamics such as
-tire-road interactions, frame flexibility, and human biomechanics. These
-extensions can have effects on the stability and control of the bicycle.
-
-Simple Models
--------------
-
-Typically a one degree of freedom model that produces a roll equation of motion
-is used to model a bicycle in its most basic form. This model has been derived
-and analyzed by many including, but not limited to, [Timoshenko1948]_,
-[Karnopp2004]_ and [Astrom2005]_. These models do not have enough fidelity to
-predict a real bicycle's uncontrolled motion and do not predict the speed
-dependent stability that higher order models can. These models have been used
-for control studies [Getz1994,CloydHubbardAlaways1996,Karnopp2004]_ as they
-exhibit the non-minimum phase behavior that predicts the necessity of steering
-into the roll for stabilization. Controllers based on these models have also
-been used on actual experimental control models [Suryanarayanan2002]_. This
-type of model will not be used in my studies.
-
-Whipple Model
--------------
-
-The lowest order model that has had some experimental validation
-[Kooijman2008]_, is able to predict speed dependent stability and includes a
-complete physical description of the four rigid bodies is typically referred to
-as the "Whipple Model". This is in honor of Francis J.  W. Whipple, the first
-author to publish a correct derivation of the linear equations of motion of
-this particular bicycle model [Whipple1899]_.  This model will be used as a
-basis for all further studies proposed herein. Many researchers over the past
-century have attempted to derive and analyze this model but very few have been
-successful. [Meijaard2007]_ give a complete historical review of uncontrolled
-bicycle research which made use of the historical comparisons in the thesis by
-[Hand1988]_. [Meijaard2007]_ also benchmarked the Whipple Model by deriving the
-linearized equations of motion by four independent methods (two independent pen
-and paper calculations and two different dynamic software packages).
-Furthermore, [Basu-Mandal2007]_ benchmarked various torque free circular
-motions in the non-linear case with two additional independent derivations of
-the equations of motion. [Kooijman2006]_ has verified by experiment that the
-linearized Whipple Model does in fact predict the uncontrolled motion of a
-normal bicycle in a speed range of about 3 to 6 m/s.  These papers and my own
-derivation of the Whipple Model are the basis for using this model in my
-research.
-
-Motorcycle Models
------------------
-
-The motorcycle is modeled in much the same fashion as the bicycle except that
-tire-road interactions and suspension are included.  Also, the human's
-biomechanical motions play a smaller role because the motorcycle typically
-weighs more than the rider. The most cited models are those developed by Robin
-S. Sharp. His first model [Sharp1971]_ includes tire compliance and side slip.
-The model has been refined over the years to improve accuracy by adding frame
-flexibility, rider models and improving the tire models
-[SharpLimebeerGani1999,SharpLimebeer2001,SharpEvangelouLimebeer2004]_.  He was
-also the first to give names to the eigenmodes of the Whipple Model
-[Sharp1975]_. He and David Limebeer give a review of bicycle and motorcycle
-modeling in [LimebeerSharp2006]_ covering much of their work. Other notable
-studies include ones developed by [Koenen1983]_ and [CossalterLot2002]_.
-
-Whipple Model
-=============
-
 Attempting to derive the equations of motion of the Whipple model is pretty
 much what got me hooked into bicycle dynamics. I attempted it for my class
 project in Mont Hubbard's winter 2006 multi-body dynamics class and struggle
@@ -90,7 +21,7 @@ improve the derivation with the goal of printing the first compact symbolic
 result.
 
 Derivation of the Non-linear Equations of Motion
-------------------------------------------------
+================================================
 
 The Whipple Model will be the foundation for any extensions we develop. This
 section details derivation of the non-linear equatios of motion using Kane's
@@ -103,7 +34,7 @@ to the computer. The symbolic equations of motion herin were developed within
 the frame work of Autolev.
 
 Model
-~~~~~
+-----
 
 The definition of the Whipple Bicycle Model that I use includes these requirements:
 
@@ -127,7 +58,7 @@ will try to be explicit when refering to the various models.
    shown.
 
 Geometry
-~~~~~~~~
+--------
 
 The geometry of the whipple model can be parameterized in an infinite amount of
 ways. It is typical and natural to define the geometry with respect to the modern
@@ -157,12 +88,15 @@ distance along the steer axis from the point of perpendicular intersection to
 the rear and front offset lines.
 
 Generalized Coordinates
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 I use eight generalized coordinates to develop the bicycle configuration. This
 is not the miminal set in terms of holonomic constraints or in terms of
 ignorable coordinates, but is useful none-the-less primarily due to the nature of
 deriving the equations with a CAS.
+
+Orientation
+-----------
 
 Before time, there first was the Newtonian reference frame. We chose the
 coordiates to fit the ____ standard as in [Meijaard2007]_. I start with
@@ -219,8 +153,7 @@ bicycle reference frame about the :math:`\hat{c}_3` axis through :math:`q_7`.
    \right]
 
 Finally, the front wheel, :math:`F`, rotates with respect to the fork/handlebar
-through
-:math:`q_8` about the :math:`\hat{e}_2` axis.
+through :math:`q_8` about the :math:`\hat{e}_2` axis.
 
 .. math::
    :label: EtoF
@@ -242,7 +175,7 @@ Newtonian reference frame.
    Diagram of the bicycle showing each generalized coordinate.
 
 Position
-~~~~~~~~
+--------
 
 The positions of the various points on the bicycle must be defined with respect
 to the Newtonian reference frame. There are six primary points of interest: the
@@ -283,6 +216,13 @@ fork dimensions:
 
    \bar{r}^{F_o/D_o} = d_1\hat{c}_1 + d_2\hat{c}_3 + d_3\hat{e}_1
 
+It is useful to define a point on the steer axis, :math:`C_e`, such that:
+
+.. math::
+   :label: DoToCe
+
+   \bar{r}^{C_e/D_o} = d_1\hat{c}_1
+
 The bicycle frame mass center, :math:`C_o`, is located by two additional
 parameters:
 
@@ -307,22 +247,26 @@ the front wheel center to the contact point is defined as:
 
    \bar{r}^{F_n/F_o} = r_F(\hat{e}_2\times\hat{n}_3)\times\hat{e}_2
 
+   \bar{r}^{F_n/F_o} = r_F(s_4s_7-s_5c_4c_7)\hat{e}_1 + r_Fc_4c_5\hat{e}_3
+
 Where the triple cross product represents the unit vector pointing from the
 front wheel center to the front wheel contact. [Basu-Mandal2007]_ give an
 explanation and diagram. The equation can also be though of in terms of dot
-products:
+products such that you subtract the :math:`\hat{n}_3` component of
+:math:`\hat{e}_2` from :math:`\hat{n}_3` to get a vector that points from the
+front wheel center to the contact point, :math:`\bar{x}`. The vector of
+interest can then be formed by multiplying :math:`r_F` by the unit vector in
+the direction of :math:`\bar{x}`:
 
 .. math::
    :label: frontWheelContactDot
 
-   \bar{x} = (\hat{a}_3 - (\hat{e}_2 \cdot\ hat{a}_3)\hat{e}_2)
+   \bar{x} = (\hat{a}_3 - (\hat{e}_2 \cdot\hat{a}_3)\hat{e}_2)
+
    \bar{r}^{F_n/F_o} = r_F\frac{\bar{x}}{||\bar{x}||}
 
-.. todo::
-   Check this equation.
-
 Holonomic Constraints
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 Two holonomic configuration constraints, arising from the fact that both wheels
 must touch the ground, complicates the model derivation. The first holonomic
@@ -351,15 +295,16 @@ But I do not do this, instead I make us of a new velocity contraint described
 in :ref:`nonholonomic`.
 
 Kinematical Differential Equations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------
 
-The choice of generalized speeds can significantly reduce the
-length of the equations of motion [Mitiguy1996]. This is benefical for both
-working with the analytical forms of the equations of motion and the efficiency
-in computing them. This is true, but I took the easy way out and chose to not
-attempt to select optimum kinematical differerntial equations and select the
-generalized speeds to simply be equal to the derivatives of the generalized
-coordinates.
+The choice of generalized speeds can significantly reduce the length of the
+equations of motion [Mitiguy1996]. This is benefical for both working with the
+analytical forms of the equations of motion and the efficiency in computing
+them. This is true, but I took the easy way out and chose to not attempt to
+select optimum kinematical differerntial equations and select the generalized
+speeds to simply be equal to the derivatives of the generalized coordinates. My
+only excuse is that computers are fast these days and this may or may not
+matter much.
 
 .. math::
    :label: generlizedSpeeds
@@ -367,7 +312,7 @@ coordinates.
    u_i = \dot{q}_i
 
 Velocities
-~~~~~~~~~~
+----------
 
 The angular and linear velocities of each rigid body are required as usual.
 Also the velocities of the points on the wheel at the ground contact points are
@@ -377,9 +322,10 @@ velocity of the bicycle frame, :math:`C`, in :math:`N` is:
 .. math::
    :label: omegaCinN
 
-   ^N\omega^C = (c_5u_4-s_5c_4u_3)\hat{c}_1 + (u_5+s_4u_3)\hat{c}_2 + (s_5u_4+c_4c_5u_3)\hat{c}_3
+   ^N\omega^C = (c_5u_4-s_5c_4u_3)\hat{c}_1 + (u_5+s_4u_3)\hat{c}_2 +
+   (s_5u_4+c_4c_5u_3)\hat{c}_3
 
-Each the fork and the rear wheel are connected to the bicycle frame by simple revolute joints.
+Both the fork and the rear wheel are connected to the bicycle frame by simple revolute joints.
 
 .. math::
    :label: omegaDinC
@@ -406,100 +352,366 @@ the newtonian reference frame. For example:
 
    ^F\omega^N = ^N\omega^C + ^C\omega^E + ^E\omega^F
 
-Using the angular velcoties and the position vectors the velocities of the
+Using the angular velocities and the position vectors the velocities of the
 mass centers can be computed. Starting with mass center of the rear wheel:
 
 .. math::
    :label: DoInN
 
-   ^N\bar{v}^{D_o} = -r_Rs_4u_3\hat{b}_1 + r_Ru_4\hat{b}_2 + u_1\hat{n}_1 + u_2\hat{n}_2
+   ^N\bar{v}^{D_o} = u_1\hat{n}_1 + u_2\hat{n}_2 -
+   r_Rs_4u_3\hat{b}_1 + r_Ru_4\hat{b}_2
 
-The mass center of the rear wheel, :math:`D_o` and the mass center of bicycle frame,
-:math:`C_o`,  both lie on the bicycle frame so the velocity can easily be
-computed using:
+The mass center of the rear wheel, :math:`D_o` and the mass center of bicycle
+frame, :math:`C_o`,  both lie on the bicycle frame so the velocity can easily
+be computed:
 
 .. math::
    :label: CoInN
 
    ^N\bar{v}^{C_o} = ^N\bar{v}^{D_o} + ^N\bar\omega^C\times\bar{r}^{C_o/D_o}
 
-where:
-
-.. math::
-   :label: omegaCinNcrossedRDoCo
-
    ^N\bar\omega^C\times\bar{r}^{C_o/D_o} = l_2(u_5+s_4u_3)\hat{c}_1 +
    (l_1(s_5u_4+c_4c_5u_3)-l_2(c_5u_4-s_5c_4u_3))\hat{c}_2
    - l_1(u_5+s_4u_3)\hat{c}_3
 
-It is useful to define a point on the steer axis, :math:`C_e`, such that:
-
-.. math::
-   :label: DoToCe
-
-   \bar{r}^{C_e/D_o} = d_1\hat{c}_1
-
-The velocity is then:
+The velocity of the steer axis point is computed in the same fashion:
 
 .. math::
    :label: test
 
    ^N\bar{v}^{C_e} = ^N\bar{v}^{D_o} + ^N\bar\omega^C\times\bar{r}^{C_e/D_o}
 
-Then the velocity of the fork mass center can be defined as:
+   ^N\bar\omega^C\times\bar{r}^{C_e/D_o} = d_1(s_5u_4+c_4c_5u_3)\hat{c}_2 -
+   d_1(u_5+s_4u_3)\hat{c}_3
+
+The velocity of the front wheel center is:
 
 .. math::
-   :label: test2
+   :label: test
 
-   ^N\bar{v}^{E_o} = ^N\bar{v}^{C_e} + ^N\omega^E\times\bar{r}^{E_o/C_e}
+   ^N\bar{v}^{F_o} = ^N\bar{v}^{C_e} + ^N\bar\omega^E\times\bar{r}^{F_o/C_e}
+
+   ^N\bar\omega^E\times\bar{r}^{F_o/C_e} = -d_2(s_7c_5u_4-c_7u_5-
+   (s_4c_7+s_5s_7c_4)u_3)\hat{e}_1 + (d_3(u_7+s_5u_4+c_4c_5u_3)-
+   d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 +
+   d_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3
+
+Then the velocity of the fork mass center can be defined as:
 
 .. math::
    :label: EoInN
 
-   ^N\bar{v}^{E_o} = -rRs_4u_3\hat{b}_1 + rRu_4\hat{b}_2 +
-   d1(s_5u_4 + c_4c_5u_3)\hat{c}_2 - d1(u_5+s_4u_3)\hat{c}_3 -
-   (d2 + l4)(s_7c_5u_4 - c_7u_5 - (s_4c_7 + s_5s_7c_4)u_3)\hat{e}_1 +
-   ((d3+l3)(u_7+s_5u_4+c_4c_5u_3)-(d2+l4)(s_7u_5+c_5c_7u_4+
-   (s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 +
-   (d3+l3)(s_7c_5u_4-c_7u_5
-   -(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3 + u_1\hat{n}_1 + u_2\hat{n}_2
+   ^N\bar{v}^{E_o} = ^N\bar{v}^{F_o} + ^N\omega^E\times\bar{r}^{E_o/F_o}
+
+   ^N\omega^E\times\bar{r}^{E_o/F_o} =&
+   -l4(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_1 +
+   &(l3(u_7+s_5u_4+c_4c_5u_3)-l4(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 +
+   &l3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3
+
+The velocity of the contact points on the wheel are needed to enforce the
+no-slip condition.
+
+.. math::
+   :label: DnInN
+
+   ^N\bar{v}^{D_n} = ^N\bar{v}^{D_o} + ^N\omega^D\times\bar{r}^{D_n/D_o}
+
+   ^N\omega^D\times\bar{r}^{D_n/D_o} = r_R(u_5+u_6+s_4u_3)\hat{b}_1 - r_Ru_4\hat{b}_2
+
+   ^N\bar{v}^{D_n} = r_R(u_5+u_6)\hat{b}_1 + u_1\hat{n}_1 + u_2\hat{n}_2
+
+The front wheel contact velocity:
+
+.. math::
+   :label: FnInN
+
+   ^N\bar{v}^{F_n} = ^N\bar{v}^{F_o} + ^N\omega^F\times\bar{r}^{F_n/F_o}
+
+   ^N\omega^F\times\bar{r}^{F_n/F_o} =&
+   -r_Fc_4c_5(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_1 -\\
+   &r_F(c_4c_7u_4+s_7c_4c_5u_5-s_4s_5s_7u_4-(s_4s_7-s_5c_4c_7)u_7)\hat{e}_2 +\\
+   &r_F(s_4s_7-s_5c_4c_7)(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3
+
+Acceleration
+------------
+
+The angular acceleration of each body along with the linear acceleration of
+each mass center are required to form :math:`F_r^*`. The angular acceleration
+of the bicycle reference frame in :math:`N` is:
+
+.. math::
+   :label: alphaCinN
+
+   ^N\bar{\alpha}^C =
+   &(s_4s_5u_3u_4+c_5\dot{u}_4-s_5u_4u_5-c_4c_5u_3u_5-s_5c_4\dot{u}_3)\hat{c}_1 +
+   (c_4u_3u_4+\dot{u}_5+s_4\dot{u}_3)\hat{c}_2 +\\
+   &(c_5u_4u_5+s_5\dot{u}_4+c_4c_5\dot{u}_3-s_4c_5u_3u_4-s_5c_4u_3u_5)\hat{c}_3
+
+.. math::
+   :label: alphaDinC
+
+   ^C\bar{\alpha}^D = \dot{u}_6\hat{c}_2
+
+.. math::
+   :label: alphaEinC
+
+   ^C\bar{\alpha}^E = \dot{u}_7\hat{c}_3
+
+.. math::
+   :label: alphaFinE
+
+   ^E\bar{\alpha}^F = \dot{u}_8\hat{e}_2
+
+The linear acceleration of each mass center can then be computed.
+
+The acceleration of the rear wheel center of mass.
+
+.. math::
+   :label: aDoInN
+
+   ^N\bar{a}^{D_o} = \dot{u}_1\hat{n}_1 + \dot{u}_2\hat{n}_2 -
+   r_Rs_4u_3^2\hat{a}_2 - r_R(2c_4u_3u_4+s_4\dot{u}_3)\hat{b}_1 +
+   r_R\dot{u}_4\hat{b}_2 + r_Ru_4^2\hat{b}_3
+
+The acceleration of the biycle frame center of mass.
+
+.. math::
+   :label: aCoinN
+
+   ^N\bar{a}^{C_o} = ^N\bar{a}^{D_o} + ^N\omega^C\times(^N\omega^C\times\bar{r}^{C_o/D_o}) + ^N\bar{\alpha}^C\times\bar{r}^{C_o/D_o}
+
+   ^N\omega^C\times(^N\omega^C\times\bar{r}^{C_o/D_o}) =
+    &(-l_1(u_5+s_4u_3)^2-(s_5u_4+c_4c_5u_3)(l_1(s_5u_4+c_4c_5u_3)-l_2(c_5u_4-s_5c_4u_3)))\hat{c}_1 +\\
+    &(u_5+s_4u_3)(l_2(s_5u_4+c_4c_5u_3)+l_1(c_5u_4-s_5c_4u_3))\hat{c}_2\\
+    &+ ((c_5u_4-s_5c_4u_3)(l_1(s_5u_4+c_4c_5u_3)-l_2(c_5u_4-s_5c_4u_3))-l_2(u_5+s_4u_3)^2)\hat{c}_3
+
+   ^N\bar{\alpha}^C\times\bar{r}^{C_o/D_o} =
+   &l_2(c_4u_3u_4+\dot{u}_5+s_4\dot{u}_3)\hat{c}_1 +\\
+   &(-l_1(s_4c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-s_5\dot{u}_4-c_4c_5\dot{u}_3)-l_2(s_4s_5u_3u_4+c_5\dot{u}_4-s_5u_4u_5-c_4c_5u_3u_5-s_5c_4\dot{u}_3))\hat{c}_2 -\\
+   &l_1(c_4u_3u_4+\dot{u}_5+s_4\dot{u}_3)\hat{c}_3
+
+The acceleration of the steer axis point.
+
+.. math::
+   :label: aCeInN
+
+   ^N\bar{a}^{C_e} = ^N\bar{a}^{D_o} + ^N\omega^C\times(^N\omega^C\times\bar{r}^{C_e/D_o}) + ^N\bar{\alpha}^C\times\bar{r}^{C_e/D_o}
+
+   ^N\omega^C\times(^N\omega^C\times\bar{r}^{C_e/D_o}) =
+    &-d_1((u_5+s_4u_3)^2+(s_5u_4+c_4c_5u_3)^2)\hat{c}_1 +\\
+    &d_1(u_5+s_4u_3)(c_5u_4-s_5c_4u_3)\hat{c}_2 +\\
+    &d_1(s_5u_4+c_4c_5u_3)(c_5u_4-s_5c_4u_3)\hat{c}_3
+
+   ^N\bar{\alpha}^C\times\bar{r}^{C_e/D_o} =
+   &-d_1(s_4c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-s_5\dot{u}_4-c_4c_5\dot{u}_3)\hat{c}_2 -\\
+   &d_1(c_4u_3u_4+\dot{u}_5+s_4\dot{u}_3)\hat{c}_3
+
+The acceleration of the front wheel center of mass.
+
+.. math::
+   :label: aFoInN
+
+   ^N\bar{a}^{F_o} = ^N\bar{a}^{C_e} + ^N\omega^E\times(^N\omega^E\times\bar{r}^{F_o/C_e}) + ^N\bar{\alpha}^E\times\bar{r}^{F_o/C_e}
+
+   ^N\omega^E\times(^N\omega^E\times\bar{r}^{F_o/C_e}) =
+    &(-d_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7
+    c_4)u_3)^2-(u_7+s_5u_4+c_4c_5u_3)(d_3(u_7+s_5u_4+c_4
+    c_5u_3)-d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)))\hat{e}_1 -\\
+    &(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7
+    c_4)u_3)(d_2(u_7+s_5u_4+c_4c_5u_3)+d_3(s_7u_5+c_5
+    c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 +\\
+    &((s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)(d_3(u_7+s_5u_4+c_4c_5u_3)-
+    d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))-d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)^2)\hat{e}_3
+
+   ^N\bar{\alpha}^E\times\bar{r}^{F_o/C_e} =
+    &-d_2(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-c_7\dot{u}_5-(s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_1 +\\
+    &(d_2(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-u_3(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5)-s_7\dot{u}_5
+    -c_5c_7\dot{u}_4-(s_4s_7-s_5c_4c_7)\dot{u}_3)-d_3(s_4
+    c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-\dot{u}_7-s_5\dot{u}_4-c_4c_5\dot{u}_3))\hat{e}_2 +\\
+    &d_3(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+
+    s_4s_5s_7u_4-c_4c_7u_4-s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-c_7\dot{u}_5-(s_4
+    c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_3
+
+The acceleration of the fork center of mass.
+
+.. math::
+   :label: aEoInN
+
+   ^N\bar{a}^{E_o} = ^N\bar{a}^{F_o} + ^N\omega^E\times(^N\omega^E\times\bar{r}^{E_o/F_o}) + ^N\bar{\alpha}^E\times\bar{r}^{E_o/F_o}
+
+   ^N\omega^E\times(^N\omega^E\times\bar{r}^{E_o/F_o}) =
+   &(-l_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)^2-(u_7+s_5u_4+c_4c_5u_3)(l_3(u_7+s_5u_4+c_4c_5u_3)-
+   l_4(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)))\hat{e}_1 -\\
+   &(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)(l_4(u_7+s_5u_4+c_4c_5u_3)+l_3(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 +\\
+   &((s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)(l_3(u_7+s_5u_4+c_4c_5u_3)-
+   l_4(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))-l_4(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)^2)\hat{e}_3
+
+   ^N\bar{\alpha}^E\times\bar{r}^{E_o/F_o} =
+   &-l_4(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
+   s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-c_7\dot{u}_5-
+   (s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_1 +\\
+   &(l_4(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-u_3(s_4c_7u_7+s_7c_4u_4+
+   s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5)-s_7\dot{u}_5
+   -c_5c_7\dot{u}_4-(s_4s_7-s_5c_4c_7)\dot{u}_3)-l_3(s_4
+   c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-\dot{u}_7-s_5\dot{u}_4-c_4c_5\dot{u}_3))\hat{e}_2 +\\
+   &l_3(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
+   s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-c_7\dot{u}_5-(s_4
+   c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_3
+
+Mass
+----
+
+The mass of each rigid body is defined as a constant: :math:`m_C`, :math:`m_D`,
+:math:`m_E` and :math:`m_F`.
+
+Inertia
+-------
+
+The inertia for each body is defined with respect to the mass center and the
+body's local reference frame. The bicycle wheels are assumed to be symmetric
+about their 1-3 plane and the 1-2 plane.
+
+.. math::
+   :label: ID
+
+   I_D =
+   \begin{bmatrix}
+   I_{D11} & 0 & 0\\
+   0 & I_{D22} & 0\\
+   0 & 0 & I_{D11}
+   \end{bmatrix}
+
+.. math::
+   :label: IF
+
+   I_F =
+   \begin{bmatrix}
+   I_{F11} & 0 & 0\\
+   0 & I_{F22} & 0\\
+   0 & 0 & I_{F11}
+   \end{bmatrix}
+
+The bicycle frame and fork are assumed to be symmetric about their 1-3 planes.
+
+.. math::
+   :label: IC
+
+   I_C =
+   \begin{bmatrix}
+   I_{C11} & 0 & I_{C13}\\
+   0 & I_{C22} & 0\\
+   I_{C13} & 0 & I_{C33}
+   \end{bmatrix}
+
+.. math::
+   :label: IE
+
+   I_E =
+   \begin{bmatrix}
+   I_{E11} & 0 & I_{E13}\\
+   0 & I_{E22} & 0\\
+   I_{E13} & 0 & I_{E33}
+   \end{bmatrix}
+
+.. todo:: Should I show these as inertia dyadics instead?
+
+Generalized Active Forces
+-------------------------
+
+We assume that the only force acting on the system is the gravitational force,
+:math:g. Thus:
+
+.. math::
+
+  F_{C_o} = m_Cg\hat{n}_3
+
+  F_{D_o} = m_Dg\hat{n}_3
+
+  F_{E_o} = m_Eg\hat{n}_3
+
+  F_{F_o} = m_Fg\hat{n}_3
+
+We assume that there are three generalized active torques acting the system
+which will correspond to the three independent generalized speeds found in
+:ref:`nonholonomic`.
+
+The roll torque, :math:`T_4`, acts between the bicycle frame and the newtonian
+frame about :math:`\hat{a}_1`. The rear wheel torque, :math:`T_6`, acts between the bicycle
+frame and the rear wheel about :math:`\hat{c}_2` and the steer torque, :math:`T_7`, acts
+between the bicycle frame and the fork about :math:`\hat{c}_3`.
 
 .. _nonholonomic:
 
 Non-holonomic Constraints
-~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
-To avoid having to solve the quartic algebraically, the derivative
-of the constraint equation is taken.
-
-This produces a velocity constraint equation that is linear in the
-derivatives of the pitch angle, steer angle and lean angle
-(Eq. eq:pitchVelCon) where :math:`a`, :math:`b` and :math:`c`
-are functions of the coordinates and geometric parameters. This
-allows an explicit solution for the pitch angular velocity
-:math:`u_6`, making it a dependent generalized speed.
+I make use of five non-holonomic constraints to reduce the locally achievable
+configuration space from eight degrees of freedom to three. The first four
+constraints are introduced to enforce the pure rolling, no side-slip, contact
+of the knife-edge wheels with the ground plane. This requires that there are no
+components of velocity of the wheel contact points in the
+:math:`{\mathbf{a}}_1` and :math:`{\mathbf{a}}_2` directions producing the
+following relationships:
 
 .. math::
-   \bar{\mathbf{r}}^{G_n/C_n}\cdot\hat{\mathbf{n}}_3=f\left(q_4,q_6,q_7\right)=0
-   :label: eq:wheelsTouch
+
+   ^N\bar{v}^{D_n}\cdot\hat{a}_1 = s_3u_2 + c_3u_1 + r_R(u_5+u_6) = 0
+
+   ^N\bar{v}^{D_n}\cdot\hat{a}_2 = c_3u_2 - s_3u_1 = 0
+
+   ^N\bar{v}^{F_n}\cdot\hat{a}_1 = s_3u_2 + c_3u_1 + d_2c_5u_5 +
+   d_2s_4c_5u_3 + rFc_4c_7(u_8+c_7u_5+(s_4c_7+s_5s_7c_4)u_3) - r_Rs_4u_3 - d_3s_7c_4u_3 -
+   d_1s_5(u_5+s_4u_3) - s_7c_5(d_3u_7-r_F(s_7c_4c_5u_5-(s_4s_7-s_5
+   c_4c_7)u_7)) - s_5(d_3c_7(u_5+s_4u_3)+rFs_4s_7(u_8+c_7u_5+(s_4c_7+s_5s_7c_4)u_3)) = 0
+
+   ^N\bar{v}^{F_n}\cdot\hat{a}_2 = c_3u_2 + d_1c_5u_3 + r_Rc_4u_4 + d_1s_4
+   c_5u_5 + d_1s_5c_4u_4 + (c_4c_7-s_4s_5s_7)(d_3(u_7+s_5u_4+c_4c_5u_3)-d_2(s_7u_5+c_5c_7u_4+(s_4
+   s_7-s_5c_4c_7)u_3)-r_F(c_4c_7u_4+s_7c_4c_5u_5-s_4s_5s_7u_4-(s_4s_7-s_5c_4c_7)u_7)
+   ) - s_3u_1 - (s_7c_4+s_4s_5c_7)(d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)+r_Fc_4c_5(
+   s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)) - s_4c_5(d_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)+
+   r_F(s_4s_7-s_5c_4c_7)(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3))
+
+The fifth non-holonomic velocity constraint is not a necessary one but is
+useful in managing the second holonomic constraint :eq:`something` and is a
+method to avoid having to solve the quartic algebraically. By differentiating
+the holonomic cosntraint equation we arrive at velocity equation that is linear
+in the speeds and can be treated as a non-holonomic constrain even though it
+is not one.
 
 .. math::
-   \frac{d}{dt}_\left(\bar{\mathbf{r}}^{G_n/C_n}\cdot\hat{\mathbf{n}}_3\right)=a\cdot u_4+b\cdot u_5+c\cdot u_7=0
-   :label: {eq:pitchVelCon}
 
-Four nonholomic constraints (Eq.eq:noSlip) further reduce the
-locally achievable configuration space to three degrees of freedom.
-The pure rolling, no side-slip, contact of the knife-edge wheels
-with the ground plane requires that there are no components of
-velocity of the wheel contact points in the
-:math:`{\mathbf{n}}_1` and :math:`{\mathbf{n}}_2` directions.
+   \frac{d}{dt}(\bar{r}^{G_n/D_n}\cdot\hat{a}_3) = r_Rs_4u_4 + d_1s_4s_5u_4 +
+   d_3(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-
+   c_4c_5c_7u_5) +
+   2r_F(s_4s_7-s_5c_4c_7)(s_4c_7u_7+s_7c_4u_4+
+   s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5) - d_1c_4c_5u_5 -
+   d_2s_5c_4u_5 - 2r_Fs_5c_5c_4^2u_5 -
+   s_4c_5(d_2+2r_Fc_4c_5)u_4 = 0
+
+These five equations are linear in the generalized speeds. I chose the roll
+rate, :math:`u_4`, the rear wheel rate, :math:`u_6`, and the steer rate,
+:math:`u_7`, as my independent generalized speeds following convention.
+
+At this point the solution to the equations  becomes analytically long and it
+is not necessarily trivial to reduce their length. A smarter choice of
+generalized speeds could certainly help, but I did not spend great effort to
+search for an optimum set. From this point on, I will not show the analytical
+results of the equations of motion, but will only walk through the remainder of
+the theory, as all of the building blocks are in place to derive the equations
+with Kane's method (or any other method). I highly recommend the use of
+computer aided algebra to continue on, but for the diehard you certainly could
+write them by hand.
 
 .. math::
-   ^N\bar{\mathbf{v}}^{C_n}\cdot\hat{\mathbf{n}}_1=
-   ^N\bar{\mathbf{v}}^{C_n}\cdot\hat{\mathbf{n}}_2=
-   ^N\bar{\mathbf{v}}^{G_n}\cdot\hat{\mathbf{n}}_1=
-   ^N\bar{\mathbf{v}}^{G_n}\cdot\hat{\mathbf{n}}_2=0
-   :label: {eq:noSlip}
+   u_4 = f(u_1, u_2, u_3, u_5, u_8, q_1, \ldots, q_8)
+
+   u_6 = f(u_1, u_2, u_3, u_5, u_8, q_1, \ldots, q_8)
+
+   u_7 = f(u_1, u_2, u_3, u_5, u_8, q_1, \ldots, q_8)
+
+
+Fr
+--
 
 Eight generalized coordinates, one of which is dependent, and three
 independent generalized speeds (:math:`u_i=\dot{q}_i` where
@@ -520,6 +732,23 @@ fixed point when linearizing.
 .. math::
    \dot{q}_i=u_i\textrm{ where }i=4,5,6,7
    :label: {eq:speeds}
+
+Ignorable Coordinates
+---------------------
+
+The equations of motion indicate that the location of the rear wheel contact,
+yaw angle, and both wheel angles are ignorable.
+
+Simulation
+----------
+.. todo:: Show the same simulation with regards to Meijaard2007 and a step/impulse response.
+
+Validation
+----------
+.. todo:: Compare to Basu-Mandall2007 and Meijaard2007
+
+Linearized Equations of Motion
+==============================
 
 The equations of motion can then be linearized by calculating the
 Jacobian of the system of equations. The partial derivatives were

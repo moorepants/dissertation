@@ -114,13 +114,11 @@ is then:
    :label: NtoC
 
    ^NR^C =
-   \left[
-   \begin{array}{c}
+   \begin{bmatrix}
    -s_3s_4s_5 + c_5c_3 & -s_3c_4 & s_3s_4c_5 + s_5c_3\\
    c_3s_4s_5 + c5s_3 & c_3c_4 & -c_3s_4c_5 + s_5s_4\\
    -c_4s_5 & s_4 & c_4c_5
-   \end{array}
-   \right]
+   \end{bmatrix}
 
 The rear wheel reference frame, :math:`D`, rotates with repect to the bicycle
 frame about the :math:`\hat{c}_2` axis through :math:`q_6`.
@@ -129,13 +127,11 @@ frame about the :math:`\hat{c}_2` axis through :math:`q_6`.
    :label: CtoD
 
    ^CR^D =
-   \left[
-   \begin{array}{c}
+   \begin{bmatrix}
    c_6 & 0 & -s_6\\
    0 & 1 & 0\\
    s_6 & 0 & c_6
-   \end{array}
-   \right]
+   \end{bmatrix}
 
 The fork/handlebar reference frame, :math:`E`, rotates with respect to the
 bicycle reference frame about the :math:`\hat{c}_3` axis through :math:`q_7`.
@@ -144,13 +140,11 @@ bicycle reference frame about the :math:`\hat{c}_3` axis through :math:`q_7`.
    :label: CtoE
 
    ^CR^E =
-   \left[
-   \begin{array}{c}
+   \begin{bmatrix}
    c_7 & s_7 & 0\\
    -s_7 & c_7 & 0\\
    0 & 0 & 1
-   \end{array}
-   \right]
+   \end{bmatrix}
 
 Finally, the front wheel, :math:`F`, rotates with respect to the fork/handlebar
 through :math:`q_8` about the :math:`\hat{e}_2` axis.
@@ -159,13 +153,11 @@ through :math:`q_8` about the :math:`\hat{e}_2` axis.
    :label: EtoF
 
    ^ER^F =
-   \left[
-   \begin{array}{c}
+   \begin{bmatrix}
    c_8 & 0 & -s_8\\
    0 & 1 & 0\\
    s_8 & 0 & c_8
-   \end{array}
-   \right]
+   \end{bmatrix}
 
 The first two coordinates locate the the system in the Newtownian reference
 frame and the remaing six coordinates orient the four rigid bodies within the
@@ -391,10 +383,10 @@ The velocity of the front wheel center is:
 
    ^N\bar{v}^{F_o} = ^N\bar{v}^{C_e} + ^N\bar\omega^E\times\bar{r}^{F_o/C_e}
 
-   ^N\bar\omega^E\times\bar{r}^{F_o/C_e} = -d_2(s_7c_5u_4-c_7u_5-
-   (s_4c_7+s_5s_7c_4)u_3)\hat{e}_1 + (d_3(u_7+s_5u_4+c_4c_5u_3)-
-   d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 +
-   d_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3
+   ^N\bar\omega^E\times\bar{r}^{F_o/C_e} =
+   &-d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_1 +\\
+   &(d_3(u_7+s_5u_4+c_4c_5u_3)-d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 +\\
+   &d_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3
 
 Then the velocity of the fork mass center can be defined as:
 
@@ -403,9 +395,9 @@ Then the velocity of the fork mass center can be defined as:
 
    ^N\bar{v}^{E_o} = ^N\bar{v}^{F_o} + ^N\omega^E\times\bar{r}^{E_o/F_o}
 
-   ^N\omega^E\times\bar{r}^{E_o/F_o} =&
-   -l4(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_1 +
-   &(l3(u_7+s_5u_4+c_4c_5u_3)-l4(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 +
+   ^N\omega^E\times\bar{r}^{E_o/F_o} =
+   &-l4(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_1 +\\
+   &(l3(u_7+s_5u_4+c_4c_5u_3)-l4(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 +\\
    &l3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3
 
 The velocity of the contact points on the wheel are needed to enforce the
@@ -659,34 +651,31 @@ following relationships:
 
    ^N\bar{v}^{D_n}\cdot\hat{a}_2 = c_3u_2 - s_3u_1 = 0
 
-   ^N\bar{v}^{F_n}\cdot\hat{a}_1 = s_3u_2 + c_3u_1 + d_2c_5u_5 +
-   d_2s_4c_5u_3 + rFc_4c_7(u_8+c_7u_5+(s_4c_7+s_5s_7c_4)u_3) - r_Rs_4u_3 - d_3s_7c_4u_3 -
-   d_1s_5(u_5+s_4u_3) - s_7c_5(d_3u_7-r_F(s_7c_4c_5u_5-(s_4s_7-s_5
-   c_4c_7)u_7)) - s_5(d_3c_7(u_5+s_4u_3)+rFs_4s_7(u_8+c_7u_5+(s_4c_7+s_5s_7c_4)u_3)) = 0
+   ^N\bar{v}^{F_n}\cdot\hat{a}_1 =
+   &s_3u_2 + c_3u_1 + d_2c_5u_5 + d_2s_4c_5u_3 + r_Fc_4c_7(u_8+c_7u_5+(s_4c_7+s_5s_7c_4)u_3) -\\
+   &r_Rs_4u_3 - d_3s_7c_4u_3 - d_1s_5(u_5+s_4u_3) - s_7c_5(d_3u_7-r_F(s_7c_4c_5u_5-(s_4s_7-s_5c_4c_7)u_7))\\
+   &- s_5(d_3c_7(u_5+s_4u_3)+rFs_4s_7(u_8+c_7u_5+(s_4c_7+s_5s_7c_4)u_3)) = 0
 
-   ^N\bar{v}^{F_n}\cdot\hat{a}_2 = c_3u_2 + d_1c_5u_3 + r_Rc_4u_4 + d_1s_4
-   c_5u_5 + d_1s_5c_4u_4 + (c_4c_7-s_4s_5s_7)(d_3(u_7+s_5u_4+c_4c_5u_3)-d_2(s_7u_5+c_5c_7u_4+(s_4
-   s_7-s_5c_4c_7)u_3)-r_F(c_4c_7u_4+s_7c_4c_5u_5-s_4s_5s_7u_4-(s_4s_7-s_5c_4c_7)u_7)
-   ) - s_3u_1 - (s_7c_4+s_4s_5c_7)(d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)+r_Fc_4c_5(
-   s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)) - s_4c_5(d_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)+
-   r_F(s_4s_7-s_5c_4c_7)(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3))
+   ^N\bar{v}^{F_n}\cdot\hat{a}_2 =
+   &c_3u_2 + d_1c_5u_3 + r_Rc_4u_4 + d_1s_4c_5u_5 + d_1s_5c_4u_4 + (c_4c_7-s_4s_5s_7)(d_3(u_7+s_5u_4+c_4c_5u_3)-\\
+   &d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)-r_F(c_4c_7u_4+s_7c_4c_5u_5-s_4s_5s_7u_4-(s_4s_7-s_5c_4c_7)u_7)) -\\
+   &s_3u_1 - (s_7c_4+s_4s_5c_7)(d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)+\\
+   &r_Fc_4c_5(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)) - s_4c_5(d_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)+\\
+   &r_F(s_4s_7-s_5c_4c_7)(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3))
 
-The fifth non-holonomic velocity constraint is not a necessary one but is
-useful in managing the second holonomic constraint :eq:`something` and is a
-method to avoid having to solve the quartic algebraically. By differentiating
-the holonomic cosntraint equation we arrive at velocity equation that is linear
-in the speeds and can be treated as a non-holonomic constrain even though it
-is not one.
+The fifth non-holonomic velocity constraint is not a necessary one but can be
+used to manage the second holonomic constraint :eq:`something` and is a method
+to avoid having to solve the quartic algebraically. By differentiating the
+holonomic cosntraint equation we arrive at velocity equation that is linear in
+the speeds and can be treated as a non-holonomic constrain even though it is
+not one.
 
 .. math::
 
-   \frac{d}{dt}(\bar{r}^{G_n/D_n}\cdot\hat{a}_3) = r_Rs_4u_4 + d_1s_4s_5u_4 +
-   d_3(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-
-   c_4c_5c_7u_5) +
-   2r_F(s_4s_7-s_5c_4c_7)(s_4c_7u_7+s_7c_4u_4+
-   s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5) - d_1c_4c_5u_5 -
-   d_2s_5c_4u_5 - 2r_Fs_5c_5c_4^2u_5 -
-   s_4c_5(d_2+2r_Fc_4c_5)u_4 = 0
+   \frac{d}{dt}(\bar{r}^{G_n/D_n}\cdot\hat{a}_3) =
+   &r_Rs_4u_4 + d_1s_4s_5u_4 + d_3(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5) +\\
+   &2r_F(s_4s_7-s_5c_4c_7)(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5) -\\
+   &d_1c_4c_5u_5 -d_2s_5c_4u_5 - 2r_Fs_5c_5c_4^2u_5 -s_4c_5(d_2+2r_Fc_4c_5)u_4 = 0
 
 These five equations are linear in the generalized speeds. I chose the roll
 rate, :math:`u_4`, the rear wheel rate, :math:`u_6`, and the steer rate,

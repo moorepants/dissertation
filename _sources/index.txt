@@ -1,6 +1,6 @@
-==========================
-Human Control of a Bicycle
-==========================
+====
+Home
+====
 
 .. warning::
 
@@ -40,4 +40,3 @@ Table of Contents
    davisbicycle.rst
 
 * :ref:`search`
-

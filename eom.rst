@@ -708,7 +708,7 @@ body which is defined as:
 .. math::
 
    \bar{T}^*_X =
-   -(^N\bar{\alpha}^X\cdotI_X+^N\bar{omega}^X\timesI_X\cdot\bar{\omega}^X
+   -(^N\bar{\alpha}^X\cdot I_X+^N\bar{\omega}^X\times I_X\cdot\bar{\omega}^X
 
 :math:`I_X` is the central inertia dyadic for the body in question which
 corresponds to the following tensor definitions for the inertia of each rigid

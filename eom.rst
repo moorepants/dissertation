@@ -262,7 +262,7 @@ Holonomic Constraints
 
 Two holonomic configuration constraints, arising from the fact that both wheels
 must touch the ground, complicates the model derivation. The first holonomic
-equation is encompassed in the definition of the rear wheel contact point
+equation is encompassed (is obviated by) in the definition of the rear wheel contact point
 :eq:`rearWheelContact`. This constraint enforces that the contact point cannot
 have an displacement in the :math:`\hat{n}_3` direction[#]_. The second
 holonomic constraint is enforced by requiring the front wheel to touch the
@@ -550,87 +550,6 @@ The acceleration of the fork center of mass.
    s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-c_7\dot{u}_5-(s_4
    c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_3
 
-Mass
-----
-
-The mass of each rigid body is defined as a constant: :math:`m_C`, :math:`m_D`,
-:math:`m_E` and :math:`m_F`.
-
-Inertia
--------
-
-The inertia for each body is defined with respect to the mass center and the
-body's local reference frame. The bicycle wheels are assumed to be symmetric
-about their 1-3 plane and the 1-2 plane.
-
-.. math::
-   :label: ID
-
-   I_D =
-   \begin{bmatrix}
-   I_{D11} & 0 & 0\\
-   0 & I_{D22} & 0\\
-   0 & 0 & I_{D11}
-   \end{bmatrix}
-
-.. math::
-   :label: IF
-
-   I_F =
-   \begin{bmatrix}
-   I_{F11} & 0 & 0\\
-   0 & I_{F22} & 0\\
-   0 & 0 & I_{F11}
-   \end{bmatrix}
-
-The bicycle frame and fork are assumed to be symmetric about their 1-3 planes.
-
-.. math::
-   :label: IC
-
-   I_C =
-   \begin{bmatrix}
-   I_{C11} & 0 & I_{C13}\\
-   0 & I_{C22} & 0\\
-   I_{C13} & 0 & I_{C33}
-   \end{bmatrix}
-
-.. math::
-   :label: IE
-
-   I_E =
-   \begin{bmatrix}
-   I_{E11} & 0 & I_{E13}\\
-   0 & I_{E22} & 0\\
-   I_{E13} & 0 & I_{E33}
-   \end{bmatrix}
-
-.. todo:: Should I show these as inertia dyadics instead?
-
-Generalized Active Forces
--------------------------
-
-We assume that the only force acting on the system is the gravitational force,
-:math:g. Thus:
-
-.. math::
-
-  F_{C_o} = m_Cg\hat{n}_3
-
-  F_{D_o} = m_Dg\hat{n}_3
-
-  F_{E_o} = m_Eg\hat{n}_3
-
-  F_{F_o} = m_Fg\hat{n}_3
-
-We assume that there are three generalized active torques acting the system
-which will correspond to the three independent generalized speeds found in
-:ref:`nonholonomic`.
-
-The roll torque, :math:`T_4`, acts between the bicycle frame and the newtonian
-frame about :math:`\hat{a}_1`. The rear wheel torque, :math:`T_6`, acts between the bicycle
-frame and the rear wheel about :math:`\hat{c}_2` and the steer torque, :math:`T_7`, acts
-between the bicycle frame and the fork about :math:`\hat{c}_3`.
 
 .. _nonholonomic:
 
@@ -689,51 +608,187 @@ optimum set. From this point on, I will not show the analytical results of the
 equations of motion, but will only walk through the remainder of the theory, as
 all of the building blocks are in place to derive the equations with Kane's
 method (or any other method). I highly recommend the use of computer aided
-algebra to continue on, but for the diehard you certainly could write them by
-hand.
+algebra to continue on, but the diehard could certainly write them by hand. You
+will have to either run my computer code to get the equations or write your
+own.
 
 The dependent speeds take this form:
 
 .. math::
-   u_1 = f(u_4, u_6, u_7, q_1, \ldots, q_8)
+   u_1 = f(u_4, u_6, u_7, q_3, \ldots, q_8)
 
-   u_2 = f(u_4, u_6, u_7, q_1, \ldots, q_8)
+   u_2 = f(u_4, u_6, u_7, q_3, \ldots, q_8)
 
-   u_3 = f(u_4, u_6, u_7, q_1, \ldots, q_8)
+   u_3 = f(u_4, u_6, u_7, q_4, \ldots, q_8)
 
-   u_5 = f(u_4, u_7, q_1, \ldots, q_8)
+   u_5 = f(u_4, u_7, q_4, \ldots, q_8)
 
-   u_8 = f(u_4, u_6, u_7, q_1, \ldots, q_8)
+   u_8 = f(u_4, u_6, u_7, q_4, \ldots, q_8)
 
 
-Fr
---
+Generalized Active Forces
+-------------------------
 
-Eight generalized coordinates, one of which is dependent, and three
-independent generalized speeds (:math:`u_i=\dot{q}_i` where
-:math:`i = 4,5,7`) describe the system. Five of these are
-ignorable coordinates (:math:`q_i`, :math:`i = 1,2,3,5,8`),
-that is they do not occur in the dynamical equations of motion. The
-nonminimal set of dynamic equations of motion (Eqs. eq:accels
-and eq:speeds) were formed by Kane's method. They are nonminimal
-because pitch angle, :math:`q_6`, was not solved for explicitly.
-With this set of equations one must calculate the pitch angle
-numerically for its initial condition when simulating and for the
-fixed point when linearizing.
+The three equations for the non-holomonic generalized active forces,
+:math:`\tilde{F}_r` can now be formed.  For our four body system with three
+indepdendent generalized coordinates, :math:`r=4,6,7`, they take the form:
 
 .. math::
-   \dot{u}_i=f\left(u_4,u_5,u_7,q_4,q_6,q_7\right)\textrm{ where }i=4,5,7
-   :label: {eq:accels}
+
+   \tilde{F}_r = (\tilde{F}_r)_C + (\tilde{F}_r)_D + (\tilde{F}_r)_E + (\tilde{F}_r)_F
+
+   (\bar{F}_r)_X= ^N\bar{V}^{X_o}_r\cdot\bar{R}^{X_o} + ^N\bar{\omega}^X_r\cdot\bar{T}^X
+
+where :math:`^N\bar{V}_r^{X_o}` is the partial velocity of the mass center with
+respect to the generalized speed :math:`u_r`, :math:`\bar{R}^{C_o}` is the resultant
+forces on the mass center (excluding non-contributing forces),
+:math:`^N\bar{\omega}_r^C` is the partial angular velocity of the body with
+respect to :math:`u_r`, and :math:`\bar{T}^C` is the resultant torques on the
+body. The partial velocities can be found systematically as usual [Kane1985]_
+and the forces and torques are as follows. We assume that the only force acting
+on the system is the gravitational force,
+:math:`g`. Thus:
 
 .. math::
-   \dot{q}_i=u_i\textrm{ where }i=4,5,6,7
-   :label: {eq:speeds}
 
-Ignorable Coordinates
----------------------
+  \bar{R}^{C_o} = m_Cg\hat{n}_3
 
-The equations of motion indicate that the location of the rear wheel contact,
-yaw angle, and both wheel angles are ignorable.
+  \bar{R}^{D_o} = m_Dg\hat{n}_3
+
+  \bar{R}^{E_o} = m_Eg\hat{n}_3
+
+  \bar{R}^{F_o} = m_Fg\hat{n}_3
+
+We assume that there are three generalized active torques acting the system
+which will correspond to the three independent generalized speeds found in
+:ref:`nonholonomic`.
+
+The roll torque, :math:`T_4`, acts between the bicycle frame and the newtonian
+frame about :math:`\hat{a}_1`. The rear wheel torque, :math:`T_6`, acts between the bicycle
+frame and the rear wheel about :math:`\hat{c}_2` and the steer torque, :math:`T_7`, acts
+between the bicycle frame and the fork about :math:`\hat{c}_3`.
+
+.. math::
+
+   \bar{T}^C = T_4\hat{a}_1-T_6\hat{c}_2-T_7\hat{c}_3
+
+   \bar{T}^D = T_6\hat{c}_2
+
+   \bar{T}^E = T_7\hat{c}_3
+
+   \bar{T}^F = 0
+
+Generalized Inertia Forces
+--------------------------
+
+The nonholonomic generalized inertia forces, :math:`\tilde{F}^*_r`, is formed
+using the accelerations and the inertial properties of the bodies.
+
+.. math::
+
+   \tilde{F}^*_r = (\tilde{F}^*_r)_C + (\tilde{F}^*_r)_D + (\tilde{F}^*_r)_E + (\tilde{F}^*_r)_F
+
+   (\bar{F}^*_r)_X= ^N\bar{V}^{X_o}_r\cdot\bar{R}^*_{X_o} + ^N\bar{\omega}^X_r\cdot\bar{T}^*_X
+
+where :math:`^N\bar{V}_r^{X_o}` is the partial velocity of the mass center with
+respect to the generalized speed :math:`u_r`, :math:`\bar{R}^*_{X_o}` is the
+inertia force for X in N and is defined as:
+
+.. math::
+
+   \bar{R}^*_{X_o} = -m_X^N\bar{a}^{X_o}
+
+The mass of each rigid body is defined as a constant: :math:`m_C`, :math:`m_D`,
+:math:`m_E` and :math:`m_F`.
+
+:math:`^N\bar{\omega}_r^X` is the partial angular velocity of the body with
+respect to :math:`u_r`, and :math:`\bar{T}^*_X` is the inertia torque on the
+body which is defined as:
+
+.. math::
+
+   \bar{T}^*_X =
+   -(^N\bar{\alpha}^X\cdotI_X+^N\bar{omega}^X\timesI_X\cdot\bar{\omega}^X
+
+:math:`I_X` is the central inertia dyadic for the body in question which
+corresponds to the following tensor definitions for the inertia of each rigid
+body. The inertia for each body is defined with respect to the mass center and the
+body's local reference frame. The bicycle wheels are assumed to be symmetric
+about their 1-3 plane and the 1-2 plane.
+
+.. math::
+   :label: ID
+
+   I_D =
+   \begin{bmatrix}
+   I_{D11} & 0 & 0\\
+   0 & I_{D22} & 0\\
+   0 & 0 & I_{D11}
+   \end{bmatrix}
+
+.. math::
+   :label: IF
+
+   I_F =
+   \begin{bmatrix}
+   I_{F11} & 0 & 0\\
+   0 & I_{F22} & 0\\
+   0 & 0 & I_{F11}
+   \end{bmatrix}
+
+The bicycle frame and fork are assumed to be symmetric about their 1-3 planes.
+
+.. math::
+   :label: IC
+
+   I_C =
+   \begin{bmatrix}
+   I_{C11} & 0 & I_{C13}\\
+   0 & I_{C22} & 0\\
+   I_{C13} & 0 & I_{C33}
+   \end{bmatrix}
+
+.. math::
+   :label: IE
+
+   I_E =
+   \begin{bmatrix}
+   I_{E11} & 0 & I_{E13}\\
+   0 & I_{E22} & 0\\
+   I_{E13} & 0 & I_{E33}
+   \end{bmatrix}
+
+.. todo:: Should I show these as inertia dyadics instead?
+
+Dynamical Equations of Motion
+-----------------------------
+
+Kane's equations are now formed as:
+
+.. math::
+
+   \tilde{F}_r + \tilde{F}^*_r = 0
+
+and are a vector of three equations of motion one for roll, steer and rear
+wheel accelerations. It turns out that the five of the coordinates do not
+appear in the equations and thus non-essential, or ignorable, states. These are
+the location of the ground contact point, :math:`u_1` and :math:`u_2`, the yaw
+angle, :math:`u_3`, and the wheel angles, :math:`u_6` and :math:`u_8`. The
+dynamical equations are then solved for the :math:`\dot{u}`'s and paired with
+the essential kinematical differential equations to form the complete set of
+dynamics equations of motion in the form.
+
+.. math::
+
+   \ddot{u}_i=f(u_4, u_6, u_7, q_4, q_5, q_6, q_7)
+
+   \dot{q}_j=u_j
+
+where :math:`i=4,6,7` and :math:`j=4,5,6,7`. Keep in mind that the pitch angle,
+:math:`q_5`, is in fact a dependent coordinate that I selected when dealing
+with the holonomic contraint, :eq:`holonomic`. Special attention during
+simulation and linearization will have to be made to accomodate the coordinate
+and will be described in the following sections.
 
 Simulation
 ----------

@@ -5,20 +5,20 @@ Bicycle Equations Of Motion
 Introduction
 ============
 
-Attempting to derive the equations of motion of the Whipple model is pretty
-much what got me hooked into bicycle dynamics. I attempted it for my class
-project in Mont Hubbard's winter 2006 multi-body dynamics class and struggle
-with it well into the summer before finally getting a mostly correct answer.
-After the fact, I realized much of my pain was cause by a single missing
-apostrophe in my Autolev computer code[#]_. Another student, Thomas Englehardt,
-in the class also derived the equations and helped me debug by sharing his code
-and going over his methods. It turned out that my orignial equations weren't
-"exactly" correct and it wasn't until Luke Peterson joined our lab and got the
-bicycle dynamics itch did I get the bugs sorted out in my derivation.
-Conversations and collaboration with Luke have improved the derivation
-significantly and influence much of what follows. Luke has also continued to
-improve the derivation with the goal of printing the first compact symbolic
-result.
+Attempting to derive the equations of motion of the Whipple bicycle model was
+the first trigger which led me down the path to my dissertation topic. I
+attempted it for my class project in Mont Hubbard's winter 2006 multi-body
+dynamics class and struggle with it well into the summer before finally getting
+a mostly correct answer.  After the fact, I realized much of my pain was cause
+by a single missing apostrophe in my Autolev computer code[#]_. Another
+student, Thomas Englehardt, in the class also derived the equations and helped
+me debug by sharing his code and going over his methods. It turned out that my
+orignial equations weren't "exactly" correct and it wasn't until Luke Peterson
+joined our lab and got the bicycle dynamics itch did I get the bugs sorted out
+in my derivation.  Conversations and collaboration with Luke have improved the
+derivation significantly and influence much of what follows. Luke has also
+continued to improve the derivation with the goal of printing the first compact
+symbolic result.
 
 Derivation of the Non-linear Equations of Motion
 ================================================
@@ -273,9 +273,8 @@ between the roll angle :math:`q_4`, steer angle :math:`q_7` and pitch angle
 .. math::
    :label: holonomicConstraint
 
-   \bar{r}^{G_n/D_n}\cdot\hat{a}_3 =
-   d_2c_4c_5 + d_3(s_4s_7-s_5s_4s_7) + r_F(1-(s_4s_7+s_5s_7s_4)^2)^{1/2} -
-   r_Rs_4 - d_1s_5s_4 = 0
+   \bar{r}^{F_n/D_n}\cdot\hat{a}_3 =
+   c_4c_5(d_2+r_Fc_4c_5) + (s_4s_7-s_5c_4c_7)(d_3+r_F(s_4s_7-s_5c_4c_7)) - r_Rc_4 - d_1s_5c_4
 
 I choose pitch, :math:`q_6`, as the dependent coordinate. This choice of pitch
 has some to do with the fact that in "normal" bicycle configurations, pitch is
@@ -789,6 +788,10 @@ where :math:`i=4,6,7` and :math:`j=4,5,6,7`. Keep in mind that the pitch angle,
 with the holonomic contraint, :eq:`holonomic`. Special attention during
 simulation and linearization will have to be made to accomodate the coordinate
 and will be described in the following sections.
+
+Model discussion
+----------------
+
 
 Simulation
 ----------

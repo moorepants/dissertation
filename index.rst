@@ -38,5 +38,6 @@ Table of Contents
    introduction.rst
    eom.rst
    davisbicycle.rst
+   physicalparameters.rst
 
 * :ref:`search`

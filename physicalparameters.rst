@@ -5,18 +5,29 @@ Physical Parameters
 Preface
 =======
 
-This work started when we need to measure the first instrumented bicycle we
-built a TU Delft. I agreed to measure the bike's physical parameters using the
-equipment and procedures developed in :ref:`Kooijman2006`. These first
-measurments are documented in :ref:`Moore2009`. Dr. Hubbard encouraged me to
-think about the accuracy of the measurements in more detail and I also decided
-to measure an assortment of bicycles we had available around the lab in Delft
-because their was very little complete data available on the physical
-parameters of real bicycles. Much of what follows is in :ref:`Moore2009` and
+I was first concerned with the physical parameters of the bicycle and rider in
+my multibody dynamics class project where I developed a method of estimating
+the parameters from geometry and mass :ref:`Moore2006`, :ref:`Moore2008`. This
+served me well until we needed have more accurate estimates for the first
+instrumented bicycle built at TU Delft. I agreed to measure the bike's physical
+parameters using the equipment and procedures developed in :ref:`Kooijman2006`
+and use the more accurate bicycle measurements with my basic human model.
+These first measurements are documented in :ref:`Moore2009`. After this, Dr.
+Hubbard encouraged me to think about the accuracy of the measurements in more
+detail. With that in mind and the fact that there was very little complete data
+available on the physical parameters of real bicycles, I decided to measure an
+assortment of bicycles we had available around the lab in Delft
+:ref:`Moore2010`. Once I was back in Davis we setup almost identical equipment
+to measure the two new bicycles we were constructing. Danique Fintelman helped
+us come up with a more accurate geometry measurement. Steven Yen measured a
+children's bicycle with a gyro wheel. We improved the human estimates when
+Chris Dembia implemented Yeadon's human inertia model and we combined it with
+the accurate bicycle measurements. These final methods are implemented in two
+open source software packages. Much of what follows is in :ref:`Moore2009` and
 :ref:`Moore2010`.
 
-ABSTRACT
-========
+Bicycle
+=======
 
 Accurate measurements of a bicycle's physical parameters are required for
 realistic dynamic simulation and analysis. The most basic models require the
@@ -32,7 +43,7 @@ the rigid bodies. The experimental methods used to estimate the parameters
 described herein are based primarily on the work done in :ref:`Kooijman2006`
 but have been refined for improved accuracy and methodology. Koojiman's work
 was preceded by :ref:`Roland1971` who measured a bicycle in a similar fashion
-and both :ref:`Dohring1953` and :ref:`Singh1971` who used similar techniques
+and both :ref:`Dohring1953` and :ref:`Singh1971` who used similar techniques
 with scooters.
 
 We measured the physical characteristics of eight different bicycles, two of
@@ -50,9 +61,6 @@ These eight different parameter sets can be used with, but are not limited to,
 the benchmark bicycle model. The accuracy of all the measurements are presented
 up through the eigenvalue prediction of the linear model. The accuracies are
 based on error propagation theory with correlations taken into account.
-
-INTRODUCTION
-============
 
 This work is intended to document the indirect measurement of eight real
 bicycles' physical parameters. The physical parameters measured are those
@@ -80,11 +88,13 @@ model.
 .. todo::
    Find these more recent references on bike parameters.
 
-BENCHMARK BICYCLE MODEL
-=======================
+Parameters
+----------
 
-The Whipple bicycle model is derived and described in :ref:`eom`. The unforced two
-degree-of-freedom, :math:`\mathbf{q}` = [steer and roll], model takes the form:
+I was primarily concerned with measuring and estimating the 25 parameters
+associated with the Whipple bicycle model which is derived and described in
+Chapter :ref:`eom`. The unforced two degree-of-freedom, :math:`\mathbf{q}` = [steer and
+roll], model takes the form:
 
 .. math::
    :label: canonical
@@ -100,12 +110,22 @@ bicycle physical parameters that include the geometry, mass, mass location and
 mass distribution of the four rigid bodies. The 25 parameters presented in
 :ref:`Meijaard2007` are not necessarily a minimum set for the Whipple model, as
 shown in :ref:`Sharp2008`, but are useful none-the-less as they represent more
-intuitively measurable quantities. Furthermore, many more parameters are not
-needed due to the assumptions of the Whipple model such as no-slip tires,
-lateral symmetry, knife edge wheels, etc.
+intuitively measurable quantities. They are also not parameters used in my
+derivation, but chosen to be consistent with the established literature.
+Furthermore, many more parameters are not needed due to the assumptions of the
+Whipple model such as no-slip tires, lateral symmetry, knife edge wheels, etc.
 
-BICYCLE DESCRIPTIONS
-====================
+The 25 parameters can be measured using many techniques. In general, I
+attempted to measure the benchmark parameter as directly as possible to improve
+the accuracy.
+
+Conversion
+~~~~~~~~~~
+
+.. todo:: add the conversion from meijaard parameters to moore parameters
+
+Bicycle Descriptions
+--------------------
 
 We choose to measure the physical parameters of six bicycles Fig. fig:bicycles.
 The three Batavus bicycles were donated by the manufacturer. We asked for a
@@ -114,39 +134,24 @@ Browser was a "stable" bicycle and that the Stratos was "nervous". The Fisher
 and the Pista were chosen to provide some variety, a mountain and road bike.
 The yellow bike is used to demonstrate bicycle stability.
 
-.. todo::
-   Add the figurse of the bicycles.
++---------------------------------------------------------+--------------------------------------------------------+
+| Instrumented Batavus Browser                            | Batavus Crescendo Deluxe                               |
++---------------------------------------------------------+--------------------------------------------------------+
+| .. image:: figures/physicalparameters/browserIns_sub.jpg| .. image:: figures/physicalparameters/crescendo_sub.jpg|
++---------------------------------------------------------+--------------------------------------------------------+
+| Gary Fisher                                             | Bianchi Pista                                          |
++---------------------------------------------------------+--------------------------------------------------------+
+| .. image:: figures/physicalparameters/fisher_sub.jpg    | .. image:: figures/physicalparameters/pista_sub.jpg    |
++---------------------------------------------------------+--------------------------------------------------------+
+| Batavus Stratos Deluxe                                  | Yellow Bicycle                                         |
++---------------------------------------------------------+--------------------------------------------------------+
+| .. image:: figures/physicalparameters/stratos_sub.jpg   | .. image:: figures/physicalparameters/yellow_sub.jpg   |
++---------------------------------------------------------+--------------------------------------------------------+
+| The six bicycles measured in the experiments. The Batavus Browser is shown with the instrumentation and the      |
+| Yellow Bicycle is shown with its fork reversed.                                                                  |
++------------------------------------------------------------------------------------------------------------------+
 
-    [Batavus Browser]{
-        \\label{fig:browser}
-        \\includegraphics[width=1.75in]{../../../images/browserIns\_sub.jpg}
-        }[Batavus Crescendo Deluxe]{
-        \\label{fig:crescendo}
-        \\includegraphics[width=1.75in]{../../../images/crescendo\_sub.jpg}
-        }[Gary Fisher]{
-        \\label{fig:fisher}
-        \\includegraphics[width=1.75in]{../../../images/fisher\_sub.jpg}
-        }
-    [Bianchi Pista]{
-        \\label{fig:pista}
-        \\includegraphics[width=1.75in]{../../../images/pista\_sub.jpg}
-        }[Batavus Stratos Deluxe]{
-        \\label{fig:stratos}
-        \\includegraphics[width=1.75in]{../../../images/stratos\_sub.jpg}
-        }[Yellow Bicycle]{
-        \\label{fig:yellow}
-        \\includegraphics[width=1.75in]{../../../images/yellow\_sub.jpg}
-        }{The six bicycles measured in the experiments. The Batavus
-    Browser~\\subref{fig:browser} is shown with the instrumentation and the
-    Yellow Bicycle~\\subref{fig:yellow} is shown with its fork reversed.}(fig:bicycles)
-
-
-PARAMETERS
-==========
-
-The 25 parameters can be estimated using many techniques. I attempted to
-measured the benchmark parameter as directly as possible to improve the
-accuracy.
+.. todo:: add the gyro bike, davis bike and pictures of the other two bicycles
 
 ACCURACY
 --------
@@ -182,9 +187,9 @@ Using the definitions for variance and covariance, Equation
 
 If :math:`u` and :math:`v` are uncorrelated then :math:`s_{uv}=0`. Most of the
 calculations hereafter have uncorrelated variables but a few do not and the
-covariance has to be taken into account. Equation eqn:variance can be used to
-calculated the variance of all types of functions. Simple addition of two
-random variables may be the most basic example:
+covariance has to be taken into account. Equation :eq:`variance` can be used to
+calculate the variance of all types of functions. Simple addition of two random
+variables may be the most basic example:
 
 .. math::
    :label: addition
@@ -192,23 +197,30 @@ random variables may be the most basic example:
    x =  au + bv\\
    s_x = a^2s_u^2 + b^2s_v^2
 
-GEOMETRY
-========
+Geometry
+--------
 
-Geometry and wheel radii changes with rider weight, frame flex ,etc.
+First attempts at measuring the geometry focused on the benchmark parameters:
+trail, wheelbase, and steer axis tilt, but I also present an alternative method
+for the geometry that attempts to measure the distances in my model deviration.
+We assumed that the frame did not flex and that the wheel radii do not change
+with rider weight.
 
-WHEEL RADII
------------
+Wheel Radii
+~~~~~~~~~~~
 
 The radii of the front :math:`r_\mathrm{F}` and rear :math:`r_\mathrm{R}`
 wheels were estimated by measuring the linear distance traversed along the
-ground through either 13 or 14 rotations of the wheel. Each wheel was measured
-separately and the measurements were taken with a 72kg rider seated on the
-bicycle. A 30 meter tape measure (resolution: 2mm) was pulled tight and taped
-on a flat level smooth floor. The tire was marked with chalk and aligned with
-the tape measure Fig. fig:tireChalk. The accuracy of the distance measurement
-is approximately :math:`\pm0.01` m. The tires were pumped to the recommended
-inflation pressure before the measurements. The wheel radius is calculated by
+ground through either 13 or 14 rotations of the wheel. Each traversal was
+measured separately and the measurements were taken with rider seated on the
+bicycle, except for the gyro bicycle which had no rider (72kg rider for the
+Delft bikes and 82kg for the Davis bike...I gained some weight drinking all
+that beer in the Netherlands). A 30 meter tape measure (resolution: 2mm) was
+pulled tight and taped on a flat level smooth floor. The tire was marked with
+chalk and aligned with the tape measure Fig.  :ref:`figTireChalk`. The accuracy
+of the distance measurement is approximately :math:`\pm0.01` meter. The tires
+were pumped to the recommended inflation pressure before the measurements. The
+wheel radius is calculated by
 
 .. math::
     :label: wheelRadius
@@ -217,14 +229,15 @@ inflation pressure before the measurements. The wheel radius is calculated by
     \frac{d}{2\pi n}
     \pm\left(\frac{\sigma_d}{2\pi n}\right)
 
-.. figure:: /images/physicalparameters/tireChalk.jpg
-   :caption: Wheel and tire with chalk mark aligned to the tape measure.
+.. figure:: figures/physicalparameters/tireChalk.jpg
    :align: center
+
+   Wheel and tire with chalk mark aligned to the tape measure.
 
 .. _secHeadtube:
 
 Head tube angle
----------------
+~~~~~~~~~~~~~~~
 
 For the first six bicycles the head tube angle was measured directly using an
 electronic level with a :math:`\pm0.2^{\circ}` accuracy. The bicycle frame was
@@ -264,14 +277,14 @@ parallel to the table surface.
    f_o\sec{\lambda}\tan{\lambda}\right)^2
 
 Wheelbase
----------
+~~~~~~~~~
 
 We measured the wheelbase with the bicycle in nominal configuration described
 in Section :ref:`secHeadtube`. We used a tape measure to measure the distance
 from one wheel axle center to the other with a 0.002 m accuracy.
 
 Alternative Geometry Method
-===========================
+---------------------------
 
 Our forumulation of the geometry in the Whipple bicycle model is different that
 the :ref:`Meijaard2007` definition. These can almost be measured directly
@@ -279,13 +292,14 @@ giving a more accurate estimate.
 
 .. todo:: Added new geometrey method
 
-MASS
-====
+Mass
+----
 
-.. figure:: ../../../images/massScale.jpg
-   :caption: The scale used to measure the mass of each bicycle component.
-   :align: center
+.. figure:: figures/physicalparameters/massScale.jpg
    :label: figMassScale
+   :align: center
+
+   The scale used to measure the mass of each bicycle component.
 
 The total mass of each bicycle was measured using a spring scale with a
 resolution of 100 grams. The total mass was only used for comparison purposes.
@@ -294,10 +308,10 @@ with a resolution of 20 grams. The accuracy was conservatively assumed to also
 be :math:`\pm20` grams.
 
 CENTER OF MASS
-==============
+--------------
 
 WHEELS
-------
+~~~~~~
 
 The centers of mass of the wheels are assumed to be at their geometrical
 centers to comply with the Whipple model.
@@ -816,137 +830,28 @@ fork pendulum length is calculated using
     {The Stratos fork and handlebar assembly hung as a torsional
         pendulum.}(fig:StratosFork)
 
+Human
+=====
 
-LINEAR ANALYSIS
-===============
+Moore method
+------------
 
-Once all bicycle parameters have been calculated the canonical
-matrices can be formed and the linear dynamics of the bicycles can
-be explored. The values of the canonical matrices can be found in
-the second table in Appendix sec:partables. We also added the same
-rigid rider to each bicycle for further comparison. The rigid rider
-was assumed to be in the same position and posture for each bicycle
-relative to the rear wheel contact point.
-
-    {Mass, center of mass and moment of inertia for the rider relative
-    to the benchmark coordinate system from~\\cite{Moore2009a}}
-
-        Parameter & Value
-        :math:`m_\mathrm{P}` [kg] & 72
-        :math:`x_\mathrm{P}` [m] & 0.2909
-        :math:`z_\mathrm{P}` [m] & -1.1091
-        :math:`I_\mathrm{P}` [:math:`\mathrm{kg\ m}^2`] &
-        :math:`\left[
-            \begin{array}{ccc}
-                 7.9985 & 0      & -1.9272\\
-                 0      & 8.0689 & 0\\
-                -1.9272 & 0      & 2.3624
-            \end{array}
-            \right]`
-
-
-    (tab:riderParam)
-
-
-EIGENVALUES
------------
-
-    |image1|
-    {Eigenvalues versus speed for all eight bicycles without the rider.}(fig:bikeEigPlot)
-
-
-The eigenvalues of the bicycles with (Fig. fig:bikeEigPlot) and
-without (Fig. fig:bikeRiderEigPlot the rider can be plotted versus
-forward speed. Figure fig:bikeEigPlot shows that the bikes have the
-typical characteristics of the benchmark bicycle: four real roots
-at very slow speeds, two of which are unstable; a complex pair that
-is unstable at lower speeds and stable at intermediate speeds; and
-a root that is mildly unstable at higher speeds. The one noticeable
-difference is that the capsize and caster modes are contained in a
-complex pair between about 0.5 and 3 m/s. The frequency of
-oscillation is of comparable magnitude to that of the weave mode.
-But, the root locus in the real and imaginary plane,
-Fig. fig:rootloci, shows that the mode damps out quickly. Examining
-the eigenvectors reveals that the mode is steer leading roll with a
-90 degree phase, both of their magnitudes being similar,
-Fig fig:evec.
-
-        .. figure:: ../../../plots/Bike/CrescendoRootLoci.pdf
-           :align: center
-           :alt: image
-           
-           image
-        
-
-    {The root loci with speed as the parameter for the Crescendo.}(fig:rootloci)
-
-
-        .. figure:: ../../../plots/cres.pdf
-           :align: center
-           :alt: image
-           
-           image
-        
-
-    {Eigenvector components for the second complex mode
-    pair at low speed.}(fig:evec)
-
-
-With the rider added, the second complex pair disappears and the
-bikes have the typical characteristics of the benchmark bicycle
-model. Reversing the fork on the yellow bike lowers the weave
-critical speed and increases the stable speed range. Also, the
-addition of weight to the rear rack of the Browser does little to
-the eigenvalues.
-
-    |image2|
-    {Eigenvalues versus speed for all eight bicycles with the same
-    rigid rider.}(fig:bikeRiderEigPlot)
-
-
-FREQUENCY RESPONSE
-------------------
-
-The frequency response of the bicycles (Fig. fig:bikeBode) and
-bicycle with rider (Fig. fig:bikeRiderBode) also reveal some
-interesting things. In the steer-torque-to-roll Bode diagram the
-magnitude difference among bicycles can vary up to 10 dB (or about
-8.5 degrees per Newton-meter of torque) for the particular speed
-shown. The difference in the frequency response for the bicycle
-with the rigid rider shows less variation among the bicycles,
-Fig. fig:bikeRiderBode, as the rider's mass and inertia play a
-larger roll.
-
-    |image3|
-    {The frequency response for steer-torque-to-roll for all eight
-    bicycles without the rider at 2 m/s.}(fig:bikeBode)
-
-
-    |image4|
-    {The frequency response for steer-torque-to-roll for all eight
-    bicycles with the same rigid rider at 2 m/s.}(fig:bikeRiderBode)
+Yeadon method
+-------------
 
 
 CONCLUSION
 ==========
 
-We have presented a detailed method to accurately estimate the
-physical parameters of a bicycle needed for the benchmarked Whipple
-bicycle model :ref:`Meijaard2007`. We measured eight different bicycles
-providing both the parameter sets and linear model coefficient
-matrices for the bicycles alone and the bicycles with the same
-rigid rider. The uncertainties in the parameters and matrix
-coefficients are included for the bicycle alone. Finally, we have
-presented a brief comparison of the eight bicycles using
-eigenanalysis and Bode frequency response.
+We have presented a detailed method to accurately estimate the physical
+parameters of a bicycle needed for the benchmarked Whipple bicycle
+model :ref:`Meijaard2007`. We measured eight different bicycles providing both
+the parameter sets and linear model coefficient matrices for the bicycles alone
+and the bicycles with the same rigid rider. The uncertainties in the parameters
+and matrix coefficients are included for the bicycle alone. Finally, we have
+presented a brief comparison of the eight bicycles using eigenanalysis and Bode
+frequency response.
 
-ACKNOWLEDGEMENTS
-================
-
-This material is based upon work partially supported by the
-National Science Foundation under Grant No. 0928339.
-
-{acm}{bicycle}
 
 PARAMETER TABLES
 ================
@@ -971,11 +876,3 @@ uncertainty in the estimations.}{../../../tables/Bike/Canonical/MasterCanTable.t
         {The canonical matrix coefficients for the eight bicycles with the
 rigid rider.}{../../../tables/BikeRider/Canonical/MasterCanTable.tex}(tab:bicycleRiderCan)
 
-
-
-
-.. |image| image:: ../../../images/StratosForkTorsionalThird.jpg
-.. |image1| image:: ../../../plots/Bike/eig_plot.pdf
-.. |image2| image:: ../../../plots/BikeRider/eig_plot.pdf
-.. |image3| image:: ../../../plots/Bike/Bode/Tdel2phi.pdf
-.. |image4| image:: ../../../plots/BikeRider/Bode/Tdel2phi.pdf

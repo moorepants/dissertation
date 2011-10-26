@@ -7,97 +7,91 @@ Preface
 
 I was first concerned with the physical parameters of the bicycle and rider in
 my multibody dynamics class project where I developed a method of estimating
-the parameters from geometry and mass :ref:`Moore2006`, :ref:`Moore2008`. This
-served me well until we needed have more accurate estimates for the first
-instrumented bicycle built at TU Delft. I agreed to measure the bike's physical
-parameters using the equipment and procedures developed in :ref:`Kooijman2006`
-and use the more accurate bicycle measurements with my basic human model.
-These first measurements are documented in :ref:`Moore2009`. After this, Dr.
-Hubbard encouraged me to think about the accuracy of the measurements in more
-detail. With that in mind and the fact that there was very little complete data
-available on the physical parameters of real bicycles, I decided to measure an
-assortment of bicycles we had available around the lab in Delft
-:ref:`Moore2010`. Once I was back in Davis we setup almost identical equipment
+the parameters from geometry and mass :ref:`Moore2006` which was subsenquently
+presented at ISEA 2008 :ref:`Moore2008`. This method served me well until we
+needed to have more accurate estimates for the first instrumented bicycle built
+at TU Delft. I agreed to measure the bike's physical parameters using the
+equipment and procedures developed in :ref:`Kooijman2006` and use the more
+accurate bicycle measurements with my basic human model, :ref:`Moore2008`.
+These first measurements and the details of the human model are documented in
+:ref:`Moore2009a`.  After this, Dr. Hubbard encouraged me to think about the
+accuracy of the measurements in more detail, as some of the practices we were
+using were lacking. With that in mind and the fact that there was very little
+complete data available on the physical parameters of real bicycles, I decided
+to measure an assortment of bicycles we had available around the lab in Delft
+:ref:`Moore2010`. Once I was back in Davis, we setup almost identical equipment
 to measure the two new bicycles we were constructing. Danique Fintelman helped
 us come up with a more accurate geometry measurement. Steven Yen measured a
-children's bicycle with a gyro wheel. We improved the human estimates when
+children's bicycle with a gyro wheel. We also improved the human estimates when
 Chris Dembia implemented Yeadon's human inertia model and we combined it with
 the accurate bicycle measurements. These final methods are implemented in two
-open source software packages. Much of what follows is in :ref:`Moore2009` and
-:ref:`Moore2010`.
+open source software packages.
 
-Bicycle
-=======
+Bicycle Parameters
+==================
 
 Accurate measurements of a bicycle's physical parameters are required for
 realistic dynamic simulation and analysis. The most basic models require the
 geometry, mass, mass location and mass distributions for the rigid bodies. More
 complex models require estimates of tire characteristics, human
 characteristics, friction, stiffness, damping, etc. In this chapter I present
-the measurement of the minimal bicycle parameters required for the benchmark
-Whipple bicycle model presented in :ref:`Meijaard2007` including the effects of
-a rigid rider. This model is composed of four rigid bodies, has ideal rolling
-and frictionless joints, and is laterally symmetric. A set of 25 parameters
-describes the geometry, mass, mass location and mass distribution of each of
-the rigid bodies. The experimental methods used to estimate the parameters
-described herein are based primarily on the work done in :ref:`Kooijman2006`
-but have been refined for improved accuracy and methodology. Koojiman's work
-was preceded by :ref:`Roland1971` who measured a bicycle in a similar fashion
-and both :ref:`Dohring1953` and :ref:`Singh1971` who used similar techniques
-with scooters.
+the measurement of the minimal bicycle/rider parameters required for the
+benchmark Whipple bicycle model presented in :ref:`Meijaard2007`. This model is
+composed of four rigid bodies, has ideal rolling and frictionless joints, and
+is laterally symmetric. A set of 25 parameters describes the geometry, mass,
+mass location and mass distribution of each of the rigid bodies. The
+experimental methods used to estimate the parameters described herein are based
+primarily on the work done in :ref:`Kooijman2006`, :ref:`Kooijman2008` and
+:ref:`Moore2009a` but have been refined for improved accuracy and methodology.
 
-We measured the physical characteristics of eight different bicycles, two of
-which were set up in two different configurations. The six bicycles, chosen for
-both variety and convenience, are as follows: *Batavus Browser*, a Dutch style
-city bicycle measured with and without instrumentation as described
+Koojiman's work was preceded by several others. Döhring :ref:`Dohring1953` and
+Singh and Goel :ref:`Singh1971` measured the physical parameters of scooters.
+Roland and Massing :ref:`Roland1971` measured the physical parameters of a
+bicycle in much the same way as is presented, including calculations of
+uncertainty from the indirect measurement techniques. Patterson
+:ref:`Patterson2004` used a swing to measure the inertia of recumbent bicycles
+with a rider. :ref:`Connors2009` and :ref:`Stevens2009` used a 3D CAD package
+to estimate the parameters. ref:`Escalona2010` measured a bicycle class in
+Spain.
+
+Here I document the indirect measurement of ten real bicycles' physical
+parameters. We improve upon these methods by both increasing and reporting the
+accuracies of the measurements and by measuring the complete moments of inertia
+of the laterally symmetric frame and fork needed for analysis of the nonlinear
+model. Furthermore, very little data exists on the physical parameters of
+different types of bicycles and this work aims to provide a small sample of
+bicycles.
+
+We measured the physical characteristics of eleven different bicycles, three of
+which were set up in two different configurations. The first six bicycles,
+chosen for both variety and convenience, are as follows: *Batavus Browser*, a
+Dutch style city bicycle measured with and without instrumentation as described
 in :ref:`Kooijman2009a`; *Batavus Stratos Deluxe*, a Dutch style sporty city
 bicycle; *Batavus Crescendo Deluxe* a Dutch style city bicycle with a suspended
 fork; *Gary Fisher Mountain Bike*, a hardtail mountain bicycle; *Bianchi
 Pista*, a modern steel frame track racing bicycle; and *Yellow Bicycle*, a
 stripped down aluminum frame road bicycle measured in two configurations, the
-second with the fork rotated in the headtube 180 degrees for larger trail.
+second with the fork rotated in the headtube 180 degrees for larger trail. The
+last two bicycles were measured in Davis: the instrumented bicycle presented in
+chapter :ref:`instrumentedbicycle` and a children's bicycle with a stabilzing
+flywheel called the GyroBike.
 
-These eight different parameter sets can be used with, but are not limited to,
-the benchmark bicycle model. The accuracy of all the measurements are presented
-up through the eigenvalue prediction of the linear model. The accuracies are
-based on error propagation theory with correlations taken into account.
-
-This work is intended to document the indirect measurement of eight real
-bicycles' physical parameters. The physical parameters measured are those
-needed for the benchmark Whipple bicycle model presented in
-:ref:`Meijaard2007`. The work is based on techniques used to measure the
-instrumented bicycles in :ref:`Kooijman2006`, :ref:`Kooijman2008` and
-:ref:`Moore2009a`. We improve upon these methods by both increasing and
-reporting the accuracies of the measurements and by measuring the complete
-moments of inertia of the laterally symmetric frame and fork needed for
-analysis of the nonlinear model. Furthermore, very little data exists on the
-physical parameters of different types of bicycles and this work aims to
-provide a small sample of bicycles.
-
-Döhring :ref:`Dohring1953` and Singh and Goel :ref:`Singh1971` measured the
-physical parameters of scooters. Roland and Massing :ref:`Roland1971` measured
-the physical parameters of a bicycle in much the same way as is presented,
-including calculations of uncertainty from the indirect measurement techniques.
-Patterson :ref:`Patterson2004` used a swing to measure the inertia of a bicycle
-and rider. The present work is based on the work done by Kooijman
-:ref:`Kooijman2006` using much of the same apparatus and refining the
-measurement technique. :ref:`Jose` measured a bicycle for his class in Spain.
-:ref:`Undergraduate thesis` where he used solid works. Brendan's solidwork
-model.
-
-.. todo::
-   Find these more recent references on bike parameters.
+These eleven different parameter sets can be used with, but are not limited to,
+the benchmark bicycle model. The accuracy of all the measurements are
+presented. The accuracies are based on error propagation theory with
+correlations taken into account.
 
 Parameters
 ----------
 
 I was primarily concerned with measuring and estimating the 25 parameters
-associated with the Whipple bicycle model which is derived and described in
-Chapter :ref:`eom`. The unforced two degree-of-freedom, :math:`\mathbf{q}` = [steer and
-roll], model takes the form:
+associated with the benchmark Whipple bicycle model which is derived and
+described in :ref:`Meijaard2007`. The unforced two degree-of-freedom,
+:math:`\mathbf{q} = [\delta \quad \phi]^T` model takes the form:
 
 .. math::
-   :label: canonical
+   :label: eqCanonical
+
    \mathbf{M\ddot{q}}
    +v\mathbf{C}_1\mathbf{\dot{q}}
    +\left[g\mathbf{K}_0
@@ -109,11 +103,13 @@ where the entries of the :math:`\mathbf{M}`, :math:`\mathbf{C}_1`,
 bicycle physical parameters that include the geometry, mass, mass location and
 mass distribution of the four rigid bodies. The 25 parameters presented in
 :ref:`Meijaard2007` are not necessarily a minimum set for the Whipple model, as
-shown in :ref:`Sharp2008`, but are useful none-the-less as they represent more
-intuitively measurable quantities. They are also not parameters used in my
-derivation, but chosen to be consistent with the established literature.
-Furthermore, many more parameters are not needed due to the assumptions of the
-Whipple model such as no-slip tires, lateral symmetry, knife edge wheels, etc.
+shown in :ref:`Sharp2008`, but are useful none-the-less as they represent
+intuitively measurable quantities and have become become standard due to the
+nature of the benchmark. They are also not parameters used in my derivation in
+Chapter :ref:`eom` but can easily be converted, as will be shown. I don't
+concern myself with measuring many more parameters that are not needed due to
+the assumptions of the Whipple model such as no-slip tires, lateral symmetry,
+knife edge wheels, etc.
 
 The 25 parameters can be measured using many techniques. In general, I
 attempted to measure the benchmark parameter as directly as possible to improve
@@ -122,42 +118,159 @@ the accuracy.
 Conversion
 ~~~~~~~~~~
 
-.. todo:: add the conversion from meijaard parameters to moore parameters
+This section details the conversion from the benchmark parameter set to my
+parameter set as defined in Chapter :ref:`eom`. When the bicycle is in the
+nominal configuration the parameters can be converted with the following
+realtionships. The wheel radii are defined the same, but the remaining geometry
+is calculated with:
+
+.. math::
+
+   d_1 = \operatorname{cos}(\lambda) (c + w - r_R * \operatorname{tan}(\lambda))
+
+   d_3 = -\operatorname{cos}(\lambda) (c - r_F \operatorname{tan}(\lambda))
+
+   d_2 = \frac{(r_R + d_1 \operatorname{sin}(\lambda) - r_F + d_3
+   \operatorname{sin}(\lambda))}{\operatorname{cos}(\lambda)}
+
+The mass center locations are as follows:
+
+.. math::
+
+   l_1 = (x_B  \operatorname{cos}(\lambda) - z_B  \operatorname{sin}(\lambda) -
+   r_R  \operatorname{sin}(\lambda))
+
+   l_2 = (x_B  \operatorname{sin}(\lambda) + z_B  \operatorname{cos}(\lambda) +
+   r_R  \operatorname{cos}(\lambda))
+
+   l_4 = ((z_H + r_F)  \operatorname{cos}(\lambda) + (x_H - w)
+   \operatorname{sin}(\lambda))
+
+   l_3 = ((x_H - w - l_4  \operatorname{sin}(\lambda)) /
+   \operatorname{cos}(\lambda))
+
+The masses are equivalent:
+
+.. math::
+
+   m_c = m_B
+
+   m_d = m_R
+
+   m_e = m_H
+
+   m_f = m_F
+
+The moments of inertia of the wheels are also equivalent:
+
+.. math::
+
+     I_D =
+     \begin{bmatrix}
+       I_{D11} & 0 & 0\\
+       0 & I_{D22} & 0\\
+       0 & 0 & I_{D33}
+     \end{bmatrix}
+     = I_R =
+     \begin{bmatrix}
+       I_{Rxx} & 0 & 0\\
+       0 & I_{Ryy} & 0\\
+       0 & 0 & I_{Rzz}
+     \end{bmatrix}
+
+     I_F =
+     \begin{bmatrix}
+       I_{F11} & 0 & 0\\
+       0 & I_{F22} & 0\\
+       0 & 0 & I_{F33}
+     \end{bmatrix}
+     = I_F =
+     \begin{bmatrix}
+       I_{Fxx} & 0 & 0\\
+       0 & I_{Fyy} & 0\\
+       0 & 0 & I_{Fzz}
+     \end{bmatrix}
+
+The moments and products of inertia for the frame and fork require the
+direction cosine matrix with respect to rotation through :math:`\lambda`.
+
+.. math::
+
+   R =
+   \begin{bmatrix}
+     ca & 0. & -sa\\
+     0. & 1. & 0.\\
+     sa & 0. & ca
+   \end{bmatrix}
+
+.. math::
+    I_B =
+    \begin{bmatrix}
+      I_{Bxx} & 0 & I_{Bxz}\\
+      0 & I_{Byy} & 0\\
+      I_{Bxz} & 0 & I_{Bzz}
+    \end{bmatrix}
+
+    I_C =  R I_B R^T
+
+.. math::
+    I_H =
+    \begin{bmatrix}
+      I_{Hxx} & 0 & I_{Hxz}\\
+      0 & I_{Hyy} & 0\\
+      I_{Hxz} & 0 & I_{Hzz}
+    \end{bmatrix}
+
+    I_E =  R I_H R^T
+
 
 Bicycle Descriptions
 --------------------
 
-We choose to measure the physical parameters of six bicycles Fig. fig:bicycles.
-The three Batavus bicycles were donated by the manufacturer. We asked for a
-bicycle that they considered stable and one that they did not. They claimed the
-Browser was a "stable" bicycle and that the Stratos was "nervous". The Fisher
+We measured a total of eight bicycles in eleven configurations.  The three
+Batavus bicycles were donated by the manufacturer. We asked for a bicycle that
+they considered stable and one that they did not. They offered the Browser as a
+"stable" bicycle and the Stratos as "nervous". The Crescendo was considered
+average handling. We measured an instrumented version of the Browser that was
+used in the experiments described in Chapter :ref:`delftbicycle`. The Fisher
 and the Pista were chosen to provide some variety, a mountain and road bike.
-The yellow bike is used to demonstrate bicycle stability.
+The yellow bike is used to demonstrate bicycle stability and the forked is
+reversed to provide better stability when perturbed with no rider. The Davis
+instrumented bicycle is an instrumented bicycle described in Chapter
+:ref:`davisbicycle` and we measured the frame in configurations for different
+rider seating positions. The child's bicycle has the GyroWheel product
+installed in the front wheel.
 
-+---------------------------------------------------------+--------------------------------------------------------+
-| Instrumented Batavus Browser                            | Batavus Crescendo Deluxe                               |
-+---------------------------------------------------------+--------------------------------------------------------+
-| .. image:: figures/physicalparameters/browserIns_sub.jpg| .. image:: figures/physicalparameters/crescendo_sub.jpg|
-+---------------------------------------------------------+--------------------------------------------------------+
-| Gary Fisher                                             | Bianchi Pista                                          |
-+---------------------------------------------------------+--------------------------------------------------------+
-| .. image:: figures/physicalparameters/fisher_sub.jpg    | .. image:: figures/physicalparameters/pista_sub.jpg    |
-+---------------------------------------------------------+--------------------------------------------------------+
-| Batavus Stratos Deluxe                                  | Yellow Bicycle                                         |
-+---------------------------------------------------------+--------------------------------------------------------+
-| .. image:: figures/physicalparameters/stratos_sub.jpg   | .. image:: figures/physicalparameters/yellow_sub.jpg   |
-+---------------------------------------------------------+--------------------------------------------------------+
-| The six bicycles measured in the experiments. The Batavus Browser is shown with the instrumentation and the      |
-| Yellow Bicycle is shown with its fork reversed.                                                                  |
-+------------------------------------------------------------------------------------------------------------------+
+.. list-table:: Bicycles
+
+   * - Batavus Browser
+     - Instrumented Batavus Browser
+   * - .. image:: figures/physicalparameters/browser_sub.jpg
+     - .. image:: figures/physicalparameters/browserIns_sub.jpg
+   * - Batavus Crescendo Deluxe
+     - Batavus Stratos Deluxe
+   * - .. image:: figures/physicalparameters/crescendo_sub.jpg
+     - .. image:: figures/physicalparameters/stratos_sub.jpg
+   * - Gary Fisher
+     - Bianchi Pista
+   * - .. image:: figures/physicalparameters/fisher_sub.jpg
+     - .. image:: figures/physicalparameters/pista_sub.jpg
+   * - Yellow Bicycle
+     - Yellow Bicycle with reversed fork
+   * - .. image:: figures/physicalparameters/yellow_sub.jpg
+     - .. image:: figures/physicalparameters/yellowRev_sub.jpg
+   * - Davis Instrumented Bicycle
+     - Gyro Bicycle
+   * - .. image:: figures/physicalparameters/davisBicycle_sub.jpg
+     - .. image:: figures/physicalparameters/gyroBicycle_sub.jpg
 
 .. todo:: add the gyro bike, davis bike and pictures of the other two bicycles
 
 ACCURACY
 --------
 
-We took great care to improve and report the accuracy of the measurements of
-the parameters. Following the footsteps of :ref:`Roland1971` we used error
+I took more care to improve and report the accuracy of the measurements of
+the parameters. Following the footsteps of :ref:`Roland1971` I used error
 propagation theory to calculate accuracy of the 25 benchmark parameters. We
 start by estimating the standard deviation of the actual measurements taken. If
 :math:`x` is a parameter and is a function of the measurements,
@@ -202,9 +315,9 @@ Geometry
 
 First attempts at measuring the geometry focused on the benchmark parameters:
 trail, wheelbase, and steer axis tilt, but I also present an alternative method
-for the geometry that attempts to measure the distances in my model deviration.
-We assumed that the frame did not flex and that the wheel radii do not change
-with rider weight.
+for the geometry that attempts to measure the distances in my model derivation
+which improves the accuracy of the parameters. I assumed that the frame did not
+flex and that the wheel radii do not change with rider weight.
 
 Wheel Radii
 ~~~~~~~~~~~
@@ -229,6 +342,8 @@ wheel radius is calculated by
     \frac{d}{2\pi n}
     \pm\left(\frac{\sigma_d}{2\pi n}\right)
 
+.. _figTireChalk:
+
 .. figure:: figures/physicalparameters/tireChalk.jpg
    :align: center
 
@@ -252,8 +367,13 @@ steer axis tilt :math:`\lambda` is the complement to the head tube angle.
    =\frac{\pi}{180^{\circ}}(90^{\circ}-\lambda_{ht})
    \pm\left(\frac{\pi}{180^\circ}\right)\sigma_{\lambda_{ht}}
 
+.. _figHeadtube:
+
+.. figure:: figures/physicalparameters/headtube.jpg
+   :align: center
+
 Trail
------
+~~~~~
 
 Trail is difficult to measure directly due to the fact that the tire has a
 contact patch and there is no distinct point to measure to. I instead chose to
@@ -288,24 +408,73 @@ Alternative Geometry Method
 
 Our forumulation of the geometry in the Whipple bicycle model is different that
 the :ref:`Meijaard2007` definition. These can almost be measured directly
-giving a more accurate estimate.
+giving a more accurate estimate. The bicycle frame is set on a granite
+measurment table such that the head tube is in in a v-block and parallel to the
+table surface and the bicycle frame's rear axle is above the headtube. The is
+fork rotated in the headtube such that the fork blades curve upwards. Two dummy
+axles are fit into the front and rear dropouts and the axles are ensured to be
+parrallel to the table surface. The height from the table surface to the top
+of each axle are recorded with a height gage and the diameters of the axles are
+measured with a micrometer or caliper. These give direct measurments of the
+front and rear offsets, :math:`d_3` and :math:`d_1`. The outer distance between the
+two axles are then measured giving :math:`d_4`. :math:`d_2` can be computed
+with:
 
-.. todo:: Added new geometrey method
+.. math::
+   :label: d2
+
+   d_2 = \sqrt{d_4^2 - (d_1 - d_3)^2}
+
+
+If the :math:`r_F` does not equal :math:`r_R` then the steer axis tilt cannot
+be computed analytically as the relation holds:
+
+.. math::
+   :label: eqLambda
+
+   \operatorname{sin}(\lambda) = \frac{r_F - r_R + d_2 \operatorname{cos}(\lambda)}{d_1 + d_3}
+
+It is trivial to find the solution numerically. If :math:`r_F=r_R`,
+:math:`\lambda` has an analytic solution:
+
+.. math::
+   :label: lambdaEqualRadii
+
+   \lambda = \operatorname{arctan}\right(\frac{d_2}{d_1 + d_3}\left)
+
+Wheelbase is:
+
+.. math::
+   :label: eqWheelbase
+
+    w = (d_1 + d_3) \operatorname{cos}(\lambda) + d_2 \operatorname{sin}(\lambda)
+
+Trail is then computed with Equation :eq:`eqTrail`, realizing :math:`f_o = d_3`:
+
+.. math::
+   :label: eqTrailD3
+
+    c = \frac{r_F \operatorname{sin}(\lambda) - d_3}{\operatorname{cos}(\lambda)}
 
 Mass
 ----
 
+For the first six bicycles, each of the four bicycle parts were measured using
+a Molen 20 kilogram scale with a resolution of 20 grams. The accuracy was
+conservatively assumed to also be :math:`\pm20` grams. Also, the total mass was
+measured using a spring scale with a resolution of 100 grams. The total mass
+was only used for comparison purposes, as it was not very accurate. The mass of
+the parts of the Davis Instrumented Bicycle and the Gyro Bicycle were measured
+with a digital scale with a resolution of 0.01 kg.
+
+.. todo:: list the details of the scale in Hull's lab
+
+.. _figMassScale:
+
 .. figure:: figures/physicalparameters/massScale.jpg
-   :label: figMassScale
    :align: center
 
    The scale used to measure the mass of each bicycle component.
-
-The total mass of each bicycle was measured using a spring scale with a
-resolution of 100 grams. The total mass was only used for comparison purposes.
-Each of the four bicycle parts were measured using a Molen 20 kilogram scale
-with a resolution of 20 grams. The accuracy was conservatively assumed to also
-be :math:`\pm20` grams.
 
 CENTER OF MASS
 --------------
@@ -313,60 +482,79 @@ CENTER OF MASS
 WHEELS
 ~~~~~~
 
-The centers of mass of the wheels are assumed to be at their geometrical
+The centers of mass of the wheels were assumed to be at their geometrical
 centers to comply with the Whipple model.
 
 REAR FRAME
 ----------
 
-The rear frame was hung in at least three orientations as a torsional pendulum
-(both for the center of mass measurements and the moment of inertia
-measurements described in Section :ref:`sec`. We assumed that the frame was
-laterally symmetric, complying with the Whipple model. The frame could rotate
-about a joint such that gravity aligned the center of mass with the pendulum
-axis. The orientation angle of the headtube, :math:`\alpha_\mathrm{B}`, Fig.
-fig:angles relative to the earth was measured using a digital level
-(:math:`\pm0.2^{\circ}` accuracy), Figure fig:level. A thin string was aligned
-with the pendulum axis and allowed to pass by the frame. The horizontal
+The rear frame bicycle configuration was hung in at least three orientations
+through the lateral mid-plane. I assumed that the frame was laterally
+symmetric, complying with the Whipple model, thus reducing the need to use a
+more complex three dimensional measurement setup. The frame could rotate about
+a joint such that gravity aligned the center of mass with the support rod axis.
+The orientation angle of the steer axis, :math:`\alpha_\mathrm{B}`, see Figure
+:ref:`figAngles`, relative to the earth was measured using a digital level
+(:math:`\pm0.2^{\circ}` accuracy), Figure :ref:`figLevel`. A thin string was
+aligned with the pendulum axis and whiched passed by the frame. The horizontal
 distance :math:`a_\mathrm{B}` between the rear axle and the string was measured
-by aligning a ruler perpendicular to the string. The distance
+by aligning a 1 mm resolution ruler perpendicular to the string. The distance
 :math:`a_\mathrm{B}` was negative if the string fell to the right of the rear
 axle and positive if it fell to the left of the rear axle. These measurements
 allow for the calculation of the center of mass location in the global
 reference frame.
 
-.. todo::
-    []{\\label{fig:angles}\\includegraphics[width=3in]{../../../figures/angles.pdf}}[]{\\label{fig:triangle}\\includegraphics[width=2.75in]{../../../figures/triangle.pdf}}{\\subref{fig:angles} Pictorial description of the angles and dimensions that related
-    the nominal bicycle reference frame $XYZ\_B$ with the pendulum reference frame
-    $XYZ\_P$. \\subref{fig:triangle} Exaggerated intersection of the three pendulum axes and the
-    location of the center of mass.}
+.. _figAngles:
 
+.. figure:: figures/physicalparameters/angles.pdf
 
-    []{\\label{fig:level}\\includegraphics[width=2.75in]{../../../images/YellowFrameTorsionalThird.jpg}}[]{\\label{fig:PendDist}\\includegraphics[width=2.75in]{../../../images/pendDist.jpg}}{\\subref{fig:level} The digital level was mounted to a straight edge aligned
-    with the headtube of the bicycle frame. This was done without allowing the
-    straight edge to touch the frame. The frame wasn't completely stationary so
-    this was difficult. The light frame oscillations could be damped out by
-    submerging a low hanging area of the frame into a bucket of water to
-    decrease the oscillation. \\subref{fig:PendDist} Measuring the distance from
-    the pendulum axis to the rear wheel axle using level ruler.}
+   Pictorial description of the angles and dimensions that related the nominal
+   bicycle reference frame :math:`XYZ\_B` with the pendulum reference frame
+   :math:`XYZ\_P`.
 
+.. _figTriangle:
+
+.. figure:: figures/physicalparameters/triangle.pdf
+
+   Exaggerated intersection of the three pendulum axes and the location of the
+   center of mass.
+
+.. _figLevel:
+
+.. figure:: figures/physicalparameters/YellowFrameTorsionalThird.jpg
+
+   The digital level was mounted to a straight edge aligned with the headtube of
+   the bicycle frame. This was done without allowing the straight edge to touch
+   the frame. The frame wasn't completely stationary so this was difficult. The
+   light frame oscillations could be damped out by submerging a low hanging area
+   of the frame into a bucket of water to decrease the oscillation.
+
+.. _figPendDist:
+
+.. figure:: figures/physicalparameters/pendDist.jpg
+
+   Measuring the distance from the pendulum axis to the rear wheel axle using
+   level ruler.
 
 The frame rotation angle :math:`\beta_\mathrm{B}` is defined as rotation of the
-frame in the nominal configuration to the hanging orientation, rotated about
-the :math:`Y` axis.
+frame in the nominal benchmark configuration to the hanging orientation,
+rotated about the :math:`Y` axis.
 
 .. math::
    :label: eqFrameRotAng
+
    \beta=\lambda-\alpha
 
 .. math::
    :label: eqFrameRotAngVar
+
    \sigma_{\beta}^{2} = \sigma_{\lambda}^{2} + \sigma_{\alpha}^{2}
 
 The center of mass can be found by realizing that the pendulum axis :math:`X_P`
 is simply a line in the nominal bicycle reference frame with a slope :math:`m`
 and a z-intercept :math:`b` where the :math:`i` subscript corresponds the
-different frame orientations Fig. :ref:`figTriangle`. The slope can be shown to be
+different frame orientations, see Figure :ref:`figTriangle`. The slope can be
+shown to be:
 
 .. math::
    :label: eqSlope
@@ -400,6 +588,7 @@ measurement accuracy.  The three lines are defined as:
 
 .. math::
    :label: eqLine
+
    z = m_ix+b_i
 
 The mass center location can be calculated by finding the intersection of these
@@ -410,7 +599,8 @@ by calculating the intersection point of each pair of lines and then averaging
 the three intersection points.
 
 .. math::
-   :label: eqLinearSystem}
+   :label: eqLinearSystem
+
    \left[
     \begin{array}{cc}
         -m_1 & 1\\
@@ -492,10 +682,12 @@ but the z-intercept is different:
    a\sec\beta\tan\beta\right)^{2} + \sigma_{r_\mathrm{F}}^{2} +
    \sigma_{a}^{2}\sec^{2}\beta
 
+.. todo:: add details about measuring the handlebar separate in the davis bike
+
 .. _secMoI:
 
-MOMENT OF INERTIA
-=================
+Inertia
+=======
 
 The moments of inertia of the wheels, frame and fork were measured by taking
 advantage of the assumed symmetry of the parts and by hanging the parts as both
@@ -504,19 +696,20 @@ when perturbed at small angles. The rate of oscillation was measured using a
 `Silicon Sensing CRS03 100 deg/s rate gyro
 <http://www.siliconsensing.com/CRS03>`_.  The rate gyro was sampled at 1000hz
 with a `National Instruments USB-6008 12 bit data acquisition unit
-<http://sine.ni.com/nips/cds/view/p/lang/en/nid/14604>`_ and {Matlab}. The
-measurement durations were either 15 or 30 secs and each moment of inertia
-measurement was performed three times. No extra care was taken to calibrate
-the rate gyro, maintain a constant power source (i.e. the battery drains
-slowly), or account for drift. The raw voltage signal was used to determine
-only the period of oscillation which is needed for the moment of inertia
-calculations.
+<http://sine.ni.com/nips/cds/view/p/lang/en/nid/14604>`_ and the Matlab data
+aquisition toolbox. The measurement durations were between 15 and 30 secs and
+each moment of inertia measurement was performed at least three times. No extra care was
+taken to calibrate the rate gyro, maintain a constant power source (i.e. the
+battery drains slowly), or account for drift. The raw voltage signal was used
+to determine only the period of oscillation which is needed for the moment of
+inertia calculations.
 
-.. figure:: ../../../plots/PendFit/BrowserFrameCompoundFirst1.png
+.. figure:: figures/physicalparameters/BrowserFrameCompoundFirst1.png
    :label: figVoltage
-   :caption:Example of the raw voltage data taken during a 30 second
-   measurement of the oscillation of one of the components.
    :align: center
+
+   Example of the raw voltage data taken during a 30 second
+   measurement of the oscillation of one of the components.
 
 The function Eqn eqn:decayOs was fit to the data using a nonlinear
 least squares fit routine for each experiment to determine the
@@ -536,11 +729,12 @@ some of the parts at particular orientations. Roland and Massing
 the torsional pendulum from swinging. Figure :ref:`figBeating` shows an example
 of the beating like phenomena.
 
-.. figure:: ../../../plots/PendFit/CrescendoForkTorsionalFirst2.png
-   :caption:An example of the beating-like phenomena observed on 5\\% of the
-    experiments.
-   :align: center
+.. figure:: figures/physicalparameters/CrescendoForkTorsionalFirst2.png
    :label: figBeating
+   :align: center
+
+   An example of the beating-like phenomena observed on 5\\% of the
+   experiments.
 
 The physical phenomenon observed corresponding to data sets such as these was
 that the bicycle frame or fork was perturbed torsionally.  After set into

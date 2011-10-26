@@ -330,7 +330,7 @@ bicycle, except for the gyro bicycle which had no rider (72kg rider for the
 Delft bikes and 82kg for the Davis bike...I gained some weight drinking all
 that beer in the Netherlands). A 30 meter tape measure (resolution: 2mm) was
 pulled tight and taped on a flat level smooth floor. The tire was marked with
-chalk and aligned with the tape measure Fig.  :ref:`figTireChalk`. The accuracy
+chalk and aligned with the tape measure Fig. :ref:`figTireChalk`. The accuracy
 of the distance measurement is approximately :math:`\pm0.01` meter. The tires
 were pumped to the recommended inflation pressure before the measurements. The
 wheel radius is calculated by
@@ -348,6 +348,8 @@ wheel radius is calculated by
    :align: center
 
    Wheel and tire with chalk mark aligned to the tape measure.
+
+   One
 
 .. _secHeadtube:
 
@@ -687,7 +689,7 @@ but the z-intercept is different:
 .. _secMoI:
 
 Inertia
-=======
+-------
 
 The moments of inertia of the wheels, frame and fork were measured by taking
 advantage of the assumed symmetry of the parts and by hanging the parts as both
@@ -1024,8 +1026,8 @@ fork pendulum length is calculated using
     {The Stratos fork and handlebar assembly hung as a torsional
         pendulum.}(fig:StratosFork)
 
-Human
-=====
+Human Parameters
+================
 
 Moore method
 ------------

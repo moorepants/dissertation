@@ -56,20 +56,20 @@
 <h1>Bicycle Equations Of Motion<a class="headerlink" href="#bicycle-equations-of-motion" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>Attempting to derive the equations of motion of the Whipple model is pretty
-much what got me hooked into bicycle dynamics. I attempted it for my class
-project in Mont Hubbard&#8217;s winter 2006 multi-body dynamics class and struggle
-with it well into the summer before finally getting a mostly correct answer.
-After the fact, I realized much of my pain was cause by a single missing
-apostrophe in my Autolev computer code[#]_. Another student, Thomas Englehardt,
-in the class also derived the equations and helped me debug by sharing his code
-and going over his methods. It turned out that my orignial equations weren&#8217;t
-&#8220;exactly&#8221; correct and it wasn&#8217;t until Luke Peterson joined our lab and got the
-bicycle dynamics itch did I get the bugs sorted out in my derivation.
-Conversations and collaboration with Luke have improved the derivation
-significantly and influence much of what follows. Luke has also continued to
-improve the derivation with the goal of printing the first compact symbolic
-result.</p>
+<p>Attempting to derive the equations of motion of the Whipple bicycle model was
+the first trigger which led me down the path to my dissertation topic. I
+attempted it for my class project in Mont Hubbard&#8217;s winter 2006 multi-body
+dynamics class and struggle with it well into the summer before finally getting
+a mostly correct answer.  After the fact, I realized much of my pain was cause
+by a single missing apostrophe in my Autolev computer code[#]_. Another
+student, Thomas Englehardt, in the class also derived the equations and helped
+me debug by sharing his code and going over his methods. It turned out that my
+orignial equations weren&#8217;t &#8220;exactly&#8221; correct and it wasn&#8217;t until Luke Peterson
+joined our lab and got the bicycle dynamics itch did I get the bugs sorted out
+in my derivation.  Conversations and collaboration with Luke have improved the
+derivation significantly and influence much of what follows. Luke has also
+continued to improve the derivation with the goal of printing the first compact
+symbolic result.</p>
 </div>
 <div class="section" id="derivation-of-the-non-linear-equations-of-motion">
 <h2>Derivation of the Non-linear Equations of Motion<a class="headerlink" href="#derivation-of-the-non-linear-equations-of-motion" title="Permalink to this headline">¶</a></h2>
@@ -262,9 +262,8 @@ ground plane.  The constraint is characterized by a nonlinear relationship
 between the roll angle <span class="math">\(q_4\)</span>, steer angle <span class="math">\(q_7\)</span> and pitch angle
 <span class="math">\(q_5\)</span>.</p>
 <div class="math" id="equation-holonomicConstraint">
-<span class="eqno">(13)</span>\[\bar{r}^{G_n/D_n}\cdot\hat{a}_3 =
-d_2c_4c_5 + d_3(s_4s_7-s_5s_4s_7) + r_F(1-(s_4s_7+s_5s_7s_4)^2)^{1/2} -
-r_Rs_4 - d_1s_5s_4 = 0\]</div>
+<span class="eqno">(13)</span>\[\bar{r}^{F_n/D_n}\cdot\hat{a}_3 =
+c_4c_5(d_2+r_Fc_4c_5) + (s_4s_7-s_5c_4c_7)(d_3+r_F(s_4s_7-s_5c_4c_7)) - r_Rc_4 - d_1s_5c_4\]</div>
 <p>I choose pitch, <span class="math">\(q_6\)</span>, as the dependent coordinate. This choice of pitch
 has some to do with the fact that in &#8220;normal&#8221; bicycle configurations, pitch is
 constant to the first order. This is not universal and it may be smart to
@@ -577,6 +576,9 @@ dynamics equations of motion in the form.</p>
 with the holonomic contraint, <a href="#equation-holonomic">(?)</a>. Special attention during
 simulation and linearization will have to be made to accomodate the coordinate
 and will be described in the following sections.</p>
+</div>
+<div class="section" id="model-discussion">
+<h3>Model discussion<a class="headerlink" href="#model-discussion" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="simulation">
 <h3>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">¶</a></h3>

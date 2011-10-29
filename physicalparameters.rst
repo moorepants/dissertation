@@ -691,32 +691,36 @@ but the z-intercept is different:
 Inertia
 -------
 
-The moments of inertia of the wheels, frame and fork were measured by taking
-advantage of the assumed symmetry of the parts and by hanging the parts as both
-compound and torsional pendulums and measuring their periods of oscillation
-when perturbed at small angles. The rate of oscillation was measured using a
-`Silicon Sensing CRS03 100 deg/s rate gyro
-<http://www.siliconsensing.com/CRS03>`_.  The rate gyro was sampled at 1000hz
-with a `National Instruments USB-6008 12 bit data acquisition unit
-<http://sine.ni.com/nips/cds/view/p/lang/en/nid/14604>`_ and the Matlab data
+The moments of inertia of the wheels, frame and fork (and handlebar) were
+measured both by taking advantage of the assumed symmetry of the parts and by
+hanging the parts as both compound and torsional pendulums and measuring their
+periods of oscillation when perturbed at small angles. The rate of oscillation
+was measured using a `Silicon Sensing CRS03 100 deg/s rate gyro
+<http://www.siliconsensing.com/CRS03>`_ for the Delft bicycles and a `Silicon
+Sensing CRS04 200 deg/s rate gyro <http://www.siliconsensing.com/CRS04>`_ for
+the Davis bicycles. The rate gyro was sampled at 1000hz with a `National
+Instruments USB-6008 12 bit data acquisition unit
+<http://sine.ni.com/nips/cds/view/p/lang/en/nid/14604>`_ and at 500 hz with a
+`National Instruments USB-6218 16 bit data acquisition unit
+<http://sine.ni.com/nips/cds/view/p/lang/en/nid/203092>`_ and the Matlab data
 aquisition toolbox. The measurement durations were between 15 and 30 secs and
-each moment of inertia measurement was performed at least three times. No extra care was
-taken to calibrate the rate gyro, maintain a constant power source (i.e. the
-battery drains slowly), or account for drift. The raw voltage signal was used
-to determine only the period of oscillation which is needed for the moment of
-inertia calculations.
+each moment of inertia measurement was performed at least three times. No extra
+care was taken to calibrate the rate gyro, maintain a constant power source
+(i.e. the battery drains slowly), or account for drift because I was only
+concerned with the period. The raw voltage signal was used to determine the
+period of oscillation which is needed for the moment of inertia calculations.
+
+.. _figVoltage:
 
 .. figure:: figures/physicalparameters/BrowserFrameCompoundFirst1.png
-   :label: figVoltage
    :align: center
 
-   Example of the raw voltage data taken during a 30 second
-   measurement of the oscillation of one of the components.
+   Example of the raw voltage data taken during a 30 second measurement of the
+   oscillation of one of the components.
 
-The function Eqn eqn:decayOs was fit to the data using a nonlinear
-least squares fit routine for each experiment to determine the
-quantities :math:`A`, :math:`B`, :math:`C`, :math:`\zeta`,
-and :math:`\omega`.
+The function Eqn :eq:`eqDecayOs` was fit to the data using the least
+squares method for each experiment to determine the quantities :math:`A`,
+:math:`B`, :math:`C`, :math:`\zeta`, and :math:`\omega`.
 
 .. math::
    :label: eqnDecayOs
@@ -725,22 +729,24 @@ and :math:`\omega`.
    C\cos{\sqrt{1-\zeta^2}\omega t}\right]
 
 Most of the data fit the damped oscillation function well with very light (and
-ignorable) damping. There were several instances of beating-like phenomena for
-some of the parts at particular orientations. Roland and Massing
-:ref:`Roland1971` also encountered this problem and used a bearing to prevent
-the torsional pendulum from swinging. Figure :ref:`figBeating` shows an example
-of the beating like phenomena.
+ignorable) damping. There were several instances in the earlier Delft
+experiments of beating-like phenomena for some of the parts at particular
+orientations. Roland and Massing :ref:`Roland1971` also encountered this
+problem and used a bearing to prevent the torsional pendulum from swinging.
+Figure :ref:`figBeating` shows an example of the beating like phenomena. This
+was remedied in a similar fashion for the Davis measurements.
+
+.. _figBeating:
 
 .. figure:: figures/physicalparameters/CrescendoForkTorsionalFirst2.png
-   :label: figBeating
    :align: center
 
    An example of the beating-like phenomena observed on 5\\% of the
    experiments.
 
-The physical phenomenon observed corresponding to data sets such as these was
-that the bicycle frame or fork was perturbed torsionally.  After set into
-motion the torsional motion died out and a longitudinal swinging motion
+The physical phenomenon observed corresponding to data sets such as these
+occured when the bicycle frame or fork was perturbed torsionally. After set into
+motion the torsional motion dampened and a longitudinal swinging motion
 increased. The motions alternated back and forth with neither ever reaching
 zero. The frequencies of these motions were very close to one another and it is
 not apparent how dissect the two. We explored fitting to a function such as
@@ -750,17 +756,16 @@ not apparent how dissect the two. We explored fitting to a function such as
 
    f(t) = A\sin{(\omega_1 t)} + B\sin{(\omega_2 t + \phi)} + C
 
-But the fit predicts that :math:`\omega_1` and :math:`\omega_2`
-are very similar frequencies. There was no easy way to choose which
-of the two :math:`\omega`'s was the one associated with the
-torsional oscillation. Some work was done to model the torsional
-pendulum as a laterally flexible beam to determine this, but we
-thought accuracy of the period calculation would not improve enough
-for the effort required. Future experiments should simply prevent
-the swinging motion of the pendulum without damping the torsional
-motion.
+But the fit predicts that :math:`\omega_1` and :math:`\omega_2` are very
+similar frequencies. There was no easy way to choose which of the two
+:math:`\omega`'s was the one associated with the torsional oscillation. Some
+work was done to model the torsional pendulum as a laterally flexible beam to
+determine this, but we ended up assuming that the accuracy of the period
+calculation would not improve enough for the effort required. The later
+experiments simply prevented the swinging motion of the pendulum without
+damping the torsional motion.
 
-The period for a damped oscillation is
+The period for a damped oscillation is:
 
 .. math::
    :label: eqnPeriodDamped
@@ -768,7 +773,7 @@ The period for a damped oscillation is
    T = \frac{2\pi}{\sqrt{1-\zeta^2}\omega_n}
 
 The uncertainty in the period, :math:`T`, can be determined from
-the fit. Firstly, the variance of the fit is
+the fit. Firstly, the variance of the fit is calcualted:
 
 .. math::
    :label: eqnFitVariance
@@ -776,19 +781,19 @@ the fit. Firstly, the variance of the fit is
    \sigma_y^2 =
    \frac{1}{N-5}\sum_{i=1}^N(y_{mi}-\bar{y}_m)^2-(y_{pi}-\bar{y}_m)^2
 
-The covariance matrix of the fit function can be formed
+The covariance matrix of the fit function can be formed:
 
 .. math::
    :label: eqnCovariance
 
    \mathbf{U} = \sigma_y^2\mathbf{H}^{-1}
 
-where :math:`\mathbf{H}` is the Hessian :ref:`Hubbard1989b`.
-:math:`\mathbf{U}` is a :math:`5\times5` matrix with the variances of each of
-the five fit parameters along the diagonal.  The variance of :math:`T` can be
-computed using the variance of :math:`\zeta` and :math:`\omega`. It is
-important to note that the uncertainties in the period are very low
-(:math:`<1e-4`), even for the fits with low :math:`r^2` values.
+where :math:`\mathbf{H}` is the Hessian _[Hubbard1989b].  :math:`\mathbf{U}` is
+a :math:`5\times5` matrix with the variances of each of the five fit parameters
+along the diagonal.  The variance of :math:`T` can be computed using the
+variance of :math:`\zeta` and :math:`\omega`. It is important to note that the
+uncertainties in the period are very low (:math:`<1e-4`), even for the fits
+with low :math:`r^2` values.
 
 Torsional Pendulum
 ------------------
@@ -798,12 +803,14 @@ the laterally symmetric plane of each of the wheels, fork and frame. The
 pendulum is made up of a rigid mount, an upper clamp, a torsion rod, and
 various lower clamps.
 
-.. figure:: ../../../images/fixture.jpg
-   :caption: The rigid pendulum fixture mounted to a concrete column.
-   :align: center
-   :label:figFixture
+.. _figFixture:
 
-A 5 mm diameter, 1 m long mild steel rod was used as the torsion spring. A
+.. figure:: figures/physicalparameters/fixture.jpg
+   :align: center
+
+   The rigid pendulum fixture mounted to a concrete column.
+
+A 5 mm diameter, ~1 m long mild steel rod was used as the torsion spring. A
 lightweight, low relative moment of inertia clamp was constructed that could
 clamp the rim and the tire. The moments of inertia of the clamps were
 neglected. The wheel was hung freely such that the center of mass aligned with
@@ -811,47 +818,50 @@ the torsional pendulum axis and then secured. The wheel was then perturbed and
 oscillated about the pendulum axis. The rate gyro was mounted on the clamp
 oriented along the pendulum axis.
 
-The torsional pendulum was calibrated using a known moment of inertia
-Fig. fig:rod. A torsional pendulum almost identical to the one used in
+The torsional pendulum was calibrated using a rod with known moment of inertia
+Figure :ref:`figRod`. A torsional pendulum almost identical to the one used in
 :ref:`Kooijman2006` was used to measure the average period
 :math:`\overline{T}_i` of oscillation of the rear frame at three different
 orientation angles :math:`\beta_i`, where :math:`i=1`, :math:`2`, :math:`3`, as
-shown in Fig. fig:triangle. The parts were perturbed lightly, less than 1
-degree, and allowed to oscillate about the pendulum axis through at least ten
-periods. This was done at least three times for each frame and the recorded
+shown in Figure :ref:`figTriangle`. The parts were perturbed lightly, around 1
+degree, and allowed to oscillate about the pendulum axis through several
+periods. This was repeated at least three times for each frame and the recorded
 periods were averaged.
 
-.. figure:: ../../../images/rod.jpg
+.. _figRod:
+
+.. figure:: figures/physicalparameters/rod.jpg
    :align: center
-   :alt: image
-   :caption:The steel calibration rod. The moment of inertia of the rod,
-    I=\\frac{m}{12}(3r^2+l^2), can be used to estimate the stiffness of the
-    pendulum, k=\\frac{4I\\pi^2}{\\overline{T}^2}, with k=5.62\\pm0.02 \\frac{\\textrm{Nm}}{\\textrm{rad}}
-   :label:figRod
+
+   The steel calibration rod. The moment of inertia of the rod,
+   :math:`I=\\frac{m}{12}(3r^2+l^2)`, can be used to estimate the stiffness of
+   the pendulum, :math:`k=\\frac{4I\\pi^2}{\\overline{T}^2}`, with
+   :math:`k=5.62\\pm0.02 \\frac{\\textrm{Nm}}{\\textrm{rad}}`.
 
 
 WHEELS
 ------
 
-Finding the full inertia tensors of the wheels is less complex because the
-wheels are assumed symmetric about three orthogonal planes so products of
-inertia are zero. The :math:`I_{xx}=I_{zz}` moments of inertia were calculated
+Estimating the full inertia tensors of the wheels is less complex because the
+wheels are assumed symmetric about three orthogonal planes forcing all products of
+inertia to be zero. The :math:`I_{xx}=I_{zz}` moments of inertia were calculated
 by measuring the averaged period of oscillation about an axis in the
-:math:`XZ`-plane using the torsional pendulum setup and Eq. eq:torPend.The
-wheels are assumed to be laterally symmetric and about any radial axis. Thus
-only two moments of inertia are required for the set of benchmark parameters.
-The moment of inertia about the axle was measured by hanging the wheel as a
-compound pendulum, Fig. fig:wheelIyy. The wheel was hung on a horizontal rod
-and perturbed to oscillate about the axis of the rod. This rate gyro was
-attached to the spokes near the hub and oriented mostly along the axle axis.
-The wheels tended to precess at the contact point about the vertical axis which
-added a very low frequency component of rate along the vertical radial axis,
-but this should not affect the period estimation about the compound pendulum
-axis. A fixture that prevented precession would be preferable for future
-measurements. The pendulum arm length is the distance from the rod/rim contact
-point to the mass center of the wheel. The inner diameter of the rim was
-measured and divided by two to get :math:`l_\mathrm{F,R}`. The moment of
-inertia about the axle is calculated from:
+:math:`XZ`-plane using the torsional pendulum setup and Equation :eq:`torPend`.
+The wheels are assumed to be laterally symmetric about any radial axis.
+Thus only two moments of inertia are required for the set of benchmark
+parameters. The moment of inertia about the axle was measured by hanging the
+wheel as a compound pendulum, Figure :ref:`figWheelIyy`. The wheel was hung on a
+horizontal rod and perturbed to oscillate about the axis of the rod. The rate
+gyro was attached to the spokes near the hub and oriented mostly along the axle
+axis. The wheels for the Delft bicycles would rotate at the rod contact point
+about the vertical axis which added a very low frequency component of rate
+along the vertical radial axis, but this should have had little affect the
+period estimation about the compound pendulum axis. A fixture was designed for
+the Davis bicycles that prevented non-desired rotation.  The pendulum length is
+the distance from the rod/rim contact point to the mass center of the wheel.
+The inner diameter of the rim was measured and divided by two to get
+:math:`l_\mathrm{F,R}`. The moment of inertia about the axle is calculated
+from:
 
 .. math::
    :label: eqCompoundInertia
@@ -859,43 +869,48 @@ inertia about the axle is calculated from:
    I_{\mathrm{R}yy} = \left(\frac{\bar{T}}{2\pi}\right)^2m_\mathrm{R}gl_\mathrm{R} -
     m_\mathrm{R}l^2
 
+.. _figFwheelTor:
 
-        \\label{fig:FwheelTor}
-        \\includegraphics[width=2.75in]{../../../images/CrescendoFwheelTorsionalFirst.jpg}
-        \\label{fig:wheelIyy}
-        \\includegraphics[width=2.75in]{../../../images/wheelIyy.jpg}
-    }{\\subref{fig:FwheelTor} The front wheel of the Crescendo hung as a
-    torsional pendulum. \\subref{fig:wheelIyy} A wheel hung as a compound pendulum.}(fig:wheelPend)
+.. figure:: figures/physicalparameters/CrescendoFwheelTorsionalFirst.jpg
 
+   The front wheel of the Crescendo hung as a torsional pendulum.
+
+.. _figWheelIyy:
+
+.. figure:: figures/physicalparameters/wheelIyy.jpg
+
+   A wheel hung as a compound pendulum.
 
 The radial moment of inertia was measured by hanging the wheel as a torsional
-pendulum, Fig. fig:FwheelTor. The wheel was hung freely such that the center of
-mass aligned with the torsional pendulum axis and then secured. The wheel was
-then perturbed and oscillated about the vertical pendulum axis. The radial
-moment of inertia can can calculated as such:
+pendulum, Figure :ref:`figFwheelTor`. The wheel was hung freely such that the
+center of mass aligned with the torsional pendulum axis and then secured. The
+wheel was then perturbed and oscillated about the vertical pendulum axis. The
+radial moment of inertia can can calculated as such:
 
 .. math::
+   :label: eqWheelTorInertia
+
    I_{xx} = \frac{k\bar{T}^2}{4\pi^2}
 
 
 FRAME
 -----
 
-Three measurements were made to estimate the globally referenced moments and
-products of inertia (:math:`I_{xx}`, :math:`I_{xz}` and :math:`I_{zz}`) of the
-rear frame. The frame was typically hung from the three main tubes: seat tube,
-down tube and top tube, Fig. fig:level. The rear fender prevented easy
-connection to the seat tube on some of the bikes and the clamp was attached to
-the fender. The fender was generally less rigid than the frame tube.  For best
-accuracy with only three orientation angles, the frame should be hung at three
-angles that are :math:`120^\circ` apart.  The three tubes on the frame
-generally provide that the orientation angles were spread evenly at about
-:math:`120^\circ`. Furthermore, taking data at more orientation angles could
-improve the accuracy and is generally possible with standard diamond frame
-bicycles.
+At least three measurements were made to estimate the globally referenced
+moments and products of inertia (:math:`I_{xx}`, :math:`I_{xz}` and
+:math:`I_{zz}`) of the rear frame. The frame was typically hung from either the
+three main tubes: seat tube, down tube and top tube, the seat post or a fixture
+mounted to the brake mounts Figure :ref:`figLevel`. The rear fender prevented
+easy connection to the seat tube on some of the bikes and the clamp was
+attached to the fender. The fender was generally less rigid than the frame
+tube. For best accuracy with only three orientation angles, the frame should be
+hung at three angles that are :math:`120^\circ` apart. The three tubes on the
+frame generally provide that the orientation angles were spread evenly at about
+:math:`120^\circ`. Furthermore, taking data at more orientation angles improved
+the accuracy and was generally possible with standard diamond frame bicycles.
 
 Three moments of inertia :math:`J_{i}` about the pendulum axes were calculated
-using :eq:eqTorPend.
+using :eq:`eqTorPend`.
 
 .. math::
    :label:eqTorPend
@@ -914,7 +929,7 @@ formulating the relationship between inertial frames
 where :math:`\mathbf{J}_i` is the inertia tensor about the
 pendulum axes, :math:`\mathbf{I}`, is the inertia tensor in the
 global reference frame and :math:`\mathbf{R}` is the rotation
-matrix relating the two frames, Fig. fig:angles. The global inertia
+matrix relating the two frames, Figure :ref:`figAngles`. The global inertia
 tensor is defined as
 
 .. math::
@@ -947,7 +962,7 @@ reduced to a :math:`2\times2` matrix where :math:`s_{\beta i}` and
      \end{array}
    \right]
 
-The first entry of :math:`\mathbf{J}_i` in Eq. eq:rotIn is the moment of
+The first entry of :math:`\mathbf{J}_i` in Equation :eq:`eqRotIn` is the moment of
 inertia about the pendulum axis and is written explicitly as
 
 .. math::
@@ -955,7 +970,7 @@ inertia about the pendulum axis and is written explicitly as
 
    J_{i}=c^{2}_{\beta i}I_{xx}-2s_{\beta i}c_{\beta i}I_{xz}+s^{2}_{\beta i}I_{zz}\textrm{.}
 
-Similarly, calculating all three :math:`J_{i}` allows one to form
+Similarly, calculating all three, or more, :math:`J_{i}` allows one to form
 
 .. math::
    :label:eqInRel
@@ -985,7 +1000,7 @@ Similarly, calculating all three :math:`J_{i}` allows one to form
 
 and the moments of inertia can be solved for. The inertia of the frame about an
 axis normal to the plane of symmetry was estimated by hanging the frame as a
-compound pendulum at the wheel axis, Fig.:ref:`figFrameCompound`. Equation
+compound pendulum at the wheel axis, Figure :ref:`figFrameCompound`. Equation
 :eq:`eqCompoundInertia` is used but with the mass of the frame and the frame
 pendulum length.
 
@@ -994,59 +1009,211 @@ pendulum length.
 
    l_B=\sqrt{x_B^2+(z_B+r_R)^2}
 
+.. _figFrameCompound:
 
-    []{
-        \\label{fig:frameCompound}
-        \\includegraphics[width=2in]{../../../images/YellowFrameCompoundFirst.jpg}
-        }[]{
-        \\label{fig:forkCompound}
-        \\includegraphics[width=2in]{../../../images/BrowserInsForkCompoundFirst.jpg}
-        }{\\subref{fig:frameCompound} Rear frame hung as a compound
-        pendulum. \\subref{fig:forkCompound} Browser fork hung as a
-        compound pendulum.}(fig:compound)
+.. figure:: figures/physicalparameters/YellowFrameCompoundFirst.jpg
+
+   Rear frame hung as a compound pendulum.
+
+.. _figForkCompound:
+
+.. figure:: figures/physicalparameters/BrowserInsForkCompoundFirst.jpg
+
+   Browser fork hung as a compound pendulum.
 
 
 FORK AND HANDLEBAR
 ------------------
 
-The inertia of the fork and handlebar is calculated in the same way
-as the frame. The fork is hung as both a torsional pendulum,
-Fig.fig:StratosFork, and as a compound pendulum,
-Fig.fig:forkCompound. The fork provides fewer mounting options to
-obtain at least three equally spaced orientation angles, especially
-if there is no fender. The torsional calculations follow
-equations :eq:`eqTorPend` through :eq:`eqInRel` and the compound pendulum
-calculations is calculated with equationeq:CompoundInertia. The
-fork pendulum length is calculated using
+The inertia of the fork and handlebar is calculated in the same way as the
+frame. The fork is hung as both a torsional pendulum, Figure
+:ref:`figStratosFork`, and as a compound pendulum, Figure
+:ref:`figForkCompound`. The fork provides fewer mounting options to obtain at
+least three equally spaced orientation angles, especially if there is no
+fender. We designed a connection to the brake mounts for the Davis bicycles.
+The torsional calculations follow equations :eq:`eqTorPend` through
+:eq:`eqInRel` and the compound pendulum calculations is calculated with
+Equation :eq:`eqCompoundInertia`. The fork pendulum length is calculated using
 
 .. math::
    l_H=\sqrt{(x_H-w)^2+(z_H+r_F)^2}
 
+.. _figStratosFork:
 
-    {The Stratos fork and handlebar assembly hung as a torsional
-        pendulum.}(fig:StratosFork)
+.. figure:: figures/physicalparameters/stratosFork.jpg
+
+    The Stratos fork and handlebar assembly hung as a torsional pendulum.
 
 Human Parameters
 ================
 
+To properly model the bicycle rider system it is necessary to estimate the
+physical parameters of the bicycle rider. The measurement of the physical
+properties of a human is more difficult than for a bicycle because the human
+body parts are not as easily described as rigid bodes with defined joints and
+inflexible geometry.Human mass, center of mass and inertia properties have been
+measured and estimated in a multitude of ways.  Each method has its advantages
+and disadvantages. The inertia properties of a human are not as clearly defined
+as the bicycle, due to the human's daily varying mass, wobbly mass, flexibility
+etc. I approached the parameter estimation in an analytical fashion. Both
+methods that were used were based on estimating the inertial parameters from
+mass and geometry measurement along with a human body density estimate.
+
+Many methods exist for estimating the geometry, centers of mass and moments of
+inertia of a human including cadaver measurements _[Dempster1955],
+_[Clauser1969], _[Chandler1975], photogrammetry, ray scanning techniques
+_[Zatsiorsky1983], _[Zatsiorsky1990], water displacement _[Park1999], and
+mathematical geometrical estimation of the body segments _[Yeadon1990a]. We
+estimated the physical properties of the rider in a seated position using a
+simple mathematical geometrical estimation similar in idea to _[Yeadon1990a] in
+combination with mass data from _[Dempster1955].
+
+ Döhring
+_[Dohring1953] measured the moments of inertia and centers of mass of a combined
+rider and motor-scooter with a large measurement table, but this is not always
+practical.  The validity of the presented methods could be determined if such
+data existed for a bicycle and rider.
+
 Moore method
 ------------
+
+This method is a simplified model of the ten major body parts of a human.
+Several measurements of the human rider were needed to calculate the physical
+properties. The mass of the rider was measured along with fourteen
+anthropomorphic measurements of the body (Tab. tab:riderDimensions and
+Tab. tab:segmentMass). These measurements in combination with the geometrical
+bicycle measurements taken in the previous section (Tab. tab:bicycleDimensions)
+are used to define a model of the rider made up of simple geometrical shapes
+(Fig. fig:model). The legs and arms are represented by cylinders, the torso by
+a cuboid and the head by a sphere. The feet are positioned at the center of the
+pedaling axis to maintain symmetry about the :math:`$XZ$`-plane.
+
+All but one of the anthropomorphic measurements were taken when the
+rider was standing casually on flat ground. The lower leg length
+:math:`$l_{ll}$` is the distance from the floor to the knee joint.
+The upper leg length :math:`$l_{ul}$` is the distance from the knee
+joint to the hip joint. The length from hip to hip :math:`$l_{hh}$`
+and shoulder to shoulder :math:`$l_{ss}$` are the distances between
+the two hip joints and two shoulder joints, respectively. The torso
+length :math:`$l_{to}$` is the distance between hip joints and
+shoulder joints. The upper arm length :math:`$l_{ua}$` is the
+distance between the shoulder and elbow joints. The lower arm
+length :math:`$l_{al}$` is the distance from the elbow joint to the
+center of the hand when the arm is outstretched. The circumferences
+are taken at the cross section of maximum circumference (e.g.
+around the bicep, around the brow, over the nipples for the chest).
+The forward lean angle :math:`$\lambda_{fl}$` is the approximate
+angle made between the floor (:math:`$XY$`-plane) and the line
+connecting the center of the rider's head and the top of the seat
+while the rider is seated normally on the bicycle. This was
+estimated by taking a side profile photograph of the rider on the
+bicycle and scribing a line from the head to the top of the seat.
+The measurements were made as accurately as possible with basic
+tools but no special attention is given further to the accuracy of
+the calculations due to the fact that modeling the human as basic
+geometric shapes already introduces a large error. The values are
+reported to the same decimal places as the previous section for
+consistency.
+
+The masses of each segment (Tab. tab:segmentMass) were defined as a
+proportion of the total mass of the rider :math:`$m_{\mathrm{B}r}$`
+using data from cadaver studies by {Dempster1955}.
+
+The geometrical and anthropomorphic measurements were converted
+into a set of 31 grid points in three dimensional space that mapped
+the skeleton of the rider and bicycle (Fig. fig:model). The
+position vectors to these grid points are listed in
+Tab. tab:gridPoints. Several intermediate variables used in the
+grid point equations are listed in Tab. tab:intVar where
+:math:`$f_o$` is the fork offset and the rest arise from the
+multiple solutions to the location of the elbow and knee joints and
+have to be solved for using numeric methods. The correct solutions
+are the ones that force the arms and legs to bend in a natural
+fashion. The grid points mark the center of the sphere and the end
+points of the cylinders and cuboid. The segments are aligned along
+lines connecting the appropriate grid points. The segments are
+assumed to have uniform density so the centers of mass are taken to
+be at the geometrical centers. The midpoint formula is used to
+calculate the local centers of mass for each segment in the global
+reference frame. The total body center of mass can be found from
+the standard formula
+:math:`$$\mathbf{r}_{\mathrm{B}r}=\frac{\sum{m_i\mathbf{r}_i}}{m_{\mathrm{B}r}}=\left[0.291\quad0\quad-1.109\right]\mathrm{m}
+\label{eq:CoM}
+$$`
+where :math:`$\mathbf{r}_i$` is the position vector to the centroid
+of each segment and :math:`$m_i$` is the mass of each segment. The
+local moments of inertia of each segment are determined using the
+ideal definitions of inertia for each segment type
+(Tab. tab:locInertia). The width of the cuboid representing the
+torso :math:`$l_y$` is defined by the shoulder width and upper arm
+circumference.
+:math:`$$l_y=l_{ss}-\frac{c_{ua}}{\pi}
+\label{eq:cuboidWidth}
+$$`
+The cuboid thickness was estimated using the chest circumference
+measurement and assuming that the cross section of the chest is
+similar to a stadium shape.
+:math:`$$l_x=\frac{c_{ch}-2l_y}{\pi-2}
+\label{eq:cuboidThick}
+$$`
+The local :math:`$\hat{\mathbf{z}}_i$` unit vector for the segments
+was defined along the line connecting the associated grid points
+from the lower numbered grid point to the higher numbered grid
+point. The local unit vector in the :math:`$y$` direction was set
+equal to the global :math:`$\hat{\mathbf{Y}}$` unit vector with the
+:math:`$\hat{\mathbf{x}}_i$` unit vector following from the right
+hand rule. The rotation matrix needed to rotate each of the moments
+of inertia to the global reference frame can be calculated by
+dotting the global unit vectors :math:`$\hat{\mathbf{X}}$`,
+:math:`$\hat{\mathbf{Y}}$`, :math:`$\hat{\mathbf{Z}}$` with the
+local unit vectors :math:`$\hat{\mathbf{x}}_i$`,
+:math:`$\hat{\mathbf{y}}_i$`, :math:`$\hat{\mathbf{z}}_i$` for each
+segment.
+:math:`$$\mathbf{R}_i=
+    \left[
+    \begin{array}{ccc}
+        \hat{\mathbf{X}}\cdot\hat{\mathbf{x}}_i & \hat{\mathbf{X}}\cdot\hat{\mathbf{y}}_i & \hat{\mathbf{X}}\cdot\hat{\mathbf{z}}_i\\
+        \hat{\mathbf{Y}}\cdot\hat{\mathbf{x}}_i & \hat{\mathbf{Y}}\cdot\hat{\mathbf{y}}_i & \hat{\mathbf{Y}}\cdot\hat{\mathbf{z}}_i\\
+        \hat{\mathbf{Z}}\cdot\hat{\mathbf{x}}_i & \hat{\mathbf{Z}}\cdot\hat{\mathbf{y}}_i & \hat{\mathbf{Z}}\cdot\hat{\mathbf{z}}_i\\
+    \end{array}
+    \right]
+\label{eq:rotMat2}
+$$`
+The local inertia matrices are then rotated to the global reference
+frame with
+:math:`$$\mathbf{I}_i=\mathbf{R}_i\mathbf{J}_i\mathbf{R}^T_i\textrm{.}
+\label{eq:rotInertia}
+$$`
+The local moments of inertia can then be translated to the center
+of mass of the entire body using the parallel axis theorem
+:math:`$$\mathbf{I}^*_i=\mathbf{I}_i+m_i
+    \left[
+    \begin{array}{ccc}
+        d_y^2+d_z^2 & -d_xd_y & -d_xd_z\\
+        -d_xd_y & d_z^2+d_x^2 & -d_yd_z\\
+        -d_xd_z & -d_yd_z & d_x^2+d_y^2
+    \end{array}
+    \right]
+\label{eq:PAT}
+$$`
+where :math:`$d_x$`, :math:`$d_y$` and :math:`$d_z$` are the
+distances along the the :math:`$X$`, :math:`$Y$` and :math:`$Z$`
+axes, respectively, from the local center of mass to the global
+center of mass. Finally, the local translated and rotated moments
+of inertia are summed to give the total moment of inertia of the
+rider by
+:math:`$$\mathbf{I}_{\mathrm{B}r}=\sum{\mathbf{I}^*_i}=\left[\begin{array}{ccc}8.00&0&-1.93\\0&8.07&0\\-1.93&0&2.36\end{array}\right]\mathrm{kg\ m}^2\textrm{.}
+\label{eq:sumInertia}
+$$`
 
 Yeadon method
 -------------
 
-
-CONCLUSION
-==========
-
-We have presented a detailed method to accurately estimate the physical
-parameters of a bicycle needed for the benchmarked Whipple bicycle
-model :ref:`Meijaard2007`. We measured eight different bicycles providing both
-the parameter sets and linear model coefficient matrices for the bicycles alone
-and the bicycles with the same rigid rider. The uncertainties in the parameters
-and matrix coefficients are included for the bicycle alone. Finally, we have
-presented a brief comparison of the eight bicycles using eigenanalysis and Bode
-frequency response.
+The Yeadon human inertial model was developed for estimating the inertial
+parameters needed to describe a human model for complex gymnasitic manuevers.
+It is essentially a more advanced and accurate method than the one presented.
+There are 95 geometrical measurements of the human and a single mass
+measurement for scaling the body part densities. Once the 
 
 
 PARAMETER TABLES

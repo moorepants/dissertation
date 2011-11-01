@@ -6,26 +6,29 @@ Preface
 =======
 
 I was first concerned with the physical parameters of the bicycle and rider in
-my multibody dynamics class project where I developed a method of estimating
-the parameters from geometry and mass :ref:`Moore2006` which was subsenquently
-presented at ISEA 2008 :ref:`Moore2008`. This method served me well until we
-needed to have more accurate estimates for the first instrumented bicycle built
-at TU Delft. I agreed to measure the bike's physical parameters using the
-equipment and procedures developed in :ref:`Kooijman2006` and use the more
-accurate bicycle measurements with my basic human model, :ref:`Moore2008`.
-These first measurements and the details of the human model are documented in
-:ref:`Moore2009a`.  After this, Dr. Hubbard encouraged me to think about the
-accuracy of the measurements in more detail, as some of the practices we were
-using were lacking. With that in mind and the fact that there was very little
-complete data available on the physical parameters of real bicycles, I decided
-to measure an assortment of bicycles we had available around the lab in Delft
-:ref:`Moore2010`. Once I was back in Davis, we setup almost identical equipment
-to measure the two new bicycles we were constructing. Danique Fintelman helped
-us come up with a more accurate geometry measurement. Steven Yen measured a
-children's bicycle with a gyro wheel. We also improved the human estimates when
-Chris Dembia implemented Yeadon's human inertia model and we combined it with
-the accurate bicycle measurements. These final methods are implemented in two
-open source software packages.
+my multibody dynamics class project. There I developed a method of estimating
+the parameters from simply the geometry and mass :ref:`Moore2006`. I also then
+presented this work in Biarritz, France :ref:`Moore2008`. This method served me
+well until we needed to have more accurate estimates of the parameters for the
+first instrumented bicycle I helped build at TU Delft. I agreed to measure the
+bike's physical parameters using the equipment and procedures developed in
+:ref:`Kooijman2006` and to use the more accurate bicycle measurements with my
+basic human model, :ref:`Moore2008` for the complete system parameters.  These
+first measurements and the details of the human model were presented in in San
+Diego :ref:`Moore2009a`. During this work, Dr. Hubbard encouraged me to think
+about the accuracy of the measurements in more detail, as some of the practices
+we were using were lacking. With that in mind and the fact that there was very
+little complete data available on the physical parameters of real bicycles, I
+decided to measure an assortment of bicycles we had available around the lab in
+Delft :ref:`Moore2010`. This was certainly a tedious task, but a rich data set
+was created. Once I was back in Davis, we setup almost identical equipment to
+measure the two new bicycles we were constructing. Danique Fintelman helped us
+come up with a more accurate geometry measurement. Steven Yen also used the
+equipment to measure a children's bicycle with a gyro wheel. Additionaly we
+improved the human parameter estimates when Chris Dembia implemented Yeadon's
+human inertia model and we combined it with the accurate bicycle measurements.
+These final methods for both bicycle and rider are implemented in two open
+source software packages.
 
 Bicycle Parameters
 ==================
@@ -366,8 +369,8 @@ steer axis tilt :math:`\lambda` is the complement to the head tube angle.
    :label: eqHeadTubeAngle
 
    \lambda\pm\sigma_\lambda
-   =\frac{\pi}{180^{\circ}}(90^{\circ}-\lambda_{ht})
-   \pm\left(\frac{\pi}{180^\circ}\right)\sigma_{\lambda_{ht}}
+   =\frac{\pi}{180^{\circ}}(90^{\circ}-\gamma)
+   \pm\left(\frac{\pi}{180^\circ}\right)\sigma_{\gamma}
 
 .. _figHeadtube:
 
@@ -1060,16 +1063,15 @@ methods that were used were based on estimating the inertial parameters from
 mass and geometry measurement along with a human body density estimate.
 
 Many methods exist for estimating the geometry, centers of mass and moments of
-inertia of a human including cadaver measurements _[Dempster1955],
-_[Clauser1969], _[Chandler1975], photogrammetry, ray scanning techniques
-_[Zatsiorsky1983], _[Zatsiorsky1990], water displacement _[Park1999], and
-mathematical geometrical estimation of the body segments _[Yeadon1990a]. We
+inertia of a human including cadaver measurements [Dempster1955]_,
+[Clauser1969]_, [Chandler1975]_, photogrammetry, ray scanning techniques
+[Zatsiorsky1983]_, [Zatsiorsky1990]_, water displacement [Park1999]_, and
+mathematical geometrical estimation of the body segments [Yeadon1990a]_. We
 estimated the physical properties of the rider in a seated position using a
-simple mathematical geometrical estimation similar in idea to _[Yeadon1990a] in
-combination with mass data from _[Dempster1955].
+simple mathematical geometrical estimation similar in idea to [Yeadon1990a]_ in
+combination with mass data from [Dempster1955]_.
 
- Döhring
-_[Dohring1953] measured the moments of inertia and centers of mass of a combined
+[Dohring1953]_ measured the moments of inertia and centers of mass of a combined
 rider and motor-scooter with a large measurement table, but this is not always
 practical.  The validity of the presented methods could be determined if such
 data existed for a bicycle and rider.
@@ -1077,165 +1079,348 @@ data existed for a bicycle and rider.
 Moore method
 ------------
 
-This method is a simplified model of the ten major body parts of a human.
-Several measurements of the human rider were needed to calculate the physical
-properties. The mass of the rider was measured along with fourteen
-anthropomorphic measurements of the body (Tab. tab:riderDimensions and
-Tab. tab:segmentMass). These measurements in combination with the geometrical
-bicycle measurements taken in the previous section (Tab. tab:bicycleDimensions)
-are used to define a model of the rider made up of simple geometrical shapes
-(Fig. fig:model). The legs and arms are represented by cylinders, the torso by
-a cuboid and the head by a sphere. The feet are positioned at the center of the
-pedaling axis to maintain symmetry about the :math:`$XZ$`-plane.
+This method calculates the center of mass and inertia of a simplified model of
+the ten major human body parts: head, toros, upper and lower arms, and upper
+and lower legs, in a conifguration for typical bicycles.  Several measurements
+of the human rider are needed to calculate the physical properties. The mass of
+the rider was measured along with fourteen anthropomorphic measurements of the
+body (Table :ref:`tabRiderDimensions` and Tab. :ref:`tabSegmentMass`). These
+measurements in combination with the geometrical bicycle measurements taken in
+the previous section (:ref:`secBicycleDimensions`) and several additinal
+bicycle measurements are used to define a model of the rider made up of simple
+geometrical shapes (Figure :ref:`fig3DModel`). The legs and arms are
+represented by cylinders, the torso by a cuboid and the head by a sphere. The
+feet are positioned at the center of the bottom bracket axis to maintain symmetry
+about the :math:`XZ`-plane.
 
-All but one of the anthropomorphic measurements were taken when the
-rider was standing casually on flat ground. The lower leg length
-:math:`$l_{ll}$` is the distance from the floor to the knee joint.
-The upper leg length :math:`$l_{ul}$` is the distance from the knee
-joint to the hip joint. The length from hip to hip :math:`$l_{hh}$`
-and shoulder to shoulder :math:`$l_{ss}$` are the distances between
-the two hip joints and two shoulder joints, respectively. The torso
-length :math:`$l_{to}$` is the distance between hip joints and
-shoulder joints. The upper arm length :math:`$l_{ua}$` is the
-distance between the shoulder and elbow joints. The lower arm
-length :math:`$l_{al}$` is the distance from the elbow joint to the
-center of the hand when the arm is outstretched. The circumferences
-are taken at the cross section of maximum circumference (e.g.
-around the bicep, around the brow, over the nipples for the chest).
-The forward lean angle :math:`$\lambda_{fl}$` is the approximate
-angle made between the floor (:math:`$XY$`-plane) and the line
-connecting the center of the rider's head and the top of the seat
-while the rider is seated normally on the bicycle. This was
-estimated by taking a side profile photograph of the rider on the
-bicycle and scribing a line from the head to the top of the seat.
-The measurements were made as accurately as possible with basic
-tools but no special attention is given further to the accuracy of
-the calculations due to the fact that modeling the human as basic
-geometric shapes already introduces a large error. The values are
-reported to the same decimal places as the previous section for
-consistency.
+All but one of the anthropomorphic measurements are taken when the rider was
+standing casually on flat ground. The lower leg length :math:`l_{ll}` is the
+distance from the floor to the knee joint. The upper leg length
+:math:`l_{ul}` is the distance from the knee joint to the hip joint. The
+length from hip to hip :math:`l_{hh}` and shoulder to shoulder
+:math:`l_{ss}` are the distances between the two hip joints and two shoulder
+joints, respectively. The torso length :math:`l_{to}` is the distance between
+hip joints and shoulder joints. The upper arm length :math:`l_{ua}` is the
+distance between the shoulder and elbow joints. The lower arm length
+:math:`l_{al}` is the distance from the elbow joint to the center of the hand
+when the arm is outstretched. The circumferences are taken at the cross section
+of maximum circumference (e.g.  around the bicep, around the brow, over the
+nipples for the chest). The final dimension is taken while the rider is seated
+on the bicycle in a normal riding position. The forward lean angle
+:math:`\lambda_{fl}` is the approximate angle made between the floor
+(:math:`XY`-plane) and the line connecting the center of the rider's head and
+the top of the seat. This was estimated by taking a side profile photograph of
+the rider on the bicycle and scribing a line from the center of the head to the
+top of the seat.  The measurements were made as accurately as possible with
+basic tools but no special attention is given further to the accuracy of the
+calculations due to the fact that modeling the human as basic geometric shapes
+already introduces a error. The values are reported to the same decimal places
+as the previous section for consistency.
 
-The masses of each segment (Tab. tab:segmentMass) were defined as a
-proportion of the total mass of the rider :math:`$m_{\mathrm{B}r}$`
-using data from cadaver studies by {Dempster1955}.
+The masses of each segment (Table :ref:`tabSegmentMass`) were defined as a
+proportion of the total mass of the rider :math:`m_{\mathrm{B}r}` using data
+from cadaver studies by [Dempster1955]_.
 
 The geometrical and anthropomorphic measurements were converted
 into a set of 31 grid points in three dimensional space that mapped
-the skeleton of the rider and bicycle (Fig. fig:model). The
+the skeleton of the rider and bicycle (Figure :ref:`fig3DModel`. The
 position vectors to these grid points are listed in
-Tab. tab:gridPoints. Several intermediate variables used in the
-grid point equations are listed in Tab. tab:intVar where
-:math:`$f_o$` is the fork offset and the rest arise from the
+Table :ref:`tabGridPoints`. Several intermediate variables used in the
+grid point equations are listed in Table :ref:`tabIntVar` where
+:math:`f_o` is the fork offset and the rest arise due to
 multiple solutions to the location of the elbow and knee joints and
-have to be solved for using numeric methods. The correct solutions
+have to be solved numerically. The correct solutions
 are the ones that force the arms and legs to bend in a natural
 fashion. The grid points mark the center of the sphere and the end
 points of the cylinders and cuboid. The segments are aligned along
 lines connecting the appropriate grid points. The segments are
 assumed to have uniform density so the centers of mass are taken to
-be at the geometrical centers. The midpoint formula is used to
+be at the geometrical centers. The midpoint formula can then be used to
 calculate the local centers of mass for each segment in the global
 reference frame. The total body center of mass can be found from
 the standard formula
-:math:`$$\mathbf{r}_{\mathrm{B}r}=\frac{\sum{m_i\mathbf{r}_i}}{m_{\mathrm{B}r}}=\left[0.291\quad0\quad-1.109\right]\mathrm{m}
-\label{eq:CoM}
-$$`
-where :math:`$\mathbf{r}_i$` is the position vector to the centroid
-of each segment and :math:`$m_i$` is the mass of each segment. The
-local moments of inertia of each segment are determined using the
-ideal definitions of inertia for each segment type
-(Tab. tab:locInertia). The width of the cuboid representing the
-torso :math:`$l_y$` is defined by the shoulder width and upper arm
-circumference.
-:math:`$$l_y=l_{ss}-\frac{c_{ua}}{\pi}
-\label{eq:cuboidWidth}
-$$`
-The cuboid thickness was estimated using the chest circumference
-measurement and assuming that the cross section of the chest is
-similar to a stadium shape.
-:math:`$$l_x=\frac{c_{ch}-2l_y}{\pi-2}
-\label{eq:cuboidThick}
-$$`
-The local :math:`$\hat{\mathbf{z}}_i$` unit vector for the segments
-was defined along the line connecting the associated grid points
-from the lower numbered grid point to the higher numbered grid
-point. The local unit vector in the :math:`$y$` direction was set
-equal to the global :math:`$\hat{\mathbf{Y}}$` unit vector with the
-:math:`$\hat{\mathbf{x}}_i$` unit vector following from the right
-hand rule. The rotation matrix needed to rotate each of the moments
-of inertia to the global reference frame can be calculated by
-dotting the global unit vectors :math:`$\hat{\mathbf{X}}$`,
-:math:`$\hat{\mathbf{Y}}$`, :math:`$\hat{\mathbf{Z}}$` with the
-local unit vectors :math:`$\hat{\mathbf{x}}_i$`,
-:math:`$\hat{\mathbf{y}}_i$`, :math:`$\hat{\mathbf{z}}_i$` for each
-segment.
-:math:`$$\mathbf{R}_i=
-    \left[
-    \begin{array}{ccc}
-        \hat{\mathbf{X}}\cdot\hat{\mathbf{x}}_i & \hat{\mathbf{X}}\cdot\hat{\mathbf{y}}_i & \hat{\mathbf{X}}\cdot\hat{\mathbf{z}}_i\\
-        \hat{\mathbf{Y}}\cdot\hat{\mathbf{x}}_i & \hat{\mathbf{Y}}\cdot\hat{\mathbf{y}}_i & \hat{\mathbf{Y}}\cdot\hat{\mathbf{z}}_i\\
-        \hat{\mathbf{Z}}\cdot\hat{\mathbf{x}}_i & \hat{\mathbf{Z}}\cdot\hat{\mathbf{y}}_i & \hat{\mathbf{Z}}\cdot\hat{\mathbf{z}}_i\\
-    \end{array}
-    \right]
-\label{eq:rotMat2}
-$$`
-The local inertia matrices are then rotated to the global reference
-frame with
-:math:`$$\mathbf{I}_i=\mathbf{R}_i\mathbf{J}_i\mathbf{R}^T_i\textrm{.}
-\label{eq:rotInertia}
-$$`
-The local moments of inertia can then be translated to the center
-of mass of the entire body using the parallel axis theorem
-:math:`$$\mathbf{I}^*_i=\mathbf{I}_i+m_i
-    \left[
-    \begin{array}{ccc}
-        d_y^2+d_z^2 & -d_xd_y & -d_xd_z\\
-        -d_xd_y & d_z^2+d_x^2 & -d_yd_z\\
-        -d_xd_z & -d_yd_z & d_x^2+d_y^2
-    \end{array}
-    \right]
-\label{eq:PAT}
-$$`
-where :math:`$d_x$`, :math:`$d_y$` and :math:`$d_z$` are the
-distances along the the :math:`$X$`, :math:`$Y$` and :math:`$Z$`
-axes, respectively, from the local center of mass to the global
-center of mass. Finally, the local translated and rotated moments
-of inertia are summed to give the total moment of inertia of the
-rider by
-:math:`$$\mathbf{I}_{\mathrm{B}r}=\sum{\mathbf{I}^*_i}=\left[\begin{array}{ccc}8.00&0&-1.93\\0&8.07&0\\-1.93&0&2.36\end{array}\right]\mathrm{kg\ m}^2\textrm{.}
-\label{eq:sumInertia}
-$$`
+
+.. math::
+   :label: eqCoM
+
+   \mathbf{r}_{\mathrm{B}r}=
+   \frac{\sum{m_i\mathbf{r}_i}}{m_{\mathrm{B}r}}=
+   \left[0.291\quad0\quad-1.109\right]\mathrm{m}
+
+where :math:`\mathbf{r}_i` is the position vector to the centroid of each
+segment and :math:`m_i` is the mass of each segment. The local moments of
+inertia of each segment are determined using the ideal definitions of inertia
+for each segment type (Table tabLocInertia). The width of the cuboid
+representing the torso :math:`l_y` is defined by the shoulder width and upper
+arm circumference.
+
+.. math::
+   :label: eqCuboidWidth
+
+   l_y=l_{ss}-\frac{c_{ua}}{\pi}
+
+The cuboid thickness was estimated using the chest circumference measurement
+and assuming that the cross section of the chest is similar to a stadium shape.
+
+.. math::
+   :label: eqCuboidThick
+
+   l_x=\frac{c_{ch}-2l_y}{\pi-2}
+
+The local :math:`\hat{\mathbf{z}}_i` unit vector for the segments was defined
+along the line connecting the associated grid points from the lower numbered
+grid point to the higher numbered grid point. The local unit vector in the
+:math:`y` direction was set equal to the global :math:`\hat{\mathbf{Y}}` unit
+vector with the :math:`\hat{\mathbf{x}}_i` unit vector following from the right
+hand rule. The rotation matrix needed to rotate each of the moments of inertia
+to the global reference frame can be calculated by dotting the global unit
+vectors :math:`\hat{\mathbf{X}}`, :math:`\hat{\mathbf{Y}}`,
+:math:`\hat{\mathbf{Z}}` with the local unit vectors
+:math:`\hat{\mathbf{x}}_i`, :math:`\hat{\mathbf{y}}_i`,
+:math:`\hat{\mathbf{z}}_i` for each segment.
+
+.. math::
+   :label: eqRotMat2
+
+   \mathbf{R}_i=
+   \left[
+   \begin{array}{ccc}
+     \hat{\mathbf{X}}\cdot\hat{\mathbf{x}}_i &
+     \hat{\mathbf{X}}\cdot\hat{\mathbf{y}}_i &
+     \hat{\mathbf{X}}\cdot\hat{\mathbf{z}}_i\\
+     \hat{\mathbf{Y}}\cdot\hat{\mathbf{x}}_i &
+     \hat{\mathbf{Y}}\cdot\hat{\mathbf{y}}_i &
+     \hat{\mathbf{Y}}\cdot\hat{\mathbf{z}}_i\\
+     \hat{\mathbf{Z}}\cdot\hat{\mathbf{x}}_i &
+     \hat{\mathbf{Z}}\cdot\hat{\mathbf{y}}_i &
+     \hat{\mathbf{Z}}\cdot\hat{\mathbf{z}}_i\\
+   \end{array}
+   \right]
+
+The local inertia matrices are then rotated to the global reference frame with
+
+.. math::
+   :label: eq:RotInertia}
+
+   \mathbf{I}_i=\mathbf{R}_i\mathbf{J}_i\mathbf{R}^T_i\textrm{.}
+
+The local moments of inertia can then be translated to the center of mass of
+the entire body using the parallel axis theorem
+
+.. math::
+   :label: eqPAT
+
+   \mathbf{I}^*_i=\mathbf{I}_i+m_i
+   \left[
+   \begin{array}{ccc}
+     d_y^2+d_z^2 & -d_xd_y & -d_xd_z\\
+     -d_xd_y & d_z^2+d_x^2 & -d_yd_z\\
+     -d_xd_z & -d_yd_z & d_x^2+d_y^2
+   \end{array}
+   \right]
+
+where :math:`d_x`, :math:`d_y` and :math:`d_z` are the distances along the the
+:math:`X`, :math:`Y` and :math:`Z` axes, respectively, from the local center of
+mass to the global center of mass. Finally, the local translated and rotated
+moments of inertia are summed to give the total moment of inertia of the rider
+by
+
+.. math::
+   :label:eqSumInertia
+
+   \mathbf{I}_{\mathrm{B}r}=
+   \sum{\mathbf{I}^*_i}=
+   \left[
+   \begin{array}{ccc}
+      8.00 & 0 & -1.93\\
+      0 & 8.07 & 0\\
+      -1.93 & 0 & 2.36
+   \end{array}
+   \right]
+   \mathrm{kg\ m}^2\textrm{.}
+
+The results of measuring three riders are presented in
+:ref:`tabMooreRiderParameters`.
 
 Yeadon method
 -------------
 
-The Yeadon human inertial model was developed for estimating the inertial
-parameters needed to describe a human model for complex gymnasitic manuevers.
-It is essentially a more advanced and accurate method than the one presented.
-There are 95 geometrical measurements of the human and a single mass
-measurement for scaling the body part densities. Once the 
+The [Yeadon1990]_ human inertial model was developed for estimating the
+inertial parameters needed to describe a human model for complex gymnasitic
+manuevers.  It is essentially a more advanced and accurate method than the one
+just presented.  There are 95 geometrical measurements of the human and a
+single mass measurement for scaling the body part densities. Yeadon makes use
+of stadium solids and a single semi-ellipse to more accurately model the human
+geometry. It does have at least two deficiences: the fact that much detail is
+taken for body bparts that have less inertia (i.e. the hands/feet) and at large
+configuration angles for some joints, the inertia is poorly modeled (e.g. the
+butt dissappears when in a seated position). Refer to [Yeadon1990]_ for a
+complete description.
 
+Once the inertia of each segment in the Yeadon model is computed, the joint
+angles must be set. We set the somersault angle to match the forward lean angle
+as described in the previous section. We then measure eight additional bicycle
+dimensions to assist in the configuration of the rider. They are as follows:
 
-PARAMETER TABLES
+:math:`h_{bb}`, Bottom Bracket Height
+   The distance from the ground to the bottom bracket when the bicycle is in
+   the nominal configuration.
+:math:`l_{cs}`, Chain stay length
+   Not the true chain stay length, but the distance from the center of the
+   bottom bracket to the center of the rear wheel.
+:math:`l_{sp}`, Seat post length
+   The distance from the intersection of a horizontal top tube and the seat
+   tube to the top of the seat. Measured along the center line of the seat
+   post.
+:math:`l_{st}`, Seat tube length
+   The distance from the bottom bracket to the point at which a horizontal top
+   tube would intersect the seat tube.
+:math:`\lambda_{st}`, Seat tube angle
+   The acute angle between the ground and the seat tube.
+:math:`w_{hb}`, Handlebar width
+   The lateral distanc between the points the hands hold the handlebars.
+:math:`l_{hbR}`, Rear hub to handlebar.
+   The distance from the center of the rear hub to the point on the handlebar
+   where the hand grips.
+:math:`l_{hbF}`, Front hub to handlebar.
+   The distance from the center of the front hub to the point on the handlebar
+   where the hand grips.
+
+The thigh and knee elevation angles are set such that the center of the heel
+level is aligned with the bottom bracket axis. The elbow elevation angle is set
+such that the distance from the shoulder to the knuckle is equal to the
+distance from the shoulder to the handlebar grip point. The upper arms'
+elevation and abduction angles are then set such that the knuckle level is at
+the handlebar point. The shoulder rotation is set to zero.
+
+Bicycle-Rider Parameters
+========================
+
+Once both the bicycle and rider parameters are known, the parameter for various
+systems can be extracted. The simplest is assuming that the rider is rigidly
+attached to the frame. The parallel axis thereom allows one to calculate the
+combined inertia of the bicycle frame and the rigid rider. Both of the rider
+formualtions also allow one to segement the body for more complex rider models
+with mutiple degrees of freedom. A the inertia for a leaning rider's upper body
+can be determined separately and the legs can be fixed the bicyle frame. We
+make use of this for the different rider biomechanical models presented in
+Chapter :ref:`modelextensions`.
+
+Software Implementation
+=======================
+
+These methods have been implemented in two open source software package written
+in the python language, called BicycleParameters and Yeadon. It allows one to
+measure all of the raw measurements as decribed in both the Bicycle and Yeadon
+parameter sections, provide the values, with uncertainties, and it computes the
+parameters for the Whipple Bicycle model.
+
+.. _secPartables:
+
+Parameter Tables
 ================
 
-(sec:partables) The tabulated values for the both the physical
-parameters and the canonical matrix coefficients are shown in the
-following four tables. The uncertainties in the estimations of both
-the parameters and coefficients are also shown for the bicycle
-without a rider.
+The tabulated values for the both the raw measurements and the physical
+parameters are given in the following tables.
 
-        {The parameters for the eight bicycles with uncertainties in the
-estimations.}{../../../tables/Bike/Parameters/MasterParTable.tex}(tab:bicyclePar)
-
-
-        {The canonical matrix coefficients for the eight bicycles with the
-uncertainty in the estimations.}{../../../tables/Bike/Canonical/MasterCanTable.tex}(tab:bicycleCan)
-
-
-        {The parameters for the eight bicycles with the same rigid rider.}{../../../tables/BikeRider/Parameters/MasterParTable.tex}(tab:bicycleRiderPar)
-
-
-        {The canonical matrix coefficients for the eight bicycles with the
-rigid rider.}{../../../tables/BikeRider/Canonical/MasterCanTable.tex}(tab:bicycleRiderCan)
-
++----------------------+-----------------------+------------------------+----------------------------+
+|                      | Pista                 | Browser                | Yellow                     |
++======================+===========+===========+=============+==========+================+===========+
+| :math:`l_{hbR}`      | NA        | NA        | 0.9213      | NA       | 1.145          | NA        |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`T^c_{B1}`     | 1.639885  | 0.000006  | 1.717307    | 0.000005 | 1.71695        | 0.00001   |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`T^c_{F1}`     | 1.451154  | 0.000005  | 1.481127    | 0.000007 | 1.49847        | 0.00002   |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`T^c_{H1}`     | 1.392606  | 0.000002  | 1.601851    | 0.000007 | 1.518206       | 0.000008  |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`T^c_{R1}`     | 1.395046  | 0.000004  | 1.361090    | 0.000004 | 1.40931        | 0.00002   |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`T^t_{B1}`     | 1.26420   | 0.00001   | 2.09957     | 0.00008  | 1.19029        | 0.00002   |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`T^t_{B2}`     | 1.501279  | 0.000007  | 2.37672     | 0.00002  | 1.200785       | 0.000006  |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`T^t_{B3}`     | 1.492970  | 0.000005  | 1.83977     | 0.00001  | 1.282136       | 0.000008  |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`T^t_{F1}`     | 0.6232453 | 0.0000006 | 0.787577    | 0.000001 | 0.773040       | 0.000002  |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`T^t_{H1}`     | 0.776458  | 0.000001  | 1.368796    | 0.000006 | 1.012698       | 0.000003  |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`T^t_{H2}`     | 0.830610  | 0.000003  | 1.295272    | 0.000006 | 0.948609       | 0.000002  |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`T^t_{H3}`     | 0.5250995 | 0.0000005 | 0.760951    | 0.000003 | 0.4579289      | 0.0000006 |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`T^t_{P1}`     | 1.893993  | 0.000006  | 1.893993    | 0.000006 | 1.893993       | 0.000006  |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`T^t_{R1}`     | 0.622565  | 0.000001  | 0.796565    | 0.000001 | 0.784395       | 0.000001  |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`a_{B1}`       | 0.329     | 0.003     | 0.098       | 0.003    | 0.220          | 0.003     |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`a_{B2}`       | 0.293     | 0.003     | 0.169       | 0.003    | 0.000          | 0.003     |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`a_{B3}`       | -0.267    | 0.003     | -0.294      | 0.003    | -0.379         | 0.003     |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`a_{H1}`       | 0.337     | 0.003     | 0.474       | 0.003    | 0.468          | 0.003     |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`a_{H2}`       | 0.400     | 0.003     | 0.383       | 0.003    | 0.396          | 0.003     |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`a_{H3}`       | -0.063    | 0.003     | 0.215       | 0.003    | 0.015          | 0.003     |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`\alpha_{B1}`  | 120.2     | 0.2       | 3.4         | 0.2      | 139.5          | 0.2       |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`\alpha_{B2}`  | 40.7      | 0.2       | 138.7       | 0.2      | 345.4          | 0.2       |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`\alpha_{B3}`  | 215.9     | 0.2       | 229.8       | 0.2      | 215.9          | 0.2       |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`\alpha_{H1}`  | 38.8      | 0.2       | 346.7       | 0.2      | 0.3            | 0.2       |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`\alpha_{H2}`  | 12.4      | 0.2       | 28.1        | 0.2      | 32.0           | 0.2       |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`\alpha_{H3}`  | 102.2     | 0.2       | 287.0       | 0.2      | 87.9           | 0.2       |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`d_F`          | 29.37     | 0.01      | 28.06       | 0.01     | 27.93          | 0.01      |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`d_P`          | 0.0300    | 0.0001    | 0.0300      | 0.0001   | 0.0300         | 0.0001    |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`d_R`          | 29.21     | 0.01      | 27.85       | 0.01     | 27.88          | 0.01      |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`f`            | 0.032     | 0.001     | 0.070       | 0.001    | 0.057          | 0.001     |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`g`            | 9.81      | 0.01      | 9.81        | 0.01     | 9.81           | 0.01      |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`\gamma`       | 74.2      | 0.2       | 67.1        | 0.2      | 72.7           | 0.2       |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`h_{bb}`       | NA        | NA        | 0.295       | NA       | 0.276580359362 | NA        |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`l_F`          | 0.297     | 0.001     | 0.293       | 0.001    | 0.304          | 0.001     |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`l_P`          | 1.050     | 0.001     | 1.050       | 0.001    | 1.050          | 0.001     |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`l_R`          | 0.297     | 0.001     | 0.293       | 0.001    | 0.302          | 0.001     |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`\lambda_{st}` | NA        | NA        | 1.195550538 | NA       | 1.2653637077   | NA        |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`l_cs`         | NA        | NA        | 0.46        | NA       | 0.45           | NA        |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`l_{sp}`       | NA        | NA        | 0.24        | NA       | 0.21           | NA        |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`l_{st}`       | NA        | NA        | 0.53        | NA       | 0.515          | NA        |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`m_B`          | 4.49      | 0.02      | 9.86        | 0.02     | 3.31           | 0.02      |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`m_F`          | 1.58      | 0.02      | 2.02        | 0.02     | 1.90           | 0.02      |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`m_H`          | 2.27      | 0.02      | 3.22        | 0.02     | 2.45           | 0.02      |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`m_P`          | 5.56      | 0.02      | 5.56        | 0.02     | 5.56           | 0.02      |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`m_R`          | 1.38      | 0.02      | 3.11        | 0.02     | 2.57           | 0.02      |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`n_F`          | 14.0      | NA        | 13.0        | NA       | 13.0           | NA        |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`n_R`          | 14.0      | NA        | 13.0        | NA       | 13.0           | NA        |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`w`            | 0.989     | 0.002     | 1.121       | 0.002    | 1.089          | 0.002     |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+| :math:`w_{hb}`       | NA        | NA        | 0.58        | NA       | 0.24           | NA        |
++----------------------+-----------+-----------+-------------+----------+----------------+-----------+

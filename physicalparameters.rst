@@ -2,6 +2,9 @@
 Physical Parameters
 ===================
 
+.. contents::
+   :depth: 4
+
 Preface
 =======
 
@@ -53,9 +56,9 @@ Roland and Massing :ref:`Roland1971` measured the physical parameters of a
 bicycle in much the same way as is presented, including calculations of
 uncertainty from the indirect measurement techniques. Patterson
 :ref:`Patterson2004` used a swing to measure the inertia of recumbent bicycles
-with a rider. :ref:`Connors2009` and :ref:`Stevens2009` used a 3D CAD package
-to estimate the parameters. ref:`Escalona2010` measured a bicycle class in
-Spain.
+with a rider. :ref:`Connors2009` and :ref:`Stevens2009` used a computer aided
+design package to estimate the parameters. ref:`Escalona2010` measured a
+bicycle for his bicycle dynamics class in Spain.
 
 Here I document the indirect measurement of ten real bicycles' physical
 parameters. We improve upon these methods by both increasing and reporting the
@@ -128,6 +131,7 @@ realtionships. The wheel radii are defined the same, but the remaining geometry
 is calculated with:
 
 .. math::
+   :label: eqGeometryConversion
 
    d_1 = \operatorname{cos}(\lambda) (c + w - r_R * \operatorname{tan}(\lambda))
 
@@ -139,6 +143,7 @@ is calculated with:
 The mass center locations are as follows:
 
 .. math::
+   :label: eqMassCenterConversion
 
    l_1 = (x_B  \operatorname{cos}(\lambda) - z_B  \operatorname{sin}(\lambda) -
    r_R  \operatorname{sin}(\lambda))
@@ -155,18 +160,20 @@ The mass center locations are as follows:
 The masses are equivalent:
 
 .. math::
+   :label: eqMassConversion
 
-   m_c = m_B
+   m_C = m_B
 
-   m_d = m_R
+   m_D = m_R
 
-   m_e = m_H
+   m_E = m_H
 
-   m_f = m_F
+   m_F = m_F
 
 The moments of inertia of the wheels are also equivalent:
 
 .. math::
+   :label: eqWheelInertiaConversion
 
      I_D =
      \begin{bmatrix}
@@ -198,15 +205,18 @@ The moments and products of inertia for the frame and fork require the
 direction cosine matrix with respect to rotation through :math:`\lambda`.
 
 .. math::
+   :label: eqConversionRotation
 
    R =
    \begin{bmatrix}
-     ca & 0. & -sa\\
+     c\lambda & 0. & -s\lambda\\
      0. & 1. & 0.\\
-     sa & 0. & ca
+     s\lambda & 0. & c\lambda
    \end{bmatrix}
 
 .. math::
+   :label: eqFrameInertiaConversion
+
     I_B =
     \begin{bmatrix}
       I_{Bxx} & 0 & I_{Bxz}\\
@@ -217,15 +227,16 @@ direction cosine matrix with respect to rotation through :math:`\lambda`.
     I_C =  R I_B R^T
 
 .. math::
-    I_H =
-    \begin{bmatrix}
-      I_{Hxx} & 0 & I_{Hxz}\\
-      0 & I_{Hyy} & 0\\
-      I_{Hxz} & 0 & I_{Hzz}
-    \end{bmatrix}
+   :label: eqForkInertiaConversion
 
-    I_E =  R I_H R^T
+   I_H =
+   \begin{bmatrix}
+     I_{Hxx} & 0 & I_{Hxz}\\
+     0 & I_{Hyy} & 0\\
+     I_{Hxz} & 0 & I_{Hzz}
+   \end{bmatrix}
 
+   I_E =  R I_H R^T
 
 Bicycle Descriptions
 --------------------
@@ -238,11 +249,14 @@ average handling. We measured an instrumented version of the Browser that was
 used in the experiments described in Chapter :ref:`delftbicycle`. The Fisher
 and the Pista were chosen to provide some variety, a mountain and road bike.
 The yellow bike is used to demonstrate bicycle stability and the forked is
-reversed to provide better stability when perturbed with no rider. The Davis
+reversed to provide better stability when perturbed with no rider.The Davis
 instrumented bicycle is an instrumented bicycle described in Chapter
 :ref:`davisbicycle` and we measured the frame in configurations for different
 rider seating positions. The child's bicycle has the GyroWheel product
-installed in the front wheel.
+installed in the front wheel. The first six of these bicycles were measured in
+Delft and will hereafter be referred to as the *Delft Bicycles*. The remaing
+two bicycles were measure in Davis and will be referred to as the *Davis
+Bicycles*.
 
 .. list-table:: Bicycles
 
@@ -267,17 +281,19 @@ installed in the front wheel.
    * - .. image:: figures/physicalparameters/davisBicycle_sub.jpg
      - .. image:: figures/physicalparameters/gyroBicycle_sub.jpg
 
-.. todo:: add the gyro bike, davis bike and pictures of the other two bicycles
+.. todo:: switch out the pista picture for the better one and take a better
+   of the davis bike
 
-ACCURACY
+Accuracy
 --------
 
-I took more care to improve and report the accuracy of the measurements of
-the parameters. Following the footsteps of :ref:`Roland1971` I used error
-propagation theory to calculate accuracy of the 25 benchmark parameters. We
-start by estimating the standard deviation of the actual measurements taken. If
-:math:`x` is a parameter and is a function of the measurements,
-:math:`u,v,\ldots`, then :math:`x` is a random variable defined as
+I have attempted to report the accuracy of the measurements of the parameters.
+Following the footsteps of :ref:`Roland1971` I used error propagation theory to
+calculate accuracy of the 25 benchmark parameters. I began by estimating the
+standard deviation of the actual measurements taken, see Section
+:ref:`secMeasuredParameters`. If :math:`x` is a parameter and is a function of
+the measurements, :math:`u,v,\ldots`, which are Gaussian random variables then
+:math:`x` is also a Gaussian random variable defined as
 :math:`x=f(u,v,\ldots)`. The sample variance of :math:`x` is defined as
 
 .. math::
@@ -304,39 +320,44 @@ Using the definitions for variance and covariance, Equation
 If :math:`u` and :math:`v` are uncorrelated then :math:`s_{uv}=0`. Most of the
 calculations hereafter have uncorrelated variables but a few do not and the
 covariance has to be taken into account. Equation :eq:`variance` can be used to
-calculate the variance of all types of functions. Simple addition of two random
-variables may be the most basic example:
+calculate the variance of all types of functions. I made use of the Python
+package `uncertainties <http://pypi.python.org/pypi/uncertainties/>`_ to
+simplify the book keeping of the correlations and variance calculations
+[Lebigot2001]_, thus some of the equations for the error are not shown in the
+following sections.
 
-.. math::
-   :label: addition
-
-   x =  au + bv\\
-   s_x = a^2s_u^2 + b^2s_v^2
+.. _secGeometry::
 
 Geometry
 --------
 
-First attempts at measuring the geometry focused on the benchmark parameters:
-trail, wheelbase, and steer axis tilt, but I also present an alternative method
-for the geometry that attempts to measure the distances in my model derivation
-which improves the accuracy of the parameters. I assumed that the frame did not
-flex and that the wheel radii do not change with rider weight.
+The geometry measurements of the Delft bicycles focused on measuring the
+benchmark parameters: trail, wheelbase, and steer axis tilt as directly as
+possible. I also present an alternative method for the geometry used with the
+Davis bicycles that attempts to measure the distances in my model derivation,
+Chapter :ref:`eom`, which improves the accuracy of the parameters. Keep in mind,
+that I assumed that the frame did not flex and that the wheel radii do not
+change with rider weight when taking geometric measurments.
+
+.. _secWheelRadii:
 
 Wheel Radii
 ~~~~~~~~~~~
 
+.. todo:: check mass of me in Davis and the length of the Davis tape measure
+
 The radii of the front :math:`r_\mathrm{F}` and rear :math:`r_\mathrm{R}`
 wheels were estimated by measuring the linear distance traversed along the
-ground through either 13 or 14 rotations of the wheel. Each traversal was
+ground through either at least ten rotations of the wheel. Each traversal was
 measured separately and the measurements were taken with rider seated on the
-bicycle, except for the gyro bicycle which had no rider (72kg rider for the
-Delft bikes and 82kg for the Davis bike...I gained some weight drinking all
-that beer in the Netherlands). A 30 meter tape measure (resolution: 2mm) was
-pulled tight and taped on a flat level smooth floor. The tire was marked with
-chalk and aligned with the tape measure Fig. :ref:`figTireChalk`. The accuracy
-of the distance measurement is approximately :math:`\pm0.01` meter. The tires
-were pumped to the recommended inflation pressure before the measurements. The
-wheel radius is calculated by
+bicycle, except for the gyro bicycle which had no rider. A 72kg rider sat on
+the Delft bicycles and 82kg on the Davis bike (I gained some weight drinking
+all that beer in the Netherlands!). A 30 meter tape measure (resolution: 2mm)
+was pulled tight and taped on a flat level smooth floor. The tire was marked
+and aligned with the tape measure Figure :ref:`figTireChalk`. The accuracy of
+the distance measurement is approximately :math:`\pm0.01` meter. The tires were
+pumped to the recommended inflation pressure before the measurements. The wheel
+radius is calculated by
 
 .. math::
     :label: wheelRadius
@@ -345,25 +366,34 @@ wheel radius is calculated by
     \frac{d}{2\pi n}
     \pm\left(\frac{\sigma_d}{2\pi n}\right)
 
+where :math:`r` is the wheel radius, :math:`d`, is the travesal distance,
+:math:`n`, is the number of rotations and :math:`sigma` is the respective
+standard deviation of the subscripted variable. I use subscripts :math:`F` and
+:math:`R` from front and rear wheels, respectively, in the measurment tables in
+Section :ref:`secMeasuredParameters`.
+
 .. _figTireChalk:
 
 .. figure:: figures/physicalparameters/tireChalk.jpg
    :align: center
+   :width: 4in
+
+   figTireChalk
 
    Wheel and tire with chalk mark aligned to the tape measure.
 
-   One
-
 .. _secHeadtube:
 
-Head tube angle
+Head Tube Angle
 ~~~~~~~~~~~~~~~
 
 For the first six bicycles the head tube angle was measured directly using an
-electronic level with a :math:`\pm0.2^{\circ}` accuracy. The bicycle frame was
-fixed perpendicular to the ground, the steering angle was set to the nominal,
-tire pressures were at recommended levels and the bicycle was unloaded. The
-steer axis tilt :math:`\lambda` is the complement to the head tube angle.
+electronic level. The different different accuracies of the models used in
+Delft and Davis are reflected in the measurment tables. The bicycle frame was
+fixed perpendicular to the ground, the steering angle was set to the nominal
+position, tire pressures were at recommended levels and the bicycle was
+unloaded. The steer axis tilt :math:`\lambda` is the complement to the head
+tube angle, :math:`\gamma`.
 
 .. math::
    :label: eqHeadTubeAngle
@@ -376,17 +406,24 @@ steer axis tilt :math:`\lambda` is the complement to the head tube angle.
 
 .. figure:: figures/physicalparameters/headtube.jpg
    :align: center
+   :width: 4in
+
+   figHeadtube
+
+   The digital level used to measure headtube angle.
+
+.. _secTrail:
 
 Trail
 ~~~~~
 
 Trail is difficult to measure directly due to the fact that the tire has a
-contact patch and there is no distinct point to measure to. I instead chose to
-measure the fork offset. The fork offset was measured by clamping the steer
-tube of the front fork into a v-block on a flat table. A ruler was used to
-measure the height of the center of the head tube and the height of the center
-of the axle axis. The fork blades were aligned such that the axle axis was
-parallel to the table surface.
+contact patch and there is no distinct contact point. I instead chose to
+measure the fork offset, :math:`f_o`. The fork offset was measured by clamping
+the steer tube of the front fork into a v-block on a flat table. A ruler was
+used to measure the height of the center of the head tube and the height of the
+center of the axle axis. The fork blades were aligned such that the axle axis
+was parallel to the table surface.
 
 .. math::
    :label: eqTrail
@@ -401,38 +438,46 @@ parallel to the table surface.
    \sigma_{\lambda}^{2}\left(r_\mathrm{F}\sec^2{\lambda} -
    f_o\sec{\lambda}\tan{\lambda}\right)^2
 
+.. todo:: add photo of fork offset measurement from the davis bike
+
+.. _secWheelbase:
+
 Wheelbase
 ~~~~~~~~~
 
-We measured the wheelbase with the bicycle in nominal configuration described
+I measured the wheelbase with the bicycle in nominal configuration described
 in Section :ref:`secHeadtube`. We used a tape measure to measure the distance
-from one wheel axle center to the other with a 0.002 m accuracy.
+from one wheel axle center to the other.
 
 Alternative Geometry Method
 ---------------------------
 
-Our forumulation of the geometry in the Whipple bicycle model is different that
-the :ref:`Meijaard2007` definition. These can almost be measured directly
-giving a more accurate estimate. The bicycle frame is set on a granite
-measurment table such that the head tube is in in a v-block and parallel to the
-table surface and the bicycle frame's rear axle is above the headtube. The is
-fork rotated in the headtube such that the fork blades curve upwards. Two dummy
+.. todo:: add photo or diagram of the bicycle in the measurement position
+
+The geometry for the Whipple bicycle model presented in Chapter:`eom` can
+almost be measured directly. The bicycle frame is set on a granite measurment
+table such that the head tube is in in a v-block and parallel to the table
+surface and the bicycle frame's rear axle is above the headtube. The is fork
+rotated in the headtube such that the fork blades curve upwards. Two dummy
 axles are fit into the front and rear dropouts and the axles are ensured to be
-parrallel to the table surface. The height from the table surface to the top
-of each axle are recorded with a height gage and the diameters of the axles are
+parrallel to the table surface. The height from the table surface to the top of
+each axle are recorded with a height gage and the diameters of the axles are
 measured with a micrometer or caliper. These give direct measurments of the
-front and rear offsets, :math:`d_3` and :math:`d_1`. The outer distance between the
-two axles are then measured giving :math:`d_4`. :math:`d_2` can be computed
-with:
+front and rear offsets, :math:`d_3` and :math:`d_1`.  The outer distance
+between the two axles are then measured giving :math:`d_4`.  :math:`d_2` can be
+computed with:
+
+.. todo:: explain the variables in the tables associated with these
+   measurements
 
 .. math::
    :label: d2
 
    d_2 = \sqrt{d_4^2 - (d_1 - d_3)^2}
 
-
-If the :math:`r_F` does not equal :math:`r_R` then the steer axis tilt cannot
-be computed analytically as the relation holds:
+The traditional [Meijaard2007]_ parameters can then be calculated. If the
+:math:`r_F` does not equal :math:`r_R` then the steer axis tilt cannot be
+computed analytically as the relation holds:
 
 .. math::
    :label: eqLambda
@@ -445,7 +490,7 @@ It is trivial to find the solution numerically. If :math:`r_F=r_R`,
 .. math::
    :label: lambdaEqualRadii
 
-   \lambda = \operatorname{arctan}\right(\frac{d_2}{d_1 + d_3}\left)
+   \lambda = arctan\right(\frac{d_2}{d_1 + d_3}\left)
 
 Wheelbase is:
 
@@ -454,23 +499,27 @@ Wheelbase is:
 
     w = (d_1 + d_3) \operatorname{cos}(\lambda) + d_2 \operatorname{sin}(\lambda)
 
-Trail is then computed with Equation :eq:`eqTrail`, realizing :math:`f_o = d_3`:
+and trail is then computed with Equation :eq:`eqTrail`, realizing :math:`f_o = d_3`:
 
 .. math::
    :label: eqTrailD3
 
     c = \frac{r_F \operatorname{sin}(\lambda) - d_3}{\operatorname{cos}(\lambda)}
 
+.. todo:: are the previous two equations just repeats of the conversions above
+
+.. _secMass:
+
 Mass
 ----
 
-For the first six bicycles, each of the four bicycle parts were measured using
-a Molen 20 kilogram scale with a resolution of 20 grams. The accuracy was
+For the Delft bicycles, each of the four bicycle parts were measured using a
+Molen 20 kilogram scale with a resolution of 20 grams. The accuracy was
 conservatively assumed to also be :math:`\pm20` grams. Also, the total mass was
 measured using a spring scale with a resolution of 100 grams. The total mass
 was only used for comparison purposes, as it was not very accurate. The mass of
-the parts of the Davis Instrumented Bicycle and the Gyro Bicycle were measured
-with a digital scale with a resolution of 0.01 kg.
+the parts of the Davis bicycles were measured with a digital scale with a
+resolution of 0.01 kg.
 
 .. todo:: list the details of the scale in Hull's lab
 
@@ -478,20 +527,31 @@ with a digital scale with a resolution of 0.01 kg.
 
 .. figure:: figures/physicalparameters/massScale.jpg
    :align: center
+   :width: 3in
 
-   The scale used to measure the mass of each bicycle component.
+   figMassScale
 
-CENTER OF MASS
+   The scale used to measure the mass of each Delft bicycles' components.
+
+.. _secCenterOfMass:
+
+Center of Mass
 --------------
 
-WHEELS
+.. _secWheelCoM:
+
+Wheels
 ~~~~~~
 
 The centers of mass of the wheels were assumed to be at their geometrical
-centers to comply with the Whipple model.
+centers which complies with the Whipple model.
 
-REAR FRAME
-----------
+.. todo:: mention the gyro wheel flywheel
+
+.. _secRearFrameCoM:
+
+Rear Frame
+~~~~~~~~~~
 
 The rear frame bicycle configuration was hung in at least three orientations
 through the lateral mid-plane. I assumed that the frame was laterally
@@ -511,15 +571,21 @@ reference frame.
 
 .. _figAngles:
 
-.. figure:: figures/physicalparameters/angles.pdf
+.. figure:: figures/physicalparameters/angles.svg
+   :align: center
+
+   figAngles
 
    Pictorial description of the angles and dimensions that related the nominal
-   bicycle reference frame :math:`XYZ\_B` with the pendulum reference frame
-   :math:`XYZ\_P`.
+   bicycle reference frame :math:`XYZ_B` with the pendulum reference frame
+   :math:`XYZ_P`.
 
 .. _figTriangle:
 
-.. figure:: figures/physicalparameters/triangle.pdf
+.. figure:: figures/physicalparameters/triangle.svg
+   :align: center
+
+   figTriangle
 
    Exaggerated intersection of the three pendulum axes and the location of the
    center of mass.
@@ -527,6 +593,10 @@ reference frame.
 .. _figLevel:
 
 .. figure:: figures/physicalparameters/YellowFrameTorsionalThird.jpg
+   :align: center
+   :width: 2.75in
+
+   figLevel
 
    The digital level was mounted to a straight edge aligned with the headtube of
    the bicycle frame. This was done without allowing the straight edge to touch
@@ -537,6 +607,10 @@ reference frame.
 .. _figPendDist:
 
 .. figure:: figures/physicalparameters/pendDist.jpg
+   :align: center
+   :width: 2.75in
+
+   figPendDist
 
    Measuring the distance from the pendulum axis to the rear wheel axle using
    level ruler.
@@ -627,9 +701,13 @@ the three intersection points.
     \right]
 
 .. math::
+   :label: eqXCenter
+
    x_\mathrm{B} = \frac{x_a + x_b + x_c}{3}
 
 .. math::
+   :label: eqZCenter
+
    z_\mathrm{B} = \frac{z_a + z_b + z_c}{3}
 
 Alternatively, the three lines can be treated as an over determined linear
@@ -663,8 +741,10 @@ solution is not the same as the triangle centroid method.
 
 The solution with the higher accuracy is the preferred one.
 
+.. _secForkCoM
+
 Fork and Handlebar
-------------------
+~~~~~~~~~~~~~~~~~~
 
 The fork and handlebars are a bit trickier to hang in three
 different orientations. Typically two angles can be obtained by
@@ -713,10 +793,14 @@ care was taken to calibrate the rate gyro, maintain a constant power source
 concerned with the period. The raw voltage signal was used to determine the
 period of oscillation which is needed for the moment of inertia calculations.
 
+.. todo:: This plot needs to be output at an appopriate size and font
+
 .. _figVoltage:
 
 .. figure:: figures/physicalparameters/BrowserFrameCompoundFirst1.png
    :align: center
+
+   figVoltage
 
    Example of the raw voltage data taken during a 30 second measurement of the
    oscillation of one of the components.
@@ -726,7 +810,7 @@ squares method for each experiment to determine the quantities :math:`A`,
 :math:`B`, :math:`C`, :math:`\zeta`, and :math:`\omega`.
 
 .. math::
-   :label: eqnDecayOs
+   :label: eqDecayOs
 
    f(t) = A + e^{-\zeta\omega t}\left[B\sin{\sqrt{1-\zeta^2}\omega t} +
    C\cos{\sqrt{1-\zeta^2}\omega t}\right]
@@ -734,22 +818,27 @@ squares method for each experiment to determine the quantities :math:`A`,
 Most of the data fit the damped oscillation function well with very light (and
 ignorable) damping. There were several instances in the earlier Delft
 experiments of beating-like phenomena for some of the parts at particular
-orientations. Roland and Massing :ref:`Roland1971` also encountered this
-problem and used a bearing to prevent the torsional pendulum from swinging.
-Figure :ref:`figBeating` shows an example of the beating like phenomena. This
-was remedied in a similar fashion for the Davis measurements.
+orientations. Roland and Massing, [Roland1971]_, also encountered this problem
+and used a bearing to prevent the torsional pendulum from swinging.  Figure
+:ref:`figBeating` shows an example of the beating like phenomena. Too bad I
+hadn't found this before the Delft experiments. This was remedied in a similar
+fashion for the Davis measurements.
+
+.. todo:: This plot needs to be output at an appopriate size and font
 
 .. _figBeating:
 
 .. figure:: figures/physicalparameters/CrescendoForkTorsionalFirst2.png
    :align: center
 
+   figBeating
+
    An example of the beating-like phenomena observed on 5\\% of the
    experiments.
 
 The physical phenomenon observed corresponding to data sets such as these
-occured when the bicycle frame or fork was perturbed torsionally. After set into
-motion the torsional motion dampened and a longitudinal swinging motion
+occured when the bicycle frame or fork was perturbed torsionally. After set
+into motion the torsional motion dampened and a longitudinal swinging motion
 increased. The motions alternated back and forth with neither ever reaching
 zero. The frequencies of these motions were very close to one another and it is
 not apparent how dissect the two. We explored fitting to a function such as
@@ -791,15 +880,17 @@ The covariance matrix of the fit function can be formed:
 
    \mathbf{U} = \sigma_y^2\mathbf{H}^{-1}
 
-where :math:`\mathbf{H}` is the Hessian _[Hubbard1989b].  :math:`\mathbf{U}` is
-a :math:`5\times5` matrix with the variances of each of the five fit parameters
-along the diagonal.  The variance of :math:`T` can be computed using the
-variance of :math:`\zeta` and :math:`\omega`. It is important to note that the
-uncertainties in the period are very low (:math:`<1e-4`), even for the fits
-with low :math:`r^2` values.
+where :math:`\mathbf{H}` is the Hessian [Hubbard1989b] of the fit function,
+:eq:`eqDecayOs`.  :math:`\mathbf{U}` is a :math:`5\times5` matrix with the
+variances of each of the five fit parameters along the diagonal.  The variance
+of :math:`T` can be computed using the variance of :math:`\zeta` and
+:math:`\omega`. It is important to note that the uncertainties in the period
+are very low (:math:`<1e-4`), even for the fits with low :math:`r^2` values.
+
+.. _secTorsionalPendulum:
 
 Torsional Pendulum
-------------------
+~~~~~~~~~~~~~~~~~~
 
 A torsional pendulum was used to measure all moments of inertia about axes in
 the laterally symmetric plane of each of the wheels, fork and frame. The
@@ -810,50 +901,57 @@ various lower clamps.
 
 .. figure:: figures/physicalparameters/fixture.jpg
    :align: center
+   :width: 2in
 
-   The rigid pendulum fixture mounted to a concrete column.
+   figFixture
 
-A 5 mm diameter, ~1 m long mild steel rod was used as the torsion spring. A
-lightweight, low relative moment of inertia clamp was constructed that could
-clamp the rim and the tire. The moments of inertia of the clamps were
-neglected. The wheel was hung freely such that the center of mass aligned with
-the torsional pendulum axis and then secured. The wheel was then perturbed and
-oscillated about the pendulum axis. The rate gyro was mounted on the clamp
-oriented along the pendulum axis.
+   The rigid pendulum fixture from the Delft experiments mounted to a concrete column.
+
+A mild steel rod was used as the torsion spring. A lightweight, low relative
+moment of inertia clamp was constructed that could clamp the rim and the tire.
+The moments of inertia of the clamps were neglected. The wheel was hung freely
+such that the center of mass aligned with the torsional pendulum axis and then
+secured. The wheel was then perturbed and oscillated about the pendulum axis.
+The rate gyro was mounted on the clamp oriented along the pendulum axis.
 
 The torsional pendulum was calibrated using a rod with known moment of inertia
 Figure :ref:`figRod`. A torsional pendulum almost identical to the one used in
-:ref:`Kooijman2006` was used to measure the average period
-:math:`\overline{T}_i` of oscillation of the rear frame at three different
-orientation angles :math:`\beta_i`, where :math:`i=1`, :math:`2`, :math:`3`, as
-shown in Figure :ref:`figTriangle`. The parts were perturbed lightly, around 1
-degree, and allowed to oscillate about the pendulum axis through several
-periods. This was repeated at least three times for each frame and the recorded
-periods were averaged.
+[Kooijman2006]_ was used to measure the average period :math:`\overline{T}_i`
+of oscillation of the rear frame at three different orientation angles
+:math:`\beta_i`, where :math:`i=1`, :math:`2`, :math:`3`, as shown in Figure
+:ref:`figTriangle`. The parts were perturbed lightly, around 1 degree, and
+allowed to oscillate about the pendulum axis through several periods. This was
+repeated at least three times for each frame and the recorded periods were
+averaged.
 
 .. _figRod:
 
 .. figure:: figures/physicalparameters/rod.jpg
    :align: center
+   :width: 2in
+
+   figRod
 
    The steel calibration rod. The moment of inertia of the rod,
-   :math:`I=\\frac{m}{12}(3r^2+l^2)`, can be used to estimate the stiffness of
-   the pendulum, :math:`k=\\frac{4I\\pi^2}{\\overline{T}^2}`, with
-   :math:`k=5.62\\pm0.02 \\frac{\\textrm{Nm}}{\\textrm{rad}}`.
+   :math:`I=\frac{m}{12}(3r^2+l^2)`, can be used to estimate the stiffness of
+   the pendulum, :math:`k=\frac{4I\pi^2}{\overline{T}^2}`, with
+   :math:`k=5.62\pm0.02 \frac{\textrm{Nm}}{\textrm{rad}}`.
+
+.. todo:: add a table with both of the calibration rods' properties
 
 
-WHEELS
-------
+Wheels
+~~~~~~
 
 Estimating the full inertia tensors of the wheels is less complex because the
-wheels are assumed symmetric about three orthogonal planes forcing all products of
-inertia to be zero. The :math:`I_{xx}=I_{zz}` moments of inertia were calculated
-by measuring the averaged period of oscillation about an axis in the
-:math:`XZ`-plane using the torsional pendulum setup and Equation :eq:`torPend`.
-The wheels are assumed to be laterally symmetric about any radial axis.
-Thus only two moments of inertia are required for the set of benchmark
-parameters. The moment of inertia about the axle was measured by hanging the
-wheel as a compound pendulum, Figure :ref:`figWheelIyy`. The wheel was hung on a
+wheels are assumed symmetric about three orthogonal planes forcing all products
+of inertia to be zero. The :math:`I_{xx}=I_{zz}` moments of inertia were
+calculated by measuring the averaged period of oscillation about an axis in the
+:math:`XZ`-plane using the torsional pendulum setup and Equation :eq:`eqTorPend`.
+The wheels are assumed to be laterally symmetric about any radial axis.  Thus
+only two moments of inertia are required for the set of benchmark parameters.
+The moment of inertia about the axle was measured by hanging the wheel as a
+compound pendulum, Figure :ref:`figWheelIyy`. The wheel was hung on a
 horizontal rod and perturbed to oscillate about the axis of the rod. The rate
 gyro was attached to the spokes near the hub and oriented mostly along the axle
 axis. The wheels for the Delft bicycles would rotate at the rod contact point
@@ -872,17 +970,29 @@ from:
    I_{\mathrm{R}yy} = \left(\frac{\bar{T}}{2\pi}\right)^2m_\mathrm{R}gl_\mathrm{R} -
     m_\mathrm{R}l^2
 
+.. todo:: add the equation for sigma
+
 .. _figFwheelTor:
 
 .. figure:: figures/physicalparameters/CrescendoFwheelTorsionalFirst.jpg
+   :align: center
+   :width: 2.75in
+
+   figFwheelTor
 
    The front wheel of the Crescendo hung as a torsional pendulum.
 
 .. _figWheelIyy:
 
 .. figure:: figures/physicalparameters/wheelIyy.jpg
+   :align: center
+   :width: 2.75in
+
+   figWheelIyy
 
    A wheel hung as a compound pendulum.
+
+.. todo:: add the equation for sigma
 
 The radial moment of inertia was measured by hanging the wheel as a torsional
 pendulum, Figure :ref:`figFwheelTor`. The wheel was hung freely such that the
@@ -895,9 +1005,8 @@ radial moment of inertia can can calculated as such:
 
    I_{xx} = \frac{k\bar{T}^2}{4\pi^2}
 
-
-FRAME
------
+Frame
+~~~~~
 
 At least three measurements were made to estimate the globally referenced
 moments and products of inertia (:math:`I_{xx}`, :math:`I_{xz}` and
@@ -913,10 +1022,10 @@ frame generally provide that the orientation angles were spread evenly at about
 the accuracy and was generally possible with standard diamond frame bicycles.
 
 Three moments of inertia :math:`J_{i}` about the pendulum axes were calculated
-using :eq:`eqTorPend`.
+using:
 
 .. math::
-   :label:eqTorPend
+   :label: eqTorPend
 
    J_i=\frac{k\overline{T}_i^2}{4\pi^2}
 
@@ -925,18 +1034,17 @@ assembly with reference to the benchmark coordinate system were calculated by
 formulating the relationship between inertial frames
 
 .. math::
-   :label:eqRotIn
+   :label: eqRotIn
 
    \mathbf{J}_i=\mathbf{R}_i\mathbf{IR}_i^T
 
-where :math:`\mathbf{J}_i` is the inertia tensor about the
-pendulum axes, :math:`\mathbf{I}`, is the inertia tensor in the
-global reference frame and :math:`\mathbf{R}` is the rotation
-matrix relating the two frames, Figure :ref:`figAngles`. The global inertia
-tensor is defined as
+where :math:`\mathbf{J}_i` is the inertia tensor about the pendulum axes,
+:math:`\mathbf{I}`, is the inertia tensor in the global reference frame and
+:math:`\mathbf{R}` is the rotation matrix relating the two frames, Figure
+:ref:`figAngles`. The global inertia tensor is defined as
 
 .. math::
-   :label:eqMoI
+   :label: eqMoI
 
    \mathbf{I}=
     \left[
@@ -955,7 +1063,7 @@ reduced to a :math:`2\times2` matrix where :math:`s_{\beta i}` and
 :math:`\cos{\beta_i}`, respectively.
 
 .. math::
-   :label:eqRotMat
+   :label: eqRotMat
 
    \mathbf{R}=
    \left[
@@ -969,14 +1077,14 @@ The first entry of :math:`\mathbf{J}_i` in Equation :eq:`eqRotIn` is the moment 
 inertia about the pendulum axis and is written explicitly as
 
 .. math::
-   :label:eqInRelComp
+   :label: eqInRelComp
 
    J_{i}=c^{2}_{\beta i}I_{xx}-2s_{\beta i}c_{\beta i}I_{xz}+s^{2}_{\beta i}I_{zz}\textrm{.}
 
 Similarly, calculating all three, or more, :math:`J_{i}` allows one to form
 
 .. math::
-   :label:eqInRel
+   :label: eqInRel
 
    \left[
     \begin{array}{c}
@@ -1015,18 +1123,26 @@ pendulum length.
 .. _figFrameCompound:
 
 .. figure:: figures/physicalparameters/YellowFrameCompoundFirst.jpg
+   :align: center
+   :width: 2in
 
-   Rear frame hung as a compound pendulum.
+   figFrameCompound
+
+   The yellow bicycle rear frame hung as a compound pendulum.
 
 .. _figForkCompound:
 
 .. figure:: figures/physicalparameters/BrowserInsForkCompoundFirst.jpg
+   :align: center
+   :width: 2in
+
+   figForkCompound
 
    Browser fork hung as a compound pendulum.
 
 
-FORK AND HANDLEBAR
-------------------
+Fork and handlebar
+~~~~~~~~~~~~~~~~~~
 
 The inertia of the fork and handlebar is calculated in the same way as the
 frame. The fork is hung as both a torsional pendulum, Figure
@@ -1039,13 +1155,19 @@ The torsional calculations follow equations :eq:`eqTorPend` through
 Equation :eq:`eqCompoundInertia`. The fork pendulum length is calculated using
 
 .. math::
+   :label: eqCompoundInertia
+
    l_H=\sqrt{(x_H-w)^2+(z_H+r_F)^2}
 
 .. _figStratosFork:
 
-.. figure:: figures/physicalparameters/stratosFork.jpg
+.. figure:: figures/physicalparameters/StratosForkTorsionalThird.jpg
+   :align: center
+   :width: 2.75in
 
-    The Stratos fork and handlebar assembly hung as a torsional pendulum.
+   figStratosFork
+
+   The Stratos fork and handlebar assembly hung as a torsional pendulum.
 
 Human Parameters
 ================
@@ -1054,34 +1176,34 @@ To properly model the bicycle rider system it is necessary to estimate the
 physical parameters of the bicycle rider. The measurement of the physical
 properties of a human is more difficult than for a bicycle because the human
 body parts are not as easily described as rigid bodes with defined joints and
-inflexible geometry.Human mass, center of mass and inertia properties have been
-measured and estimated in a multitude of ways.  Each method has its advantages
-and disadvantages. The inertia properties of a human are not as clearly defined
-as the bicycle, due to the human's daily varying mass, wobbly mass, flexibility
-etc. I approached the parameter estimation in an analytical fashion. Both
-methods that were used were based on estimating the inertial parameters from
-mass and geometry measurement along with a human body density estimate.
+inflexible geometry, daily varying mass, wobbly mass, etc.
 
-Many methods exist for estimating the geometry, centers of mass and moments of
-inertia of a human including cadaver measurements [Dempster1955]_,
-[Clauser1969]_, [Chandler1975]_, photogrammetry, ray scanning techniques
-[Zatsiorsky1983]_, [Zatsiorsky1990]_, water displacement [Park1999]_, and
-mathematical geometrical estimation of the body segments [Yeadon1990a]_. We
-estimated the physical properties of the rider in a seated position using a
-simple mathematical geometrical estimation similar in idea to [Yeadon1990a]_ in
-combination with mass data from [Dempster1955]_.
+Human mass, center of mass and inertia properties have been measured and
+estimated in a multitude of ways. Each method has its advantages and
+disadvantages. Many methods exist including cadaver measurements
+[Dempster1955]_, [Clauser1969]_, [Chandler1975]_, photogrammetry, ray scanning
+techniques [Zatsiorsky1983]_, [Zatsiorsky1990]_, water displacement
+[Park1999]_, and mathematical geometrical estimation of the body segments
+[Yeadon1990a]_. [Dohring1953]_ and [Patterson2006]_ measured the moments of
+inertia and centers of mass of a combined rider and vehicle, but this is not
+always practical.
 
-[Dohring1953]_ measured the moments of inertia and centers of mass of a combined
-rider and motor-scooter with a large measurement table, but this is not always
-practical.  The validity of the presented methods could be determined if such
-data existed for a bicycle and rider.
+I approached the human parameter estimation in a more analytical fashion with
+minimal geometrically centric measurements as compared to some of the popular
+measurement techniques. Both methods that were used were based on estimating
+the inertial parameters from mass and geometry measurement along with a human
+body density estimate. With the first method, I estimated the physical
+properties of the rider in a seated position using a simple mathematical
+geometrical estimation similar in idea to [Yeadon1990a]_ in combination with
+mass data from [Dempster1955]_. The second method substitutes Yeadon's more
+robust model with my previous one.
 
 Moore method
 ------------
 
 This method calculates the center of mass and inertia of a simplified model of
 the ten major human body parts: head, toros, upper and lower arms, and upper
-and lower legs, in a conifguration for typical bicycles.  Several measurements
+and lower legs, in a conifguration for typical bicycles. Several measurements
 of the human rider are needed to calculate the physical properties. The mass of
 the rider was measured along with fourteen anthropomorphic measurements of the
 body (Table :ref:`tabRiderDimensions` and Tab. :ref:`tabSegmentMass`). These
@@ -1093,52 +1215,195 @@ represented by cylinders, the torso by a cuboid and the head by a sphere. The
 feet are positioned at the center of the bottom bracket axis to maintain symmetry
 about the :math:`XZ`-plane.
 
+.. _figMooreModel:
+
+.. figure:: figures/physicalparameters/mooreModel.png
+   :align: center
+   :width: 5.222in
+
+   figMooreModel
+
+   Locations of grid points and simple geometric shapes.
+
 All but one of the anthropomorphic measurements are taken when the rider was
 standing casually on flat ground. The lower leg length :math:`l_{ll}` is the
-distance from the floor to the knee joint. The upper leg length
-:math:`l_{ul}` is the distance from the knee joint to the hip joint. The
-length from hip to hip :math:`l_{hh}` and shoulder to shoulder
-:math:`l_{ss}` are the distances between the two hip joints and two shoulder
-joints, respectively. The torso length :math:`l_{to}` is the distance between
-hip joints and shoulder joints. The upper arm length :math:`l_{ua}` is the
-distance between the shoulder and elbow joints. The lower arm length
-:math:`l_{al}` is the distance from the elbow joint to the center of the hand
-when the arm is outstretched. The circumferences are taken at the cross section
-of maximum circumference (e.g.  around the bicep, around the brow, over the
-nipples for the chest). The final dimension is taken while the rider is seated
-on the bicycle in a normal riding position. The forward lean angle
-:math:`\lambda_{fl}` is the approximate angle made between the floor
-(:math:`XY`-plane) and the line connecting the center of the rider's head and
-the top of the seat. This was estimated by taking a side profile photograph of
-the rider on the bicycle and scribing a line from the center of the head to the
-top of the seat.  The measurements were made as accurately as possible with
-basic tools but no special attention is given further to the accuracy of the
-calculations due to the fact that modeling the human as basic geometric shapes
-already introduces a error. The values are reported to the same decimal places
-as the previous section for consistency.
+distance from the floor to the knee joint. The upper leg length :math:`l_{ul}`
+is the distance from the knee joint to the hip joint. The length from hip to
+hip :math:`l_{hh}` and shoulder to shoulder :math:`l_{ss}` are the distances
+between the two hip joints and two shoulder joints, respectively. The torso
+length :math:`l_{to}` is the distance between hip joints and shoulder joints.
+The upper arm length :math:`l_{ua}` is the distance between the shoulder and
+elbow joints. The lower arm length :math:`l_{al}` is the distance from the
+elbow joint to the center of the hand when the arm is outstretched. The
+circumferences are taken at the cross section of maximum circumference (e.g.
+around the bicep, around the brow, over the nipples for the chest). The final
+dimension is taken while the rider is seated on the bicycle in a normal riding
+position. The forward lean angle :math:`\lambda_{fl}` is the approximate angle
+made between the floor (:math:`XY`-plane) and the line connecting the center of
+the rider's head and the top of the seat. This was estimated by taking a side
+profile photograph of the rider on the bicycle and scribing a line from the
+center of the head to the top of the seat. The measurements were made as
+accurately as possible with basic tools but no special attention is given
+further to the accuracy of the calculations due to the fact that modeling the
+human as basic geometric shapes already introduces a somewhat unmanagable
+error.
+
+I measured five additional geometric values to assist in configuring the rider
+to the be seated on the bicycle.
+
+:math:`h_{bb}`, Bottom Bracket Height
+   The distance from the ground to the bottom bracket when the bicycle is in
+   the nominal configuration.
+:math:`l_{cs}`, Chain stay length
+   Not the true chain stay length, but the distance from the center of the
+   bottom bracket to the center of the rear wheel.
+:math:`l_{sp}`, Seat post length
+   The distance from the intersection of a horizontal top tube and the seat
+   tube to the top of the seat. Measured along the center line of the seat
+   post.
+:math:`l_{st}`, Seat tube length
+   The distance from the bottom bracket to the point at which a horizontal top
+   tube would intersect the seat tube.
+:math:`\lambda_{st}`, Seat tube angle
+   The acute angle between the ground and the seat tube.
+
+.. todo:: add diagram with all of the bicycle geometry
 
 The masses of each segment (Table :ref:`tabSegmentMass`) were defined as a
 proportion of the total mass of the rider :math:`m_{\mathrm{B}r}` using data
 from cadaver studies by [Dempster1955]_.
 
-The geometrical and anthropomorphic measurements were converted
-into a set of 31 grid points in three dimensional space that mapped
-the skeleton of the rider and bicycle (Figure :ref:`fig3DModel`. The
-position vectors to these grid points are listed in
-Table :ref:`tabGridPoints`. Several intermediate variables used in the
-grid point equations are listed in Table :ref:`tabIntVar` where
-:math:`f_o` is the fork offset and the rest arise due to
-multiple solutions to the location of the elbow and knee joints and
-have to be solved numerically. The correct solutions
-are the ones that force the arms and legs to bend in a natural
-fashion. The grid points mark the center of the sphere and the end
-points of the cylinders and cuboid. The segments are aligned along
-lines connecting the appropriate grid points. The segments are
-assumed to have uniform density so the centers of mass are taken to
-be at the geometrical centers. The midpoint formula can then be used to
-calculate the local centers of mass for each segment in the global
-reference frame. The total body center of mass can be found from
-the standard formula
+.. _tabSegmentMass:
+
+.. list-table:: Body mass and segment masses.
+   :align: center
+
+   * - Segment
+     - Symbol
+     - Equation
+   * - body
+     - :math:`m_{B_r}`
+     - :math:`m_{B_r}`
+   * - head
+     - :math:`m_h`
+     - :math:`0.068 \cdot m_{B_r}`
+   * - lower arm
+     - :math:`m_{la}`
+     - :math:`0.022 \cdot m_{B_r}`
+   * - lower leg
+     - :math:`m_{ll}`
+     - :math:`0.061 \cdot m_{B_r}`
+   * - torso
+     - :math:`m_{to}`
+     - :math:`0.510 \cdot m_{B_r}`
+   * - upper arm
+     - :math:`m_{ua}`
+     - :math:`0.028 \cdot m_{B_r}`
+   * - upper leg
+     - :math:`m_{ul}`
+     - :math:`0.100 \cdot m_{B_r}`
+
+The geometrical and anthropomorphic measurements were converted into a set of
+thirty one grid points in three dimensional space that mapped the skeleton of
+the rider and bicycle (Figure :ref:`figMooreModel`. The position vectors to these
+grid points are listed in Table :ref:`tabGridPoints`. Several intermediate
+variables used in the grid point equations are listed in Table :ref:`tabIntVar`
+where :math:`f_o` is the fork offset and the rest arise due to multiple
+solutions to the location of the elbow and knee joints and have to be solved
+numerically. The correct solutions are the ones that force the arms and legs to
+bend in a natural fashion. The grid points mark the center of the sphere and
+the end points of the cylinders and cuboid. The segments are aligned along
+lines connecting the appropriate grid points.
+
+.. _tabGridPoints:
+
+.. list-table:: Skeleton grid points with respect to the global frame. See Figure :ref:`figModel`
+
+   * - Description
+     - Equation
+   * - rear contact point
+     - :math:`$\mathbf{r}_1=\left[0 \quad 0 \quad 0\right]`
+   * - rear wheel center
+     - :math:`\mathbf{r}_2=\left[0 \quad 0 \quad -r_\mathrm{R}\right]`
+   * - right rear hub center
+     - :math:`\mathbf{r}_3=\mathbf{r}_2+\left[0 \quad \frac{w_{rh}}{2} \quad 0\right]`
+   * - left rear hub center
+     - :math:`\mathbf{r}_4=\mathbf{r}_2+\left[0 \quad -\frac{w_{rh}}{2} \quad 0\right]`
+   * - bottom bracket center
+     - :math:`\mathbf{r}_5=\left[\sqrt{l_{cs}^2-(r_\mathrm{R}-h_{bb})^2} \quad 0 \quad -h_{bb}\right]`
+   * - front wheel contact point
+     - :math:`\mathbf{r}_6=\left[w \quad 0 \quad 0\right]`
+   * - front wheel center
+     - :math:`\mathbf{r}_7=\mathbf{r}_6+\left[0 \quad 0 \quad -r_\mathrm{F}\right]`
+   * - right front hub center
+     - :math:`\mathbf{r}_8=\mathbf{r}_7+\left[0 \quad \frac{w_{fh}}{2} \quad 0\right]`
+   * - left front hub center
+     - :math:`\mathbf{r}_9=\mathbf{r}_7+\left[0 \quad -\frac{w_{fh}}{2} \quad 0\right]`
+   * - top of seat tube
+     - :math:`\mathbf{r}_{10}=\mathbf{r}_5+\left[-l_{st}\cos{\lambda_{st}} \quad 0 \quad -l_{st}\sin{\lambda_{st}}\right]`
+   * - fork crown
+     - :math:`\mathbf{r}_{11}=\mathbf{r}_7+\left[-f_o\sin{\lambda_{ht}}-\cos{\lambda_{ht}}\sqrt{l_{f}^2-f_o^2} \quad 0 \quad f_o\cos{\lambda_{ht}}-\sin{\lambda_{ht}}\sqrt{l_{f}^2-f_o^2}\right]`
+   * - top of head tube
+     - :math:`\mathbf{r}_{12}=\left[r_{X11}-\frac{r_{Z11}-r_{Z10}}{\tan{\lambda_{ht}}} \quad 0 \quad r_{Z10}\right]`
+   * - top of seat
+     - :math:`\mathbf{r}_{13}=\mathbf{r}_{10}+\left[-l_{sp}\cos{\lambda_{st}} \quad 0 \quad -l_{sp}\sin{\lambda_{st}}\right]`
+   * - center of knees
+     - :math:`\mathbf{r}_{14}=\mathbf{r}_5+\left[s \quad 0 \quad -t\right]`
+   * - shoulder midpoint
+     - :math:`\mathbf{r}_{15}=\mathbf{r}_{13}+\left[l_{to}\cos{\lambda_{fl}} \quad 0 \quad -l_{to}\sin{\lambda_{fl}}\right]`
+   * - top of stem
+     - :math:`\mathbf{r}_{16}=\mathbf{r}_{12}+\left[-l_{s}\cos{\lambda_{ht}} \quad 0 \quad -l_{s}\sin{\lambda_{ht}}\right]`
+   * - right handlebar
+     - :math:`\mathbf{r}_{17}=\mathbf{r}_{16}+\left[0 \quad \frac{l_{ss}}{2} \quad 0\right]`
+   * - left handlebar
+     - :math:`\mathbf{r}_{18}=\mathbf{r}_{16}+\left[0 \quad -\frac{l_{ss}}{2} \quad 0\right]`
+   * - right hand
+     - :math:`\mathbf{r}_{19}=\mathbf{r}_{17}+\left[-l_{hb} \quad 0 \quad 0\right]`
+   * - left hand
+     - :math:`\mathbf{r}_{20}=\mathbf{r}_{18}+\left[-l_{hb} \quad 0 \quad 0\right]`
+   * - right shoulder
+     - :math:`\mathbf{r}_{21}=\mathbf{r}_{15}+\left[0 \quad \frac{l_{ss}}{2} \quad 0\right]`
+   * - left shoulder
+     - :math:`\mathbf{r}_{22}=\mathbf{r}_{15}+\left[0 \quad -\frac{l_{ss}}{2} \quad 0\right]`
+   * - right elbow
+     - :math:`\mathbf{r}_{23}=\mathbf{r}_{19}+\left[-u \quad \frac{l_{ss}}{2} \quad -v\right]`
+   * - left elbow
+     - :math:`\mathbf{r}_{24}=\mathbf{r}_{23}+\left[0 \quad -l_{ss} \quad 0\right]`
+   * - center of head
+     - :math:`\mathbf{r}_{25}=\mathbf{r}_{15}+\left[\frac{c_{h}}{2\pi}\cos{\lambda_{fl}} \quad 0 \quad -\frac{c_{h}}{2\pi}\sin{\lambda_{fl}}\right]`
+   * - right foot
+     - :math:`\mathbf{r}_{26}=\mathbf{r}_{5}+\left[0 \quad \frac{l_{hh}}{2} \quad 0\right]`
+   * - left foot
+     - :math:`\mathbf{r}_{27}=\mathbf{r}_{5}+\left[0 \quad -\frac{l_{hh}}{2} \quad 0\right]`
+   * - right knee
+     - :math:`\mathbf{r}_{28}=\mathbf{r}_{14}+\left[0 \quad \frac{l_{hh}}{2} \quad 0\right]`
+   * - left knee
+     - :math:`\mathbf{r}_{29}=\mathbf{r}_{14}+\left[0 \quad -\frac{l_{hh}}{2} \quad 0\right]`
+   * - right hip
+     - :math:`\mathbf{r}_{30}=\mathbf{r}_{13}+\left[0 \quad \frac{l_{hh}}{2} \quad 0\right]`
+   * - left hip
+     - :math:`\mathbf{r}_{31}=\mathbf{r}_{13}+\left[0 \quad -\frac{l_{hh}}{2} \quad 0\right]`
+
+.. _tabIntVar:
+
+.. list-table:: Grid point intermediate variables.
+   * - Symbol
+     - Equation
+   * - :math:`f_o`
+     - :math:`r_\mathrm{F}\cos{\lambda_{ht}}-c\sin{\lambda_{ht}}`
+   * - :math:`s`
+     - :math:`0=l_{ul}^2-l_{ll}^2-(r_{Z13}-r_{Z5})^2-(r_{X5}-r_{X13})^2-2(r_{Z13}-r_{Z5})\sqrt{(l_{ll}^2-s^2)}-2s(r_{X5}-r_{X13})`
+   * - :math:`t`
+     - :math:`\sqrt{l_{ll}^2-s^2}`
+   * - :math:`u`
+     - :math:`0=l_{la}^2-l_{ua}^2+(r_{Z21}-r_{Z19})^2+(r_{X19}-r_{X21})^2+2(r_{Z21}-r_{Z19})\sqrt{(l_{la}^2-u^2)}-2u(r_{X19}-r_{X21})`
+   * - :math:`v`
+     - :math:`\sqrt{l_{la}^2-u^2}`
+
+The segments are assumed to have uniform density so the centers of mass are
+taken to be at the geometrical centers. The midpoint formula can then be used
+to calculate the local centers of mass for each segment in the global reference
+frame. The total body center of mass can be found from the standard formula
 
 .. math::
    :label: eqCoM
@@ -1323,104 +1588,24 @@ Parameter Tables
 The tabulated values for the both the raw measurements and the physical
 parameters are given in the following tables.
 
-+----------------------+-----------------------+------------------------+----------------------------+
-|                      | Pista                 | Browser                | Yellow                     |
-+======================+===========+===========+=============+==========+================+===========+
-| :math:`l_{hbR}`      | NA        | NA        | 0.9213      | NA       | 1.145          | NA        |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`T^c_{B1}`     | 1.639885  | 0.000006  | 1.717307    | 0.000005 | 1.71695        | 0.00001   |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`T^c_{F1}`     | 1.451154  | 0.000005  | 1.481127    | 0.000007 | 1.49847        | 0.00002   |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`T^c_{H1}`     | 1.392606  | 0.000002  | 1.601851    | 0.000007 | 1.518206       | 0.000008  |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`T^c_{R1}`     | 1.395046  | 0.000004  | 1.361090    | 0.000004 | 1.40931        | 0.00002   |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`T^t_{B1}`     | 1.26420   | 0.00001   | 2.09957     | 0.00008  | 1.19029        | 0.00002   |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`T^t_{B2}`     | 1.501279  | 0.000007  | 2.37672     | 0.00002  | 1.200785       | 0.000006  |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`T^t_{B3}`     | 1.492970  | 0.000005  | 1.83977     | 0.00001  | 1.282136       | 0.000008  |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`T^t_{F1}`     | 0.6232453 | 0.0000006 | 0.787577    | 0.000001 | 0.773040       | 0.000002  |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`T^t_{H1}`     | 0.776458  | 0.000001  | 1.368796    | 0.000006 | 1.012698       | 0.000003  |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`T^t_{H2}`     | 0.830610  | 0.000003  | 1.295272    | 0.000006 | 0.948609       | 0.000002  |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`T^t_{H3}`     | 0.5250995 | 0.0000005 | 0.760951    | 0.000003 | 0.4579289      | 0.0000006 |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`T^t_{P1}`     | 1.893993  | 0.000006  | 1.893993    | 0.000006 | 1.893993       | 0.000006  |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`T^t_{R1}`     | 0.622565  | 0.000001  | 0.796565    | 0.000001 | 0.784395       | 0.000001  |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`a_{B1}`       | 0.329     | 0.003     | 0.098       | 0.003    | 0.220          | 0.003     |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`a_{B2}`       | 0.293     | 0.003     | 0.169       | 0.003    | 0.000          | 0.003     |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`a_{B3}`       | -0.267    | 0.003     | -0.294      | 0.003    | -0.379         | 0.003     |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`a_{H1}`       | 0.337     | 0.003     | 0.474       | 0.003    | 0.468          | 0.003     |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`a_{H2}`       | 0.400     | 0.003     | 0.383       | 0.003    | 0.396          | 0.003     |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`a_{H3}`       | -0.063    | 0.003     | 0.215       | 0.003    | 0.015          | 0.003     |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`\alpha_{B1}`  | 120.2     | 0.2       | 3.4         | 0.2      | 139.5          | 0.2       |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`\alpha_{B2}`  | 40.7      | 0.2       | 138.7       | 0.2      | 345.4          | 0.2       |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`\alpha_{B3}`  | 215.9     | 0.2       | 229.8       | 0.2      | 215.9          | 0.2       |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`\alpha_{H1}`  | 38.8      | 0.2       | 346.7       | 0.2      | 0.3            | 0.2       |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`\alpha_{H2}`  | 12.4      | 0.2       | 28.1        | 0.2      | 32.0           | 0.2       |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`\alpha_{H3}`  | 102.2     | 0.2       | 287.0       | 0.2      | 87.9           | 0.2       |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`d_F`          | 29.37     | 0.01      | 28.06       | 0.01     | 27.93          | 0.01      |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`d_P`          | 0.0300    | 0.0001    | 0.0300      | 0.0001   | 0.0300         | 0.0001    |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`d_R`          | 29.21     | 0.01      | 27.85       | 0.01     | 27.88          | 0.01      |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`f`            | 0.032     | 0.001     | 0.070       | 0.001    | 0.057          | 0.001     |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`g`            | 9.81      | 0.01      | 9.81        | 0.01     | 9.81           | 0.01      |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`\gamma`       | 74.2      | 0.2       | 67.1        | 0.2      | 72.7           | 0.2       |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`h_{bb}`       | NA        | NA        | 0.295       | NA       | 0.276580359362 | NA        |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`l_F`          | 0.297     | 0.001     | 0.293       | 0.001    | 0.304          | 0.001     |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`l_P`          | 1.050     | 0.001     | 1.050       | 0.001    | 1.050          | 0.001     |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`l_R`          | 0.297     | 0.001     | 0.293       | 0.001    | 0.302          | 0.001     |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`\lambda_{st}` | NA        | NA        | 1.195550538 | NA       | 1.2653637077   | NA        |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`l_cs`         | NA        | NA        | 0.46        | NA       | 0.45           | NA        |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`l_{sp}`       | NA        | NA        | 0.24        | NA       | 0.21           | NA        |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`l_{st}`       | NA        | NA        | 0.53        | NA       | 0.515          | NA        |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`m_B`          | 4.49      | 0.02      | 9.86        | 0.02     | 3.31           | 0.02      |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`m_F`          | 1.58      | 0.02      | 2.02        | 0.02     | 1.90           | 0.02      |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`m_H`          | 2.27      | 0.02      | 3.22        | 0.02     | 2.45           | 0.02      |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`m_P`          | 5.56      | 0.02      | 5.56        | 0.02     | 5.56           | 0.02      |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`m_R`          | 1.38      | 0.02      | 3.11        | 0.02     | 2.57           | 0.02      |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`n_F`          | 14.0      | NA        | 13.0        | NA       | 13.0           | NA        |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`n_R`          | 14.0      | NA        | 13.0        | NA       | 13.0           | NA        |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`w`            | 0.989     | 0.002     | 1.121       | 0.002    | 1.089          | 0.002     |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
-| :math:`w_{hb}`       | NA        | NA        | 0.58        | NA       | 0.24           | NA        |
-+----------------------+-----------+-----------+-------------+----------+----------------+-----------+
+Bicycle Measured Parameters
+---------------------------
+
+.. include:: tables/physicalparameters/batavusMeasured.rst
+
+
+.. include:: tables/physicalparameters/delftMeasured.rst
+
+
+.. include:: tables/physicalparameters/davisMeasured.rst
+
+Bicycle Benchmark Parameters
+----------------------------
+
+.. include:: tables/physicalparameters/batavusBenchmark.rst
+
+
+.. include:: tables/physicalparameters/delftBenchmark.rst
+
+
+.. include:: tables/physicalparameters/davisBenchmark.rst

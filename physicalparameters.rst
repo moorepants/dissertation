@@ -10,20 +10,20 @@ Preface
 
 I was first concerned with the physical parameters of the bicycle and rider in
 my multibody dynamics class project. There I developed a method of estimating
-the parameters from simply the geometry and mass :ref:`Moore2006`. I also then
-presented this work in Biarritz, France :ref:`Moore2008`. This method served me
+the parameters from simply the geometry and mass [Moore2006]_. I also then
+presented this work in Biarritz, France [Moore2008]_. This method served me
 well until we needed to have more accurate estimates of the parameters for the
 first instrumented bicycle I helped build at TU Delft. I agreed to measure the
 bike's physical parameters using the equipment and procedures developed in
-:ref:`Kooijman2006` and to use the more accurate bicycle measurements with my
-basic human model, :ref:`Moore2008` for the complete system parameters.  These
+[Kooijman2006]_ and to use the more accurate bicycle measurements with my
+basic human model, [Moore2008]_ for the complete system parameters.  These
 first measurements and the details of the human model were presented in in San
-Diego :ref:`Moore2009a`. During this work, Dr. Hubbard encouraged me to think
+Diego [Moore2009a]_. During this work, Dr. Hubbard encouraged me to think
 about the accuracy of the measurements in more detail, as some of the practices
 we were using were lacking. With that in mind and the fact that there was very
 little complete data available on the physical parameters of real bicycles, I
 decided to measure an assortment of bicycles we had available around the lab in
-Delft :ref:`Moore2010`. This was certainly a tedious task, but a rich data set
+Delft [Moore2010]_. This was certainly a tedious task, but a rich data set
 was created. Once I was back in Davis, we setup almost identical equipment to
 measure the two new bicycles we were constructing. Danique Fintelman helped us
 come up with a more accurate geometry measurement. Steven Yen also used the
@@ -42,21 +42,21 @@ geometry, mass, mass location and mass distributions for the rigid bodies. More
 complex models require estimates of tire characteristics, human
 characteristics, friction, stiffness, damping, etc. In this chapter I present
 the measurement of the minimal bicycle/rider parameters required for the
-benchmark Whipple bicycle model presented in :ref:`Meijaard2007`. This model is
+benchmark Whipple bicycle model presented in [Meijaard2007]_. This model is
 composed of four rigid bodies, has ideal rolling and frictionless joints, and
 is laterally symmetric. A set of 25 parameters describes the geometry, mass,
 mass location and mass distribution of each of the rigid bodies. The
 experimental methods used to estimate the parameters described herein are based
-primarily on the work done in :ref:`Kooijman2006`, :ref:`Kooijman2008` and
-:ref:`Moore2009a` but have been refined for improved accuracy and methodology.
+primarily on the work done in [Kooijman2006]_, [Kooijman2008]_ and
+[Moore2009a]_ but have been refined for improved accuracy and methodology.
 
-Koojiman's work was preceded by several others. Döhring :ref:`Dohring1953` and
-Singh and Goel :ref:`Singh1971` measured the physical parameters of scooters.
-Roland and Massing :ref:`Roland1971` measured the physical parameters of a
+Koojiman's work was preceded by several others. Döhring [Dohring1953]_ and
+Singh and Goel [Singh1971]_ measured the physical parameters of scooters.
+Roland and Massing [Roland1971]_ measured the physical parameters of a
 bicycle in much the same way as is presented, including calculations of
 uncertainty from the indirect measurement techniques. Patterson
-:ref:`Patterson2004` used a swing to measure the inertia of recumbent bicycles
-with a rider. :ref:`Connors2009` and :ref:`Stevens2009` used a computer aided
+[Patterson2004]_ used a swing to measure the inertia of recumbent bicycles
+with a rider. [Connors2009]_ and [Stevens2009]_ used a computer aided
 design package to estimate the parameters. ref:`Escalona2010` measured a
 bicycle for his bicycle dynamics class in Spain.
 
@@ -72,7 +72,7 @@ We measured the physical characteristics of eleven different bicycles, three of
 which were set up in two different configurations. The first six bicycles,
 chosen for both variety and convenience, are as follows: *Batavus Browser*, a
 Dutch style city bicycle measured with and without instrumentation as described
-in :ref:`Kooijman2009a`; *Batavus Stratos Deluxe*, a Dutch style sporty city
+in [Kooijman2009a]_; *Batavus Stratos Deluxe*, a Dutch style sporty city
 bicycle; *Batavus Crescendo Deluxe* a Dutch style city bicycle with a suspended
 fork; *Gary Fisher Mountain Bike*, a hardtail mountain bicycle; *Bianchi
 Pista*, a modern steel frame track racing bicycle; and *Yellow Bicycle*, a
@@ -92,7 +92,7 @@ Parameters
 
 I was primarily concerned with measuring and estimating the 25 parameters
 associated with the benchmark Whipple bicycle model which is derived and
-described in :ref:`Meijaard2007`. The unforced two degree-of-freedom,
+described in [Meijaard2007]_. The unforced two degree-of-freedom,
 :math:`\mathbf{q} = [\delta \quad \phi]^T` model takes the form:
 
 .. math::
@@ -108,8 +108,8 @@ where the entries of the :math:`\mathbf{M}`, :math:`\mathbf{C}_1`,
 :math:`\mathbf{K}_0` and :math:`\mathbf{K}_2` matrices are combinations of 25
 bicycle physical parameters that include the geometry, mass, mass location and
 mass distribution of the four rigid bodies. The 25 parameters presented in
-:ref:`Meijaard2007` are not necessarily a minimum set for the Whipple model, as
-shown in :ref:`Sharp2008`, but are useful none-the-less as they represent
+[Meijaard2007]_ are not necessarily a minimum set for the Whipple model, as
+shown in [Sharp2008]_, but are useful none-the-less as they represent
 intuitively measurable quantities and have become become standard due to the
 nature of the benchmark. They are also not parameters used in my derivation in
 Chapter :ref:`eom` but can easily be converted, as will be shown. I don't
@@ -326,7 +326,7 @@ simplify the book keeping of the correlations and variance calculations
 [Lebigot2001]_, thus some of the equations for the error are not shown in the
 following sections.
 
-.. _secGeometry::
+.. _secGeometry:
 
 Geometry
 --------
@@ -1202,18 +1202,17 @@ Moore method
 ------------
 
 This method calculates the center of mass and inertia of a simplified model of
-the ten major human body parts: head, toros, upper and lower arms, and upper
-and lower legs, in a conifguration for typical bicycles. Several measurements
-of the human rider are needed to calculate the physical properties. The mass of
-the rider was measured along with fourteen anthropomorphic measurements of the
-body (Table :ref:`tabRiderDimensions` and Tab. :ref:`tabSegmentMass`). These
-measurements in combination with the geometrical bicycle measurements taken in
-the previous section (:ref:`secBicycleDimensions`) and several additinal
-bicycle measurements are used to define a model of the rider made up of simple
-geometrical shapes (Figure :ref:`fig3DModel`). The legs and arms are
+the ten major human body parts: head, torso, upper and lower arms, and upper
+and lower legs, in a general configuration for sitting on typical bicycles. The
+mass of the rider was measured along with fourteen anthropomorphic measurements
+of the body (Table :ref:`tabRiderDimensions` and Tab. :ref:`tabSegmentMass`).
+These measurements in combination with the geometrical bicycle measurements
+taken in the previous section (:ref:`secBicycleDimensions`) and several
+additinal bicycle geometrical measurements are used to define a model of the rider made up
+of simple geometrical shapes (Figure :ref:`fig3DModel`). The legs and arms are
 represented by cylinders, the torso by a cuboid and the head by a sphere. The
-feet are positioned at the center of the bottom bracket axis to maintain symmetry
-about the :math:`XZ`-plane.
+feet are positioned at the center of the bottom bracket axis to maintain
+symmetry about the :math:`XZ`-plane.
 
 .. _figMooreModel:
 
@@ -1317,7 +1316,7 @@ lines connecting the appropriate grid points.
 
 .. _tabGridPoints:
 
-.. list-table:: Skeleton grid points with respect to the global frame. See Figure :ref:`figModel`
+.. list-table:: Skeleton grid points with respect to the global frame.
 
    * - Description
      - Equation
@@ -1387,6 +1386,7 @@ lines connecting the appropriate grid points.
 .. _tabIntVar:
 
 .. list-table:: Grid point intermediate variables.
+
    * - Symbol
      - Equation
    * - :math:`f_o`
@@ -1491,7 +1491,7 @@ moments of inertia are summed to give the total moment of inertia of the rider
 by
 
 .. math::
-   :label:eqSumInertia
+   :label: eqSumInertia
 
    \mathbf{I}_{\mathrm{B}r}=
    \sum{\mathbf{I}^*_i}=
@@ -1524,24 +1524,9 @@ complete description.
 
 Once the inertia of each segment in the Yeadon model is computed, the joint
 angles must be set. We set the somersault angle to match the forward lean angle
-as described in the previous section. We then measure eight additional bicycle
+as described in the previous section. We then measure three additional bicycle
 dimensions to assist in the configuration of the rider. They are as follows:
 
-:math:`h_{bb}`, Bottom Bracket Height
-   The distance from the ground to the bottom bracket when the bicycle is in
-   the nominal configuration.
-:math:`l_{cs}`, Chain stay length
-   Not the true chain stay length, but the distance from the center of the
-   bottom bracket to the center of the rear wheel.
-:math:`l_{sp}`, Seat post length
-   The distance from the intersection of a horizontal top tube and the seat
-   tube to the top of the seat. Measured along the center line of the seat
-   post.
-:math:`l_{st}`, Seat tube length
-   The distance from the bottom bracket to the point at which a horizontal top
-   tube would intersect the seat tube.
-:math:`\lambda_{st}`, Seat tube angle
-   The acute angle between the ground and the seat tube.
 :math:`w_{hb}`, Handlebar width
    The lateral distanc between the points the hands hold the handlebars.
 :math:`l_{hbR}`, Rear hub to handlebar.
@@ -1575,10 +1560,20 @@ Software Implementation
 =======================
 
 These methods have been implemented in two open source software package written
-in the python language, called BicycleParameters and Yeadon. It allows one to
-measure all of the raw measurements as decribed in both the Bicycle and Yeadon
-parameter sections, provide the values, with uncertainties, and it computes the
-parameters for the Whipple Bicycle model.
+in the python language, called `yeadon <http://pypi.python.org/pypi/yeadon>`_
+and `BicycleParameters <http://pypi.python.org/pypi/BicycleParameters`_. The
+yeadon package takes geometric measurements and joint configuration angles and
+outputs the total inertia inertial properties of the human in an arbitrary
+reference frame or inertial properites of indivdual segments or combinations of
+segements. It is suitable for a wide variety of human dynamic models. The
+BicycleParameters package accepts either the raw measurments described in
+Section :ref:`secBicycleParameters` and computes the benchmark bicycle
+parameters. It makes use of the yeadon package to allow one to configure riders
+to sit on the bicycle models and outputs the inertial properties of the
+bicycle/rider system. It allows one to measure all of the raw measurements as
+decribed in both the Bicycle and Yeadon parameter sections, provide the values,
+with uncertainties, and it computes the parameters for the Whipple Bicycle
+model.
 
 .. _secPartables:
 

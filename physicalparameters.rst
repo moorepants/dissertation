@@ -1,3 +1,5 @@
+.. _physicalparameters:
+
 ===================
 Physical Parameters
 ===================
@@ -33,6 +35,8 @@ human inertia model and we combined it with the accurate bicycle measurements.
 These final methods for both bicycle and rider are implemented in two open
 source software packages.
 
+.. _secBicycleParameters:
+
 Bicycle Parameters
 ==================
 
@@ -57,7 +61,7 @@ bicycle in much the same way as is presented, including calculations of
 uncertainty from the indirect measurement techniques. Patterson
 [Patterson2004]_ used a swing to measure the inertia of recumbent bicycles
 with a rider. [Connors2009]_ and [Stevens2009]_ used a computer aided
-design package to estimate the parameters. ref:`Escalona2010` measured a
+design package to estimate the parameters. [Escalona2010]_ measured a
 bicycle for his bicycle dynamics class in Spain.
 
 Here I document the indirect measurement of ten real bicycles' physical
@@ -79,13 +83,15 @@ Pista*, a modern steel frame track racing bicycle; and *Yellow Bicycle*, a
 stripped down aluminum frame road bicycle measured in two configurations, the
 second with the fork rotated in the headtube 180 degrees for larger trail. The
 last two bicycles were measured in Davis: the instrumented bicycle presented in
-chapter :ref:`instrumentedbicycle` and a children's bicycle with a stabilzing
+chapter :ref:`davisbicycle` and a children's bicycle with a stabilzing
 flywheel called the GyroBike.
 
 These eleven different parameter sets can be used with, but are not limited to,
 the benchmark bicycle model. The accuracy of all the measurements are
 presented. The accuracies are based on error propagation theory with
 correlations taken into account.
+
+.. _secParameters:
 
 Parameters
 ----------
@@ -284,14 +290,16 @@ Bicycles*.
 .. todo:: switch out the pista picture for the better one and take a better
    of the davis bike
 
+.. _secAccuracy:
+
 Accuracy
 --------
 
 I have attempted to report the accuracy of the measurements of the parameters.
-Following the footsteps of :ref:`Roland1971` I used error propagation theory to
+Following the footsteps of [Roland1971]_ I used error propagation theory to
 calculate accuracy of the 25 benchmark parameters. I began by estimating the
 standard deviation of the actual measurements taken, see Section
-:ref:`secMeasuredParameters`. If :math:`x` is a parameter and is a function of
+:ref:`secBicycleMeasuredParameters`. If :math:`x` is a parameter and is a function of
 the measurements, :math:`u,v,\ldots`, which are Gaussian random variables then
 :math:`x` is also a Gaussian random variable defined as
 :math:`x=f(u,v,\ldots)`. The sample variance of :math:`x` is defined as
@@ -370,7 +378,7 @@ where :math:`r` is the wheel radius, :math:`d`, is the travesal distance,
 :math:`n`, is the number of rotations and :math:`sigma` is the respective
 standard deviation of the subscripted variable. I use subscripts :math:`F` and
 :math:`R` from front and rear wheels, respectively, in the measurment tables in
-Section :ref:`secMeasuredParameters`.
+Section :ref:`secBicycleMeasuredParameters`.
 
 .. _figTireChalk:
 
@@ -490,7 +498,7 @@ It is trivial to find the solution numerically. If :math:`r_F=r_R`,
 .. math::
    :label: lambdaEqualRadii
 
-   \lambda = arctan\right(\frac{d_2}{d_1 + d_3}\left)
+   \lambda = \operatorname{arctan}\left(\frac{d_2}{d_1 + d_3}\right)
 
 Wheelbase is:
 
@@ -741,7 +749,7 @@ solution is not the same as the triangle centroid method.
 
 The solution with the higher accuracy is the preferred one.
 
-.. _secForkCoM
+.. _secForkCoM:
 
 Fork and Handlebar
 ~~~~~~~~~~~~~~~~~~
@@ -1090,7 +1098,8 @@ Similarly, calculating all three, or more, :math:`J_{i}` allows one to form
     \begin{array}{c}
         J_{1}\\
         J_{2}\\
-        J_{3}
+        J_{3}\\
+        \vdots
     \end{array}
     \right]
     =
@@ -1098,7 +1107,8 @@ Similarly, calculating all three, or more, :math:`J_{i}` allows one to form
     \begin{array}{ccc}
         c_{\beta 1}^2 & -2s_{\beta 1}c_{\beta 1} & s_{\beta 1}^2\\
         c_{\beta 2}^2 & -2s_{\beta 2}c_{\beta 2} & s_{\beta 2}^2\\
-        c_{\beta 3}^2 & -2s_{\beta 3}c_{\beta 3} & s_{\beta 3}^2
+        c_{\beta 3}^2 & -2s_{\beta 3}c_{\beta 3} & s_{\beta 3}^2\\
+        \vdots & \vdots & \vdots
     \end{array}
     \right]
     \left[
@@ -1155,7 +1165,7 @@ The torsional calculations follow equations :eq:`eqTorPend` through
 Equation :eq:`eqCompoundInertia`. The fork pendulum length is calculated using
 
 .. math::
-   :label: eqCompoundInertia
+   :label: eqForkPendulumLength
 
    l_H=\sqrt{(x_H-w)^2+(z_H+r_F)^2}
 
@@ -1205,14 +1215,13 @@ This method calculates the center of mass and inertia of a simplified model of
 the ten major human body parts: head, torso, upper and lower arms, and upper
 and lower legs, in a general configuration for sitting on typical bicycles. The
 mass of the rider was measured along with fourteen anthropomorphic measurements
-of the body (Table :ref:`tabRiderDimensions` and Tab. :ref:`tabSegmentMass`).
-These measurements in combination with the geometrical bicycle measurements
-taken in the previous section (:ref:`secBicycleDimensions`) and several
-additinal bicycle geometrical measurements are used to define a model of the rider made up
-of simple geometrical shapes (Figure :ref:`fig3DModel`). The legs and arms are
-represented by cylinders, the torso by a cuboid and the head by a sphere. The
-feet are positioned at the center of the bottom bracket axis to maintain
-symmetry about the :math:`XZ`-plane.
+of the body. These measurements in combination with the geometrical bicycle
+measurements taken in the previous section (:ref:`secBicycleParameters`) and
+several additinal bicycle geometrical measurements are used to define a model
+of the rider made up of simple geometrical shapes (Figure :ref:`figMooreModel`).
+The legs and arms are represented by cylinders, the torso by a cuboid and the
+head by a sphere. The feet are positioned at the center of the bottom bracket
+axis to maintain symmetry about the :math:`XZ`-plane.
 
 .. _figMooreModel:
 
@@ -1247,8 +1256,9 @@ further to the accuracy of the calculations due to the fact that modeling the
 human as basic geometric shapes already introduces a somewhat unmanagable
 error.
 
-I measured five additional geometric values to assist in configuring the rider
-to the be seated on the bicycle.
+I measured twelve additional geometric values (only five of which are needed
+for this setup [#f1]_) to assist in configuring the rider to the be seated on
+the bicycle.
 
 :math:`h_{bb}`, Bottom Bracket Height
    The distance from the ground to the bottom bracket when the bicycle is in
@@ -1265,6 +1275,22 @@ to the be seated on the bicycle.
    tube would intersect the seat tube.
 :math:`\lambda_{st}`, Seat tube angle
    The acute angle between the ground and the seat tube.
+:math:`l_{f}`, fork length [#f1]_
+   The distance from the center of the front wheel to the intersection of the
+   headtube and the downtube.
+:math:`w_{fh}`, front hub width [#f1]_
+   The distance between the front dropouts.
+:math:`w_{hb}`, handlebar width [#f1]_
+   The distance between the handlebar grips.
+:math:`l_{hb}`, handlebar length [#f1]_
+   The horizontal distance from the steer axis to the handlebar grips.
+:math:`\lambda_{ht}`, head tube angle [#f1]_
+   The angle between the ground and the head tube.
+:math:`w_{rh}`, rear hub width [#f1]_
+   The distance between the rear dropouts.
+:math:`l_{s}`, stem length [#f1]_
+   The distance from the intersection of the top tube and the head tube to the
+   level of the handlebar grips.
 
 .. todo:: add diagram with all of the bicycle geometry
 
@@ -1275,7 +1301,6 @@ from cadaver studies by [Dempster1955]_.
 .. _tabSegmentMass:
 
 .. list-table:: Body mass and segment masses.
-   :align: center
 
    * - Segment
      - Symbol
@@ -1302,8 +1327,8 @@ from cadaver studies by [Dempster1955]_.
      - :math:`m_{ul}`
      - :math:`0.100 \cdot m_{B_r}`
 
-The geometrical and anthropomorphic measurements were converted into a set of
-thirty one grid points in three dimensional space that mapped the skeleton of
+The geometrical and anthropomorphic measurements are converted into a set of
+thirty one grid points in three dimensional space that map the skeleton of
 the rider and bicycle (Figure :ref:`figMooreModel`. The position vectors to these
 grid points are listed in Table :ref:`tabGridPoints`. Several intermediate
 variables used in the grid point equations are listed in Table :ref:`tabIntVar`
@@ -1321,7 +1346,7 @@ lines connecting the appropriate grid points.
    * - Description
      - Equation
    * - rear contact point
-     - :math:`$\mathbf{r}_1=\left[0 \quad 0 \quad 0\right]`
+     - :math:`\mathbf{r}_1=\left[0 \quad 0 \quad 0\right]`
    * - rear wheel center
      - :math:`\mathbf{r}_2=\left[0 \quad 0 \quad -r_\mathrm{R}\right]`
    * - right rear hub center
@@ -1415,9 +1440,22 @@ frame. The total body center of mass can be found from the standard formula
 where :math:`\mathbf{r}_i` is the position vector to the centroid of each
 segment and :math:`m_i` is the mass of each segment. The local moments of
 inertia of each segment are determined using the ideal definitions of inertia
-for each segment type (Table tabLocInertia). The width of the cuboid
+for each segment type (Table :ref:`tabLocInertia`). The width of the cuboid
 representing the torso :math:`l_y` is defined by the shoulder width and upper
 arm circumference.
+
+.. _tabLocInertia:
+
+.. list-table:: Segment interia tensors. Here the :math:`X`, :math:`Y` and :math:`Z` axes are local.
+
+   * - Segment
+     - Inertia
+   * - cuboid
+     - :math:`\frac{1}{12}m\left[\begin{array}{ccc}l_y^2+l_z^2 & 0 & 0\\0 & l_x^2+l_z^2 & 0\\0 & 0 & l_x^2+l_y^2\end{array}\right]`\\
+   * - cylinder
+     - :math:`I_x`, :math:`I_y=\frac{1}{12}m\left(\frac{3c^2}{4\pi^2}+l^2\right)`, :math:`I_z=\frac{mc^2}{8\pi^2}`\\
+   * - sphere
+     - :math:`I_x`, :math:`I_y`, :math:`I_z=\frac{mc^2}{10\pi^2}`
 
 .. math::
    :label: eqCuboidWidth
@@ -1425,7 +1463,7 @@ arm circumference.
    l_y=l_{ss}-\frac{c_{ua}}{\pi}
 
 The cuboid thickness was estimated using the chest circumference measurement
-and assuming that the cross section of the chest is similar to a stadium shape.
+assuming that the cross section of the chest is similar to a stadium shape.
 
 .. math::
    :label: eqCuboidThick
@@ -1465,7 +1503,7 @@ vectors :math:`\hat{\mathbf{X}}`, :math:`\hat{\mathbf{Y}}`,
 The local inertia matrices are then rotated to the global reference frame with
 
 .. math::
-   :label: eq:RotInertia}
+   :label: eqRotInertia
 
    \mathbf{I}_i=\mathbf{R}_i\mathbf{J}_i\mathbf{R}^T_i\textrm{.}
 
@@ -1487,40 +1525,33 @@ the entire body using the parallel axis theorem
 where :math:`d_x`, :math:`d_y` and :math:`d_z` are the distances along the the
 :math:`X`, :math:`Y` and :math:`Z` axes, respectively, from the local center of
 mass to the global center of mass. Finally, the local translated and rotated
-moments of inertia are summed to give the total moment of inertia of the rider
-by
+moments of inertia are summed to give the total moment of inertia of the rider.
 
 .. math::
    :label: eqSumInertia
 
    \mathbf{I}_{\mathrm{B}r}=
-   \sum{\mathbf{I}^*_i}=
-   \left[
-   \begin{array}{ccc}
-      8.00 & 0 & -1.93\\
-      0 & 8.07 & 0\\
-      -1.93 & 0 & 2.36
-   \end{array}
-   \right]
-   \mathrm{kg\ m}^2\textrm{.}
+   \sum{\mathbf{I}^*_i}
 
 The results of measuring three riders are presented in
 :ref:`tabMooreRiderParameters`.
+
+.. todo:: add in the table of values for the three riders with the Moore method
 
 Yeadon method
 -------------
 
 The [Yeadon1990]_ human inertial model was developed for estimating the
 inertial parameters needed to describe a human model for complex gymnasitic
-manuevers.  It is essentially a more advanced and accurate method than the one
-just presented.  There are 95 geometrical measurements of the human and a
+manuevers. It is essentially a more complete and accurate method than the one
+previously presented. There are 95 geometrical measurements of the human and a
 single mass measurement for scaling the body part densities. Yeadon makes use
 of stadium solids and a single semi-ellipse to more accurately model the human
-geometry. It does have at least two deficiences: the fact that much detail is
-taken for body bparts that have less inertia (i.e. the hands/feet) and at large
+geometry. Two apparent deficiences are the fact that too much detail is taken
+for body bparts that have less inertia (i.e. the hands/feet) and at large
 configuration angles for some joints, the inertia is poorly modeled (e.g. the
-butt dissappears when in a seated position). Refer to [Yeadon1990]_ for a
-complete description.
+butt dissappears when the human in a seated position). Refer to [Yeadon1990]_
+for a complete description of the model.
 
 Once the inertia of each segment in the Yeadon model is computed, the joint
 angles must be set. We set the somersault angle to match the forward lean angle
@@ -1528,7 +1559,7 @@ as described in the previous section. We then measure three additional bicycle
 dimensions to assist in the configuration of the rider. They are as follows:
 
 :math:`w_{hb}`, Handlebar width
-   The lateral distanc between the points the hands hold the handlebars.
+   The lateral distance between the points the hands hold the handlebars.
 :math:`l_{hbR}`, Rear hub to handlebar.
    The distance from the center of the rear hub to the point on the handlebar
    where the hand grips.
@@ -1543,25 +1574,27 @@ distance from the shoulder to the handlebar grip point. The upper arms'
 elevation and abduction angles are then set such that the knuckle level is at
 the handlebar point. The shoulder rotation is set to zero.
 
+.. todo:: show calculations for configuring the yeadon joint angles
+
 Bicycle-Rider Parameters
 ========================
 
 Once both the bicycle and rider parameters are known, the parameter for various
-systems can be extracted. The simplest is assuming that the rider is rigidly
-attached to the frame. The parallel axis thereom allows one to calculate the
-combined inertia of the bicycle frame and the rigid rider. Both of the rider
+systems can be extracted. The simplest being that the rider is rigidly attached
+to the frame. The parallel axis thereom allows one to calculate the combined
+inertia of the bicycle frame and the rigid rider. Both of the rider
 formualtions also allow one to segement the body for more complex rider models
-with mutiple degrees of freedom. A the inertia for a leaning rider's upper body
-can be determined separately and the legs can be fixed the bicyle frame. We
-make use of this for the different rider biomechanical models presented in
-Chapter :ref:`modelextensions`.
+with mutiple degrees of freedom. For example, the inertia for a leaning rider's
+upper body can be determined separately and the legs can be fixed the bicyle
+frame. We make use of this for the different rider biomechanical models
+presented in Chapter :ref:`modelextensions`.
 
 Software Implementation
 =======================
 
 These methods have been implemented in two open source software package written
 in the python language, called `yeadon <http://pypi.python.org/pypi/yeadon>`_
-and `BicycleParameters <http://pypi.python.org/pypi/BicycleParameters`_. The
+and `BicycleParameters <http://pypi.python.org/pypi/BicycleParameters>`_. The
 yeadon package takes geometric measurements and joint configuration angles and
 outputs the total inertia inertial properties of the human in an arbitrary
 reference frame or inertial properites of indivdual segments or combinations of
@@ -1573,7 +1606,9 @@ to sit on the bicycle models and outputs the inertial properties of the
 bicycle/rider system. It allows one to measure all of the raw measurements as
 decribed in both the Bicycle and Yeadon parameter sections, provide the values,
 with uncertainties, and it computes the parameters for the Whipple Bicycle
-model.
+model. Details of use of the software can be found in the documentation for
+each of the packages: `<http://packages.python.org/yeadon>`_,
+`<http://packages.python.org/BicycleParameters>`_.
 
 .. _secPartables:
 
@@ -1583,14 +1618,14 @@ Parameter Tables
 The tabulated values for the both the raw measurements and the physical
 parameters are given in the following tables.
 
+.. _secBicycleMeasuredParameters:
+
 Bicycle Measured Parameters
 ---------------------------
 
 .. include:: tables/physicalparameters/batavusMeasured.rst
 
-
 .. include:: tables/physicalparameters/delftMeasured.rst
-
 
 .. include:: tables/physicalparameters/davisMeasured.rst
 
@@ -1599,8 +1634,17 @@ Bicycle Benchmark Parameters
 
 .. include:: tables/physicalparameters/batavusBenchmark.rst
 
-
 .. include:: tables/physicalparameters/delftBenchmark.rst
 
-
 .. include:: tables/physicalparameters/davisBenchmark.rst
+
+Bicycle + Human Parameters
+--------------------------
+
+.. todo:: parameters with the human configured to sit on the bicycle
+
+.. rubric:: Footnotes
+
+.. [#f1] These dimensions are not necessary for the provided methods, but are
+   necessary to build the grid point system. Early on they were used to
+   analytically estimate the inertia of the bicycle frame. See [Moore2008]_

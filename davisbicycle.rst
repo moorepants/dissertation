@@ -1,3 +1,5 @@
+.. _davisbicycle:
+
 ==========================
 Davis Instrumented Bicycle
 ==========================

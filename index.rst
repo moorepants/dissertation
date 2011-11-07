@@ -37,7 +37,7 @@ Table of Contents
    acknowledgements.rst
    introduction.rst
    eom.rst
-   davisbicycle.rst
    physicalparameters.rst
+   davisbicycle.rst
 
 * :ref:`search`

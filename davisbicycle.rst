@@ -4,6 +4,9 @@
 Davis Instrumented Bicycle
 ==========================
 
+Bicycle frame
+=============
+
 Steer Torque
 ============
 
@@ -568,4 +571,28 @@ from the steer potentiometer, steer rate gyro and the torque sensor during
 these perturbations. For now, we simply used the steer angle signals to
 estimate both the viscous and coulomb friction from the two bearing sets.
 
+
+Rates and accelerations
+=======================
+
+Lateral Force
+=============
+
+Rider rigidification
+====================
+
+Wiring diagram
+==============
+
+Data aquisition
+===============
+
+Time sychronization
+===================
+
+Roll angle trailer
+==================
+
+DAQ Software
+============
 .. [#] The elasticity of the steer column may also be a factor.

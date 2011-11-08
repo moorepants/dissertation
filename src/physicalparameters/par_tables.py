@@ -1,8 +1,9 @@
+import os
 import bicycleparameters as bp
 from bicycleparameters.tables import Table
 
 pathToData = '/media/Data/Documents/School/UC Davis/Bicycle Mechanics/BicycleParameters/data'
-pathToTables = ''
+pathToTables = '../../tables/physicalparameters'
 
 def create_tables(bikeNames, groupName):
     batavusBikes = []
@@ -11,7 +12,8 @@ def create_tables(bikeNames, groupName):
 
     for typ in ['Measured', 'Benchmark']:
         tab = Table('Measured', True, batavusBikes)
-        tab.create_rst_table(fileName=pathToTables + groupName + typ + '.rst')
+        pathToTableFile = os.path.join(pathToTables, groupName + typ + '.rst')
+        tab.create_rst_table(fileName=pathToTableFile)
     print('Tables created for', bikeNames)
 
 # make a tables for the batavus bikes

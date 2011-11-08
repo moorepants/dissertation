@@ -1743,6 +1743,8 @@ Bicycle Measured Parameters
 
 .. include:: tables/physicalparameters/davisMeasured.rst
 
+.. todo:: add gyrobike parameters
+
 Bicycle Benchmark Parameters
 ----------------------------
 
@@ -1751,6 +1753,8 @@ Bicycle Benchmark Parameters
 .. include:: tables/physicalparameters/delftBenchmark.rst
 
 .. include:: tables/physicalparameters/davisBenchmark.rst
+
+.. todo:: add gyrobike parameters
 
 Bicycle + Human Parameters
 --------------------------

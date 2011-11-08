@@ -132,12 +132,20 @@ doctest:
 gh-pages: clean html
 	git symbolic-ref HEAD refs/heads/gh-pages
 	rm .git/index
-	git clean -fdx -e _build/ -e .gitignore -e README
+	git clean -fdx -e _build/ -e .gitignore -e README -e figures/ -e tables/
+	mv figures figures-hide
+	mv tables tables-hide
 	touch .nojekyll
 	cp -r _build/html/* .
 	rm -r _build/
 	git add .
 	@echo 'Commit and push when ready or git reset --hard && git checkout master to revert'
+
+commit-gh-pages:
+	git commit -am "Updated website."
+	git checkout master
+	mv figures-hide figures
+	mv tables-hide tables
 
 pushpdf:
 	scp _build/latex/HumanControlofaBicycle.pdf biosport@mae.ucdavis.edu:/home/grads/biosport/public_html/jkm/dissertation/

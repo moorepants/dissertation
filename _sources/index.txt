@@ -25,19 +25,23 @@ Table of Contents
 =================
 
 .. toctree::
-   :maxdepth: 1
-
-   outline.rst
-   todo.rst
-
-.. toctree::
    :maxdepth: 2
 
    preface.rst
    acknowledgements.rst
+   abstract.rst
    introduction.rst
    eom.rst
-   davisbicycle.rst
+   extensions.rst
    physicalparameters.rst
+   parameterstudy.rst
+   delftbicycle.rst
+   motioncapture.rst
+   davisbicycle.rst
+   control.rst
+   handling.rst
+   davisexperiments.rst
+   systemidentification.rst
+   todo.rst
 
 * :ref:`search`

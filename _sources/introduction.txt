@@ -108,3 +108,18 @@ also the first to give names to the eigenmodes of the Whipple Model
 [Sharp1975]_. He and David Limebeer give a review of bicycle and motorcycle
 modeling in [LimebeerSharp2006]_ covering much of their work. Other notable
 studies include ones developed by [Koenen1983]_ and [CossalterLot2002]_.
+
+
+* The bicycle as a dynamic system
+* Motivation
+* General literature review
+* Syntax and variables
+* Overview of general types of bicylce models
+
+  * Simple bicycle models
+  * Bicycle models with stability
+  * Complex models (motorcycle)
+
+    * Tire models
+    * Flexible rider
+    * Shocks and flexible frames

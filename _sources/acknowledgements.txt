@@ -15,3 +15,12 @@ This material is partially based upon work supported by the National Science
 Foundation under Grant No. 0928339. Any opinions, findings, and conclusions or
 recommendations expressed in this material are those of the author(s) and do
 not necessarily reflect the views of the National Science Foundation.
+
+* Hubbard
+* Luke
+* Arend
+* Jodi
+* Jim
+* Grad interns: Danique, Peter, Chris, Gilbert
+* Undergrad interns
+* Others...

@@ -29,8 +29,8 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/theme_extras.js"></script>
     <link rel="top" title="Human Control of a Bicycle: Jason K. Moore" href="index.html" />
-    <link rel="next" title="Physical Parameters" href="physicalparameters.html" />
-    <link rel="prev" title="Bicycle Equations Of Motion" href="eom.html" /> 
+    <link rel="next" title="Control" href="control.html" />
+    <link rel="prev" title="Motion Capture" href="motioncapture.html" /> 
   </head>
   <body>
       <div class="header"><h1 class="heading"><a href="index.html">
@@ -40,11 +40,11 @@
       <div class="topnav">
       
         <p>
-        «&#160;&#160;<a href="eom.html">Bicycle Equations Of Motion</a>
+        «&#160;&#160;<a href="motioncapture.html">Motion Capture</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="physicalparameters.html">Physical Parameters</a>&#160;&#160;»
+        <a href="control.html">Control</a>&#160;&#160;»
         </p>
 
       </div>
@@ -53,7 +53,10 @@
         
 
   <div class="section" id="davis-instrumented-bicycle">
-<h1>Davis Instrumented Bicycle<a class="headerlink" href="#davis-instrumented-bicycle" title="Permalink to this headline">¶</a></h1>
+<span id="davisbicycle"></span><h1>Davis Instrumented Bicycle<a class="headerlink" href="#davis-instrumented-bicycle" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="bicycle-frame">
+<h2>Bicycle frame<a class="headerlink" href="#bicycle-frame" title="Permalink to this headline">¶</a></h2>
+</div>
 <div class="section" id="steer-torque">
 <h2>Steer Torque<a class="headerlink" href="#steer-torque" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="literature-review">
@@ -602,14 +605,38 @@ us to perturb the handlebars and let the vibrations damp out. We recorded data
 from the steer potentiometer, steer rate gyro and the torque sensor during
 these perturbations. For now, we simply used the steer angle signals to
 estimate both the viscous and coulomb friction from the two bearing sets.</p>
+</div>
+</div>
+</div>
+<div class="section" id="rates-and-accelerations">
+<h2>Rates and accelerations<a class="headerlink" href="#rates-and-accelerations" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="lateral-force">
+<h2>Lateral Force<a class="headerlink" href="#lateral-force" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="rider-rigidification">
+<h2>Rider rigidification<a class="headerlink" href="#rider-rigidification" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="wiring-diagram">
+<h2>Wiring diagram<a class="headerlink" href="#wiring-diagram" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="data-aquisition">
+<h2>Data aquisition<a class="headerlink" href="#data-aquisition" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="time-sychronization">
+<h2>Time sychronization<a class="headerlink" href="#time-sychronization" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="roll-angle-trailer">
+<h2>Roll angle trailer<a class="headerlink" href="#roll-angle-trailer" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="daq-software">
+<h2>DAQ Software<a class="headerlink" href="#daq-software" title="Permalink to this headline">¶</a></h2>
 <table class="docutils footnote" frame="void" id="id14" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label">[1]</td><td>The elasticity of the steer column may also be a factor.</td></tr>
 </tbody>
 </table>
-</div>
-</div>
 </div>
 </div>
 
@@ -640,11 +667,11 @@ estimate both the viscous and coulomb friction from the two bearing sets.</p>
       <div class="bottomnav">
       
         <p>
-        «&#160;&#160;<a href="eom.html">Bicycle Equations Of Motion</a>
+        «&#160;&#160;<a href="motioncapture.html">Motion Capture</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="physicalparameters.html">Physical Parameters</a>&#160;&#160;»
+        <a href="control.html">Control</a>&#160;&#160;»
         </p>
 
       </div>
@@ -652,7 +679,7 @@ estimate both the viscous and coulomb friction from the two bearing sets.</p>
 
     <div class="footer">
         &copy; Copyright 2011, Jason K. Moore.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1pre.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
 <script type="text/javascript">
 var disqus_shortname = 'jkm-dissertation';

@@ -1,0 +1,630 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>&lt;no title&gt; &mdash; Human Control of a Bicycle: Jason K. Moore</title>
+    
+    <link rel="stylesheet" href="../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/theme_extras.js"></script>
+    <link rel="top" title="Human Control of a Bicycle: Jason K. Moore" href="../../index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../index.html">
+          <span>Human Control of a Bicycle: Jason K. Moore</span></a></h1>
+        <h2 class="heading"><span>&lt;no title&gt;</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+
+  <table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="8%" />
+<col width="11%" />
+<col width="8%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&nbsp;</th>
+<th class="head" colspan="2">Fisher</th>
+<th class="head" colspan="2">Pista</th>
+<th class="head" colspan="2">Yellow</th>
+<th class="head" colspan="2">Yellowrev</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Variable</td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{B1}\)</span></td>
+<td>0.304</td>
+<td>0.003</td>
+<td>0.329</td>
+<td>0.003</td>
+<td>0.220</td>
+<td>0.003</td>
+<td>0.220</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{B2}\)</span></td>
+<td>0.395</td>
+<td>0.003</td>
+<td>0.293</td>
+<td>0.003</td>
+<td>0.000</td>
+<td>0.003</td>
+<td>0.000</td>
+<td>0.003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{B3}\)</span></td>
+<td>-0.107</td>
+<td>0.003</td>
+<td>-0.267</td>
+<td>0.003</td>
+<td>-0.379</td>
+<td>0.003</td>
+<td>-0.379</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{H1}\)</span></td>
+<td>0.341</td>
+<td>0.003</td>
+<td>0.337</td>
+<td>0.003</td>
+<td>0.468</td>
+<td>0.003</td>
+<td>0.099</td>
+<td>0.003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{H2}\)</span></td>
+<td>0.277</td>
+<td>0.003</td>
+<td>0.400</td>
+<td>0.003</td>
+<td>0.396</td>
+<td>0.003</td>
+<td>0.445</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{H3}\)</span></td>
+<td>-0.008</td>
+<td>0.003</td>
+<td>-0.063</td>
+<td>0.003</td>
+<td>0.015</td>
+<td>0.003</td>
+<td>0.474</td>
+<td>0.003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{B1}\)</span></td>
+<td>125.9</td>
+<td>0.2</td>
+<td>120.2</td>
+<td>0.2</td>
+<td>139.5</td>
+<td>0.2</td>
+<td>139.5</td>
+<td>0.2</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{B2}\)</span></td>
+<td>75.7</td>
+<td>0.2</td>
+<td>40.7</td>
+<td>0.2</td>
+<td>345.4</td>
+<td>0.2</td>
+<td>345.4</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{B3}\)</span></td>
+<td>190.8</td>
+<td>0.2</td>
+<td>215.9</td>
+<td>0.2</td>
+<td>215.9</td>
+<td>0.2</td>
+<td>215.9</td>
+<td>0.2</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{H1}\)</span></td>
+<td>35.3</td>
+<td>0.2</td>
+<td>38.8</td>
+<td>0.2</td>
+<td>0.3</td>
+<td>0.2</td>
+<td>89.3</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{H2}\)</span></td>
+<td>50.0</td>
+<td>0.2</td>
+<td>12.4</td>
+<td>0.2</td>
+<td>32.0</td>
+<td>0.2</td>
+<td>33.5</td>
+<td>0.2</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{H3}\)</span></td>
+<td>93.8</td>
+<td>0.2</td>
+<td>102.2</td>
+<td>0.2</td>
+<td>87.9</td>
+<td>0.2</td>
+<td>4.3</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_F\)</span></td>
+<td>29.04</td>
+<td>0.01</td>
+<td>29.37</td>
+<td>0.01</td>
+<td>27.93</td>
+<td>0.01</td>
+<td>27.93</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(d_P\)</span></td>
+<td>0.0300</td>
+<td>0.0001</td>
+<td>0.0300</td>
+<td>0.0001</td>
+<td>0.0300</td>
+<td>0.0001</td>
+<td>0.0300</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_R\)</span></td>
+<td>29.79</td>
+<td>0.01</td>
+<td>29.21</td>
+<td>0.01</td>
+<td>27.88</td>
+<td>0.01</td>
+<td>27.88</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(f\)</span></td>
+<td>0.038</td>
+<td>0.001</td>
+<td>0.032</td>
+<td>0.001</td>
+<td>0.057</td>
+<td>0.001</td>
+<td>-0.057</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(g\)</span></td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\gamma\)</span></td>
+<td>71.1</td>
+<td>0.2</td>
+<td>74.2</td>
+<td>0.2</td>
+<td>72.7</td>
+<td>0.2</td>
+<td>70.6</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(h_{bb}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.276580359362</td>
+<td>NA</td>
+<td>0.276602031136</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\lambda_{st}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>1.2653637077</td>
+<td>NA</td>
+<td>1.2653637077</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{cs}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.45</td>
+<td>NA</td>
+<td>0.45</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_F\)</span></td>
+<td>0.264</td>
+<td>0.001</td>
+<td>0.297</td>
+<td>0.001</td>
+<td>0.304</td>
+<td>0.001</td>
+<td>0.304</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{hbF}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.7</td>
+<td>NA</td>
+<td>0.7</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_{hbR}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>1.145</td>
+<td>NA</td>
+<td>1.145</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_P\)</span></td>
+<td>1.050</td>
+<td>0.001</td>
+<td>1.050</td>
+<td>0.001</td>
+<td>1.050</td>
+<td>0.001</td>
+<td>1.050</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_R\)</span></td>
+<td>0.265</td>
+<td>0.001</td>
+<td>0.297</td>
+<td>0.001</td>
+<td>0.302</td>
+<td>0.001</td>
+<td>0.302</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{sp}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.21</td>
+<td>NA</td>
+<td>0.21</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_{st}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.515</td>
+<td>NA</td>
+<td>0.515</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_B\)</span></td>
+<td>4.48</td>
+<td>0.02</td>
+<td>4.49</td>
+<td>0.02</td>
+<td>3.31</td>
+<td>0.02</td>
+<td>3.31</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_F\)</span></td>
+<td>1.50</td>
+<td>0.02</td>
+<td>1.58</td>
+<td>0.02</td>
+<td>1.90</td>
+<td>0.02</td>
+<td>1.90</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_H\)</span></td>
+<td>2.52</td>
+<td>0.02</td>
+<td>2.27</td>
+<td>0.02</td>
+<td>2.45</td>
+<td>0.02</td>
+<td>2.45</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_P\)</span></td>
+<td>5.56</td>
+<td>0.02</td>
+<td>5.56</td>
+<td>0.02</td>
+<td>5.56</td>
+<td>0.02</td>
+<td>5.56</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_R\)</span></td>
+<td>1.94</td>
+<td>0.02</td>
+<td>1.38</td>
+<td>0.02</td>
+<td>2.57</td>
+<td>0.02</td>
+<td>2.57</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(n_F\)</span></td>
+<td>14.0</td>
+<td>NA</td>
+<td>14.0</td>
+<td>NA</td>
+<td>13.0</td>
+<td>NA</td>
+<td>13.0</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(n_R\)</span></td>
+<td>14.0</td>
+<td>NA</td>
+<td>14.0</td>
+<td>NA</td>
+<td>13.0</td>
+<td>NA</td>
+<td>13.0</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^c_{B1}\)</span></td>
+<td>1.632572</td>
+<td>0.000004</td>
+<td>1.639885</td>
+<td>0.000006</td>
+<td>1.71695</td>
+<td>0.00001</td>
+<td>1.71695</td>
+<td>0.00001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^c_{F1}\)</span></td>
+<td>1.463519</td>
+<td>0.000004</td>
+<td>1.451154</td>
+<td>0.000005</td>
+<td>1.49847</td>
+<td>0.00002</td>
+<td>1.49847</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^c_{H1}\)</span></td>
+<td>1.422021</td>
+<td>0.000002</td>
+<td>1.392606</td>
+<td>0.000002</td>
+<td>1.518206</td>
+<td>0.000008</td>
+<td>1.528827</td>
+<td>0.000006</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^c_{R1}\)</span></td>
+<td>1.362063</td>
+<td>0.000007</td>
+<td>1.395046</td>
+<td>0.000004</td>
+<td>1.40931</td>
+<td>0.00002</td>
+<td>1.40931</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{B1}\)</span></td>
+<td>1.291694</td>
+<td>0.000003</td>
+<td>1.26420</td>
+<td>0.00001</td>
+<td>1.19029</td>
+<td>0.00002</td>
+<td>1.19029</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{B2}\)</span></td>
+<td>1.506534</td>
+<td>0.000005</td>
+<td>1.501279</td>
+<td>0.000007</td>
+<td>1.200785</td>
+<td>0.000006</td>
+<td>1.200785</td>
+<td>0.000006</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{B3}\)</span></td>
+<td>1.367939</td>
+<td>0.000004</td>
+<td>1.492970</td>
+<td>0.000005</td>
+<td>1.282136</td>
+<td>0.000008</td>
+<td>1.282136</td>
+<td>0.000008</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{F1}\)</span></td>
+<td>0.665696</td>
+<td>0.000001</td>
+<td>0.6232453</td>
+<td>0.0000006</td>
+<td>0.773040</td>
+<td>0.000002</td>
+<td>0.773040</td>
+<td>0.000002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{H1}\)</span></td>
+<td>0.826936</td>
+<td>0.000002</td>
+<td>0.776458</td>
+<td>0.000001</td>
+<td>1.012698</td>
+<td>0.000003</td>
+<td>0.4756557</td>
+<td>0.0000009</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{H2}\)</span></td>
+<td>0.720503</td>
+<td>0.000001</td>
+<td>0.830610</td>
+<td>0.000003</td>
+<td>0.948609</td>
+<td>0.000002</td>
+<td>0.963826</td>
+<td>0.000003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{H3}\)</span></td>
+<td>0.3719856</td>
+<td>0.0000003</td>
+<td>0.5250995</td>
+<td>0.0000005</td>
+<td>0.4579289</td>
+<td>0.0000006</td>
+<td>1.019585</td>
+<td>0.000003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{P1}\)</span></td>
+<td>1.893993</td>
+<td>0.000006</td>
+<td>1.893993</td>
+<td>0.000006</td>
+<td>1.893993</td>
+<td>0.000006</td>
+<td>1.893993</td>
+<td>0.000006</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{R1}\)</span></td>
+<td>0.6650523</td>
+<td>0.0000008</td>
+<td>0.622565</td>
+<td>0.000001</td>
+<td>0.784395</td>
+<td>0.000001</td>
+<td>0.784395</td>
+<td>0.000001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(w\)</span></td>
+<td>1.070</td>
+<td>0.002</td>
+<td>0.989</td>
+<td>0.002</td>
+<td>1.089</td>
+<td>0.002</td>
+<td>0.985</td>
+<td>0.002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(w_{hb}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.24</td>
+<td>NA</td>
+<td>0.24</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+
+
+<!--
+<script type="text/javascript">
+	var disqus_developer = 1;
+</script>
+-->
+<h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /**
+    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
+    */
+  (function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = 'http://jkm-dissertation.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a
+		href="http://disqus.com/?ref_noscript=jkm-dissertation">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+
+
+    <div class="footer">
+        &copy; Copyright 2011, Jason K. Moore.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+<script type="text/javascript">
+var disqus_shortname = 'jkm-dissertation';
+(function () {
+  var s = document.createElement('script'); s.async = true;
+  s.src = 'http://disqus.com/forums/jkm-dissertation/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+  </body>
+</html>

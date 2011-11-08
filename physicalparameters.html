@@ -107,6 +107,10 @@
 </li>
 </ul>
 </div>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">tables are not centered in the html or pdf</p>
+</div>
 <div class="section" id="preface">
 <h2><a class="toc-backref" href="#id53">Preface</a><a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
 <p>I was first concerned with the physical parameters of the bicycle and rider in
@@ -348,14 +352,14 @@ Bicycles</em>.</p>
 </tr>
 </tbody>
 </table>
-<div class="admonition-todo admonition" id="index-0">
+<div class="admonition-todo admonition" id="index-1">
 <p class="first admonition-title">Todo</p>
 <p class="last">take a better photo of the davis bike</p>
 </div>
 </div>
 <div class="section" id="accuracy">
 <span id="secaccuracy"></span><h3><a class="toc-backref" href="#id58">Accuracy</a><a class="headerlink" href="#accuracy" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="index-1">
+<div class="admonition-todo admonition" id="index-2">
 <p class="first admonition-title">Todo</p>
 <p class="last">Should I remove all of the sigma equations (accuracy calculations)
 and just note that they were taken into account with the uncertainties
@@ -488,7 +492,7 @@ from one wheel axle center to the other.</p>
 </div>
 <div class="section" id="alternative-geometry-method">
 <h3><a class="toc-backref" href="#id64">Alternative Geometry Method</a><a class="headerlink" href="#alternative-geometry-method" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="index-2">
+<div class="admonition-todo admonition" id="index-3">
 <p class="first admonition-title">Todo</p>
 <p class="last">I have some issues with variable names here, as I use d_i for both
 my bicycle parameters and these raw measurements.</p>
@@ -503,6 +507,10 @@ axles are ensured to be parallel to the table surface. The height from the
 table surface to the top of each axle are recorded with a height gage and the
 diameters of the axles are measured with a micrometer or caliper. Figure
 <a class="reference internal" href="#figalternativegeometry"><em>figAlternativeGeometry</em></a>.</p>
+<div class="admonition-todo admonition" id="index-4">
+<p class="first admonition-title">Todo</p>
+<p class="last">svg files do not show up in the latex output</p>
+</div>
 <div class="figure align-center" id="figalternativegeometry">
 <img src="_images/alternativeGeometry.svg" /><p class="caption">figAlternativeGeometry</p>
 <div class="legend">
@@ -574,12 +582,20 @@ by aligning a 1 mm resolution ruler perpendicular to the string. The distance
 axle and positive if it fell to the left of the rear axle. These measurements
 allow for the calculation of the center of mass location in the global
 reference frame.</p>
+<div class="admonition-todo admonition" id="index-5">
+<p class="first admonition-title">Todo</p>
+<p class="last">svg files do not show up in the latex output</p>
+</div>
 <div class="figure align-center" id="figangles">
 <img src="_images/angles.svg" /><p class="caption">figAngles</p>
 <div class="legend">
 Pictorial description of the angles and dimensions that related the nominal
 bicycle reference frame <span class="math">\(XYZ_B\)</span> with the pendulum reference frame
 <span class="math">\(XYZ_P\)</span>.</div>
+</div>
+<div class="admonition-todo admonition" id="index-6">
+<p class="first admonition-title">Todo</p>
+<p class="last">svg files do not show up in the latex output</p>
 </div>
 <div class="figure align-center" id="figtriangle">
 <img src="_images/triangle.svg" /><p class="caption">figTriangle</p>
@@ -712,6 +728,10 @@ The handlebar mounted in the torsional pendulum.</div>
 <p>I choose the center of the stem clamp bolt to be the reference point (as was
 the front and rear wheel centers for the fork and frame). The location of this
 point relative to the front wheel center was measured.</p>
+<div class="admonition-todo admonition" id="index-7">
+<p class="first admonition-title">Todo</p>
+<p class="last">svg files do not show up in the latex output</p>
+</div>
 <div class="figure align-center" id="fighandlebargeometry">
 <img src="_images/handlebarGeometry.svg" /><p class="caption">figHandlebarGeometry</p>
 <div class="legend">
@@ -1107,6 +1127,10 @@ head tube and the down tube.</dd>
 <dd>The distance from the intersection of the top tube and the head tube to the
 level of the handlebar grips.</dd>
 </dl>
+<div class="admonition-todo admonition" id="index-8">
+<p class="first admonition-title">Todo</p>
+<p class="last">svg files do not show up in the latex output</p>
+</div>
 <div class="figure align-center" id="figbatavusbrowserdim">
 <img src="_images/batavusBrowserDim.svg" /><p class="caption">figBatavusBrowserDim</p>
 <div class="legend">
@@ -1385,7 +1409,7 @@ moments of inertia are summed to give the total moment of inertia of the rider.<
 \sum{\mathbf{I}^*_i}\]</div>
 <p>The results of measuring three riders are presented in
 <em class="xref std std-ref">tabMooreRiderParameters</em>.</p>
-<div class="admonition-todo admonition" id="index-3">
+<div class="admonition-todo admonition" id="index-9">
 <p class="first admonition-title">Todo</p>
 <p class="last">add in the table of values for the three riders with the Moore method</p>
 </div>
@@ -1417,15 +1441,38 @@ where the hand grips.</dd>
 <dd>The distance from the center of the front hub to the point on the handlebar
 where the hand grips.</dd>
 </dl>
+<p>We locate the hip center (Ls0) at the top of the bicycle seat and the
+somersault joint angle is set such that the torso (P, T, C) aligned by the
+forward lean angle <span class="math">\(\lambda_{fl}\)</span>.</p>
+<p>The basic process for setting the elbow elevation angle is to find the distance
+between the shoulder (La0, Lb0) and the handlebar grip. The handle bar grip
+location is at the point at which the lateral line with length
+<span class="math">\(\frac{w_{hb}}{2}\)</span> interesects the circle formed by the intersection of
+the two spheres which are centered at the front and rear wheel centers with
+radii <span class="math">\(l_{hbF}\)</span> and <span class="math">\(l_{hbR}\)</span>, respectively. The elevation angle of
+the elbow then is defined as the angle at which the distance from the shoulder
+(La0, Lb0) to the knuckle (La6, Lb6) is equal to the distance from the shoulder
+(La0, Lb0) to the handlebar grip. We then assume that the shoulder rotation
+angle is zero and find the shoulder elevation and abduction angles which force
+the vector from the shoulder to the knuckle to equal the vector from the
+shoulder to the handlebar grip.</p>
 <p>The thigh and knee elevation angles are set such that the center of the heel
-level is aligned with the bottom bracket axis. The elbow elevation angle is set
-such that the distance from the shoulder to the knuckle is equal to the
-distance from the shoulder to the handlebar grip point. The upper arms&#8217;
-elevation and abduction angles are then set such that the knuckle level is at
-the handlebar point. The shoulder rotation is set to zero.</p>
-<div class="admonition-todo admonition" id="index-4">
+level (Lj6, Lk6) is aligned with the bottom bracket axis and that both the
+thigh abduction and rotation angles are zero. We assume that the footpeg is
+located at the bottom bracket center and is the same lateral distance from the
+saggital plane as the hip centers. The knee and thigh elevation angles are then
+found in the same fashion as the elbow and shoulder angles, which the lesser
+restrcition that the thigh abduction angle is zero.</p>
+<div class="figure align-center" id="fighuman">
+<img alt="_images/human.png" src="_images/human.png" style="width: 4in;" />
+<p class="caption">figHuman</p>
+<div class="legend">
+A visualization of the Yeadon inertia model configured to sit on a bicycle.
+Output is from the BicycleParameters software package.</div>
+</div>
+<div class="admonition-todo admonition" id="index-10">
 <p class="first admonition-title">Todo</p>
-<p class="last">Should I show the calculations for configuring the yeadon joint
+<p class="last">Should I show detailed calculations for configuring the yeadon joint
 angles such that the rider is sitting on the bicycle?</p>
 </div>
 </div>
@@ -1441,6 +1488,11 @@ with multiple degrees of freedom. For example, the inertia for a leaning rider&#
 upper body can be determined separately and the legs can be fixed the bicycle
 frame. We make use of this for the different rider bio-mechanical models
 presented in Chapter <em class="xref std std-ref">modelextensions</em>.</p>
+<div class="admonition-todo admonition" id="index-11">
+<p class="first admonition-title">Todo</p>
+<p class="last">Should I add mathematicl explanation how to extract the parameter
+sets that are desired? Like leaning rider or rigid rider, etc.</p>
+</div>
 </div>
 <div class="section" id="software-implementation">
 <h2><a class="toc-backref" href="#id79">Software Implementation</a><a class="headerlink" href="#software-implementation" title="Permalink to this headline">¶</a></h2>
@@ -1464,13 +1516,18 @@ each of the packages: <a class="reference external" href="http://packages.python
 </div>
 <div class="section" id="parameter-tables">
 <span id="secpartables"></span><h2><a class="toc-backref" href="#id80">Parameter Tables</a><a class="headerlink" href="#parameter-tables" title="Permalink to this headline">¶</a></h2>
-<div class="admonition-todo admonition" id="index-5">
+<div class="admonition-todo admonition" id="index-12">
 <p class="first admonition-title">Todo</p>
 <p class="last">In one sense I would prefer not to add in all these tables of values
 as they are contained in the available datasets and can be produced by the
 provided code, but in the other sense many people may look at the datasets
 or run the code. Tables like this can potentially take up a lot of space.
 What do you all think?</p>
+</div>
+<div class="admonition-todo admonition" id="index-13">
+<p class="first admonition-title">Todo</p>
+<p class="last">These tables look like crap in the latex output. I need to figure out
+how to imrpove them.</p>
 </div>
 <p>The tabulated values for the both the raw measurements and the physical
 parameters are given in the following tables.</p>
@@ -4680,7 +4737,7 @@ parameters are given in the following tables.</p>
 </div>
 <div class="section" id="bicycle-human-parameters">
 <h3><a class="toc-backref" href="#id83">Bicycle + Human Parameters</a><a class="headerlink" href="#bicycle-human-parameters" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="index-6">
+<div class="admonition-todo admonition" id="index-14">
 <p class="first admonition-title">Todo</p>
 <p class="last">parameters with the human configured to sit on the bicycle</p>
 </div>

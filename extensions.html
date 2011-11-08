@@ -54,11 +54,32 @@
 
   <div class="section" id="extensions-and-modifcations-to-the-whipple-model">
 <span id="extensions"></span><h1>Extensions and modifcations to the Whipple Model<a class="headerlink" href="#extensions-and-modifcations-to-the-whipple-model" title="Permalink to this headline">¶</a></h1>
+<p>I present several bicycle models based off of the basic formulation of the
+Whipple model in this Chapter. Various combinations of these model extensions
+are used in the later Chapters for analysis.</p>
 <div class="section" id="addition-of-a-lateral-force-input">
 <h2>Addition of a lateral force input<a class="headerlink" href="#addition-of-a-lateral-force-input" title="Permalink to this headline">¶</a></h2>
+<p>The Whipple model has three input forces roll torque <span class="math">\(T_4\)</span>, rear wheel
+torque <span class="math">\(T_6\)</span> and steer torque <span class="math">\(T_7\)</span>. Here I add a lateral force
+which acts on a point on the bicycle frame. The force is defined such that is
+is always in the <span class="math">\(n_2\)</span> direction and acts on a point located in the
+midplane of the bicycle frame. We make use of this in the analyses in later
+chapters because we perturb the bicycle/rider system with an external lateral
+force. The vector from the rear wheel center to the point is:</p>
+<div class="math" id="equation-lateralForcePoint">
+<span class="eqno">(1)</span>\[\bar{r}^{P/D_o} = l_5\hat{c}_1 + l_6\hat{c}_3\]</div>
+<p>The generalized active forces become</p>
+<div class="math" id="equation-lateralForce">
+<span class="eqno">(2)</span>\[\bar{R}^{D_o} = m_Dg\hat{n}_3 + F^P\hat{n}_2\]\[\bar{T}^D = T_6\hat{c}_2 + F^P something\]</div>
+<p>The equations of motion can then be formulated with the additional forcing
+term. This new input creates a very similar dynamics as the roll torque.</p>
 </div>
 <div class="section" id="leaning-rider-extension">
 <h2>Leaning rider extension<a class="headerlink" href="#leaning-rider-extension" title="Permalink to this headline">¶</a></h2>
+<p>A typical assumption is that a rider can control a bicycle by leaning their
+body relative to the bicycle frame. This is especially drawn for the no-hands
+riding case. A simple leaning rider can be modeled by adding an additional
+rider lean degree of freedom.</p>
 </div>
 <div class="section" id="david-de-lorenzo-extension-3-rider-dof">
 <h2>David de Lorenzo extension (3 rider dof)<a class="headerlink" href="#david-de-lorenzo-extension-3-rider-dof" title="Permalink to this headline">¶</a></h2>

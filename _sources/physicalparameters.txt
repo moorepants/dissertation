@@ -7,6 +7,8 @@ Physical Parameters
 .. contents::
    :depth: 4
 
+.. todo:: tables are not centered in the html or pdf
+
 Preface
 =======
 
@@ -490,6 +492,8 @@ table surface to the top of each axle are recorded with a height gage and the
 diameters of the axles are measured with a micrometer or caliper. Figure
 :ref:`figAlternativeGeometry`.
 
+.. todo:: svg files do not show up in the latex output
+
 .. _figAlternativeGeometry:
 
 .. figure:: figures/physicalparameters/alternativeGeometry.svg
@@ -607,6 +611,8 @@ axle and positive if it fell to the left of the rear axle. These measurements
 allow for the calculation of the center of mass location in the global
 reference frame.
 
+.. todo:: svg files do not show up in the latex output
+
 .. _figAngles:
 
 .. figure:: figures/physicalparameters/angles.svg
@@ -617,6 +623,9 @@ reference frame.
    Pictorial description of the angles and dimensions that related the nominal
    bicycle reference frame :math:`XYZ_B` with the pendulum reference frame
    :math:`XYZ_P`.
+
+
+.. todo:: svg files do not show up in the latex output
 
 .. _figTriangle:
 
@@ -815,6 +824,8 @@ it in different orientations, Figure :ref:`figHandlebar`.
 I choose the center of the stem clamp bolt to be the reference point (as was
 the front and rear wheel centers for the fork and frame). The location of this
 point relative to the front wheel center was measured.
+
+.. todo:: svg files do not show up in the latex output
 
 .. _figHandlebarGeometry:
 
@@ -1348,6 +1359,8 @@ the bicycle.
    The distance from the intersection of the top tube and the head tube to the
    level of the handlebar grips.
 
+.. todo:: svg files do not show up in the latex output
+
 .. _figBatavusBrowserDim:
 
 .. figure:: figures/physicalparameters/batavusBrowserDim.svg
@@ -1626,14 +1639,43 @@ dimensions to assist in the configuration of the rider. They are as follows:
    The distance from the center of the front hub to the point on the handlebar
    where the hand grips.
 
-The thigh and knee elevation angles are set such that the center of the heel
-level is aligned with the bottom bracket axis. The elbow elevation angle is set
-such that the distance from the shoulder to the knuckle is equal to the
-distance from the shoulder to the handlebar grip point. The upper arms'
-elevation and abduction angles are then set such that the knuckle level is at
-the handlebar point. The shoulder rotation is set to zero.
+We locate the hip center (Ls0) at the top of the bicycle seat and the
+somersault joint angle is set such that the torso (P, T, C) aligned by the
+forward lean angle :math:`\lambda_{fl}`.
 
-.. todo:: Should I show the calculations for configuring the yeadon joint
+The basic process for setting the elbow elevation angle is to find the distance
+between the shoulder (La0, Lb0) and the handlebar grip. The handle bar grip
+location is at the point at which the lateral line with length
+:math:`\frac{w_{hb}}{2}` interesects the circle formed by the intersection of
+the two spheres which are centered at the front and rear wheel centers with
+radii :math:`l_{hbF}` and :math:`l_{hbR}`, respectively. The elevation angle of
+the elbow then is defined as the angle at which the distance from the shoulder
+(La0, Lb0) to the knuckle (La6, Lb6) is equal to the distance from the shoulder
+(La0, Lb0) to the handlebar grip. We then assume that the shoulder rotation
+angle is zero and find the shoulder elevation and abduction angles which force
+the vector from the shoulder to the knuckle to equal the vector from the
+shoulder to the handlebar grip.
+
+The thigh and knee elevation angles are set such that the center of the heel
+level (Lj6, Lk6) is aligned with the bottom bracket axis and that both the
+thigh abduction and rotation angles are zero. We assume that the footpeg is
+located at the bottom bracket center and is the same lateral distance from the
+saggital plane as the hip centers. The knee and thigh elevation angles are then
+found in the same fashion as the elbow and shoulder angles, which the lesser
+restrcition that the thigh abduction angle is zero.
+
+.. _figHuman:
+
+.. figure:: figures/physicalparameters/human.png
+   :align: center
+   :width: 4in
+
+   figHuman
+
+   A visualization of the Yeadon inertia model configured to sit on a bicycle.
+   Output is from the BicycleParameters software package.
+
+.. todo:: Should I show detailed calculations for configuring the yeadon joint
    angles such that the rider is sitting on the bicycle?
 
 Bicycle-Rider Parameters
@@ -1648,6 +1690,9 @@ with multiple degrees of freedom. For example, the inertia for a leaning rider's
 upper body can be determined separately and the legs can be fixed the bicycle
 frame. We make use of this for the different rider bio-mechanical models
 presented in Chapter :ref:`modelextensions`.
+
+.. todo:: Should I add mathematicl explanation how to extract the parameter
+   sets that are desired? Like leaning rider or rigid rider, etc.
 
 Software Implementation
 =======================
@@ -1680,6 +1725,9 @@ Parameter Tables
    provided code, but in the other sense many people may look at the datasets
    or run the code. Tables like this can potentially take up a lot of space.
    What do you all think?
+
+.. todo:: These tables look like crap in the latex output. I need to figure out
+   how to imrpove them.
 
 The tabulated values for the both the raw measurements and the physical
 parameters are given in the following tables.

@@ -144,7 +144,6 @@ gh-pages: clean html
 
 commit-gh-pages:
 	git commit -am "Updated website."
-	git push origin gh-pages
 	git checkout master
 	mv figures-hide figures
 	mv tables-hide tables

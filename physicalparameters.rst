@@ -1350,7 +1350,7 @@ the bicycle.
 
 .. _figBatavusBrowserDim:
 
-.. figure:: figures/physicalparameters/batavusBrowserDim.png
+.. figure:: figures/physicalparameters/batavusBrowserDim.svg
    :align: center
 
    figBatavusBrowserDim
@@ -1497,15 +1497,12 @@ frame. The total body center of mass can be found from the standard formula
    :label: eqCoM
 
    \mathbf{r}_{\mathrm{B}r}=
-   \frac{\sum{m_i\mathbf{r}_i}}{m_{\mathrm{B}r}}=
-   \left[0.291\quad0\quad-1.109\right]\mathrm{m}
+   \frac{\sum{m_i\mathbf{r}_i}}{m_{\mathrm{B}r}}
 
 where :math:`\mathbf{r}_i` is the position vector to the centroid of each
 segment and :math:`m_i` is the mass of each segment. The local moments of
 inertia of each segment are determined using the ideal definitions of inertia
-for each segment type (Table :ref:`tabLocInertia`). The width of the cuboid
-representing the torso :math:`l_y` is defined by the shoulder width and upper
-arm circumference.
+for each segment type (Table :ref:`tabLocInertia`).
 
 .. _tabLocInertia:
 
@@ -1514,11 +1511,14 @@ arm circumference.
    * - Segment
      - Inertia
    * - cuboid
-     - :math:`\frac{1}{12}m\begin{bmatrix}l_y^2+l_z^2 & 0 & 0\\0 & l_x^2+l_z^2 & 0\\0 & 0 & l_x^2+l_y^2\end{bmatrix}`\\
+     - :math:`\frac{1}{12}m\begin{bmatrix}l_y^2+l_z^2 & 0 & 0\\0 & l_x^2+l_z^2 & 0\\0 & 0 & l_x^2+l_y^2\end{bmatrix}`
    * - cylinder
-     - :math:`I_x`, :math:`I_y=\frac{1}{12}m\left(\frac{3c^2}{4\pi^2}+l^2\right)`, :math:`I_z=\frac{mc^2}{8\pi^2}`\\
+     - :math:`I_x`, :math:`I_y=\frac{1}{12}m\left(\frac{3c^2}{4\pi^2}+l^2\right)`, :math:`I_z=\frac{mc^2}{8\pi^2}`
    * - sphere
      - :math:`I_x`, :math:`I_y`, :math:`I_z=\frac{mc^2}{10\pi^2}`
+
+The width of the cuboid representing the torso :math:`l_y` is defined by the
+shoulder width and upper arm circumference.
 
 .. math::
    :label: eqCuboidWidth

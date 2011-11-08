@@ -130,9 +130,10 @@ doctest:
 	      "results in $(BUILDDIR)/doctest/output.txt."
 
 gh-pages: clean html
+	git commit -am "Commit before making gh-pages in case I forgot to commit."
 	git symbolic-ref HEAD refs/heads/gh-pages
 	rm .git/index
-	git clean -fdx -e _build/ -e .gitignore -e README -e figures/ -e tables/
+	git clean -fdx -e _build/ -e .gitignore -e README -e figures/ -e tables/ -e Makefile
 	mv figures figures-hide
 	mv tables tables-hide
 	touch .nojekyll
@@ -145,6 +146,7 @@ commit-gh-pages:
 	git commit -am "Updated website."
 	git checkout master
 	mv figures-hide figures
+	rm -r tables
 	mv tables-hide tables
 
 pushpdf:

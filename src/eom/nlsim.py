@@ -21,7 +21,7 @@ def meijaard_figure_four(time, rollRate, steerRate, speed):
     golden_ratio = (np.sqrt(5.0) - 1.0) / 2.0
     height = width * golden_ratio
     fig = plt.figure()
-    fig.set_figsize_inches([width, height])
+    fig.set_size_inches([width, height])
     fig.subplots_adjust(right=0.75)
     rateAxis = fig.add_subplot(111)
     speedAxis = rateAxis.twinx()
@@ -61,15 +61,15 @@ tf = 5. # final time
 
 ## orginal working whipple model that I created##
 
-# create my original working whipple model
-whipOld = Whipple()
-
-# set up the simulation
-whipOld.initialConditions = np.array([0.0] * 8 + [rollRateNaught, -speedNaught /
-    benchmarkPar['rR'], 0.0])
-
-whipOld.intOpts['ts'] = ts
-whipOld.intOpts['tf'] = tf
+#### create my original working whipple model
+###whipOld = Whipple()
+###
+#### set up the simulation
+###whipOld.initialConditions = np.array([0.0] * 8 + [rollRateNaught, -speedNaught /
+    ###benchmarkPar['rR'], 0.0])
+###
+###whipOld.intOpts['ts'] = ts
+###whipOld.intOpts['tf'] = tf
 
 ###whipOld.simulate()
 ###
@@ -83,28 +83,36 @@ whipOld.intOpts['tf'] = tf
 
 ## new Whipple model with the Moore parameters ##
 
-# calculate the moore2012 parameters
-moorePar = benchmark_whipple_to_moore_whipple(benchmarkPar, oldMassCenter=False)
-moorePar['g'] = 9.81
+# calculate the moore2012 parameters and compare them with the same parameters
+# that are computed from the original working autolev code
+###moorePar = benchmark_whipple_to_moore_whipple(benchmarkPar, oldMassCenter=True)
+###moorePar['g'] = gravity
+###
+###for k, v in moorePar.items():
+    ###if k.startswith('m'):
+        ###print k, whipOld.parameters['mass' + k[-1]], v
+        ###np.testing.assert_almost_equal(whipOld.parameters['mass' + k[-1]], v)
+    ###else:
+        ###print k, whipOld.parameters[k], v
+        ###np.testing.assert_almost_equal(whipOld.parameters[k], v)
 
-for k, v in moorePar.items():
-    if k.startswith('m'):
-        print k, whipOld.parameters['mass' + k[-1]], v
-    else:
-        print k, whipOld.parameters[k], v
+# now output the parameter set with the location of the fork center of
+# mass redefined from the front wheel center
+moorePar = benchmark_whipple_to_moore_whipple(benchmarkPar, oldMassCenter=False)
+moorePar['g'] = gravity
 
 # create the whipple model
 whip = WhippleMoorePar()
 
 # set up the simulation
 whip.parameters = moorePar
-
-whip.initialConditions = np.array([0.] * 8 + [rollRateNaught, -speedNaught / moorePar['rR'], 0.])
+whip.initialConditions = np.array([0.0] * 8 + [rollRateNaught, -speedNaught /
+    moorePar['rR'], 0.0])
+# Nominal pitch for the WhippleMoorePar is equal to the steer axis tilt
 # this is only valid for roll and steer equal to zero
 pitchAngle = pitch_from_roll_and_steer(0., 0., moorePar['rF'], moorePar['rR'],
         moorePar['d1'], moorePar['d2'], moorePar['d3'])
-whip.initialConditions[4] = pitchAngle
-
+whip.initialConditions[whip.stateNames.index('q5')] = pitchAngle
 whip.intOpts['ts'] = ts
 whip.intOpts['tf'] = tf
 

@@ -300,7 +300,8 @@ Accuracy
 
 .. todo:: Should I remove all of the sigma equations (accuracy calculations)
    and just note that they were taken into account with the uncertainties
-   software package...or add the currently missing sigmas?
+   software package...or add the currently missing sigmas? --- Add a few extra
+   sigma calcs!
 
 I have attempted to report the accuracy of the measurements of the parameters.
 Following the footsteps of [Roland1971]_ I used error propagation theory to
@@ -775,6 +776,9 @@ solution is not the same as the triangle centroid method.
     \end{bmatrix}
 
 The solution with the higher accuracy is the preferred one.
+
+.. todo:: just cite the note about the least squares method, remove it from
+   here
 
 .. _secForkCoM:
 
@@ -1664,6 +1668,8 @@ saggital plane as the hip centers. The knee and thigh elevation angles are then
 found in the same fashion as the elbow and shoulder angles, which the lesser
 restrcition that the thigh abduction angle is zero.
 
+.. todo:: detail the yeadon method more and add Chris's diagrams
+
 .. _figHuman:
 
 .. figure:: figures/physicalparameters/human.png
@@ -1692,27 +1698,30 @@ frame. We make use of this for the different rider bio-mechanical models
 presented in Chapter :ref:`modelextensions`.
 
 .. todo:: Should I add mathematicl explanation how to extract the parameter
-   sets that are desired? Like leaning rider or rigid rider, etc.
+   sets that are desired? Like leaning rider or rigid rider, etc. : explain the
+   process of configurin gthe rider in words and the parallel axis theoreom,
+   vrey precisely
 
 Software Implementation
 =======================
 
-These methods have been implemented in two open source software package written
-in the python language, called `yeadon <http://pypi.python.org/pypi/yeadon>`_
-and `BicycleParameters <http://pypi.python.org/pypi/BicycleParameters>`_. The
-yeadon package takes geometric measurements and joint configuration angles and
-outputs the total inertia inertial properties of the human in an arbitrary
-reference frame or inertial properties of individual segments or combinations of
-segments. It is suitable for a wide variety of human dynamic models. The
-BicycleParameters package accepts either the raw measurements described in
-Section :ref:`secBicycleParameters` and computes the benchmark bicycle
-parameters. It makes use of the yeadon package to allow one to configure riders
-to sit on the bicycle models and outputs the inertial properties of the
-bicycle/rider system. It allows one to measure all of the raw measurements as
-described in both the Bicycle and Yeadon parameter sections, provide the values,
-with uncertainties, and it computes the parameters for the Whipple Bicycle
-model. Details of use of the software can be found in the documentation for
-each of the packages: `<http://packages.python.org/yeadon>`_,
+These methods (more detail about which methods) have been implemented in two
+open source software package written in the python language, called `yeadon
+<http://pypi.python.org/pypi/yeadon>`_ and `BicycleParameters
+<http://pypi.python.org/pypi/BicycleParameters>`_. The yeadon package takes
+geometric measurements and joint configuration angles and outputs the total
+inertia inertial properties of the human in an arbitrary reference frame or
+inertial properties of individual segments or combinations of segments. It is
+suitable for a wide variety of human dynamic models. The BicycleParameters
+package accepts either the raw measurements described in Section
+:ref:`secBicycleParameters` and computes the benchmark bicycle parameters. It
+makes use of the yeadon package to allow one to configure riders to sit on the
+bicycle models and outputs the inertial properties of the bicycle/rider system.
+It allows one to measure all of the raw measurements as described in both the
+Bicycle and Yeadon parameter sections, provide the values, with uncertainties,
+and it computes the parameters for the Whipple Bicycle model. Details of use of
+the software can be found in the documentation for each of the packages:
+`<http://packages.python.org/yeadon>`_,
 `<http://packages.python.org/BicycleParameters>`_.
 
 .. _secPartables:
@@ -1728,6 +1737,11 @@ Parameter Tables
 
 .. todo:: These tables look like crap in the latex output. I need to figure out
    how to imrpove them.
+
+.. todo:: add rider measurement tables for riders used in this thesis for both
+   methods
+
+.. todo:: add bicycle + rider tables for riders used in this thesis
 
 The tabulated values for the both the raw measurements and the physical
 parameters are given in the following tables.

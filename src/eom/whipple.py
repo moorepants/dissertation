@@ -4,6 +4,7 @@ import sympy as sym
 import sympy.physics.mechanics as mec
 
 mec.Vector.simp = False
+mec.Kane.simp = False
 
 ##################
 # Reference Frames
@@ -162,7 +163,7 @@ kinematical = [q1d - u1,
                q5d - u5,
                q6d - u6,
                q7d - u7,
-               q7d - u8]
+               q8d - u8]
 
 ####################
 # Angular Velocities
@@ -256,11 +257,13 @@ bodyList = [rearFrame, rearWheel, frontFrame, frontWheel]
 # Generalized Active Forces
 ###########################
 
+# gravity
 Fco = (co, mc * g * A['3'])
 Fdo = (do, md * g * A['3'])
 Feo = (eo, me * g * A['3'])
 Ffo = (fo, mf * g * A['3'])
 
+# input torques
 Tc = (C, T4 * A['1'] - T6 * C['2'] - T7 * C['3'])
 Td = (D, T6 * C['2'])
 Te = (E, T7 * C['3'])
@@ -276,3 +279,5 @@ kane.coords([q1, q2, q3, q4, q6, q7, q8], qdep=[q5], coneqs=[holonomic])
 kane.speeds([u4, u6, u7], udep=[u1, u2, u3, u5, u8], coneqs=nonholonomic)
 kane.kindiffeq(kinematical)
 fr, frstar = kane.kanes_equations(forceList, bodyList)
+M = kane.mass_matrix_full
+F = kane.forcing_full

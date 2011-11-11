@@ -84,7 +84,7 @@ whipOld.intOpts['tf'] = tf
 ## new Whipple model with the Moore parameters ##
 
 # calculate the moore2012 parameters
-moorePar = benchmark_whipple_to_moore_whipple(benchmarkPar, oldMassCenter=True)
+moorePar = benchmark_whipple_to_moore_whipple(benchmarkPar, oldMassCenter=False)
 moorePar['g'] = 9.81
 
 for k, v in moorePar.items():
@@ -108,14 +108,12 @@ whip.initialConditions[4] = pitchAngle
 whip.intOpts['ts'] = ts
 whip.intOpts['tf'] = tf
 
-e
-
 whip.simulate()
 
 # plot figure 4 from Meijaard2007
 rollRate = whip.simResults['y'][:, whip.outputNames.index('u4')]
 speed = -whip.simResults['y'][:, whip.outputNames.index('u6')] * whip.parameters['rR']
-steerRate = whip.simResults['y'][:, 14]
+steerRate = whip.simResults['y'][:, whip.outputNames.index('u7')]
 time = whip.simResults['t']
 newFig = meijaard_figure_four(time, rollRate, steerRate, speed)
 

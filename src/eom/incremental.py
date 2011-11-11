@@ -17,7 +17,7 @@ from models.WhippleIncremental.WhippleIncremental import WhippleIncremental
 pathToData='/media/Data/Documents/School/UC Davis/Bicycle Mechanics/BicycleParameters/data/'
 benchmark = bp.Bicycle('Benchmark', pathToData)
 benchmarkPar = bp.io.remove_uncertainties(benchmark.parameters['Benchmark'])
-moorePar = bicycle.benchmark_whipple_to_moore_whipple(benchmarkPar, oldMassCenter=True)
+moorePar = bicycle.benchmark_whipple_to_moore_whipple(benchmarkPar)
 
 # couple of extra parameters
 gravity = 9.81

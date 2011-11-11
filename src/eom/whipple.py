@@ -143,7 +143,7 @@ dn = mec.Point('dn')
 dn.set_pos(do, rR * B['3'])
 # front
 fn = mec.Point('fn')
-fn.set_pos(fo, rF * E['2'].cross(A['3']).cross(E['2']))
+fn.set_pos(fo, rF * E['2'].cross(A['3']).cross(E['2']).normalize())
 
 ######################
 # Holonomic Constraint

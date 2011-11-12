@@ -64,8 +64,8 @@ something like a dissertation for a doctoral degrees. I also want this work to b
 the best it can, and if others are interested in helping me make it that way
 then an interactive website is a platform that is capable of promoting that.
 
-Plagiarism
-==========
+Collaboration
+=============
 
 As a child, I was programmed to think that any form of plagiarism was evil: you
 shouldn't copy anything. But, how would we ever make any progress if we didn't

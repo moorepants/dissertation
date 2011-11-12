@@ -794,25 +794,59 @@ and will be described in the following sections.
 Model discussion
 ----------------
 
+[Meijaard2007]_ does excellent job describing the nature of the model. Notable
+concepts are the fact that :math:`q1`, :math:`q2`, :math:`q3`, :math:`q6`, and
+:math:`q8` are all ignorable coordinates, that is they do not show up in the
+essential dynamical equations of motion. The model is also energy conserving.
 
 Simulation
 ----------
-.. todo:: Show the same simulation with regards to Meijaard2007 and a step/impulse response.
 
-Validation
-----------
-.. todo:: Compare to Basu-Mandall2007 and Meijaard2007
+The nonlinear model can be simulated with various initial conditions. In the
+presented formulation all of the initial conditions can be set independently
+except for the roll, steer and pitch angles. Once two of the three are chosen,
+the third must be solved for. I solve the holonomic constraint equation
+numerically to provide the correct initial condition.
+
+.. todo:: improve this figure
+
+.. figure:: figures/eom/meijaard2007-figure-four.png
+
+   figFigFour
+
+   This is a reproduction of Figure 4 in [Meijaard2007]_. It shows the energy
+   conserving nature of the non-linear model (i.e. the forward speed settles on
+   a higher value that the initial speed as the energy used to disipate the
+   roll and steer is transferred to the forward speed.
+
+.. todo:: Plot a impulse response.
+
+Nonlinear Validation
+--------------------
+
+[BasuMandall2007]_ present the Whipple model derived with both the Newton-Euler
+and Lagrange methods. Their Table 1 shows the derivatives of all the
+coordinates and speeds to high precision for use in validating the nonlinear
+model. The idea is that because comparing extremely long symbolic equations is
+nearly impossible, one can compute significant figures to machine precision and
+if other models produce 10+ significant figures the models are the same. The
+very first model I developed in 2006 would not have held up to this test. I
+owe the validity of my model to my labmate, Luke, as his persistence and
+interest in minute detail helped me bring my model up to par. Here I present
+The values from my model for comparison to [BasuMandall2007]_.
+
+.. todo:: Values from my model for comparision to table one in BasuMandall2007
 
 Linearized Equations of Motion
 ==============================
 
-The equations of motion can then be linearized by calculating the
-Jacobian of the system of equations. The partial derivatives were
-evaluated at the following fixed point: :math:`q_i=0` where
-:math:`i=4,6,7`, :math:`u_i=0` where :math:`i=4,7`, and
-:math:`u_5=-v/R_r` where :math:`v` is the constant forward
-speed of the bicycle. This reduces the system to four linear first
-order differential equations in the form:
+The full nonlinear equations of motion can be linearized about an equilibrium
+point by calculating the Jacobian of the system of equations. The partial
+derivatives of each equation were evaluated at the following fixed point:
+:math:`q_i=0` where :math:`i=4,6,7`, :math:`u_i=0` where :math:`i=4,7`, and
+:math:`u_5=-v/r_R` where :math:`v` is the constant forward speed of the
+bicycle.This reduces the system to four linear first order differential
+equations in the form:
 
 .. math::
    \frac{d}{dt}
@@ -829,6 +863,14 @@ order differential equations in the form:
     \end{array}
     \right]
     \label{eq:linearEq}
+
+I do this symbolically to reach the same results as presented in
+[Meijaard2007]_, but my equations are much lengthier as the sympifcation
+routines available didn't provide much reprise. The equations can be validated
+against the model presented in [Meijaard2007]_. The following table gives the
+same eigenvalues as presented in Table X of [Meijaard2007]_.
+
+.. todo:: add the table of eigenvalues for one speed in Meijaard2007
 
 Validation
 ----------
@@ -875,6 +917,6 @@ significant figures.
        formulating the equations of motion in a readable and compact form, which will
        most likely be published soon.
 .. [#] Luke and I have dreamed of developing an open source version of Autolev
-       for years and that has finally culminated through primarily Luke and Gilber
+       for years and that has finally culminated through primarily Luke and Gilbert
        Gede's efforts in the creation of sympy.physics.mechanics.
 .. [#] This contraint can readily be modified to support a non-flat ground.

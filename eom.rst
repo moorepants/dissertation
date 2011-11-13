@@ -100,8 +100,8 @@ deriving the equations with a CAS.
 Orientation
 -----------
 
-Before time, there first was the Newtonian reference frame. We chose the
-coordiates to fit the ____ standard as in [Meijaard2007]_. I start with
+Before time, there first was the Newtonian reference frame. I chose the
+coordinates to fit the ____ standard as in [Meijaard2007]_. I start with
 locating the rear wheel contact point in the ground plane of the Newtonian
 reference frame, :math:`N`, longitudinal and lateral coordinates :math:`q_1`
 and :math:`q_2`, which turn out to be ignorable coordinates. I then orient the
@@ -112,14 +112,23 @@ intermediate frames yaw, :math:`A` and roll, :math:`B`, are implicitly
 generated along the way. The rotation matrix of :math:`C` relative to :math:`N`
 is then:
 
+The rotation matrices are define such that:
+
+.. math::
+
+   \bar{a} = ^N\mathbf{R}^A \bar{n}
+
+where :math:`\bar{n}` is a vector expressed in the :math:`N` frame and
+:math:`\bar{a}` is the same vector expressed in the :math:`A` frame.
+
 .. math::
    :label: NtoC
 
-   ^NR^C =
+   ^N\mathbf{R}^C =
    \begin{bmatrix}
-   -s_3s_4s_5 + c_5c_3 & -s_3c_4 & s_3s_4c_5 + s_5c_3\\
-   c_3s_4s_5 + c5s_3 & c_3c_4 & -c_3s_4c_5 + s_5s_4\\
-   -c_4s_5 & s_4 & c_4c_5
+   c_3c_5 - s_3s_4s_5 & s_4s_5c_3 + s_3c_5 & -s_5c_4\\
+   -s_3c_4 & c_3c_4  & s_4\\
+   s_5c_3 + s_3s_4c_5 & s_3s_5 - s_4c_3c_5 & c_4c_5
    \end{bmatrix}
 
 The rear wheel reference frame, :math:`D`, rotates with repect to the bicycle
@@ -128,7 +137,7 @@ frame about the :math:`\hat{c}_2` axis through :math:`q_6`.
 .. math::
    :label: CtoD
 
-   ^CR^D =
+   ^C\mathbf{R}^D =
    \begin{bmatrix}
    c_6 & 0 & -s_6\\
    0 & 1 & 0\\
@@ -141,7 +150,7 @@ bicycle reference frame about the :math:`\hat{c}_3` axis through :math:`q_7`.
 .. math::
    :label: CtoE
 
-   ^CR^E =
+   ^C\mathbf{R}^E =
    \begin{bmatrix}
    c_7 & s_7 & 0\\
    -s_7 & c_7 & 0\\
@@ -154,7 +163,7 @@ through :math:`q_8` about the :math:`\hat{e}_2` axis.
 .. math::
    :label: EtoF
 
-   ^ER^F =
+   ^E\mathbf{R}^F =
    \begin{bmatrix}
    c_8 & 0 & -s_8\\
    0 & 1 & 0\\
@@ -185,12 +194,6 @@ and the point on the wheel ...
 .. todo::
    Contact points need better explanations.
 
-The location of the contact point in the newtonian frame is defined by:
-
-.. math::
-   :label: rearWheelContact
-
-   \bar{r}^{D_n/N_o} = q_1\hat{n}_1 + q_2\hat{n}_2
 
 This encompasses a holonomic constraint (the contact point can't move in the n3
 direction.
@@ -200,22 +203,14 @@ The mass center of the rear wheel, :math:`D_o`, is assumed to be at the center o
 .. math::
    :label: rearWheelMassCenter
 
-   \bar{r}^{D_o/D_n} = -r_F\hat{b}_3
+   \bar{r}^{D_o/N_o} = q_1\hat{n}_1 + q_2\hat{n}_2 - r_F\hat{b}_3
 
-The mass center of the front wheel, :math:`F_o`, is located by the frame and
-fork dimensions:
-
-.. math::
-   :label: frontWheelMassCenter
-
-   \bar{r}^{F_o/D_o} = d_1\hat{c}_1 + d_2\hat{c}_3 + d_3\hat{e}_1
-
-It is useful to define a point on the steer axis, :math:`C_e`, such that:
+The location of the point on the wheel instaneously in contact with the ground in the Newtonian frame is defined by:
 
 .. math::
-   :label: DoToCe
+   :label: rearWheelContact
 
-   \bar{r}^{C_e/D_o} = d_1\hat{c}_1
+   \bar{r}^{D_n/D_o} = r_F\hat{b}_3
 
 The bicycle frame mass center, :math:`C_o`, is located by two additional
 parameters:
@@ -224,6 +219,21 @@ parameters:
    :label: frameMassCenter
 
    \bar{r}^{C_o/D_o} = l_1\hat{c}_1 + l_2\hat{c}_3
+
+I define an additional point on the steer axis, :math:`C_e`, such that:
+
+.. math::
+   :label: DoToCe
+
+   \bar{r}^{C_e/D_o} = d_1\hat{c}_1
+
+The mass center of the front wheel, :math:`F_o`, is located by the fork
+dimensions:
+
+.. math::
+   :label: frontWheelMassCenter
+
+   \bar{r}^{F_o/C_e} =  d_2\hat{c}_3 + d_3\hat{e}_1
 
 Similarly the fork mass center, :math:`E_o`, is located by two more additional
 parameters.
@@ -239,25 +249,34 @@ the front wheel center to the contact point is defined as:
 .. math::
    :label: frontWheelContact
 
-   \bar{r}^{F_n/F_o} = r_F(\hat{e}_2\times\hat{n}_3)\times\hat{e}_2
+   \bar{r}^{F_n/F_o} = r_F\left(\frac{(\hat{e}_2\times\hat{n}_3)\times\hat{e}_2}
+   {||(\hat{e}_2\times\hat{n}_3)\times\hat{e}_2||}\right)
 
-   \bar{r}^{F_n/F_o} = r_F(s_4s_7-s_5c_4c_7)\hat{e}_1 + r_Fc_4c_5\hat{e}_3
+.. math::
+   m = \sqrt{(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)}
 
-Where the triple cross product represents the unit vector pointing from the
-front wheel center to the front wheel contact. [Basu-Mandal2007]_ give an
-explanation and diagram. The equation can also be though of in terms of dot
-products such that you subtract the :math:`\hat{n}_3` component of
-:math:`\hat{e}_2` from :math:`\hat{n}_3` to get a vector that points from the
-front wheel center to the contact point, :math:`\bar{x}`. The vector of
-interest can then be formed by multiplying :math:`r_F` by the unit vector in
-the direction of :math:`\bar{x}`:
+.. math::
+
+   \bar{r}^{F_n/F_o} =
+   r_F(s_4s_7-s_5c_4c_7)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{1/2}\hat{e}_1 +
+   r_Fc_4c_5/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{1/2}\hat{e}_3
+
+Where the triple cross product divided by its magnitude represents the unit
+vector pointing from the front wheel center to the front wheel contact.
+[Basu-Mandal2007]_ give an explanation and diagram. The equation can also be
+thought of in terms of dot products. Subtract the :math:`\hat{n}_3`
+component of :math:`\hat{e}_2` from :math:`\hat{n}_3` to get a vector that
+points from the front wheel center to the contact point.
 
 .. math::
    :label: frontWheelContactDot
 
-   \bar{x} = (\hat{a}_3 - (\hat{e}_2 \cdot\hat{a}_3)\hat{e}_2)
+   \bar{r}^{F_n/F_o} =
+   r_F\left(\frac{\hat{a}_3 - (\hat{e}_2 \cdot\hat{a}_3)\hat{e}_2}
+   {||\hat{a}_3 - (\hat{e}_2 \cdot\hat{a}_3)\hat{e}_2||}\right)
 
-   \bar{r}^{F_n/F_o} = r_F\frac{\bar{x}}{||\bar{x}||}
+This is easily shown to be equivalent by writing the triple cross product as
+sum of dot products.
 
 Holonomic Constraints
 ---------------------
@@ -276,7 +295,10 @@ between the roll angle :math:`q_4`, steer angle :math:`q_7` and pitch angle
    :label: holonomicConstraint
 
    \bar{r}^{F_n/D_n}\cdot\hat{a}_3 =
-   c_4c_5(d_2+r_Fc_4c_5) + (s_4s_7-s_5c_4c_7)(d_3+r_F(s_4s_7-s_5c_4c_7)) - r_Rc_4 - d_1s_5c_4
+   &d_2c_4c_5 + r_Fc_4^2c_5^2/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5} -
+   r_Rc_4 - d_1s_5c_4 +\\
+   &(s_4s_7-s_5c_4c_7)(d_3+r_F(s_4s_7-s_5c_4c_7)/(c_4^2c_5^2+
+   (s_4s_7-s_5c_4c_7)^2)^{0.5})
 
 I choose pitch, :math:`q_6`, as the dependent coordinate. This choice of pitch
 has some to do with the fact that in "normal" bicycle configurations, pitch is
@@ -345,6 +367,13 @@ the newtonian reference frame. For example:
 
    ^F\omega^N = ^N\omega^C + ^C\omega^E + ^E\omega^F
 
+   ^F\omega^N =
+   &(s_7c_8u_5-s_8u_7-(s_5s_8-c_5c_7c_8)u_4-
+   (s_8c_4c_5-c_8(s_4s_7-s_5c_4c_7))u_3)\hat{f}_1 + \\
+   &(u_8+c_7u_5+(s_4c_7+s_5s_7c_4)u_3-s_7c_5u_4)\hat{f}_2 + \\
+   (c_8u_7+s_7s_8u_5+(s_5c_8+s_8c_5c_7)u_4+
+   (c_4c_5c_8+s_8(s_4s_7-s_5c_4c_7))u_3)\hat{f}_3
+
 Using the angular velocities and the position vectors the velocities of the
 mass centers can be computed. Starting with mass center of the rear wheel:
 
@@ -363,30 +392,30 @@ be computed:
 
    ^N\bar{v}^{C_o} = ^N\bar{v}^{D_o} + ^N\bar\omega^C\times\bar{r}^{C_o/D_o}
 
-   ^N\bar\omega^C\times\bar{r}^{C_o/D_o} = l_2(u_5+s_4u_3)\hat{c}_1 +
-   (l_1(s_5u_4+c_4c_5u_3)-l_2(c_5u_4-s_5c_4u_3))\hat{c}_2
-   - l_1(u_5+s_4u_3)\hat{c}_3
+   ^N\bar\omega^C\times\bar{r}^{C_o/D_o} =
+   l_2(u_5+s_4u_3)\hat{c}_1 +
+   (l_1(s_5u_4+c_4c_5u_3)-l_2(c_5u_4-s_5c_4u_3))\hat{c}_2 -
+   l_1(u_5+s_4u_3)\hat{c}_3
 
 The velocity of the steer axis point is computed in the same fashion:
 
 .. math::
-   :label: test
+   :label: CeInN
 
    ^N\bar{v}^{C_e} = ^N\bar{v}^{D_o} + ^N\bar\omega^C\times\bar{r}^{C_e/D_o}
 
-   ^N\bar\omega^C\times\bar{r}^{C_e/D_o} = d_1(s_5u_4+c_4c_5u_3)\hat{c}_2 -
-   d_1(u_5+s_4u_3)\hat{c}_3
+   ^N\bar\omega^C\times\bar{r}^{C_e/D_o} = d_1(s_5u_4+c_4c_5u_3)\hat{c}_2 - d_1(u_5+s_4u_3)\hat{c}_3
 
 The velocity of the front wheel center is:
 
 .. math::
-   :label: test
+   :label: FoInN
 
    ^N\bar{v}^{F_o} = ^N\bar{v}^{C_e} + ^N\bar\omega^E\times\bar{r}^{F_o/C_e}
 
    ^N\bar\omega^E\times\bar{r}^{F_o/C_e} =
-   &-d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_1 +\\
-   &(d_3(u_7+s_5u_4+c_4c_5u_3)-d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 +\\
+   &-d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_1 + \\
+   &(d_3(u_7+s_5u_4+c_4c_5u_3)-d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 + \\
    &d_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3
 
 Then the velocity of the fork mass center can be defined as:
@@ -397,9 +426,9 @@ Then the velocity of the fork mass center can be defined as:
    ^N\bar{v}^{E_o} = ^N\bar{v}^{F_o} + ^N\omega^E\times\bar{r}^{E_o/F_o}
 
    ^N\omega^E\times\bar{r}^{E_o/F_o} =
-   &-l4(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_1 +\\
-   &(l3(u_7+s_5u_4+c_4c_5u_3)-l4(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 +\\
-   &l3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3
+   &-l_4(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_1 +\\
+   &(l_3(u_7+s_5u_4+c_4c_5u_3)-l_4(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 +\\
+   &l_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3
 
 The velocity of the contact points on the wheel are needed to enforce the
 no-slip condition.
@@ -420,10 +449,13 @@ The front wheel contact velocity:
 
    ^N\bar{v}^{F_n} = ^N\bar{v}^{F_o} + ^N\omega^F\times\bar{r}^{F_n/F_o}
 
-   ^N\omega^F\times\bar{r}^{F_n/F_o} =&
-   -r_Fc_4c_5(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_1 -\\
-   &r_F(c_4c_7u_4+s_7c_4c_5u_5-s_4s_5s_7u_4-(s_4s_7-s_5c_4c_7)u_7)\hat{e}_2 +\\
-   &r_F(s_4s_7-s_5c_4c_7)(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3
+   ^N\omega^F\times\bar{r}^{F_n/F_o} =
+   &-r_Fc_4c_5(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)/(c_4^2c_5^2+
+   (s_4s_7-s_5c_4c_7)^2)^{0.5}\hat{e}_1 - \\
+   &r_F(c_4c_7u_4+s_7c_4c_5u_5-s_4s_5s_7u_4-(s_4s_7-s_5c_4c_7)u_7)/(c_4^2c_5^2+
+   (s_4s_7-s_5c_4c_7)^2)^{0.5}\hat{e}_2 + \\
+   &r_F(s_4s_7-s_5c_4c_7)(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+
+   s_5s_7c_4)u_3)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5}\hat{e}_3
 
 Acceleration
 ------------
@@ -474,13 +506,14 @@ The acceleration of the biycle frame center of mass.
    ^N\bar{a}^{C_o} = ^N\bar{a}^{D_o} + ^N\omega^C\times(^N\omega^C\times\bar{r}^{C_o/D_o}) + ^N\bar{\alpha}^C\times\bar{r}^{C_o/D_o}
 
    ^N\omega^C\times(^N\omega^C\times\bar{r}^{C_o/D_o}) =
-    &(-l_1(u_5+s_4u_3)^2-(s_5u_4+c_4c_5u_3)(l_1(s_5u_4+c_4c_5u_3)-l_2(c_5u_4-s_5c_4u_3)))\hat{c}_1 +\\
-    &(u_5+s_4u_3)(l_2(s_5u_4+c_4c_5u_3)+l_1(c_5u_4-s_5c_4u_3))\hat{c}_2\\
-    &+ ((c_5u_4-s_5c_4u_3)(l_1(s_5u_4+c_4c_5u_3)-l_2(c_5u_4-s_5c_4u_3))-l_2(u_5+s_4u_3)^2)\hat{c}_3
+   &(-l_1(u_5+s_4u_3)^2-(s_5u_4+c_4c_5u_3)(l_1(s_5u_4+c_4c_5u_3)-l_2(c_5u_4-s_5c_4u_3)))\hat{c}_1 +\\
+   &(u_5+s_4u_3)(l_2(s_5u_4+c_4c_5u_3)+l_1(c_5u_4-s_5c_4u_3))\hat{c}_2 + \\
+   &((c_5u_4-s_5c_4u_3)(l_1(s_5u_4+c_4c_5u_3)-l_2(c_5u_4-s_5c_4u_3))-l_2(u_5+s_4u_3)^2)\hat{c}_3
 
    ^N\bar{\alpha}^C\times\bar{r}^{C_o/D_o} =
-   &l_2(c_4u_3u_4+\dot{u}_5+s_4\dot{u}_3)\hat{c}_1 +\\
-   &(-l_1(s_4c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-s_5\dot{u}_4-c_4c_5\dot{u}_3)-l_2(s_4s_5u_3u_4+c_5\dot{u}_4-s_5u_4u_5-c_4c_5u_3u_5-s_5c_4\dot{u}_3))\hat{c}_2 -\\
+   &l_2(c_4u_3u_4+\dot{u}_5+s_4\dot{u}_3)\hat{c}_1 + \\
+   &(-l_1(s_4c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-s_5\dot{u}_4-c_4c_5\dot{u}_3)-
+   l_2(s_4s_5u_3u_4+c_5\dot{u}_4-s_5u_4u_5-c_4c_5u_3u_5-s_5c_4\dot{u}_3))\hat{c}_2 - \\
    &l_1(c_4u_3u_4+\dot{u}_5+s_4\dot{u}_3)\hat{c}_3
 
 The acceleration of the steer axis point.
@@ -491,13 +524,10 @@ The acceleration of the steer axis point.
    ^N\bar{a}^{C_e} = ^N\bar{a}^{D_o} + ^N\omega^C\times(^N\omega^C\times\bar{r}^{C_e/D_o}) + ^N\bar{\alpha}^C\times\bar{r}^{C_e/D_o}
 
    ^N\omega^C\times(^N\omega^C\times\bar{r}^{C_e/D_o}) =
-    &-d_1((u_5+s_4u_3)^2+(s_5u_4+c_4c_5u_3)^2)\hat{c}_1 +\\
-    &d_1(u_5+s_4u_3)(c_5u_4-s_5c_4u_3)\hat{c}_2 +\\
-    &d_1(s_5u_4+c_4c_5u_3)(c_5u_4-s_5c_4u_3)\hat{c}_3
+   &-d_1((u_5+s_4u_3)^2+(s_5u_4+c_4c_5u_3)^2)\hat{c}_1 +d_1(u_5+s_4u_3)(c_5u_4-s_5c_4u_3)\hat{c}_2 +\\
+   d_1(s_5u_4+c_4c_5u_3)(c_5u_4-s_5c_4u_3)\hat{c}_3
 
-   ^N\bar{\alpha}^C\times\bar{r}^{C_e/D_o} =
-   &-d_1(s_4c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-s_5\dot{u}_4-c_4c_5\dot{u}_3)\hat{c}_2 -\\
-   &d_1(c_4u_3u_4+\dot{u}_5+s_4\dot{u}_3)\hat{c}_3
+   ^N\bar{\alpha}^C\times\bar{r}^{C_e/D_o} =-d_1(s_4c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-s_5\dot{u}_4-c_4c_5\dot{u}_3)\hat{c}_2 - d_1(c_4u_3u_4+\dot{u}_5+s_4\dot{u}_3)\hat{c}_3
 
 The acceleration of the front wheel center of mass.
 
@@ -507,23 +537,14 @@ The acceleration of the front wheel center of mass.
    ^N\bar{a}^{F_o} = ^N\bar{a}^{C_e} + ^N\omega^E\times(^N\omega^E\times\bar{r}^{F_o/C_e}) + ^N\bar{\alpha}^E\times\bar{r}^{F_o/C_e}
 
    ^N\omega^E\times(^N\omega^E\times\bar{r}^{F_o/C_e}) =
-    &(-d_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7
-    c_4)u_3)^2-(u_7+s_5u_4+c_4c_5u_3)(d_3(u_7+s_5u_4+c_4
-    c_5u_3)-d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)))\hat{e}_1 -\\
-    &(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7
-    c_4)u_3)(d_2(u_7+s_5u_4+c_4c_5u_3)+d_3(s_7u_5+c_5
-    c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 +\\
-    &((s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)(d_3(u_7+s_5u_4+c_4c_5u_3)-
-    d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))-d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)^2)\hat{e}_3
+   &(-d_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)^2-(u_7+s_5u_4+c_4c_5u_3)(d_3(u_7+s_5u_4+c_4c_5u_3)-\\
+   &d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)))\hat{e}_1 - (s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)(d_2(u_7+s_5u_4+c_4c_5u_3)+d_3(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 + ((s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)(d_3(u_7+s_5u_4+c_4c_5u_3)-d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))-d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)^2)\hat{e}_3
+
 
    ^N\bar{\alpha}^E\times\bar{r}^{F_o/C_e} =
-    &-d_2(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-c_7\dot{u}_5-(s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_1 +\\
-    &(d_2(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-u_3(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5)-s_7\dot{u}_5
-    -c_5c_7\dot{u}_4-(s_4s_7-s_5c_4c_7)\dot{u}_3)-d_3(s_4
-    c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-\dot{u}_7-s_5\dot{u}_4-c_4c_5\dot{u}_3))\hat{e}_2 +\\
-    &d_3(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+
-    s_4s_5s_7u_4-c_4c_7u_4-s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-c_7\dot{u}_5-(s_4
-    c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_3
+   &-d_2(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-\\
+   &s_5s_7u_4u_5-c_7\dot{u}_5-(s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_1 + (d_2(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-u_3(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5)-s_7\dot{u}_5-c_5c_7\dot{u}_4-(s_4s_7-s_5c_4c_7)\dot{u}_3)-d_3(s_4c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-\dot{u}_7-s_5\dot{u}_4-c_4c_5\dot{u}_3))\hat{e}_2 + d_3(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-c_7\dot{u}_5-(s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_3
+
 
 The acceleration of the fork center of mass.
 
@@ -533,23 +554,13 @@ The acceleration of the fork center of mass.
    ^N\bar{a}^{E_o} = ^N\bar{a}^{F_o} + ^N\omega^E\times(^N\omega^E\times\bar{r}^{E_o/F_o}) + ^N\bar{\alpha}^E\times\bar{r}^{E_o/F_o}
 
    ^N\omega^E\times(^N\omega^E\times\bar{r}^{E_o/F_o}) =
-   &(-l_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)^2-(u_7+s_5u_4+c_4c_5u_3)(l_3(u_7+s_5u_4+c_4c_5u_3)-
-   l_4(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)))\hat{e}_1 -\\
-   &(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)(l_4(u_7+s_5u_4+c_4c_5u_3)+l_3(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 +\\
-   &((s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)(l_3(u_7+s_5u_4+c_4c_5u_3)-
-   l_4(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))-l_4(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)^2)\hat{e}_3
+   (-(d_3+l_3)(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)^2-(u_7+s_5u_4+c_4c_5u_3)((d_3+l_3)(u_7+s_5u_4+c_4c_5u_3)-\\
+   &d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)-l_4(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)))\hat{e}_1 - (s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)((d_2+l_4)(u_7+s_5u_4+c_4c_5u_3)+(d_3+l_3)(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2+ ((s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)((d_3+l_3)(u_7+s_5u_4+c_4c_5u_3)-d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)-l_4(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))-(d_2+l_4)(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)^2)\hat{e}_3
+
 
    ^N\bar{\alpha}^E\times\bar{r}^{E_o/F_o} =
-   &-l_4(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
-   s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-c_7\dot{u}_5-
-   (s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_1 +\\
-   &(l_4(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-u_3(s_4c_7u_7+s_7c_4u_4+
-   s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5)-s_7\dot{u}_5
-   -c_5c_7\dot{u}_4-(s_4s_7-s_5c_4c_7)\dot{u}_3)-l_3(s_4
-   c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-\dot{u}_7-s_5\dot{u}_4-c_4c_5\dot{u}_3))\hat{e}_2 +\\
-   &l_3(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
-   s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-c_7\dot{u}_5-(s_4
-   c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_3
+   &-(d_2+l_4)(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-s_5c_4c_7u_7-s_7c_4c_5u_5)+\\
+   &s_7c_5\dot{u}_4-s_5s_7u_4u_5-c_7\dot{u}_5-(s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_1+ (d_2(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-u_3(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5)-s_7\dot{u}_5-c_5c_7\dot{u}_4-(s_4s_7-s_5c_4c_7)\dot{u}_3)+l_4(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-u_3(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5)-s_7\dot{u}_5-c_5c_7\dot{u}_4-(s_4s_7-s_5c_4c_7)\dot{u}_3)-(d_3+l_3)(s_4c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-\dot{u}_7-s_5\dot{u}_4-c_4c_5\dot{u}_3))\hat{e}_2 + (d_3+l_3)(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-c_7\dot{u}_5-(s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_3
 
 
 .. _nonholonomic:
@@ -572,16 +583,14 @@ following relationships:
    ^N\bar{v}^{D_n}\cdot\hat{a}_2 = c_3u_2 - s_3u_1 = 0
 
    ^N\bar{v}^{F_n}\cdot\hat{a}_1 =
-   &s_3u_2 + c_3u_1 + d_2c_5u_5 + d_2s_4c_5u_3 + r_Fc_4c_7(u_8+c_7u_5+(s_4c_7+s_5s_7c_4)u_3) -\\
-   &r_Rs_4u_3 - d_3s_7c_4u_3 - d_1s_5(u_5+s_4u_3) - s_7c_5(d_3u_7-r_F(s_7c_4c_5u_5-(s_4s_7-s_5c_4c_7)u_7))\\
-   &- s_5(d_3c_7(u_5+s_4u_3)+rFs_4s_7(u_8+c_7u_5+(s_4c_7+s_5s_7c_4)u_3)) = 0
+   s_3u_2 + c_3u_1 + d_2c_5u_5 + d_2s_4c_5u_3 + r_Fc_4c_7(u_8+c_7u_5+(s_4c_7+s_5s_7c_4)u_3)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5} -\\
+   &r_Rs_4u_3 - d_3s_7c_4u_3 - d_1s_5(u_5+s_4u_3) - s_7c_5(d_3u_7-r_F(s_7c_4c_5u_5-(s_4s_7-s_5c_4c_7)u_7)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5}) - s_5(d_3c_7(u_5+s_4u_3)+r_Fs_4s_7(u_8+c_7u_5+(s_4c_7+s_5s_7c_4)u_3)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5})
+
 
    ^N\bar{v}^{F_n}\cdot\hat{a}_2 =
    &c_3u_2 + d_1c_5u_3 + r_Rc_4u_4 + d_1s_4c_5u_5 + d_1s_5c_4u_4 + (c_4c_7-s_4s_5s_7)(d_3(u_7+s_5u_4+c_4c_5u_3)-\\
-   &d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)-r_F(c_4c_7u_4+s_7c_4c_5u_5-s_4s_5s_7u_4-(s_4s_7-s_5c_4c_7)u_7)) -\\
-   &s_3u_1 - (s_7c_4+s_4s_5c_7)(d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)+\\
-   &r_Fc_4c_5(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)) - s_4c_5(d_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)+\\
-   &r_F(s_4s_7-s_5c_4c_7)(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3))
+   &d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)-r_F(c_4c_7u_4+s_7c_4c_5u_5-s_4s_5s_7u_4-(s_4s_7-s_5c_4c_7)u_7)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5}) - s_3u_1 - (s_7c_4+s_4s_5c_7)(d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)+r_Fc_4c_5(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5}) - s_4c_5(d_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)+r_F(s_4s_7-s_5c_4c_7)(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5})
+
 
 The fifth non-holonomic velocity constraint is not a necessary one but can be
 used to manage the second holonomic constraint :eq:`something` and is a method
@@ -593,9 +602,10 @@ not one.
 .. math::
 
    \frac{d}{dt}(\bar{r}^{G_n/D_n}\cdot\hat{a}_3) =
-   &r_Rs_4u_4 + d_1s_4s_5u_4 + d_3(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5) +\\
-   &2r_F(s_4s_7-s_5c_4c_7)(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5) -\\
-   &d_1c_4c_5u_5 -d_2s_5c_4u_5 - 2r_Fs_5c_5c_4^2u_5 -s_4c_5(d_2+2r_Fc_4c_5)u_4 = 0
+   &r_Rs_4u_4 + d_1s_4s_5u_4 + (d_3+r_F(s_4s_7-s_5c_4c_7)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5})\\
+   &(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5) -
+   d_1c_4c_5u_5 - d_2s_4c_5u_4 -d_2s_5c_4u_5 -
+   r_Fc_4c_5(s_4c_4^2c_5^3u_4+s_5c_4^3c_5^2u_5+(s_4s_7-s_5c_4c_7)^2(s_4c_5u_4+s_5c_4u_5))/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{1.5}
 
 These five equations are linear in the generalized speeds. I chose the roll
 rate, :math:`u_4`, the rear wheel rate, :math:`u_6`, and the steer rate,

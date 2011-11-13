@@ -11,19 +11,26 @@ mec.Kane.simp = False
 ##################
 
 # Newtonian Frame
-N = mec.ReferenceFrame('N', indices=('1', '2', '3'))
+N = mec.ReferenceFrame('N', indices=('1', '2', '3'),
+        latexs=('\hat{n}_1', '\hat{n}_2', '\hat{n}_3'))
 # Yaw Frame
-A = mec.ReferenceFrame('A', indices=('1', '2', '3'))
+A = mec.ReferenceFrame('A', indices=('1', '2', '3'),
+        latexs=('\hat{a}_1', '\hat{a}_2', '\hat{a}_3'))
 # Roll Frame
-B = mec.ReferenceFrame('B', indices=('1', '2', '3'))
+B = mec.ReferenceFrame('B', indices=('1', '2', '3'),
+        latexs=('\hat{b}_1', '\hat{b}_2', '\hat{b}_3'))
 # Pitch & Bicycle Frame
-C = mec.ReferenceFrame('C', indices=('1', '2', '3'))
+C = mec.ReferenceFrame('C', indices=('1', '2', '3'),
+        latexs=('\hat{c}_1', '\hat{c}_2', '\hat{c}_3'))
 # Rear Wheel Frame
-D = mec.ReferenceFrame('D', indices=('1', '2', '3'))
+D = mec.ReferenceFrame('D', indices=('1', '2', '3'),
+        latexs=('\hat{d}_1', '\hat{d}_2', '\hat{d}_3'))
 # Steer & Fork/Handlebar Frame
-E = mec.ReferenceFrame('E', indices=('1', '2', '3'))
+E = mec.ReferenceFrame('E', indices=('1', '2', '3'),
+        latexs=('\hat{e}_1', '\hat{e}_2', '\hat{e}_3'))
 # Front Wheel Frame
-F = mec.ReferenceFrame('F', indices=('1', '2', '3'))
+F = mec.ReferenceFrame('F', indices=('1', '2', '3'),
+        latexs=('\hat{f}_1', '\hat{f}_2', '\hat{f}_3'))
 
 ####################################
 # Generalized Coordinates and Speeds

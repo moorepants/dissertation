@@ -130,7 +130,7 @@ doctest:
 	      "results in $(BUILDDIR)/doctest/output.txt."
 
 gh-pages: clean html
-	git commit -am "Commit before making gh-pages in case I forgot to commit."
+	-git commit -am "Commit before making gh-pages in case I forgot to commit."
 	git symbolic-ref HEAD refs/heads/gh-pages
 	rm .git/index
 	git clean -fdx -e _build/ -e .gitignore -e README -e figures/ -e tables/ -e Makefile

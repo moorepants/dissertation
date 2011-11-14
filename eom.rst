@@ -235,14 +235,6 @@ of the wheel and is located by:
 
    \bar{r}^{d_o/n_o} = q_1\hat{n}_1 + q_2\hat{n}_2 - r_F\hat{b}_3
 
-The location of the point on the wheel instantaneously in contact with the
-ground in the Newtonian frame is then defined by:
-
-.. math::
-   :label: rearWheelContact
-
-   \bar{r}^{d_n/d_o} = r_F\hat{b}_3
-
 The rear frame mass center, :math:`c_o`, is located by two additional
 parameters:
 
@@ -274,20 +266,25 @@ parameters:
 
    \bar{r}^{e_o/f_o} = l_3\hat{e}_1 + l_4\hat{e}_3
 
+The location of the point on the wheel instantaneously in contact with the
+ground in the Newtonian frame is then defined by:
+
+.. math::
+   :label: rearWheelContact
+
+   \bar{r}^{d_n/d_o} = r_F\hat{b}_3
+
 The location of the front wheel contact point is less trivial. The vector from
 the front wheel center to the contact point is defined as:
 
 .. math::
    :label: frontWheelContact
 
-   \bar{r}^{f_n/f_o} = r_F\left(\frac{(\hat{e}_2\times\hat{n}_3)\times\hat{e}_2}
-   {||(\hat{e}_2\times\hat{n}_3)\times\hat{e}_2||}\right)
+   \bar{r}^{f_n/f_o} = r_F\left(\frac{(\hat{e}_2\times\hat{a}_3)\times\hat{e}_2}
+   {||(\hat{e}_2\times\hat{a}_3)\times\hat{e}_2||}\right)
 
 .. todo:: I can define m to reduce the length of several of the longer
-   equations.
-
-.. math::
-   m = \sqrt{(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)}
+   equations. :math:`m = \sqrt{(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)}`
 
 .. math::
 
@@ -361,13 +358,14 @@ speeds to be equal to the time derivatives of the generalized coordinates:
 
    u_i = \dot{q}_i
 
-Velocities
-----------
+Velocity
+--------
 
-The angular and linear velocities of each rigid body are required as usual.
-Also the velocities of the points on the wheel at the ground contact points are
-required for the developement of the nonholomic constraints. The angular
-velocity of the bicycle frame, :math:`C`, in :math:`N` is:
+The angular and linear velocities of each rigid body are required for computing
+partial velocities. Also, the velocities of the points on the wheel at the
+ground contact points are needed for the developement of the nonholomic
+constraints. The angular velocity of the rear frame, :math:`C`, in :math:`N`
+is:
 
 .. math::
    :label: omegaCinN
@@ -375,7 +373,8 @@ velocity of the bicycle frame, :math:`C`, in :math:`N` is:
    ^N\omega^C = (c_5u_4-s_5c_4u_3)\hat{c}_1 + (u_5+s_4u_3)\hat{c}_2 +
    (s_5u_4+c_4c_5u_3)\hat{c}_3
 
-Both the fork and the rear wheel are connected to the bicycle frame by simple revolute joints.
+Both the front frame and the rear wheel are connected to the bicycle frame by
+simple revolute joints, so the angular velocities are simply:
 
 .. math::
    :label: omegaDinC
@@ -415,12 +414,15 @@ mass centers can be computed. Starting with mass center of the rear wheel:
 .. math::
    :label: DoInN
 
+   ^N\bar{v}^{d_o} = \frac{d}{dt}\left(\bar{r}^{d_o/n_o}\right)
+
    ^N\bar{v}^{d_o} = u_1\hat{n}_1 + u_2\hat{n}_2 -
    r_Rs_4u_3\hat{b}_1 + r_Ru_4\hat{b}_2
 
-The mass center of the rear wheel, :math:`d_o` and the mass center of bicycle
-frame, :math:`c_o`,  both lie on the bicycle frame so the velocity can easily
-be computed:
+The remaining velocities can be computed by taking advantage of the fact that
+various pairs of the defined points are on the same rigid body. The mass
+centers of the rear wheel, :math:`d_o` and the rear frame, :math:`c_o`, and the
+steer axis point, :math:`c_e`, all lie on the rear frame.
 
 .. math::
    :label: CoInN
@@ -432,16 +434,16 @@ be computed:
    (l_1(s_5u_4+c_4c_5u_3)-l_2(c_5u_4-s_5c_4u_3))\hat{c}_2 -
    l_1(u_5+s_4u_3)\hat{c}_3
 
-The velocity of the steer axis point is computed in the same fashion:
-
 .. math::
    :label: CeInN
 
    ^N\bar{v}^{c_e} = ^N\bar{v}^{d_o} + ^N\bar\omega^C\times\bar{r}^{c_e/d_o}
 
-   ^N\bar\omega^C\times\bar{r}^{c_e/d_o} = d_1(s_5u_4+c_4c_5u_3)\hat{c}_2 - d_1(u_5+s_4u_3)\hat{c}_3
+   ^N\bar\omega^C\times\bar{r}^{c_e/d_o} = d_1(s_5u_4+c_4c_5u_3)\hat{c}_2 -
+   d_1(u_5+s_4u_3)\hat{c}_3
 
-The velocity of the front wheel center is:
+The velocity of the front wheel mass center is computed with respect to the
+steer axis point as they both lie on the front frame:
 
 .. math::
    :label: FoInN
@@ -450,10 +452,11 @@ The velocity of the front wheel center is:
 
    ^N\bar\omega^E\times\bar{r}^{f_o/c_e} =
    &-d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_1 + \\
-   &(d_3(u_7+s_5u_4+c_4c_5u_3)-d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 + \\
+   &(d_3(u_7+s_5u_4+c_4c_5u_3)-d_2(s_7u_5+c_5c_7u_4+
+   (s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 + \\
    &d_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3
 
-Then the velocity of the fork mass center can be defined as:
+Then the velocity of the front mass center is similarly:
 
 .. math::
    :label: EoInN
@@ -466,7 +469,8 @@ Then the velocity of the fork mass center can be defined as:
    &l_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3
 
 The velocity of the contact points on the wheel are needed to enforce the
-no-slip condition.
+no-slip condition and can be computed with respect to the rear and front wheel
+centers. The rear contact point is:
 
 .. math::
    :label: DnInN
@@ -475,14 +479,14 @@ no-slip condition.
 
    ^N\omega^D\times\bar{r}^{d_n/d_o} = r_R(u_5+u_6+s_4u_3)\hat{b}_1 - r_Ru_4\hat{b}_2
 
-which simplifies to
+which simplifies to:
 
 .. math::
    :label: SimpleDnInN
 
    ^N\bar{v}^{d_n} = r_R(u_5+u_6)\hat{b}_1 + u_1\hat{n}_1 + u_2\hat{n}_2
 
-The front wheel contact velocity:
+The front wheel contact velocity is:
 
 .. math::
    :label: FnInN
@@ -501,8 +505,8 @@ Acceleration
 ------------
 
 The angular acceleration of each body along with the linear acceleration of
-each mass center are required to form :math:`F_r^*`. The angular acceleration
-of the bicycle reference frame in :math:`N` is:
+each mass center are required to form :math:`F_r^*` in Kane's equations. The
+angular acceleration of the bicycle reference frame in :math:`N` is:
 
 .. math::
    :label: alphaCinN
@@ -530,21 +534,27 @@ The remaing bodies' angular accelerations follow from simple rotations:
    ^E\bar{\alpha}^F = \dot{u}_8\hat{e}_2
 
 The linear acceleration of each mass center can then be computed. The
-acceleration of the rear wheel center of mass.
+acceleration of the rear wheel center of mass is:
 
 .. math::
    :label: aDoInN
+
+   ^N\bar{a}^{d_o} = \frac{d}{dt}\left(^N\bar{v}^{d_o}\right)
 
    ^N\bar{a}^{d_o} = \dot{u}_1\hat{n}_1 + \dot{u}_2\hat{n}_2 -
    r_Rs_4u_3^2\hat{a}_2 - r_R(2c_4u_3u_4+s_4\dot{u}_3)\hat{b}_1 +
    r_R\dot{u}_4\hat{b}_2 + r_Ru_4^2\hat{b}_3
 
-The acceleration of the biycle frame center of mass.
+The remaining accelerations are computed using the same two point relationship
+utilized for the velocities. The acceleration of the rear frame center of mass
+is:
 
 .. math::
    :label: aCoinN
 
-   ^N\bar{a}^{c_o} = ^N\bar{a}^{d_o} + ^N\omega^C\times(^N\omega^C\times\bar{r}^{c_o/d_o}) + ^N\bar{\alpha}^C\times\bar{r}^{c_o/d_o}
+   ^N\bar{a}^{c_o} = ^N\bar{a}^{d_o} +
+   ^N\omega^C\times(^N\omega^C\times\bar{r}^{c_o/d_o}) +
+   ^N\bar{\alpha}^C\times\bar{r}^{c_o/d_o}
 
    ^N\omega^C\times(^N\omega^C\times\bar{r}^{c_o/d_o}) =
    &(-l_1(u_5+s_4u_3)^2-(s_5u_4+c_4c_5u_3)(l_1(s_5u_4+c_4c_5u_3)-l_2(c_5u_4-s_5c_4u_3)))\hat{c}_1 +\\
@@ -553,11 +563,11 @@ The acceleration of the biycle frame center of mass.
 
    ^N\bar{\alpha}^C\times\bar{r}^{c_o/d_o} =
    &l_2(c_4u_3u_4+\dot{u}_5+s_4\dot{u}_3)\hat{c}_1 + \\
-   &(-l_1(s_4c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-s_5\dot{u}_4-c_4c_5\dot{u}_3)-
-   l_2(s_4s_5u_3u_4+c_5\dot{u}_4-s_5u_4u_5-c_4c_5u_3u_5-s_5c_4\dot{u}_3))\hat{c}_2 - \\
+   &(-l_1(s_4c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-s_5\dot{u}_4-c_4c_5\dot{u}_3)-\\
+   &l_2(s_4s_5u_3u_4+c_5\dot{u}_4-s_5u_4u_5-c_4c_5u_3u_5-s_5c_4\dot{u}_3))\hat{c}_2 - \\
    &l_1(c_4u_3u_4+\dot{u}_5+s_4\dot{u}_3)\hat{c}_3
 
-The acceleration of the steer axis point.
+The acceleration of the steer axis point is:
 
 .. math::
    :label: aCeInN
@@ -569,14 +579,14 @@ The acceleration of the steer axis point.
    ^N\omega^C\times(^N\omega^C\times\bar{r}^{c_e/d_o}) =
    &-d_1((u_5+s_4u_3)^2+(s_5u_4+c_4c_5u_3)^2)\hat{c}_1 + \\
    &d_1(u_5+s_4u_3)(c_5u_4-s_5c_4u_3)\hat{c}_2 +\\
-   d_1(s_5u_4+c_4c_5u_3)(c_5u_4-s_5c_4u_3)\hat{c}_3
+   &d_1(s_5u_4+c_4c_5u_3)(c_5u_4-s_5c_4u_3)\hat{c}_3
 
    ^N\bar{\alpha}^C\times\bar{r}^{c_e/d_o} =
    &-d_1(s_4c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-
    s_5\dot{u}_4-c_4c_5\dot{u}_3)\hat{c}_2 - \\
    &d_1(c_4u_3u_4+\dot{u}_5+s_4\dot{u}_3)\hat{c}_3
 
-The acceleration of the front wheel center of mass.
+The acceleration of the front wheel center of mass is:
 
 .. math::
    :label: aFoInN
@@ -587,29 +597,29 @@ The acceleration of the front wheel center of mass.
 
    ^N\omega^E\times(^N\omega^E\times\bar{r}^{f_o/c_e}) =
    &(-d_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)^2-
-   (u_7+s_5u_4+c_4c_5u_3)(d_3(u_7+s_5u_4+c_4c_5u_3)-
-   d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)))\hat{e}_1 - \\
+   (u_7+s_5u_4+c_4c_5u_3)(d_3(u_7+s_5u_4+c_4c_5u_3)-\\
+   &d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)))\hat{e}_1 - \\
    &(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)(d_2(u_7+s_5u_4+c_4c_5u_3)+
    d_3(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 + \\
    &((s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)(d_3(u_7+s_5u_4+c_4c_5u_3)-
-   d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))-
-   d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)^2)\hat{e}_3
+   d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))-\\
+   &d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)^2)\hat{e}_3
 
    ^N\bar{\alpha}^E\times\bar{r}^{f_o/c_e} =
    &-d_2(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
-   s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-
-   s_5s_7u_4u_5-c_7\dot{u}_5-(s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_1 + \\
+   s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-\\
+   &c_7\dot{u}_5-(s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_1 + \\
    &(d_2(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-
    u_3(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5)-
-   s_7\dot{u}_5-c_5c_7\dot{u}_4-(s_4s_7-s_5c_4c_7)\dot{u}_3)-
+   s_7\dot{u}_5-\\
+   &c_5c_7\dot{u}_4-(s_4s_7-s_5c_4c_7)\dot{u}_3)-
    d_3(s_4c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-\dot{u}_7-
    s_5\dot{u}_4-c_4c_5\dot{u}_3))\hat{e}_2 + \\
    &d_3(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
-   s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-c_7\dot{u}_5-
-   (s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_3
+   s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-\\
+   &c_7\dot{u}_5-(s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_3
 
-
-The acceleration of the fork center of mass.
+The acceleration of the fork center of mass is:
 
 .. math::
    :label: aEoInN
@@ -620,50 +630,61 @@ The acceleration of the fork center of mass.
 
    ^N\omega^E\times(^N\omega^E\times\bar{r}^{e_o/f_o}) =
    &(-(d_3+l_3)(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)^2-(u_7+s_5u_4+
-   c_4c_5u_3)((d_3+l_3)(u_7+s_5u_4+c_4c_5u_3)-d_2(s_7u_5+c_5c_7u_4+
-   (s_4s_7-s_5c_4c_7)u_3)-l_4(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)))\hat{e}_1 - \\
+   c_4c_5u_3)((d_3+l_3)(u_7+s_5u_4+c_4c_5u_3)-\\
+   &d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)-l_4(s_7u_5+c_5c_7u_4+
+   (s_4s_7-s_5c_4c_7)u_3)))\hat{e}_1 - \\
    &(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)((d_2+l_4)(u_7+s_5u_4+
-   c_4c_5u_3)+(d_3+l_3)(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2+ \\
+   c_4c_5u_3)+\\
+   &(d_3+l_3)(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2+ \\
    &((s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)((d_3+l_3)(u_7+s_5u_4+
-   c_4c_5u_3)-d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)-
-   l_4(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))-(d_2+l_4)(s_7c_5u_4-
+   c_4c_5u_3)-d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)-\\
+   &l_4(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))-(d_2+l_4)(s_7c_5u_4-
    c_7u_5-(s_4c_7+s_5s_7c_4)u_3)^2)\hat{e}_3
-
 
    ^N\bar{\alpha}^E\times\bar{r}^{e_o/f_o} =
    &-(d_2+l_4)(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
-   s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-c_7\dot{u}_5-
+   s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-\\
+   &s_5s_7u_4u_5-c_7\dot{u}_5-
    (s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_1+ \\
    &(d_2(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-u_3(s_4c_7u_7+s_7c_4u_4+
-   s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5)-s_7\dot{u}_5-c_5c_7\dot{u}_4-
+   s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5)-s_7\dot{u}_5-\\
+   &c_5c_7\dot{u}_4-
    (s_4s_7-s_5c_4c_7)\dot{u}_3)+l_4(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-
    u_3(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5)-
-   s_7\dot{u}_5-c_5c_7\dot{u}_4-(s_4s_7-s_5c_4c_7)\dot{u}_3)-
+   s_7\dot{u}_5-\\
+   &c_5c_7\dot{u}_4-(s_4s_7-s_5c_4c_7)\dot{u}_3)-
    (d_3+l_3)(s_4c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-\dot{u}_7-s_5\dot{u}_4-
    c_4c_5\dot{u}_3))\hat{e}_2 + \\
    &(d_3+l_3)(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
-   s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-c_7\dot{u}_5-
+   s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-\\
+   &s_5s_7u_4u_5-c_7\dot{u}_5-
    (s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_3
-
 
 .. _nonholonomic:
 
-Non-holonomic Constraints
--------------------------
+Motion Constraints
+------------------
 
-I make use of five non-holonomic constraints to reduce the locally achievable
+I make use of motion non-holonomic constraints to reduce the locally achievable
 configuration space from eight degrees of freedom to three. The first four
 constraints are introduced to enforce the pure rolling, no side-slip, contact
-of the knife-edge wheels with the ground plane. This requires that there are no
-components of velocity of the wheel contact points in the
-:math:`{\mathbf{a}}_1` and :math:`{\mathbf{a}}_2` directions producing the
-following relationships:
+of the knife-edge wheels with the ground plane and are non-holonomic. This sets
+the components of velocity of the contact points on the wheels in the
+:math:`{\mathbf{a}}_1` and :math:`{\mathbf{a}}_2` directions equal to zero,
+producing the following relationships:
 
 .. math::
+   :label: eqNonholonomic1
 
    ^N\bar{v}^{d_n}\cdot\hat{a}_1 = s_3u_2 + c_3u_1 + r_R(u_5+u_6) = 0
 
+.. math::
+   :label: eqNonholonomic2
+
    ^N\bar{v}^{d_n}\cdot\hat{a}_2 = c_3u_2 - s_3u_1 = 0
+
+.. math::
+   :label: eqNonholonomic3
 
    ^N\bar{v}^{f_n}\cdot\hat{a}_1 =
    &s_3u_2 + c_3u_1 + d_2c_5u_5 + d_2s_4c_5u_3 + r_Fc_4c_7(u_8+c_7u_5+
@@ -671,7 +692,10 @@ following relationships:
    &r_Rs_4u_3 - d_3s_7c_4u_3 - d_1s_5(u_5+s_4u_3) - s_7c_5(d_3u_7-
    r_F(s_7c_4c_5u_5-(s_4s_7-s_5c_4c_7)u_7)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5}) - \\
    &s_5(d_3c_7(u_5+s_4u_3)+r_Fs_4s_7(u_8+c_7u_5+(s_4c_7+
-   s_5s_7c_4)u_3)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5})
+   s_5s_7c_4)u_3)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5}) = 0
+
+.. math::
+   :label: eqNonholonomic4
 
    ^N\bar{v}^{f_n}\cdot\hat{a}_2 =
    &c_3u_2 + d_1c_5u_3 + r_Rc_4u_4 + d_1s_4c_5u_5 + d_1s_5c_4u_4 +
@@ -681,15 +705,13 @@ following relationships:
    &s_3u_1 - (s_7c_4+s_4s_5c_7)(d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)+
    r_Fc_4c_5(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5}) - \\
    &s_4c_5(d_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)+r_F(s_4s_7-
-   s_5c_4c_7)(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5})
+   s_5c_4c_7)(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5}) = 0
 
-
-The fifth non-holonomic velocity constraint is not a necessary one but can be
-used to manage the second holonomic constraint :eq:`something` and is a method
-to avoid having to solve the quartic algebraically. By differentiating the
-holonomic cosntraint equation we arrive at velocity equation that is linear in
-the speeds and can be treated as a non-holonomic constrain even though it is
-not one.
+The fifth motion constraint is used to manage the constraint on the velocities
+imposed by the holonomic constraint, Equation :eq:`holonomicConstraint`. By
+differentiating the holonomic constraint equation you arrive at an equation
+that is linear in the generlized speeds and can be treated as any other motion
+constraint:
 
 .. math::
 
@@ -699,27 +721,21 @@ not one.
    &(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5) -
    d_1c_4c_5u_5 - \\
    &d_2s_4c_5u_4 -d_2s_5c_4u_5 -
-   r_Fc_4c_5(s_4c_4^2c_5^3u_4+s_5c_4^3c_5^2u_5+(s_4s_7-s_5c_4c_7)^2(s_4c_5u_4+s_5c_4u_5))/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{1.5}
+   r_Fc_4c_5(s_4c_4^2c_5^3u_4+s_5c_4^3c_5^2u_5+\\
+   &(s_4s_7-s_5c_4c_7)^2(s_4c_5u_4+s_5c_4u_5))/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{1.5} = 0
 
-These five equations are linear in the generalized speeds. I chose the roll
-rate, :math:`u_4`, the rear wheel rate, :math:`u_6`, and the steer rate,
-:math:`u_7`, as my independent generalized speeds following convention.
+These five equations are linear in the eight generalized speeds. Following
+convention, I chose the roll rate, :math:`u_4`, the rear wheel rate,
+:math:`u_6`, and steer rate, :math:`u_7`, as my independent generalized speeds.
 
-At this point, you can find the solution for the dependent speeds as a function
-of the independent speeds but it  becomes analytically long and it is not
-necessarily trivial to reduce their length. A smarter choice of generalized
-speeds could certainly help, but I did not spend great effort to search for an
-optimum set. From this point on, I will not show the analytical results of the
-equations of motion, but will only walk through the remainder of the theory, as
-all of the building blocks are in place to derive the equations with Kane's
-method (or any other method). I highly recommend the use of computer aided
-algebra to continue on, but the diehard could certainly write them by hand. You
-will have to either run my computer code to get the equations or write your
-own.
-
-The dependent speeds take this form:
+I now find the solution for the dependent speeds as a function of the
+independent speeds by solving the linear system of equations and differentiate
+the resulting equations to find the dependent :math:`\dot{u}`'s. The dependent
+speeds take this form:
 
 .. math::
+   :label: eqDependentSpeeds
+
    u_1 = f(u_4, u_6, u_7, q_3, \ldots, q_8)
 
    u_2 = f(u_4, u_6, u_7, q_3, \ldots, q_8)
@@ -730,13 +746,23 @@ The dependent speeds take this form:
 
    u_8 = f(u_4, u_6, u_7, q_4, \ldots, q_8)
 
+But at this point, the equations becomes analytically long and it is not
+necessarily trivial to reduce the length of the equations from this point ono.
+A smarter choice of generalized speeds could certainly help, but I did not
+spend any effort to search for a good set. From this point on in the
+derivation, I will not show the analytical results of the equations of motion,
+but will only walk through the remainder of the theory, as all of the building
+blocks are in place to derive the equations with Kane's method (or any other
+method). I highly recommend the use of computer aided algebra to continue on,
+but the diehard could certainly write them by hand. You will have to either run
+my computer code to get the equations or write your own.
 
 Generalized Active Forces
 -------------------------
 
 The three equations for the non-holomonic generalized active forces,
-:math:`\tilde{F}_r` can now be formed.  For our four body system with three
-indepdendent generalized coordinates, :math:`r=4,6,7`, they take the form:
+:math:`\tilde{F}_r` can now be formed. For our four body system with three
+degrees of freedom, :math:`r=4,6,7`, they take the form:
 
 .. math::
 
@@ -745,14 +771,15 @@ indepdendent generalized coordinates, :math:`r=4,6,7`, they take the form:
    (\bar{F}_r)_X= ^N\bar{V}^{X_o}_r\cdot\bar{R}^{X_o} + ^N\bar{\omega}^X_r\cdot\bar{T}^X
 
 where :math:`^N\bar{V}_r^{X_o}` is the partial velocity of the mass center with
-respect to the generalized speed :math:`u_r`, :math:`\bar{R}^{c_o}` is the resultant
-forces on the mass center (excluding non-contributing forces),
+respect to the generalized speed :math:`u_r`, :math:`\bar{R}^{c_o}` is the
+resultant forces on the mass center (excluding non-contributing forces),
 :math:`^N\bar{\omega}_r^C` is the partial angular velocity of the body with
 respect to :math:`u_r`, and :math:`\bar{T}^C` is the resultant torques on the
-body. The partial velocities can be found systematically as usual [Kane1985]_
-and the forces and torques are as follows. We assume that the only force acting
-on the system is the gravitational force,
-:math:`g`. Thus:
+body. The partial velocities are simply partial derivatie of the velocities in
+question with respect to the generalized speeds and can be found systematically
+as usual [Kane1985]_. The forces and torques follow are as follows. We assume
+that the only force acting on the system is the gravitational force, :math:`g`.
+Thus:
 
 .. math::
 
@@ -764,14 +791,15 @@ on the system is the gravitational force,
 
   \bar{R}^{f_o} = m_Fg\hat{n}_3
 
-We assume that there are three generalized active torques acting the system
-which will correspond to the three independent generalized speeds found in
-:ref:`nonholonomic`.
+We also assume that there are three generalized active torques acting on the
+system which will correspond to the three independent generalized speeds found
+in :ref:`nonholonomic`.
 
-The roll torque, :math:`T_4`, acts between the bicycle frame and the newtonian
-frame about :math:`\hat{a}_1`. The rear wheel torque, :math:`T_6`, acts between the bicycle
-frame and the rear wheel about :math:`\hat{c}_2` and the steer torque, :math:`T_7`, acts
-between the bicycle frame and the fork about :math:`\hat{c}_3`.
+The roll torque, :math:`T_4`, acts between the rear frame and the Newtonian
+frame about :math:`\hat{a}_1`. The rear wheel torque, :math:`T_6`, acts between
+the rear frame and the rear wheel about :math:`\hat{c}_2` and the steer torque,
+:math:`T_7`, acts between the rear frame and the front frame about
+:math:`\hat{c}_3`.
 
 .. math::
 
@@ -786,18 +814,20 @@ between the bicycle frame and the fork about :math:`\hat{c}_3`.
 Generalized Inertia Forces
 --------------------------
 
-The nonholonomic generalized inertia forces, :math:`\tilde{F}^*_r`, is formed
+The nonholonomic generalized inertia forces, :math:`\tilde{F}^*_r`, are formed
 using the accelerations and the inertial properties of the bodies.
 
 .. math::
 
-   \tilde{F}^*_r = (\tilde{F}^*_r)_C + (\tilde{F}^*_r)_D + (\tilde{F}^*_r)_E + (\tilde{F}^*_r)_F
+   \tilde{F}^*_r = (\tilde{F}^*_r)_C + (\tilde{F}^*_r)_D + (\tilde{F}^*_r)_E +
+   (\tilde{F}^*_r)_F
 
-   (\bar{F}^*_r)_X= ^N\bar{V}^{X_o}_r\cdot\bar{R}^*_{X_o} + ^N\bar{\omega}^X_r\cdot\bar{T}^*_X
+   (\bar{F}^*_r)_X= ^N\bar{V}^{X_o}_r\cdot\bar{R}^*_{X_o} +
+   ^N\bar{\omega}^X_r\cdot\bar{T}^*_X
 
 where :math:`^N\bar{V}_r^{X_o}` is the partial velocity of the mass center with
 respect to the generalized speed :math:`u_r`, :math:`\bar{R}^*_{X_o}` is the
-inertia force for X in N and is defined as:
+inertia force for :math:`X` in :math:`N` and is defined as:
 
 .. math::
 
@@ -817,9 +847,9 @@ body which is defined as:
 
 :math:`I_X` is the central inertia dyadic for the body in question which
 corresponds to the following tensor definitions for the inertia of each rigid
-body. The inertia for each body is defined with respect to the mass center and the
-body's local reference frame. The bicycle wheels are assumed to be symmetric
-about their 1-3 plane and the 1-2 plane.
+body. The inertia tensor for each body is defined with respect to the mass
+center and the body's local reference frame. The bicycle wheels are assumed to
+be symmetric about their 1-3 plane and the 1-2 plane.
 
 .. math::
    :label: ID
@@ -841,7 +871,7 @@ about their 1-3 plane and the 1-2 plane.
    0 & 0 & I_{F11}
    \end{bmatrix}
 
-The bicycle frame and fork are assumed to be symmetric about their 1-3 planes.
+The rear frame and front frame are assumed to be symmetric about their 1-3 planes.
 
 .. math::
    :label: IC
@@ -874,13 +904,11 @@ Kane's equations are now formed as:
 
    \tilde{F}_r + \tilde{F}^*_r = 0
 
-and are a vector of three equations of motion one for roll, steer and rear
-wheel accelerations. It turns out that the five of the coordinates do not
-appear in the equations and thus non-essential, or ignorable, states. These are
-the location of the ground contact point, :math:`u_1` and :math:`u_2`, the yaw
-angle, :math:`u_3`, and the wheel angles, :math:`u_6` and :math:`u_8`. The
-dynamical equations are then solved for the :math:`\dot{u}`'s and paired with
-the essential kinematical differential equations to form the complete set of
+and are a vector of three coupled equations which are linear in the roll, steer
+and rear wheel accelerations. The linear system can be solved to give the first
+order equations for :math:`u_r`, where :math:`r=4,6,7`.  The dynamical
+equations are then solved for the :math:`\dot{u}`'s and paired with the
+essential kinematical differential equations to form the complete set of
 dynamics equations of motion in the form.
 
 .. math::
@@ -890,18 +918,28 @@ dynamics equations of motion in the form.
    \dot{q}_j=u_j
 
 where :math:`i=4,6,7` and :math:`j=4,5,6,7`. Keep in mind that the pitch angle,
-:math:`q_5`, is in fact a dependent coordinate that I selected when dealing
-with the holonomic contraint, :eq:`holonomic`. Special attention during
-simulation and linearization will have to be made to accomodate the coordinate
-and will be described in the following sections.
+:math:`q_5`, is in fact a dependent coordinate, :math:`f(q_4,q_7)`, that I
+selected when dealing with the holonomic contraint, :eq:`holonomic`. Special
+attention during simulation and linearization will have to be made to
+accomodate the coordinate and will be described in the following sections.
 
 Model discussion
 ----------------
 
-[Meijaard2007]_ does excellent job describing the nature of the model. Notable
-concepts are the fact that :math:`q1`, :math:`q2`, :math:`q3`, :math:`q6`, and
-:math:`q8` are all ignorable coordinates, that is they do not show up in the
-essential dynamical equations of motion. The model is also energy conserving.
+[Meijaard2007]_ does excellent job describing the essential nature of both
+Whipple model, with most of the focus on the version linearized about the
+nominal configuration, but also a bit about the non-linear model. Notable
+concepts include the fact that many of the coordinates are all ignorable, that
+is they do not show up in the essential dynamical equations of motion. These
+are the location of the ground contact point, :math:`q_1` and :math:`q_2`, the
+yaw angle, :math:`q_3`, and the wheel angles, :math:`q_6` and :math:`q_8`.The
+model is also energy conserving, but not Hamiltonian. Furthermore, the open
+loop model (i.e. inputs equal zero) exhibits stability during certain regimes
+of configuration. The system has left half plane zeros, which give it a
+non-minimal phase behavior. Numerous studies have revealed these facts:
+[Astrom2005]_, [BasuMandal2007]_, [Sharp2008]_, [Peterson2009]_, etc.
+
+.. todo:: Should I add more interesting facts about the model?
 
 Simulation
 ----------
@@ -910,11 +948,12 @@ The nonlinear model can be simulated with various initial conditions. In the
 presented formulation all of the initial conditions can be set independently
 except for the roll, steer and pitch angles. Once two of the three are chosen,
 the third must be solved for. I solve the holonomic constraint equation
-numerically to provide the correct initial condition.
-
-.. todo:: improve this figure
+numerically for pitch angle, :math:`q_5`, to provide the correct initial
+condition.
 
 .. figure:: figures/eom/meijaard2007-figure-four.png
+   :width: 3in
+   :align: center
 
    figFigFour
 
@@ -923,21 +962,24 @@ numerically to provide the correct initial condition.
    a higher value that the initial speed as the energy used to disipate the
    roll and steer is transferred to the forward speed.
 
-.. todo:: Plot a impulse response.
-
 Nonlinear Validation
 --------------------
 
 [BasuMandall2007]_ present the Whipple model derived with both the Newton-Euler
-and Lagrange methods. Their Table 1 shows the derivatives of all the
-coordinates and speeds to high precision for use in validating the nonlinear
-model. The idea is that because comparing extremely long symbolic equations is
-nearly impossible, one can compute significant figures to machine precision and
-if other models produce 10+ significant figures the models are the same. The
-very first model I developed in 2006 would not have held up to this test. I
-owe the validity of my model to my labmate, Luke, as his persistence and
-interest in minute detail helped me bring my model up to par. Here I present
-The values from my model for comparison to [BasuMandall2007]_.
+and Lagrange methods. The equations of motion are analytically complex and make
+if difficult to compare symbolic results, so numerical values are presented for
+use in validating the nonlinear model. Table 1 in their paper gives the
+derivatives of all the coordinates and speeds to high precision for each of
+their derivations for a single state. They state that one can compute these
+values to machine precision and if they values match to ~10 significant figures
+the models can be concluded to be the same. The very first model I developed in
+2006 would not have held up to this test. I owe the validity of my model to my
+labmate, Luke, as his persistence and interest in minute detail helped me
+bring my model up to par. Here I present the values computed from my model in
+comparison to the values presented by [BasuMandall2007]_.
+
+.. todo:: Should I present the conversion equations from BasuMandall to mine
+   and vice versa?
 
 .. todo:: Values from my model for comparision to table one in BasuMandall2007
 

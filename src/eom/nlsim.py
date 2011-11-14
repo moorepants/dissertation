@@ -49,7 +49,7 @@ speed = -whip.simResults['y'][:, whip.outputNames.index('u6')] * whip.parameters
 steerRate = whip.simResults['y'][:, whip.outputNames.index('u7')]
 time = whip.simResults['t']
 newFig = bicycle.meijaard_figure_four(time, rollRate, steerRate, speed)
-newFig.savefig('../../figures/eom/meijaard2007-figure-four.png')
+newFig.savefig('../../figures/eom/meijaard2007-figure-four.png', dpi=300)
 
 # load the input values specified in table one of Basu-Mandal2007
 basuInput = bicycle.basu_table_one_input()

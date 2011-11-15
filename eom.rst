@@ -215,6 +215,7 @@ direction cosine matrix with respect to rotation through :math:`\lambda`.
 
    I_E =  R I_H R^T
 
+.. _geometry:
 
 Geometry
 --------
@@ -1025,16 +1026,16 @@ Kane's equations are now formed as:
 
    \tilde{F}_r + \tilde{F}^*_r = 0
 
-and are a vector of three coupled equations which are linear in the roll, steer
-and rear wheel accelerations. The linear system can be solved to give the first
-order equations for :math:`u_r`, where :math:`r=4,6,7`.  The dynamical
-equations are then solved for the :math:`\dot{u}`'s and paired with the
-essential kinematical differential equations to form the complete set of
-dynamics equations of motion in the form.
+and are a vector function of three coupled equations which are linear in the
+roll, steer and rear wheel accelerations. The linear system can be solved to
+give the first order equations for :math:`\dot{u}_r`, where :math:`r=4,6,7`.
+The dynamical equations are then solved for the :math:`\dot{u}`'s and paired
+with the essential kinematical differential equations to form the complete set
+of dynamics equations of motion in the form.
 
 .. math::
 
-   \ddot{u}_i=f(u_4, u_6, u_7, q_4, q_5, q_6, q_7)
+   \dot{u}_i=f(u_4, u_6, u_7, q_4, q_5, q_7)
 
    \dot{q}_j=u_j
 
@@ -1053,7 +1054,7 @@ nominal configuration, but also a bit about the non-linear model. Notable
 concepts include the fact that many of the coordinates are all ignorable, that
 is they do not show up in the essential dynamical equations of motion. These
 are the location of the ground contact point, :math:`q_1` and :math:`q_2`, the
-yaw angle, :math:`q_3`, and the wheel angles, :math:`q_6` and :math:`q_8`.The
+yaw angle, :math:`q_3`, and the wheel angles, :math:`q_6` and :math:`q_8`. The
 model is also energy conserving, but not Hamiltonian. Furthermore, the open
 loop model (i.e. inputs equal zero) exhibits stability during certain regimes
 of configuration. The system has left half plane zeros, which give it a
@@ -1107,65 +1108,74 @@ comparison to the values presented by [BasuMandall2007]_.
 Linearized Equations of Motion
 ==============================
 
-The full nonlinear equations of motion can be linearized about an equilibrium
-point by calculating the Jacobian of the system of equations. The partial
-derivatives of each equation were evaluated at the following fixed point:
-:math:`q_i=0` where :math:`i=4,6,7`, :math:`u_i=0` where :math:`i=4,7`, and
-:math:`u_5=-v/r_R` where :math:`v` is the constant forward speed of the
-bicycle.This reduces the system to four linear first order differential
+The nonlinear equations of motion can be linearized about an equilibrium point.
+The bicycle has many equilibrium points, the typical one studied is about the
+nonimal configuration [Meijaard2007]_ but others such as steady turn are valid
+too [BasuMandal2007]_. The equations can be linearized by computing the Taylor
+series expansion about the equilibrium point and disregarding the terms higher
+than first ordr. For the nominal configuration this amounts to calculating the
+Jacobian of the system of equations with respect to the coordinates and speeds
+and the inputs to obtain state matrix, :math:`\mathbf{A}`, and the input
+matrix, :math:`\mathbf{B}`. The partial derivatives of each equation were
+evaluated at the following fixed point: :math:`q_i=0` where :math:`i=4,5,7`,
+:math:`u_i=0` where :math:`i=4,7`, and :math:`u_5=-v/r_R` where :math:`v` is
+the constant forward speed of the bicycle. Care has to be taken when
+linearizing as :math:`q_5` is a dependent coordinate which still appears on the
+right hand side of the equations. In general the chain rule applies, but for
+the nominal configuration, the extra derivatives also equal zero. The
+linearization transforms the system to four linear first order differential
 equations in the form:
 
 .. math::
-   \frac{d}{dt}
-    \left[
-    \begin{array}{c}
-        q_4\\q_5\\q_6\\q_7\\u_4\\u_5\\u_7
-    \end{array}
-    \right]
-    =
-    \mathbf{A}
-    \left[
-    \begin{array}{c}
-        q_4\\q_5\\q_6\\q_7\\u_4\\u_5\\u_7
-    \end{array}
-    \right]
-    \label{eq:linearEq}
+   :label: eqStateSpace
 
-I do this symbolically to reach the same results as presented in
-[Meijaard2007]_, but my equations are much lengthier as the sympifcation
-routines available didn't provide much reprise. The equations can be validated
-against the model presented in [Meijaard2007]_. The following table gives the
-same eigenvalues as presented in Table X of [Meijaard2007]_.
+   \begin{bmatrix}
+     \dot{q_4}\\
+     \dot{q_7}\\
+     \dot{u_4}\\
+     \dot{u_7}
+   \end{bmatrix}
+   = \mathbf{A}
+   \begin{bmatrix}
+     q_4\\
+     q_7\\
+     u_4\\
+     u_7
+   \end{bmatrix}
+   + \mathbf{B}
+   \begin{bmatrix}
+     T_4\\
+     T_7
+   \end{bmatrix}
 
-.. todo:: add the table of eigenvalues for one speed in Meijaard2007
-
-Validation
-----------
-
-The linearized model was checked for accuracy against
-the benchmark bicycle in two ways. First the linearized equations
-of motion (Eq. eq:linearEq) were formulated into two second order
-differential equations in the more familiar canonical form
-(Eq. eq:canonical) used in [MeijaardPapadopoulosRuinaSchwab2007]_.
-They present the values for the coefficient matrices
-(:math:`\mathbf{M}`, :math:`\mathbf{C}_1`,
-:math:`\mathbf{K}_0` and :math:`\mathbf{K}_2`) for the
-benchmark parameter set at least 15 significant figures and my
-model matched all of the significant figures.
+I calculate the equations symbolically to reach the same results as presented
+in [Meijaard2007]_, but my equations are much lengthier as the sympifcation
+routines available didn't provide much reprise. The accuracy of the linearized
+model was checked by comparing numerical results the benchmark bicycle in two
+ways. First the linearized equations of motion, Equation :eq:`eqStateSpace`,
+were formulated into two second order differential equations in the canonical
+form (Equation :eq`eqCanonical`) presented in [Meijaard2007]_. They present the
+values for the coefficient matrices (:math:`\mathbf{M}`, :math:`\mathbf{C}_1`,
+:math:`\mathbf{K}_0` and :math:`\mathbf{K}_2`) for the benchmark parameter set
+to at least 15 significant figures and the linearization presented here matched
+all of the significant figures. [Meijaard2007]_ also provide the eigenvalues of
+the state matrix at various speeds, which the model herein reproduces to all of
+the presented values.
 
 .. math::
-   \mathbf{M\dot{u}}+v\mathbf{C}_1\mathbf{u}+\left[g\mathbf{K}_0+v^2\mathbf{K}_2\right]\mathbf{q}=0
-   :label: {eq:canonical}
+   :label: eqCanonical
 
-The eigenvalues of the system of linear equations can be calculated
-and are typically plotted versus forward speed for the linear
-upright constant speed configuration (Fig. fig:eigenvalues).
-[MeijaardPapadopoulosRuinaSchwab2007]_also provided eigenvalue
-calculations at various speeds of the benchmark bicycle for model
-comparison. The eigenvalues for my model matched to at least 15
-significant figures.
+   \mathbf{M\dot{u}}+v\mathbf{C}_1\mathbf{u}+\left[g\mathbf{K}_0+
+   v^2\mathbf{K}_2\right]\mathbf{q}=0
 
-.. todo::
+Furthmore, the now ubiqutious eigenvalue plot versus forward speed is
+reproduced.
+
+.. figure:: figures/eom/eigenvalues.png
+   :width: 5in
+
+   figEigenvalues
+
    Eigenvalues versus speed for an example bicycle. The four modes of
    motion are identified. \\emph[Caster]_ is stable and real for all positive
    values of speed. It describes the tendency for the front wheel to right

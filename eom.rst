@@ -238,14 +238,14 @@ defined by three distances, all of which are configuration invariant. The
 distance :math:`d_1` is the offset to the center of the rear wheel from the
 steer axis and :math:`d_3` is the offset of the front wheel from the steering
 axis. :math:`d_2` is then the distance between the wheel centers as measured
-along the steer axis. Figure :ref:`figBicycleGeometry` gives a complete visual
+along the steer axis. :ref:`Figure 1 <figBicycleGeometry>` gives a complete visual
 description.
+
+.. _figBicycleGeometry:
 
 .. figure:: figures/eom/bicycle-geometry.png
    :align: center
    :width: 3.75in
-
-   figBicycleGeometry
 
    The bicycle in the nominal configuration. The rigid bodies are the
    frame/rider, C, rear wheel, D, fork/handlebar, E and front wheel, F. The

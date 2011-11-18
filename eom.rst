@@ -12,7 +12,7 @@ the trigger which solidified my dissertation topic. I attempted the derivation
 for my class project in Mont Hubbard's winter 2006 multi-body dynamics class
 and struggled with it well into the summer before finally getting a mostly
 correct answer. After the fact, I realized much of my pain was caused by a
-single missing apostrophe in my Autolev computer code[#]_. Another student,
+single missing apostrophe in my Autolev computer code [#]_. Another student,
 Thomas Englehardt, in the class also derived the equations and helped me debug
 by sharing his code and going over his methods. Even then, it turned out that
 my original equations weren't "exactly" correct and it wasn't until Luke
@@ -30,7 +30,7 @@ dissertation. This section details derivation of the non-linear equations of
 motion using Kane's method [KaneLevinson1985]_. The equations of motion are
 algebraically unwieldy and no one so far has publicly shown them in a form
 compact enough to print on reasonably sized paper and certainly not in a form
-suitable for any analytical understanding[#]_. My methodology relies heavily on
+suitable for any analytical understanding [#]_. My methodology relies heavily on
 computer aided algebra to do the bookkeeping in the derivation, so I will only
 describe the necessary details to derive the equations, leaving the algebra,
 trigonometry and calculus to the computer. The symbolic equations of motion
@@ -68,7 +68,7 @@ model than the non-linear *Whipple Bicycle Model*. I will try to be explicit
 when referring to the various models.
 
 I will use this terminology for the rigid bodies, see Figure
-:ref:`figBicycleGeometry`:
+:ref:`figBicycleGeometry <1>`:
 
 Rear Frame, :math:`C`
    The main bicycle frame which may include parts or all of the rider.
@@ -88,7 +88,7 @@ nominal configuration uses a set of non-minimal parameters based on typical
 geometric parameters and inertia definitions  with respect to the global
 reference frame.  The nominal configuration is defined as the configuration
 when the steering angle is zero and the bicycle is upright with respect to
-gravity and the ground plane. The parameters presented in [Meijaard]_ are not
+gravity and the ground plane. The parameters presented in [Meijaard2007]_ are not
 necessarily the best choice of parameters, especially when looking at the model
 from a non-linear perspective, as they not the simplest nor minimal set of
 parameters. For example, the benchmark parameters can been reduced in number by
@@ -109,7 +109,7 @@ the same, but the remaining geometry is calculated with:
 .. math::
    :label: eqGeometryConversion
 
-   d_1 = \operatorname{cos}(\lambda) (c + w - r_R * \operatorname{tan}(\lambda))
+   d_1 = \operatorname{cos}(\lambda) (c + w - r_R \operatorname{tan}(\lambda))
 
    d_3 = -\operatorname{cos}(\lambda) (c - r_F \operatorname{tan}(\lambda))
 
@@ -121,19 +121,19 @@ The mass center locations are as follows:
 .. math::
    :label: eqMassCenterConversion
 
-   l_1 = (x_B  \operatorname{cos}(\lambda) - z_B  \operatorname{sin}(\lambda) -
-   r_R  \operatorname{sin}(\lambda))
+   l_1 = x_B  \operatorname{cos}(\lambda) - z_B  \operatorname{sin}(\lambda) -
+   r_R  \operatorname{sin}(\lambda)
 
-   l_2 = (x_B  \operatorname{sin}(\lambda) + z_B  \operatorname{cos}(\lambda) +
-   r_R  \operatorname{cos}(\lambda))
+   l_2 = x_B  \operatorname{sin}(\lambda) + z_B  \operatorname{cos}(\lambda) +
+   r_R \operatorname{cos}(\lambda)
 
-   l_4 = ((z_H + r_F)  \operatorname{cos}(\lambda) + (x_H - w)
-   \operatorname{sin}(\lambda))
+   l_4 = (z_H + r_F)  \operatorname{cos}(\lambda) + (x_H - w)
+   \operatorname{sin}(\lambda)
 
-   l_3 = ((x_H - w - l_4  \operatorname{sin}(\lambda)) /
-   \operatorname{cos}(\lambda))
+   l_3 = \frac{x_H - w - l_4  \operatorname{sin}(\lambda)}
+   {\operatorname{cos}(\lambda)}
 
-The masses are equivalent. The left are my variable names and the right are the
+The masses are equivalently defined. The left are my variable names and the right are the
 Benchmark names:
 
 .. math::
@@ -147,7 +147,7 @@ Benchmark names:
 
    m_F = m_F
 
-The moments of inertia of the wheels are also equivalent:
+The moments of inertia of the wheels are also equivalently defined:
 
 .. math::
    :label: eqWheelInertiaConversion
@@ -186,9 +186,9 @@ direction cosine matrix with respect to rotation through :math:`\lambda`.
 
    R =
    \begin{bmatrix}
-     c\lambda & 0. & -s\lambda\\
+     c_\lambda & 0. & -s_\lambda\\
      0. & 1. & 0.\\
-     s\lambda & 0. & c\lambda
+     s_\lambda & 0. & c_\lambda
    \end{bmatrix}
 
 .. math::
@@ -231,6 +231,8 @@ with respect to the system configuration.
 
 .. todo:: Should I include a diagram of the traditional geometry definitions?
 
+.. todo:: Cite the reference to the paper on motorcycle geometry by an Italian guy.
+
 With that in mind after trying various parameterizations, Luke and I have
 settled on the geometric formulation presented by [Psiaki1979]_. The wheels are
 described by their radius (:math:`\left(r\geq0\right)`) and the remaining geometry is
@@ -251,7 +253,7 @@ description.
    frame/rider, C, rear wheel, D, fork/handlebar, E and front wheel, F. The
    geometric parameters are also shown.
 
-.. todo:: Cite the reference to the paper on motorcycle geometry by an Italian guy.
+.. todo:: add the contact points on the diagram
 
 Generalized Coordinates
 -----------------------
@@ -403,7 +405,7 @@ the front wheel center to the contact point is defined as:
    {||(\hat{e}_2\times\hat{a}_3)\times\hat{e}_2||}\right)
 
 .. todo:: I can define m to reduce the length of several of the longer
-   equations. :math:`m = \sqrt{(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)}`
+   equations. :math:`m = \sqrt{c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2}`
 
 .. math::
 
@@ -664,7 +666,7 @@ acceleration of the rear wheel center of mass is:
    r_Rs_4u_3^2\hat{a}_2 - r_R(2c_4u_3u_4+s_4\dot{u}_3)\hat{b}_1 +
    r_R\dot{u}_4\hat{b}_2 + r_Ru_4^2\hat{b}_3
 
-The remaining accelerations are computed using the same two point relationship
+The remaining accelerations are computed using the anagolous two point relationship
 utilized for the velocities. The acceleration of the rear frame center of mass
 is:
 
@@ -725,16 +727,16 @@ The acceleration of the front wheel center of mass is:
    &d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)^2)\hat{e}_3
 
    ^N\bar{\alpha}^E\times\bar{r}^{f_o/c_e} =
-   &-d_2(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
+   & -d_2(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
    s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-\\
-   &c_7\dot{u}_5-(s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_1 + \\
-   &(d_2(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-
+   & c_7\dot{u}_5-(s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_1 + \\
+   & (d_2(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-
    u_3(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5)-
    s_7\dot{u}_5-\\
-   &c_5c_7\dot{u}_4-(s_4s_7-s_5c_4c_7)\dot{u}_3)-
+   & c_5c_7\dot{u}_4-(s_4s_7-s_5c_4c_7)\dot{u}_3)-
    d_3(s_4c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-\dot{u}_7-
    s_5\dot{u}_4-c_4c_5\dot{u}_3))\hat{e}_2 + \\
-   &d_3(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
+   & d_3(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
    s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-\\
    &c_7\dot{u}_5-(s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_3
 
@@ -764,22 +766,22 @@ The acceleration of the fork center of mass is:
    c_7u_5-(s_4c_7+s_5s_7c_4)u_3)^2)\hat{e}_3
 
    ^N\bar{\alpha}^E\times\bar{r}^{e_o/f_o} =
-   &-(d_2+l_4)(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
+   & -(d_2+l_4)(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
    s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-\\
-   &s_5s_7u_4u_5-c_7\dot{u}_5-
+   & s_5s_7u_4u_5-c_7\dot{u}_5-
    (s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_1+ \\
-   &(d_2(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-u_3(s_4c_7u_7+s_7c_4u_4+
+   & (d_2(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-u_3(s_4c_7u_7+s_7c_4u_4+
    s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5)-s_7\dot{u}_5-\\
-   &c_5c_7\dot{u}_4-
-   (s_4s_7-s_5c_4c_7)\dot{u}_3)+l_4(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-
-   u_3(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5)-
+   & c_5c_7\dot{u}_4-
+   (s_4s_7-s_5c_4c_7)\dot{u}_3)+l_4(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-\\
+   & u_3(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5)-
    s_7\dot{u}_5-\\
-   &c_5c_7\dot{u}_4-(s_4s_7-s_5c_4c_7)\dot{u}_3)-
+   & c_5c_7\dot{u}_4-(s_4s_7-s_5c_4c_7)\dot{u}_3)-
    (d_3+l_3)(s_4c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-\dot{u}_7-s_5\dot{u}_4-
    c_4c_5\dot{u}_3))\hat{e}_2 + \\
-   &(d_3+l_3)(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
+   & (d_3+l_3)(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
    s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-\\
-   &s_5s_7u_4u_5-c_7\dot{u}_5-
+   & s_5s_7u_4u_5-c_7\dot{u}_5-
    (s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_3
 
 .. _nonholonomic:
@@ -824,8 +826,8 @@ producing the following relationships:
    (c_4c_7-s_4s_5s_7)(d_3(u_7+s_5u_4+c_4c_5u_3)-\\
    &d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)-r_F(c_4c_7u_4+
    s_7c_4c_5u_5-s_4s_5s_7u_4-(s_4s_7-s_5c_4c_7)u_7)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5}) - \\
-   &s_3u_1 - (s_7c_4+s_4s_5c_7)(d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)+
-   r_Fc_4c_5(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5}) - \\
+   &s_3u_1 - (s_7c_4+s_4s_5c_7)(d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)+\\
+   &r_Fc_4c_5(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5}) - \\
    &s_4c_5(d_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)+r_F(s_4s_7-
    s_5c_4c_7)(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5}) = 0
 
@@ -1087,6 +1089,8 @@ condition.
 Nonlinear Validation
 --------------------
 
+.. todo:: comment on why validation is important
+
 [BasuMandall2007]_ present the Whipple model derived with both the Newton-Euler
 and Lagrange methods. The equations of motion are analytically complex and make
 if difficult to compare symbolic results, so numerical values are presented for
@@ -1173,6 +1177,7 @@ reproduced.
 
 .. figure:: figures/eom/eigenvalues.png
    :width: 5in
+   :align: center
 
    figEigenvalues
 
@@ -1187,6 +1192,8 @@ reproduced.
    sinusoidal motion of the roll and steer, with steer lagging the roll. This
    mode becomes stable at a higher speed. The weave and capsize critical speeds
    bound a stable speed range.
+
+.. todo:: explanation of the modes with some eigenvector diagrams
 
 .. rubric:: Footnotes
 

@@ -61,7 +61,7 @@ the trigger which solidified my dissertation topic. I attempted the derivation
 for my class project in Mont Hubbard&#8217;s winter 2006 multi-body dynamics class
 and struggled with it well into the summer before finally getting a mostly
 correct answer. After the fact, I realized much of my pain was caused by a
-single missing apostrophe in my Autolev computer code[#]_. Another student,
+single missing apostrophe in my Autolev computer code <a class="footnote-reference" href="#id30" id="id1">[1]</a>. Another student,
 Thomas Englehardt, in the class also derived the equations and helped me debug
 by sharing his code and going over his methods. Even then, it turned out that
 my original equations weren&#8217;t &#8220;exactly&#8221; correct and it wasn&#8217;t until Luke
@@ -78,7 +78,7 @@ dissertation. This section details derivation of the non-linear equations of
 motion using Kane&#8217;s method [KaneLevinson1985]. The equations of motion are
 algebraically unwieldy and no one so far has publicly shown them in a form
 compact enough to print on reasonably sized paper and certainly not in a form
-suitable for any analytical understanding[#]_. My methodology relies heavily on
+suitable for any analytical understanding <a class="footnote-reference" href="#id31" id="id3">[2]</a>. My methodology relies heavily on
 computer aided algebra to do the bookkeeping in the derivation, so I will only
 describe the necessary details to derive the equations, leaving the algebra,
 trigonometry and calculus to the computer. The symbolic equations of motion
@@ -135,7 +135,7 @@ nominal configuration uses a set of non-minimal parameters based on typical
 geometric parameters and inertia definitions  with respect to the global
 reference frame.  The nominal configuration is defined as the configuration
 when the steering angle is zero and the bicycle is upright with respect to
-gravity and the ground plane. The parameters presented in [Meijaard] are not
+gravity and the ground plane. The parameters presented in [Meijaard2007] are not
 necessarily the best choice of parameters, especially when looking at the model
 from a non-linear perspective, as they not the simplest nor minimal set of
 parameters. For example, the benchmark parameters can been reduced in number by
@@ -151,20 +151,20 @@ parameter set. When the bicycle is in the nominal configuration the parameters
 can be converted with the following relationships. The wheel radii are defined
 the same, but the remaining geometry is calculated with:</p>
 <div class="math" id="equation-eqGeometryConversion">
-<span class="eqno">(1)</span>\[d_1 = \operatorname{cos}(\lambda) (c + w - r_R * \operatorname{tan}(\lambda))\]\[d_3 = -\operatorname{cos}(\lambda) (c - r_F \operatorname{tan}(\lambda))\]\[d_2 = \frac{(r_R + d_1 \operatorname{sin}(\lambda) - r_F + d_3
+<span class="eqno">(1)</span>\[d_1 = \operatorname{cos}(\lambda) (c + w - r_R \operatorname{tan}(\lambda))\]\[d_3 = -\operatorname{cos}(\lambda) (c - r_F \operatorname{tan}(\lambda))\]\[d_2 = \frac{(r_R + d_1 \operatorname{sin}(\lambda) - r_F + d_3
 \operatorname{sin}(\lambda))}{\operatorname{cos}(\lambda)}\]</div>
 <p>The mass center locations are as follows:</p>
 <div class="math" id="equation-eqMassCenterConversion">
-<span class="eqno">(2)</span>\[l_1 = (x_B  \operatorname{cos}(\lambda) - z_B  \operatorname{sin}(\lambda) -
-r_R  \operatorname{sin}(\lambda))\]\[l_2 = (x_B  \operatorname{sin}(\lambda) + z_B  \operatorname{cos}(\lambda) +
-r_R  \operatorname{cos}(\lambda))\]\[l_4 = ((z_H + r_F)  \operatorname{cos}(\lambda) + (x_H - w)
-\operatorname{sin}(\lambda))\]\[l_3 = ((x_H - w - l_4  \operatorname{sin}(\lambda)) /
-\operatorname{cos}(\lambda))\]</div>
-<p>The masses are equivalent. The left are my variable names and the right are the
+<span class="eqno">(2)</span>\[l_1 = x_B  \operatorname{cos}(\lambda) - z_B  \operatorname{sin}(\lambda) -
+r_R  \operatorname{sin}(\lambda)\]\[l_2 = x_B  \operatorname{sin}(\lambda) + z_B  \operatorname{cos}(\lambda) +
+r_R \operatorname{cos}(\lambda)\]\[l_4 = (z_H + r_F)  \operatorname{cos}(\lambda) + (x_H - w)
+\operatorname{sin}(\lambda)\]\[l_3 = \frac{x_H - w - l_4  \operatorname{sin}(\lambda)}
+{\operatorname{cos}(\lambda)}\]</div>
+<p>The masses are equivalently defined. The left are my variable names and the right are the
 Benchmark names:</p>
 <div class="math" id="equation-eqMassConversion">
 <span class="eqno">(3)</span>\[m_C = m_B\]\[m_D = m_R\]\[m_E = m_H\]\[m_F = m_F\]</div>
-<p>The moments of inertia of the wheels are also equivalent:</p>
+<p>The moments of inertia of the wheels are also equivalently defined:</p>
 <div class="math" id="equation-eqWheelInertiaConversion">
 <span class="eqno">(4)</span>\[\begin{split}  I_D =
   \begin{bmatrix}
@@ -194,9 +194,9 @@ direction cosine matrix with respect to rotation through <span class="math">\(\l
 <div class="math" id="equation-eqConversionRotation">
 <span class="eqno">(5)</span>\[\begin{split}R =
 \begin{bmatrix}
-  c\lambda &amp; 0. &amp; -s\lambda\\
+  c_\lambda &amp; 0. &amp; -s_\lambda\\
   0. &amp; 1. &amp; 0.\\
-  s\lambda &amp; 0. &amp; c\lambda
+  s_\lambda &amp; 0. &amp; c_\lambda
 \end{bmatrix}\end{split}\]</div>
 <div class="math" id="equation-eqFrameInertiaConversion">
 <span class="eqno">(6)</span>\[\begin{split} I_B =
@@ -215,7 +215,7 @@ direction cosine matrix with respect to rotation through <span class="math">\(\l
 </div>
 </div>
 <div class="section" id="geometry">
-<h3>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h3>
+<span id="id8"></span><h3>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h3>
 <p>The geometry of the Whipple model can be parameterized in an infinite amount of
 ways. It is typical and often natural to define the geometry with respect to
 the descriptions of bicycle geometry used in the bicycle fabrication industry
@@ -228,6 +228,10 @@ with respect to the system configuration.</p>
 <p class="first admonition-title">Todo</p>
 <p class="last">Should I include a diagram of the traditional geometry definitions?</p>
 </div>
+<div class="admonition-todo admonition" id="index-2">
+<p class="first admonition-title">Todo</p>
+<p class="last">Cite the reference to the paper on motorcycle geometry by an Italian guy.</p>
+</div>
 <p>With that in mind after trying various parameterizations, Luke and I have
 settled on the geometric formulation presented by [Psiaki1979]. The wheels are
 described by their radius (<span class="math">\(\left(r\geq0\right)\)</span>) and the remaining geometry is
@@ -235,19 +239,17 @@ defined by three distances, all of which are configuration invariant. The
 distance <span class="math">\(d_1\)</span> is the offset to the center of the rear wheel from the
 steer axis and <span class="math">\(d_3\)</span> is the offset of the front wheel from the steering
 axis. <span class="math">\(d_2\)</span> is then the distance between the wheel centers as measured
-along the steer axis. Figure <em class="xref std std-ref">figBicycleGeometry</em> gives a complete visual
+along the steer axis. <a class="reference internal" href="#figbicyclegeometry"><em>Figure 1</em></a> gives a complete visual
 description.</p>
-<div class="figure align-center">
+<div class="figure align-center" id="figbicyclegeometry">
 <img alt="_images/bicycle-geometry.png" src="_images/bicycle-geometry.png" style="width: 3.75in;" />
-<p class="caption">figBicycleGeometry</p>
-<div class="legend">
-The bicycle in the nominal configuration. The rigid bodies are the
+<p class="caption">The bicycle in the nominal configuration. The rigid bodies are the
 frame/rider, C, rear wheel, D, fork/handlebar, E and front wheel, F. The
-geometric parameters are also shown.</div>
+geometric parameters are also shown.</p>
 </div>
-<div class="admonition-todo admonition" id="index-2">
+<div class="admonition-todo admonition" id="index-3">
 <p class="first admonition-title">Todo</p>
-<p class="last">Cite the reference to the paper on motorcycle geometry by an Italian guy.</p>
+<p class="last">add the contact points on the diagram</p>
 </div>
 </div>
 <div class="section" id="generalized-coordinates">
@@ -317,7 +319,7 @@ Newtonian reference frame.</p>
 to the Newtonian reference frame. There are six primary points of interest: the
 four mass centers, <span class="math">\(d_o,c_o,e_o,f_o\)</span>, and the two points fixed on the
 wheels which are instantaneously in contact with the ground, <span class="math">\(d_n,f_n\)</span>
-<a class="footnote-reference" href="#id26" id="id8">[1]</a>.</p>
+<a class="footnote-reference" href="#id32" id="id11">[3]</a>.</p>
 <p>The mass center of the rear wheel, <span class="math">\(d_o\)</span>, is assumed to be at the center
 of the wheel and is located by:</p>
 <div class="math" id="equation-rearWheelMassCenter">
@@ -346,10 +348,10 @@ the front wheel center to the contact point is defined as:</p>
 <div class="math" id="equation-frontWheelContact">
 <span class="eqno">(18)</span>\[\bar{r}^{f_n/f_o} = r_F\left(\frac{(\hat{e}_2\times\hat{a}_3)\times\hat{e}_2}
 {||(\hat{e}_2\times\hat{a}_3)\times\hat{e}_2||}\right)\]</div>
-<div class="admonition-todo admonition" id="index-3">
+<div class="admonition-todo admonition" id="index-4">
 <p class="first admonition-title">Todo</p>
 <p class="last">I can define m to reduce the length of several of the longer
-equations. <span class="math">\(m = \sqrt{(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)}\)</span></p>
+equations. <span class="math">\(m = \sqrt{c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2}\)</span></p>
 </div>
 <div class="math">
 \[\bar{r}^{f_n/f_o} =
@@ -508,7 +510,7 @@ acceleration of the rear wheel center of mass is:</p>
 <span class="eqno">(39)</span>\[^N\bar{a}^{d_o} = \frac{d}{dt}\left(^N\bar{v}^{d_o}\right)\]\[^N\bar{a}^{d_o} = \dot{u}_1\hat{n}_1 + \dot{u}_2\hat{n}_2 -
 r_Rs_4u_3^2\hat{a}_2 - r_R(2c_4u_3u_4+s_4\dot{u}_3)\hat{b}_1 +
 r_R\dot{u}_4\hat{b}_2 + r_Ru_4^2\hat{b}_3\]</div>
-<p>The remaining accelerations are computed using the same two point relationship
+<p>The remaining accelerations are computed using the anagolous two point relationship
 utilized for the velocities. The acceleration of the rear frame center of mass
 is:</p>
 <div class="math" id="equation-aCoinN">
@@ -546,20 +548,20 @@ d_3(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 + \\
 &amp;((s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)(d_3(u_7+s_5u_4+c_4c_5u_3)-
 d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))-\\
 &amp;d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)^2)\hat{e}_3\end{split}\]\[\begin{split}^N\bar{\alpha}^E\times\bar{r}^{f_o/c_e} =
-&amp;-d_2(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
+&amp; -d_2(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
 s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-\\
-&amp;c_7\dot{u}_5-(s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_1 + \\
-&amp;(d_2(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-
+&amp; c_7\dot{u}_5-(s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_1 + \\
+&amp; (d_2(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-
 u_3(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5)-
 s_7\dot{u}_5-\\
-&amp;c_5c_7\dot{u}_4-(s_4s_7-s_5c_4c_7)\dot{u}_3)-
+&amp; c_5c_7\dot{u}_4-(s_4s_7-s_5c_4c_7)\dot{u}_3)-
 d_3(s_4c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-\dot{u}_7-
 s_5\dot{u}_4-c_4c_5\dot{u}_3))\hat{e}_2 + \\
-&amp;d_3(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
+&amp; d_3(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
 s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-\\
 &amp;c_7\dot{u}_5-(s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_3\end{split}\]</div>
 <p>The acceleration of the fork center of mass is:</p>
-<div class="admonition-todo admonition" id="index-4">
+<div class="admonition-todo admonition" id="index-5">
 <p class="first admonition-title">Todo</p>
 <p class="last">These equations can be shortened significantly by finding the common
 sub expressions.</p>
@@ -579,22 +581,22 @@ c_4c_5u_3)+\\
 c_4c_5u_3)-d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)-\\
 &amp;l_4(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3))-(d_2+l_4)(s_7c_5u_4-
 c_7u_5-(s_4c_7+s_5s_7c_4)u_3)^2)\hat{e}_3\end{split}\]\[\begin{split}^N\bar{\alpha}^E\times\bar{r}^{e_o/f_o} =
-&amp;-(d_2+l_4)(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
+&amp; -(d_2+l_4)(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
 s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-\\
-&amp;s_5s_7u_4u_5-c_7\dot{u}_5-
+&amp; s_5s_7u_4u_5-c_7\dot{u}_5-
 (s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_1+ \\
-&amp;(d_2(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-u_3(s_4c_7u_7+s_7c_4u_4+
+&amp; (d_2(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-u_3(s_4c_7u_7+s_7c_4u_4+
 s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5)-s_7\dot{u}_5-\\
-&amp;c_5c_7\dot{u}_4-
-(s_4s_7-s_5c_4c_7)\dot{u}_3)+l_4(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-
-u_3(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5)-
+&amp; c_5c_7\dot{u}_4-
+(s_4s_7-s_5c_4c_7)\dot{u}_3)+l_4(s_5c_7u_4u_5+s_7c_5u_4u_7-c_7u_5u_7-\\
+&amp; u_3(s_4c_7u_7+s_7c_4u_4+s_4s_5c_7u_4+s_5s_7c_4u_7-c_4c_5c_7u_5)-
 s_7\dot{u}_5-\\
-&amp;c_5c_7\dot{u}_4-(s_4s_7-s_5c_4c_7)\dot{u}_3)-
+&amp; c_5c_7\dot{u}_4-(s_4s_7-s_5c_4c_7)\dot{u}_3)-
 (d_3+l_3)(s_4c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-\dot{u}_7-s_5\dot{u}_4-
 c_4c_5\dot{u}_3))\hat{e}_2 + \\
-&amp;(d_3+l_3)(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
+&amp; (d_3+l_3)(s_7u_5u_7+c_5c_7u_4u_7+u_3(s_4s_7u_7+s_4s_5s_7u_4-c_4c_7u_4-
 s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-\\
-&amp;s_5s_7u_4u_5-c_7\dot{u}_5-
+&amp; s_5s_7u_4u_5-c_7\dot{u}_5-
 (s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_3\end{split}\]</div>
 </div>
 <div class="section" id="motion-constraints">
@@ -624,8 +626,8 @@ s_5s_7c_4)u_3)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5}) = 0\end{split}\]</div>
 (c_4c_7-s_4s_5s_7)(d_3(u_7+s_5u_4+c_4c_5u_3)-\\
 &amp;d_2(s_7u_5+c_5c_7u_4+(s_4s_7-s_5c_4c_7)u_3)-r_F(c_4c_7u_4+
 s_7c_4c_5u_5-s_4s_5s_7u_4-(s_4s_7-s_5c_4c_7)u_7)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5}) - \\
-&amp;s_3u_1 - (s_7c_4+s_4s_5c_7)(d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)+
-r_Fc_4c_5(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5}) - \\
+&amp;s_3u_1 - (s_7c_4+s_4s_5c_7)(d_2(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)+\\
+&amp;r_Fc_4c_5(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5}) - \\
 &amp;s_4c_5(d_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)+r_F(s_4s_7-
 s_5c_4c_7)(s_7c_5u_4-u_8-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{0.5}) = 0\end{split}\]</div>
 <p>The fifth motion constraint is used to manage the constraint on the velocities
@@ -747,7 +749,7 @@ I_{E11} &amp; 0 &amp; I_{E13}\\
 0 &amp; I_{E22} &amp; 0\\
 I_{E13} &amp; 0 &amp; I_{E33}
 \end{bmatrix}\end{split}\]</div>
-<div class="admonition-todo admonition" id="index-5">
+<div class="admonition-todo admonition" id="index-6">
 <p class="first admonition-title">Todo</p>
 <p class="last">Should I show these as inertia dyadics instead?</p>
 </div>
@@ -757,14 +759,14 @@ I_{E13} &amp; 0 &amp; I_{E33}
 <p>Kane&#8217;s equations are now formed as:</p>
 <div class="math">
 \[\tilde{F}_r + \tilde{F}^*_r = 0\]</div>
-<p>and are a vector of three coupled equations which are linear in the roll, steer
-and rear wheel accelerations. The linear system can be solved to give the first
-order equations for <span class="math">\(u_r\)</span>, where <span class="math">\(r=4,6,7\)</span>.  The dynamical
-equations are then solved for the <span class="math">\(\dot{u}\)</span>&#8216;s and paired with the
-essential kinematical differential equations to form the complete set of
-dynamics equations of motion in the form.</p>
+<p>and are a vector function of three coupled equations which are linear in the
+roll, steer and rear wheel accelerations. The linear system can be solved to
+give the first order equations for <span class="math">\(\dot{u}_r\)</span>, where <span class="math">\(r=4,6,7\)</span>.
+The dynamical equations are then solved for the <span class="math">\(\dot{u}\)</span>&#8216;s and paired
+with the essential kinematical differential equations to form the complete set
+of dynamics equations of motion in the form.</p>
 <div class="math">
-\[\ddot{u}_i=f(u_4, u_6, u_7, q_4, q_5, q_6, q_7)\]\[\dot{q}_j=u_j\]</div>
+\[\dot{u}_i=f(u_4, u_6, u_7, q_4, q_5, q_7)\]\[\dot{q}_j=u_j\]</div>
 <p>where <span class="math">\(i=4,6,7\)</span> and <span class="math">\(j=4,5,6,7\)</span>. Keep in mind that the pitch angle,
 <span class="math">\(q_5\)</span>, is in fact a dependent coordinate, <span class="math">\(f(q_4,q_7)\)</span>, that I
 selected when dealing with the holonomic contraint, <a href="#equation-holonomic">(?)</a>. Special
@@ -779,13 +781,13 @@ nominal configuration, but also a bit about the non-linear model. Notable
 concepts include the fact that many of the coordinates are all ignorable, that
 is they do not show up in the essential dynamical equations of motion. These
 are the location of the ground contact point, <span class="math">\(q_1\)</span> and <span class="math">\(q_2\)</span>, the
-yaw angle, <span class="math">\(q_3\)</span>, and the wheel angles, <span class="math">\(q_6\)</span> and <span class="math">\(q_8\)</span>.The
+yaw angle, <span class="math">\(q_3\)</span>, and the wheel angles, <span class="math">\(q_6\)</span> and <span class="math">\(q_8\)</span>. The
 model is also energy conserving, but not Hamiltonian. Furthermore, the open
 loop model (i.e. inputs equal zero) exhibits stability during certain regimes
 of configuration. The system has left half plane zeros, which give it a
 non-minimal phase behavior. Numerous studies have revealed these facts:
 [Astrom2005], [BasuMandal2007], [Sharp2008], [Peterson2009], etc.</p>
-<div class="admonition-todo admonition" id="index-6">
+<div class="admonition-todo admonition" id="index-7">
 <p class="first admonition-title">Todo</p>
 <p class="last">Should I add more interesting facts about the model?</p>
 </div>
@@ -810,6 +812,10 @@ roll and steer is transferred to the forward speed.</div>
 </div>
 <div class="section" id="nonlinear-validation">
 <h3>Nonlinear Validation<a class="headerlink" href="#nonlinear-validation" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-todo admonition" id="index-8">
+<p class="first admonition-title">Todo</p>
+<p class="last">comment on why validation is important</p>
+</div>
 <p>[BasuMandall2007] present the Whipple model derived with both the Newton-Euler
 and Lagrange methods. The equations of motion are analytically complex and make
 if difficult to compare symbolic results, so numerical values are presented for
@@ -822,12 +828,12 @@ the models can be concluded to be the same. The very first model I developed in
 labmate, Luke, as his persistence and interest in minute detail helped me
 bring my model up to par. Here I present the values computed from my model in
 comparison to the values presented by [BasuMandall2007].</p>
-<div class="admonition-todo admonition" id="index-7">
+<div class="admonition-todo admonition" id="index-9">
 <p class="first admonition-title">Todo</p>
 <p class="last">Should I present the conversion equations from BasuMandall to mine
 and vice versa?</p>
 </div>
-<div class="admonition-todo admonition" id="index-8">
+<div class="admonition-todo admonition" id="index-10">
 <p class="first admonition-title">Todo</p>
 <p class="last">Values from my model for comparision to table one in BasuMandall2007</p>
 </div>
@@ -835,61 +841,65 @@ and vice versa?</p>
 </div>
 <div class="section" id="linearized-equations-of-motion">
 <h2>Linearized Equations of Motion<a class="headerlink" href="#linearized-equations-of-motion" title="Permalink to this headline">¶</a></h2>
-<p>The full nonlinear equations of motion can be linearized about an equilibrium
-point by calculating the Jacobian of the system of equations. The partial
-derivatives of each equation were evaluated at the following fixed point:
-<span class="math">\(q_i=0\)</span> where <span class="math">\(i=4,6,7\)</span>, <span class="math">\(u_i=0\)</span> where <span class="math">\(i=4,7\)</span>, and
-<span class="math">\(u_5=-v/r_R\)</span> where <span class="math">\(v\)</span> is the constant forward speed of the
-bicycle.This reduces the system to four linear first order differential
+<p>The nonlinear equations of motion can be linearized about an equilibrium point.
+The bicycle has many equilibrium points, the typical one studied is about the
+nonimal configuration [Meijaard2007] but others such as steady turn are valid
+too [BasuMandal2007]. The equations can be linearized by computing the Taylor
+series expansion about the equilibrium point and disregarding the terms higher
+than first ordr. For the nominal configuration this amounts to calculating the
+Jacobian of the system of equations with respect to the coordinates and speeds
+and the inputs to obtain state matrix, <span class="math">\(\mathbf{A}\)</span>, and the input
+matrix, <span class="math">\(\mathbf{B}\)</span>. The partial derivatives of each equation were
+evaluated at the following fixed point: <span class="math">\(q_i=0\)</span> where <span class="math">\(i=4,5,7\)</span>,
+<span class="math">\(u_i=0\)</span> where <span class="math">\(i=4,7\)</span>, and <span class="math">\(u_5=-v/r_R\)</span> where <span class="math">\(v\)</span> is
+the constant forward speed of the bicycle. Care has to be taken when
+linearizing as <span class="math">\(q_5\)</span> is a dependent coordinate which still appears on the
+right hand side of the equations. In general the chain rule applies, but for
+the nominal configuration, the extra derivatives also equal zero. The
+linearization transforms the system to four linear first order differential
 equations in the form:</p>
-<div class="math">
-\[\begin{split}\frac{d}{dt}
- \left[
- \begin{array}{c}
-     q_4\\q_5\\q_6\\q_7\\u_4\\u_5\\u_7
- \end{array}
- \right]
- =
- \mathbf{A}
- \left[
- \begin{array}{c}
-     q_4\\q_5\\q_6\\q_7\\u_4\\u_5\\u_7
- \end{array}
- \right]
- \label{eq:linearEq}\end{split}\]</div>
-<p>I do this symbolically to reach the same results as presented in
-[Meijaard2007], but my equations are much lengthier as the sympifcation
-routines available didn&#8217;t provide much reprise. The equations can be validated
-against the model presented in [Meijaard2007]. The following table gives the
-same eigenvalues as presented in Table X of [Meijaard2007].</p>
-<div class="admonition-todo admonition" id="index-9">
-<p class="first admonition-title">Todo</p>
-<p class="last">add the table of eigenvalues for one speed in Meijaard2007</p>
-</div>
-<div class="section" id="validation">
-<h3>Validation<a class="headerlink" href="#validation" title="Permalink to this headline">¶</a></h3>
-<p>The linearized model was checked for accuracy against
-the benchmark bicycle in two ways. First the linearized equations
-of motion (Eq.&nbsp;eq:linearEq) were formulated into two second order
-differential equations in the more familiar canonical form
-(Eq.&nbsp;eq:canonical) used in&nbsp;[MeijaardPapadopoulosRuinaSchwab2007].
-They present the values for the coefficient matrices
-(<span class="math">\(\mathbf{M}\)</span>, <span class="math">\(\mathbf{C}_1\)</span>,
-<span class="math">\(\mathbf{K}_0\)</span> and <span class="math">\(\mathbf{K}_2\)</span>) for the
-benchmark parameter set at least 15 significant figures and my
-model matched all of the significant figures.</p>
-<div class="math" id="equation-{eq:canonical}">
-<span class="eqno">(53)</span>\[\mathbf{M\dot{u}}+v\mathbf{C}_1\mathbf{u}+\left[g\mathbf{K}_0+v^2\mathbf{K}_2\right]\mathbf{q}=0\]</div>
-<p>The eigenvalues of the system of linear equations can be calculated
-and are typically plotted versus forward speed for the linear
-upright constant speed configuration (Fig.&nbsp;fig:eigenvalues).
-[MeijaardPapadopoulosRuinaSchwab2007]_also provided eigenvalue
-calculations at various speeds of the benchmark bicycle for model
-comparison. The eigenvalues for my model matched to at least 15
-significant figures.</p>
-<div class="admonition-todo admonition" id="index-10">
-<p class="first admonition-title">Todo</p>
-<p class="last">Eigenvalues versus speed for an example bicycle. The four modes of
+<div class="math" id="equation-eqStateSpace">
+<span class="eqno">(53)</span>\[\begin{split}\begin{bmatrix}
+  \dot{q_4}\\
+  \dot{q_7}\\
+  \dot{u_4}\\
+  \dot{u_7}
+\end{bmatrix}
+= \mathbf{A}
+\begin{bmatrix}
+  q_4\\
+  q_7\\
+  u_4\\
+  u_7
+\end{bmatrix}
++ \mathbf{B}
+\begin{bmatrix}
+  T_4\\
+  T_7
+\end{bmatrix}\end{split}\]</div>
+<p>I calculate the equations symbolically to reach the same results as presented
+in [Meijaard2007], but my equations are much lengthier as the sympifcation
+routines available didn&#8217;t provide much reprise. The accuracy of the linearized
+model was checked by comparing numerical results the benchmark bicycle in two
+ways. First the linearized equations of motion, Equation <a href="#equation-eqStateSpace">(53)</a>,
+were formulated into two second order differential equations in the canonical
+form (Equation :eq`eqCanonical`) presented in [Meijaard2007]. They present the
+values for the coefficient matrices (<span class="math">\(\mathbf{M}\)</span>, <span class="math">\(\mathbf{C}_1\)</span>,
+<span class="math">\(\mathbf{K}_0\)</span> and <span class="math">\(\mathbf{K}_2\)</span>) for the benchmark parameter set
+to at least 15 significant figures and the linearization presented here matched
+all of the significant figures. [Meijaard2007] also provide the eigenvalues of
+the state matrix at various speeds, which the model herein reproduces to all of
+the presented values.</p>
+<div class="math" id="equation-eqCanonical">
+<span class="eqno">(54)</span>\[\mathbf{M\dot{u}}+v\mathbf{C}_1\mathbf{u}+\left[g\mathbf{K}_0+
+v^2\mathbf{K}_2\right]\mathbf{q}=0\]</div>
+<p>Furthmore, the now ubiqutious eigenvalue plot versus forward speed is
+reproduced.</p>
+<div class="figure align-center">
+<img alt="_images/eigenvalues.png" src="_images/eigenvalues.png" style="width: 5in;" />
+<p class="caption">figEigenvalues</p>
+<div class="legend">
+Eigenvalues versus speed for an example bicycle. The four modes of
 motion are identified. \emph[Caster]_ is stable and real for all positive
 values of speed. It describes the tendency for the front wheel to right
 itself in forward motion. \emph[Capsize]_ is always real, stable at low speeds
@@ -899,21 +909,25 @@ inverted pendulum-like motion i.e. the bicycle falls over. As speed increases
 the eigenvalues coalesce into a complex conjugate pair that describes a
 sinusoidal motion of the roll and steer, with steer lagging the roll. This
 mode becomes stable at a higher speed. The weave and capsize critical speeds
-bound a stable speed range.</p>
+bound a stable speed range.</div>
+</div>
+<div class="admonition-todo admonition" id="index-11">
+<p class="first admonition-title">Todo</p>
+<p class="last">explanation of the modes with some eigenvector diagrams</p>
 </div>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="id26" rules="none">
+<table class="docutils footnote" frame="void" id="id30" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id8">[1]</a></td><td>My colleague, Dale L. Peterson, has made significant progress
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>My colleague, Dale L. Peterson, has made significant progress
 formulating the equations of motion in a readable and compact form, which will
 most likely be published soon.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id27" rules="none">
+<table class="docutils footnote" frame="void" id="id31" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[2]</td><td>The point of contact for the bicycle wheels are technically abstract
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>The point of contact for the bicycle wheels are technically abstract
 points in dynamics. There are fundamentally four distinct points of concern. The first being
 the point in the ground plane that instantaneously contacts the wheel at any
 given time, the point in the ground plane that tracks the contact point, the
@@ -921,25 +935,24 @@ point on the wheel that instantaneously contacts the ground at any given time,
 and the point on the wheel ...</td></tr>
 </tbody>
 </table>
-<div class="admonition-todo admonition" id="index-11">
+<div class="admonition-todo admonition" id="index-12">
 <p class="first admonition-title">Todo</p>
 <p class="last">Contact points need better explanations.</p>
 </div>
-<table class="docutils footnote" frame="void" id="id28" rules="none">
+<table class="docutils footnote" frame="void" id="id32" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[3]</td><td>Luke and I have dreamed of developing an open source version of Autolev
+<tr><td class="label"><a class="fn-backref" href="#id11">[3]</a></td><td>Luke and I have dreamed of developing an open source version of Autolev
 for years and that has finally culminated through primarily Luke and Gilbert
 Gede&#8217;s efforts in the creation of sympy.physics.mechanics.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id29" rules="none">
+<table class="docutils footnote" frame="void" id="id33" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label">[4]</td><td>This contraint can readily be modified to support a non-flat ground.</td></tr>
 </tbody>
 </table>
-</div>
 </div>
 </div>
 

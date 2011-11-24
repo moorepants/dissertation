@@ -520,7 +520,7 @@ the newtonian reference frame. For example:
 .. math::
    :label: omegaFinN
 
-   ^F\omega^N = ^N\omega^C + ^C\omega^E + ^E\omega^F
+   ^N\omega^F = ^N\omega^C + ^C\omega^E + ^E\omega^F
 
    ^F\omega^N =
    &(s_7c_8u_5-s_8u_7-(s_5s_8-c_5c_7c_8)u_4-
@@ -1057,7 +1057,7 @@ concepts include the fact that many of the coordinates are all ignorable, that
 is they do not show up in the essential dynamical equations of motion. These
 are the location of the ground contact point, :math:`q_1` and :math:`q_2`, the
 yaw angle, :math:`q_3`, and the wheel angles, :math:`q_6` and :math:`q_8`. The
-model is also energy conserving, but not Hamiltonian. Furthermore, the open
+model is also energy conserving, because !!! contacts points do no work, the open
 loop model (i.e. inputs equal zero) exhibits stability during certain regimes
 of configuration. The system has left half plane zeros, which give it a
 non-minimal phase behavior. Numerous studies have revealed these facts:
@@ -1108,6 +1108,11 @@ comparison to the values presented by [BasuMandall2007]_.
    and vice versa?
 
 .. todo:: Values from my model for comparision to table one in BasuMandall2007
+
+.. todo:: I used this and they used that, Eeven though mine are this and their
+   are that, there fore our equations are different, but they gve us a way to
+   benchmark our model against their. We did that. Write the numbers in terms
+   of significant digits.
 
 Linearized Equations of Motion
 ==============================
@@ -1195,6 +1200,8 @@ reproduced.
 
 .. todo:: explanation of the modes with some eigenvector diagrams
 
+.. todo:: print eigenvalues for at least one speed.
+
 .. rubric:: Footnotes
 
 .. [#] My colleague, Dale L. Peterson, has made significant progress
@@ -1210,6 +1217,8 @@ reproduced.
 
 .. todo::
    Contact points need better explanations.
+
+.. todo:: add notation definitions
 
 .. [#] Luke and I have dreamed of developing an open source version of Autolev
        for years and that has finally culminated through primarily Luke and Gilbert

@@ -1172,16 +1172,22 @@ were formulated into two second order differential equations in the canonical
 form (Equation :eq`eqCanonical`) presented in [Meijaard2007]_. They present the
 values for the coefficient matrices (:math:`\mathbf{M}`, :math:`\mathbf{C}_1`,
 :math:`\mathbf{K}_0` and :math:`\mathbf{K}_2`) for the benchmark parameter set
-to at least 15 significant figures and the linearization presented here matched
+to at least 13 significant figures and the linearization presented here matched
 all of the significant figures. [Meijaard2007]_ also provide the eigenvalues of
 the state matrix at various speeds, which the model herein reproduces to all of
-the presented values.
+the presented values. Table :ref:`tabLinCompare` shows the eigenvalues computed
+at 5 m/s in comparison to the values in Table 2 of [Meijaard2007]_ where my
+model matches to at least 13 significant figures.
 
 .. math::
    :label: eqCanonical
 
    \mathbf{M\dot{u}}+v\mathbf{C}_1\mathbf{u}+\left[g\mathbf{K}_0+
    v^2\mathbf{K}_2\right]\mathbf{q}=0
+
+.. _tabLinCompare:
+
+.. include:: tables/eom/linear-compare.rst
 
 Furthmore, the now ubiqutious eigenvalue plot versus forward speed is
 reproduced.
@@ -1205,8 +1211,6 @@ reproduced.
    bound a stable speed range.
 
 .. todo:: explanation of the modes with some eigenvector diagrams
-
-.. todo:: print eigenvalues for at least one speed.
 
 .. rubric:: Footnotes
 

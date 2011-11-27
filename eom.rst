@@ -1091,28 +1091,116 @@ Nonlinear Validation
 
 .. todo:: comment on why validation is important
 
-[BasuMandall2007]_ present the Whipple model derived with both the Newton-Euler
-and Lagrange methods. The equations of motion are analytically complex and make
-if difficult to compare symbolic results, so numerical values are presented for
-use in validating the nonlinear model. Table 1 in their paper gives the
-derivatives of all the coordinates and speeds to high precision for each of
-their derivations for a single state. They state that one can compute these
-values to machine precision and if they values match to ~10 significant figures
-the models can be concluded to be the same. The very first model I developed in
-2006 would not have held up to this test. I owe the validity of my model to my
-labmate, Luke, as his persistence and interest in minute detail helped me
-bring my model up to par. Here I present the values computed from my model in
-comparison to the values presented by [BasuMandall2007]_.
+[BasuMandall2007]_ present the non-linear Whipple model
+derived with both the Newton-Euler and Lagrange methods. The equations of
+motion are analytically complex and make if difficult to compare symbolic
+results, so numerical values are presented for use in validating the nonlinear
+model. Table 1 in their paper gives the derivatives of all the coordinates and
+speeds to high precision for each of their derivations for a single state. They
+state that one can compute these values to machine precision and if they values
+match to ~10 significant figures the models can be concluded to be the same.
+The very first model I developed in 2006 would not have held up to this test. I
+owe the validity of my model to my labmate, Luke, as his persistence and
+interest in minute detail helped me bring my model up to par.
+
+The BasuMandal derivations are based on different coordinates than I use, but
+regardless of the coordinates they provide numerical values which can be
+benchmarked if the correct coordinate transformations are applied [#]_. Here I
+present the values computed from my model in comparison to the values presented
+by [BasuMandall2007]_. I've presented the same number of significant digits as
+provided by Basu-Mandall for each variable. My model produces the same result
+to at least eleven significant figures.
 
 .. todo:: Should I present the conversion equations from BasuMandall to mine
    and vice versa?
 
-.. todo:: Values from my model for comparision to table one in BasuMandall2007
+.. list-table:: Nonlinear Whipple Model Comparision
+   :header-rows: 1
 
-.. todo:: I used this and they used that, Eeven though mine are this and their
-   are that, there fore our equations are different, but they gve us a way to
-   benchmark our model against their. We did that. Write the numbers in terms
-   of significant digits.
+   * - Variable
+     - Basu-Mandal
+     - Moore
+   * - :math:`\beta_f`
+     - 0
+     - 0
+   * - :math:`\dot{\beta_f}`
+     - 8.0133620584155
+     - 8.0133620584154
+   * - :math:`\ddot{\beta_f}`
+     - 2.454807290455
+     - 2.454807290455
+   * - :math:`\beta_r`
+     - 0
+     - 0
+   * - :math:`\dot{\beta_r}`
+     - 8.912989661489
+     - 8.912989661489
+   * - :math:`\ddot{\beta_r}`
+     - 1.8472554144217
+     - 1.8472554144220
+   * - :math:`\phi`
+     - 3.1257073014894
+     - 3.1257073014894
+   * - :math:`\dot{\phi}`
+     - -1.19185528069e-02
+     - -1.19185528069e-02
+   * - :math:`\ddot{\phi}`
+     - 1.205543897884e-01
+     - 1.205543897886e-01
+   * - :math:`\psi`
+     - 9.501292851472e-01
+     - 9.501292851472e-01
+   * - :math:`\dot{\psi}`
+     - 6.068425835418e-01
+     - 6.068425835418e-01
+   * - :math:`\ddot{\psi}`
+     - -7.8555281128244
+     - -7.8555281128245
+   * - :math:`\psi_f`
+     - 2.311385135743e-01
+     - 2.311385135743e-01
+   * - :math:`\dot{\psi_f}`
+     - 4.859824687093e-01
+     - 4.859824687093e-01
+   * - :math:`\ddot{\psi_f}`
+     - -4.6198904039403
+     - -4.6198904039394
+   * - :math:`\theta`
+     - 0
+     - 0
+   * - :math:`\dot{\theta}`
+     - 7.830033527065e-01
+     - 7.830033527065e-01
+   * - :math:`\ddot{\theta}`
+     - 8.353281706379e-01
+     - 8.353281706377e-01
+   * - :math:`x`
+     - 0
+     - 0
+   * - :math:`\dot{x}`
+     - -2.8069345714545
+     - -2.8069345714545
+   * - :math:`\ddot{x}`
+     - -5.041626315047e-01
+     - -5.041626315048e-01
+   * - :math:`y`
+     - 0
+     - 0
+   * - :math:`\dot{y}`
+     - -1.480982396001e-01
+     - -1.480982396001e-01
+   * - :math:`\ddot{y}`
+     - -3.449706619454e-01
+     - -3.449706619455e-01
+   * - :math:`z`
+     - 2.440472102925e-01
+     - 2.440472102925e-01
+   * - :math:`\dot{z}`
+     - 1.058778746261e-01
+     - 1.058778746261e-01
+   * - :math:`\ddot{z}`
+     - -1.460452833298
+     - -1.460452833298
 
 Linearized Equations of Motion
 ==============================
@@ -1225,3 +1313,6 @@ reproduced.
        Gede's efforts in the creation of sympy.physics.mechanics.
 
 .. [#] This contraint can readily be modified to support a non-flat ground.
+
+.. [#] The conversion equations from BasuMandal's coordinates to mine and vice
+       versa can be found in the source code.

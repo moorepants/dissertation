@@ -47,7 +47,7 @@ Finally, there is an additional generalized active force:
 .. math::
    :label: lateralForce
 
-   \bar{R}^{C_l} = F_{cl)\hat{n}_2
+   \bar{R}^{C_l} = F_{cl}\hat{n}_2
 
 The linear model is computed in the same fashion as described, with an
 additional column in both the input, :math:`\mathbf{B}`, and feedforward,
@@ -67,14 +67,17 @@ independently increasing the moment of inertia of the front wheel, decreases
 both the weave and capsize speeds. A low weave speed may give open loop
 stability benefits to riders at low speed. Conversely, it has also be shown
 that both a bicycle without gyroscopic effects can be stable [Kooijman2011]_
-and that humans can ride them [Jones1970]_. The idea that gyroscopic action can
-stablize a moving two wheeled vehicle has been demostrated as early as teh dawn
-of the 20th century, with the invention of the gyrocar and the gryo monorail.
-More recently several engineering students at Dartmouth University applied this
-theory to a compact flywheel mounted within the spokes of a child's bicycle
-wheel [Ward2006]_. This has since become a comercially avialable product, the
-GyroBike, that claims to allow children to learn to ride quicker, due to the
-bicycle's increased stabilty at low speeds.
+and that humans can ride them [Jones1970]_ with little difficulty. The idea
+that gyroscopic action can stablize a moving two wheeled vehicle has been
+demostrated as early as the dawn of the 20th century, with the invention of the
+gyrocar and the gryo monorail. More recently several engineering students at
+Dartmouth University applied this theory to a compact flywheel mounted within
+the spokes of a childen's bicycle wheel [Ward2006]_. This has since become a
+comercially avialable product, the GyroBike, that claims to allow children to
+learn to ride quicker, due to the bicycle's increased stabilty at low speeds.
+
+.. todo:: are their any gyro stablized two wheel vehicles earlier than the
+   car?
 
 .. todo:: Video I took of the gyrobike on the treadmill.
 
@@ -87,7 +90,7 @@ differential equation:
 
 .. math::
 
-   ^F\omega^G = u_9 \hat{e}_2
+   ^F\omega^G = \dot{q}_9 \hat{e}_2 = u_9 \hat{e}_2
 
 .. math::
 
@@ -131,7 +134,40 @@ account the mass, :math:`m_G`, and inertia of the new body:
    \end{bmatrix}
 
 The equations of motion are formed and linearized with respect to the nominal
-equilibrium point and a nominal angular velocity of the flywheel.
+equilibrium point and a nominal angular velocity of the flywheel. The following
+figures show how increasing the speed of the flywheel pushes the weave and
+capsize critical speeds lower and lower, creating a stable speed range at
+speeds in which a person may learn to ride a bicycle.
+
+.. figure:: figures/extensions/gyrobike-flywheel-off.png
+
+   figGyroOff
+
+   The root loci with respect to the rear wheel angular speed when the flywheel
+   is fixed to the front wheel (i.e. has the the same angular velocity.
+
+.. figure:: figures/extensions/gyrobike-flywheel-medium.png
+
+   figGyroMedium
+
+   The root loci with respect to the rear wheel angular speed when the flywheel
+   is spinning at 50 rad/s with respect to the front wheel.
+
+.. figure:: figures/extensions/gyrobike-flywheel-fast.png
+
+   figGyroFast
+
+   The root loci with respect to the rear wheel angular speed when the flywheel
+   is spinning at 100 rad/s with respect to the front wheel.
+
+.. todo:: Clean up these graphs.
+
+.. todo:: Plot these with the actual parameters of the gyrobike. These plots
+   are of the benchmark parameters with an additional identical front wheel.
+
+.. todo:: Other possible plots: weave and capsize speeds as a function of flywheel
+   speed, 3D plot versus both parameters (u6 and u9), root loci wrt to u9 at a
+   single low speed.
 
 Leaning rider extension
 =======================
@@ -140,9 +176,6 @@ A typical assumption is that a rider can control a bicycle by leaning their
 body relative to the bicycle frame. This is especially drawn for the no-hands
 riding case. A simple leaning rider can be modeled by adding an additional
 rider lean degree of freedom.
-
-David de Lorenzo extension (3 rider dof)
-========================================
 
 Addition of rider arms
 ======================
@@ -156,11 +189,13 @@ Linearization
 Comparison to Arend's model
 ---------------------------
 
-Swing bike
-==========
+Roll angle trailer
+==================
+
+David de Lorenzo extension (3 rider dof)
+========================================
+
 
 Flexible rider (hip rotation, back lean and twist)
 ==================================================
 
-Roll angle trailer
-==================

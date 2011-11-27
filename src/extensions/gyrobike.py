@@ -21,16 +21,11 @@ benchmark = bp.Bicycle('Benchmark', pathToData)
 benchmarkPar = bp.io.remove_uncertainties(benchmark.parameters['Benchmark'])
 # convert to my parameter set
 moorePar = bicycle.benchmark_to_moore(benchmarkPar, oldMassCenter=False)
-# set the parameters
-for p in gyroNonLinear.parameters.keys():
-    try:
-        gyroNonLinear.parameters[p] = moorePar[p]
-    except KeyError:
-        print('{} not found'.format(p))
+moorePar['mg'] = moorePar['mf']
+moorePar['ig11'] = moorePar['if11']
+moorePar['ig22'] = moorePar['if22']
+gyroNonLinear.set_parameters(moorePar)
 
-gyroNonLinear.parameters['mg'] = moorePar['mf']
-gyroNonLinear.parameters['ig11'] = moorePar['if11']
-gyroNonLinear.parameters['ig22'] = moorePar['if22']
 # set the initial conditions to match Meijaard2007
 speedNaught = 0.5 #4.6
 rollRateNaught = 0.5

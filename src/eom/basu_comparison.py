@@ -16,55 +16,45 @@ from dtk import bicycle
 sys.path.append('/media/Data/Documents/School/UC Davis/Bicycle Mechanics/bicycle/alparse')
 from models.WhippleMoorePar.WhippleMoorePar import WhippleMoorePar
 
-# create the Whipple model (with my parameters)
+# create the Whipple model object
 whip = WhippleMoorePar()
 
 # load the benchmark parameters
 pathToData='/media/Data/Documents/School/UC Davis/Bicycle Mechanics/BicycleParameters/data/'
 benchmark = bp.Bicycle('Benchmark', pathToData)
 benchmarkPar = bp.io.remove_uncertainties(benchmark.parameters['Benchmark'])
+
 # convert to my parameter set
 moorePar = bicycle.benchmark_to_moore(benchmarkPar, oldMassCenter=False)
+
 # set the parameters
 whip.parameters = moorePar
 whip.constants() # make sure the constants are recalculated with the new parameters
 
 # load the input values specified in table one of Basu-Mandal2007
 basuInput = bicycle.basu_table_one_input()
+
 # convert the values to my coordinates and speeds
 mooreInput = bicycle.basu_to_moore_input(basuInput, benchmarkPar['rR'],
         benchmarkPar['lam'])
+
 # store them in a state array
 x = np.array([mooreInput[x] for x in whip.stateNames])
-
-# see if my pitch angle calculations are working
-pitchAngle = bicycle.pitch_from_roll_and_steer(x[3], x[6], moorePar['rF'], moorePar['rR'],
-        moorePar['d1'], moorePar['d2'], moorePar['d3'], guess=x[4])
-print('This compares the pitch angle from BasuMandal2007 in my coordinate\
-       frame with the pitch angle calculated from the BasuMandal2007 roll\
-       and steer angle in my coordinate frame.')
-print x[4], pitchAngle
 
 # calculate the derivatives of the state using my model and compare it to
 # BasuMandal2007
 xd = whip.f(x, 0.)
 y = whip.outputs(x)
+
+# convert the outputs from my model to the Basu-Mandal coordinates
 mooreOutput = {k : v for k, v in zip(whip.outputNames, y)}
 mooreOutputBasu = bicycle.moore_to_basu(mooreOutput, benchmarkPar['rR'], benchmarkPar['lam'])
 basuOutput = bicycle.basu_table_one_output()
-sigFigs = bicycle.basu_sig_figs()
-print('These are comparisons from BasuMandal2007 table one.')
+
 # make an rst list table
-table = """.. list-table:: Nonlinear Whipple Model Comparision
-   :header-rows: 1
-
-   * - Variable
-     - Basu-Mandal
-     - Moore\n"""
-variables = basuInput.keys() + basuOutput.keys()
-variables.sort()
-
 def rst_math(s):
+    """Returns the variable name as reStructuredText math notation."""
+
     mapping = {'x': r'x',
                'y': r'y',
                'z': r'z',
@@ -82,6 +72,17 @@ def rst_math(s):
         s = mapping[s]
 
     return ':math:`' + s + '`'
+
+table = """.. list-table:: Nonlinear Whipple Model Comparision
+   :header-rows: 1
+
+   * - Variable
+     - Basu-Mandal
+     - Moore\n"""
+
+variables = basuInput.keys() + basuOutput.keys()
+variables.sort()
+sigFigs = bicycle.basu_sig_figs()
 
 for v in variables:
     sig = '%1.' + str(sigFigs[v] - 1) + 'e'
@@ -103,4 +104,8 @@ for v in variables:
     table += (' ' * 3 + '* - ' + rst_math(v) + '\n' + ' ' * 5 + '- ' + basu +
         '\n' + ' ' * 5 + '- ' + moore + '\n')
 
+print('These are comparisons from BasuMandal2007 table one.')
 print table
+
+with open('../../tables/eom/nonlin.rst', 'w') as f:
+    f.write(table)

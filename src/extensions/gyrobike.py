@@ -5,13 +5,11 @@ import sys
 
 # dependencies
 import numpy as np
-import matplotlib.pyplot as plt
 import bicycleparameters as bp
 from dtk import bicycle
 
 # local dependencies
 sys.path.append('/media/Data/Documents/School/UC Davis/Bicycle Mechanics/bicycle/alparse')
-from models.WhippleMoorePar.WhippleMoorePar import WhippleMoorePar
 from models.GyroBike.GyroBike import GyroBike, LinearGyroBike
 
 # create the Whipple model (with my parameters)
@@ -50,15 +48,15 @@ tf = 5. # final time
 gyroNonLinear.intOpts['ts'] = ts
 gyroNonLinear.intOpts['tf'] = tf
 
-###gyroNonLinear.simulate()
-###
-#### plot figure 4 from Meijaard2007 using my model
-###rollRate = gyroNonLinear.simResults['y'][:, gyroNonLinear.outputNames.index('u4')]
-###speed = -gyroNonLinear.simResults['y'][:, gyroNonLinear.outputNames.index('u6')] * gyroNonLinear.parameters['rR']
-###steerRate = gyroNonLinear.simResults['y'][:, gyroNonLinear.outputNames.index('u7')]
-###time = gyroNonLinear.simResults['t']
-###newFig = bicycle.meijaard_figure_four(time, rollRate, steerRate, speed)
-###newFig.savefig('../../figures/extensions/gyro-nonlin-sim.png', dpi=300)
+gyroNonLinear.simulate()
+
+# plot figure 4 from Meijaard2007 using my model
+rollRate = gyroNonLinear.simResults['y'][:, gyroNonLinear.outputNames.index('u4')]
+speed = -gyroNonLinear.simResults['y'][:, gyroNonLinear.outputNames.index('u6')] * gyroNonLinear.parameters['rR']
+steerRate = gyroNonLinear.simResults['y'][:, gyroNonLinear.outputNames.index('u7')]
+time = gyroNonLinear.simResults['t']
+newFig = bicycle.meijaard_figure_four(time, rollRate, steerRate, speed)
+newFig.savefig('../../figures/extensions/gyro-nonlin-sim.png', dpi=300)
 
 #
 equilibrium = np.zeros(len(gyroNonLinear.stateNames))

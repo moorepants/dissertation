@@ -58,3 +58,12 @@ stop = -10.0 / moorePar['rR']
 fast = gyrobike.plot_root_loci('u6', start, stop, num=50, axes='parameter',
         parts='real')
 fast.savefig('../../figures/extensions/gyrobike-flywheel-fast.png')
+
+#
+equilibrium[gyrobike.stateNames.index('u6')] = wheelAngSpeed
+gyrobike.linear(equilibrium)
+start = 0.
+stop = -500.
+fast = gyrobike.plot_root_loci('u9', start, stop, num=50, axes='parameter',
+        parts='real')
+fast.savefig('../../figures/extensions/gyrobike-vary-flywheel.png')

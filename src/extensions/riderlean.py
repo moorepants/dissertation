@@ -63,6 +63,17 @@ bike.linear(equilibrium)
 # plot a root loci
 start = 0.
 stop = -10.0 / moorePar['rR']
-off = bike.plot_root_loci('u6', start, stop, num=50, axes='parameter',
+free = bike.plot_root_loci('u6', start, stop, num=50, axes='parameter',
         parts='real')
-off.savefig('../../figures/extensions/rider-lean.png')
+free.savefig('../../figures/extensions/rider-lean.png')
+
+moorePar['k9'] = 128.0
+moorePar['c9'] = 50.0
+bike.set_parameters(moorePar)
+bike.linear(equilibrium)
+# plot a root loci
+start = 0.
+stop = -10.0 / moorePar['rR']
+free = bike.plot_root_loci('u6', start, stop, num=50, axes='parameter',
+        parts='real')
+free.savefig('../../figures/extensions/rider-lean-damp-stiff.png')

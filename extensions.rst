@@ -55,6 +55,25 @@ additional column in both the input, :math:`\mathbf{B}`, and feedforward,
 
 .. todo:: Add an impulse response graph? Linear, nonlinear?
 
+Addition of rider arms
+======================
+
+It has been shown that the addition of the inertial effects of the arms can
+potentially alter the open loop dynamics of the bicycle significantly
+[Schwab2011]_. As described in Chapter :ref:`davisbicycle`, we rigidified the
+rider's torso and legs with respect to the rear frame of the bicycle. The human
+makes use of his arms to control the bicycle. The Whipple model does not take
+into account the dynamic motion of the arms and certainly not the fact that
+steer torque forces are acutally generated from the muscle contraction/flexion
+in the riders arms.
+
+Roll angle trailer
+==================
+
+.. todo:: I think I will cut this as I haven't built the complete model for
+   this yet and we have been neglecting it in the system identification
+   analysis.  I will talk about its design in the davis bicycle chapter.
+
 Flywheel in the front wheel
 ===========================
 
@@ -172,30 +191,201 @@ speeds in which a person may learn to ride a bicycle.
 Leaning rider extension
 =======================
 
-A typical assumption is that a rider can control a bicycle by leaning their
-body relative to the bicycle frame. This is especially drawn for the no-hands
-riding case. A simple leaning rider can be modeled by adding an additional
-rider lean degree of freedom.
+A common assumption regarding how a person controls a bicycle with minimal or
+no steer input is that the rider can lean their body relative to the bicycle
+frame. This assumption is especially drawn for the no-hands riding case. A
+simple leaning rider can be modeled by adding an additional rider lean degree
+of freedom, :math:`q_9`, with an accompanying rider lean torque, :math:`T_9`.
+[Sharp2008]_, [Schwab2008]_, [Peterson2008a]_, have all modeled this system
+explicitly.
 
-Addition of rider arms
-======================
+I define the upper body hinge as a horizontal line at a distance :math:`d_4`
+below the rear wheel center when the bicycle is in the nominal configuration.
+The direction cosine matrix relating the upper body to the rear frame is:
 
-Addition holonomic contraints
------------------------------
+.. math::
+   :label: EtoF
 
-Linearization
--------------
+   ^C\mathbf{R}^G =
+   \begin{bmatrix}
+   c_\lambda & 0 & s_\lambda\\
+   -s_\lambda s_9 & c_9 & c_\lambda s_9\\
+   -s_\lambda c_9 & -s_9 & c_\lambda c_9
+   \end{bmatrix}
 
-Comparison to Arend's model
----------------------------
+A point on the hinge is then defined as
 
-Roll angle trailer
-==================
+.. math::
+
+   \bar{R}^{cg/do} = -d_4s_\lambda\hat{c}_1 + d_4c_\lambda\hat{c}_3
+
+where :math:`\lambda` is the steer axis tilt and is a function of :math:`d_1`,
+:math:`d_2`, and :math:`d_3` as described in :ref:`eom`.
+
+The angular velocity and angular acceleration of the upper body in the bicycle
+frame is defined as
+
+.. math::
+
+   ^C\bar{\omega}^G = u_9 \hat{g}_1
+
+.. math::
+
+   ^C\bar{\alpha}^G = \dot{u}_9 \hat{g}_1
+
+with :math:`u_9=\dot{q}_9`. The linear velocities and accelerations of the
+hinge point and the upper body center of mass are as follows:
+
+.. math::
+   :label: CgInN
+
+   ^N\bar{v}^{c_g} = ^N\bar{v}^{d_o} + ^N\bar\omega^C\times\bar{r}^{c_g/d_o}
+
+   ^N\bar\omega^C\times\bar{r}^{c_g/d_o} =
+   &d_4c_\lambda(u_5+s_4u_3)\hat{c}_1 -\\
+   &d_4(s_\lambda(s_5u_4+c_4c_5u_3)+c_\lambda(c_5u_4-s_5c_4u_3))\hat{c}_2 +\\
+   &d_4s_\lambda(u_5+s_4u_3)\hat{c}_3
+
+.. math::
+   :label: GoInN
+
+   ^N\bar{v}^{g_o} = ^N\bar{v}^{c_g} + ^N\bar\omega^G\times\bar{r}^{g_o/c_g}
+
+   ^N\bar\omega^G\times\bar{r}^{g_o/c_g} =
+   &-l_6(s_9s_{\lambda-5}u_4-c_9u_5-(s_4c_9+s_9c_4c_{\lambda-5})u_3)\hat{g}_1 +\\
+   &(-l_6(u_9+c_{\lambda-5}u_4+c_4s_{\lambda-5}u_3)-l_5(s_9u_5+
+   c_9s_{\lambda-5}u_4+(s_4s_9-c_4c_9c_{\lambda-5})u_3))\hat{g}_2 +\\
+   &l_5(s_9s_{\lambda-5}u_4-c_9u_5-(s_4c_9+s_9c_4c_{\lambda-5})u_3)\hat{g}_3
+
+.. math::
+   :label: aCginN
+
+   ^N\bar{a}^{c_g} = ^N\bar{a}^{d_o} +
+   ^N\omega^C\times(^N\omega^C\times\bar{r}^{c_g/d_o}) +
+   ^N\bar{\alpha}^C\times\bar{r}^{c_g/d_o}
+
+   ^N\omega^C\times(^N\omega^C\times\bar{r}^{c_g/d_o}) =
+   &d_4(s_\lambda(u_5+s_4u_3)^2+(s_5u_4+c_4c_5u_3)(s_\lambda(s_5u_4+
+   c_4c_5u_3)+c_\lambda(c_5u_4-s_5c_4u_3)))\hat{c}_1 +\\
+   &d_4(u_5+s_4u_3)(c_\lambda(s_5u_4+c_4c_5u_3)-s_\lambda(c_5u_4-
+   s_5c_4u_3))\hat{c}_2 -\\
+   &d_4(c_\lambda(u_5+s_4u_3)^2+(c_5u_4-s_5c_4u_3)(s_\lambda(s_5u_4+
+   c_4c_5u_3)+c_\lambda(c_5u_4-s_5c_4u_3)))\hat{c}_3
+
+   ^N\bar{\alpha}^C\times\bar{r}^{c_g/d_o} =
+   &d_4c_\lambda(c_4u_3u_4+\dot{u}_5+s_4\dot{u}_3)\hat{c}_1 +\\
+   &d_4(s_\lambda(s_4c_5u_3u_4+s_5c_4u_3u_5-c_5u_4u_5-s_5\dot{u}_4-
+   c_4c_5\dot{u}_3)-\\
+   &c_\lambda(s_4s_5u_3u_4+c_5\dot{u}_4-s_5u_4u_5-
+   c_4c_5u_3u_5-s_5c_4\dot{u}_3))\hat{c}_2 +\\
+   &d_4s_\lambda(c_4u_3u_4+\dot{u}_5+s_4\dot{u}_3)\hat{c}_3
+
+.. math::
+   :label: aGoinN
+
+   ^N\bar{a}^{g_o} = ^N\bar{a}^{c_g} +
+   ^N\omega^G\times(^N\omega^G\times\bar{r}^{g_o/c_g}) +
+   ^N\bar{\alpha}^G\times\bar{r}^{g_o/c_g}
+
+   ^N\omega^G\times(^N\omega^G\times\bar{r}^{g_o/c_g}) =
+   &(-l_5(s_9s_{\lambda-5}u_4-c_9u_5-(s_4c_9+s_9c_4c_{\lambda-5})u_3)^2-
+   (s_9u_5+c_9s_{\lambda-5}u_4+(s_4s_9-\\
+   &c_4c_9c_{\lambda-5})u_3)(l_6(u_9+
+   c_{\lambda-5}u_4+c_4s_{\lambda-5}u_3)+l_5(s_9u_5+c_9s_{\lambda-5}u_4+
+   (s_4s_9-c_4c_9c_{\lambda-5})u_3)))\hat{g}_1 -\\
+   &(s_9s_{\lambda-5}u_4-c_9u_5-(s_4c_9+s_9c_4c_{\lambda-5})u_3)(l_5(u_9+
+   c_{\lambda-5}u_4+c_4s_{\lambda-5}u_3)-l_6(s_9u_5+c_9s_{\lambda-5}u_4+\\
+   &(s_4s_9-c_4c_9c_{\lambda-5})u_3))\hat{g}_2+\\
+   &(-l_6(s_9s_{\lambda-5}u_4-c_9u_5-(s_4c_9+s_9c_4c_{\lambda-5})u_3)^2-
+   (u_9+c_{\lambda-5}u_4+c_4s_{\lambda-5}u_3)(l_6(u_9+c_{\lambda-5}u_4+\\
+   &c_4s_{\lambda-5}u_3)+l_5(s_9u_5+c_9s_{\lambda-5}u_4+(s_4s_9-
+   c_4c_9c_{\lambda-5})u_3)))\hat{g}_3
+
+   ^N\bar{\alpha}^G\times\bar{r}^{g_o/c_g} =
+   &-l_6(s_9u_5u_9+c_9s_{\lambda-5}u_4u_9+u_3(s_4s_9u_9+s_4s_9c_{\lambda-5}u_4-
+   c_4c_9u_4-s_9c_4s_{\lambda-5}u_5-c_4c_9c_{\lambda-5}u_9)+\\
+   &s_9s_{\lambda-5}\dot{u}_4-s_9c_{\lambda-5}u_4u_5-c_9\dot{u}_5-
+   (s_4c_9+s_9c_4c_{\lambda-5})\dot{u}_3)\hat{g}_1 +\\
+   &(l_6(s_4s_{\lambda-5}u_3u_4+c_4c_{\lambda-5}u_3u_5-s_{\lambda-5}u_4u_5-
+   \dot{u}_9-c_{\lambda-5}\dot{u}_4-c_4s_{\lambda-5}\dot{u}_3)+
+   l_5(s_9s_{\lambda-5}u_4u_9+c_9c_{\lambda-5}u_4u_5-\\
+   &c_9u_5u_9-u_3(s_4c_9u_9+s_9c_4u_4+s_4c_9c_{\lambda-5}u_4+
+   s_9c_4c_{\lambda-5}u_9-c_4c_9s_{\lambda-5}u_5)-
+   s_9\dot{u}_5-c_9s_{\lambda-5}\dot{u}_4-
+   (s_4s_9-c_4c_9c_{\lambda-5})\dot{u}_3))\hat{g}_2 +\\
+   &l_5(s_9u_5u_9+c_9s_{\lambda-5}u_4u_9+u_3(s_4s_9u_9+s_4s_9c_{\lambda-5}u_4-
+   c_4c_9u_4-s_9c_4s_{\lambda-5}u_5-c_4c_9c_{\lambda-5}u_9)+
+   s_9s_{\lambda-5}\dot{u}_4-\\
+   &s_9c_{\lambda-5}u_4u_5-c_9\dot{u}_5-(s_4c_9+
+   s_9c_4c_{\lambda-5})\dot{u}_3)\hat{g}_3
+
+.. todo:: I'm not sure how useful it is to print out these long equations.
+   Maybe I shouldn't do it and refer to the code.
+
+I introduce two additional forces. The first is the input torque between the
+rear frame and the rider's upper body, :math:`T_9`. This is considered the
+active torque of which the rider's control system would provide. The second
+torque is defined as
+
+.. math:: T_9^p = -c_9 * u_9 - k_9 * q_9
+
+where :math:`c_9` and :math:`k_9` are damping and stiffness coeficients which
+are a way to characterize the passive torque which keeps our back upright. It
+is not realistic that the lean joint is a free joint and active control is
+always required to keep our body upright. A human torso has some inherent
+stiffness.
+
+The additional generalized force is:
+
+.. math::
+
+  \bar{R}^{g_o} = m_Gg\hat{n}_3
+
+and the generalized torques are also modified:
+
+
+.. math::
+
+   \bar{T}^C = T_4\hat{a}_1 - T_6\hat{c}_2 - T_7\hat{c}_3 + (k_9q_9+c_9u_9-T_9)\hat{g}_1
+
+   \bar{T}^G = -(k_9q_9+c_9u_9-T_9)\hat{g}_1
+
+The mass of the upper body is :math:`m_g` and the upper body is assumed to by
+symmetric about the sagital plane:
+
+.. math::
+   :label: IG
+
+   I_G =
+   \begin{bmatrix}
+   I_{G11} & 0 & I_{G13}\\
+   0 & I_{G22} & 0\\
+   I_{G13} & 0 & I_{G33}
+   \end{bmatrix}
+
+The equations of motion are formed and linearized as described in :ref:`eom`.
+This model has been explicitly explored by both [Schwab2008]_ and
+[Peterson2008a]_ with parameter values estimated from the Benchmark parameter
+set, which is not necessarily that realisitic. The following plot uses more
+realistic rider parameters which are generated it following chapter
+:ref:`physicalparameters` and the passive lean torque set to zero. Notice that
+the largest eigenvalue is much larger than the ones reported in Schwab and
+Peterson with a time to double of about a tenth of a second.
+
+.. figure:: figures/extensions/rider-lean.png
+
+The damping stiffness coefficient can be selected to such that the highly
+unstable rider mode is only marginally stable, thus making it easier to
+control.
 
 David de Lorenzo extension (3 rider dof)
 ========================================
 
+.. todo:: Just paste in some of the work done in Moore2007
 
 Flexible rider (hip rotation, back lean and twist)
 ==================================================
 
+.. todo:: Talk a bit about this model and show the video we made of the no hand
+   riding on the treadmill. Also show the graph of the hip markers relative to the
+   seat.

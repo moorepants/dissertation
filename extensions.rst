@@ -289,7 +289,17 @@ learn to ride quicker, due to the bicycle's increased stabilty at low speeds.
 .. todo:: are their any gyro stablized two wheel vehicles earlier than the
    car?
 
-.. todo:: Video I took of the gyrobike on the treadmill.
+The following video demonstrates that the gyrobike without a rider is stablized
+at 2 m/s when the flywheel is at full speed.
+
+.. raw:: html
+
+   <center>
+     <iframe width="420" height="315"
+       src="http://www.youtube.com/embed/YmtPNIu4WI0"
+       frameborder="0" allowfullscreen>
+     </iframe>
+   </center>
 
 Using the Whipple model presented in Chapter :ref:`eom` as a base model, the
 GyroBike can be modeled by adding an additional symmetric rigid body, :math:`G`
@@ -581,10 +591,147 @@ control.
 
 .. figure:: figures/extensions/rider-lean-damp-stiff.png
 
-David de Lorenzo extension (3 rider dof)
-========================================
+David de Lorenzo extension
+==========================
 
-.. todo:: Just paste in some of the work done in Moore2007
+Preface
+-------
+
+To expand on the ideas presented in the previous section, I'd like to share
+some findings from a short conference paper that Luke and I put together
+[Moore2007]_. I have included it here almost verbatim but have updated the
+writings to tie it into the dissertation and make it less dated. I also have
+not updated the derivation of the equations of motion to reflect the parameters
+and methodolgy presented in this dissertation, so I will leave those out but
+they can be found in the source code. None-the-less the model can be
+systematically derived in the same fashion as the previous sections. The
+initial interest in this model was an unpublished paper by David de Lorenzo and
+Mont Hubbard which explored parameter studies of a model similar to the one
+that is presented. Here We pursue the effects that passive springs and dampers
+at the biomechanical joints have on the stability of the bicycle.
+
+Introduction
+------------
+
+In this paper, we build on the Whipple model by adding biomechanical degrees of
+freedom that capture the dominant rider's motion and the flexible coupling to
+the rear frame. The rationale for doing so is that the mass and inertia of a
+rider is much larger than that of the bicycle, and the coupling between the
+rider and the bicycle is certainly not rigid. Rider modeling has been
+approached in the motorcycle literature [Limebeer2006]_ but typically does not
+address the smaller vehicle inertial properties and the possible difference in
+the coupling constants. For example, when riding a bicycle, it is easy to
+observe that the frame yaw and roll motions are different from the rider yaw
+and roll motions. Modeling the rider and frame as a single rigid body ignores
+this flexible coupling. In this analysis, we seek to understand the effect of
+the addition of these new degrees of freedom on the stable speed range of the
+bicycle. We examine the additional modes associated with the new degrees of
+freedom and how they impact the weave, capsize, and caster modes seen in the
+Whipple model.
+
+Methods
+-------
+
+Beginning with the Whipple model, the bicycle/rider rigid body is divided into
+three separate bodies; the bicycle rear frame, the rider lower body and the
+rider upper body. The lower body includes the legs and hips while the upper
+body includes the torso, arms, and head. Three additional generalized
+coordinates are used to configure the rider rigid bodies with respect to the
+frame and to each other. The first two are the lateral rotation of the lower
+body about a pivot point at the feet and lateral rotation of the upper body
+with respect to the lower body, both about horizontal axes parallel to the
+forward axis of the bicycle frame. The lower body is connected to the frame at
+the foot pivot by a revolute joint and at the seat by a linear spring and
+damper in parallel. The third coordinate is the twist of the upper body
+relative to the lower body about a nominally vertical axis. Both upper body
+lean and twist motions are resisted by linear torsional springs and dampers,
+also in parallel. These rider degrees of freedom are detailed in
+:ref:`figLorenzoConfiguration` and are similar to the motorcycle rider model
+constructed by Katayama, et al. [Katayama1988]_ with the exception of the rider
+twist. The lateral linear spring and damper represents the connection between
+the rider’s crotch and the seat [#]_. The spring and damper constants are
+influenced by the seat and the properties of the skeletal muscle tissue of
+thighs and/or buttocks. The torsional springs and dampers represent the
+musculoskeletal stiffness and damping at the hips.
+
+.. figure:: figures/extensions/lorenzo-configuration.png
+
+   figLorenzoConfiguration
+
+   Pictorial description of (a) the additional rider degrees of freedom and (b)
+   the six rigid bodies.
+
+This six rigid body model has eleven generalized coordinates. One generalized
+coordinate (frame pitch) is eliminated by the holonomic configuration
+constraints requiring that both wheels touch the ground. This leaves ten
+generalized speeds, of which four are elimnated due to the nonholonomic
+constraints for the purely rolling wheels. The nonlinear equations of motion
+were linearized numerically about the nominal upright, constant velocity
+configuration using a central differencing method with an optimum perturbation
+size. The linear system about the nominal configuration and constant speed is
+tenth order in frame roll, steer, lower body lean, upper body lean and upper
+body twist.
+
+The physical parameters are adapted from [Meijaard2007]_ with exception of the
+rider pivot point locations and the spring and damper constants. The pivot
+point locations were measured and the spring and damper constants were taken
+from [Lorenzo1996]_ which he estimated. All of the physical parameters were
+chosen in such a way that, if the rider degrees of freedom are locked,
+the model reduces to the benchmark Whipple model, similar to the later work
+done by [Peterson2008a]_ and [Schwab2008]_.
+
+Results and Discussion
+----------------------
+
+In order to understand how the eigenvalues impact each state variable of our
+system, it is essential to examine the components of each eigenvector
+corresponding to each generalized coordinate.  By detailed examination, we are
+able to determine how each eigenvalue contributes to each generalized
+coordinate, across the range of speeds examined.
+
+Figure :ref:`figLorenzoEig` shows the real parts of the identified eigenvalues
+of the flexible rider model. By comparison to the Whipple model, it can be seen
+that the modes are greatly affected by the additional rider states. The weave
+mode has become unstable for all velocities and no stable speed range is
+present.
+
+.. figure:: figures/extensions/lorenzo-eig.jpg
+
+Examining the eigenvector of the weave mode at different velocities we find
+that at low speeds the weave mode is dominated by frame roll and steer, while
+at high speeds the weave is dominated by upper body lean and twist. This
+phenomenon was also observed by Limebeer and Sharp [Limebeer2006]_. Furthermoe,
+another unstable oscillatory eigenvalue pair is present at velocities below
+about 4 m/s for this parameter set.
+
+.. figure:: figures/extensions/lorenzo-eigvec.png
+
+.. figure:: figures/extensions/lorenzo-plane.png
+
+As the stiffness and damping coefficients for the rider/frame coupling are
+increased (by factors of about :math:`10^3` and :math:`30` respectively), the
+eigenvalues begin to match those of the Whipple model, and a stable speed range
+reappears. However, the values of stiffness and damping for which a stable
+speed range did exist are unrealistically high.
+
+.. figure:: figures/extensions/lorenzo-high.jpg
+
+Conclusion
+----------
+
+The notion that the bicycle-rider system can be stable during hands-free riding
+and with no active control from the rider is not necessarily true when the
+rider's biomechanics are modeled more realistically. For the particular set of
+exstimated parameters the weave mode is unstable for the entire range of speeds
+investigated when realistic flexible rider dynamics are included. While the
+Whipple model provides many insights into the dynamics and control of the
+bicycle, it lacks the complexity to capture the essential dynamics that are
+present in passive hands-free riding. In particular, it is highly likely that
+bicycle rider must always use active control to keep the bicycle upright and
+self-stabilization is not guarenteed. Parameters studies that show the
+dependence on stability across a range of speeds for ranges of stiffness and
+damping at the biomechanical joints can shed more light on the system for more
+conclusive results.
 
 Flexible rider (hip rotation, back lean and twist)
 ==================================================
@@ -592,3 +739,76 @@ Flexible rider (hip rotation, back lean and twist)
 .. todo:: Talk a bit about this model and show the video we made of the no hand
    riding on the treadmill. Also show the graph of the hip markers relative to the
    seat.
+
+I've thought a great deal about how one balances a bicycle when riding
+no-handed and I've learned much about it by talking with colleagues such as Jim
+P., Jodi and Arend. For the final studies in this dissertation I had intended
+to do a thorough study of the dynamics of balancing with no hands based around
+a theory of the mechanism with which we enact our control. This no hand
+biomechanical model also relates to what we may do even when we have our hands
+on the bars, albiet at a much smaller magnitudes.
+
+It is relatively easy to learn to ride with your hands and many people that
+know hwo to ride a bicycle can do so. Some can navigate roads and obstables
+very well too. Without being able to directly affect the steering angle, one
+must affect the roll angle, which in turn is coupled to steering. In the purely
+mechanical sense one can imagine that a rider could "lean" relative to the rear
+frame, thus the counter reaction causing the frame to roll the opposite
+direction you lean. But I think the idea of leaning may in fact be too
+simplistic to describe what is really going on in a bicycle [#]_ . The rider's
+upper body is typically more than three times the mass of the bicycle and it is
+inertially much harder to move in space than the bicycle. The studies that are
+presented in :ref:`delftbicycle` and :ref:`motioncapture` showed that the
+rider's upper body moves little relative to the rear frame and even intertially
+with respect to upper body roll or lean in inertial space, but that the bicycle
+frame can quickly roll relative to the inertailly "fixed" rider. With that
+mind, one can imagine rolling the bicycle frame underneath your body by using
+your leg and butt muscles. It is clearly evedent when riding no hands, you feel
+the seat moving back and forth under your butt. Another interesting thing to
+note is that is is virtually impossible to control a bicycle without your hands
+and *your feet* on the bike. This leads me to believe that no hand control is
+dependent on the rider's ability to roll the bicycle frame using the lower
+extremty muscles.
+
+If that is true, then there is a most likely a simple model that can capture
+the relative motion of the bicycle rear frame with respect to the lower
+extremities and hips. This lead me to examine the data from the motion capture
+experiments of a no hand run with the rider pedaling. I plotted the motion of
+tail bone and hip markers in the rear frame reference frame from the
+perspective of looking at teh rider's butt from behind. This plot was shows
+that the butt moves laterally with respect to bike frame a bit, but more
+prevalent is the curves that the hips follow. One can then visualize the hips
+rotating about a line just below the seat that runs fore to aft.
+
+.. figure:: figures/extensions/hip-trace.png
+
+   figHipTrace
+
+   The hip trace from run # 3104.
+
+Gilbert and I worked on exploring this motion and theorizing a harness of some
+sort that would both contrain the rider's motion to these key motions and
+allows us to measure the forces and the kinematics involved. The following
+video demonstrates that the bicycle frame does roll relative to the somewhat
+inertially fixed rider, that the hips rotate about the seat and also that the
+spine may only need one laterally rotational degree of freedom to capture the
+dominate spine motions.
+
+.. raw:: html
+
+   <center>
+     <iframe width="420" height="315"
+       src="http://www.youtube.com/embed/FcAp-DbHp9M"
+       frameborder="0" allowfullscreen>
+     </iframe>
+   </center>
+
+
+.. rubric:: Footnotes
+
+.. [#] We got a kick out of "crotch stiffness" i.e. the stiffness of the
+   crotch spring, and tried to encourage Mont to use the terminology when he
+   presented this for us in Taiwan.
+
+.. [#] Leaning on a motorcycle makes more sense as the mass of the motorcycle
+   is comparable or more than the mass of the riders upper body.

@@ -520,7 +520,7 @@ the newtonian reference frame. For example:
 .. math::
    :label: omegaFinN
 
-   ^F\omega^N = ^N\omega^C + ^C\omega^E + ^E\omega^F
+   ^N\omega^F = ^N\omega^C + ^C\omega^E + ^E\omega^F
 
    ^F\omega^N =
    &(s_7c_8u_5-s_8u_7-(s_5s_8-c_5c_7c_8)u_4-
@@ -1057,7 +1057,7 @@ concepts include the fact that many of the coordinates are all ignorable, that
 is they do not show up in the essential dynamical equations of motion. These
 are the location of the ground contact point, :math:`q_1` and :math:`q_2`, the
 yaw angle, :math:`q_3`, and the wheel angles, :math:`q_6` and :math:`q_8`. The
-model is also energy conserving, but not Hamiltonian. Furthermore, the open
+model is also energy conserving, because !!! contacts points do no work, the open
 loop model (i.e. inputs equal zero) exhibits stability during certain regimes
 of configuration. The system has left half plane zeros, which give it a
 non-minimal phase behavior. Numerous studies have revealed these facts:
@@ -1089,25 +1089,36 @@ condition.
 Nonlinear Validation
 --------------------
 
-.. todo:: comment on why validation is important
+Complex dynamical models are often very difficult to validate against one
+another due to complexity of large analytical expressions which were
+potentailly formed by different methods. The now now common method of
+validation is to evaluate equations numerically for non-trivial inputs and
+compare the results to high precision. These benchmark numerical sets are
+invaluable so that researchers can work from the same cornerstone, allow for
+scientific reproducibilty, and error checking.
 
-[BasuMandall2007]_ present the Whipple model derived with both the Newton-Euler
-and Lagrange methods. The equations of motion are analytically complex and make
-if difficult to compare symbolic results, so numerical values are presented for
-use in validating the nonlinear model. Table 1 in their paper gives the
-derivatives of all the coordinates and speeds to high precision for each of
-their derivations for a single state. They state that one can compute these
-values to machine precision and if they values match to ~10 significant figures
-the models can be concluded to be the same. The very first model I developed in
-2006 would not have held up to this test. I owe the validity of my model to my
-labmate, Luke, as his persistence and interest in minute detail helped me
-bring my model up to par. Here I present the values computed from my model in
-comparison to the values presented by [BasuMandall2007]_.
+[BasuMandall2007]_ present the non-linear Whipple model derived with both the
+Newton-Euler and Lagrange methods, along with a numerical benchmark. Table 1 in
+their paper gives the derivatives of all the coordinates and speeds to high
+precision for each of their derivations for a single state. They state that if
+one can compute the values to machine precision to ~10 significant figures the
+models can be concluded to be the same . The very first model I developed
+in 2006 would not have held up to this test. I owe the validity of my model to
+my labmate, Luke, as his persistence and interest in minute detail helped me
+bring my model up to par.
 
-.. todo:: Should I present the conversion equations from BasuMandall to mine
-   and vice versa?
+The Basu-Mandal et al derivations are based on different coordinates than I
+use, but regardless of the coordinates they provide numerical values which can
+be benchmarked if the correct coordinate transformations are applied [#]_. In
+Table :ref:`tabNonLinValidation` I present the values computed from my model in
+comparison to the values presented by [BasuMandall2007]_. I've presented the
+same number of significant digits as provided by Basu-Mandall for each
+variable [#]_. My model produces the same result to at least eleven significant
+figures, thus I feel confident that the derivation is correct.
 
-.. todo:: Values from my model for comparision to table one in BasuMandall2007
+.. _tabNonLinValidation:
+
+.. include:: tables/eom/nonlin.rst
 
 Linearized Equations of Motion
 ==============================
@@ -1161,16 +1172,22 @@ were formulated into two second order differential equations in the canonical
 form (Equation :eq`eqCanonical`) presented in [Meijaard2007]_. They present the
 values for the coefficient matrices (:math:`\mathbf{M}`, :math:`\mathbf{C}_1`,
 :math:`\mathbf{K}_0` and :math:`\mathbf{K}_2`) for the benchmark parameter set
-to at least 15 significant figures and the linearization presented here matched
+to at least 13 significant figures and the linearization presented here matched
 all of the significant figures. [Meijaard2007]_ also provide the eigenvalues of
 the state matrix at various speeds, which the model herein reproduces to all of
-the presented values.
+the presented values. Table :ref:`tabLinCompare` shows the eigenvalues computed
+at 5 m/s in comparison to the values in Table 2 of [Meijaard2007]_ where my
+model matches to at least 13 significant figures.
 
 .. math::
    :label: eqCanonical
 
    \mathbf{M\dot{u}}+v\mathbf{C}_1\mathbf{u}+\left[g\mathbf{K}_0+
    v^2\mathbf{K}_2\right]\mathbf{q}=0
+
+.. _tabLinCompare:
+
+.. include:: tables/eom/linear-compare.rst
 
 Furthmore, the now ubiqutious eigenvalue plot versus forward speed is
 reproduced.
@@ -1211,8 +1228,15 @@ reproduced.
 .. todo::
    Contact points need better explanations.
 
+.. todo:: add notation definitions
+
 .. [#] Luke and I have dreamed of developing an open source version of Autolev
        for years and that has finally culminated through primarily Luke and Gilbert
        Gede's efforts in the creation of sympy.physics.mechanics.
 
 .. [#] This contraint can readily be modified to support a non-flat ground.
+
+.. [#] Basu-Mandall presents significant digits from 10 to 14.
+
+.. [#] The conversion equations from BasuMandal's coordinates to mine and vice
+       versa can be found in the source code.

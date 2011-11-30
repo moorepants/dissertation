@@ -61,7 +61,7 @@ the trigger which solidified my dissertation topic. I attempted the derivation
 for my class project in Mont Hubbard&#8217;s winter 2006 multi-body dynamics class
 and struggled with it well into the summer before finally getting a mostly
 correct answer. After the fact, I realized much of my pain was caused by a
-single missing apostrophe in my Autolev computer code <a class="footnote-reference" href="#id30" id="id1">[1]</a>. Another student,
+single missing apostrophe in my Autolev computer code <a class="footnote-reference" href="#id33" id="id1">[1]</a>. Another student,
 Thomas Englehardt, in the class also derived the equations and helped me debug
 by sharing his code and going over his methods. Even then, it turned out that
 my original equations weren&#8217;t &#8220;exactly&#8221; correct and it wasn&#8217;t until Luke
@@ -78,7 +78,7 @@ dissertation. This section details derivation of the non-linear equations of
 motion using Kane&#8217;s method [KaneLevinson1985]. The equations of motion are
 algebraically unwieldy and no one so far has publicly shown them in a form
 compact enough to print on reasonably sized paper and certainly not in a form
-suitable for any analytical understanding <a class="footnote-reference" href="#id31" id="id3">[2]</a>. My methodology relies heavily on
+suitable for any analytical understanding <a class="footnote-reference" href="#id34" id="id3">[2]</a>. My methodology relies heavily on
 computer aided algebra to do the bookkeeping in the derivation, so I will only
 describe the necessary details to derive the equations, leaving the algebra,
 trigonometry and calculus to the computer. The symbolic equations of motion
@@ -319,7 +319,7 @@ Newtonian reference frame.</p>
 to the Newtonian reference frame. There are six primary points of interest: the
 four mass centers, <span class="math">\(d_o,c_o,e_o,f_o\)</span>, and the two points fixed on the
 wheels which are instantaneously in contact with the ground, <span class="math">\(d_n,f_n\)</span>
-<a class="footnote-reference" href="#id32" id="id11">[3]</a>.</p>
+<a class="footnote-reference" href="#id35" id="id11">[3]</a>.</p>
 <p>The mass center of the rear wheel, <span class="math">\(d_o\)</span>, is assumed to be at the center
 of the wheel and is located by:</p>
 <div class="math" id="equation-rearWheelMassCenter">
@@ -432,7 +432,7 @@ simple revolute joints, so the angular velocities are simply:</p>
 <p>The angular velocity of any of the bodies can now be computed with respect to
 the newtonian reference frame. For example:</p>
 <div class="math" id="equation-omegaFinN">
-<span class="eqno">(26)</span>\[^F\omega^N = ^N\omega^C + ^C\omega^E + ^E\omega^F\]\[\begin{split}^F\omega^N =
+<span class="eqno">(26)</span>\[^N\omega^F = ^N\omega^C + ^C\omega^E + ^E\omega^F\]\[\begin{split}^F\omega^N =
 &amp;(s_7c_8u_5-s_8u_7-(s_5s_8-c_5c_7c_8)u_4-
 (s_8c_4c_5-c_8(s_4s_7-s_5c_4c_7))u_3)\hat{f}_1 + \\
 &amp;(u_8+c_7u_5+(s_4c_7+s_5s_7c_4)u_3-s_7c_5u_4)\hat{f}_2 + \\
@@ -782,7 +782,7 @@ concepts include the fact that many of the coordinates are all ignorable, that
 is they do not show up in the essential dynamical equations of motion. These
 are the location of the ground contact point, <span class="math">\(q_1\)</span> and <span class="math">\(q_2\)</span>, the
 yaw angle, <span class="math">\(q_3\)</span>, and the wheel angles, <span class="math">\(q_6\)</span> and <span class="math">\(q_8\)</span>. The
-model is also energy conserving, but not Hamiltonian. Furthermore, the open
+model is also energy conserving, because !!! contacts points do no work, the open
 loop model (i.e. inputs equal zero) exhibits stability during certain regimes
 of configuration. The system has left half plane zeros, which give it a
 non-minimal phase behavior. Numerous studies have revealed these facts:
@@ -812,31 +812,154 @@ roll and steer is transferred to the forward speed.</div>
 </div>
 <div class="section" id="nonlinear-validation">
 <h3>Nonlinear Validation<a class="headerlink" href="#nonlinear-validation" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="index-8">
-<p class="first admonition-title">Todo</p>
-<p class="last">comment on why validation is important</p>
-</div>
-<p>[BasuMandall2007] present the Whipple model derived with both the Newton-Euler
-and Lagrange methods. The equations of motion are analytically complex and make
-if difficult to compare symbolic results, so numerical values are presented for
-use in validating the nonlinear model. Table 1 in their paper gives the
-derivatives of all the coordinates and speeds to high precision for each of
-their derivations for a single state. They state that one can compute these
-values to machine precision and if they values match to ~10 significant figures
-the models can be concluded to be the same. The very first model I developed in
-2006 would not have held up to this test. I owe the validity of my model to my
-labmate, Luke, as his persistence and interest in minute detail helped me
-bring my model up to par. Here I present the values computed from my model in
-comparison to the values presented by [BasuMandall2007].</p>
-<div class="admonition-todo admonition" id="index-9">
-<p class="first admonition-title">Todo</p>
-<p class="last">Should I present the conversion equations from BasuMandall to mine
-and vice versa?</p>
-</div>
-<div class="admonition-todo admonition" id="index-10">
-<p class="first admonition-title">Todo</p>
-<p class="last">Values from my model for comparision to table one in BasuMandall2007</p>
-</div>
+<p>Complex dynamical models are often very difficult to validate against one
+another due to complexity of large analytical expressions which were
+potentailly formed by different methods. The now now common method of
+validation is to evaluate equations numerically for non-trivial inputs and
+compare the results to high precision. These benchmark numerical sets are
+invaluable so that researchers can work from the same cornerstone, allow for
+scientific reproducibilty, and error checking.</p>
+<p>[BasuMandall2007] present the non-linear Whipple model derived with both the
+Newton-Euler and Lagrange methods, along with a numerical benchmark. Table 1 in
+their paper gives the derivatives of all the coordinates and speeds to high
+precision for each of their derivations for a single state. They state that if
+one can compute the values to machine precision to ~10 significant figures the
+models can be concluded to be the same . The very first model I developed
+in 2006 would not have held up to this test. I owe the validity of my model to
+my labmate, Luke, as his persistence and interest in minute detail helped me
+bring my model up to par.</p>
+<p>The Basu-Mandal et al derivations are based on different coordinates than I
+use, but regardless of the coordinates they provide numerical values which can
+be benchmarked if the correct coordinate transformations are applied <a class="footnote-reference" href="#id36" id="id24">[4]</a>. In
+Table <a class="reference internal" href="#tabnonlinvalidation"><em>Nonlinear Whipple Model Comparision</em></a> I present the values computed from my model in
+comparison to the values presented by [BasuMandall2007]. I&#8217;ve presented the
+same number of significant digits as provided by Basu-Mandall for each
+variable <a class="footnote-reference" href="#id37" id="id26">[5]</a>. My model produces the same result to at least eleven significant
+figures, thus I feel confident that the derivation is correct.</p>
+<table border="1" class="docutils" id="tabnonlinvalidation">
+<caption>Nonlinear Whipple Model Comparision</caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Variable</th>
+<th class="head">Basu-Mandal</th>
+<th class="head">Moore</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><span class="math">\(\beta_f\)</span></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\dot{\beta_f}\)</span></td>
+<td>8.0133620584155</td>
+<td>8.0133620584154</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\ddot{\beta_f}\)</span></td>
+<td>2.454807290455</td>
+<td>2.454807290455</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\beta_r\)</span></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\dot{\beta_r}\)</span></td>
+<td>8.912989661489</td>
+<td>8.912989661489</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\ddot{\beta_r}\)</span></td>
+<td>1.8472554144217</td>
+<td>1.8472554144220</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\phi\)</span></td>
+<td>3.1257073014894</td>
+<td>3.1257073014894</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\dot{\phi}\)</span></td>
+<td>-1.19185528069e-02</td>
+<td>-1.19185528069e-02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\ddot{\phi}\)</span></td>
+<td>1.205543897884e-01</td>
+<td>1.205543897886e-01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\psi\)</span></td>
+<td>9.501292851472e-01</td>
+<td>9.501292851472e-01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\dot{\psi}\)</span></td>
+<td>6.068425835418e-01</td>
+<td>6.068425835418e-01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\ddot{\psi}\)</span></td>
+<td>-7.8555281128244</td>
+<td>-7.8555281128245</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\psi_f\)</span></td>
+<td>2.311385135743e-01</td>
+<td>2.311385135743e-01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\dot{\psi_f}\)</span></td>
+<td>4.859824687093e-01</td>
+<td>4.859824687093e-01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\ddot{\psi_f}\)</span></td>
+<td>-4.6198904039403</td>
+<td>-4.6198904039394</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\theta\)</span></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\dot{\theta}\)</span></td>
+<td>7.830033527065e-01</td>
+<td>7.830033527065e-01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\ddot{\theta}\)</span></td>
+<td>8.353281706379e-01</td>
+<td>8.353281706377e-01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(x\)</span></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\dot{x}\)</span></td>
+<td>-2.8069345714545</td>
+<td>-2.8069345714545</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\ddot{x}\)</span></td>
+<td>-5.041626315047e-01</td>
+<td>-5.041626315048e-01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(y\)</span></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\dot{y}\)</span></td>
+<td>-1.480982396001e-01</td>
+<td>-1.480982396001e-01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\ddot{y}\)</span></td>
+<td>-3.449706619454e-01</td>
+<td>-3.449706619455e-01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(z\)</span></td>
+<td>2.440472102925e-01</td>
+<td>2.440472102925e-01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\dot{z}\)</span></td>
+<td>1.058778746261e-01</td>
+<td>1.058778746261e-01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\ddot{z}\)</span></td>
+<td>-1.460452833298</td>
+<td>-1.460452833298</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="section" id="linearized-equations-of-motion">
@@ -886,13 +1009,47 @@ were formulated into two second order differential equations in the canonical
 form (Equation :eq`eqCanonical`) presented in [Meijaard2007]. They present the
 values for the coefficient matrices (<span class="math">\(\mathbf{M}\)</span>, <span class="math">\(\mathbf{C}_1\)</span>,
 <span class="math">\(\mathbf{K}_0\)</span> and <span class="math">\(\mathbf{K}_2\)</span>) for the benchmark parameter set
-to at least 15 significant figures and the linearization presented here matched
+to at least 13 significant figures and the linearization presented here matched
 all of the significant figures. [Meijaard2007] also provide the eigenvalues of
 the state matrix at various speeds, which the model herein reproduces to all of
-the presented values.</p>
+the presented values. Table <a class="reference internal" href="#tablincompare"><em>Linear Whipple Model Comparision</em></a> shows the eigenvalues computed
+at 5 m/s in comparison to the values in Table 2 of [Meijaard2007] where my
+model matches to at least 13 significant figures.</p>
 <div class="math" id="equation-eqCanonical">
 <span class="eqno">(54)</span>\[\mathbf{M\dot{u}}+v\mathbf{C}_1\mathbf{u}+\left[g\mathbf{K}_0+
 v^2\mathbf{K}_2\right]\mathbf{q}=0\]</div>
+<table border="1" class="docutils" id="tablincompare">
+<caption>Linear Whipple Model Comparision</caption>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Model</th>
+<th class="head">Caster</th>
+<th class="head">Weave Real</th>
+<th class="head">Capsize</th>
+<th class="head">Weave Imaginary</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Meijaard</td>
+<td>-1.407838969279822e+01</td>
+<td>-7.7534188219585e-01</td>
+<td>-3.2286642900409e-01</td>
+<td>4.46486771378823e+00</td>
+</tr>
+<tr class="row-odd"><td>Moore</td>
+<td>-1.407838969279825e+01</td>
+<td>-7.7534188219584e-01</td>
+<td>-3.2286642900409e-01</td>
+<td>4.46486771378822e+00</td>
+</tr>
+</tbody>
+</table>
 <p>Furthmore, the now ubiqutious eigenvalue plot versus forward speed is
 reproduced.</p>
 <div class="figure align-center">
@@ -911,12 +1068,12 @@ sinusoidal motion of the roll and steer, with steer lagging the roll. This
 mode becomes stable at a higher speed. The weave and capsize critical speeds
 bound a stable speed range.</div>
 </div>
-<div class="admonition-todo admonition" id="index-11">
+<div class="admonition-todo admonition" id="index-8">
 <p class="first admonition-title">Todo</p>
 <p class="last">explanation of the modes with some eigenvector diagrams</p>
 </div>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="id30" rules="none">
+<table class="docutils footnote" frame="void" id="id33" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>My colleague, Dale L. Peterson, has made significant progress
@@ -924,7 +1081,7 @@ formulating the equations of motion in a readable and compact form, which will
 most likely be published soon.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id31" rules="none">
+<table class="docutils footnote" frame="void" id="id34" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>The point of contact for the bicycle wheels are technically abstract
@@ -935,11 +1092,15 @@ point on the wheel that instantaneously contacts the ground at any given time,
 and the point on the wheel ...</td></tr>
 </tbody>
 </table>
-<div class="admonition-todo admonition" id="index-12">
+<div class="admonition-todo admonition" id="index-9">
 <p class="first admonition-title">Todo</p>
 <p class="last">Contact points need better explanations.</p>
 </div>
-<table class="docutils footnote" frame="void" id="id32" rules="none">
+<div class="admonition-todo admonition" id="index-10">
+<p class="first admonition-title">Todo</p>
+<p class="last">add notation definitions</p>
+</div>
+<table class="docutils footnote" frame="void" id="id35" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id11">[3]</a></td><td>Luke and I have dreamed of developing an open source version of Autolev
@@ -947,10 +1108,23 @@ for years and that has finally culminated through primarily Luke and Gilbert
 Gede&#8217;s efforts in the creation of sympy.physics.mechanics.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id33" rules="none">
+<table class="docutils footnote" frame="void" id="id36" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[4]</td><td>This contraint can readily be modified to support a non-flat ground.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id24">[4]</a></td><td>This contraint can readily be modified to support a non-flat ground.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id37" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id26">[5]</a></td><td>Basu-Mandall presents significant digits from 10 to 14.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id38" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[6]</td><td>The conversion equations from BasuMandal&#8217;s coordinates to mine and vice
+versa can be found in the source code.</td></tr>
 </tbody>
 </table>
 </div>

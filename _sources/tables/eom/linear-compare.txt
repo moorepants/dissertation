@@ -1,0 +1,18 @@
+.. list-table:: Linear Whipple Model Comparision
+   :header-rows: 1
+
+   * - Model
+     - Caster
+     - Weave Real
+     - Capsize
+     - Weave Imaginary
+   * - Meijaard
+     - -1.407838969279822e+01
+     - -7.7534188219585e-01
+     - -3.2286642900409e-01
+     - 4.46486771378823e+00
+   * - Moore
+     - -1.407838969279825e+01
+     - -7.7534188219584e-01
+     - -3.2286642900409e-01
+     - 4.46486771378822e+00

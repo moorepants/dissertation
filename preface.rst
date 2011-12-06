@@ -78,6 +78,12 @@ will do my best to acknowledge anyone's work in this thesis, but there will
 surely be some that I have forgotten. Please let me know if that is so, and I
 will remedy it.
 
+Notation
+========
+I attempt to keep notation consistent throughout each chapter, with much of the
+notation being consistent throughout the dissertation. The extensions chapter
+has different notation for each model.
+
 .. rubric:: Footnotes
 
 .. [#tubes] It wasn't till after welding the bicycle frame together did I

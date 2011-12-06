@@ -8,19 +8,20 @@ Introduction
 ============
 
 Attempting to derive the equations of motion of the Whipple bicycle model was
-the trigger which solidified my dissertation topic. I attempted the derivation
-for my class project in Mont Hubbard's winter 2006 multi-body dynamics class
-and struggled with it well into the summer before finally getting a mostly
-correct answer. After the fact, I realized much of my pain was caused by a
-single missing apostrophe in my Autolev computer code [#]_. Another student,
-Thomas Englehardt, in the class also derived the equations and helped me debug
-by sharing his code and going over his methods. Even then, it turned out that
-my original equations weren't "exactly" correct and it wasn't until Luke
-Peterson joined our lab and got the bicycle dynamics itch did I get the bugs
-sorted out in my derivation. Conversations and collaboration with Luke have
-improved the derivation significantly and influence much of what follows. Luke
-has also continued to improve the derivation with the goal of printing the
-first compact symbolic result.
+the trigger which solidified my graduate research topic. I attempted the
+derivation for my class project in Mont Hubbard's winter 2006 multi-body
+dynamics class and struggled with it well into the summer before finally
+getting a mostly correct answer. After the fact, I realized much of my pain was
+caused by a single missing apostrophe in my Autolev source code [#]_. But
+regardless of that another student in the class, Thomas Englehardt, also
+derived the equations and helped me debug by sharing his code and going over
+his methods. Even then, it turned out that my original equations weren't
+"exactly" correct and it wasn't until Luke Peterson joined our lab and got the
+bicycle dynamics itch did I get the bugs sorted out in my derivation.
+Conversations and collaboration with Luke have improved the derivation
+significantly and influence much of what follows. Luke has also continued to
+improve the derivation with the goal of printing the first compact symbolic
+result.
 
 Derivation of the Non-linear Equations of Motion
 ================================================
@@ -28,22 +29,23 @@ Derivation of the Non-linear Equations of Motion
 The Whipple Model is the foundation of all the models presented in this
 dissertation. This section details derivation of the non-linear equations of
 motion using Kane's method [KaneLevinson1985]_. The equations of motion are
-algebraically unwieldy and no one so far has publicly shown them in a form
+algebraically unwieldy and no one so far has publicly printed them in a form
 compact enough to print on reasonably sized paper and certainly not in a form
-suitable for any analytical understanding [#]_. My methodology relies heavily on
-computer aided algebra to do the bookkeeping in the derivation, so I will only
-describe the necessary details to derive the equations, leaving the algebra,
-trigonometry and calculus to the computer. The symbolic equations of motion
-herein were originally developed using Autolev, a proprietary and now defunct
-software package for symbolically deriving equations of motion for multi-body
-systems.  I've since used the open source software `SymPy <http://sympy.org>`_
-to derive the equations with the help of the included ``mechanics`` package
-which was developed in our lab to provide a software package suitable of
-academia with similar capabilities as Autolev. The input code for both software
-packages are available in the ``src/eom`` directory of the dissertation source
-files.
+suitable for any in depth analytical understanding [#]_. My methodology relies
+heavily on computer aided algebra to do the bookkeeping in the derivation, so I
+will only describe the necessary details to derive the equations, leaving the
+algebra, trigonometry and calculus to the computer. The symbolic equations of
+motion herein were originally developed using Autolev, a proprietary and now
+defunct software package for symbolically deriving equations of motion for
+multi-body systems. I've since used the open source software `SymPy
+<http://sympy.org>`_ to derive the equations with the help of the included
+``mechanics`` package which was developed in our lab to provide a software
+package suitable of academia with similar capabilities as Autolev. The input
+code for both software packages are available in the ``src/eom`` directory of
+the dissertation source files.
 
-.. todo:: add the autolev code to the src/eom directory
+.. todo:: add the autolev code to the src/eom directory, i.e. make alparse
+   installable
 
 Model Description
 -----------------
@@ -62,12 +64,18 @@ Unfortunately the word "model" will be used in varying contexts and with
 different meanings throughout this dissertation. I will attempt to be precise
 with my wording. For this chapter, I consider a dynamic model, such as the
 *Whipple Bicycle Model*, to be the equivalent to another dynamic model if at
-least the minimal set equation of motion are the same. This means that the
-Whipple Bicycle Model linearized about the nominal configuration is a different
-model than the non-linear *Whipple Bicycle Model*. I will try to be explicit
-when referring to the various models.
+least the minimal set of equation of motions are the same (i.e. give the same
+result when evaluated at a particular state). This implies that the Whipple
+Bicycle Model linearized about the nominal configuration is a different model
+than the non-linear *Whipple Bicycle Model*. I will try to be explicit when
+referring to the various models.
 
-I will use this terminology for the rigid bodies, see Figure
+.. todo:: What about when a model is invalid at some configuration. I suspect
+   that a derivation with euler angles might very well give different results
+   as the same model derived with quaternions at a point where the euler angle
+   derivation has a divide by zero.
+
+I will use this terminology for the four rigid bodies, see Figure
 :ref:`figBicycleGeometry <1>`:
 
 Rear Frame, :math:`C`
@@ -85,18 +93,18 @@ Parameterization
 
 The benchmark derivation of the linear Whipple model [Meijaard2007]_ about the
 nominal configuration uses a set of non-minimal parameters based on typical
-geometric parameters and inertia definitions  with respect to the global
-reference frame.  The nominal configuration is defined as the configuration
+geometric parameters and inertia definitions with respect to the global
+reference frame. The *nominal configuration* is defined as the configuration
 when the steering angle is zero and the bicycle is upright with respect to
-gravity and the ground plane. The parameters presented in [Meijaard2007]_ are not
-necessarily the best choice of parameters, especially when looking at the model
-from a non-linear perspective, as they not the simplest nor minimal set of
-parameters. For example, the benchmark parameters can been reduced in number by
-making use of gyrostats, see [Sharp2008]_. Choosing a minimum, constant set of
-parameters can certainly reduce the complexity of the resulting non-linear
-equations. In this derivation, I use a parameterization with different
-geometry and inertial definitions, but do not make use of gyrostats to reduce
-the number of parameters.
+gravity and the ground plane. The parameters presented in [Meijaard2007]_ are
+not necessarily the best choice of parameters, especially when looking at the
+model from a non-linear perspective, as they not the simplest nor a minimal set
+of parameters. For example, the benchmark parameters can been reduced in number
+by making use of gyrostats, see [Sharp2008]_. Choosing a minimum, constant set
+of parameters can certainly reduce the complexity of the resulting non-linear
+equations. In this derivation, I use a parameterization with different geometry
+and inertial definitions to facilitate a more intuitive non-linear derivation,
+but do not make use of gyrostats to reduce the number of parameters.
 
 Conversion
 ~~~~~~~~~~
@@ -133,8 +141,8 @@ The mass center locations are as follows:
    l_3 = \frac{x_H - w - l_4  \operatorname{sin}(\lambda)}
    {\operatorname{cos}(\lambda)}
 
-The masses are equivalently defined. The left are my variable names and the right are the
-Benchmark names:
+The masses are equivalently defined. The left are my variable names and the
+right are the Benchmark names:
 
 .. math::
    :label: eqMassConversion
@@ -156,26 +164,26 @@ The moments of inertia of the wheels are also equivalently defined:
      \begin{bmatrix}
        I_{D11} & 0 & 0\\
        0 & I_{D22} & 0\\
-       0 & 0 & I_{D33}
+       0 & 0 & I_{D11}
      \end{bmatrix}
      = I_R =
      \begin{bmatrix}
        I_{Rxx} & 0 & 0\\
        0 & I_{Ryy} & 0\\
-       0 & 0 & I_{Rzz}
+       0 & 0 & I_{Rxx}
      \end{bmatrix}
 
      I_F =
      \begin{bmatrix}
        I_{F11} & 0 & 0\\
        0 & I_{F22} & 0\\
-       0 & 0 & I_{F33}
+       0 & 0 & I_{F11}
      \end{bmatrix}
      = I_F =
      \begin{bmatrix}
        I_{Fxx} & 0 & 0\\
        0 & I_{Fyy} & 0\\
-       0 & 0 & I_{Fzz}
+       0 & 0 & I_{Fxx}
      \end{bmatrix}
 
 The moments and products of inertia for the frame and fork require the
@@ -231,17 +239,15 @@ with respect to the system configuration.
 
 .. todo:: Should I include a diagram of the traditional geometry definitions?
 
-.. todo:: Cite the reference to the paper on motorcycle geometry by an Italian guy.
-
-With that in mind after trying various parameterizations, Luke and I have
-settled on the geometric formulation presented by [Psiaki1979]_. The wheels are
-described by their radius (:math:`\left(r\geq0\right)`) and the remaining geometry is
+With that in mind and after trying various parameterizations, I settled on the
+geometric formulation presented by [Psiaki1979]_. The wheels are described by
+their radius (:math:`\left(r\geq0\right)`) and the remaining geometry is
 defined by three distances, all of which are configuration invariant. The
 distance :math:`d_1` is the offset to the center of the rear wheel from the
 steer axis and :math:`d_3` is the offset of the front wheel from the steering
 axis. :math:`d_2` is then the distance between the wheel centers as measured
-along the steer axis. :ref:`Figure 1 <figBicycleGeometry>` gives a complete visual
-description.
+along the steer axis. :ref:`Figure 1 <figBicycleGeometry>` gives a complete
+visual description.
 
 .. _figBicycleGeometry:
 
@@ -250,19 +256,16 @@ description.
    :width: 3.75in
 
    The bicycle in the nominal configuration. The rigid bodies are the
-   frame/rider, C, rear wheel, D, fork/handlebar, E and front wheel, F. The
-   geometric parameters are also shown.
-
-.. todo:: add the contact points on the diagram
+   rear frame, C, rear wheel, D, front frame, E and front wheel, F. The
+   geometric parameters and important points are also shown.
 
 Generalized Coordinates
 -----------------------
 
-The bicycle is completely configured by eight generalized coordinates, :ref. Before
-time, there first was a Newtonian reference frame, of which all of this motion
-will occur. I chose the SAE vehicle dynamics coordinates standard as in
-[Meijaard2007]_ and all rotations are are defined as positive right-handed. I
-define rotation matrices such that:
+The bicycle is completely configured in a Newtonian reference frame by eight
+generalized coordinates. I chose the SAE vehicle dynamics coordinates standard
+as in [Meijaard2007]_ [#]_ and all rotations are are defined as positive
+right-handed. I define rotation matrices such that:
 
 .. math::
 
@@ -1224,6 +1227,11 @@ reproduced.
        given time, the point in the ground plane that tracks the contact point, the
        point on the wheel that instantaneously contacts the ground at any given time,
        and the point on the wheel ...
+
+.. [#] I don't necessarily agree that this is a great standard to follow,
+       because it creates much unessary confusion when defining and mapping
+       between parameterizations. The three axis pointing upward would be less
+       error prone.
 
 .. todo::
    Contact points need better explanations.

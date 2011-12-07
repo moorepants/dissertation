@@ -4,20 +4,16 @@
 # state provided by Table 1 in BasuMandall2007 with my model and compares the
 # results.
 
-# built in imports
-import sys
-
 # dependencies
 import numpy as np
 import bicycleparameters as bp
 from dtk import bicycle
 
 # local dependencies
-sys.path.append('/media/Data/Documents/School/UC Davis/Bicycle Mechanics/bicycle/alparse')
-from models.WhippleMoorePar.WhippleMoorePar import WhippleMoorePar
+from Whipple import Whipple
 
 # create the Whipple model object
-whip = WhippleMoorePar()
+whip = Whipple()
 
 # load the benchmark parameters
 pathToData='/media/Data/Documents/School/UC Davis/Bicycle Mechanics/BicycleParameters/data/'

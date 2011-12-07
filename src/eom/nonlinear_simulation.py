@@ -2,20 +2,16 @@
 
 # This reproduces Figure 4 in Meijaard 2007 with my model.
 
-# built in imports
-import sys
-
 # dependencies
 import numpy as np
 import bicycleparameters as bp
 from dtk import bicycle
 
 # local dependencies
-sys.path.append('/media/Data/Documents/School/UC Davis/Bicycle Mechanics/bicycle/alparse')
-from models.WhippleMoorePar.WhippleMoorePar import WhippleMoorePar
+from Whipple import Whipple
 
 # create the Whipple model (with my parameters)
-whip = WhippleMoorePar()
+whip = Whipple()
 
 # load the benchmark parameters
 pathToData='/media/Data/Documents/School/UC Davis/Bicycle Mechanics/BicycleParameters/data/'
@@ -45,9 +41,9 @@ whip.intOpts['tf'] = tf
 whip.simulate()
 
 # plot figure 4 from Meijaard2007 using my model
-rollRate = whip.simResults['y'][:, whip.outputNames.index('u4')]
-speed = -whip.simResults['y'][:, whip.outputNames.index('u6')] * whip.parameters['rR']
-steerRate = whip.simResults['y'][:, whip.outputNames.index('u7')]
+rollRate = whip.get_sim_output('u4')
+speed = -whip.get_sim_output('u6') * whip.parameters['rR']
+steerRate = whip.get_sim_output('u7')
 time = whip.simResults['t']
 newFig = bicycle.meijaard_figure_four(time, rollRate, steerRate, speed)
 newFig.savefig('../../figures/eom/meijaard2007-figure-four.png', dpi=300)

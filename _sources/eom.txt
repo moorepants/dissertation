@@ -8,19 +8,20 @@ Introduction
 ============
 
 Attempting to derive the equations of motion of the Whipple bicycle model was
-the trigger which solidified my dissertation topic. I attempted the derivation
-for my class project in Mont Hubbard's winter 2006 multi-body dynamics class
-and struggled with it well into the summer before finally getting a mostly
-correct answer. After the fact, I realized much of my pain was caused by a
-single missing apostrophe in my Autolev computer code [#]_. Another student,
-Thomas Englehardt, in the class also derived the equations and helped me debug
-by sharing his code and going over his methods. Even then, it turned out that
-my original equations weren't "exactly" correct and it wasn't until Luke
-Peterson joined our lab and got the bicycle dynamics itch did I get the bugs
-sorted out in my derivation. Conversations and collaboration with Luke have
-improved the derivation significantly and influence much of what follows. Luke
-has also continued to improve the derivation with the goal of printing the
-first compact symbolic result.
+the trigger which solidified my graduate research topic. I attempted the
+derivation for my class project in Mont Hubbard's winter 2006 multi-body
+dynamics class and struggled with it well into the summer before finally
+getting a mostly correct answer. After the fact, I realized much of my pain was
+caused by a single missing apostrophe in my Autolev source code [#]_. But
+regardless of that another student in the class, Thomas Englehardt, also
+derived the equations and helped me debug by sharing his code and going over
+his methods. Even then, it turned out that my original equations weren't
+"exactly" correct and it wasn't until Luke Peterson joined our lab and got the
+bicycle dynamics itch did I get the bugs sorted out in my derivation.
+Conversations and collaboration with Luke have improved the derivation
+significantly and influence much of what follows. Luke has also continued to
+improve the derivation with the goal of printing the first compact symbolic
+result.
 
 Derivation of the Non-linear Equations of Motion
 ================================================
@@ -28,27 +29,29 @@ Derivation of the Non-linear Equations of Motion
 The Whipple Model is the foundation of all the models presented in this
 dissertation. This section details derivation of the non-linear equations of
 motion using Kane's method [KaneLevinson1985]_. The equations of motion are
-algebraically unwieldy and no one so far has publicly shown them in a form
+algebraically unwieldy and no one so far has publicly printed them in a form
 compact enough to print on reasonably sized paper and certainly not in a form
-suitable for any analytical understanding [#]_. My methodology relies heavily on
-computer aided algebra to do the bookkeeping in the derivation, so I will only
-describe the necessary details to derive the equations, leaving the algebra,
-trigonometry and calculus to the computer. The symbolic equations of motion
-herein were originally developed using Autolev, a proprietary and now defunct
-software package for symbolically deriving equations of motion for multi-body
-systems.  I've since used the open source software `SymPy <http://sympy.org>`_
-to derive the equations with the help of the included ``mechanics`` package
-which was developed in our lab to provide a software package suitable of
-academia with similar capabilities as Autolev. The input code for both software
-packages are available in the ``src/eom`` directory of the dissertation source
-files.
+suitable for any in depth analytical understanding [#]_. My methodology relies
+heavily on computer aided algebra to do the bookkeeping in the derivation, so I
+will only describe the necessary details to derive the equations, leaving the
+algebra, trigonometry and calculus to the computer. The symbolic equations of
+motion herein were originally developed using Autolev, a proprietary and now
+defunct software package for symbolically deriving equations of motion for
+multi-body systems. I've since used the open source software `SymPy
+<http://sympy.org>`_ to derive the equations with the help of the included
+``mechanics`` package which was developed in our lab to provide a software
+package suitable of academia with similar capabilities as Autolev. The input
+code for both software packages are available in the ``src/eom`` directory of
+the dissertation source files.
 
-.. todo:: add the autolev code to the src/eom directory
+.. todo:: add the autolev code to the src/eom directory, i.e. make alparse
+   installable
 
 Model Description
 -----------------
 
-The *Whipple Bicycle Model* [Whipple1899]_ is typically defined by these set of assumptions:
+The *Whipple Bicycle Model* [Whipple1899]_ is typically defined by these set of
+assumptions:
 
 * The Whipple model is made up of four rigid bodies: the main frame (may or may
   not include a rigid rider), the fork and handlebar assembly and two wheels.
@@ -62,12 +65,18 @@ Unfortunately the word "model" will be used in varying contexts and with
 different meanings throughout this dissertation. I will attempt to be precise
 with my wording. For this chapter, I consider a dynamic model, such as the
 *Whipple Bicycle Model*, to be the equivalent to another dynamic model if at
-least the minimal set equation of motion are the same. This means that the
-Whipple Bicycle Model linearized about the nominal configuration is a different
-model than the non-linear *Whipple Bicycle Model*. I will try to be explicit
-when referring to the various models.
+least the minimal set of equation of motions are the same (i.e. give the same
+result when evaluated at a particular state). This implies that the Whipple
+Bicycle Model linearized about the nominal configuration is a different model
+than the non-linear *Whipple Bicycle Model*. I will try to be explicit when
+referring to the various models.
 
-I will use this terminology for the rigid bodies, see Figure
+.. todo:: What about when a model is invalid at some configuration? I suspect
+   that a derivation with euler angles might very well give different results
+   as the same model derived with quaternions at a point where the euler angle
+   derivation has a divide by zero.
+
+I will use this terminology for the four rigid bodies, see Figure
 :ref:`figBicycleGeometry <1>`:
 
 Rear Frame, :math:`C`
@@ -85,18 +94,18 @@ Parameterization
 
 The benchmark derivation of the linear Whipple model [Meijaard2007]_ about the
 nominal configuration uses a set of non-minimal parameters based on typical
-geometric parameters and inertia definitions  with respect to the global
-reference frame.  The nominal configuration is defined as the configuration
+geometric parameters and inertia definitions with respect to the global
+reference frame. The *nominal configuration* is defined as the configuration
 when the steering angle is zero and the bicycle is upright with respect to
-gravity and the ground plane. The parameters presented in [Meijaard2007]_ are not
-necessarily the best choice of parameters, especially when looking at the model
-from a non-linear perspective, as they not the simplest nor minimal set of
-parameters. For example, the benchmark parameters can been reduced in number by
-making use of gyrostats, see [Sharp2008]_. Choosing a minimum, constant set of
-parameters can certainly reduce the complexity of the resulting non-linear
-equations. In this derivation, I use a parameterization with different
-geometry and inertial definitions, but do not make use of gyrostats to reduce
-the number of parameters.
+gravity and the ground plane. The parameters presented in [Meijaard2007]_ are
+not necessarily the best choice of parameters, especially when looking at the
+model from a non-linear perspective, as they not the simplest nor a minimal set
+of parameters. For example, the benchmark parameters can been reduced in number
+by making use of gyrostats, see [Sharp2008]_. Choosing a minimum, constant set
+of parameters can certainly reduce the complexity of the resulting non-linear
+equations. In this derivation, I use a parameterization with different geometry
+and inertial definitions to facilitate a more intuitive non-linear derivation,
+but do not make use of gyrostats to reduce the number of parameters.
 
 Conversion
 ~~~~~~~~~~
@@ -133,8 +142,8 @@ The mass center locations are as follows:
    l_3 = \frac{x_H - w - l_4  \operatorname{sin}(\lambda)}
    {\operatorname{cos}(\lambda)}
 
-The masses are equivalently defined. The left are my variable names and the right are the
-Benchmark names:
+The masses are equivalently defined. The left are my variable names and the
+right are the Benchmark names:
 
 .. math::
    :label: eqMassConversion
@@ -152,30 +161,30 @@ The moments of inertia of the wheels are also equivalently defined:
 .. math::
    :label: eqWheelInertiaConversion
 
-     I_D =
+     \mathbf{I}_D =
      \begin{bmatrix}
        I_{D11} & 0 & 0\\
        0 & I_{D22} & 0\\
-       0 & 0 & I_{D33}
+       0 & 0 & I_{D11}
      \end{bmatrix}
-     = I_R =
+     = \mathbf{I}_R =
      \begin{bmatrix}
        I_{Rxx} & 0 & 0\\
        0 & I_{Ryy} & 0\\
-       0 & 0 & I_{Rzz}
+       0 & 0 & I_{Rxx}
      \end{bmatrix}
 
-     I_F =
+     \mathbf{I}_F =
      \begin{bmatrix}
        I_{F11} & 0 & 0\\
        0 & I_{F22} & 0\\
-       0 & 0 & I_{F33}
+       0 & 0 & I_{F11}
      \end{bmatrix}
-     = I_F =
+     = \mathbf{I}_F =
      \begin{bmatrix}
        I_{Fxx} & 0 & 0\\
        0 & I_{Fyy} & 0\\
-       0 & 0 & I_{Fzz}
+       0 & 0 & I_{Fxx}
      \end{bmatrix}
 
 The moments and products of inertia for the frame and fork require the
@@ -184,7 +193,7 @@ direction cosine matrix with respect to rotation through :math:`\lambda`.
 .. math::
    :label: eqConversionRotation
 
-   R =
+   \mathbf{R} =
    \begin{bmatrix}
      c_\lambda & 0. & -s_\lambda\\
      0. & 1. & 0.\\
@@ -194,26 +203,26 @@ direction cosine matrix with respect to rotation through :math:`\lambda`.
 .. math::
    :label: eqFrameInertiaConversion
 
-    I_B =
+    \mathbf{I}_B =
     \begin{bmatrix}
       I_{Bxx} & 0 & I_{Bxz}\\
       0 & I_{Byy} & 0\\
       I_{Bxz} & 0 & I_{Bzz}
     \end{bmatrix}
 
-    I_C =  R I_B R^T
+    \mathbf{I}_C =  \mathbf{R} \mathbf{I}_B \mathbf{R}^T
 
 .. math::
    :label: eqForkInertiaConversion
 
-   I_H =
+   \mathbf{I}_H =
    \begin{bmatrix}
      I_{Hxx} & 0 & I_{Hxz}\\
      0 & I_{Hyy} & 0\\
      I_{Hxz} & 0 & I_{Hzz}
    \end{bmatrix}
 
-   I_E =  R I_H R^T
+   \mathbf{I}_E =  \mathbf{R} \mathbf{I}_H \mathbf{R}^T
 
 .. _geometry:
 
@@ -231,17 +240,15 @@ with respect to the system configuration.
 
 .. todo:: Should I include a diagram of the traditional geometry definitions?
 
-.. todo:: Cite the reference to the paper on motorcycle geometry by an Italian guy.
-
-With that in mind after trying various parameterizations, Luke and I have
-settled on the geometric formulation presented by [Psiaki1979]_. The wheels are
-described by their radius (:math:`\left(r\geq0\right)`) and the remaining geometry is
+With that in mind and after trying various parameterizations, I settled on the
+geometric formulation presented by [Psiaki1979]_. The wheels are described by
+their radius (:math:`\left(r\geq0\right)`) and the remaining geometry is
 defined by three distances, all of which are configuration invariant. The
 distance :math:`d_1` is the offset to the center of the rear wheel from the
 steer axis and :math:`d_3` is the offset of the front wheel from the steering
 axis. :math:`d_2` is then the distance between the wheel centers as measured
-along the steer axis. :ref:`Figure 1 <figBicycleGeometry>` gives a complete visual
-description.
+along the steer axis. :ref:`Figure 1 <figBicycleGeometry>` gives a complete
+visual description.
 
 .. _figBicycleGeometry:
 
@@ -250,19 +257,16 @@ description.
    :width: 3.75in
 
    The bicycle in the nominal configuration. The rigid bodies are the
-   frame/rider, C, rear wheel, D, fork/handlebar, E and front wheel, F. The
-   geometric parameters are also shown.
-
-.. todo:: add the contact points on the diagram
+   rear frame, C, rear wheel, D, front frame, E and front wheel, F. The
+   geometric parameters and important points are also shown.
 
 Generalized Coordinates
 -----------------------
 
-The bicycle is completely configured by eight generalized coordinates, :ref. Before
-time, there first was a Newtonian reference frame, of which all of this motion
-will occur. I chose the SAE vehicle dynamics coordinates standard as in
-[Meijaard2007]_ and all rotations are are defined as positive right-handed. I
-define rotation matrices such that:
+The bicycle is completely configured in a Newtonian reference frame by eight
+generalized coordinates. I chose the SAE vehicle dynamics coordinates standard
+as in [Meijaard2007]_ [#]_ and all rotations are are defined as positive
+right-handed. I define rotation matrices such that:
 
 .. math::
 
@@ -286,8 +290,8 @@ and lateral coordinates :math:`q_1` and :math:`q_2`, respectively. I then
 orient the rear frame, :math:`C`, with respect to the Newtonian reference frame
 through a body fixed 3-1-2 rotation defining the yaw angle, :math:`q_3`, the
 roll angle, :math:`q_4`, and the pitch angle, :math:`q_5`. The intermediate
-frames yaw, :math:`A` and roll, :math:`B`, are implicitly generated along the
-way. The rotation matrix of :math:`C` relative to :math:`N` is then:
+frames yaw, :math:`A` and roll, :math:`B`, are implicitly generated. The
+rotation matrix of :math:`C` relative to :math:`N` is then:
 
 .. math::
    :label: NtoC
@@ -313,7 +317,7 @@ The rear wheel, :math:`D`, rotates with respect to the rear frame about the
    \end{bmatrix}
 
 The front frame, :math:`E`, rotates with respect to the rear frame about the
-:math:`\hat{c}_3` axis through :math:`q_7`.
+:math:`\hat{c}_3` axis through the steering angle, :math:`q_7`.
 
 .. math::
    :label: CtoE
@@ -372,7 +376,7 @@ such that:
 
    \bar{r}^{c_e/d_o} = d_1\hat{c}_1
 
-The mass center of the front wheel, :math:`f_o`, is located by:
+The mass center of the front wheel, :math:`f_o`, is then located by:
 
 .. math::
    :label: frontWheelMassCenter
@@ -387,7 +391,7 @@ parameters:
 
    \bar{r}^{e_o/f_o} = l_3\hat{e}_1 + l_4\hat{e}_3
 
-The location of the point on the wheel instantaneously in contact with the
+The location of the point on the rear wheel instantaneously in contact with the
 ground in the Newtonian frame is then defined by:
 
 .. math::
@@ -417,7 +421,7 @@ Where the triple cross product divided by its magnitude represents the unit
 vector pointing from the front wheel center to the point on the front wheel
 instantaneously in contact with the ground. [Basu-Mandal2007]_ give an
 explanation and diagram. I originally thought of this vector in terms of dot
-products. Subtract the :math:`\hat{n}_3` component of :math:`\hat{e}_2` from
+products, i.e. subtract the :math:`\hat{n}_3` component of :math:`\hat{e}_2` from
 :math:`\hat{n}_3` to get a vector that points from the front wheel center to
 the contact point.
 
@@ -436,9 +440,9 @@ Holonomic Constraints
 
 Two holonomic configuration constraints, arising from the fact that both wheels
 must touch the ground, complicate the model derivation. The first holonomic
-equation is obviated by definition of the rear wheel contact point
-:eq:`rearWheelContact`. This constraint enforces that the contact point cannot
-have an displacement in the :math:`\hat{n}_3` direction[#]_. The second
+equation is obviated by definition of the rear wheel center
+:eq:`rearWheelMassCenter`. This enforces that the contact point
+cannot have an displacement in the :math:`\hat{n}_3` direction. [#]_ The second
 holonomic constraint is enforced by requiring the front wheel to touch the
 ground plane. The constraint is characterized by a nonlinear relationship
 between the roll angle :math:`q_4`, steer angle :math:`q_7` and pitch angle
@@ -471,7 +475,7 @@ the analytical forms of the equations of motion and the efficiency in
 computation. I did not spend much effort in selecting optimal generalized
 speeds, as the analytical form of the equations of motion of this system would
 be difficult to interpret regardless of the choice and because computational speed
-was of little concern. For :math:`i=1,\dotsc,8` I simpy choose the generalized
+was of little concern. For :math:`i=1,\dotsc,8` I simply choose the generalized
 speeds to be equal to the time derivatives of the generalized coordinates:
 
 .. math::
@@ -483,10 +487,10 @@ Velocity
 --------
 
 The angular and linear velocities of each rigid body are required for computing
-partial velocities. Also, the velocities of the points on the wheel at the
-ground contact points are needed for the developement of the nonholomic
-constraints. The angular velocity of the rear frame, :math:`C`, in :math:`N`
-is:
+the partial velocities used in Kane's method. Also, the velocities of the
+points on the wheel at the ground contact points are needed for the
+development of the nonholomic constraints. The angular velocity of the rear
+frame, :math:`C`, in :math:`N` is:
 
 .. math::
    :label: omegaCinN
@@ -541,9 +545,9 @@ mass centers can be computed. Starting with mass center of the rear wheel:
    r_Rs_4u_3\hat{b}_1 + r_Ru_4\hat{b}_2
 
 The remaining velocities can be computed by taking advantage of the fact that
-various pairs of the defined points are on the same rigid body. The mass
-centers of the rear wheel, :math:`d_o` and the rear frame, :math:`c_o`, and the
-steer axis point, :math:`c_e`, all lie on the rear frame.
+various pairs of points are fixed on the same rigid body. The mass centers of
+the rear wheel, :math:`d_o` and the rear frame, :math:`c_o`, and the steer axis
+point, :math:`c_e`, all lie on the rear frame.
 
 .. math::
    :label: CoInN
@@ -577,7 +581,7 @@ steer axis point as they both lie on the front frame:
    (s_4s_7-s_5c_4c_7)u_3))\hat{e}_2 + \\
    &d_3(s_7c_5u_4-c_7u_5-(s_4c_7+s_5s_7c_4)u_3)\hat{e}_3
 
-Then the velocity of the front mass center is similarly:
+Then the velocity of the front frame mass center is similarly:
 
 .. math::
    :label: EoInN
@@ -740,10 +744,7 @@ The acceleration of the front wheel center of mass is:
    s_5c_4c_7u_7-s_7c_4c_5u_5)+s_7c_5\dot{u}_4-s_5s_7u_4u_5-\\
    &c_7\dot{u}_5-(s_4c_7+s_5s_7c_4)\dot{u}_3)\hat{e}_3
 
-The acceleration of the fork center of mass is:
-
-.. todo:: These equations can be shortened significantly by finding the common
-   sub expressions.
+The acceleration of the front frame center of mass is:
 
 .. math::
    :label: aEoInN
@@ -789,13 +790,13 @@ The acceleration of the fork center of mass is:
 Motion Constraints
 ------------------
 
-I make use of motion non-holonomic constraints to reduce the locally achievable
-configuration space from eight degrees of freedom to three. The first four
-constraints are introduced to enforce the pure rolling, no side-slip, contact
-of the knife-edge wheels with the ground plane and are non-holonomic. This sets
-the components of velocity of the contact points on the wheels in the
-:math:`{\mathbf{a}}_1` and :math:`{\mathbf{a}}_2` directions equal to zero,
-producing the following relationships:
+I make use of motion constraints to reduce the locally achievable configuration
+space from eight degrees of freedom to three. The first four constraints are
+introduced to enforce the pure rolling, no side-slip, contact of the knife-edge
+wheels with the ground plane and are non-holonomic. This sets the components of
+velocity of the contact points on the wheels in the :math:`\hat{a}_1` and
+:math:`\hat{a}_2` directions equal to zero, producing the following
+relationships:
 
 .. math::
    :label: eqNonholonomic1
@@ -834,7 +835,7 @@ producing the following relationships:
 The fifth motion constraint is used to manage the constraint on the velocities
 imposed by the holonomic constraint, Equation :eq:`holonomicConstraint`. By
 differentiating the holonomic constraint equation you arrive at an equation
-that is linear in the generlized speeds and can be treated as any other motion
+that is linear in the generalized speeds and can be treated as any other motion
 constraint:
 
 .. math::
@@ -870,15 +871,15 @@ speeds take this form:
 
    u_8 = f(u_4, u_6, u_7, q_4, \ldots, q_8)
 
-But at this point, the equations becomes analytically long and it is not
-necessarily trivial to reduce the length of the equations from this point ono.
+At this point, the equations becomes analytically long and it is not
+necessarily trivial to reduce the length of the equations from this point on.
 A smarter choice of generalized speeds could certainly help, but I did not
 spend any effort to search for a good set. From this point on in the
 derivation, I will not show the analytical results of the equations of motion,
 but will only walk through the remainder of the theory, as all of the building
 blocks are in place to derive the equations with Kane's method (or any other
 method). I highly recommend the use of computer aided algebra to continue on,
-but the diehard could certainly write them by hand. You will have to either run
+but the die-hard could certainly write them by hand. You will have to either run
 my computer code to get the equations or write your own.
 
 Generalized Active Forces
@@ -890,20 +891,22 @@ degrees of freedom, :math:`r=4,6,7`, they take the form:
 
 .. math::
 
-   \tilde{F}_r = (\tilde{F}_r)_C + (\tilde{F}_r)_D + (\tilde{F}_r)_E + (\tilde{F}_r)_F
+   \tilde{F}_r = (\tilde{F}_r)_C + (\tilde{F}_r)_D + (\tilde{F}_r)_E +
+   (\tilde{F}_r)_F
 
-   (\bar{F}_r)_X= ^N\bar{V}^{X_o}_r\cdot\bar{R}^{X_o} + ^N\bar{\omega}^X_r\cdot\bar{T}^X
+   (\bar{F}_r)_X= ^N\bar{V}^{x_o}_r\cdot\bar{R}^{x_o} +
+   ^N\bar{\omega}^X_r\cdot\bar{T}^X
 
-where :math:`^N\bar{V}_r^{X_o}` is the partial velocity of the mass center with
-respect to the generalized speed :math:`u_r`, :math:`\bar{R}^{c_o}` is the
+where :math:`^N\bar{V}_r^{x_o}` is the partial velocity of the mass center with
+respect to the generalized speed :math:`u_r`, :math:`\bar{R}^{x_o}` is the
 resultant forces on the mass center (excluding non-contributing forces),
-:math:`^N\bar{\omega}_r^C` is the partial angular velocity of the body with
-respect to :math:`u_r`, and :math:`\bar{T}^C` is the resultant torques on the
-body. The partial velocities are simply partial derivatie of the velocities in
-question with respect to the generalized speeds and can be found systematically
-as usual [Kane1985]_. The forces and torques follow are as follows. We assume
-that the only force acting on the system is the gravitational force, :math:`g`.
-Thus:
+:math:`^N\bar{\omega}_r^X` is the partial angular velocity of the body with
+respect to :math:`u_r`, and :math:`\bar{T}^X` is the resultant torques on the
+body where :math:`X` is one of the four bodies. The partial velocities are
+simply partial derivate of the velocities in question with respect to the
+generalized speeds and can be found systematically as usual [Kane1985]_.We
+assume that the only force acting on the system is the gravitational force,
+:math:`g`. The forces and torques are as follows, thus:
 
 .. math::
 
@@ -916,7 +919,7 @@ Thus:
   \bar{R}^{f_o} = m_Fg\hat{n}_3
 
 We also assume that there are three generalized active torques acting on the
-system which will correspond to the three independent generalized speeds found
+system which correspond to the three independent generalized speeds found
 in :ref:`nonholonomic`.
 
 The roll torque, :math:`T_4`, acts between the rear frame and the Newtonian
@@ -938,7 +941,7 @@ the rear frame and the rear wheel about :math:`\hat{c}_2` and the steer torque,
 Generalized Inertia Forces
 --------------------------
 
-The nonholonomic generalized inertia forces, :math:`\tilde{F}^*_r`, are formed
+The non-holonomic generalized inertia forces, :math:`\tilde{F}^*_r`, are formed
 using the accelerations and the inertial properties of the bodies.
 
 .. math::
@@ -949,13 +952,14 @@ using the accelerations and the inertial properties of the bodies.
    (\bar{F}^*_r)_X= ^N\bar{V}^{X_o}_r\cdot\bar{R}^*_{X_o} +
    ^N\bar{\omega}^X_r\cdot\bar{T}^*_X
 
-where :math:`^N\bar{V}_r^{X_o}` is the partial velocity of the mass center with
-respect to the generalized speed :math:`u_r`, :math:`\bar{R}^*_{X_o}` is the
-inertia force for :math:`X` in :math:`N` and is defined as:
+where :math:`^N\bar{V}_r^{x_o}` is once again the partial velocity of the mass
+center with respect to the generalized speed :math:`u_r`,
+:math:`\bar{R}^*_{x_o}` is the inertia force for :math:`X` in :math:`N` and is
+defined as:
 
 .. math::
 
-   \bar{R}^*_{X_o} = -m_X^N\bar{a}^{X_o}
+   \bar{R}^*_{x_o} = -m_X^N\bar{a}^{x_o}
 
 The mass of each rigid body is defined as a constant: :math:`m_C`, :math:`m_D`,
 :math:`m_E` and :math:`m_F`.
@@ -973,7 +977,7 @@ body which is defined as:
 corresponds to the following tensor definitions for the inertia of each rigid
 body. The inertia tensor for each body is defined with respect to the mass
 center and the body's local reference frame. The bicycle wheels are assumed to
-be symmetric about their 1-3 plane and the 1-2 plane.
+be symmetric about both their 1-3 and 1-2 planes.
 
 .. math::
    :label: ID
@@ -1017,8 +1021,6 @@ The rear frame and front frame are assumed to be symmetric about their 1-3 plane
    I_{E13} & 0 & I_{E33}
    \end{bmatrix}
 
-.. todo:: Should I show these as inertia dyadics instead?
-
 Dynamical Equations of Motion
 -----------------------------
 
@@ -1031,9 +1033,8 @@ Kane's equations are now formed as:
 and are a vector function of three coupled equations which are linear in the
 roll, steer and rear wheel accelerations. The linear system can be solved to
 give the first order equations for :math:`\dot{u}_r`, where :math:`r=4,6,7`.
-The dynamical equations are then solved for the :math:`\dot{u}`'s and paired
-with the essential kinematical differential equations to form the complete set
-of dynamics equations of motion in the form.
+These can then be  paired with the essential kinematical differential equations
+to form the complete set of dynamics equations of motion in the form.
 
 .. math::
 
@@ -1045,23 +1046,23 @@ where :math:`i=4,6,7` and :math:`j=4,5,6,7`. Keep in mind that the pitch angle,
 :math:`q_5`, is in fact a dependent coordinate, :math:`f(q_4,q_7)`, that I
 selected when dealing with the holonomic contraint, :eq:`holonomic`. Special
 attention during simulation and linearization will have to be made to
-accomodate the coordinate and will be described in the following sections.
+accommodate the coordinate and will be described in the following sections.
 
 Model discussion
 ----------------
 
-[Meijaard2007]_ does excellent job describing the essential nature of both
-Whipple model, with most of the focus on the version linearized about the
-nominal configuration, but also a bit about the non-linear model. Notable
-concepts include the fact that many of the coordinates are all ignorable, that
-is they do not show up in the essential dynamical equations of motion. These
-are the location of the ground contact point, :math:`q_1` and :math:`q_2`, the
-yaw angle, :math:`q_3`, and the wheel angles, :math:`q_6` and :math:`q_8`. The
-model is also energy conserving, because !!! contacts points do no work, the open
-loop model (i.e. inputs equal zero) exhibits stability during certain regimes
-of configuration. The system has left half plane zeros, which give it a
-non-minimal phase behavior. Numerous studies have revealed these facts:
-[Astrom2005]_, [BasuMandal2007]_, [Sharp2008]_, [Peterson2009]_, etc.
+[Astrom2006]_, [Meijaard2007]_, [BasuMandal2007]_, [Sharp2008]_, and many
+others do excellent job describing the essential nature of both the nonlinear
+Whipple model and various linearized models. Notable concepts include the fact
+that many of the coordinates are ignorable, that is they do not show up in the
+essential dynamical equations of motion. These are the location of the ground
+contact point, :math:`q_1` and :math:`q_2`, the yaw angle, :math:`q_3`, and the
+wheel angles, :math:`q_6` and :math:`q_8`. The model is also energy conserving,
+because the contact points do no work. When linearized about the nominal
+configuration at various constant forward speeds the open loop model (i.e.
+inputs equal zero) can exhibit stability within various speed regimes. The
+system can have left half plane zeros, which give a non-minimal phase behavior.
+This corroborates what bicycle riders already experience with counter-steering.
 
 .. todo:: Should I add more interesting facts about the model?
 
@@ -1071,9 +1072,12 @@ Simulation
 The nonlinear model can be simulated with various initial conditions. In the
 presented formulation all of the initial conditions can be set independently
 except for the roll, steer and pitch angles. Once two of the three are chosen,
-the third must be solved for. I solve the holonomic constraint equation
-numerically for pitch angle, :math:`q_5`, to provide the correct initial
-condition.
+the third must be solved for. I typically chose a steer and roll angle and then
+solve the holonomic constraint equation numerically for pitch angle,
+:math:`q_5`, to provide the correct initial condition. Figure :ref:`figFigFour`
+is an example open loop simulation of the nonlinear model.
+
+.. _figFigFour:
 
 .. figure:: figures/eom/meijaard2007-figure-four.png
    :width: 3in
@@ -1081,28 +1085,29 @@ condition.
 
    figFigFour
 
-   This is a reproduction of Figure 4 in [Meijaard2007]_. It shows the energy
-   conserving nature of the non-linear model (i.e. the forward speed settles on
-   a higher value that the initial speed as the energy used to disipate the
-   roll and steer is transferred to the forward speed.
+   This is a reproduction of Figure 4 in [Meijaard2007]_. The model
+   demonstrates stability. It also shows the energy conserving nature of the
+   non-linear model (i.e. the forward speed settles on a higher value that the
+   initial speed as the energy used to dissipate the roll and steer is
+   transferred to the forward speed.
 
 Nonlinear Validation
 --------------------
 
 Complex dynamical models are often very difficult to validate against one
 another due to complexity of large analytical expressions which were
-potentailly formed by different methods. The now now common method of
-validation is to evaluate equations numerically for non-trivial inputs and
-compare the results to high precision. These benchmark numerical sets are
-invaluable so that researchers can work from the same cornerstone, allow for
-scientific reproducibilty, and error checking.
+potentially formed by different methods. The now common method of validation is
+to evaluate equations numerically for non-trivial inputs and compare the
+results to high precision. These type of benchmark numerical sets are
+invaluable so that researchers can work from the same baseline and  because
+they allow for scientific reproducibility and error checking.
 
 [BasuMandall2007]_ present the non-linear Whipple model derived with both the
 Newton-Euler and Lagrange methods, along with a numerical benchmark. Table 1 in
 their paper gives the derivatives of all the coordinates and speeds to high
-precision for each of their derivations for a single state. They state that if
+precision for both of their derivations at a single state. They state that if
 one can compute the values to machine precision to ~10 significant figures the
-models can be concluded to be the same . The very first model I developed
+models can be concluded to be the same. The very first model I developed
 in 2006 would not have held up to this test. I owe the validity of my model to
 my labmate, Luke, as his persistence and interest in minute detail helped me
 bring my model up to par.
@@ -1123,23 +1128,26 @@ figures, thus I feel confident that the derivation is correct.
 Linearized Equations of Motion
 ==============================
 
-The nonlinear equations of motion can be linearized about an equilibrium point.
-The bicycle has many equilibrium points, the typical one studied is about the
-nonimal configuration [Meijaard2007]_ but others such as steady turn are valid
-too [BasuMandal2007]_. The equations can be linearized by computing the Taylor
-series expansion about the equilibrium point and disregarding the terms higher
-than first ordr. For the nominal configuration this amounts to calculating the
-Jacobian of the system of equations with respect to the coordinates and speeds
-and the inputs to obtain state matrix, :math:`\mathbf{A}`, and the input
-matrix, :math:`\mathbf{B}`. The partial derivatives of each equation were
-evaluated at the following fixed point: :math:`q_i=0` where :math:`i=4,5,7`,
-:math:`u_i=0` where :math:`i=4,7`, and :math:`u_5=-v/r_R` where :math:`v` is
-the constant forward speed of the bicycle. Care has to be taken when
-linearizing as :math:`q_5` is a dependent coordinate which still appears on the
-right hand side of the equations. In general the chain rule applies, but for
-the nominal configuration, the extra derivatives also equal zero. The
-linearization transforms the system to four linear first order differential
-equations in the form:
+The nonlinear equations of motion can be linearized about various equilibrium
+points.  The bicycle has many equilibrium points, the typical one studied is
+about the nominal configuration [Meijaard2007]_ but their are many others such
+as steady turns [BasuMandal2007]_. The equations can be linearized by computing
+the Taylor series expansion of the nonlinear equations of motion about the
+equilibrium point and disregarding the terms higher than first order. For the
+nominal configuration this amounts to calculating the Jacobian of the system of
+equations with respect to the coordinates, speeds and inputs to obtain state
+matrix, :math:`\mathbf{A}`, and the input matrix, :math:`\mathbf{B}`. The
+output, :math:`\mathbf{C}`, and feed-forward, :math:`\mathbf{D}`,  matrices are
+computed in the same fashion except with regards to the nonlinear equations of
+the outputs. The partial derivatives of each equation were evaluated at the
+following fixed point: :math:`q_i=0` where :math:`i=4,5,7`, :math:`u_i=0` where
+:math:`i=4,7`, and :math:`u_5=-v/r_R` where :math:`v` is the constant forward
+speed of the bicycle. Care has to be taken when linearizing as :math:`q_5` is a
+dependent coordinate which still appears on the right hand side of the
+equations. In general the chain rule applies, but for the nominal
+configuration, the extra derivatives also equal zero. The linearization
+transforms the system to four linear first order differential equations in the
+form:
 
 .. math::
    :label: eqStateSpace
@@ -1164,20 +1172,22 @@ equations in the form:
    \end{bmatrix}
 
 I calculate the equations symbolically to reach the same results as presented
-in [Meijaard2007]_, but my equations are much lengthier as the sympifcation
-routines available didn't provide much reprise. The accuracy of the linearized
-model was checked by comparing numerical results the benchmark bicycle in two
-ways. First the linearized equations of motion, Equation :eq:`eqStateSpace`,
-were formulated into two second order differential equations in the canonical
-form (Equation :eq`eqCanonical`) presented in [Meijaard2007]_. They present the
-values for the coefficient matrices (:math:`\mathbf{M}`, :math:`\mathbf{C}_1`,
-:math:`\mathbf{K}_0` and :math:`\mathbf{K}_2`) for the benchmark parameter set
-to at least 13 significant figures and the linearization presented here matched
-all of the significant figures. [Meijaard2007]_ also provide the eigenvalues of
-the state matrix at various speeds, which the model herein reproduces to all of
-the presented values. Table :ref:`tabLinCompare` shows the eigenvalues computed
-at 5 m/s in comparison to the values in Table 2 of [Meijaard2007]_ where my
-model matches to at least 13 significant figures.
+in [Meijaard2007]_, but my equations are much lengthier as the simplification
+routines available for the derivatives of the full nonlinear equations didn't
+provide much reprise. [Meijaard2007]_ assumes linearity in their derivation
+from the start and avoids much of the simplification issue. The accuracy of the
+linearized model was checked by comparing numerical results the benchmark
+bicycle in two ways. First the linearized equations of motion, Equation
+:eq:`eqStateSpace`, were formulated into two second order differential
+equations in the canonical form (Equation :eq:`eqCanonical`) presented in
+[Meijaard2007]_. They present the values for the coefficient matrices
+(:math:`\mathbf{M}`, :math:`\mathbf{C}_1`, :math:`\mathbf{K}_0` and
+:math:`\mathbf{K}_2`) for the benchmark parameter set to at least 13
+significant figures and the linearization presented here matched all of the
+significant figures. [Meijaard2007]_ also provide the eigenvalues of the state
+matrix at various speeds. Table :ref:`tabLinCompare` shows the eigenvalues
+computed at 5 m/s in comparison to the values in Table 2 of [Meijaard2007]_
+where my model matches to at least 13 significant figures.
 
 .. math::
    :label: eqCanonical
@@ -1189,8 +1199,8 @@ model matches to at least 13 significant figures.
 
 .. include:: tables/eom/linear-compare.rst
 
-Furthmore, the now ubiqutious eigenvalue plot versus forward speed is
-reproduced.
+Furthermore, the now ubiquitous eigenvalue plot versus forward speed is
+reproduced and matches to the precision of the naked eye.
 
 .. figure:: figures/eom/eigenvalues.png
    :width: 5in
@@ -1210,33 +1220,167 @@ reproduced.
    mode becomes stable at a higher speed. The weave and capsize critical speeds
    bound a stable speed range.
 
-.. todo:: explanation of the modes with some eigenvector diagrams
+For speeds above the bifurcation point, this linear model exhibits three
+distinct modes of motion, which have been named weave, capsize and caster. At a
+forward speed of 0.5 m/s, all of the eigenvalues are real, with two unstable
+and two stable. The eigenvector components help reveal the motion. Notice that
+the unstable eigenvalue values predict two modes where the roll and steer
+states decay rapidly (i.e. the bicycle falls over).
+
++---------------------------------------+---------------------------------------+
+| .. image:: figures/eom/eVecHalf-1.png | .. image:: figures/eom/eVecHalf-2.png |
++---------------------------------------+---------------------------------------+
+| .. image:: figures/eom/eVecHalf-3.png | .. image:: figures/eom/eVecHalf-4.png |
++---------------------------------------+---------------------------------------+
+
+Once the bicycle is brought up to a speed of 3 m/s the two unstable eigenvalues
+coalesce into a complex pair. The eigenvector components show that the steer
+amplitude is almost twice the roll amplitude and roll angle leads the steer
+angle by about 50 degrees. The caster mode, is a rapidly decay in steering and
+the capsize mode is a decay in roll and steering, with the roll at about twice
+the amplitude as steer.
+
++----------------------------------------+----------------------------------------+----------------------------------------+
+| .. image:: figures/eom/eVecThree-1.png | .. image:: figures/eom/eVecThree-2.png | .. image:: figures/eom/eVecThree-3.png |
++----------------------------------------+----------------------------------------+----------------------------------------+
+
+At 5 m/s the bicycle is stable, and now the weave mode shows that the roll and
+steering act more in unison at a somewhat similar amplitude. The caster and
+capsize are similar to 3 m/s.
+
++---------------------------------------+---------------------------------------+---------------------------------------+
+| .. image:: figures/eom/eVecFive-1.png | .. image:: figures/eom/eVecFive-2.png | .. image:: figures/eom/eVecFive-3.png |
++---------------------------------------+---------------------------------------+---------------------------------------+
+
+Finally, at 7 m/s the capsize mode goes unstable, with a slow decay in
+primarily roll.
+
++----------------------------------------+----------------------------------------+----------------------------------------+
+| .. image:: figures/eom/eVecSeven-1.png | .. image:: figures/eom/eVecSeven-2.png | .. image:: figures/eom/eVecSeven-3.png |
++----------------------------------------+----------------------------------------+----------------------------------------+
+
+The complete motion of the bicycle is a superposition of each mode.
+
+Notation
+========
+
+:math:`\lambda`
+   The steer axis tilt as defined in [Meijaard2007]_.
+:math:`c`
+   The trail as defined in [Meijaard2007]_.
+:math:`w`
+   The wheelbase as defined in [Meijaard2007]_.
+:math:`r_F,r_R`
+   The front and rear wheel radii as defined in [Meijaard2007]_.
+:math:`x_B,z_B,x_H,z_H`
+   The global mass center locations of the rear frame and front frame as  defined in [Meijaard2007]_.
+:math:`B,R,H,F`
+   The rigid bodies as defined in [Meijaard2007]_.
+:math:`m_B,m_R,m_H,m_F`
+   The mass of each rigid body as defined in [Meijaard2007]_.
+:math:`\mathbf{I}_B,\mathbf{I}_R,\mathbf{I}_H,\mathbf{I}_F`
+   The global inertia tensor of each rigid body as defined in [Meijaard2007]_.
+:math:`A,B,C,D,E,F`
+   The reference frames and/or rigid bodies.
+:math:`d_1,d_2,d_3`
+   The rear and front frame essential geometry.
+:math:`l_1,l_2,l_3,l_4`
+   The in plane distances to the rear and front frame centers of mass.
+:math:`m_C,m_D,m_E,m_F`
+   The mass of each rigid body.
+:math:`\mathbf{I}_C,\mathbf{I}_D,\mathbf{I}_E,\mathbf{I}_F`
+   The local inertia tensor of each rigid body.
+:math:`^Y\mathbf{R}^X`
+   A rotation matrix of body or reference frame :math:`X` with respect to body
+   or reference frame :math:`Y`.
+:math:`q_i`
+   The generalized coordinates.
+:math:`u_i`
+   The generalized speeds.
+:math:`\hat{x}_1,\hat{x}_2,\hat{x}_3`
+   Three orthogonal unit vectors in reference frame :math:`X`.
+:math:`x_o`
+   The mass center of body :math:`X`.
+:math:`c_e`
+   A point on the steer axis in both bodies :math:`C` and :math:`E`.
+:math:`d_n,f_n`
+   The points fixed in the rear and front wheels which are instantaneously in
+   contact with the ground.
+:math:`\bar{r}^{y_o/x_o}`
+   The vector from point :math:`x_o` to point :math:`y_o`.
+:math:`^X\omega^Y`
+   The angular velocity of frame :math:`Y` in frame :math:`X`.
+:math:`^Y\bar{v}^{x_o}`
+   The velocity of point :math:`x_o` in reference frame :math:`Y`.
+:math:`^X\bar{\alpha}^Y`
+   The angular acceleration of frame :math:`Y` in frame :math:`X`.
+:math:`^Y\bar{a}^{x_o}`
+   The acceleration of point :math:`x_o` in reference frame :math:`Y`.
+:math:`s_1,c_1`
+   Shorthand notation for :math:`\operatorname{sin}(q_1)` and
+   :math:`\operatorname{cos}(q_1)`.
+:math:`s_\lambda,c_\lambda`
+   Shorthand notation for :math:`\operatorname{sin}(\lambda)` and
+   :math:`\operatorname{cos}(\lambda)`.
+:math:`\tilde{F}_r`
+   The non-holonomic generalized active forces. The subscript :math:`r` denotes
+   one of the independent generalized speeds.
+:math:`^N\bar{V}_r^{x_o}`
+   The partial velocity in reference frame :math:`N` of point :math:`x_o` with
+   respect to the :math:`r^{th}` independent generalized speed.
+:math:`\bar{R}^{x_o}`
+   The resultant forces on the point :math:`x_o`.
+:math:`^N\bar{\omega}_r^C`
+   The partial angular velocity of reference frame :math:`C` in reference frame
+   :math:`N` with respect to the :math:`r^{th}` independent generalized speed.
+:math:`\bar{T}^C`
+   The resultant torques acting on body :math:`C`.
+:math:`\tilde{F}^*_r`
+   The non-holonomic generalized inertia forces. The subscript :math:`r` denotes
+   one of the independent generalized speeds.
+:math:`\bar{R}^*_{x_o}`
+   The generalized inertia force of point :math:`x_o`.
+:math:`\bar{T}^*_X`
+   The generalized inertia torque of body :math:`X`.
+:math:`I_X`
+   The central inertia dyadic of body :math:`X`.
+:math:`\mathbf{A},\mathbf{B},\mathbf{C},\mathbf{D}`
+   The state, input, output and feed-forward matrices.
+:math:`v`
+   The forward speed of the linear bicycle model.
+:math:`\mathbf{M},\mathbf{C}_1,\mathbf{K}_0,\mathbf{K}_2`
+   The velocity and gravity independent mass, damping and stiffness matrices of
+   the linearized Whipple model.
 
 .. rubric:: Footnotes
 
 .. [#] My colleague, Dale L. Peterson, has made significant progress
-       formulating the equations of motion in a readable and compact form, which will
-       most likely be published soon.
+       formulating the equations of motion in a readable and compact form,
+       which will most likely be published soon.
 
 .. [#] The point of contact for the bicycle wheels are technically abstract
-       points in dynamics. There are fundamentally four distinct points of concern. The first being
-       the point in the ground plane that instantaneously contacts the wheel at any
-       given time, the point in the ground plane that tracks the contact point, the
-       point on the wheel that instantaneously contacts the ground at any given time,
+       points in dynamics. There are fundamentally four distinct points of
+       concern. The first being the point in the ground plane that
+       instantaneously contacts the wheel at any given time, the point in the
+       ground plane that tracks the contact point in the plane, the point on
+       the wheel that instantaneously contacts the ground at any given time,
        and the point on the wheel ...
 
 .. todo::
    Contact points need better explanations.
 
-.. todo:: add notation definitions
+.. [#] I don't necessarily agree that this is a great standard to follow,
+       because it creates much unessary confusion when defining and mapping
+       between parameterizations. The three axis pointing upward would be less
+       error prone.
 
 .. [#] Luke and I have dreamed of developing an open source version of Autolev
        for years and that has finally culminated through primarily Luke and Gilbert
        Gede's efforts in the creation of sympy.physics.mechanics.
 
-.. [#] This contraint can readily be modified to support a non-flat ground.
+.. [#] This constraint can readily be modified to support a non-flat ground.
 
 .. [#] Basu-Mandall presents significant digits from 10 to 14.
 
-.. [#] The conversion equations from BasuMandal's coordinates to mine and vice
+.. [#] The conversion equations from the [BasuMandal2007]_ coordinates to mine and vice
        versa can be found in the source code.

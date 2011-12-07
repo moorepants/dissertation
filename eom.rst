@@ -1220,7 +1220,46 @@ reproduced and matches to the precision of the naked eye.
    mode becomes stable at a higher speed. The weave and capsize critical speeds
    bound a stable speed range.
 
-.. todo:: explanation of the modes with some eigenvector diagrams
+For speeds above the bifurcation point, this linear model exhibits three
+distinct modes of motion, which have been named weave, capsize and caster. At a
+forward speed of 0.5 m/s, all of the eigenvalues are real, with two unstable
+and two stable. The eigenvector components help reveal the motion. Notice that
+the unstable eigenvalue values predict two modes where the roll and steer
+states decay rapidly (i.e. the bicycle falls over).
+
++---------------------------------------+---------------------------------------+
+| .. image:: figures/eom/eVecHalf-1.png | .. image:: figures/eom/eVecHalf-2.png |
++---------------------------------------+---------------------------------------+
+| .. image:: figures/eom/eVecHalf-3.png | .. image:: figures/eom/eVecHalf-4.png |
++---------------------------------------+---------------------------------------+
+
+Once the bicycle is brought up to a speed of 3 m/s the two unstable eigenvalues
+coalesce into a complex pair. The eigenvector components show that the steer
+amplitude is almost twice the roll amplitude and roll angle leads the steer
+angle by about 50 degrees. The caster mode, is a rapidly decay in steering and
+the capsize mode is a decay in roll and steering, with the roll at about twice
+the amplitude as steer.
+
++----------------------------------------+----------------------------------------+----------------------------------------+
+| .. image:: figures/eom/eVecThree-1.png | .. image:: figures/eom/eVecThree-2.png | .. image:: figures/eom/eVecThree-3.png |
++----------------------------------------+----------------------------------------+----------------------------------------+
+
+At 5 m/s the bicycle is stable, and now the weave mode shows that the roll and
+steering act more in unison at a somewhat similar amplitude. The caster and
+capsize are similar to 3 m/s.
+
++---------------------------------------+---------------------------------------+---------------------------------------+
+| .. image:: figures/eom/eVecFive-1.png | .. image:: figures/eom/eVecFive-2.png | .. image:: figures/eom/eVecFive-3.png |
++---------------------------------------+---------------------------------------+---------------------------------------+
+
+Finally, at 7 m/s the capsize mode goes unstable, with a slow decay in
+primarily roll.
+
++----------------------------------------+----------------------------------------+----------------------------------------+
+| .. image:: figures/eom/eVecSeven-1.png | .. image:: figures/eom/eVecSeven-2.png | .. image:: figures/eom/eVecSeven-3.png |
++----------------------------------------+----------------------------------------+----------------------------------------+
+
+The complete motion of the bicycle is a superposition of each mode.
 
 Notation
 ========

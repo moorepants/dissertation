@@ -4,24 +4,30 @@
 Extensions and modifcations to the Whipple Model
 ================================================
 
-Here I present several bicycle models based on of the basic formulation of the
-Whipple model in Chapter :ref:`eom`. Various combinations of these model
-extensions are used in the later Chapters for analysis.
+It has be shown that the linear Whipple model can reliablily predict the motion
+of a riderless uncontrolled bicycle [Kooijman2008]_, [Stevens2009]_,
+[Escalona2011]_. But the Whipple model is potentially limited in predict the
+motion of a rider or even complex tire interactions. Here I present several
+bicycle models based on of the basic formulation of the Whipple model in
+Chapter :ref:`eom`. Various combinations of these model extensions are used in
+the later Chapters for analysis of our more complicated systems.
 
 Lateral Force Input
 ===================
 
-The Whipple model typically has three input forces roll torque :math:`T_4`,
-rear wheel torque :math:`T_6` and steer torque :math:`T_7`. Here I add a fourth
-input, lateral force :math:`F_{c_l}`, which acts on a point on the bicycle
-frame. The force is defined such that it is always in the :math:`n_2` direction
-and acts on a point located in the midplane of the bicycle frame. One
-rationlization of the force can be imagined if a person were to walk beside a
-bicycle and simply push laterally on the rear frame. One can even think of it
-as a simplfied version of the resultant force from lateral wind gust. I
-utilized this input in the Davis control task experiments in Chapter
-:ref:`control`, were we apply a lateral impulsive force to the bicycle/rider
-system.
+The Whipple model is typically defined with three input forces roll torque
+:math:`T_4`, rear wheel torque :math:`T_6` and steer torque :math:`T_7`. Here I
+add a fourth input, a lateral force :math:`F_{c_l}`, which acts on a point on
+the bicycle frame. The force is defined such that it is always in the
+:math:`\hat{n}_2` direction and acts on a point located in the midplane of the
+bicycle frame. I choose the `\hat{n}_2` direction instead of the
+:math:`\hat{a}_2` direction because it correlated with our impulsize applied
+forces in our experiments. One rationlization of the force can be imagined if a
+person were to walk beside a bicycle and simply push laterally on the rear
+frame. One can even think of it as a simplfied version of the resultant force
+from lateral wind gust. I utilized this input in the Davis control task
+experiments in Chapter :ref:`control`, were we apply a lateral impulsive force
+to the bicycle/rider system.
 
 The vector from the rear wheel center to the point is:
 
@@ -30,7 +36,7 @@ The vector from the rear wheel center to the point is:
 
    \bar{r}^{c_l/d_o} = d_4\hat{c}_1 + d_5\hat{c}_3
 
-The velocity of the point is can be computed with the following relationship:
+The velocity of the point is computed with the following relationship:
 
 .. math::
    :label: ClInN
@@ -42,7 +48,8 @@ The velocity of the point is can be computed with the following relationship:
    &(d_4(s_5u_4+c_4c_5u_3)-d_5(c_5u_4-s_5c_4u_3))\hat{c}_2 -
    d_4(u_5+s_4u_3)\hat{c}_3
 
-Finally, there is an additional generalized active force:
+The partial velocities of the point can be computed and dotted with the
+additional generalized active force:
 
 .. math::
    :label: lateralForce
@@ -51,9 +58,13 @@ Finally, there is an additional generalized active force:
 
 The linear model is computed in the same fashion as described, with an
 additional column in both the input, :math:`\mathbf{B}`, and feedforward,
-:math:`\mathbf{D}`, matrices.
+:math:`\mathbf{D}`, matrices corresponding to the new input force. Unlike roll
+torque this force can contribute to both the roll and steer states. The
+location of the point determines the contribution to each state.
 
 .. todo:: Add an impulse response graph? Linear, nonlinear?
+
+.. todo:: Compare the transfer functions of roll torque and lateral force?
 
 Addition of rider arms
 ======================

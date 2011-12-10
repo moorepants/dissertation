@@ -20,7 +20,7 @@ The Whipple model is typically defined with three input forces roll torque
 add a fourth input, a lateral force :math:`F_{c_l}`, which acts on a point on
 the bicycle frame. The force is defined such that it is always in the
 :math:`\hat{n}_2` direction and acts on a point located in the midplane of the
-bicycle frame. I choose the `\hat{n}_2` direction instead of the
+bicycle frame. I choose the :math:`\hat{n}_2` direction instead of the
 :math:`\hat{a}_2` direction because it correlated with our impulsize applied
 forces in our experiments. One rationlization of the force can be imagined if a
 person were to walk beside a bicycle and simply push laterally on the rear
@@ -62,9 +62,48 @@ additional column in both the input, :math:`\mathbf{B}`, and feedforward,
 torque this force can contribute to both the roll and steer states. The
 location of the point determines the contribution to each state.
 
-.. todo:: Add an impulse response graph? Linear, nonlinear?
+Figure :ref:`figLatForceImp` compares the impulse response for roll torque to
+the response from a lateral force at the seat for a particular bicycle in
+within its stable speed range. Notice that the lateral force input does not
+excite the system with as large as amplitudes but that the response is similar.
+This only a function of where the force is applied. If the force is applied
+directly above the rear wheel contact at a height of one meter from the ground,
+the response will be identicle.
 
-.. todo:: Compare the transfer functions of roll torque and lateral force?
+.. _figLatForceImp:
+
+.. figure:: figures/extensions/lat-force-impulse.*
+   :align: center
+   :width: 4in
+
+   figLatForceImp
+
+   The impulse reponse for the roll angle, :math:`q_4`, and steer angle,
+   :math:`q_7`, for a roll torque input (blue) and the lateral force input at a
+   point just below the seat (red). The parameter set used was for the Jason on
+   the Davis instrumented bicycle and was linearized at 7 m/s.
+
+Figure :ref:`figLatForceBode` shows the frequency response in a similar fashion
+as the impulse response. The responses for both input types is very similar for
+this frequency spectrum, with the difference in magnitudes proportional to the
+distance the lateral force is from the point previously described.
+
+.. _figLatForceBode:
+
+.. figure:: figures/extensions/lat-force-bode.*
+   :align: center
+   :width: 5in
+
+   figLatForceBode
+
+   The frequency response for the roll angle, :math:`q_4`, and steer angle,
+   :math:`q_7`, for a roll torque input (blue) and the lateral force input at a
+   point just below the seat (red). The parameter set used was for the Jason on
+   the Davis instrumented bicycle and was linearized at 7 m/s.
+
+.. todo::  I don't know how interesting these graphs are. Showing the
+   relatinship for magnitude of the outputs with respect to the location of the
+   lateral force point might be more interesting.
 
 Addition of rider arms
 ======================

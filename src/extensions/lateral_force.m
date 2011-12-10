@@ -5,6 +5,11 @@ pathToFile = ['/media/Data/Documents/School/UC Davis/Bicycle Mechanics/' ...
 
 par = par_text_to_struct(pathToFile);
 
+% set the height of the force point such that 1 newton of lateral force
+% gives 1 n-m of torque about the wheel contact point line
+par.zcl = -1.0;
+%par.xcl = 0.0;
+
 speed = 7.0;
 [A, B, C, D] = whipple_pull_force_abcd(par, speed);
 

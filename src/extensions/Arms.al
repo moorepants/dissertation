@@ -125,10 +125,10 @@ constants ie11, ie22, ie33, ie31
 constants if11, if22
 
 % arm inertia
-constants ig11, ig22, ig33, ig12, ig23, ig31
-constants ih11, ih22, ih33, ih12, ih23, ih31
-constants ii11, ii22, ii33, ii12, ii23, ii31
-constants ij11, ij22, ij33, ij12, ij23, ij31
+constants ig11, ig33
+constants ih11, ih33
+constants ii11, ii33
+constants ij11, ij33
 
 % input torques
 % T4: roll torque
@@ -179,10 +179,10 @@ inertia c, ic11, ic22, ic33, 0, 0, ic31
 inertia d, id11, id22, id11
 inertia e, ie11, ie22, ie33, 0, 0, ie31
 inertia f, if11, if22, if11
-inertia g, ig11, ig22, ig33, ig12, ig23, ig31
-inertia h, ih11, ih22, ih33, ih12, ih23, ih31
-inertia i, ii11, ii22, ii33, ii12, ii23, ii31
-inertia j, ij11, ij22, ij33, ij12, ij23, ij31
+inertia g, ig11, ig11, ig33
+inertia h, ih11, ih11, ih33
+inertia i, ii11, ii11, ii33
+inertia j, ij11, ij11, ij33
 
 %---------------------------------------------------------------------%
 %         angular relationships                                       %
@@ -268,7 +268,6 @@ p_do_cl> = d4 * c1> + d5 * c3>
 % locate the ground contact points
 p_do_dn> = rr * b3>
 p_fo_fn> = rf * unitvec(cross(cross(e2>, a3>), e2>))
-
 
 %---------------------------------------------------------------------%
 %         define the pitch configuration constraint

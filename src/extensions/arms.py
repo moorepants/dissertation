@@ -35,31 +35,35 @@ par = bicycle.benchmark_to_moore(benchmark)
 
 # right upper arm, G
 par['mg'] = h.B1.Mass
-par['l4'] = h.B1.relCOM[2][0]
+par['l5'] = h.B1.relCOM[2][0]
 IG = h.B1.relInertia
 par['ig11'] = IG[0, 0]
 par['ig33'] = IG[2, 2]
+par['d12'] = h.B1.length
+
+# shoulders
 par['d6'] = (h.B1.pos[0, 0] * cos(benchmark['lam']) - h.B1.pos[2, 0] * sin(benchmark['lam']) -
         benchmark['rR'] * sin(benchmark['lam']))
 par['d7'] = abs(h.B1.pos[1, 0])
 par['d8'] = (h.B1.pos[0, 0] * sin(benchmark['lam']) + h.B1.pos[2, 0] * cos(benchmark['lam']) +
         benchmark['rR'] * cos(benchmark['lam']))
-par['d12'] = h.B1.length
 
 # right lower arm, H
 par['mh'] = h.B2.Mass
-par['l5'] = h.B2.relCOM[2][0]
+par['l6'] = h.B2.relCOM[2][0]
 IH = h.B2.relInertia
 par['ih11'] = IH[0, 0]
 par['ih33'] = IH[2, 2]
 knuckle = h.b[6].pos
+par['d13'] = norm(knuckle - h.B2.pos)
+
+# grips
 par['d11'] = ((knuckle[2, 0] + benchmark['rF']) * cos(benchmark['lam']) +
         (knuckle[0, 0] - benchmark['w'])
             * sin(benchmark['lam']))
 par['d9'] = ((knuckle[0, 0] - benchmark['w'] - par['d11'] * sin(benchmark['lam'])) /
             cos(benchmark['lam']))
 par['d10'] = abs(knuckle[1, 0])
-par['d13'] = norm(knuckle - h.B2.pos)
 
 # left upper arm, I
 par['mi'] = h.A1.Mass
@@ -73,21 +77,32 @@ IJ = h.A2.relInertia
 par['ij11'] = IJ[0, 0]
 par['ij33'] = IJ[2, 2]
 
+# lateral force point
+par['d4'] = (benchmark['xcl'] * cos(benchmark['lam']) - benchmark['zcl'] * sin(benchmark['lam']) -
+        benchmark['rR'] * sin(benchmark['lam']))
+par['d5'] = (benchmark['xcl'] * sin(benchmark['lam']) + benchmark['zcl'] * cos(benchmark['lam']) +
+        benchmark['rR'] * cos(benchmark['lam']))
+
+io.savemat('armspar.mat', par)
+
 # now get some guesses for the arm angles at the nominal configuration
+# these guesses are not correct, as the mapping from yeadon's coordinates to
+# mine are not trivial
 
 q = {}
 
+q['q5'] = benchmark['lam']
+
 # right arm
-q['q9'] = h.CFG['CB1abduction']
+q['q9'] = -h.CFG['CB1abduction']
 q['q10'] = h.CFG['CB1elevation']
 q['q11'] = h.CFG['CB1rotation']
-q['q12'] = h.CFG['B1B2flexion']
+q['q12'] = -h.CFG['B1B2flexion']
 
 # left arm
-q['q13'] = h.CFG['CA1abduction']
+q['q13'] = -h.CFG['CA1abduction']
 q['q14'] = h.CFG['CA1elevation']
 q['q15'] = h.CFG['CA1rotation']
-q['q16'] = h.CFG['A1A2flexion']
+q['q16'] = -h.CFG['A1A2flexion']
 
-io.savemat('armspar.mat', par)
 io.savemat('armsinit.mat', q)

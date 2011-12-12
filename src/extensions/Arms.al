@@ -3,9 +3,9 @@
 % Creation Date: December 9, 2011
 % Author: Jason K. Moore
 % Description: Generates the nonlinear and linear equations of motion
-% for the Whipple bicycle model with four inputs: roll torque, rear
-% wheel torque, steer torque and a lateral force at a point on the
-% bicycle frame. This model also includes four rigid bodies that models
+% for an extended Whipple bicycle model with four inputs: roll torque,
+% rear wheel torque, steer torque and a lateral force at a point on the
+% bicycle frame. The extension includes four rigid bodies that model
 % the upper and lower arms of the rider and their motion with respect
 % to the steer angle.
 
@@ -288,12 +288,13 @@ holonomic6 = dot(hlzero>, c2>)
 holonomic7 = dot(hlzero>, c3>)
 
 % arms must always hang down
-holonomic8 = dot(g2>, c3>)
-holonomic9 = dot(i2>, c3>)
+holonomic8 = dot(g2>, b3>)
+holonomic9 = dot(i2>, b3>)
 
 %output holonomic1, holonomic2, holonomic3, holonomic4, holonomic5, &
        %holonomic6, holonomic7, holonomic8, holonomic9
 %code algebraic() ArmsHolonomic.m
+%pause
 
 %---------------------------------------------------------------------%
 %         define the kinematical differential equations

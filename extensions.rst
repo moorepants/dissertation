@@ -4,13 +4,38 @@
 Extensions and modifcations to the Whipple Model
 ================================================
 
+Preface
+=======
+
+The Whipple model provides a nice platform of which to add more bodies,
+and different constraints and explore their effects on the dynamics of the
+system. Some extensions are easier than others, but almost always easier than
+the kinematics of the Whipple model itself. I've been curious as to whether
+if one already has the equations of motion of a base system, could one develop
+a systematic way of adding additional bodies or change constraints without
+having to rederive the entire equations over again. Some numerical methods for
+generating equations of motion may lend themselves to this, but its not
+apparent if there could be a generlized analytical method.
+
+Introduction
+============
+
 It has be shown that the linear Whipple model can reliablily predict the motion
 of a riderless uncontrolled bicycle [Kooijman2008]_, [Stevens2009]_,
-[Escalona2011]_. But the Whipple model is potentially limited in predict the
-motion of a rider or even complex tire interactions. Here I present several
-bicycle models based on of the basic formulation of the Whipple model in
-Chapter :ref:`eom`. Various combinations of these model extensions are used in
-the later Chapters for analysis of our more complicated systems.
+[Escalona2011]_ for speeds between 4 and 6 m/s. But the Whipple model is may
+certainly be limited in it's ability to predict the motion of the bicycle and
+rider as a system whole. A person's body keeps it shape through passive joint
+forces, unconcious active control and conscious active control. Assuming no
+active control and lumping the unconscious control with the passive control one
+can potentially model the rider as flexible assembly of many bodies. Secondly,
+the rider's weight is typically 80 to 90 percent of the entire system,
+potentially invalidates the knife edge wheel assumptions employed in the
+Whipple model. Here I present several bicycle models that attempt to explain
+some of the rider's passive dynamics and also a model with stabilty
+augmentation device. The models are all based on of the basic formulation of
+the Whipple model in Chapter :ref:`eom`. Various combinations of these model
+extensions are used in the later Chapters for analysis of our more complicated
+systems.
 
 Lateral Force Input
 ===================
@@ -18,28 +43,28 @@ Lateral Force Input
 The Whipple model is typically defined with three input forces roll torque
 :math:`T_4`, rear wheel torque :math:`T_6` and steer torque :math:`T_7`. Here I
 add a fourth input, a lateral force :math:`F_{c_l}`, which acts on a point on
-the bicycle frame. The force is defined such that it is always in the
-:math:`\hat{n}_2` direction and acts on a point located in the midplane of the
-bicycle frame. I choose the :math:`\hat{n}_2` direction instead of the
-:math:`\hat{a}_2` direction because it correlated with our impulsize applied
-forces in our experiments. One rationlization of the force can be imagined if a
-person were to walk beside a bicycle and simply push laterally on the rear
-frame. One can even think of it as a simplfied version of the resultant force
-from lateral wind gust. I utilized this input in the Davis control task
-experiments in Chapter :ref:`control`, were we apply a lateral impulsive force
-to the bicycle/rider system.
+the bicycle frame, :math:`c_l`. The force is defined such that it is always in
+the :math:`\hat{n}_2` direction and acts on the point located in the midplane
+of the bicycle frame. I choose the global :math:`\hat{n}_2` direction instead
+of the yaw frame's :math:`\hat{a}_2` direction because it correlated with
+the impulsize forces applied in our experiments. One rationlization of the force
+can be imagined if a person were to walk beside a bicycle and simply push
+laterally on the rear frame. One can even think of it as a simplfied version of
+the resultant force from lateral wind gust. I utilized this input in the Davis
+control task experiments in Chapter :ref:`control`, were we apply a lateral
+impulsive force to the bicycle/rider system.
 
-The vector from the rear wheel center to the point is:
+The vector from the rear wheel center to the lateral force point is
 
 .. math::
-   :label: lateralForcePoint
+   :label: eqLateralForcePoint
 
    \bar{r}^{c_l/d_o} = d_4\hat{c}_1 + d_5\hat{c}_3
 
-The velocity of the point is computed with the following relationship:
+The velocity of the point is
 
 .. math::
-   :label: ClInN
+   :label: eqClInN
 
    ^N\bar{v}^{c_l} = ^N\bar{v}^{d_o} + ^N\bar\omega^C\times\bar{r}^{c_l/d_o}
 
@@ -48,27 +73,27 @@ The velocity of the point is computed with the following relationship:
    &(d_4(s_5u_4+c_4c_5u_3)-d_5(c_5u_4-s_5c_4u_3))\hat{c}_2 -
    d_4(u_5+s_4u_3)\hat{c}_3
 
-The partial velocities of the point can be computed and dotted with the
-additional generalized active force:
+To form the equations of motion the additional generalized active force dot
+mutliplied with the partial velocities of the point. The force is simply
 
 .. math::
-   :label: lateralForce
+   :label: eqLateralForce
 
    \bar{R}^{c_l} = F_{c_l}\hat{n}_2
 
-The linear model is computed in the same fashion as described, with an
-additional column in both the input, :math:`\mathbf{B}`, and feedforward,
-:math:`\mathbf{D}`, matrices corresponding to the new input force. Unlike roll
-torque this force can contribute to both the roll and steer states. The
-location of the point determines the contribution to each state.
+The linear model is computed in the same fashion as described in Chapter
+:ref:`eom`, with an additional column in both the input, :math:`\mathbf{B}`,
+and feed-forward, :math:`\mathbf{D}`, matrices corresponding to the new input
+force. Unlike roll torque this force can contribute to both the roll and steer
+states. The location of the point determines the contribution to each state.
 
 Figure :ref:`figLatForceImp` compares the impulse response for roll torque to
 the response from a lateral force at the seat for a particular bicycle in
 within its stable speed range. Notice that the lateral force input does not
 excite the system with as large as amplitudes but that the response is similar.
 This only a function of where the force is applied. If the force is applied
-directly above the rear wheel contact at a height of one meter from the ground,
-the response will be identicle.
+directly above the rear wheel contact at a height of unity from the ground,
+the response will be identical.
 
 .. _figLatForceImp:
 
@@ -81,12 +106,12 @@ the response will be identicle.
    The impulse reponse for the roll angle, :math:`q_4`, and steer angle,
    :math:`q_7`, for a roll torque input (blue) and the lateral force input at a
    point just below the seat (red). The parameter set used was for the Jason on
-   the Davis instrumented bicycle and was linearized at 7 m/s.
+   the Davis instrumented bicycle and was linearized at a forward speed of7 m/s.
 
 Figure :ref:`figLatForceBode` shows the frequency response in a similar fashion
 as the impulse response. The responses for both input types is very similar for
 this frequency spectrum, with the difference in magnitudes proportional to the
-distance the lateral force is from the point previously described.
+distance the lateral force is from the rear wheel contact point.
 
 .. _figLatForceBode:
 
@@ -99,40 +124,51 @@ distance the lateral force is from the point previously described.
    The frequency response for the roll angle, :math:`q_4`, and steer angle,
    :math:`q_7`, for a roll torque input (blue) and the lateral force input at a
    point just below the seat (red). The parameter set used was for the Jason on
-   the Davis instrumented bicycle and was linearized at 7 m/s.
+   the Davis instrumented bicycle and was linearized at a forward speed of 7 m/s.
 
 .. todo::  I don't know how interesting these graphs are. Showing the
-   relatinship for magnitude of the outputs with respect to the location of the
+   relationship for magnitude of the outputs with respect to the location of the
    lateral force point might be more interesting.
 
-Addition of rider arms
-======================
+Rider Arms
+==========
 
-It has been shown that the addition of the inertial effects of the arms can
-ignificantly alter the open loop dynamics of the bicycle [Schwab2011]_. As
+[Schwab2010]_ has shown that the addition of the inertial effects of the arms
+can significantly alter the open loop dynamics of the bicycle. Most importantly
+that a typical bicycle and rider may not have a stable speed range. As will be
 described in Chapter :ref:`davisbicycle`, we rigidified the rider's torso and
-legs with respect to the rear frame of the bicycle. The human makes use of his
-arms to control the bicycle. The Whipple model does not take into account the
-dynamic motion of the arms and certainly not the fact that steer torque forces
-are acutally generated from the muscle contraction/flexion in the riders arms.
+legs with respect to the rear frame of the bicycle. The rider was only able to
+make use of their arms to control the bicycle. The Whipple model does not take
+into account the dynamic motion of the arms and certainly not the fact that
+steer torque forces are actually generated from the muscle contraction/flexion
+in the riders arms. Being that our riders were able to move their arms and the
+motion can have significant effect on the open loop dynamics, we employ a
+similar more complete model as did [Schwab2010]_.
 
-The steer torque is a function of the joint torques in the arms and for
-simplicity, is kept as the driving torque. The inertial effects of the arms can
-be captured by adding four additional rigid bodies to the Whipple model for the
-left and right upper and lower arm segments and constrainig the bodies to the
-the shoulder and handle bar points. The four bodies are defined as:
+In bicycle models, the front frame is typically externally forced to move with
+respect to the rear frame through a torque applied between the rear frame and
+the front frame. A more realistic model with arms would force the front frame
+motion through joint torques in the arms. For simplicity's sake and without
+loss of generality I keep the steer torque, :math:`T_4`, as the driving torque
+letting the arms follow letting the arms follow suit. The inertial effects of
+the arms can then be captured by adding four additional rigid bodies to the
+Whipple model for the left and right upper and lower arm segments and
+introducing enough constraints such that the no additional degrees of freedom
+are introduced. I assume that the arms are symmetric with respect to the
+sagittal plane. The four new bodies are defined as:
 
 - :math:`G`: right upper arm
 - :math:`H`: right lower arm
 - :math:`I`: left upper arm
 - :math:`J`: left lower arm
 
-The right and left upper arms are oriented through body fixed 1-2-3 rotations
-through the abduction, elevation and rotation angles :math:`q_9`,
+The right and left upper arms are each oriented through body fixed 1-2-3
+rotations through the abduction, elevation and rotation angles :math:`q_9`,
 :math:`q_{10}`, :math:`q_{11}` and :math:`q_{13}`, :math:`q_{14}`,
 :math:`q_{15}` for the right and left arms respectively.
 
 .. math::
+   :label: eqRightShoulder
 
    ^N\mathbf{R}^G =
    \begin{bmatrix}
@@ -142,6 +178,7 @@ through the abduction, elevation and rotation angles :math:`q_9`,
    \end{bmatrix}
 
 .. math::
+   :label: eqLeftShoulder
 
    ^N\mathbf{R}^I =
    \begin{bmatrix}
@@ -151,10 +188,11 @@ through the abduction, elevation and rotation angles :math:`q_9`,
    \end{bmatrix}
 
 The right and left lower arms are oriented through simple rotations through
-:math:`q_{12}` and :math:`q_{16}` with respect to the upper arms.
+:math:`q_{12}` and :math:`q_{16}` with respect to the upper arms at the elbow
+joint.
 
 .. math::
-   :label: CtoD
+   :label: eqGtoH
 
    ^G\mathbf{R}^H =
    \begin{bmatrix}
@@ -164,7 +202,7 @@ The right and left lower arms are oriented through simple rotations through
    \end{bmatrix}
 
 .. math::
-   :label: CtoD
+   :label: eqItoJ
 
    ^I\mathbf{R}^J =
    \begin{bmatrix}
@@ -173,91 +211,110 @@ The right and left lower arms are oriented through simple rotations through
      s_{16} & 0 & c_{16}
    \end{bmatrix}
 
-This definition differs from [Schwab2011]_ and will acutally allow full
-non-linear unlocked motion of the arms. Schwab's model is only valid in around
-the linear equilibrium point presented.
+This definition differs from [Schwab2010]_ and will allow full non-linear
+unlocked motion of the arms. Schwab's joint configuration limits the model to
+only be valid in around the linear equilibrium point presented therein.
 
-The right and left shoulders are located by:
-
-.. math::
-
-   \bar{r}^{s_r/d_o} = d_4 \hat{c}_1 + d_5 \hat{c}_2 + d_6 \hat{c}_3
-
-   \bar{r}^{s_l/d_o} = d_4 \hat{c}_1 - d_5 \hat{c}_2 + d_6 \hat{c}_3
-
-The right and left elbows are located by:
+The right and left shoulders are located in the rear frame by
 
 .. math::
+   :label: eqShoulders
 
-   \bar{r}^{e_r/d_o} = d_{10} \hat{g}_3
+   \bar{r}^{s_r/d_o} = d_6 \hat{c}_1 + d_7 \hat{c}_2 + d_8 \hat{c}_3
 
-   \bar{r}^{e_l/d_o} = d_{12} \hat{i}_3
+   \bar{r}^{s_l/d_o} = d_6 \hat{c}_1 - d_7 \hat{c}_2 + d_8 \hat{c}_3
 
-The upper and lower arm mass centers are located by:
+The right and left elbows are located by
 
 .. math::
+   :label: eqElbows
+
+   \bar{r}^{e_r/s_r} = d_{12} \hat{g}_3
+
+   \bar{r}^{e_l/s_l} = d_{12} \hat{i}_3
+
+The upper and lower arm mass centers are located by
+
+.. math::
+   :label: eqArmCoM
 
    \bar{r}^{g_o/s_r} = l_5 \hat{g}_3
 
    \bar{r}^{h_o/e_r} = l_6 \hat{i}_3
 
-   \bar{r}^{i_o/s_l} = l_7 \hat{g}_3
+   \bar{r}^{i_o/s_l} = l_5 \hat{i}_3
 
-   \bar{r}^{j_o/e_l} = l_8 \hat{i}_3
+   \bar{r}^{j_o/e_l} = l_6 \hat{j}_3
 
-The hands must then be constrained to connect to the handlebars. The handlebar
-grip locations are:
-
-.. math::
-
-   \bar{r}^{g_r/f_o} = d_7 \hat{e}_1 + d_8 \hat{e}_2 + d_9 \hat{e}_3
-
-   \bar{r}^{g_l/f_o} = d_7 \hat{e}_1 - d_8 \hat{e}_2 + d_9 \hat{e}_3
-
-The hands are located by:
+The hands are located by
 
 .. math::
 
-   \bar{r}^{h_r/e_r} = d_{11} \hat{h}_3
+   \bar{r}^{h_r/e_r} = d_{13} \hat{h}_3
 
    \bar{r}^{h_l/e_l} = d_{13} \hat{j}_3
 
-To enforce that the hands remain on the grips, I entroduce six holonomic
-constraints embodied in the following two vector eqations:
+The handlebar grips are located by
 
 .. math::
+   :label: eqGrips
 
-   \bar{r}^{e_r/s_r} + \bar{r}^{h_r/e_r} = \bar{r}^{g_r/s_r}
+   \bar{r}^{g_r/f_o} = d_9 \hat{e}_1 + d_10 \hat{e}_2 + d_11 \hat{e}_3
 
-   \bar{r}^{e_l/s_l} + \bar{r}^{h_l/e_l} = \bar{r}^{g_l/s_l}
+   \bar{r}^{g_l/f_o} = d_9 \hat{e}_1 - d_10 \hat{e}_2 + d_11 \hat{e}_3
 
-This leaves a two degrees of freedom such that the arms can rotate about the
-line from the shoulder to the grips. I choose to eliminate these two degrees of
-freedom by forcing the arms to always hang down relative to the rear frame,
-i.e. that the vector aligned with the elbow has no component in the downward
-direction of the roll frame, :math:`B`.
+To enforce that the hands remain on the grips, I first introduce six holonomic
+constraints embodied in
 
 .. math::
+   :label: eqHandsOnGrips
+
+   \bar{r}^{h_r/s_r} - \bar{r}^{g_r/s_r} = 0
+
+   \bar{r}^{h_l/s_l} - \bar{r}^{g_l/s_l} = 0
+
+After forcing the hands to be at the grips this leaves two degrees of freedom,
+one for each arm.  The free motion is such that the arms can rotate about the
+lines connecting the shoulders to the grips. I choose to eliminate these two
+degrees of freedom by forcing the arms to always "hang down" relative to the rear
+frame, i.e. that the vector aligned with the elbow has no component in the
+downward direction of the roll frame, :math:`B`.
+
+.. math::
+   :label: eqArmsDown
 
    \hat{g}_2 \cdot \hat{b}_3 = 0
 
    \hat{i}_2 \cdot \hat{b}_3 = 0
 
-With these eight holonomic constraints, the model is now back to the three
-degrees of freedom in of the Whipple model, but with the added inertial effects
-of the arms. The expressions for the velocities and accelerations of the mass
-centers of the four new bodies are lengthy and I will spare this section with
-their mess. Please refer to the source code for the equations.
+This assumption is limited in validity around small pitch angles, as a large
+pitch angles would cause the riders arms to rotate in odd positions. A better
+constraint would be to dot with a vector in the :math:`C` frame which is
+aligned with the :math:`\hat{b}_3` when the bicycle is not pitched, but due to
+our choice of geometric parameters, a new parameter would have to be
+introduced, so I choose the former.
+
+With these eight holonomic constraints, the model now has three degrees of
+freedom which are the same as the Whipple model, but with the added inertial
+effects of the arms. The expressions for the velocities and accelerations of
+the mass centers of the four new bodies needed to form the equations of motion
+are lengthy and I will spare this section with their mess. Please refer to the
+source code for the equations.
 
 The generalized active forces remain the same as described in Chapter
-:ref:`eom`, but the generalized ineritia forces must be modified to include the
-accelerations of the of the mass centers and the mass and inertia of the new
+:ref:`eom` with the addition of the lateral force described in the previous
+section. The generalized inertia forces must be modified to include the
+accelerations of the mass centers along with the mass and inertia of the new
 bodies. The masses are simply defined as :math:`m_g`, :math:`m_h`, :math:`m_i`
 and :math:`m_j`. The arms segments are assumed to be symmetric about their
-assciated :math:`2` axes, thus :math:`I_{11} = I_{22}`.
+associated :math:`2` axes, thus :math:`I_{11} = I_{22}`.
+
+.. todo:: I could reduce the number of parameters due to the symmetry of the
+   problem, i.e. m_g = m_h and the left and right inertias are equivalent.
+   Right now my code doesn't do that, but I could change it.
 
 .. math::
-   :label: IG
+   :label: eqIUpperArm
 
    I_G =
    \begin{bmatrix}
@@ -265,20 +322,7 @@ assciated :math:`2` axes, thus :math:`I_{11} = I_{22}`.
    0 & I_{G11} & 0\\
    0 & 0 & I_{G33}
    \end{bmatrix}
-
-.. math::
-   :label: IH
-
-   I_H =
-   \begin{bmatrix}
-   I_{H11} & 0 & 0\\
-   0 & I_{H11} & 0\\
-   0 & 0 & I_{H33}
-   \end{bmatrix}
-
-.. math::
-   :label: II
-
+   =
    I_I =
    \begin{bmatrix}
    I_{I11} & 0 & 0\\
@@ -287,8 +331,15 @@ assciated :math:`2` axes, thus :math:`I_{11} = I_{22}`.
    \end{bmatrix}
 
 .. math::
-   :label: IJ
+   :label: eqILowerArm
 
+   I_H =
+   \begin{bmatrix}
+   I_{H11} & 0 & 0\\
+   0 & I_{H11} & 0\\
+   0 & 0 & I_{H33}
+   \end{bmatrix}
+   =
    I_J =
    \begin{bmatrix}
    I_{J11} & 0 & 0\\
@@ -298,51 +349,71 @@ assciated :math:`2` axes, thus :math:`I_{11} = I_{22}`.
 
 With this information the equations of motion can be formed with Kane's method
 as described in Chapter :ref:`eom`. Special care must be taken when linearizing
-the equations of motion due to the eight holonomic constraints. The addtional
-generalized cooridnates, :math:`q_9` through :math:`q_{16}`, are all dependent
-coordinates and are ultimately functions of the steer angle, :math:`q_7`, and
-the chain rule must be applied when forming the Jacobian of the equations of
-motion as they are functions of all of the non-ignorable coordinates.
+the equations of motion due to the eight holonomic constraints. The additional
+generalized coordinates, :math:`q_9` through :math:`q_{16}`, are all dependent
+coordinates and are ultimately functions of the pitch and steer angles. The
+chain rule must be properly applied or the independent coordinates must be
+solved for when forming the Jacobian.
 
-.. todo:: Show some graphs. I need to get the numerical linearization working
-   for this model so that I can plot the eigenvalues plot. I assume it will
-   look similar to Arend's.
+Figure :ref:`figArmsEig` shows how the eigenvalues vary with speed with respect
+to the nominal equilibrium point. Notice that the oscillatory mode spans the
+entire speed range and is always stable. Their is a real mode which is stable
+at every given speed. Finally, a highly stable real mode is also shown.
 
-Roll angle trailer
-==================
+.. _figArmsEig:
 
-.. todo:: I think I will cut this as I've only built an independent kinematic
-   model for this and we have been neglecting it in the system identification
-   analysis. I will talk about its design in the davis bicycle chapter.
+.. figure:: figures/extensions/arms-eig.png
+   :align: center
+
+   figArmsEig
+
+   The root loci with respect to speed of the Whipple model with arms for the
+   parameter set associated with Jason seated on the Davis instrumented bicycle
+   calculated with the Yeadon method. This plot shares similar characteristics
+   as the one presented in [Schwab2010]_.
+
+.. todo:: Eigenvector component plots could help describe the motion.
 
 Flywheel in the front wheel
 ===========================
 
-Another interesting model extension involves adding an additional rotating
-wheel coicedent with the front wheel. It has been shown theorecially that
-increasing the angular momentum of the front wheel via change in inertia
-([Astrom2005]_, [Franke1990]_) or speed, has a strong effect on the stability
-of the Whipple model. It is interesting to note that for the benchmark bicycle
+Another model extension that perked my interest involves adding an additional
+rotating wheel coincident with the front wheel. It has been shown theoretically
+that increasing the angular momentum of the front wheel via change in inertia
+([Astrom2005]_, [Franke1990]_) or rotational speed, has a strong effect on the
+stability of the Whipple model. For the benchmark bicycle [Meijaard2007]_
 independently increasing the moment of inertia of the front wheel, decreases
-both the weave and capsize speeds. A low weave speed may give open loop
-stability benefits to riders at low speed. Conversely, it has also be shown
-that both a bicycle without gyroscopic effects can be stable [Kooijman2011]_
-and that humans can ride them [Jones1970]_ with little difficulty. The idea
-that gyroscopic action can stablize a moving two wheeled vehicle has been
-demostrated as early as the dawn of the 20th century, with the invention of the
-gyrocar and the gryo monorail. More recently several engineering students at
-Dartmouth University applied this theory to a compact flywheel mounted within
-the spokes of a childen's bicycle wheel [Ward2006]_. This has since become a
-comercially avialable product, the GyroBike, that claims to allow children to
-learn to ride quicker, due to the bicycle's increased stabilty at low speeds.
+both the weave and capsize speeds. A low weave speed may provide open loop
+stability advantages to riders at low speed, with the reasoning that a stable
+bicycle may require less rider control. Conversely, it has also be shown that
+both a bicycle without gyroscopic effects can be stable [Kooijman2011]_ and
+that humans can ride them [Jones1970]_ with little difficulty. The idea that
+gyroscopic action can stabilize a moving two wheeled vehicle has been
+demonstrated as early as the dawn of the 20th century, with the invention of
+the gyro car and the gyro monorail [Wikipedia?]_. Of more recent interest,
+several engineering students at Dartmouth University applied this theory to a
+compact flywheel mounted within the spokes of a children's bicycle wheel
+[Ward2006]_. This has since been developed into a commercially available
+product, the GyroBike, that claims to allow children to learn to ride easier,
+due to the bicycle's increased stability at low speeds [GyroBike2011]_. I was
+given an article about the bicycle from the Dartmouth alumni magazine and
+subsequently met the woman who was creating the startup company around the idea
+in San Francisco and was able to ride the full scale prototype and eventually
+purchased a 16" version. The bicycle alone stays very stable even to extremely
+low speeds, but when I as an experienced rider tried ride and control it the
+steering felt less responsive than I'd prefer.
 
 .. todo:: are their any gyro stablized two wheel vehicles earlier than the
-   car?
+   car? Find a good citation.
 
-The following video demonstrates that the gyrobike without a rider is stablized
-at 2 m/s when the flywheel is at full speed.
+.. todo:: Add citation to the gyrobike website.
+
+.. todo:: Check size of gyrobike wheel.
 
 .. raw:: html
+
+   <p>The following video demonstrates that the gyrobike without a rider is
+   stabilized at 2 m/s when the flywheel is at full speed.</p>
 
    <center>
      <iframe width="420" height="315"
@@ -353,48 +424,55 @@ at 2 m/s when the flywheel is at full speed.
 
 Using the Whipple model presented in Chapter :ref:`eom` as a base model, the
 GyroBike can be modeled by adding an additional symmetric rigid body, :math:`G`
-with mass :math:`m_G` to the system which rotates about the front wheel axis
-though a new generilzed coordinate, :math:`q9`. The angular velocity and
-acceleration of the new body are defined with the simple kinematical
-differential equation:
+with mass :math:`m_g` to the system which rotates about the front wheel axis
+though a new generalized coordinate, :math:`q_9`. The angular velocity and
+acceleration of the new body are defined with respect to the simple kinematical
+differential equation
 
 .. math::
+   :label: eqQ9
 
    ^F\omega^G = \dot{q}_9 \hat{e}_2 = u_9 \hat{e}_2
 
+where
+
 .. math::
+   :label: eqU9
 
    ^F\alpha^G = \dot{u}_9 \hat{e}_2
 
 The location of the flywheel center of mass is at the same point as the front
-wheel center of mass, thus the linear velocities and accelerations are the same
-as the front wheel:
+wheel center of mass, making the linear velocities and accelerations the
+same as the front wheel
 
 .. math::
+   :label: eqVGo
 
    ^N\bar{v}^{go} = ^N\bar{V}^{fo}
 
 .. math::
+   :label: eqAGo
 
    ^N\bar{a}^{go} = ^N\bar{a}^{fo}
 
 An additional torque, :math:`T_9`, is required to drive the flywheel relative
-to the front wheel.
+to the front wheel
 
 .. math::
+   :label: eqT9
 
    \bar{T}^F = -T_9\hat{e}_2
 
    \bar{T}^G = T_9\hat{e}_2
 
-At this point, :math:`\tilde{F}_r`, can be formed with the addtional equation
+At this point, :math:`\tilde{F}_r`, can be formed with an additional equation
 for the new degree of freedom.
 
-The generilized inertia force, :math:`\tilde{F}^*_r` is formed by taking into
-account the mass, :math:`m_G`, and inertia of the new body:
+The generalized inertia force, :math:`\tilde{F}^*_r` is formed by taking into
+account the mass, :math:`m_g`, and inertia of the new body
 
 .. math::
-   :label: IG
+   :label: eqIG
 
    I_G =
    \begin{bmatrix}

@@ -49,8 +49,8 @@ points ce
 %         constants and variables
 %---------------------------------------------------------------------%
 
-% rF: radius of front wheel
-% rR: radius of rear wheel
+% rf: radius of front wheel
+% rr: radius of rear wheel
 % d1: the perpendicular distance from the steer axis to the center
 %     of the rear wheel (rear offset)
 % d2: the distance between the intersections of the front and rear
@@ -66,7 +66,7 @@ points ce
 % l4: the distance in the e3> direction from the front wheel center to
 %     the center of mass of the fork
 
-constants rF, rR, d{1:3}, l{1:4}
+constants rf, rr, d{1:3}, l{1:4}
 
 % gravity
 
@@ -152,7 +152,7 @@ simprot(e, f, 2, q8)
 % locate the center of mass for each body
 
 % newtonian origin to rear wheel center
-p_no_do> = q1 * n1> + q2 * n2> - rR * b3>
+p_no_do> = q1 * n1> + q2 * n2> - rr * b3>
 
 % rear wheel center to bicycle frame center
 p_do_co> = l1 * c1> + l2 * c3>
@@ -167,8 +167,8 @@ p_ce_fo> = d2 * c3> + d3 * e1>
 p_fo_eo> = l3 * e1> + l4 * e3>
 
 % locate the ground contact points
-p_do_dn> = rR * b3>
-p_fo_fn> = rF * unitvec(cross(cross(e2>, a3>), e2>))
+p_do_dn> = rr * b3>
+p_fo_fn> = rf * unitvec(cross(cross(e2>, a3>), e2>))
 
 %---------------------------------------------------------------------%
 %         define the pitch configuration constraint

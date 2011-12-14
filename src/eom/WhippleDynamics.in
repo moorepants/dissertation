@@ -28,8 +28,8 @@ Constant             mc                   UNITS           |  0.0
 Constant             md                   UNITS           |  0.0
 Constant             me                   UNITS           |  0.0
 Constant             mf                   UNITS           |  0.0
-Constant             rF                   UNITS           |  0.0
-Constant             rR                   UNITS           |  0.0
+Constant             rf                   UNITS           |  0.0
+Constant             rr                   UNITS           |  0.0
 
 Initial Value        q1                   m               |  0.0
 Initial Value        q2                   m               |  0.0

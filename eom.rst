@@ -1199,10 +1199,26 @@ where my model matches to at least 13 significant figures.
 
 .. include:: tables/eom/linear-compare.rst
 
-Furthermore, the now ubiquitous eigenvalue plot versus forward speed is
-reproduced and matches to the precision of the naked eye.
+It is useful to plot the root loci with respect to the change in the
+equilibrium forward speed to visualize the time constants, damping, frequency
+and stability of each of the modes of motion.
 
-.. figure:: figures/eom/eigenvalues.png
+.. _figRootLoci:
+
+.. figure:: figures/eom/root-loci-complex.png
+   :width: 5in
+   :align: center
+
+   figRootLoci
+
+   The root loci with respect to forward speed. The color signifies speed as
+   shown in the right side colorbar.
+
+Another way to visualize this is by plotting the eigenvalue components
+separately which gives the now ubiquitous eigenvalue plot versus
+forward speed. This view clearly shows the stable speed range.
+
+.. figure:: figures/eom/root-loci.png
    :width: 5in
    :align: center
 

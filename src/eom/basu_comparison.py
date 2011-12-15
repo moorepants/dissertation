@@ -10,6 +10,15 @@ import bicycleparameters as bp
 from dtk import bicycle
 
 # local dependencies
+try:
+    f = open('Whipple.py', 'r')
+except IOError:
+    from altk import alparse
+    alparse.alparse('Whipple', 'Whipple', code='Python')
+else:
+    f.close()
+    del f
+
 from Whipple import Whipple
 
 # create the Whipple model object

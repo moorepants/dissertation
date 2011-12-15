@@ -5,6 +5,15 @@ import bicycleparameters as bp
 from dtk import bicycle
 
 # local dependencies
+try:
+    f = open('GyroBike.py', 'r')
+except IOError:
+    from altk import alparse
+    alparse.alparse('GyroBike', 'GyroBike', code='Python')
+else:
+    f.close()
+    del f
+
 from GyroBike import GyroBike
 
 # create the Whipple model (with my parameters)

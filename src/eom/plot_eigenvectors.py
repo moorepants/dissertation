@@ -9,6 +9,15 @@ from dtk import bicycle
 from Whipple import LinearWhipple
 
 # create the Whipple model (with my parameters)
+try:
+    f = open('Whipple.py', 'r')
+except IOError:
+    from altk import alparse
+    alparse.alparse('Whipple', 'Whipple', code='Python')
+else:
+    f.close()
+    del f
+
 whip = LinearWhipple()
 
 # load the benchmark parameters

@@ -1,14 +1,20 @@
 #!/usr/bin/env python
 
-# built in imports
-import sys
-
 # dependencies
 import numpy as np
 import bicycleparameters as bp
 from dtk import bicycle
 
 # local dependencies
+try:
+    f = open('GyroBike.py', 'r')
+except IOError:
+    from altk import alparse
+    alparse.alparse('GyroBike', 'GyroBike', code='Python')
+else:
+    f.close()
+    del f
+
 from GyroBike import LinearGyroBike
 
 # create the linear gyrobike model

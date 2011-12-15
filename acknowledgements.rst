@@ -2,6 +2,13 @@
 Acknowledgements
 ================
 
+.. warning::
+
+   This document is a draft which is updated regularly (Last updated |today|).
+   Once I submit if for my doctoral degree at UC Davis, it will be done. So for
+   now use at your own risk. The information may or may not be correct.
+   Reviews, comments and suggestions are welcome.
+
 There are an unbelievable amount of people who help one along on the road to a
 higher degree from yoru professors to the librarians but there are always some
 special folks to thank. Mont Hubbard has been my adviser since I took his

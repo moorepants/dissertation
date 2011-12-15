@@ -2,6 +2,13 @@
 Preface
 =======
 
+.. warning::
+
+   This document is a draft which is updated regularly (Last updated |today|).
+   Once I submit if for my doctoral degree at UC Davis, it will be done. So for
+   now use at your own risk. The information may or may not be correct.
+   Reviews, comments and suggestions are welcome.
+
 The typical conversation with someone I've met over the past years as I've been
 a graduate student inevitably comes to this: "So what do you do?" and my reply
 is "I study how people balance on bicycles". This is a great conversation

@@ -745,18 +745,37 @@ described in :ref:`eom`. This linear model has been explicitly explored by both
 spliting the values of the benchmark parameter set. The following plot uses
 more realistic rider parameters which are generated with methods described in
 Chapter :ref:`physicalparameters` and the passive lean torque coefficients are
-set to zero. Notice that the largest eigenvalue is much larger than the ones
-reported in Schwab and Peterson with a time to double of about a tenth of a
-second. We found that root difficult to stabilize when employing a manual
-control model, which suggests the need for some additional passive control.
+set to zero. Notice that the largest eigenvalue is much larger than reported in
+Schwab and Peterson with a time to double of about a tenth of a second. We
+found that root difficult to stabilize when employing a manual control model
+based on the one presented in Chapter :ref:`control`, which suggests the need
+for some additional passive stabilization.
 
 .. figure:: figures/extensions/rider-lean.png
+   :width: 5in
+   :align: center
+
+   figRiderLean
+
+   Needs a caption.
 
 The damping stiffness coefficient can be selected to such that the highly
-unstable rider mode is only marginally stable, thus making it easier to
-control.
+unstable rider mode is stablized and the stable speed range observed in the
+Whipple model is restored and thus setting the model up for similar control.
+The parameters used are taken from [Lorenzo1996]_, which he estimated,
+:math:`k_9=128` N-m/rad and :math:`c_9=50` N-m/rad/s.
 
 .. figure:: figures/extensions/rider-lean-damp-stiff.png
+   :width: 5in
+   :align: center
+
+   figRiderLeanPassive
+
+   Needs a caption.
+
+.. todo:: These plots were generated with rider parameters based on my original
+   method, it wouldn't take much to update the parameters to reflect the yeadon
+   method.
 
 David de Lorenzo extension
 ==========================
@@ -765,36 +784,39 @@ Preface
 -------
 
 To expand on the ideas presented in the previous section, I'd like to share
-some findings from a short conference paper that Luke and I put together
-[Moore2007]_. I have included it here almost verbatim but have updated the
-writings to tie it into the dissertation and make it less dated. I also have
-not updated the derivation of the equations of motion to reflect the parameters
-and methodolgy presented in this dissertation, so I will leave those out but
-they can be found in the source code. None-the-less the model can be
+some findings from a short conference paper that Luke Peterson and I put
+together for the 11th International Symposium on Computer Simulation in
+Biomechanics [Moore2007]_. I have included it here almost verbatim but have
+updated the writings to tie it into the dissertation and make it less dated. I
+also have not updated the derivation of the equations of motion to reflect the
+parameters and methodolgy presented in this dissertation, so I will leave those
+out but they can be found in the source code. None-the-less the model can be
 systematically derived in the same fashion as the previous sections. The
-initial interest in this model was an unpublished paper by David de Lorenzo and
-Mont Hubbard which explored parameter studies of a model similar to the one
-that is presented. Here We pursue the effects that passive springs and dampers
-at the biomechanical joints have on the stability of the bicycle.
+initial interest in this model was an unpublished paper by David de Lorenzo
+[Lorenzo1996]_ and Mont Hubbard which explored parameter studies of a model
+similar to the one that is presented. I have a inclination to try to get it
+published as a heavy review stopped it in its tracks in 1996, but that will
+have to wait. Here I pursue the effects that passive springs and dampers at the
+biomechanical joints have on the stability of the bicycle, much in the same way
+as the previous section but with a more complex rider model.
 
 Introduction
 ------------
 
-In this paper, we build on the Whipple model by adding biomechanical degrees of
-freedom that capture the dominant rider's motion and the flexible coupling to
-the rear frame. The rationale for doing so is that the mass and inertia of a
-rider is much larger than that of the bicycle, and the coupling between the
-rider and the bicycle is certainly not rigid. Rider modeling has been
-approached in the motorcycle literature [Limebeer2006]_ but typically does not
-address the smaller vehicle inertial properties and the possible difference in
-the coupling constants. For example, when riding a bicycle, it is easy to
-observe that the frame yaw and roll motions are different from the rider yaw
-and roll motions. Modeling the rider and frame as a single rigid body ignores
-this flexible coupling. In this analysis, we seek to understand the effect of
-the addition of these new degrees of freedom on the stable speed range of the
-bicycle. We examine the additional modes associated with the new degrees of
-freedom and how they impact the weave, capsize, and caster modes seen in the
-Whipple model.
+We build on the Whipple model by adding biomechanical degrees of freedom that
+capture the dominant rider's motion and the flexible coupling to the rear
+frame. The rationale for doing so is that the mass and inertia of a rider is
+much larger than that of the bicycle, and the coupling between the rider and
+the bicycle is certainly not rigid. Rider modeling has been approached in the
+motorcycle literature [Limebeer2006]_ but typically does not address the
+smaller vehicle inertial properties and the possible difference in the coupling
+constants. For example, when riding a bicycle, it is easy to observe that the
+frame yaw and roll motions are differ from the rider yaw and roll motions.
+Modeling the rider and frame as a single rigid body ignores this flexible
+coupling. In this analysis, we seek to understand the effect of the addition of
+these new degrees of freedom on the stable speed range of the bicycle. We
+examine the additional modes associated with the new degrees of freedom and how
+they impact the weave, capsize, and caster modes seen in the Whipple model.
 
 Methods
 -------
@@ -821,7 +843,11 @@ influenced by the seat and the properties of the skeletal muscle tissue of
 thighs and/or buttocks. The torsional springs and dampers represent the
 musculoskeletal stiffness and damping at the hips.
 
+.. _figLorenzoConfiguration:
+
 .. figure:: figures/extensions/lorenzo-configuration.png
+   :width: 5 in
+   :align: center
 
    figLorenzoConfiguration
 
@@ -831,7 +857,7 @@ musculoskeletal stiffness and damping at the hips.
 This six rigid body model has eleven generalized coordinates. One generalized
 coordinate (frame pitch) is eliminated by the holonomic configuration
 constraints requiring that both wheels touch the ground. This leaves ten
-generalized speeds, of which four are elimnated due to the nonholonomic
+generalized speeds, of which four are eliminated due to the nonholonomic
 constraints for the purely rolling wheels. The nonlinear equations of motion
 were linearized numerically about the nominal upright, constant velocity
 configuration using a central differencing method with an optimum perturbation
@@ -843,9 +869,9 @@ The physical parameters are adapted from [Meijaard2007]_ with exception of the
 rider pivot point locations and the spring and damper constants. The pivot
 point locations were measured and the spring and damper constants were taken
 from [Lorenzo1996]_ which he estimated. All of the physical parameters were
-chosen in such a way that, if the rider degrees of freedom are locked,
-the model reduces to the benchmark Whipple model, similar to the later work
-done by [Peterson2008a]_ and [Schwab2008]_.
+chosen in such a way that, if the rider degrees of freedom are locked, the
+model reduces to the benchmark Whipple model, similar to the later work done by
+[Peterson2008a]_ and [Schwab2008]_.
 
 Results and Discussion
 ----------------------
@@ -859,21 +885,43 @@ coordinate, across the range of speeds examined.
 Figure :ref:`figLorenzoEig` shows the real parts of the identified eigenvalues
 of the flexible rider model. By comparison to the Whipple model, it can be seen
 that the modes are greatly affected by the additional rider states. The weave
-mode has become unstable for all velocities and no stable speed range is
+mode has become unstable for all velocities due and no stable speed range is
 present.
 
+.. _figLorenzoEig:
+
 .. figure:: figures/extensions/lorenzo-eig.jpg
+   :align: center
+   :width: 5in
+
+   figLorenzoEig
+
+   The eigenvalues as a function of forward speed.
+
+.. _figLorenzoComplex:
+
+.. figure:: figures/extensions/lorenzo-plane.png
+   :width: 3 in
+   :align: center
+
+   figLorenzoComplex
+
+   The root loci with respect to speed.
 
 Examining the eigenvector of the weave mode at different velocities we find
 that at low speeds the weave mode is dominated by frame roll and steer, while
 at high speeds the weave is dominated by upper body lean and twist. This
-phenomenon was also observed by Limebeer and Sharp [Limebeer2006]_. Furthermoe,
-another unstable oscillatory eigenvalue pair is present at velocities below
-about 4 m/s for this parameter set.
+phenomenon was also observed by Limebeer and Sharp [Limebeer2006]_.
+Furthermore, another unstable oscillatory eigenvalue pair is present at
+velocities below about 4 m/s for this parameter set.
+
+.. _figLorenzoEigVec:
 
 .. figure:: figures/extensions/lorenzo-eigvec.png
 
-.. figure:: figures/extensions/lorenzo-plane.png
+   figLorenzoEigVec
+
+   The eigenvector components.
 
 As the stiffness and damping coefficients for the rider/frame coupling are
 increased (by factors of about :math:`10^3` and :math:`30` respectively), the
@@ -883,19 +931,23 @@ speed range did exist are unrealistically high.
 
 .. figure:: figures/extensions/lorenzo-high.jpg
 
+   figLorenzoHigh
+
+   The eigen fucking values.
+
 Conclusion
 ----------
 
 The notion that the bicycle-rider system can be stable during hands-free riding
 and with no active control from the rider is not necessarily true when the
 rider's biomechanics are modeled more realistically. For the particular set of
-exstimated parameters the weave mode is unstable for the entire range of speeds
+estimated parameters the weave mode is unstable for the entire range of speeds
 investigated when realistic flexible rider dynamics are included. While the
 Whipple model provides many insights into the dynamics and control of the
 bicycle, it lacks the complexity to capture the essential dynamics that are
 present in passive hands-free riding. In particular, it is highly likely that
 bicycle rider must always use active control to keep the bicycle upright and
-self-stabilization is not guarenteed. Parameters studies that show the
+self-stabilization is not guaranteed. Parameters studies that show the
 dependence on stability across a range of speeds for ranges of stiffness and
 damping at the biomechanical joints can shed more light on the system for more
 conclusive results.
@@ -903,20 +955,17 @@ conclusive results.
 Flexible rider (hip rotation, back lean and twist)
 ==================================================
 
-.. todo:: Talk a bit about this model and show the video we made of the no hand
-   riding on the treadmill. Also show the graph of the hip markers relative to the
-   seat.
+I've thought a great deal about the actual biomechanical motion one uses to
+balance a bicycle when riding no-handed and I've learned much about it by
+talking with colleagues such as Jim P., Jodi and Arend. For the final studies
+in this dissertation I had intended to do a thorough study of the dynamics of
+balancing with no hands based around a theory of the mechanism with which we
+enact our control. This no-hand biomechanical model also relates to what we may
+do even when we have our hands on the bars, albeit with much smaller
+magnitudes.
 
-I've thought a great deal about how one balances a bicycle when riding
-no-handed and I've learned much about it by talking with colleagues such as Jim
-P., Jodi and Arend. For the final studies in this dissertation I had intended
-to do a thorough study of the dynamics of balancing with no hands based around
-a theory of the mechanism with which we enact our control. This no hand
-biomechanical model also relates to what we may do even when we have our hands
-on the bars, albiet at a much smaller magnitudes.
-
-It is relatively easy to learn to ride with your hands and many people that
-know hwo to ride a bicycle can do so. Some can navigate roads and obstables
+It is relatively easy to learn to ride without using your hands and many people
+that know how to ride a bicycle can do so. Some can navigate roads and obstacles
 very well too. Without being able to directly affect the steering angle, one
 must affect the roll angle, which in turn is coupled to steering. In the purely
 mechanical sense one can imagine that a rider could "lean" relative to the rear
@@ -952,6 +1001,9 @@ rotating about a line just below the seat that runs fore to aft.
    figHipTrace
 
    The hip trace from run # 3104.
+
+.. todo:: Add the Autodesk Inventor drawing of this model, or even an
+   animation.
 
 Gilbert and I worked on exploring this motion and theorizing a harness of some
 sort that would both contrain the rider's motion to these key motions and

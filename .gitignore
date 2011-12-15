@@ -1,2 +1,10 @@
 figures-hide/
 tables-hide/
+
+# Python
+*.pyc
+
+# Autolev
+*.all
+*.dir
+alTmp*

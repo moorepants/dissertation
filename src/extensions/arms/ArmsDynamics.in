@@ -1,0 +1,93 @@
+File: ArmsDynamics.in
+-----------------------------------------------------------------------------
+Note: Use spaces not tabs while editing this file.
+----------------------------------------------------------+------------------
+Description          Quantity             Units           | Value
+----------------------------------------------------------|------------------
+Constant             d1                   UNITS           |  0.0
+Constant             d10                  UNITS           |  0.0
+Constant             d12                  UNITS           |  0.0
+Constant             d13                  UNITS           |  0.0
+Constant             d2                   UNITS           |  0.0
+Constant             d3                   UNITS           |  0.0
+Constant             d4                   UNITS           |  0.0
+Constant             d5                   UNITS           |  0.0
+Constant             d6                   UNITS           |  0.0
+Constant             d7                   UNITS           |  0.0
+Constant             d8                   UNITS           |  0.0
+Constant             d9                   UNITS           |  0.0
+Constant             g                    UNITS           |  0.0
+Constant             ic11                 UNITS           |  0.0
+Constant             ic22                 UNITS           |  0.0
+Constant             ic31                 UNITS           |  0.0
+Constant             ic33                 UNITS           |  0.0
+Constant             id11                 UNITS           |  0.0
+Constant             id22                 UNITS           |  0.0
+Constant             ie11                 UNITS           |  0.0
+Constant             ie22                 UNITS           |  0.0
+Constant             ie31                 UNITS           |  0.0
+Constant             ie33                 UNITS           |  0.0
+Constant             if11                 UNITS           |  0.0
+Constant             if22                 UNITS           |  0.0
+Constant             ig11                 UNITS           |  0.0
+Constant             ig33                 UNITS           |  0.0
+Constant             ih11                 UNITS           |  0.0
+Constant             ih33                 UNITS           |  0.0
+Constant             ii11                 UNITS           |  0.0
+Constant             ii33                 UNITS           |  0.0
+Constant             ij11                 UNITS           |  0.0
+Constant             ij33                 UNITS           |  0.0
+Constant             l1                   UNITS           |  0.0
+Constant             l2                   UNITS           |  0.0
+Constant             l3                   UNITS           |  0.0
+Constant             l4                   UNITS           |  0.0
+Constant             l5                   UNITS           |  0.0
+Constant             l6                   UNITS           |  0.0
+Constant             mc                   UNITS           |  0.0
+Constant             md                   UNITS           |  0.0
+Constant             me                   UNITS           |  0.0
+Constant             mf                   UNITS           |  0.0
+Constant             mg                   UNITS           |  0.0
+Constant             mh                   UNITS           |  0.0
+Constant             mi                   UNITS           |  0.0
+Constant             mj                   UNITS           |  0.0
+Constant             rf                   UNITS           |  0.0
+Constant             rr                   UNITS           |  0.0
+
+Initial Value        q1                   UNITS           |  0.0
+Initial Value        q10                  UNITS           |  0.0
+Initial Value        q11                  UNITS           |  0.0
+Initial Value        q12                  UNITS           |  0.0
+Initial Value        q13                  UNITS           |  0.0
+Initial Value        q14                  UNITS           |  0.0
+Initial Value        q15                  UNITS           |  0.0
+Initial Value        q16                  UNITS           |  0.0
+Initial Value        q2                   UNITS           |  0.0
+Initial Value        q3                   UNITS           |  0.0
+Initial Value        q4                   UNITS           |  0.0
+Initial Value        q5                   UNITS           |  0.0
+Initial Value        q6                   UNITS           |  0.0
+Initial Value        q7                   UNITS           |  0.0
+Initial Value        q8                   UNITS           |  0.0
+Initial Value        q9                   UNITS           |  0.0
+Initial Value        u4                   UNITS           |  0.0
+Initial Value        u6                   UNITS           |  0.0
+Initial Value        u7                   UNITS           |  0.0
+
+Initial Time         TINITIAL             sec             |  0.0
+Final Time           TFINAL               sec             |  1.0
+Integration Step     INTEGSTP             sec             |  0.1
+Print-Integer        PRINTINT             Positive Integer|  1
+Absolute Error       ABSERR                               |  1.0E-08
+Relative Error       RELERR                               |  1.0E-07 
+----------------------------------------------------------+------------------
+
+Note:
+
+  INTEGSTP*PRINTINT is the time-interval for writing of output.
+
+  ABSERR should be set equal to 10^(-8)*Xsmall, where Xsmall is the estimated
+         smallest maximum absolute value of the variables being integrated.
+
+  RELERR should be set equal to 10^(-d), where d is the desired number of
+         significant digits of numerical integration results.

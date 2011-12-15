@@ -40,7 +40,8 @@ figDir = '../../../figures/extensions/'
 settings = {'num':100,
             'axes':'parameter',
             'pub':True,
-            'ylim':(-10, 10)}
+            'ylim':(-10, 10),
+            'width':5.0}
 
 # generate a root loci with respect to speed for a baseline
 gyrobike.linear(equilibrium)
@@ -48,7 +49,7 @@ start = 0.
 stop = -10.0 / moorePar['rr']
 flywheelOff = gyrobike.plot_root_loci('u6', start, stop, factor=('v',
     -moorePar['rr']), units='m/s', **settings)
-flywheelOff.savefig(figDir + 'gyrobike-flywheel-off.png')
+flywheelOff.savefig(figDir + 'gyrobike-flywheel-off.png', dpi=200)
 
 # now generate a root loci with respect to flywheel speed
 gyrobike.linear(equilibrium)
@@ -56,7 +57,7 @@ start = 0.
 stop = -10000. / 60. * 2 * np.pi
 flywheelOn = gyrobike.plot_root_loci('u9', start, stop, factor=('$u_9$', -60. /
     2 / np.pi), units='rpm', **settings)
-flywheelOn.savefig(figDir + 'gyrobike-vary-flywheel.png')
+flywheelOn.savefig(figDir + 'gyrobike-vary-flywheel.png', dpi=200)
 
 # create the same graphs but with a rider
 # warning, as of now the arms are not properly set for this bicycle
@@ -74,7 +75,7 @@ start = 0.
 stop = -10.0 / moorePar['rr']
 flywheelOffRider = gyrobike.plot_root_loci('u6', start, stop, factor=('v',
     -moorePar['rr']), units='m/s', **settings)
-flywheelOffRider.savefig(figDir + 'gyrobike-flywheel-off-rider.png')
+flywheelOffRider.savefig(figDir + 'gyrobike-flywheel-off-rider.png', dpi=200)
 
 # now generate a root loci with respect to flywheel speed
 gyrobike.linear(equilibrium)
@@ -82,4 +83,4 @@ start = 0.
 stop = -10000. / 60. * 2 * np.pi
 flywheelOnRider = gyrobike.plot_root_loci('u9', start, stop, factor=('$u_9$', -60. /
     2 / np.pi), units='rpm',  **settings)
-flywheelOnRider.savefig(figDir + 'gyrobike-vary-flywheel-rider.png')
+flywheelOnRider.savefig(figDir + 'gyrobike-vary-flywheel-rider.png', dpi=200)

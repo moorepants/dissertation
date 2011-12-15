@@ -488,29 +488,20 @@ capsize critical speeds lower and lower, creating a stable speed range at
 speeds in which a person may learn to ride a bicycle.
 
 .. figure:: figures/extensions/gyrobike-flywheel-off.png
+   :width: 4in
+   :align: center
 
    figGyroOff
 
    The root loci with respect to the rear wheel angular speed when the flywheel
-   is fixed to the front wheel (i.e. has the the same angular velocity.
-
-.. figure:: figures/extensions/gyrobike-flywheel-medium.png
-
-   figGyroMedium
-
-   The root loci with respect to the rear wheel angular speed when the flywheel
-   is spinning at 50 rad/s with respect to the front wheel.
-
-.. figure:: figures/extensions/gyrobike-flywheel-fast.png
-
-   figGyroFast
-
-   The root loci with respect to the rear wheel angular speed when the flywheel
-   is spinning at 100 rad/s with respect to the front wheel.
+   is fixed to the front wheel (i.e. has the the same angular velocity as the
+   front wheel).
 
 .. figure:: figures/extensions/gyrobike-vary-flywheel.png
+   :width: 4in
+   :align: center
 
-   figGyroFast
+   figGyroVary
 
    The root loci with respect to the flywheel angular velocity when the the
    forward velocity is 0.5 m/s. It shows that the system can certainly be made
@@ -518,21 +509,56 @@ speeds in which a person may learn to ride a bicycle.
    interesting to note that increasing the velocity too much results in an
    unstable system.
 
-.. todo:: Clean up these graphs.
+.. figure:: figures/extensions/gyrobike-flywheel-off-rider.png
+   :width: 4in
+   :align: center
 
-.. todo:: Plot these with the actual parameters of the gyrobike. These plots
-   are of the benchmark parameters with an additional identical front wheel.
+   figGyroOffRider
+
+   The root loci with respect to the rear wheel angular speed when the flywheel
+   is fixed to the front wheel (i.e. has the the same angular velocity as the
+   front wheel) and a rigid child is seated on the bicycle.
+
+Notice that if a child sized rider is rigidly added to the rear frame that the
+flywheel must spin at almost 4000 rpm for the system to be stable and the time
+constant of the unstable eigenvalue doesn't decrease decrease much until you at
+least have the flywheel spinning at 200 rpm.
+
+.. todo:: It would be interesting to know how fast the gyro wheel does spin. It
+   it has three speed settings.
+
+.. figure:: figures/extensions/gyrobike-vary-flywheel-rider.png
+   :width: 4in
+   :align: center
+
+   figGyroVaryRider
+
+   The root loci with respect to the flywheel angular velocity when the the
+   forward velocity is 0.5 m/s when a rigid child is seated on the bicycle. It
+   shows that the system can certainly be made stable by increasing the angular
+   velocity of the flywheel, but it is also interesting to note that increasing
+   the velocity too much results in an unstable system.
+
+.. figure:: figures/extensions/gyro-nonlin-sim.png
+   :width: 4in
+   :align: center
+
+   figGyroNonLin
+
+   The non-linear simulation of bicycle traveling at 4.6 m/s with the flywheel
+   spining at.
+
+.. todo:: Plot the flywheel rate on this plot too.
 
 .. todo:: Other possible plots: weave and capsize speeds as a function of flywheel
-   speed, 3D plot versus both parameters (u6 and u9), root loci wrt to u9 at a
-   single low speed.
+   speed, 3D plot versus both parameters (u6 and u9)
 
 Leaning rider extension
 =======================
 
 A common assumption regarding how a person controls a bicycle with minimal or
 no steer input is that the rider can lean their body relative to the bicycle
-frame. This assumption is especially drawn for the no-hands riding case. A
+frame. This assumption is more often than not drawn for no-hands riding. A
 simple leaning rider can be modeled by adding an additional rider lean degree
 of freedom, :math:`q_9`, with an accompanying rider lean torque, :math:`T_9`.
 [Sharp2008]_, [Schwab2008]_, [Peterson2008a]_, have all modeled this system
@@ -540,10 +566,10 @@ explicitly.
 
 I define the upper body hinge as a horizontal line at a distance :math:`d_4`
 below the rear wheel center when the bicycle is in the nominal configuration.
-The direction cosine matrix relating the upper body to the rear frame is:
+The direction cosine matrix relating the upper body to the rear frame is
 
 .. math::
-   :label: EtoF
+   :label: eqDCMGtoC
 
    ^C\mathbf{R}^G =
    \begin{bmatrix}
@@ -552,11 +578,12 @@ The direction cosine matrix relating the upper body to the rear frame is:
    -s_\lambda c_9 & -s_9 & c_\lambda c_9
    \end{bmatrix}
 
-A point on the hinge is then defined as
+A point, :math:`c_g`, on the hinge is then defined as
 
 .. math::
+   :label: eqLocCg
 
-   \bar{R}^{cg/do} = -d_4s_\lambda\hat{c}_1 + d_4c_\lambda\hat{c}_3
+   \bar{R}^{c_g/d_o} = -d_4s_\lambda\hat{c}_1 + d_4c_\lambda\hat{c}_3
 
 where :math:`\lambda` is the steer axis tilt and is a function of :math:`d_1`,
 :math:`d_2`, and :math:`d_3` as described in :ref:`eom`.
@@ -565,18 +592,20 @@ The angular velocity and angular acceleration of the upper body in the bicycle
 frame is defined as
 
 .. math::
+   :label: eqOmegaCinG
 
    ^C\bar{\omega}^G = u_9 \hat{g}_1
 
 .. math::
+   :label: eqAlphaCinG
 
    ^C\bar{\alpha}^G = \dot{u}_9 \hat{g}_1
 
-with :math:`u_9=\dot{q}_9`. The linear velocities and accelerations of the
-hinge point and the upper body center of mass are as follows:
+with :math:`u_9=\dot{q}_9`. The linear velocities of the hinge point and the
+upper body center of mass are
 
 .. math::
-   :label: CgInN
+   :label: eqVCgInN
 
    ^N\bar{v}^{c_g} = ^N\bar{v}^{d_o} + ^N\bar\omega^C\times\bar{r}^{c_g/d_o}
 
@@ -586,7 +615,7 @@ hinge point and the upper body center of mass are as follows:
    &d_4s_\lambda(u_5+s_4u_3)\hat{c}_3
 
 .. math::
-   :label: GoInN
+   :label: eqVGoInN
 
    ^N\bar{v}^{g_o} = ^N\bar{v}^{c_g} + ^N\bar\omega^G\times\bar{r}^{g_o/c_g}
 
@@ -596,8 +625,11 @@ hinge point and the upper body center of mass are as follows:
    c_9s_{\lambda-5}u_4+(s_4s_9-c_4c_9c_{\lambda-5})u_3))\hat{g}_2 +\\
    &l_5(s_9s_{\lambda-5}u_4-c_9u_5-(s_4c_9+s_9c_4c_{\lambda-5})u_3)\hat{g}_3
 
+The linear accelerations of the hinge point and the upper body center of mass
+are as follows
+
 .. math::
-   :label: aCginN
+   :label: eqACginN
 
    ^N\bar{a}^{c_g} = ^N\bar{a}^{d_o} +
    ^N\omega^C\times(^N\omega^C\times\bar{r}^{c_g/d_o}) +
@@ -620,7 +652,7 @@ hinge point and the upper body center of mass are as follows:
    &d_4s_\lambda(c_4u_3u_4+\dot{u}_5+s_4\dot{u}_3)\hat{c}_3
 
 .. math::
-   :label: aGoinN
+   :label: eqAGoinN
 
    ^N\bar{a}^{g_o} = ^N\bar{a}^{c_g} +
    ^N\omega^G\times(^N\omega^G\times\bar{r}^{g_o/c_g}) +
@@ -661,39 +693,44 @@ hinge point and the upper body center of mass are as follows:
 .. todo:: I'm not sure how useful it is to print out these long equations.
    Maybe I shouldn't do it and refer to the code.
 
-I introduce two additional forces. The first is the input torque between the
-rear frame and the rider's upper body, :math:`T_9`. This is considered the
-active torque of which the rider's control system would provide. The second
-torque is defined as
-
-.. math:: T_9^p = -c_9 * u_9 - k_9 * q_9
-
-where :math:`c_9` and :math:`k_9` are damping and stiffness coeficients which
-are a way to characterize the passive torque which keeps our back upright. It
-is not realistic that the lean joint is a free joint and active control is
-always required to keep our body upright. A human torso has some inherent
-stiffness.
-
-The additional generalized force is:
+I introduce two additional torques. The first is the input torque between the
+rear frame and the rider's upper body, :math:`T_9`. This can be considered as
+the active torque contribution of which the rider's control system would
+provide. The second torque is defined as
 
 .. math::
+   :label: eqPassiveTorque
+
+   T_9^p = -c_9 * u_9 - k_9 * q_9
+
+where :math:`c_9` and :math:`k_9` are damping and stiffness coeficients which
+are introduced as way to characterize the passive torques generated by the
+tissue, ligament, tendon and bone structure. A free lean joint is far from
+realistic as large active torques would be required to keep the body upright.
+These equivalent to simple proportional and derivative negative feedback on the
+roll angle and could be defined as such also.
+
+The additional generalized force is
+
+.. math::
+   :label: eqGravity
 
   \bar{R}^{g_o} = m_Gg\hat{n}_3
 
-and the generalized torques are also modified:
-
+and the generalized torques modified to include the new torques
 
 .. math::
+   :label: eqGenTorques
 
    \bar{T}^C = T_4\hat{a}_1 - T_6\hat{c}_2 - T_7\hat{c}_3 + (k_9q_9+c_9u_9-T_9)\hat{g}_1
 
    \bar{T}^G = -(k_9q_9+c_9u_9-T_9)\hat{g}_1
 
-The mass of the upper body is :math:`m_g` and the upper body is assumed to by
-symmetric about the sagital plane:
+The mass of the upper body is :math:`m_g` and it is assumed to by
+symmetric about the sagital plane
 
 .. math::
-   :label: IG
+   :label: eqIG
 
    I_G =
    \begin{bmatrix}
@@ -702,14 +739,16 @@ symmetric about the sagital plane:
    I_{G13} & 0 & I_{G33}
    \end{bmatrix}
 
-The equations of motion are formed and linearized as described in :ref:`eom`.
-This model has been explicitly explored by both [Schwab2008]_ and
-[Peterson2008a]_ with parameter values estimated from the Benchmark parameter
-set, which is not necessarily that realisitic. The following plot uses more
-realistic rider parameters which are generated it following chapter
-:ref:`physicalparameters` and the passive lean torque set to zero. Notice that
-the largest eigenvalue is much larger than the ones reported in Schwab and
-Peterson with a time to double of about a tenth of a second.
+The equations of motion are formed with Kane's method and linearized as
+described in :ref:`eom`. This linear model has been explicitly explored by both
+[Schwab2008]_ and [Peterson2008a]_ with parameter values estimated from the by
+spliting the values of the benchmark parameter set. The following plot uses
+more realistic rider parameters which are generated with methods described in
+Chapter :ref:`physicalparameters` and the passive lean torque coefficients are
+set to zero. Notice that the largest eigenvalue is much larger than the ones
+reported in Schwab and Peterson with a time to double of about a tenth of a
+second. We found that root difficult to stabilize when employing a manual
+control model, which suggests the need for some additional passive control.
 
 .. figure:: figures/extensions/rider-lean.png
 

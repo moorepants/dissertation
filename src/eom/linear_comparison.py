@@ -21,9 +21,9 @@ whip.set_parameters(moorePar)
 
 # set the initial conditions to match Meijaard2007
 speedNaught = 4.6
-u6Naught = -speedNaught / moorePar['rR']
+u6Naught = -speedNaught / moorePar['rr']
 rollRateNaught = 0.5
-pitchAngle = bicycle.pitch_from_roll_and_steer(0., 0., moorePar['rF'], moorePar['rR'],
+pitchAngle = bicycle.pitch_from_roll_and_steer(0., 0., moorePar['rf'], moorePar['rr'],
         moorePar['d1'], moorePar['d2'], moorePar['d3'])
 
 # linearize about the nominal configuration
@@ -45,22 +45,22 @@ whip.simulate()
 
 # plot figure 4 from Meijaard2007 using my model
 rollRate = whip.get_sim_output('u4')
-speed = -whip.get_sim_output('u6') * whip.parameters['rR']
-steerRate = whip.get_sim_output('u7')
+speed = -whip.get_sim_output('u6') * whip.parameters['rr']
+steerrate = whip.get_sim_output('u7')
 time = whip.simResults['t']
-newFig = bicycle.meijaard_figure_four(time, rollRate, steerRate, speed)
+newFig = bicycle.meijaard_figure_four(time, rollRate, steerrate, speed)
 newFig.savefig('../../figures/eom/meijaard2007-figure-four-linear.png', dpi=300)
 
 # plot the eigenvalues vs speed
 start = 0.0
-stop = -10.0 / moorePar['rR']
+stop = -10.0 / moorePar['rr']
 rootLoci = whip.plot_root_loci('u6', start, stop, num=100, axes='parameter')
-ax = rootLoci.axes[0]
-ax.set_xlim(ax.get_xlim()[::-1])
 rootLoci.savefig('../../figures/eom/root-loci.png', dpi=300)
+rootLoci = whip.plot_root_loci('u6', start, stop)
+rootLoci.savefig('../../figures/eom/root-loci-complex.png', dpi=300)
 
 # now find the eigenvalues
-equilibrium[whip.stateNames.index('u6')] = -5.0 / moorePar['rR']
+equilibrium[whip.stateNames.index('u6')] = -5.0 / moorePar['rr']
 whip.linear(equilibrium)
 e = whip.eig()[0]
 r = e.real

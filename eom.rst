@@ -1277,6 +1277,9 @@ primarily roll.
 
 The complete motion of the bicycle is a superposition of each mode.
 
+.. todo:: Add the eigenvector component animation we did for the Taiwan
+   conference.
+
 Notation
 ========
 

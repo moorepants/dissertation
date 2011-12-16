@@ -732,7 +732,8 @@ and the generalized torques modified to include the new torques
 .. math::
    :label: eqGenTorques
 
-   \bar{T}^C = T_4\hat{a}_1 - T_6\hat{c}_2 - T_7\hat{c}_3 + (k_9q_9+c_9u_9-T_9)\hat{g}_1
+   \bar{T}^C = T_4\hat{a}_1 - T_6\hat{c}_2 - T_7\hat{c}_3 +
+   (k_9q_9+c_9u_9-T_9)\hat{g}_1
 
    \bar{T}^G = -(k_9q_9+c_9u_9-T_9)\hat{g}_1
 
@@ -1112,6 +1113,29 @@ the bicycle/rider system stable.
 Finally, I've shown some ideas of developing a slightly different biomechanical
 model of the rider that may be a more realistic way of characterizing the
 motion used for non-steer related control of the bicycle.
+
+Notation
+========
+
+Each section in this Chapter uses its own notation and I use variable names for
+different quantities in each section, except for the arms model section as it
+subsumes the lateral force input. Also each model makes use of the parameters
+defined in Chapter :ref:`eom` as a base.
+
+:math:`c_l`
+   The point at which the lateral force is applied.
+:math:`d_4,d_5`
+   The distances which locate :math:`c_l`.
+:math:`G,J,I,J`
+   Rigid bodies.
+:math:`d6-d13`
+   Geometric distances.
+:math:`s_r,e_r,h_r,g_r,s_l,e_l,h_l,g_l`
+   Points on the arms.
+:math:`c_g`
+   Rider hinge point.
+:math:`c_9,k_9`
+   The passive stiffness and damping coefficients.
 
 .. rubric:: Footnotes
 

@@ -1305,6 +1305,9 @@ bend in a natural fashion. The grid points mark the center of the sphere and
 the end points of the cylinders and cuboid. The segments are aligned along
 lines connecting the appropriate grid points.
 
+.. todo:: Arend pointed out an error to me in these definitions from my
+   original paper. Be sure to check that out.
+
 .. _tabGridPoints:
 
 .. list-table:: Skeleton grid points with respect to the global frame.

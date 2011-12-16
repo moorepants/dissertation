@@ -52,6 +52,15 @@ certainly a function of what type of research it is, but fortunately my
 research is such that reproducibility can mostly be accomplished if I provide
 enough information.
 
+Data
+----
+
+Photos on picasaweb
+
+Videos of experiments
+
+data sets
+
 Dissertation website
 ====================
 

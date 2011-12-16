@@ -928,7 +928,7 @@ velocities below about 4 m/s for this parameter set.
 .. _figLorenzoEigVec:
 
 .. figure:: figures/extensions/lorenzo-eigvec.png
-   :width: 5 in
+   :width: 6 in
    :align: center
 
    figLorenzoEigVec

@@ -4,8 +4,12 @@
 Physical Parameters
 ===================
 
-.. contents::
-   :depth: 4
+.. warning::
+
+   This document is a draft which is updated regularly (Last updated |today|).
+   Once I submit if for my doctoral degree at UC Davis, it will be done. So for
+   now use at your own risk. The information may or may not be correct.
+   Reviews, comments and suggestions are welcome.
 
 .. todo:: tables are not centered in the html or pdf
 
@@ -1300,6 +1304,9 @@ numerically. The correct solutions are the ones that force the arms and legs to
 bend in a natural fashion. The grid points mark the center of the sphere and
 the end points of the cylinders and cuboid. The segments are aligned along
 lines connecting the appropriate grid points.
+
+.. todo:: Arend pointed out an error to me in these definitions from my
+   original paper. Be sure to check that out.
 
 .. _tabGridPoints:
 

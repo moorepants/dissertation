@@ -30,7 +30,7 @@
     <script type="text/javascript" src="_static/theme_extras.js"></script>
     <link rel="top" title="Human Control of a Bicycle: Jason K. Moore" href="index.html" />
     <link rel="next" title="Parameter Studies" href="parameterstudy.html" />
-    <link rel="prev" title="Extensions and modifcations to the Whipple Model" href="extensions.html" /> 
+    <link rel="prev" title="Extensions of the Whipple Model" href="extensions.html" /> 
   </head>
   <body>
       <div class="header"><h1 class="heading"><a href="index.html">
@@ -40,7 +40,7 @@
       <div class="topnav">
       
         <p>
-        «&#160;&#160;<a href="extensions.html">Extensions and modifcations to the Whipple Model</a>
+        «&#160;&#160;<a href="extensions.html">Extensions of the Whipple Model</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
@@ -53,63 +53,20 @@
         
 
   <div class="section" id="physical-parameters">
-<span id="physicalparameters"></span><h1><a class="toc-backref" href="#id52">Physical Parameters</a><a class="headerlink" href="#physical-parameters" title="Permalink to this headline">¶</a></h1>
-<div class="contents topic" id="contents">
-<p class="topic-title first">Contents</p>
-<ul class="simple">
-<li><a class="reference internal" href="#physical-parameters" id="id52">Physical Parameters</a><ul>
-<li><a class="reference internal" href="#preface" id="id53">Preface</a></li>
-<li><a class="reference internal" href="#bicycle-parameters" id="id54">Bicycle Parameters</a><ul>
-<li><a class="reference internal" href="#parameters" id="id55">Parameters</a></li>
-<li><a class="reference internal" href="#bicycle-descriptions" id="id56">Bicycle Descriptions</a></li>
-<li><a class="reference internal" href="#accuracy" id="id57">Accuracy</a></li>
-<li><a class="reference internal" href="#geometry" id="id58">Geometry</a><ul>
-<li><a class="reference internal" href="#wheel-radii" id="id59">Wheel Radii</a></li>
-<li><a class="reference internal" href="#head-tube-angle" id="id60">Head Tube Angle</a></li>
-<li><a class="reference internal" href="#trail" id="id61">Trail</a></li>
-<li><a class="reference internal" href="#wheelbase" id="id62">Wheelbase</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#alternative-geometry-method" id="id63">Alternative Geometry Method</a></li>
-<li><a class="reference internal" href="#mass" id="id64">Mass</a></li>
-<li><a class="reference internal" href="#center-of-mass" id="id65">Center of Mass</a><ul>
-<li><a class="reference internal" href="#wheels" id="id66">Wheels</a></li>
-<li><a class="reference internal" href="#rear-frame" id="id67">Rear Frame</a></li>
-<li><a class="reference internal" href="#fork-and-handlebar" id="id68">Fork and Handlebar</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#inertia" id="id69">Inertia</a><ul>
-<li><a class="reference internal" href="#torsional-pendulum" id="id70">Torsional Pendulum</a></li>
-<li><a class="reference internal" href="#id27" id="id71">Wheels</a></li>
-<li><a class="reference internal" href="#frame" id="id72">Frame</a></li>
-<li><a class="reference internal" href="#id28" id="id73">Fork and handlebar</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#human-parameters" id="id74">Human Parameters</a><ul>
-<li><a class="reference internal" href="#moore-method" id="id75">Moore method</a></li>
-<li><a class="reference internal" href="#yeadon-method" id="id76">Yeadon method</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#bicycle-rider-parameters" id="id77">Bicycle-Rider Parameters</a></li>
-<li><a class="reference internal" href="#software-implementation" id="id78">Software Implementation</a></li>
-<li><a class="reference internal" href="#parameter-tables" id="id79">Parameter Tables</a><ul>
-<li><a class="reference internal" href="#bicycle-measured-parameters" id="id80">Bicycle Measured Parameters</a></li>
-<li><a class="reference internal" href="#bicycle-benchmark-parameters" id="id81">Bicycle Benchmark Parameters</a></li>
-<li><a class="reference internal" href="#bicycle-human-parameters" id="id82">Bicycle + Human Parameters</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<span id="physicalparameters"></span><h1>Physical Parameters<a class="headerlink" href="#physical-parameters" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This document is a draft which is updated regularly (Last updated December 15, 2011 at 17:33:09 PST).
+Once I submit if for my doctoral degree at UC Davis, it will be done. So for
+now use at your own risk. The information may or may not be correct.
+Reviews, comments and suggestions are welcome.</p>
 </div>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
 <p class="last">tables are not centered in the html or pdf</p>
 </div>
 <div class="section" id="preface">
-<h2><a class="toc-backref" href="#id53">Preface</a><a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
+<h2>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
 <p>I was first concerned with the physical parameters of the bicycle and rider in
 my multi-body dynamics class project. There I developed a method of estimating
 the parameters from simply the geometry and mass [Moore2006]. I also then
@@ -137,7 +94,7 @@ for both bicycle and rider are implemented in two open source software
 packages.</p>
 </div>
 <div class="section" id="bicycle-parameters">
-<span id="secbicycleparameters"></span><h2><a class="toc-backref" href="#id54">Bicycle Parameters</a><a class="headerlink" href="#bicycle-parameters" title="Permalink to this headline">¶</a></h2>
+<span id="secbicycleparameters"></span><h2>Bicycle Parameters<a class="headerlink" href="#bicycle-parameters" title="Permalink to this headline">¶</a></h2>
 <p>Accurate measurements of a bicycle&#8217;s physical parameters are required for
 realistic dynamic simulation and analysis. The most basic models require the
 geometry, mass, mass location and mass distributions for the rigid bodies. More
@@ -185,7 +142,7 @@ the benchmark bicycle model. The accuracy of all the measurements are
 presented. The accuracies are based on error propagation theory with
 correlations taken into account.</p>
 <div class="section" id="parameters">
-<span id="secparameters"></span><h3><a class="toc-backref" href="#id55">Parameters</a><a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
+<span id="secparameters"></span><h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
 <p>I was primarily concerned with measuring and estimating the 25 parameters
 associated with the benchmark Whipple bicycle model which is derived and
 described in [Meijaard2007]. The unforced two degree-of-freedom,
@@ -213,7 +170,7 @@ attempted to measure the benchmark parameter as directly as possible to improve
 the accuracy.</p>
 </div>
 <div class="section" id="bicycle-descriptions">
-<h3><a class="toc-backref" href="#id56">Bicycle Descriptions</a><a class="headerlink" href="#bicycle-descriptions" title="Permalink to this headline">¶</a></h3>
+<h3>Bicycle Descriptions<a class="headerlink" href="#bicycle-descriptions" title="Permalink to this headline">¶</a></h3>
 <p>We measured a total of eight bicycles in eleven configurations.  The three
 Batavus bicycles were donated by the manufacturer. We asked for a bicycle that
 they considered stable and one that they did not. They offered the Browser as a
@@ -285,7 +242,7 @@ Bicycles</em>.</p>
 </div>
 </div>
 <div class="section" id="accuracy">
-<span id="secaccuracy"></span><h3><a class="toc-backref" href="#id57">Accuracy</a><a class="headerlink" href="#accuracy" title="Permalink to this headline">¶</a></h3>
+<span id="secaccuracy"></span><h3>Accuracy<a class="headerlink" href="#accuracy" title="Permalink to this headline">¶</a></h3>
 <div class="admonition-todo admonition" id="index-2">
 <p class="first admonition-title">Todo</p>
 <p class="last">Should I remove all of the sigma equations (accuracy calculations)
@@ -325,7 +282,7 @@ simplify the book keeping of the correlations and variance calculations
 following sections.</p>
 </div>
 <div class="section" id="geometry">
-<span id="secgeometry"></span><h3><a class="toc-backref" href="#id58">Geometry</a><a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h3>
+<span id="secgeometry"></span><h3>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h3>
 <p>The geometry measurements of the Delft bicycles focused on measuring the
 benchmark parameters: trail, wheelbase, and steer axis tilt as directly as
 possible. I also present an alternative method for the geometry used with the
@@ -334,7 +291,7 @@ Chapter <a class="reference internal" href="eom.html#eom"><em>Bicycle Equations 
 that I assumed that the frame did not flex and that the wheel radii do not
 change with rider weight when taking geometric measurements.</p>
 <div class="section" id="wheel-radii">
-<span id="secwheelradii"></span><h4><a class="toc-backref" href="#id59">Wheel Radii</a><a class="headerlink" href="#wheel-radii" title="Permalink to this headline">¶</a></h4>
+<span id="secwheelradii"></span><h4>Wheel Radii<a class="headerlink" href="#wheel-radii" title="Permalink to this headline">¶</a></h4>
 <p>The radii of the front <span class="math">\(r_\mathrm{F}\)</span> and rear <span class="math">\(r_\mathrm{R}\)</span>
 wheels were estimated by measuring the linear distance traversed along the
 ground through at least ten rotations of the wheel. Each wheel traversal was
@@ -367,7 +324,7 @@ Wheel and tire with chalk mark aligned to the tape measure.</div>
 </div>
 </div>
 <div class="section" id="head-tube-angle">
-<span id="secheadtube"></span><h4><a class="toc-backref" href="#id60">Head Tube Angle</a><a class="headerlink" href="#head-tube-angle" title="Permalink to this headline">¶</a></h4>
+<span id="secheadtube"></span><h4>Head Tube Angle<a class="headerlink" href="#head-tube-angle" title="Permalink to this headline">¶</a></h4>
 <p>For the first six bicycles the head tube angle was measured directly using an
 electronic level. The different different accuracies of the models used in
 Delft and Davis are reflected in the measurement tables. The bicycle frame was
@@ -387,7 +344,7 @@ The digital level used to measure head tube angle.</div>
 </div>
 </div>
 <div class="section" id="trail">
-<span id="sectrail"></span><h4><a class="toc-backref" href="#id61">Trail</a><a class="headerlink" href="#trail" title="Permalink to this headline">¶</a></h4>
+<span id="sectrail"></span><h4>Trail<a class="headerlink" href="#trail" title="Permalink to this headline">¶</a></h4>
 <p>Trail is difficult to measure directly due to the fact that the tire has a
 contact patch and there is no distinct contact point. I instead chose to
 measure the fork offset, <span class="math">\(f_o\)</span>. The fork offset was measured by clamping
@@ -412,14 +369,14 @@ The fork of the Davis Bicycle setup for measuring the fork offset.</div>
 </div>
 </div>
 <div class="section" id="wheelbase">
-<span id="secwheelbase"></span><h4><a class="toc-backref" href="#id62">Wheelbase</a><a class="headerlink" href="#wheelbase" title="Permalink to this headline">¶</a></h4>
+<span id="secwheelbase"></span><h4>Wheelbase<a class="headerlink" href="#wheelbase" title="Permalink to this headline">¶</a></h4>
 <p>I measured the wheelbase with the bicycle in nominal configuration described
 in Section <a class="reference internal" href="#secheadtube"><em>Head Tube Angle</em></a>. We used a tape measure to measure the distance
 from one wheel axle center to the other.</p>
 </div>
 </div>
 <div class="section" id="alternative-geometry-method">
-<h3><a class="toc-backref" href="#id63">Alternative Geometry Method</a><a class="headerlink" href="#alternative-geometry-method" title="Permalink to this headline">¶</a></h3>
+<h3>Alternative Geometry Method<a class="headerlink" href="#alternative-geometry-method" title="Permalink to this headline">¶</a></h3>
 <div class="admonition-todo admonition" id="index-3">
 <p class="first admonition-title">Todo</p>
 <p class="last">I have some issues with variable names here, as I use d_i for both
@@ -470,7 +427,7 @@ computed analytically as the relation holds:</p>
 <span class="eqno">(14)</span>\[ c = \frac{r_F \operatorname{sin}(\lambda) - d_3}{\operatorname{cos}(\lambda)}\]</div>
 </div>
 <div class="section" id="mass">
-<span id="secmass"></span><h3><a class="toc-backref" href="#id64">Mass</a><a class="headerlink" href="#mass" title="Permalink to this headline">¶</a></h3>
+<span id="secmass"></span><h3>Mass<a class="headerlink" href="#mass" title="Permalink to this headline">¶</a></h3>
 <p>For the Delft bicycles, each of the four bicycle parts were measured using a
 Molen 20 kilogram scale with a resolution of 20 grams. The accuracy was
 conservatively assumed to also be <span class="math">\(\pm20\)</span> grams. Also, the total mass was
@@ -486,15 +443,15 @@ The scale used to measure the mass of each Delft bicycles&#8217; components.</di
 </div>
 </div>
 <div class="section" id="center-of-mass">
-<span id="seccenterofmass"></span><h3><a class="toc-backref" href="#id65">Center of Mass</a><a class="headerlink" href="#center-of-mass" title="Permalink to this headline">¶</a></h3>
+<span id="seccenterofmass"></span><h3>Center of Mass<a class="headerlink" href="#center-of-mass" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="wheels">
-<span id="secwheelcom"></span><h4><a class="toc-backref" href="#id66">Wheels</a><a class="headerlink" href="#wheels" title="Permalink to this headline">¶</a></h4>
+<span id="secwheelcom"></span><h4>Wheels<a class="headerlink" href="#wheels" title="Permalink to this headline">¶</a></h4>
 <p>The centers of mass of the wheels were assumed to be at their geometrical
 centers which complies with the Whipple model. This was also assumed for the
 flywheel in the gyro bike.</p>
 </div>
 <div class="section" id="rear-frame">
-<span id="secrearframecom"></span><h4><a class="toc-backref" href="#id67">Rear Frame</a><a class="headerlink" href="#rear-frame" title="Permalink to this headline">¶</a></h4>
+<span id="secrearframecom"></span><h4>Rear Frame<a class="headerlink" href="#rear-frame" title="Permalink to this headline">¶</a></h4>
 <p>The rear frame bicycle configuration was hung in at least three orientations
 through the lateral mid-plane. I assumed that the frame was laterally
 symmetric, complying with the Whipple model, thus reducing the need to use a
@@ -629,7 +586,7 @@ here</p>
 </div>
 </div>
 <div class="section" id="fork-and-handlebar">
-<span id="secforkcom"></span><h4><a class="toc-backref" href="#id68">Fork and Handlebar</a><a class="headerlink" href="#fork-and-handlebar" title="Permalink to this headline">¶</a></h4>
+<span id="secforkcom"></span><h4>Fork and Handlebar<a class="headerlink" href="#fork-and-handlebar" title="Permalink to this headline">¶</a></h4>
 <p>The fork and handlebars are a bit trickier to hang in three different
 orientations. Typically two angles can be obtained by clamping to the steer
 tube at the top and the bottom. The third angle can be obtained by clamping to
@@ -686,7 +643,7 @@ of the bicycle.</p>
 </div>
 </div>
 <div class="section" id="inertia">
-<span id="secmoi"></span><h3><a class="toc-backref" href="#id69">Inertia</a><a class="headerlink" href="#inertia" title="Permalink to this headline">¶</a></h3>
+<span id="secmoi"></span><h3>Inertia<a class="headerlink" href="#inertia" title="Permalink to this headline">¶</a></h3>
 <p>The moments of inertia of the wheels, frame and fork (and handlebar) were
 measured both by taking advantage of the assumed symmetry of the parts and by
 hanging the parts as both compound and torsional pendulums and measuring their
@@ -764,7 +721,7 @@ of <span class="math">\(T\)</span> can be computed using the variance of <span c
 <span class="math">\(\omega\)</span>. It is important to note that the uncertainties in the period
 are very low (<span class="math">\(&lt;1e-4\)</span>), even for the fits with low <span class="math">\(r^2\)</span> values.</p>
 <div class="section" id="torsional-pendulum">
-<span id="sectorsionalpendulum"></span><h4><a class="toc-backref" href="#id70">Torsional Pendulum</a><a class="headerlink" href="#torsional-pendulum" title="Permalink to this headline">¶</a></h4>
+<span id="sectorsionalpendulum"></span><h4>Torsional Pendulum<a class="headerlink" href="#torsional-pendulum" title="Permalink to this headline">¶</a></h4>
 <p>A torsional pendulum was used to measure all moments of inertia about axes in
 the laterally symmetric plane of each of the wheels, fork and frame. The
 pendulum is made up of a rigid mount, an upper clamp, a torsion rod, and
@@ -801,7 +758,7 @@ the pendulum, <span class="math">\(k=\frac{4I\pi^2}{\overline{T}^2}\)</span>.</d
 </div>
 </div>
 <div class="section" id="id27">
-<h4><a class="toc-backref" href="#id71">Wheels</a><a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h4>
+<h4>Wheels<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h4>
 <p>Estimating the full inertia tensors of the wheels is less complex because the
 wheels are assumed symmetric about three orthogonal planes forcing all products
 of inertia to be zero. The <span class="math">\(I_{xx}=I_{zz}\)</span> moments of inertia were
@@ -846,7 +803,7 @@ radial moment of inertia can can calculated as such:</p>
 <span class="eqno">(36)</span>\[I_{xx} = \frac{k\bar{T}^2}{4\pi^2}\]</div>
 </div>
 <div class="section" id="frame">
-<h4><a class="toc-backref" href="#id72">Frame</a><a class="headerlink" href="#frame" title="Permalink to this headline">¶</a></h4>
+<h4>Frame<a class="headerlink" href="#frame" title="Permalink to this headline">¶</a></h4>
 <p>At least three measurements were made to estimate the globally referenced
 moments and products of inertia (<span class="math">\(I_{xx}\)</span>, <span class="math">\(I_{xz}\)</span> and
 <span class="math">\(I_{zz}\)</span>) of the rear frame. The frame was typically hung from either the
@@ -937,7 +894,7 @@ Browser fork hung as a compound pendulum.</div>
 </div>
 </div>
 <div class="section" id="id28">
-<h4><a class="toc-backref" href="#id73">Fork and handlebar</a><a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h4>
+<h4>Fork and handlebar<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h4>
 <p>The inertia of the fork and handlebar is calculated in the same way as the
 frame. The fork is hung as both a torsional pendulum, Figure
 <a class="reference internal" href="#figstratosfork"><em>figStratosFork</em></a>, and as a compound pendulum, Figure
@@ -959,7 +916,7 @@ The Stratos fork and handlebar assembly hung as a torsional pendulum.</div>
 </div>
 </div>
 <div class="section" id="human-parameters">
-<h2><a class="toc-backref" href="#id74">Human Parameters</a><a class="headerlink" href="#human-parameters" title="Permalink to this headline">¶</a></h2>
+<h2>Human Parameters<a class="headerlink" href="#human-parameters" title="Permalink to this headline">¶</a></h2>
 <p>To properly model the bicycle rider system it is necessary to estimate the
 physical parameters of the bicycle rider. The measurement of the physical
 properties of a human is more difficult than for a bicycle because the human
@@ -984,7 +941,7 @@ geometrical estimation similar in idea to [Yeadon1990a] in combination with
 mass data from [Dempster1955]. The second method substitutes Yeadon&#8217;s more
 robust model with my previous one.</p>
 <div class="section" id="moore-method">
-<h3><a class="toc-backref" href="#id75">Moore method</a><a class="headerlink" href="#moore-method" title="Permalink to this headline">¶</a></h3>
+<h3>Moore method<a class="headerlink" href="#moore-method" title="Permalink to this headline">¶</a></h3>
 <p>This method calculates the center of mass and inertia of a simplified model of
 the ten major human body parts: head, torso, upper and lower arms, and upper
 and lower legs, in a general configuration for sitting on typical bicycles. The
@@ -1125,6 +1082,11 @@ numerically. The correct solutions are the ones that force the arms and legs to
 bend in a natural fashion. The grid points mark the center of the sphere and
 the end points of the cylinders and cuboid. The segments are aligned along
 lines connecting the appropriate grid points.</p>
+<div class="admonition-todo admonition" id="index-10">
+<p class="first admonition-title">Todo</p>
+<p class="last">Arend pointed out an error to me in these definitions from my
+original paper. Be sure to check that out.</p>
+</div>
 <table border="1" class="docutils" id="tabgridpoints">
 <caption>Skeleton grid points with respect to the global frame.</caption>
 <colgroup>
@@ -1342,13 +1304,13 @@ moments of inertia are summed to give the total moment of inertia of the rider.<
 \sum{\mathbf{I}^*_i}\]</div>
 <p>The results of measuring three riders are presented in
 <em class="xref std std-ref">tabMooreRiderParameters</em>.</p>
-<div class="admonition-todo admonition" id="index-10">
+<div class="admonition-todo admonition" id="index-11">
 <p class="first admonition-title">Todo</p>
 <p class="last">add in the table of values for the three riders with the Moore method</p>
 </div>
 </div>
 <div class="section" id="yeadon-method">
-<h3><a class="toc-backref" href="#id76">Yeadon method</a><a class="headerlink" href="#yeadon-method" title="Permalink to this headline">¶</a></h3>
+<h3>Yeadon method<a class="headerlink" href="#yeadon-method" title="Permalink to this headline">¶</a></h3>
 <p>The [Yeadon1990] human inertial model was developed for estimating the
 inertial parameters needed to describe a human model for complex gymnastic
 maneuvers. It is essentially a more complete and accurate method than the one
@@ -1396,7 +1358,7 @@ located at the bottom bracket center and is the same lateral distance from the
 saggital plane as the hip centers. The knee and thigh elevation angles are then
 found in the same fashion as the elbow and shoulder angles, which the lesser
 restrcition that the thigh abduction angle is zero.</p>
-<div class="admonition-todo admonition" id="index-11">
+<div class="admonition-todo admonition" id="index-12">
 <p class="first admonition-title">Todo</p>
 <p class="last">detail the yeadon method more and add Chris&#8217;s diagrams</p>
 </div>
@@ -1407,7 +1369,7 @@ restrcition that the thigh abduction angle is zero.</p>
 A visualization of the Yeadon inertia model configured to sit on a bicycle.
 Output is from the BicycleParameters software package.</div>
 </div>
-<div class="admonition-todo admonition" id="index-12">
+<div class="admonition-todo admonition" id="index-13">
 <p class="first admonition-title">Todo</p>
 <p class="last">Should I show detailed calculations for configuring the yeadon joint
 angles such that the rider is sitting on the bicycle?</p>
@@ -1415,7 +1377,7 @@ angles such that the rider is sitting on the bicycle?</p>
 </div>
 </div>
 <div class="section" id="bicycle-rider-parameters">
-<h2><a class="toc-backref" href="#id77">Bicycle-Rider Parameters</a><a class="headerlink" href="#bicycle-rider-parameters" title="Permalink to this headline">¶</a></h2>
+<h2>Bicycle-Rider Parameters<a class="headerlink" href="#bicycle-rider-parameters" title="Permalink to this headline">¶</a></h2>
 <p>Once both the bicycle and rider parameters are known, the parameter for various
 systems can be extracted. The simplest being that the rider is rigidly attached
 to the frame. The parallel axis theorem allows one to calculate the combined
@@ -1425,7 +1387,7 @@ with multiple degrees of freedom. For example, the inertia for a leaning rider&#
 upper body can be determined separately and the legs can be fixed the bicycle
 frame. We make use of this for the different rider bio-mechanical models
 presented in Chapter <em class="xref std std-ref">modelextensions</em>.</p>
-<div class="admonition-todo admonition" id="index-13">
+<div class="admonition-todo admonition" id="index-14">
 <p class="first admonition-title">Todo</p>
 <p class="last">Should I add mathematicl explanation how to extract the parameter
 sets that are desired? Like leaning rider or rigid rider, etc. : explain the
@@ -1434,7 +1396,7 @@ vrey precisely</p>
 </div>
 </div>
 <div class="section" id="software-implementation">
-<h2><a class="toc-backref" href="#id78">Software Implementation</a><a class="headerlink" href="#software-implementation" title="Permalink to this headline">¶</a></h2>
+<h2>Software Implementation<a class="headerlink" href="#software-implementation" title="Permalink to this headline">¶</a></h2>
 <p>These methods (more detail about which methods) have been implemented in two
 open source software package written in the python language, called <a class="reference external" href="http://pypi.python.org/pypi/yeadon">yeadon</a> and <a class="reference external" href="http://pypi.python.org/pypi/BicycleParameters">BicycleParameters</a>. The yeadon package takes
 geometric measurements and joint configuration angles and outputs the total
@@ -1453,8 +1415,8 @@ the software can be found in the documentation for each of the packages:
 <a class="reference external" href="http://packages.python.org/BicycleParameters">http://packages.python.org/BicycleParameters</a>.</p>
 </div>
 <div class="section" id="parameter-tables">
-<span id="secpartables"></span><h2><a class="toc-backref" href="#id79">Parameter Tables</a><a class="headerlink" href="#parameter-tables" title="Permalink to this headline">¶</a></h2>
-<div class="admonition-todo admonition" id="index-14">
+<span id="secpartables"></span><h2>Parameter Tables<a class="headerlink" href="#parameter-tables" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-todo admonition" id="index-15">
 <p class="first admonition-title">Todo</p>
 <p class="last">In one sense I would prefer not to add in all these tables of values
 as they are contained in the available datasets and can be produced by the
@@ -1462,1630 +1424,24 @@ provided code, but in the other sense many people may look at the datasets
 or run the code. Tables like this can potentially take up a lot of space.
 What do you all think?</p>
 </div>
-<div class="admonition-todo admonition" id="index-15">
+<div class="admonition-todo admonition" id="index-16">
 <p class="first admonition-title">Todo</p>
 <p class="last">These tables look like crap in the latex output. I need to figure out
 how to imrpove them.</p>
 </div>
-<div class="admonition-todo admonition" id="index-16">
+<div class="admonition-todo admonition" id="index-17">
 <p class="first admonition-title">Todo</p>
 <p class="last">add rider measurement tables for riders used in this thesis for both
 methods</p>
 </div>
-<div class="admonition-todo admonition" id="index-17">
+<div class="admonition-todo admonition" id="index-18">
 <p class="first admonition-title">Todo</p>
 <p class="last">add bicycle + rider tables for riders used in this thesis</p>
 </div>
 <p>The tabulated values for the both the raw measurements and the physical
 parameters are given in the following tables.</p>
 <div class="section" id="bicycle-measured-parameters">
-<span id="secbicyclemeasuredparameters"></span><h3><a class="toc-backref" href="#id80">Bicycle Measured Parameters</a><a class="headerlink" href="#bicycle-measured-parameters" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="docutils">
-<colgroup>
-<col width="16%" />
-<col width="9%" />
-<col width="11%" />
-<col width="9%" />
-<col width="11%" />
-<col width="9%" />
-<col width="11%" />
-<col width="11%" />
-<col width="11%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">&nbsp;</th>
-<th class="head" colspan="2">Browser</th>
-<th class="head" colspan="2">Browserins</th>
-<th class="head" colspan="2">Stratos</th>
-<th class="head" colspan="2">Crescendo</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Variable</td>
-<td><span class="math">\(v\)</span></td>
-<td><span class="math">\(\sigma\)</span></td>
-<td><span class="math">\(v\)</span></td>
-<td><span class="math">\(\sigma\)</span></td>
-<td><span class="math">\(v\)</span></td>
-<td><span class="math">\(\sigma\)</span></td>
-<td><span class="math">\(v\)</span></td>
-<td><span class="math">\(\sigma\)</span></td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(a_{B1}\)</span></td>
-<td>0.098</td>
-<td>0.003</td>
-<td>-0.018</td>
-<td>0.003</td>
-<td>0.249</td>
-<td>0.003</td>
-<td>0.248</td>
-<td>0.003</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(a_{B2}\)</span></td>
-<td>0.169</td>
-<td>0.003</td>
-<td>-0.355</td>
-<td>0.003</td>
-<td>-0.267</td>
-<td>0.003</td>
-<td>0.075</td>
-<td>0.003</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(a_{B3}\)</span></td>
-<td>-0.294</td>
-<td>0.003</td>
-<td>-0.242</td>
-<td>0.003</td>
-<td>-0.071</td>
-<td>0.003</td>
-<td>-0.289</td>
-<td>0.003</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(a_{H1}\)</span></td>
-<td>0.474</td>
-<td>0.003</td>
-<td>0.474</td>
-<td>0.003</td>
-<td>0.329</td>
-<td>0.003</td>
-<td>0.496</td>
-<td>0.003</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(a_{H2}\)</span></td>
-<td>0.383</td>
-<td>0.003</td>
-<td>0.383</td>
-<td>0.003</td>
-<td>-0.038</td>
-<td>0.003</td>
-<td>0.466</td>
-<td>0.003</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(a_{H3}\)</span></td>
-<td>0.215</td>
-<td>0.003</td>
-<td>0.215</td>
-<td>0.003</td>
-<td>0.400</td>
-<td>0.003</td>
-<td>0.301</td>
-<td>0.003</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(\alpha_{B1}\)</span></td>
-<td>3.4</td>
-<td>0.2</td>
-<td>154.1</td>
-<td>0.2</td>
-<td>128.9</td>
-<td>0.2</td>
-<td>127.6</td>
-<td>0.2</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(\alpha_{B2}\)</span></td>
-<td>138.7</td>
-<td>0.2</td>
-<td>230.8</td>
-<td>0.2</td>
-<td>221.6</td>
-<td>0.2</td>
-<td>158.0</td>
-<td>0.2</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(\alpha_{B3}\)</span></td>
-<td>229.8</td>
-<td>0.2</td>
-<td>286.9</td>
-<td>0.2</td>
-<td>184.5</td>
-<td>0.2</td>
-<td>223.9</td>
-<td>0.2</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(\alpha_{H1}\)</span></td>
-<td>346.7</td>
-<td>0.2</td>
-<td>346.7</td>
-<td>0.2</td>
-<td>36.0</td>
-<td>0.2</td>
-<td>358.4</td>
-<td>0.2</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(\alpha_{H2}\)</span></td>
-<td>28.1</td>
-<td>0.2</td>
-<td>28.1</td>
-<td>0.2</td>
-<td>94.0</td>
-<td>0.2</td>
-<td>20.6</td>
-<td>0.2</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(\alpha_{H3}\)</span></td>
-<td>287.0</td>
-<td>0.2</td>
-<td>287.0</td>
-<td>0.2</td>
-<td>347.3</td>
-<td>0.2</td>
-<td>303.8</td>
-<td>0.2</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(d_F\)</span></td>
-<td>28.06</td>
-<td>0.01</td>
-<td>27.98</td>
-<td>0.01</td>
-<td>27.77</td>
-<td>0.01</td>
-<td>27.98</td>
-<td>0.01</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(d_P\)</span></td>
-<td>0.0300</td>
-<td>0.0001</td>
-<td>0.0300</td>
-<td>0.0001</td>
-<td>0.0300</td>
-<td>0.0001</td>
-<td>0.0300</td>
-<td>0.0001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(d_R\)</span></td>
-<td>27.85</td>
-<td>0.01</td>
-<td>27.84</td>
-<td>0.01</td>
-<td>29.77</td>
-<td>0.01</td>
-<td>27.77</td>
-<td>0.01</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(f\)</span></td>
-<td>0.070</td>
-<td>0.001</td>
-<td>0.070</td>
-<td>0.001</td>
-<td>0.045</td>
-<td>0.001</td>
-<td>0.045</td>
-<td>0.001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(g\)</span></td>
-<td>9.81</td>
-<td>0.01</td>
-<td>9.81</td>
-<td>0.01</td>
-<td>9.81</td>
-<td>0.01</td>
-<td>9.81</td>
-<td>0.01</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(\gamma\)</span></td>
-<td>67.1</td>
-<td>0.2</td>
-<td>67.1</td>
-<td>0.2</td>
-<td>73.1</td>
-<td>0.2</td>
-<td>69.0</td>
-<td>0.2</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(h_{bb}\)</span></td>
-<td>0.295</td>
-<td>NA</td>
-<td>0.295</td>
-<td>NA</td>
-<td>0.29</td>
-<td>NA</td>
-<td>0.29</td>
-<td>NA</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(\lambda_{st}\)</span></td>
-<td>1.195550538</td>
-<td>NA</td>
-<td>1.195550538</td>
-<td>NA</td>
-<td>1.308996939</td>
-<td>NA</td>
-<td>1.23569311041</td>
-<td>NA</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(l_{cs}\)</span></td>
-<td>0.46</td>
-<td>NA</td>
-<td>0.46</td>
-<td>NA</td>
-<td>0.445</td>
-<td>NA</td>
-<td>0.465</td>
-<td>NA</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(l_F\)</span></td>
-<td>0.293</td>
-<td>0.001</td>
-<td>0.293</td>
-<td>0.001</td>
-<td>0.297</td>
-<td>0.001</td>
-<td>0.301</td>
-<td>0.001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(l_{hbF}\)</span></td>
-<td>0.893</td>
-<td>NA</td>
-<td>0.893</td>
-<td>NA</td>
-<td>0.6552</td>
-<td>NA</td>
-<td>0.81</td>
-<td>NA</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(l_{hbR}\)</span></td>
-<td>0.9213</td>
-<td>NA</td>
-<td>0.9213</td>
-<td>NA</td>
-<td>1.1014</td>
-<td>NA</td>
-<td>1.08</td>
-<td>NA</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(l_P\)</span></td>
-<td>1.050</td>
-<td>0.001</td>
-<td>1.050</td>
-<td>0.001</td>
-<td>1.050</td>
-<td>0.001</td>
-<td>1.050</td>
-<td>0.001</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(l_R\)</span></td>
-<td>0.293</td>
-<td>0.001</td>
-<td>0.293</td>
-<td>0.001</td>
-<td>0.296</td>
-<td>0.001</td>
-<td>0.297</td>
-<td>0.001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(l_{sp}\)</span></td>
-<td>0.24</td>
-<td>NA</td>
-<td>0.24</td>
-<td>NA</td>
-<td>0.195</td>
-<td>NA</td>
-<td>0.28</td>
-<td>NA</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(l_{st}\)</span></td>
-<td>0.53</td>
-<td>NA</td>
-<td>0.53</td>
-<td>NA</td>
-<td>0.48</td>
-<td>NA</td>
-<td>0.49</td>
-<td>NA</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(m_B\)</span></td>
-<td>9.86</td>
-<td>0.02</td>
-<td>14.71</td>
-<td>0.02</td>
-<td>7.22</td>
-<td>0.02</td>
-<td>9.18</td>
-<td>0.02</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(m_F\)</span></td>
-<td>2.02</td>
-<td>0.02</td>
-<td>2.02</td>
-<td>0.02</td>
-<td>3.33</td>
-<td>0.02</td>
-<td>3.54</td>
-<td>0.02</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(m_H\)</span></td>
-<td>3.22</td>
-<td>0.02</td>
-<td>3.22</td>
-<td>0.02</td>
-<td>3.04</td>
-<td>0.02</td>
-<td>4.57</td>
-<td>0.02</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(m_P\)</span></td>
-<td>5.56</td>
-<td>0.02</td>
-<td>5.56</td>
-<td>0.02</td>
-<td>5.56</td>
-<td>0.02</td>
-<td>5.56</td>
-<td>0.02</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(m_R\)</span></td>
-<td>3.11</td>
-<td>0.02</td>
-<td>3.11</td>
-<td>0.02</td>
-<td>3.96</td>
-<td>0.02</td>
-<td>3.96</td>
-<td>0.02</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(n_F\)</span></td>
-<td>13.0</td>
-<td>NA</td>
-<td>13.0</td>
-<td>NA</td>
-<td>13.0</td>
-<td>NA</td>
-<td>13.0</td>
-<td>NA</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(n_R\)</span></td>
-<td>13.0</td>
-<td>NA</td>
-<td>13.0</td>
-<td>NA</td>
-<td>14.0</td>
-<td>NA</td>
-<td>13.0</td>
-<td>NA</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^c_{B1}\)</span></td>
-<td>1.717307</td>
-<td>0.000005</td>
-<td>1.811022</td>
-<td>0.000007</td>
-<td>1.598802</td>
-<td>0.000006</td>
-<td>1.676428</td>
-<td>0.000003</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^c_{F1}\)</span></td>
-<td>1.481127</td>
-<td>0.000007</td>
-<td>1.481127</td>
-<td>0.000007</td>
-<td>1.353666</td>
-<td>0.000005</td>
-<td>1.354974</td>
-<td>0.000004</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^c_{H1}\)</span></td>
-<td>1.601851</td>
-<td>0.000007</td>
-<td>1.601851</td>
-<td>0.000007</td>
-<td>1.45407</td>
-<td>0.00002</td>
-<td>1.628126</td>
-<td>0.000005</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^c_{R1}\)</span></td>
-<td>1.361090</td>
-<td>0.000004</td>
-<td>1.361090</td>
-<td>0.000004</td>
-<td>1.312177</td>
-<td>0.000007</td>
-<td>1.299370</td>
-<td>0.000008</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^t_{B1}\)</span></td>
-<td>2.09957</td>
-<td>0.00008</td>
-<td>3.36393</td>
-<td>0.00004</td>
-<td>1.81595</td>
-<td>0.00001</td>
-<td>2.26011</td>
-<td>0.00001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^t_{B2}\)</span></td>
-<td>2.37672</td>
-<td>0.00002</td>
-<td>2.81391</td>
-<td>0.00007</td>
-<td>1.585198</td>
-<td>0.000009</td>
-<td>2.09595</td>
-<td>0.00002</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^t_{B3}\)</span></td>
-<td>1.83977</td>
-<td>0.00001</td>
-<td>3.57185</td>
-<td>0.00009</td>
-<td>1.660199</td>
-<td>0.000008</td>
-<td>1.92017</td>
-<td>0.00001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^t_{F1}\)</span></td>
-<td>0.787577</td>
-<td>0.000001</td>
-<td>0.787577</td>
-<td>0.000001</td>
-<td>0.801625</td>
-<td>0.000001</td>
-<td>0.818258</td>
-<td>0.000002</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^t_{H1}\)</span></td>
-<td>1.368796</td>
-<td>0.000006</td>
-<td>1.368796</td>
-<td>0.000006</td>
-<td>1.011494</td>
-<td>0.000004</td>
-<td>1.6903</td>
-<td>0.0001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^t_{H2}\)</span></td>
-<td>1.295272</td>
-<td>0.000006</td>
-<td>1.295272</td>
-<td>0.000006</td>
-<td>0.525351</td>
-<td>0.000002</td>
-<td>1.6440</td>
-<td>0.0001</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^t_{H3}\)</span></td>
-<td>0.760951</td>
-<td>0.000003</td>
-<td>0.760951</td>
-<td>0.000003</td>
-<td>1.086037</td>
-<td>0.000006</td>
-<td>1.21590</td>
-<td>0.00002</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^t_{P1}\)</span></td>
-<td>1.893993</td>
-<td>0.000006</td>
-<td>1.893993</td>
-<td>0.000006</td>
-<td>1.893993</td>
-<td>0.000006</td>
-<td>1.893993</td>
-<td>0.000006</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^t_{R1}\)</span></td>
-<td>0.796565</td>
-<td>0.000001</td>
-<td>0.796565</td>
-<td>0.000001</td>
-<td>0.8116623</td>
-<td>0.0000009</td>
-<td>0.823570</td>
-<td>0.000001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(w\)</span></td>
-<td>1.121</td>
-<td>0.002</td>
-<td>1.121</td>
-<td>0.002</td>
-<td>1.037</td>
-<td>0.002</td>
-<td>1.101</td>
-<td>0.002</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(w_{hb}\)</span></td>
-<td>0.58</td>
-<td>NA</td>
-<td>0.58</td>
-<td>NA</td>
-<td>0.58</td>
-<td>NA</td>
-<td>0.56</td>
-<td>NA</td>
-</tr>
-</tbody>
-</table>
-<table border="1" class="docutils">
-<colgroup>
-<col width="16%" />
-<col width="8%" />
-<col width="11%" />
-<col width="8%" />
-<col width="11%" />
-<col width="11%" />
-<col width="11%" />
-<col width="11%" />
-<col width="11%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">&nbsp;</th>
-<th class="head" colspan="2">Fisher</th>
-<th class="head" colspan="2">Pista</th>
-<th class="head" colspan="2">Yellow</th>
-<th class="head" colspan="2">Yellowrev</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Variable</td>
-<td><span class="math">\(v\)</span></td>
-<td><span class="math">\(\sigma\)</span></td>
-<td><span class="math">\(v\)</span></td>
-<td><span class="math">\(\sigma\)</span></td>
-<td><span class="math">\(v\)</span></td>
-<td><span class="math">\(\sigma\)</span></td>
-<td><span class="math">\(v\)</span></td>
-<td><span class="math">\(\sigma\)</span></td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(a_{B1}\)</span></td>
-<td>0.304</td>
-<td>0.003</td>
-<td>0.329</td>
-<td>0.003</td>
-<td>0.220</td>
-<td>0.003</td>
-<td>0.220</td>
-<td>0.003</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(a_{B2}\)</span></td>
-<td>0.395</td>
-<td>0.003</td>
-<td>0.293</td>
-<td>0.003</td>
-<td>0.000</td>
-<td>0.003</td>
-<td>0.000</td>
-<td>0.003</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(a_{B3}\)</span></td>
-<td>-0.107</td>
-<td>0.003</td>
-<td>-0.267</td>
-<td>0.003</td>
-<td>-0.379</td>
-<td>0.003</td>
-<td>-0.379</td>
-<td>0.003</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(a_{H1}\)</span></td>
-<td>0.341</td>
-<td>0.003</td>
-<td>0.337</td>
-<td>0.003</td>
-<td>0.468</td>
-<td>0.003</td>
-<td>0.099</td>
-<td>0.003</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(a_{H2}\)</span></td>
-<td>0.277</td>
-<td>0.003</td>
-<td>0.400</td>
-<td>0.003</td>
-<td>0.396</td>
-<td>0.003</td>
-<td>0.445</td>
-<td>0.003</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(a_{H3}\)</span></td>
-<td>-0.008</td>
-<td>0.003</td>
-<td>-0.063</td>
-<td>0.003</td>
-<td>0.015</td>
-<td>0.003</td>
-<td>0.474</td>
-<td>0.003</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(\alpha_{B1}\)</span></td>
-<td>125.9</td>
-<td>0.2</td>
-<td>120.2</td>
-<td>0.2</td>
-<td>139.5</td>
-<td>0.2</td>
-<td>139.5</td>
-<td>0.2</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(\alpha_{B2}\)</span></td>
-<td>75.7</td>
-<td>0.2</td>
-<td>40.7</td>
-<td>0.2</td>
-<td>345.4</td>
-<td>0.2</td>
-<td>345.4</td>
-<td>0.2</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(\alpha_{B3}\)</span></td>
-<td>190.8</td>
-<td>0.2</td>
-<td>215.9</td>
-<td>0.2</td>
-<td>215.9</td>
-<td>0.2</td>
-<td>215.9</td>
-<td>0.2</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(\alpha_{H1}\)</span></td>
-<td>35.3</td>
-<td>0.2</td>
-<td>38.8</td>
-<td>0.2</td>
-<td>0.3</td>
-<td>0.2</td>
-<td>89.3</td>
-<td>0.2</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(\alpha_{H2}\)</span></td>
-<td>50.0</td>
-<td>0.2</td>
-<td>12.4</td>
-<td>0.2</td>
-<td>32.0</td>
-<td>0.2</td>
-<td>33.5</td>
-<td>0.2</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(\alpha_{H3}\)</span></td>
-<td>93.8</td>
-<td>0.2</td>
-<td>102.2</td>
-<td>0.2</td>
-<td>87.9</td>
-<td>0.2</td>
-<td>4.3</td>
-<td>0.2</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(d_F\)</span></td>
-<td>29.04</td>
-<td>0.01</td>
-<td>29.37</td>
-<td>0.01</td>
-<td>27.93</td>
-<td>0.01</td>
-<td>27.93</td>
-<td>0.01</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(d_P\)</span></td>
-<td>0.0300</td>
-<td>0.0001</td>
-<td>0.0300</td>
-<td>0.0001</td>
-<td>0.0300</td>
-<td>0.0001</td>
-<td>0.0300</td>
-<td>0.0001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(d_R\)</span></td>
-<td>29.79</td>
-<td>0.01</td>
-<td>29.21</td>
-<td>0.01</td>
-<td>27.88</td>
-<td>0.01</td>
-<td>27.88</td>
-<td>0.01</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(f\)</span></td>
-<td>0.038</td>
-<td>0.001</td>
-<td>0.032</td>
-<td>0.001</td>
-<td>0.057</td>
-<td>0.001</td>
-<td>-0.057</td>
-<td>0.001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(g\)</span></td>
-<td>9.81</td>
-<td>0.01</td>
-<td>9.81</td>
-<td>0.01</td>
-<td>9.81</td>
-<td>0.01</td>
-<td>9.81</td>
-<td>0.01</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(\gamma\)</span></td>
-<td>71.1</td>
-<td>0.2</td>
-<td>74.2</td>
-<td>0.2</td>
-<td>72.7</td>
-<td>0.2</td>
-<td>70.6</td>
-<td>0.2</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(h_{bb}\)</span></td>
-<td>NA</td>
-<td>NA</td>
-<td>NA</td>
-<td>NA</td>
-<td>0.276580359362</td>
-<td>NA</td>
-<td>0.276602031136</td>
-<td>NA</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(\lambda_{st}\)</span></td>
-<td>NA</td>
-<td>NA</td>
-<td>NA</td>
-<td>NA</td>
-<td>1.2653637077</td>
-<td>NA</td>
-<td>1.2653637077</td>
-<td>NA</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(l_{cs}\)</span></td>
-<td>NA</td>
-<td>NA</td>
-<td>NA</td>
-<td>NA</td>
-<td>0.45</td>
-<td>NA</td>
-<td>0.45</td>
-<td>NA</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(l_F\)</span></td>
-<td>0.264</td>
-<td>0.001</td>
-<td>0.297</td>
-<td>0.001</td>
-<td>0.304</td>
-<td>0.001</td>
-<td>0.304</td>
-<td>0.001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(l_{hbF}\)</span></td>
-<td>NA</td>
-<td>NA</td>
-<td>NA</td>
-<td>NA</td>
-<td>0.7</td>
-<td>NA</td>
-<td>0.7</td>
-<td>NA</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(l_{hbR}\)</span></td>
-<td>NA</td>
-<td>NA</td>
-<td>NA</td>
-<td>NA</td>
-<td>1.145</td>
-<td>NA</td>
-<td>1.145</td>
-<td>NA</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(l_P\)</span></td>
-<td>1.050</td>
-<td>0.001</td>
-<td>1.050</td>
-<td>0.001</td>
-<td>1.050</td>
-<td>0.001</td>
-<td>1.050</td>
-<td>0.001</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(l_R\)</span></td>
-<td>0.265</td>
-<td>0.001</td>
-<td>0.297</td>
-<td>0.001</td>
-<td>0.302</td>
-<td>0.001</td>
-<td>0.302</td>
-<td>0.001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(l_{sp}\)</span></td>
-<td>NA</td>
-<td>NA</td>
-<td>NA</td>
-<td>NA</td>
-<td>0.21</td>
-<td>NA</td>
-<td>0.21</td>
-<td>NA</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(l_{st}\)</span></td>
-<td>NA</td>
-<td>NA</td>
-<td>NA</td>
-<td>NA</td>
-<td>0.515</td>
-<td>NA</td>
-<td>0.515</td>
-<td>NA</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(m_B\)</span></td>
-<td>4.48</td>
-<td>0.02</td>
-<td>4.49</td>
-<td>0.02</td>
-<td>3.31</td>
-<td>0.02</td>
-<td>3.31</td>
-<td>0.02</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(m_F\)</span></td>
-<td>1.50</td>
-<td>0.02</td>
-<td>1.58</td>
-<td>0.02</td>
-<td>1.90</td>
-<td>0.02</td>
-<td>1.90</td>
-<td>0.02</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(m_H\)</span></td>
-<td>2.52</td>
-<td>0.02</td>
-<td>2.27</td>
-<td>0.02</td>
-<td>2.45</td>
-<td>0.02</td>
-<td>2.45</td>
-<td>0.02</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(m_P\)</span></td>
-<td>5.56</td>
-<td>0.02</td>
-<td>5.56</td>
-<td>0.02</td>
-<td>5.56</td>
-<td>0.02</td>
-<td>5.56</td>
-<td>0.02</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(m_R\)</span></td>
-<td>1.94</td>
-<td>0.02</td>
-<td>1.38</td>
-<td>0.02</td>
-<td>2.57</td>
-<td>0.02</td>
-<td>2.57</td>
-<td>0.02</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(n_F\)</span></td>
-<td>14.0</td>
-<td>NA</td>
-<td>14.0</td>
-<td>NA</td>
-<td>13.0</td>
-<td>NA</td>
-<td>13.0</td>
-<td>NA</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(n_R\)</span></td>
-<td>14.0</td>
-<td>NA</td>
-<td>14.0</td>
-<td>NA</td>
-<td>13.0</td>
-<td>NA</td>
-<td>13.0</td>
-<td>NA</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^c_{B1}\)</span></td>
-<td>1.632572</td>
-<td>0.000004</td>
-<td>1.639885</td>
-<td>0.000006</td>
-<td>1.71695</td>
-<td>0.00001</td>
-<td>1.71695</td>
-<td>0.00001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^c_{F1}\)</span></td>
-<td>1.463519</td>
-<td>0.000004</td>
-<td>1.451154</td>
-<td>0.000005</td>
-<td>1.49847</td>
-<td>0.00002</td>
-<td>1.49847</td>
-<td>0.00002</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^c_{H1}\)</span></td>
-<td>1.422021</td>
-<td>0.000002</td>
-<td>1.392606</td>
-<td>0.000002</td>
-<td>1.518206</td>
-<td>0.000008</td>
-<td>1.528827</td>
-<td>0.000006</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^c_{R1}\)</span></td>
-<td>1.362063</td>
-<td>0.000007</td>
-<td>1.395046</td>
-<td>0.000004</td>
-<td>1.40931</td>
-<td>0.00002</td>
-<td>1.40931</td>
-<td>0.00002</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^t_{B1}\)</span></td>
-<td>1.291694</td>
-<td>0.000003</td>
-<td>1.26420</td>
-<td>0.00001</td>
-<td>1.19029</td>
-<td>0.00002</td>
-<td>1.19029</td>
-<td>0.00002</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^t_{B2}\)</span></td>
-<td>1.506534</td>
-<td>0.000005</td>
-<td>1.501279</td>
-<td>0.000007</td>
-<td>1.200785</td>
-<td>0.000006</td>
-<td>1.200785</td>
-<td>0.000006</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^t_{B3}\)</span></td>
-<td>1.367939</td>
-<td>0.000004</td>
-<td>1.492970</td>
-<td>0.000005</td>
-<td>1.282136</td>
-<td>0.000008</td>
-<td>1.282136</td>
-<td>0.000008</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^t_{F1}\)</span></td>
-<td>0.665696</td>
-<td>0.000001</td>
-<td>0.6232453</td>
-<td>0.0000006</td>
-<td>0.773040</td>
-<td>0.000002</td>
-<td>0.773040</td>
-<td>0.000002</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^t_{H1}\)</span></td>
-<td>0.826936</td>
-<td>0.000002</td>
-<td>0.776458</td>
-<td>0.000001</td>
-<td>1.012698</td>
-<td>0.000003</td>
-<td>0.4756557</td>
-<td>0.0000009</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^t_{H2}\)</span></td>
-<td>0.720503</td>
-<td>0.000001</td>
-<td>0.830610</td>
-<td>0.000003</td>
-<td>0.948609</td>
-<td>0.000002</td>
-<td>0.963826</td>
-<td>0.000003</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^t_{H3}\)</span></td>
-<td>0.3719856</td>
-<td>0.0000003</td>
-<td>0.5250995</td>
-<td>0.0000005</td>
-<td>0.4579289</td>
-<td>0.0000006</td>
-<td>1.019585</td>
-<td>0.000003</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^t_{P1}\)</span></td>
-<td>1.893993</td>
-<td>0.000006</td>
-<td>1.893993</td>
-<td>0.000006</td>
-<td>1.893993</td>
-<td>0.000006</td>
-<td>1.893993</td>
-<td>0.000006</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^t_{R1}\)</span></td>
-<td>0.6650523</td>
-<td>0.0000008</td>
-<td>0.622565</td>
-<td>0.000001</td>
-<td>0.784395</td>
-<td>0.000001</td>
-<td>0.784395</td>
-<td>0.000001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(w\)</span></td>
-<td>1.070</td>
-<td>0.002</td>
-<td>0.989</td>
-<td>0.002</td>
-<td>1.089</td>
-<td>0.002</td>
-<td>0.985</td>
-<td>0.002</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(w_{hb}\)</span></td>
-<td>NA</td>
-<td>NA</td>
-<td>NA</td>
-<td>NA</td>
-<td>0.24</td>
-<td>NA</td>
-<td>0.24</td>
-<td>NA</td>
-</tr>
-</tbody>
-</table>
-<table border="1" class="docutils">
-<colgroup>
-<col width="26%" />
-<col width="18%" />
-<col width="19%" />
-<col width="18%" />
-<col width="19%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">&nbsp;</th>
-<th class="head" colspan="2">Rigid</th>
-<th class="head" colspan="2">Rigidcl</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Variable</td>
-<td><span class="math">\(v\)</span></td>
-<td><span class="math">\(\sigma\)</span></td>
-<td><span class="math">\(v\)</span></td>
-<td><span class="math">\(\sigma\)</span></td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(a_{B1}\)</span></td>
-<td>-0.521</td>
-<td>0.001</td>
-<td>-0.507</td>
-<td>0.001</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(a_{B2}\)</span></td>
-<td>-0.295</td>
-<td>0.001</td>
-<td>-0.244</td>
-<td>0.001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(a_{B3}\)</span></td>
-<td>0.518</td>
-<td>0.001</td>
-<td>0.510</td>
-<td>0.001</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(a_{B4}\)</span></td>
-<td>0.140</td>
-<td>0.001</td>
-<td>0.149</td>
-<td>0.001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(a_{B5}\)</span></td>
-<td>0.516</td>
-<td>0.001</td>
-<td>NA</td>
-<td>NA</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(a_{G1}\)</span></td>
-<td>-0.059</td>
-<td>0.001</td>
-<td>-0.059</td>
-<td>0.001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(a_{G2}\)</span></td>
-<td>0.075</td>
-<td>0.001</td>
-<td>0.075</td>
-<td>0.001</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(a_{G3}\)</span></td>
-<td>-0.069</td>
-<td>0.001</td>
-<td>-0.069</td>
-<td>0.001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(\alpha_{B1}\)</span></td>
-<td>233.0</td>
-<td>0.1</td>
-<td>228.2</td>
-<td>0.1</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(\alpha_{B2}\)</span></td>
-<td>180.2</td>
-<td>0.1</td>
-<td>176.0</td>
-<td>0.1</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(\alpha_{B3}\)</span></td>
-<td>55.7</td>
-<td>0.1</td>
-<td>54.4</td>
-<td>0.1</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(\alpha_{B4}\)</span></td>
-<td>342.5</td>
-<td>0.1</td>
-<td>344.1</td>
-<td>0.1</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(\alpha_{B5}\)</span></td>
-<td>51.8</td>
-<td>0.1</td>
-<td>NA</td>
-<td>NA</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(\alpha_{G1}\)</span></td>
-<td>57.3</td>
-<td>0.1</td>
-<td>57.3</td>
-<td>0.1</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(\alpha_{G2}\)</span></td>
-<td>224.4</td>
-<td>0.1</td>
-<td>224.4</td>
-<td>0.1</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(\alpha_{G3}\)</span></td>
-<td>332.3</td>
-<td>0.1</td>
-<td>332.3</td>
-<td>0.1</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(\alpha_{S1}\)</span></td>
-<td>252.6</td>
-<td>0.1</td>
-<td>252.6</td>
-<td>0.1</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(\alpha_{S2}\)</span></td>
-<td>156.2</td>
-<td>0.1</td>
-<td>156.2</td>
-<td>0.1</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(\alpha_{S3}\)</span></td>
-<td>127.6</td>
-<td>0.1</td>
-<td>127.6</td>
-<td>0.1</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(\alpha_{S4}\)</span></td>
-<td>20.9</td>
-<td>0.1</td>
-<td>20.9</td>
-<td>0.1</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(\alpha_{S5}\)</span></td>
-<td>301.0</td>
-<td>0.1</td>
-<td>301.0</td>
-<td>0.1</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(a_{S1}\)</span></td>
-<td>-0.092</td>
-<td>0.001</td>
-<td>-0.092</td>
-<td>0.001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(a_{S2}\)</span></td>
-<td>-0.407</td>
-<td>0.001</td>
-<td>-0.407</td>
-<td>0.001</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(a_{S3}\)</span></td>
-<td>-0.296</td>
-<td>0.001</td>
-<td>-0.296</td>
-<td>0.001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(a_{S4}\)</span></td>
-<td>0.386</td>
-<td>0.001</td>
-<td>0.386</td>
-<td>0.001</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(a_{S5}\)</span></td>
-<td>0.255</td>
-<td>0.001</td>
-<td>0.255</td>
-<td>0.001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(d\)</span></td>
-<td>0.96338</td>
-<td>0.00008</td>
-<td>0.96338</td>
-<td>0.00008</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(d_1\)</span></td>
-<td>0.03705</td>
-<td>0.00003</td>
-<td>0.03705</td>
-<td>0.00003</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(d_2\)</span></td>
-<td>0.00980</td>
-<td>0.00003</td>
-<td>0.00980</td>
-<td>0.00003</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(d_3\)</span></td>
-<td>0.01005</td>
-<td>0.00003</td>
-<td>0.01005</td>
-<td>0.00003</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(d_4\)</span></td>
-<td>0.02855</td>
-<td>0.00003</td>
-<td>0.02855</td>
-<td>0.00003</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(d_5\)</span></td>
-<td>0.01001</td>
-<td>0.00001</td>
-<td>0.01001</td>
-<td>0.00001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(d_6\)</span></td>
-<td>0.02217</td>
-<td>0.00001</td>
-<td>0.02217</td>
-<td>0.00001</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(d_F\)</span></td>
-<td>21.0846</td>
-<td>0.0006</td>
-<td>21.0846</td>
-<td>0.0006</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(d_P\)</span></td>
-<td>0.030103</td>
-<td>0.000006</td>
-<td>0.030103</td>
-<td>0.000006</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(d_R\)</span></td>
-<td>20.8934</td>
-<td>0.0006</td>
-<td>20.8934</td>
-<td>0.0006</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(g\)</span></td>
-<td>9.81</td>
-<td>0.01</td>
-<td>9.81</td>
-<td>0.01</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(h_1\)</span></td>
-<td>0.91561</td>
-<td>0.00003</td>
-<td>0.91561</td>
-<td>0.00003</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(h_2\)</span></td>
-<td>0.10160</td>
-<td>0.00001</td>
-<td>0.10160</td>
-<td>0.00001</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(h_3\)</span></td>
-<td>0.06708</td>
-<td>0.00004</td>
-<td>0.06708</td>
-<td>0.00004</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(h_4\)</span></td>
-<td>0.12211</td>
-<td>0.00006</td>
-<td>0.12211</td>
-<td>0.00006</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(h_5\)</span></td>
-<td>0.08355</td>
-<td>0.00006</td>
-<td>0.08355</td>
-<td>0.00006</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(h_6\)</span></td>
-<td>0.15369</td>
-<td>0.00001</td>
-<td>0.15369</td>
-<td>0.00001</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(h_7\)</span></td>
-<td>0.14833</td>
-<td>0.00001</td>
-<td>0.14833</td>
-<td>0.00001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(h_{bb}\)</span></td>
-<td>0.291</td>
-<td>NA</td>
-<td>0.291</td>
-<td>NA</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(l\)</span></td>
-<td>0.962</td>
-<td>0.002</td>
-<td>0.962</td>
-<td>0.002</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(\lambda_{st}\)</span></td>
-<td>1.26012771994</td>
-<td>NA</td>
-<td>1.26012771994</td>
-<td>NA</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(l_{cs}\)</span></td>
-<td>0.423</td>
-<td>NA</td>
-<td>0.423</td>
-<td>NA</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(l_F\)</span></td>
-<td>0.29572</td>
-<td>0.00008</td>
-<td>0.29572</td>
-<td>0.00008</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(l_{hbF}\)</span></td>
-<td>0.90805</td>
-<td>NA</td>
-<td>0.90805</td>
-<td>NA</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(l_{hbR}\)</span></td>
-<td>1.0795</td>
-<td>NA</td>
-<td>1.0795</td>
-<td>NA</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(l_P\)</span></td>
-<td>0.836</td>
-<td>0.001</td>
-<td>0.836</td>
-<td>0.001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(l_R\)</span></td>
-<td>0.28028</td>
-<td>0.00008</td>
-<td>0.28028</td>
-<td>0.00008</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(l_{sp}\)</span></td>
-<td>0.206</td>
-<td>NA</td>
-<td>0.2159</td>
-<td>NA</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(l_{st}\)</span></td>
-<td>0.545</td>
-<td>NA</td>
-<td>0.545</td>
-<td>NA</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(m_B\)</span></td>
-<td>22.90</td>
-<td>0.01</td>
-<td>23.00</td>
-<td>0.01</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(m_F\)</span></td>
-<td>1.55</td>
-<td>0.01</td>
-<td>1.55</td>
-<td>0.01</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(m_G\)</span></td>
-<td>3.35</td>
-<td>0.01</td>
-<td>3.35</td>
-<td>0.01</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(m_P\)</span></td>
-<td>4.65</td>
-<td>0.01</td>
-<td>4.65</td>
-<td>0.01</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(m_R\)</span></td>
-<td>4.90</td>
-<td>0.01</td>
-<td>4.90</td>
-<td>0.01</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(m_S\)</span></td>
-<td>2.05</td>
-<td>0.01</td>
-<td>2.05</td>
-<td>0.01</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(n_F\)</span></td>
-<td>10.0</td>
-<td>NA</td>
-<td>10.0</td>
-<td>NA</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(n_R\)</span></td>
-<td>10.0</td>
-<td>NA</td>
-<td>10.0</td>
-<td>NA</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^c_{B1}\)</span></td>
-<td>1.88231</td>
-<td>0.00009</td>
-<td>1.86670</td>
-<td>0.00004</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^c_{F1}\)</span></td>
-<td>1.43309</td>
-<td>0.00002</td>
-<td>1.43309</td>
-<td>0.00002</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^c_{G1}\)</span></td>
-<td>0.77267</td>
-<td>0.00002</td>
-<td>0.77267</td>
-<td>0.00002</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^c_{R1}\)</span></td>
-<td>1.22757</td>
-<td>0.00002</td>
-<td>1.22757</td>
-<td>0.00002</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^c_{S1}\)</span></td>
-<td>1.47091</td>
-<td>0.00003</td>
-<td>1.47091</td>
-<td>0.00003</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^t_{B1}\)</span></td>
-<td>3.4229</td>
-<td>0.0002</td>
-<td>3.02521</td>
-<td>0.00005</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^t_{B2}\)</span></td>
-<td>2.70613</td>
-<td>0.00002</td>
-<td>2.55895</td>
-<td>0.00003</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^t_{B3}\)</span></td>
-<td>3.07592</td>
-<td>0.00002</td>
-<td>3.03205</td>
-<td>0.00005</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^t_{B4}\)</span></td>
-<td>2.46588</td>
-<td>0.00005</td>
-<td>2.41714</td>
-<td>0.00004</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^t_{B5}\)</span></td>
-<td>3.0804</td>
-<td>0.0001</td>
-<td>NA</td>
-<td>NA</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^t_{F1}\)</span></td>
-<td>0.421157</td>
-<td>0.000007</td>
-<td>0.421157</td>
-<td>0.000007</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^t_{G1}\)</span></td>
-<td>0.448654</td>
-<td>0.000008</td>
-<td>0.448654</td>
-<td>0.000008</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^t_{G2}\)</span></td>
-<td>0.43545</td>
-<td>0.00001</td>
-<td>0.43545</td>
-<td>0.00001</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^t_{G3}\)</span></td>
-<td>0.41619</td>
-<td>0.00001</td>
-<td>0.41619</td>
-<td>0.00001</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^t_{P1}\)</span></td>
-<td>0.956919</td>
-<td>0.000002</td>
-<td>0.956919</td>
-<td>0.000002</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^t_{R1}\)</span></td>
-<td>0.486888</td>
-<td>0.000007</td>
-<td>0.486888</td>
-<td>0.000007</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^t_{S1}\)</span></td>
-<td>0.1519</td>
-<td>0.0002</td>
-<td>0.1519</td>
-<td>0.0002</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^t_{S2}\)</span></td>
-<td>0.535664</td>
-<td>0.000002</td>
-<td>0.535664</td>
-<td>0.000002</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^t_{S3}\)</span></td>
-<td>0.438209</td>
-<td>0.000006</td>
-<td>0.438209</td>
-<td>0.000006</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(T^t_{S4}\)</span></td>
-<td>0.52994</td>
-<td>0.00002</td>
-<td>0.52994</td>
-<td>0.00002</td>
-</tr>
-<tr class="row-even"><td><span class="math">\(T^t_{S5}\)</span></td>
-<td>0.372150</td>
-<td>0.000005</td>
-<td>0.372150</td>
-<td>0.000005</td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(w_{hb}\)</span></td>
-<td>0.535</td>
-<td>NA</td>
-<td>0.535</td>
-<td>NA</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition-todo admonition" id="index-18">
-<p class="first admonition-title">Todo</p>
-<p class="last">add gyrobike parameters</p>
-</div>
-</div>
-<div class="section" id="bicycle-benchmark-parameters">
-<h3><a class="toc-backref" href="#id81">Bicycle Benchmark Parameters</a><a class="headerlink" href="#bicycle-benchmark-parameters" title="Permalink to this headline">¶</a></h3>
+<span id="secbicyclemeasuredparameters"></span><h3>Bicycle Measured Parameters<a class="headerlink" href="#bicycle-measured-parameters" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="16%" />
@@ -4690,9 +3046,1615 @@ parameters are given in the following tables.</p>
 <p class="last">add gyrobike parameters</p>
 </div>
 </div>
-<div class="section" id="bicycle-human-parameters">
-<h3><a class="toc-backref" href="#id82">Bicycle + Human Parameters</a><a class="headerlink" href="#bicycle-human-parameters" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="bicycle-benchmark-parameters">
+<h3>Bicycle Benchmark Parameters<a class="headerlink" href="#bicycle-benchmark-parameters" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="9%" />
+<col width="11%" />
+<col width="9%" />
+<col width="11%" />
+<col width="9%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&nbsp;</th>
+<th class="head" colspan="2">Browser</th>
+<th class="head" colspan="2">Browserins</th>
+<th class="head" colspan="2">Stratos</th>
+<th class="head" colspan="2">Crescendo</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Variable</td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{B1}\)</span></td>
+<td>0.098</td>
+<td>0.003</td>
+<td>-0.018</td>
+<td>0.003</td>
+<td>0.249</td>
+<td>0.003</td>
+<td>0.248</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{B2}\)</span></td>
+<td>0.169</td>
+<td>0.003</td>
+<td>-0.355</td>
+<td>0.003</td>
+<td>-0.267</td>
+<td>0.003</td>
+<td>0.075</td>
+<td>0.003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{B3}\)</span></td>
+<td>-0.294</td>
+<td>0.003</td>
+<td>-0.242</td>
+<td>0.003</td>
+<td>-0.071</td>
+<td>0.003</td>
+<td>-0.289</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{H1}\)</span></td>
+<td>0.474</td>
+<td>0.003</td>
+<td>0.474</td>
+<td>0.003</td>
+<td>0.329</td>
+<td>0.003</td>
+<td>0.496</td>
+<td>0.003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{H2}\)</span></td>
+<td>0.383</td>
+<td>0.003</td>
+<td>0.383</td>
+<td>0.003</td>
+<td>-0.038</td>
+<td>0.003</td>
+<td>0.466</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{H3}\)</span></td>
+<td>0.215</td>
+<td>0.003</td>
+<td>0.215</td>
+<td>0.003</td>
+<td>0.400</td>
+<td>0.003</td>
+<td>0.301</td>
+<td>0.003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{B1}\)</span></td>
+<td>3.4</td>
+<td>0.2</td>
+<td>154.1</td>
+<td>0.2</td>
+<td>128.9</td>
+<td>0.2</td>
+<td>127.6</td>
+<td>0.2</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{B2}\)</span></td>
+<td>138.7</td>
+<td>0.2</td>
+<td>230.8</td>
+<td>0.2</td>
+<td>221.6</td>
+<td>0.2</td>
+<td>158.0</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{B3}\)</span></td>
+<td>229.8</td>
+<td>0.2</td>
+<td>286.9</td>
+<td>0.2</td>
+<td>184.5</td>
+<td>0.2</td>
+<td>223.9</td>
+<td>0.2</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{H1}\)</span></td>
+<td>346.7</td>
+<td>0.2</td>
+<td>346.7</td>
+<td>0.2</td>
+<td>36.0</td>
+<td>0.2</td>
+<td>358.4</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{H2}\)</span></td>
+<td>28.1</td>
+<td>0.2</td>
+<td>28.1</td>
+<td>0.2</td>
+<td>94.0</td>
+<td>0.2</td>
+<td>20.6</td>
+<td>0.2</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{H3}\)</span></td>
+<td>287.0</td>
+<td>0.2</td>
+<td>287.0</td>
+<td>0.2</td>
+<td>347.3</td>
+<td>0.2</td>
+<td>303.8</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_F\)</span></td>
+<td>28.06</td>
+<td>0.01</td>
+<td>27.98</td>
+<td>0.01</td>
+<td>27.77</td>
+<td>0.01</td>
+<td>27.98</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(d_P\)</span></td>
+<td>0.0300</td>
+<td>0.0001</td>
+<td>0.0300</td>
+<td>0.0001</td>
+<td>0.0300</td>
+<td>0.0001</td>
+<td>0.0300</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_R\)</span></td>
+<td>27.85</td>
+<td>0.01</td>
+<td>27.84</td>
+<td>0.01</td>
+<td>29.77</td>
+<td>0.01</td>
+<td>27.77</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(f\)</span></td>
+<td>0.070</td>
+<td>0.001</td>
+<td>0.070</td>
+<td>0.001</td>
+<td>0.045</td>
+<td>0.001</td>
+<td>0.045</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(g\)</span></td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\gamma\)</span></td>
+<td>67.1</td>
+<td>0.2</td>
+<td>67.1</td>
+<td>0.2</td>
+<td>73.1</td>
+<td>0.2</td>
+<td>69.0</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(h_{bb}\)</span></td>
+<td>0.295</td>
+<td>NA</td>
+<td>0.295</td>
+<td>NA</td>
+<td>0.29</td>
+<td>NA</td>
+<td>0.29</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\lambda_{st}\)</span></td>
+<td>1.195550538</td>
+<td>NA</td>
+<td>1.195550538</td>
+<td>NA</td>
+<td>1.308996939</td>
+<td>NA</td>
+<td>1.23569311041</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{cs}\)</span></td>
+<td>0.46</td>
+<td>NA</td>
+<td>0.46</td>
+<td>NA</td>
+<td>0.445</td>
+<td>NA</td>
+<td>0.465</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_F\)</span></td>
+<td>0.293</td>
+<td>0.001</td>
+<td>0.293</td>
+<td>0.001</td>
+<td>0.297</td>
+<td>0.001</td>
+<td>0.301</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{hbF}\)</span></td>
+<td>0.893</td>
+<td>NA</td>
+<td>0.893</td>
+<td>NA</td>
+<td>0.6552</td>
+<td>NA</td>
+<td>0.81</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_{hbR}\)</span></td>
+<td>0.9213</td>
+<td>NA</td>
+<td>0.9213</td>
+<td>NA</td>
+<td>1.1014</td>
+<td>NA</td>
+<td>1.08</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_P\)</span></td>
+<td>1.050</td>
+<td>0.001</td>
+<td>1.050</td>
+<td>0.001</td>
+<td>1.050</td>
+<td>0.001</td>
+<td>1.050</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_R\)</span></td>
+<td>0.293</td>
+<td>0.001</td>
+<td>0.293</td>
+<td>0.001</td>
+<td>0.296</td>
+<td>0.001</td>
+<td>0.297</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{sp}\)</span></td>
+<td>0.24</td>
+<td>NA</td>
+<td>0.24</td>
+<td>NA</td>
+<td>0.195</td>
+<td>NA</td>
+<td>0.28</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_{st}\)</span></td>
+<td>0.53</td>
+<td>NA</td>
+<td>0.53</td>
+<td>NA</td>
+<td>0.48</td>
+<td>NA</td>
+<td>0.49</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_B\)</span></td>
+<td>9.86</td>
+<td>0.02</td>
+<td>14.71</td>
+<td>0.02</td>
+<td>7.22</td>
+<td>0.02</td>
+<td>9.18</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_F\)</span></td>
+<td>2.02</td>
+<td>0.02</td>
+<td>2.02</td>
+<td>0.02</td>
+<td>3.33</td>
+<td>0.02</td>
+<td>3.54</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_H\)</span></td>
+<td>3.22</td>
+<td>0.02</td>
+<td>3.22</td>
+<td>0.02</td>
+<td>3.04</td>
+<td>0.02</td>
+<td>4.57</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_P\)</span></td>
+<td>5.56</td>
+<td>0.02</td>
+<td>5.56</td>
+<td>0.02</td>
+<td>5.56</td>
+<td>0.02</td>
+<td>5.56</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_R\)</span></td>
+<td>3.11</td>
+<td>0.02</td>
+<td>3.11</td>
+<td>0.02</td>
+<td>3.96</td>
+<td>0.02</td>
+<td>3.96</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(n_F\)</span></td>
+<td>13.0</td>
+<td>NA</td>
+<td>13.0</td>
+<td>NA</td>
+<td>13.0</td>
+<td>NA</td>
+<td>13.0</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(n_R\)</span></td>
+<td>13.0</td>
+<td>NA</td>
+<td>13.0</td>
+<td>NA</td>
+<td>14.0</td>
+<td>NA</td>
+<td>13.0</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^c_{B1}\)</span></td>
+<td>1.717307</td>
+<td>0.000005</td>
+<td>1.811022</td>
+<td>0.000007</td>
+<td>1.598802</td>
+<td>0.000006</td>
+<td>1.676428</td>
+<td>0.000003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^c_{F1}\)</span></td>
+<td>1.481127</td>
+<td>0.000007</td>
+<td>1.481127</td>
+<td>0.000007</td>
+<td>1.353666</td>
+<td>0.000005</td>
+<td>1.354974</td>
+<td>0.000004</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^c_{H1}\)</span></td>
+<td>1.601851</td>
+<td>0.000007</td>
+<td>1.601851</td>
+<td>0.000007</td>
+<td>1.45407</td>
+<td>0.00002</td>
+<td>1.628126</td>
+<td>0.000005</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^c_{R1}\)</span></td>
+<td>1.361090</td>
+<td>0.000004</td>
+<td>1.361090</td>
+<td>0.000004</td>
+<td>1.312177</td>
+<td>0.000007</td>
+<td>1.299370</td>
+<td>0.000008</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{B1}\)</span></td>
+<td>2.09957</td>
+<td>0.00008</td>
+<td>3.36393</td>
+<td>0.00004</td>
+<td>1.81595</td>
+<td>0.00001</td>
+<td>2.26011</td>
+<td>0.00001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{B2}\)</span></td>
+<td>2.37672</td>
+<td>0.00002</td>
+<td>2.81391</td>
+<td>0.00007</td>
+<td>1.585198</td>
+<td>0.000009</td>
+<td>2.09595</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{B3}\)</span></td>
+<td>1.83977</td>
+<td>0.00001</td>
+<td>3.57185</td>
+<td>0.00009</td>
+<td>1.660199</td>
+<td>0.000008</td>
+<td>1.92017</td>
+<td>0.00001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{F1}\)</span></td>
+<td>0.787577</td>
+<td>0.000001</td>
+<td>0.787577</td>
+<td>0.000001</td>
+<td>0.801625</td>
+<td>0.000001</td>
+<td>0.818258</td>
+<td>0.000002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{H1}\)</span></td>
+<td>1.368796</td>
+<td>0.000006</td>
+<td>1.368796</td>
+<td>0.000006</td>
+<td>1.011494</td>
+<td>0.000004</td>
+<td>1.6903</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{H2}\)</span></td>
+<td>1.295272</td>
+<td>0.000006</td>
+<td>1.295272</td>
+<td>0.000006</td>
+<td>0.525351</td>
+<td>0.000002</td>
+<td>1.6440</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{H3}\)</span></td>
+<td>0.760951</td>
+<td>0.000003</td>
+<td>0.760951</td>
+<td>0.000003</td>
+<td>1.086037</td>
+<td>0.000006</td>
+<td>1.21590</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{P1}\)</span></td>
+<td>1.893993</td>
+<td>0.000006</td>
+<td>1.893993</td>
+<td>0.000006</td>
+<td>1.893993</td>
+<td>0.000006</td>
+<td>1.893993</td>
+<td>0.000006</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{R1}\)</span></td>
+<td>0.796565</td>
+<td>0.000001</td>
+<td>0.796565</td>
+<td>0.000001</td>
+<td>0.8116623</td>
+<td>0.0000009</td>
+<td>0.823570</td>
+<td>0.000001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(w\)</span></td>
+<td>1.121</td>
+<td>0.002</td>
+<td>1.121</td>
+<td>0.002</td>
+<td>1.037</td>
+<td>0.002</td>
+<td>1.101</td>
+<td>0.002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(w_{hb}\)</span></td>
+<td>0.58</td>
+<td>NA</td>
+<td>0.58</td>
+<td>NA</td>
+<td>0.58</td>
+<td>NA</td>
+<td>0.56</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="8%" />
+<col width="11%" />
+<col width="8%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&nbsp;</th>
+<th class="head" colspan="2">Fisher</th>
+<th class="head" colspan="2">Pista</th>
+<th class="head" colspan="2">Yellow</th>
+<th class="head" colspan="2">Yellowrev</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Variable</td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{B1}\)</span></td>
+<td>0.304</td>
+<td>0.003</td>
+<td>0.329</td>
+<td>0.003</td>
+<td>0.220</td>
+<td>0.003</td>
+<td>0.220</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{B2}\)</span></td>
+<td>0.395</td>
+<td>0.003</td>
+<td>0.293</td>
+<td>0.003</td>
+<td>0.000</td>
+<td>0.003</td>
+<td>0.000</td>
+<td>0.003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{B3}\)</span></td>
+<td>-0.107</td>
+<td>0.003</td>
+<td>-0.267</td>
+<td>0.003</td>
+<td>-0.379</td>
+<td>0.003</td>
+<td>-0.379</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{H1}\)</span></td>
+<td>0.341</td>
+<td>0.003</td>
+<td>0.337</td>
+<td>0.003</td>
+<td>0.468</td>
+<td>0.003</td>
+<td>0.099</td>
+<td>0.003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{H2}\)</span></td>
+<td>0.277</td>
+<td>0.003</td>
+<td>0.400</td>
+<td>0.003</td>
+<td>0.396</td>
+<td>0.003</td>
+<td>0.445</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{H3}\)</span></td>
+<td>-0.008</td>
+<td>0.003</td>
+<td>-0.063</td>
+<td>0.003</td>
+<td>0.015</td>
+<td>0.003</td>
+<td>0.474</td>
+<td>0.003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{B1}\)</span></td>
+<td>125.9</td>
+<td>0.2</td>
+<td>120.2</td>
+<td>0.2</td>
+<td>139.5</td>
+<td>0.2</td>
+<td>139.5</td>
+<td>0.2</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{B2}\)</span></td>
+<td>75.7</td>
+<td>0.2</td>
+<td>40.7</td>
+<td>0.2</td>
+<td>345.4</td>
+<td>0.2</td>
+<td>345.4</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{B3}\)</span></td>
+<td>190.8</td>
+<td>0.2</td>
+<td>215.9</td>
+<td>0.2</td>
+<td>215.9</td>
+<td>0.2</td>
+<td>215.9</td>
+<td>0.2</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{H1}\)</span></td>
+<td>35.3</td>
+<td>0.2</td>
+<td>38.8</td>
+<td>0.2</td>
+<td>0.3</td>
+<td>0.2</td>
+<td>89.3</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{H2}\)</span></td>
+<td>50.0</td>
+<td>0.2</td>
+<td>12.4</td>
+<td>0.2</td>
+<td>32.0</td>
+<td>0.2</td>
+<td>33.5</td>
+<td>0.2</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{H3}\)</span></td>
+<td>93.8</td>
+<td>0.2</td>
+<td>102.2</td>
+<td>0.2</td>
+<td>87.9</td>
+<td>0.2</td>
+<td>4.3</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_F\)</span></td>
+<td>29.04</td>
+<td>0.01</td>
+<td>29.37</td>
+<td>0.01</td>
+<td>27.93</td>
+<td>0.01</td>
+<td>27.93</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(d_P\)</span></td>
+<td>0.0300</td>
+<td>0.0001</td>
+<td>0.0300</td>
+<td>0.0001</td>
+<td>0.0300</td>
+<td>0.0001</td>
+<td>0.0300</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_R\)</span></td>
+<td>29.79</td>
+<td>0.01</td>
+<td>29.21</td>
+<td>0.01</td>
+<td>27.88</td>
+<td>0.01</td>
+<td>27.88</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(f\)</span></td>
+<td>0.038</td>
+<td>0.001</td>
+<td>0.032</td>
+<td>0.001</td>
+<td>0.057</td>
+<td>0.001</td>
+<td>-0.057</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(g\)</span></td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\gamma\)</span></td>
+<td>71.1</td>
+<td>0.2</td>
+<td>74.2</td>
+<td>0.2</td>
+<td>72.7</td>
+<td>0.2</td>
+<td>70.6</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(h_{bb}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.276580359362</td>
+<td>NA</td>
+<td>0.276602031136</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\lambda_{st}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>1.2653637077</td>
+<td>NA</td>
+<td>1.2653637077</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{cs}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.45</td>
+<td>NA</td>
+<td>0.45</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_F\)</span></td>
+<td>0.264</td>
+<td>0.001</td>
+<td>0.297</td>
+<td>0.001</td>
+<td>0.304</td>
+<td>0.001</td>
+<td>0.304</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{hbF}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.7</td>
+<td>NA</td>
+<td>0.7</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_{hbR}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>1.145</td>
+<td>NA</td>
+<td>1.145</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_P\)</span></td>
+<td>1.050</td>
+<td>0.001</td>
+<td>1.050</td>
+<td>0.001</td>
+<td>1.050</td>
+<td>0.001</td>
+<td>1.050</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_R\)</span></td>
+<td>0.265</td>
+<td>0.001</td>
+<td>0.297</td>
+<td>0.001</td>
+<td>0.302</td>
+<td>0.001</td>
+<td>0.302</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{sp}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.21</td>
+<td>NA</td>
+<td>0.21</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_{st}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.515</td>
+<td>NA</td>
+<td>0.515</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_B\)</span></td>
+<td>4.48</td>
+<td>0.02</td>
+<td>4.49</td>
+<td>0.02</td>
+<td>3.31</td>
+<td>0.02</td>
+<td>3.31</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_F\)</span></td>
+<td>1.50</td>
+<td>0.02</td>
+<td>1.58</td>
+<td>0.02</td>
+<td>1.90</td>
+<td>0.02</td>
+<td>1.90</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_H\)</span></td>
+<td>2.52</td>
+<td>0.02</td>
+<td>2.27</td>
+<td>0.02</td>
+<td>2.45</td>
+<td>0.02</td>
+<td>2.45</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_P\)</span></td>
+<td>5.56</td>
+<td>0.02</td>
+<td>5.56</td>
+<td>0.02</td>
+<td>5.56</td>
+<td>0.02</td>
+<td>5.56</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_R\)</span></td>
+<td>1.94</td>
+<td>0.02</td>
+<td>1.38</td>
+<td>0.02</td>
+<td>2.57</td>
+<td>0.02</td>
+<td>2.57</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(n_F\)</span></td>
+<td>14.0</td>
+<td>NA</td>
+<td>14.0</td>
+<td>NA</td>
+<td>13.0</td>
+<td>NA</td>
+<td>13.0</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(n_R\)</span></td>
+<td>14.0</td>
+<td>NA</td>
+<td>14.0</td>
+<td>NA</td>
+<td>13.0</td>
+<td>NA</td>
+<td>13.0</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^c_{B1}\)</span></td>
+<td>1.632572</td>
+<td>0.000004</td>
+<td>1.639885</td>
+<td>0.000006</td>
+<td>1.71695</td>
+<td>0.00001</td>
+<td>1.71695</td>
+<td>0.00001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^c_{F1}\)</span></td>
+<td>1.463519</td>
+<td>0.000004</td>
+<td>1.451154</td>
+<td>0.000005</td>
+<td>1.49847</td>
+<td>0.00002</td>
+<td>1.49847</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^c_{H1}\)</span></td>
+<td>1.422021</td>
+<td>0.000002</td>
+<td>1.392606</td>
+<td>0.000002</td>
+<td>1.518206</td>
+<td>0.000008</td>
+<td>1.528827</td>
+<td>0.000006</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^c_{R1}\)</span></td>
+<td>1.362063</td>
+<td>0.000007</td>
+<td>1.395046</td>
+<td>0.000004</td>
+<td>1.40931</td>
+<td>0.00002</td>
+<td>1.40931</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{B1}\)</span></td>
+<td>1.291694</td>
+<td>0.000003</td>
+<td>1.26420</td>
+<td>0.00001</td>
+<td>1.19029</td>
+<td>0.00002</td>
+<td>1.19029</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{B2}\)</span></td>
+<td>1.506534</td>
+<td>0.000005</td>
+<td>1.501279</td>
+<td>0.000007</td>
+<td>1.200785</td>
+<td>0.000006</td>
+<td>1.200785</td>
+<td>0.000006</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{B3}\)</span></td>
+<td>1.367939</td>
+<td>0.000004</td>
+<td>1.492970</td>
+<td>0.000005</td>
+<td>1.282136</td>
+<td>0.000008</td>
+<td>1.282136</td>
+<td>0.000008</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{F1}\)</span></td>
+<td>0.665696</td>
+<td>0.000001</td>
+<td>0.6232453</td>
+<td>0.0000006</td>
+<td>0.773040</td>
+<td>0.000002</td>
+<td>0.773040</td>
+<td>0.000002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{H1}\)</span></td>
+<td>0.826936</td>
+<td>0.000002</td>
+<td>0.776458</td>
+<td>0.000001</td>
+<td>1.012698</td>
+<td>0.000003</td>
+<td>0.4756557</td>
+<td>0.0000009</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{H2}\)</span></td>
+<td>0.720503</td>
+<td>0.000001</td>
+<td>0.830610</td>
+<td>0.000003</td>
+<td>0.948609</td>
+<td>0.000002</td>
+<td>0.963826</td>
+<td>0.000003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{H3}\)</span></td>
+<td>0.3719856</td>
+<td>0.0000003</td>
+<td>0.5250995</td>
+<td>0.0000005</td>
+<td>0.4579289</td>
+<td>0.0000006</td>
+<td>1.019585</td>
+<td>0.000003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{P1}\)</span></td>
+<td>1.893993</td>
+<td>0.000006</td>
+<td>1.893993</td>
+<td>0.000006</td>
+<td>1.893993</td>
+<td>0.000006</td>
+<td>1.893993</td>
+<td>0.000006</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{R1}\)</span></td>
+<td>0.6650523</td>
+<td>0.0000008</td>
+<td>0.622565</td>
+<td>0.000001</td>
+<td>0.784395</td>
+<td>0.000001</td>
+<td>0.784395</td>
+<td>0.000001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(w\)</span></td>
+<td>1.070</td>
+<td>0.002</td>
+<td>0.989</td>
+<td>0.002</td>
+<td>1.089</td>
+<td>0.002</td>
+<td>0.985</td>
+<td>0.002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(w_{hb}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.24</td>
+<td>NA</td>
+<td>0.24</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="18%" />
+<col width="19%" />
+<col width="18%" />
+<col width="19%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&nbsp;</th>
+<th class="head" colspan="2">Rigid</th>
+<th class="head" colspan="2">Rigidcl</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Variable</td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{B1}\)</span></td>
+<td>-0.521</td>
+<td>0.001</td>
+<td>-0.507</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{B2}\)</span></td>
+<td>-0.295</td>
+<td>0.001</td>
+<td>-0.244</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{B3}\)</span></td>
+<td>0.518</td>
+<td>0.001</td>
+<td>0.510</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{B4}\)</span></td>
+<td>0.140</td>
+<td>0.001</td>
+<td>0.149</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{B5}\)</span></td>
+<td>0.516</td>
+<td>0.001</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{G1}\)</span></td>
+<td>-0.059</td>
+<td>0.001</td>
+<td>-0.059</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{G2}\)</span></td>
+<td>0.075</td>
+<td>0.001</td>
+<td>0.075</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{G3}\)</span></td>
+<td>-0.069</td>
+<td>0.001</td>
+<td>-0.069</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{B1}\)</span></td>
+<td>233.0</td>
+<td>0.1</td>
+<td>228.2</td>
+<td>0.1</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{B2}\)</span></td>
+<td>180.2</td>
+<td>0.1</td>
+<td>176.0</td>
+<td>0.1</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{B3}\)</span></td>
+<td>55.7</td>
+<td>0.1</td>
+<td>54.4</td>
+<td>0.1</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{B4}\)</span></td>
+<td>342.5</td>
+<td>0.1</td>
+<td>344.1</td>
+<td>0.1</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{B5}\)</span></td>
+<td>51.8</td>
+<td>0.1</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{G1}\)</span></td>
+<td>57.3</td>
+<td>0.1</td>
+<td>57.3</td>
+<td>0.1</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{G2}\)</span></td>
+<td>224.4</td>
+<td>0.1</td>
+<td>224.4</td>
+<td>0.1</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{G3}\)</span></td>
+<td>332.3</td>
+<td>0.1</td>
+<td>332.3</td>
+<td>0.1</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{S1}\)</span></td>
+<td>252.6</td>
+<td>0.1</td>
+<td>252.6</td>
+<td>0.1</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{S2}\)</span></td>
+<td>156.2</td>
+<td>0.1</td>
+<td>156.2</td>
+<td>0.1</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{S3}\)</span></td>
+<td>127.6</td>
+<td>0.1</td>
+<td>127.6</td>
+<td>0.1</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{S4}\)</span></td>
+<td>20.9</td>
+<td>0.1</td>
+<td>20.9</td>
+<td>0.1</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{S5}\)</span></td>
+<td>301.0</td>
+<td>0.1</td>
+<td>301.0</td>
+<td>0.1</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{S1}\)</span></td>
+<td>-0.092</td>
+<td>0.001</td>
+<td>-0.092</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{S2}\)</span></td>
+<td>-0.407</td>
+<td>0.001</td>
+<td>-0.407</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{S3}\)</span></td>
+<td>-0.296</td>
+<td>0.001</td>
+<td>-0.296</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{S4}\)</span></td>
+<td>0.386</td>
+<td>0.001</td>
+<td>0.386</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{S5}\)</span></td>
+<td>0.255</td>
+<td>0.001</td>
+<td>0.255</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d\)</span></td>
+<td>0.96338</td>
+<td>0.00008</td>
+<td>0.96338</td>
+<td>0.00008</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(d_1\)</span></td>
+<td>0.03705</td>
+<td>0.00003</td>
+<td>0.03705</td>
+<td>0.00003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_2\)</span></td>
+<td>0.00980</td>
+<td>0.00003</td>
+<td>0.00980</td>
+<td>0.00003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(d_3\)</span></td>
+<td>0.01005</td>
+<td>0.00003</td>
+<td>0.01005</td>
+<td>0.00003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_4\)</span></td>
+<td>0.02855</td>
+<td>0.00003</td>
+<td>0.02855</td>
+<td>0.00003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(d_5\)</span></td>
+<td>0.01001</td>
+<td>0.00001</td>
+<td>0.01001</td>
+<td>0.00001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_6\)</span></td>
+<td>0.02217</td>
+<td>0.00001</td>
+<td>0.02217</td>
+<td>0.00001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(d_F\)</span></td>
+<td>21.0846</td>
+<td>0.0006</td>
+<td>21.0846</td>
+<td>0.0006</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_P\)</span></td>
+<td>0.030103</td>
+<td>0.000006</td>
+<td>0.030103</td>
+<td>0.000006</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(d_R\)</span></td>
+<td>20.8934</td>
+<td>0.0006</td>
+<td>20.8934</td>
+<td>0.0006</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(g\)</span></td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(h_1\)</span></td>
+<td>0.91561</td>
+<td>0.00003</td>
+<td>0.91561</td>
+<td>0.00003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(h_2\)</span></td>
+<td>0.10160</td>
+<td>0.00001</td>
+<td>0.10160</td>
+<td>0.00001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(h_3\)</span></td>
+<td>0.06708</td>
+<td>0.00004</td>
+<td>0.06708</td>
+<td>0.00004</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(h_4\)</span></td>
+<td>0.12211</td>
+<td>0.00006</td>
+<td>0.12211</td>
+<td>0.00006</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(h_5\)</span></td>
+<td>0.08355</td>
+<td>0.00006</td>
+<td>0.08355</td>
+<td>0.00006</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(h_6\)</span></td>
+<td>0.15369</td>
+<td>0.00001</td>
+<td>0.15369</td>
+<td>0.00001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(h_7\)</span></td>
+<td>0.14833</td>
+<td>0.00001</td>
+<td>0.14833</td>
+<td>0.00001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(h_{bb}\)</span></td>
+<td>0.291</td>
+<td>NA</td>
+<td>0.291</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l\)</span></td>
+<td>0.962</td>
+<td>0.002</td>
+<td>0.962</td>
+<td>0.002</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\lambda_{st}\)</span></td>
+<td>1.26012771994</td>
+<td>NA</td>
+<td>1.26012771994</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_{cs}\)</span></td>
+<td>0.423</td>
+<td>NA</td>
+<td>0.423</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_F\)</span></td>
+<td>0.29572</td>
+<td>0.00008</td>
+<td>0.29572</td>
+<td>0.00008</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_{hbF}\)</span></td>
+<td>0.90805</td>
+<td>NA</td>
+<td>0.90805</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{hbR}\)</span></td>
+<td>1.0795</td>
+<td>NA</td>
+<td>1.0795</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_P\)</span></td>
+<td>0.836</td>
+<td>0.001</td>
+<td>0.836</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_R\)</span></td>
+<td>0.28028</td>
+<td>0.00008</td>
+<td>0.28028</td>
+<td>0.00008</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_{sp}\)</span></td>
+<td>0.206</td>
+<td>NA</td>
+<td>0.2159</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{st}\)</span></td>
+<td>0.545</td>
+<td>NA</td>
+<td>0.545</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_B\)</span></td>
+<td>22.90</td>
+<td>0.01</td>
+<td>23.00</td>
+<td>0.01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_F\)</span></td>
+<td>1.55</td>
+<td>0.01</td>
+<td>1.55</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_G\)</span></td>
+<td>3.35</td>
+<td>0.01</td>
+<td>3.35</td>
+<td>0.01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_P\)</span></td>
+<td>4.65</td>
+<td>0.01</td>
+<td>4.65</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_R\)</span></td>
+<td>4.90</td>
+<td>0.01</td>
+<td>4.90</td>
+<td>0.01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_S\)</span></td>
+<td>2.05</td>
+<td>0.01</td>
+<td>2.05</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(n_F\)</span></td>
+<td>10.0</td>
+<td>NA</td>
+<td>10.0</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(n_R\)</span></td>
+<td>10.0</td>
+<td>NA</td>
+<td>10.0</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^c_{B1}\)</span></td>
+<td>1.88231</td>
+<td>0.00009</td>
+<td>1.86670</td>
+<td>0.00004</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^c_{F1}\)</span></td>
+<td>1.43309</td>
+<td>0.00002</td>
+<td>1.43309</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^c_{G1}\)</span></td>
+<td>0.77267</td>
+<td>0.00002</td>
+<td>0.77267</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^c_{R1}\)</span></td>
+<td>1.22757</td>
+<td>0.00002</td>
+<td>1.22757</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^c_{S1}\)</span></td>
+<td>1.47091</td>
+<td>0.00003</td>
+<td>1.47091</td>
+<td>0.00003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{B1}\)</span></td>
+<td>3.4229</td>
+<td>0.0002</td>
+<td>3.02521</td>
+<td>0.00005</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{B2}\)</span></td>
+<td>2.70613</td>
+<td>0.00002</td>
+<td>2.55895</td>
+<td>0.00003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{B3}\)</span></td>
+<td>3.07592</td>
+<td>0.00002</td>
+<td>3.03205</td>
+<td>0.00005</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{B4}\)</span></td>
+<td>2.46588</td>
+<td>0.00005</td>
+<td>2.41714</td>
+<td>0.00004</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{B5}\)</span></td>
+<td>3.0804</td>
+<td>0.0001</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{F1}\)</span></td>
+<td>0.421157</td>
+<td>0.000007</td>
+<td>0.421157</td>
+<td>0.000007</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{G1}\)</span></td>
+<td>0.448654</td>
+<td>0.000008</td>
+<td>0.448654</td>
+<td>0.000008</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{G2}\)</span></td>
+<td>0.43545</td>
+<td>0.00001</td>
+<td>0.43545</td>
+<td>0.00001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{G3}\)</span></td>
+<td>0.41619</td>
+<td>0.00001</td>
+<td>0.41619</td>
+<td>0.00001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{P1}\)</span></td>
+<td>0.956919</td>
+<td>0.000002</td>
+<td>0.956919</td>
+<td>0.000002</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{R1}\)</span></td>
+<td>0.486888</td>
+<td>0.000007</td>
+<td>0.486888</td>
+<td>0.000007</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{S1}\)</span></td>
+<td>0.1519</td>
+<td>0.0002</td>
+<td>0.1519</td>
+<td>0.0002</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{S2}\)</span></td>
+<td>0.535664</td>
+<td>0.000002</td>
+<td>0.535664</td>
+<td>0.000002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{S3}\)</span></td>
+<td>0.438209</td>
+<td>0.000006</td>
+<td>0.438209</td>
+<td>0.000006</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{S4}\)</span></td>
+<td>0.52994</td>
+<td>0.00002</td>
+<td>0.52994</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{S5}\)</span></td>
+<td>0.372150</td>
+<td>0.000005</td>
+<td>0.372150</td>
+<td>0.000005</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(w_{hb}\)</span></td>
+<td>0.535</td>
+<td>NA</td>
+<td>0.535</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition-todo admonition" id="index-20">
+<p class="first admonition-title">Todo</p>
+<p class="last">add gyrobike parameters</p>
+</div>
+</div>
+<div class="section" id="bicycle-human-parameters">
+<h3>Bicycle + Human Parameters<a class="headerlink" href="#bicycle-human-parameters" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-todo admonition" id="index-21">
 <p class="first admonition-title">Todo</p>
 <p class="last">parameters with the human configured to sit on the bicycle</p>
 </div>
@@ -4736,7 +4698,7 @@ analytically estimate the inertia of the bicycle frame. See [Moore2008]</td></tr
       <div class="bottomnav">
       
         <p>
-        «&#160;&#160;<a href="extensions.html">Extensions and modifcations to the Whipple Model</a>
+        «&#160;&#160;<a href="extensions.html">Extensions of the Whipple Model</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;

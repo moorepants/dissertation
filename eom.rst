@@ -249,7 +249,7 @@ with respect to the system configuration.
 .. todo:: Should I include a diagram of the traditional geometry definitions?
 
 With that in mind and after trying various parameterizations, I settled on the
-geometric formulation presented by [Psiaki1979]_. The wheels are described by
+geometric formulation presented by [Psiaki1979]_ [#]_. The wheels are described by
 their radius (:math:`\left(r\geq0\right)`) and the remaining geometry is
 defined by three distances, all of which are configuration invariant. The
 distance :math:`d_1` is the offset to the center of the rear wheel from the
@@ -1384,6 +1384,8 @@ Notation
 .. [#] My colleague, Dale L. Peterson, has made significant progress
        formulating the equations of motion in a readable and compact form,
        which will most likely be published soon.
+
+.. [#] Also used by [Franke1990]_.
 
 .. [#] The point of contact for the bicycle wheels are technically abstract
        points in dynamics. There are fundamentally four distinct points of

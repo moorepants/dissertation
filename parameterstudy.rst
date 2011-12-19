@@ -18,7 +18,7 @@ Investigation of the effects of changes in the model parameters are natural
 place to start once the various bicycle models are available. For the bicycle
 designer, understanding how changing the parameters effects the dynamic
 characteristics is something of a holy grail. If connections can be drawn from
-model parameters to such things as handleability, stabilty and contrablity
+model parameters to such things as handleability, stability and controllability
 bicycle designs could be tuned with these things mind. In the aircraft design
 world correlations have been drawn from open loop dynamics to handling
 qualities. It is highly likely that open loop dynamics can be predictors of the
@@ -30,12 +30,12 @@ trivial contribute to the open loop dynamics of the entire system.
 The eigenmodes of the Whipple model and the stability regime are prime targets
 for initial parameter studies and there are many papers that deal with various
 aspects. An analytical view of the parameter relationships would provide the
-most encompassing conclusiong, but the complicated form of the equations
+most encompassing conclusions, but the complicated form of the equations
 typically lead researchers to numerical studies. [PapadapoulusXXXX]_ has made
-the most progress analitical studies and solves for Routh's stability criteria
+the most progress analytical studies and solves for Routh's stability criteria
 for the capsize mode. [Franke1990]_ and [Astrom2005]_ examine the effect of
 stable speed range with respect to independently varying wheel inertia and find
-that for their parmater sets both the weave and capsize critical speeds
+that for their parameter sets both the weave and capsize critical speeds
 decrease with increase in spin moment of inertia. [Franke1990]_ also shows that
 as trail increases both the critical speeds and the stable speed range
 increase. This conclusion is counter intuitive, as many seem to believe that an
@@ -69,11 +69,11 @@ magazines and frame builder literature provide a wide range of opinions what
 how geometry affects the handling. For example, Tim Paterek, an expert frame
 builder, claims that the comfort zone for trail falls between 0.05 m and 0.065
 m for most bicycles [Paterek2004]_. Craig Calfee is another prominent frame
-buileder interested the effects of fork alignment on handling and wrote a small
-piece on bicycle geometery for the 2007 North American Handbuilt Bicycle show
-[Calfee2007]_. He claims that minute misaligments in the fork geometry can
-cause undesireable handling. Finally, Jan Heine has written extensively in his
-Vintage Bicycle Quarteley about handling with subject and objective measures by
+builder interested the effects of fork alignment on handling and wrote a small
+piece on bicycle geometry for the 2007 North American Handbuilt Bicycle show
+[Calfee2007]_. He claims that minute misalignments in the fork geometry can
+cause undesirable handling. Finally, Jan Heine has written extensively in his
+Vintage Bicycle Quarterly about handling with subject and objective measures by
 experienced riders to the handling differences in real bicycles.
 
 .. figure:: figures/parameterstudy/bicycle-geometry.png
@@ -88,9 +88,9 @@ handling and geometry in a broad sense using rigorous dynamic and control
 theory. Little progress has been made on this front. None-the-less parameter
 studies can still be done with the models we have available. The following
 results show how the stable speed range of the Whipple model linearized about
-the nominal configuration change with respect to indepently varying the
+the nominal configuration change with respect to independently varying the
 essential geometry: trail, head tube angle, wheelbase and front wheel diameter.
-Unlike in many ofther parameter studies, the physical associated with the
+Unlike in many other parameter studies, the physical associated with the
 rider's position and the bicycle's parameters other than the essential geometry
 are interdependent (i.e. adjusting the front wheel diameter changes the wheel’s
 mass and moment of inertia together with the bicycle’s frame geometry and
@@ -114,12 +114,37 @@ parameter over a realistic range for a bicycle of this nature. Each figure
 shows a depiction of the maximal and minimal geometry configurations and the
 nominal stable speed range is shown with a vertical line.
 
+.. todo:: Add the time to double below.
+
+At speeds greater than the capsize critical speed, the capsize mode is unstable
+with a time to double of about XX seconds. Thus the instability can be assumed
+to be relatively easy to stabilize with a simple control, especially since the
+weave mode provides rapid roll damping. That implies that the stable speed
+range and capsize critical speed may be of less importance to actual stability,
+leaving the weave critical speed as the defining characteristic.
+
 .. _figHeadTubeAngle:
 
 .. figure:: figures/parameterstudy/head-tube-angle.png
    :width: 5in
 
    figHeadTubeAngle
+
+   The change in stable speed range as a function of head tube angle.
+
+A slack head tube angle (< 72 degrees) has a higher weave critical speed than a
+larger head tube angle but the capsize critical speed varies very little with
+changing head tube angle. Slack head tube angles are found on many utility
+bicycles. I've founded that these bicycles feel very unresponsive at low speeds
+and typically do not feel stable until moderate speeds are reached. The head
+tube angle results are in agreement with this anecdotal evidence in so far as
+the weave critical speed increases with decreasing head tube angle. The head
+tube angle results are interesting because the weave speed can be decreased
+using a steeper head tube angle without adversely affecting the capsize
+critical speed, thus simultaneously increasing the stable speed range and
+decreasing the weave speed. This is ideal if it is assumed that a low weave
+critical speed is beneficial for take off and a broad stable speed range is
+beneficial for cruising with little control input.
 
 .. _figTrail:
 
@@ -128,12 +153,30 @@ nominal stable speed range is shown with a vertical line.
 
    figTrail
 
+Trail is typically of particular interest, with many bicycle designers claiming
+that it is the most important parameter affecting handling qualities. As trail
+increases, the stable speed range broadens and the weave critical velocity
+increases. As trail approaches zero the stable speed range diminishes to zero.
+It is obvious that increasing trail will decrease the caster mode eigenvalue,
+but un-intuitively it increases the weave eigenvalue. The yellow bicycle
+[Ruina2011]_ and the silver bicycle [Kooijman2006]_ both have their forks
+flipped for increase trail with the intent on the bicycles being stable at the
+speeds tested. According to the data I'm not sure the flipped fork actually
+helps this though.
+
 .. _figWheelbase:
 
 .. figure:: figures/parameterstudy/wheelbase.png
    :width: 5in
 
    figWheelbase
+
+Long bicycles such as tandems and some recumbents are often hard to start and
+have slower response. As wheelbase increases the stable speed range stays
+constant as both weave and capsize critical speeds increase linearly at the
+with the same slope rate. The weave critical speed increases as wheelbase
+increases which may correlates with the difficulty in starting long wheelbase
+bicycles.
 
 .. _figFrontWheelDiameter:
 
@@ -142,59 +185,206 @@ nominal stable speed range is shown with a vertical line.
 
    figFrontWheelDiameter
 
-Some obeservations from the plots follow.   As trail increases, the stable speed range broadens and the weave
-critical velocity increases. As wheelbase increases the stable speed range
-stays constant as both weave and capsize critical speeds increase at about the
-same rate.
-
-.. todo:: Add the time to double.
-
-At speeds greated than the capsize critical speed, the capsize mode is unstable
-with a time to double of about XX seconds. Thus the instability can be assumed
-to be realitevly easy to stablize with a simple control, especially since the
-weave mode provides rapid roll damping. That implies that the stable speed
-range and capsize critical speed maybe of less importance to actual stability,
-leaving the weave critical speed as the more important value considered in
-stability.
-
 The weave critical speed decreases as front wheel diameter increases but the
 capsize critical speed decreases even faster so the size of the stable speed
 envelope also decreases. The results show that the weave critical speed
-decreases with a larger front wheel which will provide stability at low speeds.
+decreases with a larger front wheel which provides stability at low speeds.
+This correlates with the findings for the flywheel bicycle presented in Chapter
+:ref:`extensions`.
 
-A slack head tube angle (< 72 degrees) has a higher weave critical speed than a
-larger head tube angle but the capsize critical speed varies very little with
-changing head tube angle.Slack head tube angles are found on many utility
-bicycles. These bicycles subjectively feel very unresponsive at low speeds and
-typically do not feel stable until moderate speeds are reached. The head tube
-angle results are in agreement with this anecdotal evidence in so far as the
-weave critical speed increases with decreasing head tube angle (Figure 7). The
-head tube angle results are interesting because the weave speed can be
-decreased with a steep head tube angle without adversely affecting the capsize
-critical speed, thus simultaneously increasing the stable speed range and
-decreasing the weave speed. This is ideal if it is assumed that a low weave
-critical speed is beneficial for take off and a broad stable speed range is
-beneficial for cruising with little control input.
+I have made some conclusions about the stability of the Whipple model and
+made some subjective conclusions on the potentially relationship of the critical
+speeds with geometry changes. This gives some idea of how one may begin
+connecting handling to the bicycle's dynamics.
 
-Trail is typically of
-particular interest, with many bicycle designers claiming that it is the most
-important parameter affecting handling qualities. Tim Paterek, an expert frame
-builder, claims that the comfort zone for trail falls between 0.05 m and 0.065
-m for most bicycles (Paterek 2004). Whether Paterek's claims have anything to
-do with the stable speed range or the open loop eigenvalues can not be drawn.
-Thus a more robust assessment of handling qualities is
-needed. As trail approaches zero the stable speed range diminishes and this
-follows the observed instability of a caster with negative trail (the caster
-will always flip around to the stable configuration).
+Bicycle Comparison
+==================
 
-Long bicycles such as tandems and some recumbents are typically hard to start,
-but handle better at higher speeds. The weave critical speed increases as
-wheelbase increases (Figure 9) which correlates with the difficulty in starting
-long wheelbase bicycles.
+I present the physical parameters of ten bicycles in Chapter
+:ref:`physicalparameters`. There are variety of bicycles from commuter bicycles
+to road racing and mountain to a child's bicycle and some instrumented
+bicycles.  Here I will present some comparisons of the linear dynamics of the
+different bicycles and try to make some conclusions about their dynamics. The
+"normal" diamond frame bicycle is very similar from bicycle to bicycle with
+very little variation in the essential geometry. More variation is seen in the
+mass and inertia.
+
+Benchmark validity
+------------------
+
+The benchmark bicycle parameters in [Meijaard2007]_ are representative of a
+real bicycle but where manipulated so that each parameter was guaranteed a
+detectable role in numerical studies. Figure :ref:`figBenchmarkReal` compares
+the eigenvalues of the benchmark bicycle with those of two ordinary bicycles,
+the Batavus Browser and Batavus Stratos including the rider, Jason, seated on
+the bicycles. The eigenvalues are qualitatively similar, but the stable speed
+range is both lower and narrower. The weave frequency also diverts from the
+real bicycles at higher speeds, but other than that the benchmark parameters
+are within realistic bounds for a normal style bicycle.
+
+.. _figBenchmarkReal:
+
+.. figure:: figures/parameterstudy/benchmark-real.png
+   :width: 6in
+
+   figBenchmarkReal
+
+   The real and imaginary parts of the eigenvalues as a function of speed for
+   three bicycles including the benchmark bicycle from [Meijaard2007]_ and two
+   bicycles and riders presented in Chapter :ref:`physicalparameters`.
+
+Rider-less bicycles
+-------------------
+
+There are relatively few datasets with where real bicycle parameters were
+measured as described in Chapter :ref:`physicalparameters`. Figure
+:ref:`silverCompare` plots one such parameter set, labeled Silver, from
+[Kooijman2008]_ and compares it to several of the rider-less bicycles I
+measured using almost identical techniques. Notice that all of the bicycles I
+measured show a bifurcation in the caster and capsize modes at lower speeds
+which produces second oscillatory mode not necessarily seen in the parameter
+sets with a rigid rider. Figures :ref:`figCresEvecWeave` and
+:ref:`figCresEvecOsc` give a look at the eigenvector components for the two
+oscillatory modes for the Crescendo bicycle at 1.5 m/s. They turn out to be
+similar modes in that they oscillatory in roll and steer, with steer being
+dominant in magnitude and the phase shifts slightly larger for the weave mode.
+But the new mode is stable as opposed to the weave mode being unstable. The
+bicycles measured in [Stevens2009]_ and [Escalonas2011]_ measured bicycles both
+exhibit this mode, but Steven's parameters are estimated from a CAD drawing,
+which may not be that accurate. Steven's does show that this mode disappears
+with very steep or very slack head tube angles. The diagrams for very slack
+head angles more qualitatively resemble the Silver bicycle from
+[Kooijman2008]_. But it is still odd that the Silver bicycle is that different
+than all the other bicycles, with the only major difference being a flipped
+fork form more trail and a larger yaw and roll moment of inertia due to the
+outriggers.
+
+.. _figSilverCompare:
+
+.. figure:: figures/parameterstudy/silver-compare.png
+   :width: 6in
+
+   figSilverCompare
+
+   The real and imaginary parts of the eigenvalues as a function of speed for
+   four bicycles including the silver bicycle from [Kooijman2008]_ and three
+   bicycles and riders presented in Chapter :ref:`physicalparameters`.
+
+.. _figCresEvecWeave:
+
+.. figure:: figures/parameterstudy/cres-evec-1.5-1.png
+
+   figCresEvecWeave
+
+   The eigenvector components for roll rate, :math:`u_4`, and steer rate,
+   :math:`u_9`, for the Crescendo parameter set weave mode at 1.5 m/s.
+
+.. _figCresEvecOsc:
+
+.. figure:: figures/parameterstudy/cres-evec-1.5-2.png
+
+   figCresEvecWeave
+
+   The eigenvector components for roll rate, :math:`u_4`, and steer rate,
+   :math:`u_9`, for the Crescendo parameter set new mode at 1.5 m/s.
+
+Yellow bicycle
+--------------
+
+I measured the parameters of the "Yellow" bicycle at TU Delft, which was a
+replica of the Yellow bike from Cornell which demonstrates stability so well. I
+measured the bicycle in two configurations, one with the fork in the normal
+position and the second with the fork flipped 180 degrees about the steer axis
+to exaggerate trail. Figure :ref:`figYellowCompare` plots the root loci with
+respect to speed for the two yellow bicycle configuration and the silver
+bicycle which also has a reversed fork. As was mentioned in the previous
+section the weave critical speed increases as the trail increases and this is
+clearly shown for the yellow bicycle with a reversed fork. But maybe more
+interestingly  the capsize critical speed increases dramitcally with the
+revesred fork.
+
+.. todo:: Include the yellow bicycle video from Cornell.
+
+.. _figYellowCompare:
+
+.. figure:: figures/parameterstudy/yellow-compare.png
+   :width: 6in
+
+   figYellowCompare
+
+   The root loci with respect to forward speed for the yellow bicycle in both
+   configurations and the silver bicycle which also has a reversed fork.
+
+Rear weight
+-----------
+
+Another fruitful comparison can be gathered from the Batavus Browser as we
+measured both the instrumented configuration and the factory version. The
+fundamental difference in the two configuration is that the instrumented
+version has a large weight atop the rear rack. Bicycle tourists are some of the
+first to mention the effects on handling due to weight on the front and rear
+racks of a bicycle, so this comparison examines that to some degree. Figure
+:ref:`figBrowserCompare` once again shows the root loci with respect to speed
+for the two bicycles. The second bifurcation points for the second oscillatory
+mode are affected and the weave critical speed is slightly lower for the
+factory version. If a rider is added, Figure :ref:`figBrowserRiderCompare`,
+shows that the added rear weight makes little difference in the linear
+dynamics.
+
+.. _figBrowserCompare:
+
+.. figure:: figures/parameterstudy/browser-compare.png
+   :width: 6in
+
+   figBrowserCompare
+
+   The root loci with respect to forward speed for the factory Browser and the
+   instrumented version which has a large weight on the rear rack.
+
+.. _figBrowserRiderCompare:
+
+.. figure:: figures/parameterstudy/browser-rider-compare.png
+   :width: 6in
+
+   figBrowserRiderCompare
+
+   The root loci with respect to forward speed for the factory Browser and the
+   instrumented version which has a large weight on the rear rack and a rider.
+
+Uncertainty
+===========
+
+.. todo:: This maybe belong in the previous chapter and may need to be removed
+   together. I'm not sure where I want to go with it.
+
+I had intended to calculate the uncertainty in the eigenvalue predictions
+based on the error propagation from the raw measurements, but I never quite
+figured it out. It would be interesting to draw error bars on around the modes
+in the eigenvalue plots. I think it maybe revealing with respect to the
+experiments that are done which try to estimate the eigenvalues of a stable
+bicycle [Kooijman2008]_, [Kooijman2009]_, [Stevens2009]_, [Escalona2010]_. All
+of the these except for [Kooijman2009]_ experiments plot a predicted eigenvalue
+for a speed range because the bicycle doesn't have way of maintaining forward
+speed, but beyond that the uncertainty in the eigenvalue estimates are not
+reported. It would be interesting account for the uncertainties in both methods
+of predicting the eigenvalues. Because the eigenvalues seem to be rather
+sensitive to change in some parameters, the may be an important issue to
+address.
+
+Frequency Response
+==================
 
 
-* Variation of parameters and effects to linear stability
+Conclusions
+===========
+
+* bode plots
+* If the eigenvalues vary little with respect to parameter uncertainty, how
+  conclusive are the results of the eigenvalue experiments [Kooijman2008]_
 * Comparison of the linear properties of real bicycles
+* Large changes in parameters are needed for large changes in the dynamics.
+* Most normal style diamond frame bicycles have similar dynamics.
+* compare with and without a rider
 * Note that flipping fork around raises the weave speed.
 * Parameter studies are suited to a small range because most bicycles are the
   same design.

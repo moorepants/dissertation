@@ -288,6 +288,30 @@ outriggers.
    The eigenvector components for roll rate, :math:`u_4`, and steer rate,
    :math:`u_9`, for the Crescendo parameter set new mode at 1.5 m/s.
 
+Riders
+------
+
+There are some potentially significant differences in the Whipple model
+dynamics for a riderless bicycle and a bicycle with a rider rider. Figure
+:ref:`figCompareRiderEig` gives an example of how the eigenvalues change when a
+rider is added to the Stratos bicycle. The stable speed range broadens and the
+weave critical speed increases by over 1 m/s. The second oscillatory mode
+dissapaers and the caster mode has higher damping. The weave bifurcation point
+occurs at a lower speed. And finally the natural frequency of the weave mode
+for the rider and bike is much lower for speeds above 3 m/s. The changes in
+dynamics are enough that conclusions made about bicycles without rigid riders
+don't necessarily extend to bicycles with rigid riders.
+
+.. _figCompareRiderEig:
+
+.. figure:: figures/parameterstudy/compare-rider-eig.png
+   :width: 6in
+
+   figCompareRiderEig
+
+   The root loci with respec to speed for the Stratos bicycle with and without
+   a rider.
+
 Yellow bicycle
 --------------
 
@@ -374,22 +398,95 @@ address.
 Frequency Response
 ==================
 
+The eigenvalues give a complete of the linear systems open loop dynamics, but
+one can also examine the system's response to various inputs. The frequency
+response is good way to examine how the system responds to a sinusoidal input.
+The transfer function from steer torque to the roll rate of a bicycle is
+particularly interesting because it captures what the essential steering action
+needed to induce a turn.
+
+Figure :ref:`figBodeSpeeds` shows the transfer function for Jason seated on the
+Browser for several different speeds. The speeds correspond to before the first
+weave bifurcation, unstable weave, stable speed range and unstable capsize. The
+roll rate amplitudes somewhat increase with speed, with the 6 m/s showing
+larger output amplitudes than the more well damped 10 m/s. The phase plot shows
+similarity in the higher speeds and similarity in the lower speeds.  Both plots
+show differences at lower frequencies and seem to tend to the same response at
+higher frequencies.
+
+.. todo:: I need some help talking about what these graphs mean, as my Bode
+   diagram language is weak.
+
+.. _figBodeSpeeds:
+
+.. figure:: figures/parameterstudy/bode-speeds.png
+   :width: 5in
+
+   figBodeSpeeds
+
+   The steer torque to roll rate transfer function frequency response for
+   various speeds.
+
+Figure :ref:`figBodeWeight` shows the transfer function for the same rider
+(same configuration with respect to the rear wheel contact point) seat on a
+light bicycle, Bianchi Pista, and very heavy bicycle, the Davis instrumented
+bicycle. Notice that the light bicycle has an under-damped weave mode which is
+stable, while the heavy bikes weave mode is well damped and unstable. Once
+again, differences in the frequency response are less apparent at high
+frequencies.
+
+.. _figBodeWeight:
+
+.. figure:: figures/parameterstudy/bode-weight.png
+   :width: 5in
+
+   figBodeWeight
+
+   The steer torque to roll rate transfer function frequency response for a
+   heavy and light bicycle at 5 m/s.
+
+.. todo:: There are many of these plots I can make. Can you think of any others
+   that might be worth showing?
 
 Conclusions
 ===========
 
-* bode plots
-* If the eigenvalues vary little with respect to parameter uncertainty, how
-  conclusive are the results of the eigenvalue experiments [Kooijman2008]_
-* Comparison of the linear properties of real bicycles
-* Large changes in parameters are needed for large changes in the dynamics.
-* Most normal style diamond frame bicycles have similar dynamics.
-* compare with and without a rider
-* Note that flipping fork around raises the weave speed.
-* Parameter studies are suited to a small range because most bicycles are the
-  same design.
-* Note that a bicycle without rider has two oscillatory modes as some point and
-  explain them.
+Parameter studies can reveal allow one to explore the effects of design
+parameters on the system dynamics. The eigenvalue provide a way to transform of
+the parameters of a complex system into a minimum characteristic set of
+parameters that completely characterize the open loop input ignorant dynamics.
+And other views such as the frequency response provide input/output
+characteristics of the system's transfer functions. System stability, time to
+double/half, natural frequency and frequency responses. There are most likely
+correlations from the open loop dynamics to handling, as has been demonstrated
+in aircraft control literature, but those correlations are mostly speculation
+and anecdotal at this point.
+
+For basic diamond frame bicycle, large changes in parameters seem to be needed
+for large changes in the dynamics. Most bicycle design parameters are such that
+they are within a tight bound in dynamic behavior and differences may not be
+readily detectable by the human. Even if they are, we are extremely adaptable
+to minor bicycle design variations in term of controllability and handling. The
+seems evident even in the front end geometry such as trail, which countless
+debates have ensued over the effect of this parameter. Negative trail recumbent
+have been designed and the rider can learn ride them, but they provide a higher
+learning curve, see the Python Lowracer for an example. These bikes can often
+be easily ridden with no hands. With this in mind and the scalability rules
+[HandXXXX]_, most bicycles don't really vary much, but this surely doesn't
+include tandems, large two wheel cargo bicycles, recumbent designs, etc. And
+not to mention the differences in dynamics from a riderless bicycle one with a
+rigid rider.  Parameter studies may let us find bicycle designs that don't fit
+the normal mold but may still have good handling, see [Kooijman2011]_ for some
+examples of exploring the extremes of the parameter space.
+
+I've shown some qualitative comparisons for real and realistic bicycles. I
+believe that the open loop weave eigenvalue and the critical speed (if there is
+one) does have correlation to what a rider feels when riding a bicycle.
+Everyone can agree that balance is more difficult when starting up than we
+cruising at speed. The dynamics show that the system becomes more stable and
+more controllable (in the control system's sense) as the speed increases. The
+weave eigenvalue and critical speed can probably be a good indicator of
+stability of normal bicycle designs.
 
 .. rubric:: Footnotes
 

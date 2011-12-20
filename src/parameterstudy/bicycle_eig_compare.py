@@ -4,8 +4,21 @@ import numpy as np
 import bicycleparameters as bp
 from dtk import bicycle
 
-# compare the benchmark parameters to some of the bicycles I measured
 pathToData = '/media/Data/Documents/School/UC Davis/Bicycle Mechanics/BicycleParameters/data'
+speeds = np.linspace(0., 10., num=100)
+
+# compare a bike with rider and bike without rider
+stratos = bp.Bicycle('Stratos', pathToData=pathToData, forceRawCalc=True)
+stratosRider = bp.Bicycle('Stratos', pathToData=pathToData, forceRawCalc=True)
+stratosRider.add_rider('Jason')
+compareRider = bp.plot_eigenvalues([stratos, stratosRider], speeds)
+ax = compareRider.axes[0]
+ax.set_ylim(-10, 10)
+ax.legend_.get_texts()[1].set_text('Stratos + Jason')
+compareRider.savefig('../../figures/parameterstudy/compare-rider-eig.png',
+        dpi=200)
+
+# compare the benchmark parameters to some of the bicycles I measured
 
 benchmark = bp.Bicycle('Benchmark', pathToData=pathToData)
 
@@ -15,7 +28,6 @@ browser.add_rider('Jason')
 stratos = bp.Bicycle('Stratos', pathToData=pathToData, forceRawCalc=True)
 stratos.add_rider('Jason')
 
-speeds = np.linspace(0., 10., num=100)
 benchmarkReal = bp.plot_eigenvalues([benchmark, browser, stratos], speeds)
 ax = benchmarkReal.axes[0]
 ax.set_ylim(-10, 10)

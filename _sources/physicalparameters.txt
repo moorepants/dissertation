@@ -1165,8 +1165,8 @@ geometrical estimation similar in idea to [Yeadon1990a]_ in combination with
 mass data from [Dempster1955]_. The second method substitutes Yeadon's more
 robust model with my previous one.
 
-Moore method
-------------
+Simple Geometry Method
+----------------------
 
 This method calculates the center of mass and inertia of a simplified model of
 the ten major human body parts: head, torso, upper and lower arms, and upper

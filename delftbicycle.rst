@@ -264,7 +264,7 @@ motion. This lateral knee motion can be seen in the video image in Figure
 :ref:`figKnee`. A third observation was that the rider actuated the handlebars
 with higher amplitudes at lower speeds than at higher speeds.
 
-.. todo:: Add the knee figure.
+.. todo:: Add the knee figure and a video.
 
 This third observation is confirmed by the measured steer angle data. Figures
 :ref:`figSteer20` and :ref:`figSteer5` show the time history of the steer angle

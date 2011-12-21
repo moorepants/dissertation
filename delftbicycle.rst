@@ -38,17 +38,17 @@ spring. I was headed to the Netherlands for my first time living abroad. In the
 meantime Arend found a way to fund a PhD for Jodi so there was going to be some
 momentum when I arrived.
 
-When I arrived in Delft August 2008 Jodi was working on several projects: a
-bicycle handling qualities review paper [Kooijman2011a]_, the two mass skate
-bicycle [Kooijman2011]_ and an instrumented bicycle. I helped to some degree
-with all the projects, but primarily with setting up the instrumented bicycle
-and planning a set of experiments. This chapter details the work we did with
-the first instrumented bicycle. I've taken the text directly from our
-conference paper [Kooijman2009a]_ and gone through it with some updates,
-clarifications and additions. Jodi and Arend were the primary writers of the
-paper. My contributions were more of the experimental design, performing the
-experiments, analyzing the data, discussing results and working on a
-visualization graphical interface that we never really used due to the
+When I arrived in Delft at the end of August in 2008 Jodi was working on
+several projects: a bicycle handling qualities review paper [Kooijman2011a]_,
+the two mass skate bicycle [Kooijman2011]_ and an instrumented bicycle. I
+helped to some degree with all the projects, but primarily with setting up the
+instrumented bicycle and planning a set of experiments. This chapter details
+the work we did with the first instrumented bicycle. I've taken the text
+directly from our conference paper [Kooijman2009a]_ and gone through it with
+some updates, clarifications and additions. Jodi and Arend were the primary
+writers of the paper. My contributions were more of the experimental design,
+performing the experiments, analyzing the data, discussing results and working
+on a visualization graphical interface that we never really used due to the
 in-ability to synchronize the video data we took with the sensor data.
 
 Abstract
@@ -196,7 +196,7 @@ consists of four rigid bodies: the rear frame with rigid rider connected, the
 front handlebar and fork assembly, and the two wheels. These are connected by
 ideal hinges and the wheels have idealized pure-rolling contact with level
 ground. [Moore2009]_ describes the method used to determine the model
-parameters for the instrumented bicycle-rider system. [#]_ These parameters are
+parameters for the instrumented bicycle-rider system [#]_.  These parameters are
 given in Table :ref:`tabParameters` and the root loci of the system with
 respect to speed is depicted in Figure :ref:`figRootLoci`. At low speed, the
 dominant mode is the unstable oscillatory weave mode. This weave motion becomes
@@ -379,10 +379,11 @@ Appendix
 ========
 
 The following sections details some extra information that was not conveyed in
-the paper [Kooijman2009]_ and previous sections.
+the papers [Kooijman2008a]_, [Kooijman2009]_ and the modified version in the
+previous sections.
 
-Other Experiments and data
---------------------------
+Experiments
+-----------
 
 As usual with the data deluge, we analyzed very little of the data. We recorded
 at total of 109 one minute runs with two different riders. The previous
@@ -410,25 +411,101 @@ details all of the experiments we perfomed:
 - A single attempt at riding with eyes closed. at 30 km/h [#]_
 - Line tracking at six speeds for one rider. (runs 90-96)
 
-Sensor Details
---------------
+.. todo:: I could include this information as a table. Would that be more
+   readable?
 
-We did not analyze any of the data from the rate sensors on the bicycle. We
-attached a rate gyro to the fork and handlebar assembly which was aligned with
-the steer axis.
+There is a potentially a considerable amount of findings and better statiscal
+conclusions that can be made from the data.
+
+.. todo:: Include link to download the data.
+
+Rate Gyros
+----------
+
+We mounted three rate sensors to the bicycle to collectively measure the yaw
+rate, :math:`u_3`, roll rate, :math:`u_4`, and the steer rate, :math:`u_7`.
+[#]_ We attached a rate gyro to the fork and handlebar assembly which measured
+the body fixed angular rate, :math:`u_{7s}`, about the steer axis,
+:math:`\hat{e}_3`.  Another rate gyro was attached to the rear frame which
+measured the body fixed angular rate, :math:`u_{3s}`, about the axis
+approximately aligned with gravity, :math:`s_\lambda\hat{c}_1 +
+c_\lambda\hat{c}_3`. Finally, the third rate gyro was mounted to measure the
+body fixed angular rate about a rearward pointing axis,
+:math:`-c_\lambda\hat{c}_1 - s_\lambda\hat{c}_3`. [#]_ The desired rates are
+found from the measurments with
 
 .. math::
+   :label: eqRates
 
    u_3 = u_{3s}
+
    u_4 = -u_{4s}
-   u_7 = u_{7s}_ + u_{4s} \operatorname{sin}(\lambda) - u_{3s} \operatorname{cos}(\lambda)
+
+   u_7 = u_{7s} + u_{4s} \operatorname{sin}(\lambda) -
+     u_{3s} \operatorname{cos}(\lambda)
+
+We did not analyze any of the data from the rate sensors on the bicycle, but
+some fruitful conclusions could be drawn such as cofirming the dependence of
+yaw rate on the steer and roll rates which come from the non-holonomic
+constraints. Heading and wheel contact points can be estimated well for these
+tasks, as the rider always tends to "zero" heading and the drift from the
+sensor signal integration is quite linear, see Chapter :ref:`davisbicycle` for
+details. A fairly complete kinematic state of the bicycle can be estimated,
+ignoring frame pitch.
 
 Steer sensor design
 -------------------
 
-Data visualization GUI
-----------------------
+The steer sensor, a simple rotary potentiometer, was mounted with a design that
+is fairly universal for different bicycle designs. It offers axial
+adjustability and belt tension. The pulley diameters were chosen for +/- 45
+degrees of steering angle corresponding to about +/- 168 degrees of
+potentiometer angle. I orginally designed it with a cord type belt, but it was
+later switched to a timing belt due to our worry about it slipping.  I'm not
+100% that belt slipping did not happen and could affect the data we collected.
+Integrating the steer rate from the rate gyros or differentiating the
+potentionmeter steer angle and comparing the results to teh other sensor is a
+way to check. I examined one run and did not find belt slip.
 
+.. figure:: figures/delftbicycle/steer-angle-sensor-annotated.png
+   :width: 3 in
+
+   figSteerAngleSensor
+
+   The original steer angle potentiometer and universal mount.
+
+.. todo:: Include the 2D fabrication prints of this in the appendices.
+
+Data Visualization
+------------------
+
+Our original goal was to be able to visualize the motion by watching the video
+in slow motion or frame-by-frame along side a strip chart of the measured data.
+This requires some way to synchronize the video data with the sensor data. The
+Sony DCR-TV30E Handycam we used had a LANC output port that pontentially provided an
+external signal that could be sampled by the data aquistion unit but we never
+quite figured it out. In the meantime though, I designed a graphical user
+interface in Matlab to interact with the data, Figure :ref:`figGUI`, giving the
+strip chart capablities and video playback via the `videoIO
+<http://sourceforge.net/projects/videoio/>`_ package developed by Gerald Dalley.
+All would have worked out well, if we could have synchronized the video and
+sensor data, but we abonded it and moved on to other things. I've made the
+source code and data available for download in case it is of use to anyone.
+
+- Source code: `<https://github.com/moorepants/DelftBicycleDataViewer>`_
+- Data:
+
+.. todo:: Upload the data and link to it.
+
+.. figure:: figures/delftbicycle/data-viewer-screenshot.jpg
+   :width: 6in
+
+   figGui
+
+   A screenshot of the GUI running on Windows 7. The strip chart advances along
+   with the video. The user can scroll through the video and pause at select
+   frames. The meta data for the run is displayed in the top right. The bicycle
+   speed and the pedaling cadence are displayed as numerical values.
 
 .. rubric:: Footnotes
 
@@ -439,4 +516,13 @@ Data visualization GUI
    slightly different.
 
 .. [#] The closed eye attempt would have been successful if the treadmill was
-   infinitely wide
+   infinitely wide, but the run was cut short due to the inevitable lact of
+   heading feedback the rider has available causing the rider to drift to the
+   edge of the treadmill.
+
+.. [#] The ratiometric sensor voltages were actually measured, but converted to
+   angular rates in real time by applying the conversion factors provided by
+   the manufacturer's specification sheets. Thus, the angular rates are
+   reported in the data sets.
+
+.. [#] See Chapter :ref:`eom` for the axes definitions.

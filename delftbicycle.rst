@@ -16,27 +16,27 @@ Preface
 
 I had contacted the authors of [Meijaard2007]_ in the early winter of 2006 to
 try to get some tips on where to go with my master's thesis, which I wanted to
-do on the handling qualities of bicycles. I had come across Arend, Jaap and
-Jim's conference paper [Schwab2004]_ on their benchmark Whipple model used it
-to help me build and validate my first model earlier that year. Andy, Jim and
-Arend all replied, Jim at great length as usual, and the seeds were sown for
-some future collaboration. Jim began flooding my inbox with years of thoughts
-on the handling of bicycles and it turned out that Arend had just applied for a
-big grant to fund two PhD students for bicycle handling research that was
-uncannily similar to what I was dreaming up myself. I hadn't decided to do my
-PhD at UC Davis quite yet and Arend's potential PhD slot was enticing (Jodi was
-slated for one). But I ended up finishing my masters the following spring and
-signing on for the PhD at Davis. That summer I started thinking about applying
-for a Fulbright grant to study somewhere. I contacted Arend again to see if he
-was interested in having me and he was excited. I told him I was going to do it
-and then put it off. A few weeks shy of the deadline, I told Arend I didn't
-have time to do it. He encouraged me to apply anyways and I agreed. I spent the
-next few weeks putting together the proposal and after several drafts I sent it
-off.  I didn't think about it much after that, but luck was on my side and I
-received the acceptance letter from the Fulbright commission the following
-spring. I was headed to the Netherlands for my first time living abroad. In the
-meantime Arend found a way to fund a PhD for Jodi so there was going to be some
-momentum when I arrived.
+do on the handling qualities of bicycles. I had previously come across Arend,
+Jaap and Jim's conference paper [Schwab2004]_ on their benchmark Whipple model
+used it to help me build and validate my first model earlier that year. Andy,
+Jim and Arend all replied, Jim at great length as usual, and the seeds were
+sown for some future collaboration. Jim began flooding my inbox with years of
+thoughts on the handling of bicycles and it turned out that Arend had just
+applied for a big grant to fund two PhD students for bicycle handling research
+that was uncannily similar to what I was dreaming up myself. I hadn't decided
+to do my PhD at UC Davis quite yet and Arend's potential PhD slot was enticing
+(Jodi was slated for one). But I ended up finishing my masters the following
+spring and signing on for the PhD at Davis. That summer I started thinking
+about applying for a Fulbright grant to study somewhere. I contacted Arend
+again to see if he was interested in having me and he was excited. I told him I
+was going to do it and then put it off. A week shy of the deadline, I told
+Arend I didn't have time to do it. He encouraged me to apply anyways and I
+agreed. I spent the next week putting together the proposal full time and after
+several drafts I sent it off. I didn't think about it much after that, but luck
+was on my side and I received the acceptance letter from the Fulbright
+commission the following spring. I was headed to the Netherlands for my first
+time living abroad. In the meantime Arend found a way to fund a PhD for Jodi so
+there was going to be some momentum and a teammate when I arrived.
 
 When I arrived in Delft at the end of August in 2008 Jodi was working on
 several projects: a bicycle handling qualities review paper [Kooijman2011a]_,
@@ -417,8 +417,6 @@ details all of the experiments we perfomed:
 There is a potentially a considerable amount of findings and better statiscal
 conclusions that can be made from the data.
 
-.. todo:: Include link to download the data.
-
 Rate Gyros
 ----------
 
@@ -493,9 +491,7 @@ sensor data, but we abonded it and moved on to other things. I've made the
 source code and data available for download in case it is of use to anyone.
 
 - Source code: `<https://github.com/moorepants/DelftBicycleDataViewer>`_
-- Data:
-
-.. todo:: Upload the data and link to it.
+- Data: `<http://mae.ucdavis.edu/~biosport/DelftBicycleDataViewerAndData.zip>`_
 
 .. figure:: figures/delftbicycle/data-viewer-screenshot.jpg
    :width: 6in

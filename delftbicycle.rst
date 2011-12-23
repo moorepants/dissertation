@@ -120,9 +120,48 @@ held in place by a carbon-fiber boom connected to the down-tube of the rear
 frame, see Figure :ref:`figInstrumentedBicycle`. This allowed us to view the
 rider's motion with respect to the bicycle frame.
 
-.. todo:: Add instrumented bicycle figure.
+.. _figInstrumentedBicycle:
 
-.. todo:: Add equipment table.
+.. figure:: figures/delftbicycle/instrumented-bicycle.jpg
+   :width: 3in
+
+   figInstrumentedBicycle
+
+   The instrumented bicycle with camera boom and video camera lens (1). on the
+   rear rack the mea- surement computer (2), video camcorder (3) and battery
+   packs (4) are positioned. measured signals are the steer angle and
+   steer-rate (5), rear frame lean- and yaw-rate (6) and forward speed (7).
+
+.. _tabEquipment:
+
+.. list-table::
+   :header-rows: 1
+
+   * - Measurement
+     - Sensor Type
+     - Manufacturer
+     - Type
+     - Specification
+   * - Yaw, roll, steer rates
+     - MEMS Angular Rate
+     - Silicon Sensing
+     - CRS03
+     - Full range output $\pm$ 100 deg/s
+   * - Steer angle
+     - Potentiometer
+     - Sakae
+     - FPC40A
+     - 1 turn, conductive plastic, Servo mount
+   * - Forward speed
+     - DC-motor
+     - Maxon
+     - 2326-940-12-216-200
+     - Graphite brush motor with a 5cm diameter disk on the shaft
+   * - Cadence
+     - Reed relay and magnet
+     -
+     -
+     - Kitchen magnet
 
 We used a National Instruments CompactRIO (type CRIO-9014) computer for data
 collection. The CompactRIO was installed on the rear rack of the bicycle. It
@@ -168,6 +207,16 @@ sensor data two main observations were made:
    out during most of the experiment. Only when the forward speed has dropped,
    prior to making a corner, are large steer angles (± 15 deg) seen.
 
+.. _figTownData:
+
+.. figure:: figures/delftbicycle/town-data.*
+   :width: 3in
+
+   figTownData
+
+   Data collected during a ride around town. The upper graph shows the speed
+   the bicycle was traveling at; the lower the steering angle.
+
 Treadmill Experiments
 =====================
 
@@ -186,9 +235,34 @@ proper seating. The rider characteristics are given in Table :ref:`tabRiders`.
 For both riders very similar results were found. The data and figures presented
 in this chapter were collected with rider 1.
 
-.. todo:: Add treadmill figure.
+.. _figTreadmill:
 
-.. todo:: Add rider table.
+.. figure:: figures/delftbicycle/treadmill.*
+   :width: 3in
+   :target: _images/treadmill.jpg
+
+   figTreadmill
+
+   Large treadmill, 3x5 m, max speed 35 km/h, courtesy of the Faculty of Human
+   Movement Sciences, Vrije Universiteit, Amsterdam.
+
+.. _tabRiders:
+
+.. list-table::
+   :header-rows: 1
+
+   * - Rider
+     - Weight [kg]
+     - Height [cm]
+     - Age
+   * - 1
+     - 102
+     - 187
+     - 53
+   * - 2
+     - 72
+     - 183
+     - 26
 
 The uncontrolled dynamics of the bicycle rider system can potentially be
 described by the linearized model of the bicycle [Meijaard2007]_. This model
@@ -205,6 +279,77 @@ non-oscillatory capsize motion becomes unstable but since its time to double so
 long it considered to be very easy to control. With those assumptions, we
 assert that the instrumented bicycle rider system is in need of human
 stabilizing control below 18 km/h and is stable otherwise.
+
+.. _tabParameters:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 40 20 20
+
+   * - parameter
+     - symbol
+     - value for bicycle & rider
+   * - wheel base
+     - :math:`w`
+     - 1.12 m
+   * - trail
+     - :math:`c`
+     - 0.055 m
+   * - steer axis tilt (:math:`\pi/2\ -` head angle)
+     - :math:`\lambda`
+     - 0.375 rad
+   * - gravity
+     - :math:`g`
+     - 9.81 N kg:math:`^{-1}`
+   * - rear wheel radius
+     - :math:`r_\mathrm{R}`
+     - 0.342 m
+   * - rear wheel mass
+     - :math:`m_\mathrm{R}`
+     - 3.12 kg
+   * - rear wheel mass moments of inertia
+     - :math:`(I_{\mathrm{R}xx}, I_{\mathrm{R}yy})`
+     - (0.078, 0.156) :math:`\textrm{kg\ m}^2`
+   * - rear body and frame mass position center of mass
+     - :math:`(x_\mathrm{B},\ z_\mathrm{B})`
+     - (0.30, -1.08) m
+   * - rear body and frame mass
+     - :math:`m_\mathrm{B}`
+     - 116 kg
+   * - rear body and frame mass moments of inertia
+     - :math:`\begin{bmatrix} I_{\mathrm{B}xx} & 0 & I_{\mathrm{B}xz}\\ 0 & I_{\mathrm{B}yy} & 0 \\ I_{\mathrm{B}xz} & 0 & I_{\mathrm{B}zz}\end{bmatrix}`
+     - :math:`\begin{bmatrix} 16.784 &  0 & -3.616\\ 0 & I_{\mathrm{B}yy} & 0 \\ -3.616 & 0 & 6.035 \end{bmatrix}` :math:`\mathrm{kg\ m}^{2}`
+   * - front handlebar and fork assembly position centrer of mass
+     - :math:`(x_\mathrm{H},\ z_\mathrm{H})`
+     - (0.88, -0.78) m
+   * - front handlebar and fork assembly mass
+     - :math:`m_\mathrm{H}`
+     - 4.35 kg
+   * - front handlebar and fork assembly mass moments of inertia
+     - :math:`\begin{bmatrix} I_{\mathrm{H}xx} &  0 & I_{\mathrm{H}xz}\\ 0 & I_{\mathrm{H}yy} & 0 \\ I_{\mathrm{H}xz} & 0 & I_{\mathrm{H}zz} \end{bmatrix}`
+     - :math:`\begin{bmatrix} 0.345 & 0 & -0.044\\ 0 & I_{\mathrm{H}yy}  &  0\\ -0.044 & 0 & 0.065 \end{bmatrix}` :math:`\mathrm{kg\ m}^{2}`
+   * - Front wheel radius
+     - :math:`r_\mathrm{F}`
+     - 0.342 m
+   * - Front wheel mass
+     - :math:`m_\mathrm{F}`
+     - 2.02 kg
+   * - Front wheel mass moments of inertia
+     - :math:`(I_{\mathrm{F}xx},I_{\mathrm{F}yy})`
+     - (0.081, 0.162) :math:`\mathrm{kg\ m}^2`
+
+.. _figRootLoci:
+
+.. figure:: figures/delftbicycle/root-loci.png
+   :width: 3in
+
+   figRootLoci
+
+   Eigenvalues for the linearized stability analysis of an uncontrolled
+   bicycle-rider combination for the steady upright motion in the forward speed
+   range of 0-30 km/h. Solid lines are real parts, dotted lines are imaginary
+   parts. The bicycle is essentially stable from the weave speed, 18 km/h and
+   above.
 
 For safety reasons the riders were fitted with a harness that was connected to
 the ceiling via a long climbing rope. This ensured that should the rider fall
@@ -249,8 +394,7 @@ video data at XX frames per second . Video footage can be found at <link>.
 
 .. todo:: What was our video frame rate.
 
-.. todo:: Upload all the video data and link to it here. Also add a single
-   video for the web version of the dissertation.
+.. todo:: Add an example video.
 
 Normal Bicycling
 ================
@@ -264,10 +408,23 @@ motion. This lateral knee motion can be seen in the video image in Figure
 :ref:`figKnee`. A third observation was that the rider actuated the handlebars
 with higher amplitudes at lower speeds than at higher speeds.
 
-.. todo:: Add the knee figure and a video.
+.. _figKnee:
+
+.. figure:: figures/delftbicycle/knee.*
+   :width: 1.865in
+   :target: _images/knee.jpg
+
+   figKnee
+
+   Video still of normal pedaling at low speed (5 km/h) showing large lateral
+   (left) knee motion and (right) steering action. The grey vertical line
+   indicates the midplane of the bicycle. Note that there is little upper
+   body lean.
+
+.. todo:: Add a video of the knee action.
 
 This third observation is confirmed by the measured steer angle data. Figures
-:ref:`figSteer20` and :ref:`figSteer5` show the time history of the steer angle
+:ref:`figSteerNormal20` and :ref:`figSteerNormal5` show the time history of the steer angle
 for the experiments carried out at 20 and 5 km/h, respectively. The standard
 deviation of the steer angle during the sixty seconds of measurement is also
 shown in the figures. At speeds above 20 km/h the average steer angle remains
@@ -280,7 +437,38 @@ there is no apparent connection to the open loop dynamics. For example the
 change in both the weave mode time to double and natural frequency is
 approximately the same between 5 and 10 km/h as between 10 and 15 km/h.
 
-.. todo:: Add the steering plots.
+.. _figSteerNormal20:
+
+.. figure:: figures/delftbicycle/steer-normal-20.*
+   :width: 3.5in
+   :target: _images/steer-normal-20.png
+
+   figSteerNormal20
+
+   Steer angle time history plot for 20 km/h during normal bicycling. The
+   standard deviation of the steer angle is shown in grey.
+
+.. _figSteerNormal5:
+
+.. figure:: figures/delftbicycle/steer-normal-5.*
+   :width: 3.5in
+   :target: _images/steer-normal-5.png
+
+   figSteerNormal5
+
+   Steer angle time history plot for 5 km/h during normal bicycling. The
+   standard deviation of the steer angle is shown in grey.
+
+.. _figSteerSigma:
+
+.. figure:: figures/delftbicycle/steer-sigma.*
+   :width: 3.5in
+   :target: _images/steer-sigma.png
+
+   figSteerSigma
+
+   The standard deviation of the steer angle for the six different speeds for
+   the three different experiments.
 
 The frequency content of the steering signal for the different forward speeds
 is shown in Figure :ref:`figSteerFreq`. The grey vertical dashed line indicates
@@ -290,19 +478,38 @@ of the weave mode. We had hypothesized that for speeds in the stable speed
 range, the optimal control frequency of the rider would correspond to the weave
 frequency, due to the fact that an uncontrolled bicycle-rider system recovers
 from perturbations at its natural frequency. The black vertical dashed line in
-each of the plots in Figure :ref:`figSteerFreq` indicates the measured pedaling
+each of the plots in Figure :ref:`figNormalFreq` indicates the measured pedaling
 frequency. The figure shows that during normal pedaling most of steering action
 takes place at, or around, the pedaling frequency, irrespective of the speed
 that the bicycle is moving. The pedaling frequency is especially dominant in
 the steering signal at the highest speeds where practically all of the steering
 takes place at the pedaling frequency.
 
-.. todo:: I don't really like this graph. I don't think it means much or adds
+.. _figNormalFreq:
+
+.. figure:: figures/delftbicycle/normal-freq.*
+   :width: 3.5in
+   :target: _images/normal-freq.png
+
+   Steer angle amplitude plot for the six different speeds for normal pedaling
+   experiment. Solid vertical line indicates the pedaling frequency. Dashed
+   vertical grey line indicates the bicycle & rigid rider weave eigenfrequency.
+
+.. todo:: I don't really like the following graph. I don't think it means much or adds
    anything significant to the discussion.
 
 Figure :ref:`figMaxAmp` plots the maximum steering amplitude versus speed. This
 maximum amplitude reduces with increasing speed and is similar in shape to the
 standard deviation plot in Figure :ref:`figSteerSigma`.
+
+.. _figMaxAmp:
+
+.. figure:: figures/delftbicycle/max-amp.*
+   :width: 3.5in
+   :target: _images/max-amp.png
+
+   Maximum steering amplitude if the steering signal consisted of a single
+   frequency for the three different experiments at the six different speeds.
 
 Towing; no pedaling
 ===================
@@ -331,6 +538,14 @@ frequency spectrum shows a wide range of frequencies of similar amplitude at
 all the speeds and none of the speeds seem to show any noticeable dominant
 frequencies.
 
+.. figure:: figures/delftbicycle/tow-freq.*
+   :width: 3.5in
+   :target: _images/tow-freq.png
+
+   Steer angle amplitude plot for the six different speeds for the towing
+   experiment. Vertical line indicates the bicycle & rigid rider
+   eigenfrequency.
+
 Perturbing; pedaling
 ====================
 
@@ -343,10 +558,23 @@ subsequent recovery of the bicycle to the upright, straight ahead position, no
 body lean could be noted other than that as a result of the normal pedaling.
 
 A second phenomenon observable in the video footage, as shown in Figure
-:ref:`figPerturb`, is that at all speeds we observed a lateral knee motion
+:ref:`figKnee`, is that at all speeds we observed a lateral knee motion
 during the short transient recovery process of the bicycle to the upright
 position.  The lateral knee motion was very large during the 5 km/h measurement
 and much smaller at the higher speeds, but even at 30 km/h it is visible.
+
+.. _figKnee:
+
+.. figure:: figures/delftbicycle/knee.*
+   :width: 1.865in
+   :target: _images/tow-freq.png
+
+   figKnee
+
+   Video still directly after a perturbation (lateral force applied from the
+   rider’s right by a rope at the saddle tube) at 5 km/h. Vertical grey line
+   indicates the bicycle midplane. Note the lateral right knee motion and
+   steering action and the small upper body lean.
 
 From the video footage we also concluded that the angle that the handlebars
 are turned during and after a perturbation decreased with increasing speed as
@@ -360,6 +588,18 @@ frequency range is again present but the pedaling frequency is dominant. Figure
 :ref:`figMaxAmp` shows the steering amplitude for the frequency with the
 maximum amplitude.  Again the values for the highest speeds are similar to
 those of the standard deviation of the steer angle.
+
+.. _figPerturbFreq:
+
+.. figure:: figures/delftbicycle/perturb-freq.*
+   :width: 3.5in
+   :target: _images/perturb-freq.png
+
+   figPerturbFreq
+
+   Steer angle amplitude plot for the six different speeds for perturbation
+   experiment. Solid vertical line indicates the pedaling frequency. Dashed
+   vertical grey line indicates the bicycle & rigid rider eigenfrequency.
 
 Once again, the frequency spectrum shows no significant steering motion taking
 place at the rigid rider-bicycle weave natural frequency for any of the speeds.
@@ -411,8 +651,8 @@ details all of the experiments we perfomed:
 - A single attempt at riding with eyes closed. at 30 km/h [#]_
 - Line tracking at six speeds for one rider. (runs 90-96)
 
-.. todo:: I could include this information as a table. Would that be more
-   readable?
+.. todo:: I could include this information as a complete table. Would that be
+   more readable?
 
 There is a potentially a considerable amount of findings and better statiscal
 conclusions that can be made from the data.
@@ -502,6 +742,32 @@ source code and data available for download in case it is of use to anyone.
    with the video. The user can scroll through the video and pause at select
    frames. The meta data for the run is displayed in the top right. The bicycle
    speed and the pedaling cadence are displayed as numerical values.
+
+Rider 2
+-------
+
+These are the parameters computed with the methods in [Moore2009]_ for the
+second rider on the instrumented Batavus Browser. Only the rear frame and body
+parameters are different as the bicycle is identical.
+
+.. _tabParameters:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 40 20 20
+
+   * - parameter
+     - symbol
+     - value for bicycle & rider
+   * - rear body and frame mass position center of mass
+     - :math:`(x_\mathrm{B},\ z_\mathrm{B})`
+     - (0.28, -1.03) m
+   * - rear body and frame mass
+     - :math:`m_\mathrm{B}`
+     - 86 kg
+   * - rear body and frame mass moments of inertia
+     - :math:`\begin{bmatrix} I_{\mathrm{B}xx} & 0 & I_{\mathrm{B}xz}\\ 0 & I_{\mathrm{B}yy} & 0 \\ I_{\mathrm{B}xz} & 0 & I_{\mathrm{B}zz}\end{bmatrix}`
+     - :math:`\begin{bmatrix} 11.89 &  0 & -2.13\\ 0 & I_{\mathrm{B}yy} & 0 \\ -2.13 & 0 & 3.73 \end{bmatrix}` :math:`\mathrm{kg\ m}^{2}`
 
 .. rubric:: Footnotes
 

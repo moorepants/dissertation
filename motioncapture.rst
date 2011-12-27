@@ -552,6 +552,8 @@ Frequency and amplitude information for the temporal coefficients
    Screen shot of the Matlab graphical user interface (GUI) used to visualize
    principal components and compare between different components and trials.
 
+.. todo:: Add video of the GUI in action.
+
 Results
 -------
 
@@ -761,6 +763,8 @@ described motions in Figure :ref:`figMotions`.
 .. _tabMotionClasses:
 
 .. list-table:: The six primary motion classes.
+   :header-rows: 1
+   :widths: 20 80
 
    * - Class Name
      - Class Description
@@ -1126,16 +1130,27 @@ Preface
 
 Once again, we collected a lot of data [Moore2011]_ and  only looked at a
 subset of it from one rider. I took my first statistics class once I was back
-at Davis with the intention of learnign better ways to analyze large data sets
-and make more over arching conclusions. I learned about mixed effects models
-and they seemed appropriate for looking at the data to see how the kinematic
-motions changed with respect to speeds, riders, manuevers, etc. The first step
-in building a model like is to pick out some dependent variables. In our case
-with time histories, various statistics need to chosen, for example one may be
-the standard deviation of various generalized coordinates. I neve managed to
-pursue this to the statisitcal model calculations, but started thinking about
-the relevant statistics. The following is a conference paper I submitted to the
-2010 International Sports Engineering Association.
+at Davis with the intention of learning better ways to analyze large data sets
+and make more over arching conclusions with the bicycle data. In the process I
+learned about mixed effects models and they seemed appropriate for our data
+sets and would potentially allow us to see how the kinematic motions changed
+with respect to speeds, riders, manuevers, etc. The first step in building a
+model like is to identify the independent and dependent variables. The
+dependent variables can be broken up into continous variables and factors.
+Speeds the continous variable, with riders, bicycles and manuevers as the
+factors. The independent variables are trickier because we recorded time
+histories, so various statistics need to be chosen. These could the results of
+things like the results of the PCA analyses, but the kinematics lends
+themselves for more understangin. For example, one may be the standard
+deviation of various generalized coordinates. I never managed to pursue this to
+the statisitcal model calculations, but started thinking about the relevant
+statistics. The following is a conference paper I submitted to the 2010
+International Sports Engineering Association where basic statistics of the time
+histories are chosen and some visualization of the statistics with respect to
+speed are shown. I primarily used this data to decide on sensor ranges when
+building the Davis instrumented bicycle presented in Chapter
+:ref:`davisbicycle`. I also only present some of the graphs here, but the
+source code can generate a lot more.
 
 Abstract
 --------

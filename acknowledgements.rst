@@ -31,3 +31,11 @@ not necessarily reflect the views of the National Science Foundation.
 * Grad interns: Danique, Peter, Chris, Gilbert
 * Undergrad interns
 * Others...
+
+    We would like to thank Knoek van Soest and Richard Casius of the
+    Faculty of Human Movement Sciences at the Vrije Universiteit,
+    Amsterdam for their cooperation and use of their equipment for the
+    experiments and for Richard’s expertise and help in operating the
+    motion capture system and data processing. Also, we thank Victor
+    Ahlm for a tireless day of bicycling and the Dutch bicycle
+    manufacturer, Batavus, for supplying the bicycles.

@@ -42,6 +42,8 @@ and we combined it with the accurate bicycle measurements.  These final methods
 for both bicycle and rider are implemented in two open source software
 packages.
 
+.. todo:: Cite Sharp1997b on measuring motorcycles.
+
 .. _secBicycleParameters:
 
 Bicycle Parameters
@@ -1164,6 +1166,8 @@ properties of the rider in a seated position using a simple mathematical
 geometrical estimation similar in idea to [Yeadon1990a]_ in combination with
 mass data from [Dempster1955]_. The second method substitutes Yeadon's more
 robust model with my previous one.
+
+.. todo:: Cite Griffith2005 for measuring whole human.
 
 Simple Geometry Method
 ----------------------

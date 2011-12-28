@@ -55,6 +55,9 @@ the dissertation source files.
 .. todo:: add the autolev code to the src/eom directory, i.e. make alparse
    installable
 
+.. todo:: Cite Zytveld and Kane as using Kane's method for ederivation and that
+   Autosim probably uses Kane's method.
+
 Model Description
 -----------------
 
@@ -267,6 +270,8 @@ visual description.
    The bicycle in the nominal configuration. The rigid bodies are the
    rear frame, C, rear wheel, D, front frame, E and front wheel, F. The
    geometric parameters and important points are also shown.
+
+.. todo:: Ellis1971 is a treatment on steering geometry in motorcycles.
 
 Generalized Coordinates
 -----------------------

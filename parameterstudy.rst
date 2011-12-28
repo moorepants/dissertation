@@ -55,6 +55,10 @@ Numerical parameters studies were the first thing I did once I had a working
 Whipple model [Moore2008]_ and I've explored some other studies over the years.
 The following sections provide some the results.
 
+.. todo:: Cite Zytveld1975 as doing early parameter studies with trail, front
+   wheel moment of inertia and rider position. He also did it analyticall and
+   with Routh's, like Jim. He also did a basic sensitity sutdy like Tak.
+
 Geometric Variation
 ===================
 

@@ -16,6 +16,7 @@ Handling
 * Ron's analytical method
 * Comparison of different bicycles
 
+[Zellner1978]_
 [Cossalter1998]_
 [Frezza2006]_
 

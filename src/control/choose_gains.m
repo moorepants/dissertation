@@ -63,8 +63,8 @@ saveas(deltaDamp, '../../figures/control/delta-damp.pdf')
 bodeGains = [3.278, 7, 12, 30, 45.9];
 deltaBode = figure();
 hold all
-for g = bodeGains
-    deltaClosed = feedback(g * deltaOpen, 1);
+for k = bodeGains
+    deltaClosed = feedback(k * deltaOpen, 1);
     bode(deltaClosed, {0.1, 100})
 end
 hold off
@@ -72,9 +72,10 @@ legend({'3.278', '7.0', '12.0', '30.0', '45.9'})
 set(deltaBode, figOptions)
 saveas(deltaBode, '../../figures/control/delta-bode.png')
 
-% here should be some magic to pick the right gain based on the damping
+% Here should be some magic to pick the right gain based on the damping
 % ratio and the eigenvalues of the closed delta loop, but for now I'll set
-% the gain manually based off of viewing the plot
+% the gain manually based off of viewing the plot. Refer to generate_data to
+% see how we automate it with the Bode design criteria.
 kDelta = 45.9;
 
 % delta / deltac
@@ -115,6 +116,7 @@ ylim([-30 30])
 sgrid(0.15:0.1:0.95, 5:5:40)
 saveas(phiDotLocus, '../../figures/control/phiDot-locus.png')
 
+% choose the gain manually
 kPhiDot = -0.062;
 phiDotOpen = kPhiDot * tDeltaDeltac * bicycleTF(12, 2);
 phiDotClosed = minreal(feedback(phiDotOpen, 1));

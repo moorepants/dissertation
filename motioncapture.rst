@@ -1640,3 +1640,5 @@ about pursuing was making use of scaling with respect to mass in the principal
 component analysis. It is possible to applying weighting such that motions
 associated with points on limbs with more mass. This could in affect reveal
 motions that have more effect on the dynamics.
+
+.. todo:: expand on this last thought

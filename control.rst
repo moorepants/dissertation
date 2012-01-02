@@ -88,34 +88,54 @@ successful at stabilizing his robot. His bicycle model was much simpler than
 the Whipple model but he found good agreement between experiment and the model
 predictions, with the exception of counter-steer predictions. [Berriah1999]_
 developed a digital fuzzy controller to stabilize a remote controlled bicycle
-robot. [Gallaspy2000]_ designed a robot balancing bicycle which controls a
-gimbaled gyroscope to apply a restoring torque with respect to the sensed roll
-angle, but was not successful at balancing the real robot. [Oda2002]_ I do not
-have this paper. [Kageyama2004]_ motorcycle robot with Honda (need to find this
-paper!). [Tanaka2004]_ successfully balances a bicycle on rollers with a PD
-roll angle to steer angle controller with a disturbance observer.
-[Yamakita2006]_ implements a modified controller from the one presented in
-[Yamakita2005]_ with an additional :math:`H_\inf` controller. They show some
-successful roll stabilization of a robot scooter in which they only implement
-the roll stabilization control. [Micchini2006]_ constructed a robot bicycle
-(I've asked him for more info on this one). [Taura2007]_ master's thesis on
-acrobatic bike robot..maybe a wheely (need to find this one). [Murayama2007]_
-uses the same vehicle and control model as in [Yamakita2006]_ and a new two
-degree of freedom "rider" pendulum. They demonstrate roll stability of the
-robot at both zzero forward speed up to 2 m/s. The Murata Manufacturing company
-designed a bicycle robot to demonstrate the utility of their sensors which
-debuted sometime in 2006 [Murata2011]_. There is little published detail on the
-control techniques but they seem to primarily make use of a roll rate gyro with
-steering and a gyro actuator. They also have other sensors such as ultrasonic
-sensors for obstacle detection. They demonstate stability at zero, reverse and
-forward speeds, stopping for obstacles, and tracking a narrow s-curve.
-[Yamaguchi2011]_ `<http://ai2001.ifdef.jp/>`_
-`<http://www.youtube.com/watch?v=mT3vfSQePcs>`_ demonstrates an impressive
-remote controlled mini robot bicycle that is similar in nature to the
-[Berriah1999]_ design with remote control. He uses a commercially available
-bipedal robot seated on a small bicycle. A gyro detects the systems roll rate
-and he uses a PID controller to applied the correct steering for roll
-stabilization. The remote control is employed to control the heading.
+robot. They do not seem to demonstrate the robot actually balancing but only
+bench tests of the sensors and actuators. [Gallaspy2000]_ designed a robot
+balancing bicycle which controls a gimbaled gyroscope to apply a restoring
+torque with respect to the sensed roll angle, but was not successful at
+balancing the real robot. [Oda2002]_ I do not have this paper. [Kageyama2004]_
+motorcycle robot with Honda (need to find this paper!). [Tanaka2004]_
+successfully balances a bicycle on rollers with a PD roll angle to steer angle
+controller with a disturbance observer.  [Yamakita2006]_ implements a modified
+controller from the one presented in [Yamakita2005]_ with an additional
+:math:`H_\inf` controller. They show some successful roll stabilization of a
+robot scooter in which they only implement the roll stabilization control.
+[Micchini2006]_ constructed a robot bicycle (I've asked him for more info on
+this one). [Taura2007]_ master's thesis on acrobatic bike robot..maybe a wheely
+(need to find this one). [Murayama2007]_ uses the same vehicle and control
+model as in [Yamakita2006]_ and a new two degree of freedom "rider" pendulum.
+They demonstrate roll stability of the robot at both zzero forward speed up to
+2 m/s. The Murata Manufacturing company designed a bicycle robot to demonstrate
+the utility of their sensors which debuted sometime in 2006 [Murata2011]_.
+There is little published detail on the control techniques but they seem to
+primarily make use of a roll rate gyro with steering and a gyro actuator. They
+also have other sensors such as ultrasonic sensors for obstacle detection. They
+demonstate stability at zero, reverse and forward speeds, stopping for
+obstacles, and tracking a narrow s-curve. [Mutsaerts2010]_ designed a Lego NXT
+bicycle robot with a simple proporional steer into the direction of roll rate
+controller and `demonstrates <http://youtu.be/VxiOy4QzD7I>`_ the bicycle roll
+stability in crude turns and straight ahead running. In 2011 the first
+`BicyRobo Thailand student competition <http://bicyrobo.ait.ac.th/>`_ occured
+and many videos on the internet demonstrate the successful design of some
+teams. The full size bicycle robots have roll stability and even path
+following. One video demonstrates students riding the robot bicycle and
+simultaneously applying manual steer torques. [Yamaguchi2011]_
+`<http://ai2001.ifdef.jp/>`_ `<http://www.youtube.com/watch?v=mT3vfSQePcs>`_
+demonstrates an impressive remote controlled mini robot bicycle that is similar
+in nature to the [Berriah1999]_ design with remote control. He uses a
+commercially available bipedal robot seated on a small bicycle. A gyro detects
+the systems roll rate and he uses a PID controller to applied the correct
+steering for roll stabilization. The remote control is employed to control the
+heading.
+
+The limited success of most of the various bicycle robots demonstrates that the
+actual implementation of single track vehicle control is not trivial. Some of
+the robots could demonstrate basic roll stability and some even capble of path
+tracking ability but many didn't quite work either. The Murata Boy robot is
+quite impressive in its abilities but it uses control outside of what humans
+are capable of. The motorcycle robot by Kageyama is probably the most
+successful demonstration of a full sized vehicle with control of only steering.
+The vehicle dynamic models and control methodolgies are varied, implying that
+many techniques may be applicable.
 
 Theorectic Control Models
 -------------------------
@@ -126,8 +146,8 @@ phase behavior and tracks roll angle and forward velocity using proportional
 and derivative control. One year later, Getz adds pathing tracking to his model
 ([Getz1995]_, [Getz1995a]_). [Kageyama1996]_ uses a neural network model to
 balance a two wheeled vehicle. [Cloyd1996]_ use the same simple bicycle model
-as [Nagai1983]_, but control it with a linear quadratic regulator. [Yavin1997]_
-studies path tracking of a simpel bicyle model.  [Suryanarayanan2002]_ uses a
+as [Nagai1983]_, but controled it with a linear quadratic regulator. [Yavin1997]_
+studies path tracking of a simpel bicyle model. [Suryanarayanan2002]_ uses a
 simple bicycle model to build a roll rate feedback controller for high speed
 recumbent bicycle. They use proportional feedback on the steer angle for a
 front steered bicycle. [Lee2002]_ mass balancer. [Yamakita2004]_ setups a

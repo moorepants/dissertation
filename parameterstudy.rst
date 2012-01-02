@@ -59,6 +59,8 @@ The following sections provide some the results.
    wheel moment of inertia and rider position. He also did it analyticall and
    with Routh's, like Jim. He also did a basic sensitity sutdy like Tak.
 
+.. todo:: cite Lai2003
+
 Geometric Variation
 ===================
 

@@ -44,6 +44,16 @@ variable measure of the controllability. The pole locations of an open loop
 system can also give a general sense of how easy it can be to control with
 roots in the far right plane likely being hard to stabilize.
 
+One can work with different bicyle models (simple/complex [or low/high order]
+and linear/non-linear), different control structres and different ways to
+identify the optimal numerical values for the controller. For a given order
+model most good controllers can place the closed loop poles in the same place
+regardless of the structure. Controllers designed for low order or linear
+models are likely to work with higher order models and non-linear models.
+Different structures can provide more or less physical insight to the control
+happening, in particular what a human might be doing. The human most likely
+choses robustsness over performance.
+
 The bicycle-rider system presents both a theoretical and experimentally rich
 dynamical system for control studies. It is very tractable in the sense that
 most people are familiar with controlling a bicycle and that it is a *simple*
@@ -67,11 +77,14 @@ system testing, etc.
 My intention of the work presented in this dissertation falls in the second
 framework, with the intention of identifying the human controller.
 
-You can different bicyle models, different control structres and different ways
-to identify the numerical values of the control model.
-
 Single Track Vehicle Control Models
 ===================================
+
+I've split the review of control models into three sections. The first are
+about controllers which have actually be implemented on robotic bicycles. The
+second are theorectic controllers that weren't necessarily introduced to
+identify the human control system and the final section details efforts that
+explicitly work with controllers that mimic the human controller.
 
 Bicycle Robots
 --------------
@@ -353,6 +366,19 @@ control, than human operator control.
 .. todo:: Kondo may be good to cite, but I haven't none of the papers.
 
 .. todo:: Does Cangley have a control model?
+
+.. todo:: Roland simulate a bicycle in a slalom some how
+
+.. todo:: Doesn't Tak have a robot bicycle?
+
+.. todo:: Check through the needswork folder for other papers and also the BMD
+   conference proceedings for other examples.
+
+Variations on PID controll of steer angle or steer torque with respect to roll
+angle are the most popular mechanisms. LQR type follow close behind. H_inf and
+other more modern control designs make up the rest. It is clear that roll
+stabilization is the critical task and must be conquered before path tracking
+can be employed.
 
 Human Operator Control
 ----------------------

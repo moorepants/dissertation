@@ -56,7 +56,7 @@
 <span id="eom"></span><h1>Bicycle Equations Of Motion<a class="headerlink" href="#bicycle-equations-of-motion" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated December 23, 2011 at 14:23:25 PST).
+<p class="last">This document is a draft which is updated regularly (Last updated January 03, 2012 at 15:53:26 PST).
 Once I submit if for my doctoral degree at UC Davis, it will be done. So for
 now use at your own risk. The information may or may not be correct.
 Reviews, comments and suggestions are welcome.</p>
@@ -68,7 +68,7 @@ the trigger which solidified my graduate research topic. I attempted the
 derivation for my class project in Mont Hubbard&#8217;s winter 2006 multi-body
 dynamics class and struggled with it well into the summer before finally
 getting a mostly correct answer. After the fact, I realized much of my pain was
-caused by a single missing apostrophe in my Autolev source code <a class="footnote-reference" href="#id44" id="id1">[1]</a>. But
+caused by a single missing apostrophe in my Autolev source code <a class="footnote-reference" href="#id47" id="id1">[1]</a>. But
 regardless of that another student in the class, Thomas Englehardt, also
 derived the equations and helped me debug by sharing his code and going over
 his methods. Even then, it turned out that my original equations weren&#8217;t
@@ -86,7 +86,7 @@ dissertation. This section details derivation of the non-linear equations of
 motion using Kane&#8217;s method [KaneLevinson1985]. The equations of motion are
 algebraically unwieldy and no one so far has publicly printed them in a form
 compact enough to print on reasonably sized paper and certainly not in a form
-suitable for any in depth analytical understanding <a class="footnote-reference" href="#id45" id="id3">[2]</a>. My methodology relies
+suitable for any in depth analytical understanding <a class="footnote-reference" href="#id48" id="id3">[2]</a>. My methodology relies
 heavily on computer aided algebra to do the bookkeeping in the derivation, so I
 will only describe the necessary details to derive the equations, leaving the
 algebra, trigonometry and calculus to the computer. The symbolic equations of
@@ -102,6 +102,11 @@ the dissertation source files.</p>
 <p class="last">add the autolev code to the src/eom directory, i.e. make alparse
 installable</p>
 </div>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">Cite Zytveld and Kane as using Kane&#8217;s method for ederivation and that
+Autosim probably uses Kane&#8217;s method.</p>
+</div>
 <div class="section" id="model-description">
 <h3>Model Description<a class="headerlink" href="#model-description" title="Permalink to this headline">¶</a></h3>
 <p>The <em>Whipple Bicycle Model</em> [Whipple1899] is typically defined by these set of
@@ -115,6 +120,7 @@ side-slip.</li>
 <li>The complete bicycle is assumed to be laterally symmetric.</li>
 <li>The bicycle rolls on flat ground.</li>
 </ul>
+<p>[Limebeer2006], [Meijaard2007], [Astrom2005] give great detail of the model.</p>
 <p>Unfortunately the word &#8220;model&#8221; will be used in varying contexts and with
 different meanings throughout this dissertation. I will attempt to be precise
 with my wording. For this chapter, I consider a dynamic model, such as the
@@ -124,7 +130,7 @@ result when evaluated at a particular state). This implies that the Whipple
 Bicycle Model linearized about the nominal configuration is a different model
 than the non-linear <em>Whipple Bicycle Model</em>. I will try to be explicit when
 referring to the various models.</p>
-<div class="admonition-todo admonition" id="index-1">
+<div class="admonition-todo admonition" id="index-2">
 <p class="first admonition-title">Todo</p>
 <p class="last">What about when a model is invalid at some configuration? I suspect
 that a derivation with euler angles might very well give different results
@@ -232,7 +238,7 @@ direction cosine matrix with respect to rotation through <span class="math">\(\l
 </div>
 </div>
 <div class="section" id="geometry">
-<span id="id8"></span><h3>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h3>
+<span id="id11"></span><h3>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h3>
 <p>The geometry of the Whipple model can be parameterized in an infinite amount of
 ways. It is typical and often natural to define the geometry with respect to
 the descriptions of bicycle geometry used in the bicycle fabrication industry
@@ -241,12 +247,12 @@ parameterizations like these create unnecessary complications when developing
 the non-linear equations of motion because they are typically defined with
 respect to only the nominal configuration of the bicycle and are not constant
 with respect to the system configuration.</p>
-<div class="admonition-todo admonition" id="index-2">
+<div class="admonition-todo admonition" id="index-3">
 <p class="first admonition-title">Todo</p>
 <p class="last">Should I include a diagram of the traditional geometry definitions?</p>
 </div>
 <p>With that in mind and after trying various parameterizations, I settled on the
-geometric formulation presented by [Psiaki1979] <a class="footnote-reference" href="#id47" id="id10">[3]</a>. The wheels are described by
+geometric formulation presented by [Psiaki1979] <a class="footnote-reference" href="#id50" id="id13">[3]</a>. The wheels are described by
 their radius (<span class="math">\(\left(r\geq0\right)\)</span>) and the remaining geometry is
 defined by three distances, all of which are configuration invariant. The
 distance <span class="math">\(d_1\)</span> is the offset to the center of the rear wheel from the
@@ -260,12 +266,16 @@ visual description.</p>
 rear frame, C, rear wheel, D, front frame, E and front wheel, F. The
 geometric parameters and important points are also shown.</p>
 </div>
+<div class="admonition-todo admonition" id="index-4">
+<p class="first admonition-title">Todo</p>
+<p class="last">Ellis1971 is a treatment on steering geometry in motorcycles.</p>
+</div>
 </div>
 <div class="section" id="generalized-coordinates">
 <h3>Generalized Coordinates<a class="headerlink" href="#generalized-coordinates" title="Permalink to this headline">¶</a></h3>
 <p>The bicycle is completely configured in a Newtonian reference frame by eight
 generalized coordinates. I chose the SAE vehicle dynamics coordinates standard
-as in [Meijaard2007] <a class="footnote-reference" href="#id48" id="id12">[4]</a> and all rotations are are defined as positive
+as in [Meijaard2007] <a class="footnote-reference" href="#id51" id="id15">[4]</a> and all rotations are are defined as positive
 right-handed. I define rotation matrices such that:</p>
 <div class="math">
 \[\bar{a} = ^N\mathbf{R}^A \bar{n}\]</div>
@@ -327,7 +337,7 @@ Newtonian reference frame.</p>
 to the Newtonian reference frame. There are six primary points of interest: the
 four mass centers, <span class="math">\(d_o,c_o,e_o,f_o\)</span>, and the two points fixed on the
 wheels which are instantaneously in contact with the ground, <span class="math">\(d_n,f_n\)</span>
-<a class="footnote-reference" href="#id49" id="id13">[5]</a>.</p>
+<a class="footnote-reference" href="#id52" id="id16">[5]</a>.</p>
 <p>The mass center of the rear wheel, <span class="math">\(d_o\)</span>, is assumed to be at the center
 of the wheel and is located by:</p>
 <div class="math" id="equation-rearWheelMassCenter">
@@ -356,7 +366,7 @@ the front wheel center to the contact point is defined as:</p>
 <div class="math" id="equation-frontWheelContact">
 <span class="eqno">(18)</span>\[\bar{r}^{f_n/f_o} = r_F\left(\frac{(\hat{e}_2\times\hat{a}_3)\times\hat{e}_2}
 {||(\hat{e}_2\times\hat{a}_3)\times\hat{e}_2||}\right)\]</div>
-<div class="admonition-todo admonition" id="index-3">
+<div class="admonition-todo admonition" id="index-5">
 <p class="first admonition-title">Todo</p>
 <p class="last">I can define m to reduce the length of several of the longer
 equations. <span class="math">\(m = \sqrt{c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2}\)</span></p>
@@ -385,7 +395,7 @@ triple cross product as sum of dot products.</p>
 must touch the ground, complicate the model derivation. The first holonomic
 equation is obviated by definition of the rear wheel center
 <a href="#equation-rearWheelMassCenter">(12)</a>. This enforces that the contact point
-cannot have an displacement in the <span class="math">\(\hat{n}_3\)</span> direction. <a class="footnote-reference" href="#id50" id="id15">[6]</a> The second
+cannot have an displacement in the <span class="math">\(\hat{n}_3\)</span> direction. <a class="footnote-reference" href="#id53" id="id18">[6]</a> The second
 holonomic constraint is enforced by requiring the front wheel to touch the
 ground plane. The constraint is characterized by a nonlinear relationship
 between the roll angle <span class="math">\(q_4\)</span>, steer angle <span class="math">\(q_7\)</span> and pitch angle
@@ -788,7 +798,7 @@ configuration at various constant forward speeds the open loop model (i.e.
 inputs equal zero) can exhibit stability within various speed regimes. The
 system can have left half plane zeros, which give a non-minimal phase behavior.
 This corroborates what bicycle riders already experience with counter-steering.</p>
-<div class="admonition-todo admonition" id="index-4">
+<div class="admonition-todo admonition" id="index-6">
 <p class="first admonition-title">Todo</p>
 <p class="last">Should I add more interesting facts about the model?</p>
 </div>
@@ -833,11 +843,11 @@ my labmate, Luke, as his persistence and interest in minute detail helped me
 bring my model up to par.</p>
 <p>The Basu-Mandal et al derivations are based on different coordinates than I
 use, but regardless of the coordinates they provide numerical values which can
-be benchmarked if the correct coordinate transformations are applied <a class="footnote-reference" href="#id51" id="id26">[7]</a>. In
+be benchmarked if the correct coordinate transformations are applied <a class="footnote-reference" href="#id54" id="id29">[7]</a>. In
 Table <a class="reference internal" href="#tabnonlinvalidation"><em>Nonlinear Whipple Model Comparision</em></a> I present the values computed from my model in
 comparison to the values presented by [BasuMandall2007]. I&#8217;ve presented the
 same number of significant digits as provided by Basu-Mandall for each
-variable <a class="footnote-reference" href="#id52" id="id28">[8]</a>. My model produces the same result to at least eleven significant
+variable <a class="footnote-reference" href="#id55" id="id31">[8]</a>. My model produces the same result to at least eleven significant
 figures, thus I feel confident that the derivation is correct.</p>
 <table border="1" class="docutils" id="tabnonlinvalidation">
 <caption>Nonlinear Whipple Model Comparision</caption>
@@ -1171,7 +1181,7 @@ primarily roll.</p>
 </tbody>
 </table>
 <p>The complete motion of the bicycle is a superposition of each mode.</p>
-<div class="admonition-todo admonition" id="index-5">
+<div class="admonition-todo admonition" id="index-7">
 <p class="first admonition-title">Todo</p>
 <p class="last">Add the eigenvector component animation we did for the Taiwan
 conference.</p>
@@ -1269,7 +1279,7 @@ one of the independent generalized speeds.</dd>
 the linearized Whipple model.</dd>
 </dl>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="id44" rules="none">
+<table class="docutils footnote" frame="void" id="id47" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>My colleague, Dale L. Peterson, has made significant progress
@@ -1277,16 +1287,16 @@ formulating the equations of motion in a readable and compact form,
 which will most likely be published soon.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id45" rules="none">
+<table class="docutils footnote" frame="void" id="id48" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>Also used by [Franke1990].</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id47" rules="none">
+<table class="docutils footnote" frame="void" id="id50" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id10">[3]</a></td><td>The point of contact for the bicycle wheels are technically abstract
+<tr><td class="label"><a class="fn-backref" href="#id13">[3]</a></td><td>The point of contact for the bicycle wheels are technically abstract
 points in dynamics. There are fundamentally four distinct points of
 concern. The first being the point in the ground plane that
 instantaneously contacts the wheel at any given time, the point in the
@@ -1295,43 +1305,43 @@ the wheel that instantaneously contacts the ground at any given time,
 and the point on the wheel ...</td></tr>
 </tbody>
 </table>
-<div class="admonition-todo admonition" id="index-6">
+<div class="admonition-todo admonition" id="index-8">
 <p class="first admonition-title">Todo</p>
 <p class="last">Contact points need better explanations.</p>
 </div>
-<table class="docutils footnote" frame="void" id="id48" rules="none">
+<table class="docutils footnote" frame="void" id="id51" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id12">[4]</a></td><td>I don&#8217;t necessarily agree that this is a great standard to follow,
+<tr><td class="label"><a class="fn-backref" href="#id15">[4]</a></td><td>I don&#8217;t necessarily agree that this is a great standard to follow,
 because it creates much unessary confusion when defining and mapping
 between parameterizations. The three axis pointing upward would be less
 error prone.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id49" rules="none">
+<table class="docutils footnote" frame="void" id="id52" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id13">[5]</a></td><td>Luke and I have dreamed of developing an open source version of Autolev
+<tr><td class="label"><a class="fn-backref" href="#id16">[5]</a></td><td>Luke and I have dreamed of developing an open source version of Autolev
 for years and that has finally culminated through primarily Luke and Gilbert
 Gede&#8217;s efforts in the creation of sympy.physics.mechanics.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id50" rules="none">
+<table class="docutils footnote" frame="void" id="id53" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id15">[6]</a></td><td>This constraint can readily be modified to support a non-flat ground.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id18">[6]</a></td><td>This constraint can readily be modified to support a non-flat ground.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id51" rules="none">
+<table class="docutils footnote" frame="void" id="id54" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id26">[7]</a></td><td>Basu-Mandall presents significant digits from 10 to 14.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id29">[7]</a></td><td>Basu-Mandall presents significant digits from 10 to 14.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id52" rules="none">
+<table class="docutils footnote" frame="void" id="id55" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id28">[8]</a></td><td>The conversion equations from the [BasuMandal2007] coordinates to mine and vice
+<tr><td class="label"><a class="fn-backref" href="#id31">[8]</a></td><td>The conversion equations from the [BasuMandal2007] coordinates to mine and vice
 versa can be found in the source code.</td></tr>
 </tbody>
 </table>

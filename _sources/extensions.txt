@@ -574,6 +574,8 @@ of freedom, :math:`q_9`, with an accompanying rider lean torque, :math:`T_9`.
 [Sharp2008]_, [Schwab2008]_, [Peterson2008a]_, have all modeled this system
 explicitly.
 
+.. todo:: talk a bit more about the conclusions in those papers.
+
 I define the upper body hinge as a horizontal line at a distance :math:`d_4`
 below the rear wheel center when the bicycle is in the nominal configuration.
 The direction cosine matrix relating the upper body to the rear frame is

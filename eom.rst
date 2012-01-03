@@ -72,6 +72,8 @@ assumptions:
 * The complete bicycle is assumed to be laterally symmetric.
 * The bicycle rolls on flat ground.
 
+[Limebeer2006]_, [Meijaard2007]_, [Astrom2005]_ give great detail of the model.
+
 Unfortunately the word "model" will be used in varying contexts and with
 different meanings throughout this dissertation. I will attempt to be precise
 with my wording. For this chapter, I consider a dynamic model, such as the

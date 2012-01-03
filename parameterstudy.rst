@@ -61,6 +61,10 @@ The following sections provide some the results.
 
 .. todo:: cite Lai2003
 
+.. todo:: cite Sharp1971 as he discusses effects of parameter variations.
+
+.. todo:: maybe cite Sharp1994
+
 Geometric Variation
 ===================
 

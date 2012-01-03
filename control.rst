@@ -67,6 +67,9 @@ system testing, etc.
 My intention of the work presented in this dissertation falls in the second
 framework, with the intention of identifying the human controller.
 
+You can different bicyle models, different control structres and different ways
+to identify the numerical values of the control model.
+
 Single Track Vehicle Control Models
 ===================================
 
@@ -74,16 +77,16 @@ Bicycle Robots
 --------------
 
 [Zytveld1975]_
-   was one of the first to explore the automatic stabilization of the bicycle
-   outside of the human control framework, although he did chose feedback
-   variables that he believed a human rider could sense. He attempted to
-   control a robot bicycle with only a leaning rider (inverted pendulum)
-   through proportional and derivative feedback of rider lean angle and bicycle
-   roll angle. He made use of a linear model with a rider lean degree of
-   freedom which was the same as the one presented Chapter :ref:`extensions`.
-   His controller worked on paper, but he wasn't able to ever balance the robot
-   bicycle, with the suspected problems being the limitations of the hardware
-   he used.
+   van Zytveld was one of the first to explore the automatic stabilization of the
+   bicycle that was not explicityly in the human control framework, although he
+   did chose feedback variables that he believed a human rider could sense. He
+   attempted to control a robot bicycle with only a leaning rider (inverted
+   pendulum) through proportional and derivative feedback of rider lean angle
+   and bicycle roll angle. He made use of a linear model with a rider lean
+   degree of freedom which was the same as the one presented Chapter
+   :ref:`extensions`.  His controller worked on paper, but he wasn't able to
+   ever balance the robot bicycle, with the suspected problems being the
+   limitations of the hardware he used.
 [Nagai1983]_
    They constructed a robot bicycle which balanced and tracked itself by
    feeding back lateral deviation at a previewed time and the current roll
@@ -91,27 +94,48 @@ Bicycle Robots
    much simpler than the Whipple model but he found good agreement between
    experiment and the model predictions, with the exception of counter-steer
    predictions.
+[Beznos1998]_
+   Find and read.
 [Berriah1999]_
-   developed a digital fuzzy controller to stabilize a remote controlled
+   They developed a digital fuzzy controller to stabilize a remote controlled
    bicycle robot. They do not seem to demonstrate the robot actually balancing
    but only bench tests of the sensors and actuators.
 [Gallaspy2000]_
-   designed a robot balancing bicycle which controls a gimbaled gyroscope to
+   He designed a robot balancing bicycle which controls a gimbaled gyroscope to
    apply a restoring torque with respect to the sensed roll angle, but was not
    successful at balancing the real robot.
+[Sooraksa2000]_, [Sooraksa2000a]_
+   Read
 [Muraoka2002]_
-   bicycle robot (in Japanese).
+   bicycle robot (MS thesis in Japanese).
 [Oda2002]_
-   I do not have this paper.
+   I do not have this paper, google doesn't give any hits.
 [Miyagishi2003]_
    This is the same Kageyama honda robot, they say that the model the
    controller after a human.
 [Kageyama2004]_
-   motorcycle robot with Honda (need to find this paper!).
+   Motorcycle robot with Honda (need to find this paper!). Probably in
+   Japanese. He's got a bunch of papers that I don't have.
 [Tanaka2004]_
    They successfully balances a bicycle on rollers with a PD roll angle to
    steer angle controller with a disturbance observer.
+[Muhich2004]_
+   graduate project or something, read
 [Iuchi2005]_
+   They use PD control on the bicycle roll angle to control steer angle and
+   rider lean angle. The controller is implemented on a bicycle robot, of which
+   they are able to balance on rollers.
+[Iuchi2006]_
+   They use the same model base as [Iuchi2005]_ except they now add in a human
+   torque estimator, so that the controller will not treat the human's steer
+   torque as a disturbance if the controller is activated while a rider is also
+   trying to control the bicycle. They show some crude experimental results, of
+   which I assume are of a rider controlling the bicycle with and without the
+   automatic controller activated. Their human torque accounting is based off
+   of a estimation of the human torque from the steer motor torque, rather than
+   explicity measuring the human's torque input.
+[Miyagishi2006]_
+   Another one on the honda robot, but probably in Japanese.
 [Yamakita2006]_
    implements a modified controller from the one presented in [Yamakita2005]_
    with an additional :math:`H_\inf` controller. They show some successful roll
@@ -119,13 +143,34 @@ Bicycle Robots
    stabilization control.
 [Micchini2006]_
    constructed a robot bicycle (I've asked him for more info on this one).
+[Suprapto2006]_
+   Find and read.
 [Taura2007]_
    master's thesis on acrobatic bike robot..maybe a wheely (need to find this
-   one).
+   one). Probably in Japanese.
 [Murayama2007]_
    uses the same vehicle and control model as in [Yamakita2006]_ and a new two
    degree of freedom "rider" pendulum. They demonstrate roll stability of the
    robot at both zzero forward speed up to 2 m/s.
+[Solveberg2007]_
+   Read. MS thesis on controlling a bicycle robot.
+[Thanh2008]_
+   Thanh designs a controller with :math:`H_2/H_\inf` techniques and applies it
+   to a bicycle robot which uses a flywheel for stabilization. He compares it
+   to a PD controller and a genetic algorithm and shows that it is more robust.
+[Tanaka2009]_
+   tracking and posture control electric bicycle
+[Mutsaerts2010]_
+   designed a Lego NXT bicycle robot with a simple proporional steer into the
+   direction of roll rate controller and `demonstrates
+   <http://youtu.be/VxiOy4QzD7I>`_ the bicycle roll stability in crude turns
+   and straight ahead running.
+[Brekke2010]_
+   Read. MS thesis on controlling a bicycle robot.
+[Cerone2010]_
+   Read
+[Keo2011]_
+   Read
 [Murata2011]_
    The Murata Manufacturing company designed a bicycle robot to demonstrate the
    utility of their sensors which debuted sometime in 2006 [Murata2011]_.
@@ -134,11 +179,6 @@ Bicycle Robots
    They also have other sensors such as ultrasonic sensors for obstacle
    detection. They demonstate stability at zero, reverse and forward speeds,
    stopping for obstacles, and tracking a narrow s-curve.
-[Mutsaerts2010]_
-   designed a Lego NXT bicycle robot with a simple proporional steer into the
-   direction of roll rate controller and `demonstrates
-   <http://youtu.be/VxiOy4QzD7I>`_ the bicycle roll stability in crude turns
-   and straight ahead running.
 [BicyRobo2011]_
    In 2011 the first `BicyRobo Thailand student competition
    <http://bicyrobo.ait.ac.th/>`_ occured and many videos on the internet
@@ -191,9 +231,14 @@ control, than human operator control.
    study path tracking of a simple bicyle model using some kind of generalized
    control structure, with a bicycle model similar to [Getz1995]_.
 [Chen2000]_
-   (don't have paper) fuzzy training.
+   fuzzy training.
+[Sharp2001a]_
+   They stablize the roll angle of a motorcycle with a PID controller which
+   operates on the error in roll angle to provide a steer torque. The gains for
+   the controller are chosen by trial and error. The gains are difficult to
+   find for low speed high roll angle scenarios.
 [Park2001]_
-   (do not have paper)
+   (do not have paper) can't find it yet with basic google searches
 [Suryanarayanan2002]_
    uses a simple bicycle model to build a roll rate feedback controller for a
    high speed recumbent bicycle. They use proportional feedback of the roll
@@ -201,6 +246,14 @@ control, than human operator control.
 [Lee2002]_
    develops a control model based on something akin to sliding mode control to
    stablize the bicycle and track a path.
+[Frezza2003]_
+   Read
+[Kamata2003]_
+   Download and read.
+[Chidzonga2003]_
+   Chidzonga uses the simple point mass bicycle model with a load sharing
+   controller to demonstrate a track stand around zero forward speed. Although,
+   it might have just been due to a miracle from Jesus.
 [Yamakita2004]_
    setups a linear trajectory tracking control model and non-linear
    stablization control by controlling steer toruqe, rider lean torque and rear
@@ -210,32 +263,92 @@ control, than human operator control.
    Karnopp uses a very simply bicycle model and basic propotional control to
    demonstrate the counter steerign require to balance the bicycle. He also
    examines rear steered bicycles.
+[Niki2005a]_
+   Handlebar control..don't have paper.
 [Niki2005]_
+   This follows the [Tanaka2004]_ and [Iuchi2005]_ work, but adds in velocity
+   tracking.
 [Huyge2005]_
-[Astrom2005]_ proportional lean angle to steer torque.
-[Iuchi2006]_
-[Yamakita2006]_
-[Sharma2006]_ fuzzy control
-[Saccon2006]_ some kind of controller for a simulator or something.
-[Limebeer2006]_ implements a control model.
-[Liang2006]_ fuzzy.
-[Findlay2006]_ the model we did for Joshi's class.
-[Bjermeland2006]_ a masters these on controlling a bicycle, I don't have it.
-[Shaprp2007a]_, [Sharp2007]_, and [Sharp2008a]_ presents optimal control
-methods with detailed preview models for motorcycle and bicycle control. He
-exploress both steer torque and rider lean torque control, comparing the
-effectiveness of both.
-[Marumo2007]_ steer by wire of motorcycle.
-[Chidzonga2007]_.
-[Baslamisli2007]_ gain scheduled steering control.
-[Thanh2008]_ particle swarm bicycle robo balancing.
-[Peterson2008a]_ yaw rate and velocity tracking with rider lean torque.
-[Keo2008]_ trajectory control for auto bicycle with balancer
-[Connors2009]_ LQR control recumbent leg masses
-[Tanaka2009]_ tracking and posture control electric bicycle
-[Baslamisli2009]_ gain scheduling
-[Cerone2010]_
-[Keo2011]_
+   He makes use of the [Cossalter2002]_ motorcycle model with a eigth body
+   rider biomechanial model. He stabilizes the bodies and tracks a path using
+   LQR control.
+[Astrom2005]_
+   They apply simple proportional control of a point mass type bicycle model to
+   stabilize the roll angle with a steer angle input.
+[Sharma2006]_
+   They stablize a simple bicycle model using fuzzy control rules to provide a
+   desired roll correction based on the current steer and roll angles. The
+   simulations show stability but with very erractic control that seem like it
+   would be poor for a real controller.
+[Saccon2006]_
+   some kind of controller for a simulator or something.
+[Limebeer2006]_
+   They implement a PD controller on roll rate to stablize the Whipple bicycle
+   model outside the stable speed range.
+[Findlay2006]_
+   A simple point mass bicycle is stabilized by steer angle using three
+   methods: a classical lead/lag compensator design, Ackerman pole placement
+   and LQR optimal control.
+[Bjermeland2006]_
+   a masters these on controlling a bicycle, I don't have it.
+[Sharp2007a]_
+   He develops a path tracking controller for the benchmark bicycle
+   [Meijaard2007]_ based on full state feedback and optimal control (LQR). He
+   explores tight to loose control and shows how the gains vary with speed. He
+   also include a preview model of which the tight control needs 2.5s of
+   preview and the loose control needs at least 12.5 s. It is interesting to
+   note that he found little change in computed gains for 20% variations in the
+   various model parameters, leading him to conclude that the a rider would be
+   robust to various bicycle designs. His controllers show good performance for
+   randomly generated paths.
+[Sharp2007]_
+   Here Sharp extends his LQR control method with preview from [Sharp2007a]_ to
+   the motorcycle with the addition of rider lean torque control. He says that
+   the objective was to develop a control scheme that *somewhat* represents a
+   rider which is simple and effective. His controller inputs are the rider's
+   upperbody absolute and relative lean angles and the path tracking error. He
+   claims that riders control the motorcycle at the weave frequency at high
+   speeds. He is able succesfully stablize and track a path and determines
+   optimal preview gains. He also finds that the rider lean torque control is
+   relatively ineffective and even with high weighting in the LQR formulation,
+   the steer torque input dominates the optimal solution.
+[Sharp2008a]_
+   Sharp applies his LQR based preview model control model from [Sharp2007]_ to
+   the benchmark bicycle. His findings are somewhat similar. His bicyle model
+   is 6th order (he includes heading and path deviation) and he sets up the
+   optimal control problem on full state feedback including varying numbers of
+   path preview points. The bicycle tracks a path well and he shows high,
+   medium and low authority control by changing the LQR weightings. In general
+   the bicycle roll angle and rate gains are the largest, with rider lean gains
+   following, and steer related gains being the smallest. His leaning rider is
+   intially stablized by a passive spring and damper, and he finds that the
+   lean torque control is minor when paired with steer torque control. Lean
+   torque alone requires very high gains.
+[Marumo2007]_
+   Marumo and Nagai design both a PD controller with respect to roll angle and
+   an LQR controller with full state feeback to stablize the roll of Sharp's
+   basic motorcycle model through steer torque. The intention is to have a
+   steer-by-wire system so the rider can specify the desired roll angle with
+   something like a joystick, thus alievating the need for the human to learn
+   to counter steer. They include an additional torque to the controller output
+   computed from the steady state inverse steer torque to roll angle transfer
+   function. (this last sentence it weak).
+[Chidzonga2007]_
+   Chidzonga expands on the work in [Chidzonga2007]_ by once again managing a
+   track stand with a load sharing control scheme.
+[Peterson2008a]_
+   Peterson designs a yaw rate and rear wheel speed tracking controller based
+   on full state feedback and LQR control. He uses a non-linear Whipple like
+   model with rider lean torque as the control input. His simulation required
+   30 Nm of rider lean torque for a 0.3 rad/sec and 1 rad/sec step in yaw rate
+   and rear wheel rate respectively.
+[Keo2008]_
+   They stabilize a bicycle model with a leaning "rider" pendulum and track a
+   path.
+[Connors2009]_
+   Connors adds movign legs to the Whipple bicycle model and uses parameters to
+   simulate a low slung recumbent bicycle. He designs an LQR full state
+   feedback controller to stabalize the bicycle.
 
 .. todo:: Kondo may be good to cite, but I haven't none of the papers.
 
@@ -379,6 +492,19 @@ later this dissertation for human operator identification. The following
 section gives a brief synopsis, but one should refer to the published paper for
 more detail.
 
+Conclusion
+~~~~~~~~~~
+
+A single track vehicle can be stablized and controlled by a variety of means.
+Controllers based on simplified dynamical models can potentially control more
+advanced linear and nonlinear models and/or real systems (i.e. steer into the
+fall). The roll stabilization is the critical tasks, as path following can't
+happen if the bicycle is unstable in roll. Few people have demonstrated robust
+control of a real system which stabilizes in roll at a variety of speeds. Even
+fewer have added path tracking abilities. It doesn't seem like anyone has
+stabilized a robotic bicycle with a controller that has the limitations of a
+human built in.
+
 Hess Manual Control Model
 =========================
 
@@ -452,6 +578,10 @@ error.
 
 The neuromuscular parameters, :math:`\zeta_{nm},\omega_{nm}`, were chosen to
 such that the innermost loop gave a typical response for a human operator.
+
+.. todo:: Why is that the proprioception is required?? Is it a function of
+   adding the neuromuscular model, cause people can stablize roll with P, D or
+   PD on roll angle.
 
 The bicycle is modeled using the Whipple model linearized about the nominal
 configuration with the primary control input being steer torque. The inner

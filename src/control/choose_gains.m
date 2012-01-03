@@ -28,6 +28,8 @@ neuromuscular = tf(wnm^2, [1, 2 * zetanm * wnm, wnm^2]);
 
 %% delta loop
 deltaOpen = neuromuscular * bicycleTF(7, 2);
+display('The open steer loop.')
+zpk(deltaOpen)
 
 % plot the root locus for the negative feedback system
 deltaLocus = figure();
@@ -80,6 +82,8 @@ kDelta = 45.9;
 
 % delta / deltac
 deltaClosed = feedback(kDelta * deltaOpen, 1);
+display('The closed steer loop')
+zpk(deltaClosed)
 
 % tDelta / deltac
 tDeltaDeltac = feedback(kDelta * neuromuscular, bicycleTF(7, 2));
@@ -120,6 +124,8 @@ saveas(phiDotLocus, '../../figures/control/phiDot-locus.png')
 kPhiDot = -0.062;
 phiDotOpen = kPhiDot * tDeltaDeltac * bicycleTF(12, 2);
 phiDotClosed = minreal(feedback(phiDotOpen, 1));
+display('Closed roll rate loop.')
+zpk(phiDotClosed)
 
 phiDotBode = figure();
 bode(phiDotClosed, {1, 20})
@@ -136,6 +142,8 @@ w = logspace(-1, 2, 1000);
 kPhi = 1 / interp1(w, mag(:)', 2);
 
 phiClosed = feedback(kPhi * phiOpen, 1);
+display('Roll angle loop closed.')
+zpk(phiClosed)
 
 phiBode = figure();
 hold all

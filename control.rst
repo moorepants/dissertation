@@ -875,8 +875,8 @@ crossover frequency, 2 rad/s.
 
 .. math::
 
-   G_{\phi c} = \frac{2504.8689 (s+77.09) (s+17.08)^2 (s+14.79) (s+2.56)^2 (s^2 - 1.306s + 5.18)^2}
-   {(s+17.08)^2 (s+2.56)^2 (s^2 + 2.049s + 4.53) (s^2 - 1.306s + 5.18)^2 (s^2 + 2.657s + 193.7) (s^2 + 56.65s + 1242)}
+   G_{\phi c} = \frac{2504.8689 (s+77.09) (s+14.79)}
+   {(s^2 + 2.049s + 4.53) (s^2 + 2.657s + 193.7) (s^2 + 56.65s + 1242)}
 
 The remaining loops are closed using the rule of thumb [Hess1997]_ of crossing
 over at half the previous loops crossover frequency.

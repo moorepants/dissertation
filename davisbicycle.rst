@@ -103,8 +103,8 @@ well for the experiments performed on the floor, but was more difficult on the
 treadmill as matching the cruise control to the speed of the treadmill proved
 difficult. So sort of feedback control could alleviate the difficulties.
 
-Rates and accelerations
-=======================
+Orientations, Rates and Accelerations
+=====================================
 
 The Whipple bicycle model at constant speed fundamentally has two important
 states of the lateral dynamics: roll and steer (as defined in Chapter
@@ -216,13 +216,48 @@ axis rate gyro for the body fixed angular rate about the steer axis.
 - i couldn't ingtegrate the vn-100 into the rest of the DAQ
 - VN-100 sucked at giving orientation
 
+Steer Angle
+~~~~~~~~~~~
+
+I adopted the same steering angle measurement device that I use on the Delft
+instrumented bicycle, with some minor improvements such as better tension
+adjustablity and switching to a screw mount potentiometer.
+
+.. todo:: add the
+
 The VN-100 turned out to be a poor choice for our application in mutliple ways.
 The second of which I'll talk about in a later section. The first is that the
-orientation estimations were poor. I wanted accurate estimate of the roll angle
-of the bicycle.
+orientation estimations were very poor. I wanted *at least* accurate estimate
+of the roll angle of the bicycle. The VN-100 repdeatly did not provide this.
+VectorNav worked with me and tried offer various methods of tuning the VN-100
+with state covariance weightings for the Kalman filter and also to tune out any
+static magenetic fields from the bicycle frame. The highly likely issues were
+associated with both the wheel rotationing and teh front frame rotation all
+relative to the rear frame, with could cause varying distrubances in the
+magnetic field. The hub motor definitely affecting the magnetometer readings
+and these may have been too great to tune out. I also realized that going with
+a proprietary estimator is a bad idead, especially when one has a good idea of
+the dynamics of the rigid body that the sensor is attached to. In our case if
+the Kalman filter was programmable, we could taylor it with the a bicycle model
+to improve the orientaion estimation significantly. Also if the VN-100 could
+accept input signals, the filter could be tuned well too. After countless hours
+trying to tune their proprietary filter I gave and went to the roll angle
+measurement design that I should have done in the beginning.
+
+.. todo:: cite Boniolo for roll angle estimation, talk about Danique's work
 
 Roll angle trailer
-==================
+~~~~~~~~~~~~~~~~~~
+
+I designed a simple trailer to that was pulled behind the bicycle to measure
+roll angle with a potentiometer, much in the way the steer angle was measured.
+The trailer needed to be light such that it didn't adversly affect the lateral
+dynamics and to give a good estimate of the roll angle. The trailer had two
+caster polyurethane wheels (roller blade wheels) attached to a frame which
+attached via a revolute joint aligned with the roll axis to a yoke that
+attached at the axle of the rear wheel.
+
+.. todo:: Make nice figure or photo of the trailer.
 
 Lateral Force
 =============
@@ -230,15 +265,11 @@ Lateral Force
 Rider rigidification
 ====================
 
-Wiring diagram
-==============
-
 Data aquisition
 ===============
 
 Time sychronization
 ===================
-
 
 DAQ Software
 ============

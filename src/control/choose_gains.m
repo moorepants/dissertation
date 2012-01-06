@@ -93,13 +93,19 @@ gainVec = -2:0.005:1;
 gainVec(find(gainVec == 0)) = [];
 zetaMat = zeros(6, length(gainVec));
 polesMat = zeros(6, length(gainVec));
+zerosMat = zeros(3, length(gainVec));
 for i = 1:length(gainVec)
     phiDotOpen = gainVec(i) * tDeltaDeltac * bicycleTF(12, 2);
     phiDotClosed = minreal(feedback(phiDotOpen, 1));
+    [num, den] = tfdata(phiDotClosed);
+    zerosMat(:, i) = roots(num{1});
     [~, z, p] = damp(phiDotClosed);
     zetaMat(:, i) = z;
     polesMat(:, i) = p;
 end
+
+zerosFig = figure();
+plot(zerosMat);
 
 phiDotDamp = figure();
 set(phiDotDamp, figOptions)
@@ -143,7 +149,7 @@ kPhi = 1 / interp1(w, mag(:)', 2);
 
 phiClosed = feedback(kPhi * phiOpen, 1);
 display('Roll angle loop closed.')
-zpk(phiClosed)
+zpk(minreal(phiClosed))
 
 phiBode = figure();
 hold all

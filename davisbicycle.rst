@@ -50,7 +50,7 @@ Introduction
 
 This chapter details the design and implementation of an instrumented bicycle
 capable of accuratley measuring much of the necessary kinematics and kinetics
-of associated with controlling the bicycle.
+associated with controlling the bicycle.
 
 The bicycle's primary design criteria were as follows
 
@@ -89,8 +89,8 @@ brake mounts. We choose it primarily because it was steel and had disc brake
 mounts which were going to be used for wheel speed encoder mounts. It was also
 a good size for the intended riders.
 
-Drive
-=====
+Propulsion
+==========
 
 To allow teh bicycle to be propelled forward without requiring the rider to
 pedal, we opted for a bicycle electric hub motor. Amped Bikes donated a direct
@@ -244,7 +244,8 @@ accept input signals, the filter could be tuned well too. After countless hours
 trying to tune their proprietary filter I gave and went to the roll angle
 measurement design that I should have done in the beginning.
 
-.. todo:: cite Boniolo for roll angle estimation, talk about Danique's work
+.. todo:: cite Boniolo for roll angle estimation, talk about Danique's work,
+   cite other people that handle this problem too.
 
 Roll angle trailer
 ~~~~~~~~~~~~~~~~~~
@@ -261,6 +262,15 @@ attached at the axle of the rear wheel.
 
 Lateral Force
 =============
+
+Strain Gauge Amplification
+==========================
+
+Seat Post
+=========
+
+Foot Pegs
+=========
 
 Rider rigidification
 ====================

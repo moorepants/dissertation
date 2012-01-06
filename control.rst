@@ -610,6 +610,18 @@ Ron - I can describe the dynamics of the human at various "crossover" frequencie
  and various performance levels.  It's true, that it has been verified in many
  laboratory and vehicle control tasks were good performance was required.
 
+Counter Steering
+----------------
+
+Countersteering is a confusing topic and people give different definitions.
+Motorcycle driving instructors teach their students to steer away from the 
+
+Steer torque intially in the opposite direction you want to turn.
+
+Steer torque reverses sign to maintain steady turn.
+
+Steer angle is opposite the direction of the turn.
+
 Model Description
 -----------------
 

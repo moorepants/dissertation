@@ -387,6 +387,257 @@ LQR type follow close behind. H_inf and other more modern control designs make
 up the rest. It is clear that roll stabilization is the critical task and must
 be conquered before path tracking can be employed.
 
+Roll Stabilization
+------------------
+
+It turns out that the bicycle can be stablized with simple feedback of roll
+angle or roll rate. [Mutsaerts2010]_ in fact demonstrates the simple roll rate
+feedback stabilization with a small robotic bicycle. But these are not
+necessarily good controllers, and certainly not controllers which mimic the
+human controller. Regardless, their simplicity allows one to  demonstrate some
+of the interesting system dynamics. Take for example Charlie riding on the
+Rigidcl bicycle at 5.0 m/s (unstable in weave). The linear Whipple model steer
+torque to roll and steer angle transfer functions are
+
+.. math::
+
+   \left(\frac{\phi}{T_\phi}\right)_b(s) =
+   \frac{0.0095052 (s+26.32) (s+16.78)}
+   {(s+22.28) (s+0.5872) (s^2 + 2.801s + 11.24)}
+
+   \left(\frac{\delta}{T_\phi}\right)_b(s) =
+   \frac{-0.094941 (s-3.744) (s+2.729)}
+   {(s+22.28) (s+0.5872) (s^2 + 2.801s + 11.24)}
+
+   \left(\frac{\phi}{T_\delta}\right)_b(s) =
+   \frac{-0.094941 (s+107.8) (s+20.83)}
+   {(s+22.28) (s+0.5872) (s^2 + 2.801s + 11.24)}
+
+   \left(\frac{\delta}{T_\delta}\right)_b(s) =
+   \frac{5.5445 (s+2.934) (s-2.934)}
+   {(s+22.28) (s+0.5872) (s^2 + 2.801s + 11.24)}
+
+.. todo:: Do the negative gains in the numerator signifiy that a postive input
+   gives a negative output?
+
+The denominators of the transfer functions show that we have three stable
+modes, as expected. The numerators are potentially more interesting. Note that
+the steer torque to steer angle transfer function has a right half plane zero
+at :math:`s=2.934`. This single right half plane zero means that the steer
+angle response will exhibit an initial undershoot for a given steer torque
+input [Hoagg2007]_. The step response of the two transfer functions is shown in
+Figure :ref:`figStableStepResponse`.
+
+.. figStableStepResponse:
+
+.. figure:: figures/control/stable-step-response.*
+
+   figStableStepResponse
+
+   The upper graph shows the roll and steer angle time histories for a step
+   response roll torque to the Whipple model linearized about the nomimal
+   configuration. The parameters are taken from the rider Charlie on the Rigicl
+   bicycle and the speed is 7 m/s which is within the stable speed range. The
+   lower graph input is for a step input to steer torque.
+
+As expected we see initial undershoot in the steer angle. In this case, the
+initial undershoot is initially departs in the asymptotic direction, but
+reverses and settles at a negative steer angle. This is easily demonstrated
+while riding a bicycle by placing ones flat open palms on the handlbebar grips.
+By applying a torque intending to turn the handlebars in the positive
+direction, the handlebars initially go in the correct direction, but once the
+frame rolls in the negative direction, the steering angle reverses and puts the
+bicycle into a steady turn with constant steer torque.
+
+If we examine the change in the zeros as a function of forward speed for the
+steer torque to roll and steer angle transfer functions, we see that the steer
+angle zeros do not change with respect to speed while the roll angle zeros do
+increase. But more importantly, there is always a right half plane zero in the
+steer angle transfer function and never one in the roll angle transfer
+function.
+
+.. _figZeroWrtSpeed:
+
+.. figure:: figures/control/zeros-wrt-speed.*
+   :width: 4in
+
+   figZerosWrtSpeed
+
+   The zeros of the steer torque to roll and steer angle transfer functions.
+
+The zeros can be computed analytically with respect to the canonical form
+presented in [Meijaard2007]_.
+
+.. math::
+
+   M =
+   \begin{bmatrix}
+     m_{\phi\phi} & m_{\phi\delta} \\
+     m_{\delta\phi} & m_{\delta\delta}
+   \end{bmatrix}
+
+   C_0 =
+   \begin{bmatrix}
+     0 & {c_0}_{\phi\delta} \\
+     {c_0}_{\delta\phi} & {c_0}_{\delta\delta}
+   \end{bmatrix}
+
+   K_0 =
+   \begin{bmatrix}
+     {k_0}_{\phi\phi} & {k_0}_{\phi\delta} \\
+     {k_0}_{\delta\phi} & {k_0}_{\delta\delta}
+   \end{bmatrix}
+
+   K_2 =
+   \begin{bmatrix}
+     0 & {k_2}_{\phi\delta} \\
+     0 & {k_2}_{\delta\delta}
+   \end{bmatrix}
+
+The state, input and output matrices follow
+
+.. math::
+
+   A =
+   \begin{bmatrix}
+     0 & 0 & 1 & 0 \\
+     0 & 0 & 0 & 1 \\
+     \multicolumn{2}{c}{-M^{-1}(g K_0 + v^2 K_2)} &
+     \multicolumn{2}{c}{-M^{-1} v C_1}
+   \end{bmatrix}
+
+   B =
+   \begin{bmatrix}
+     0 & 0 \\
+     0 & 0 \\
+     \multicolumn{2}{c}{M^{-1}}
+   \end{bmatrix}
+
+   C =
+   \begin{bmatrix}
+     1 & 0 & 0 & 0 \\
+     0 & 1 & 0 & 0
+   \end{bmatrix}
+
+The numerators the transfer functions from the inputs to the outputs are
+computed with
+
+.. math::
+
+   C\operatorname{adj}(sI-A)B
+
+Taking only the steer torque input and solving for the roots of the
+polynomials, the zeros are found
+
+.. math::
+
+   s_{\phi} =
+   -\frac{{c_1}_{\phi\delta} v}{2 m_{\phi\delta}}
+   -\frac{\sqrt{{c_1}_{\phi\delta}^{2} v^{2}
+   -4 g {k_0}_{\phi\delta} m_{\phi\delta}
+   -4 {k_2}_{\phi\delta} m_{\phi\delta} v^{2}}}{2 m_{\phi\delta}}
+
+   s_{\delta} = \pm\sqrt{-\frac{g {k_0}_{\phi\phi}}{m_{\phi\phi}}}
+
+The zeros of :math:`\left(\frac{\delta}{T_\delta}\right)_b(s)` are simply a
+function of the total potential energy of the system divided by the roll moment
+of inertia with respect to the center of mass.
+
+.. math::
+
+   s_{\delta} = \pm\sqrt{-frac{g m_T z_T}{{I_T}_{xx}}}
+
+.. todo:: What does this mean? How can you change the total potential energy
+   and moment of inertia such that you don't have a right half plane zero in the
+   steer?
+
+This right half plane zero is important for understanding how to control a
+bicycle. Controlling by steer torque will unintuitive behavior of the
+resutling motion.
+
+Notice too that the roll torque transfer function zeros are both functions of
+speed. The steer angle zero varies little and has a right half plane zero for
+all speeds of interest. But more interestingly, one roll angle zero is positive
+below about 2 m/s and negative above. This means that for very slow speeds, we
+will see an initial undershoot response in roll angle but not at higher speeds.
+
+Counter Steering
+~~~~~~~~~~~~~~~~
+
+Countersteering is a confusing topic and people give different definitions.
+Motorcycle driving instructors teach their students to steer into the obstacle
+that they want to go around.
+
+[Limebeer2006]_ and [Sharp2008]_ duly note that countersteering is used for
+potentially conflicting ideas. They examine the effects of the right half plane
+zero of simplified point mass model in much the same way as [Astrom2005]_.
+Sharp and Limebeer develop a steer torque to roll angle transfer function which
+has a right half plane zero and Astrom develops a *steer angle* to roll angle
+transfer function that has a right half plane zero. The Whipple model on the
+otherhand does not have a right half plane zero in the "steer" to roll angle
+transfer function.
+
+Here are some potential definitions of countersteer:
+
+- Steer torque is applied intially in the opposite direction you want to turn.
+- Steer torque reverses sign to maintain steady turn.
+- Steer angle is opposite the direction of the turn.
+
+The step response at a stable speed shows that for a given roll angle departure
+the natural stability enforces that steer angle must initially depart in the
+opposite direction. In the case of roll torque input, a positive roll torque
+causes a positive roll angle but an initially negative steer angle. Afterwards
+the bicycle settles into a positive steady turn with respect to yaw. For the
+steer torque input, a positive steer torque causes an initially positive steer
+angle which in turn cause a negative roll angle. The bicycle settles into a
+negative steady turn.
+
+[Limebeer2006]_ note that the required steer torque sign varies with speed, but
+to observe that one needs to control the bicycle as other speeds are
+potentially outside the stable speed range.
+
+Below the weave critical speed, the bicycle can be stabilized by a simple gain
+on roll rate feedback.
+
+.. figure:: figures/control/commanded-steer-torque.*
+
+   figWeaveStepResponse
+
+   The step response to a commanded steer torque at 5.0 m/s which is below the
+   weave speed.
+
+And above the weave critical speed, the bicycle can be stabilzed by a simple
+gain on roll angle feedback.
+
+.. figure:: figures/control/commanded-roll-angle.*
+
+   figCapsizeResponse
+
+   The step response to a commanded roll angle at 10 m/s which is above the
+   capsize speed.
+
+For steer torque control inputs, countersteering amounts to this: To get the
+bicycle into a positive turn, one must initially apply a negative steer
+torque to cause an initially negative steer angle and a positive roll angle.
+The steer angle exhibits initial undershoot due to the right half plane zero
+and settles to a positive angle at steady state. This is the case for at least
+all speeds above very slow speeds where the steer torque to roll angle transfer
+function has a right half plane zero.
+
+.. todo:: apples to apples comparisons to the step response of speeds below, in
+   and above the stable speed range is difficult. The graphs I've made give a
+   step response to commanded steer torque, steer torque and commaned roll
+   angle respectively. It might be better to show the response to the "same"
+   command. Then they could be plotted on one graph or something.
+
+.. todo:: Limebeer2006 talks about this other countersteering idea. While you
+   are in a steady turn you may have to apply torque in the opposite direction to
+   maintain it. My graphs don't show that and the distinction.
+
+.. todo:: How does this relate to the right half plane zeros that Limebeer2006
+   and Astrom2005 talk about? Being that they don't use the Whipple model and
+   they look at steer to roll transfer functions.
+
 Human Operator Control
 ----------------------
 
@@ -616,7 +867,7 @@ Model Description
 The design of the control structure was design to meet these requirements:
 
 1. Roll stabilization is the primary task, with path following in the outer
-   loop. The roll should be stabilize before closing the path following loops.
+   loops. The system should be stable in roll before closing the path following loops.
 2. The input to the bicycle and rider biomechanic model is steer torque.
 3. The neuromuscular mode of the closed system should have a natural frequency
    around 10 rad/s to match laboratory tracking tasks of a human operator.
@@ -871,7 +1122,16 @@ curve.
 
 As can be surmised from the Bode diagram we've now stabilized the system in
 roll by forcing the system to behave like the crossover model around the
-crossover frequency, 2 rad/s.
+crossover frequency, 2 rad/s. We can now command the roll angle as in Figure
+XXX.
+
+.. figure:: figures/control/commanded-roll-angle-human.*
+   :width: 4in
+
+   figRollStable
+
+   The response of the system for a commanded roll angle of 10 degrees. Notice
+   the counter steering. The system has a steady state error?? Should it?
 
 .. math::
 
@@ -929,6 +1189,18 @@ over at half the previous loops crossover frequency.
    The open loop frequency response for the front wheel lateral deviation loop.
    Blue is gain of unity and the green line is uses the gain to give desired
    crossover.
+
+At this point all the loops are closed and the bicycle can track a given path
+with good performance. Figure XX shows the system response to a step commanded
+input to lateral deviation.
+
+.. figure:: figures/control/commanded-lateral-human.*
+
+   figTrackPath
+
+   The step response to a commanded lateral path deviation. Notice that for the
+   positive rightward turn, the steer torque and steer angle are negative to
+   initiate the positive turn.
 
 The gains can be computed across a relevant speed range for the bicycle. Figure
 :ref:`figGains` shows how the gains vary with respect to speed for a particular

@@ -56,24 +56,312 @@
 <span id="davisbicycle"></span><h1>Davis Instrumented Bicycle<a class="headerlink" href="#davis-instrumented-bicycle" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated January 03, 2012 at 17:05:48 PST).
+<p class="last">This document is a draft which is updated regularly (Last updated January 08, 2012 at 20:00:17 PST).
 Once I submit if for my doctoral degree at UC Davis, it will be done. So for
 now use at your own risk. The information may or may not be correct.
 Reviews, comments and suggestions are welcome.</p>
 </div>
+<div class="section" id="preface">
+<h2>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
+<p>At the beginning of 2009 I was in Delft working with Jodi and Arend on much of
+the work explained in the previous Chapters. I was still also in contact with
+Mont and Luke back in Davis. Before I&#8217;d come to Delft, Luke had mentioned the
+possibilties of applying for an NSF grant to fund the remainder of our PhD
+research. Mont doesn&#8217;t have big track record in grant funding for his lab and
+we&#8217;d spent the first few years taking teaching assistance positions which ate
+up most of our available research time outside of classes. I fortunately got
+the Fulbright grant which gave me a year to focus on research and Jodi&#8217;s PhD
+budget helped fund the research costs and some of my conference trips. At the
+beginning of December 2008 Luke sent me an email with a renewed interest in
+applying for the NSF grant and Mont seemed to be on board. Mont also talked
+with Ron and got him interested. We spent the next two months writing our grant
+proposal primarily using video conferencing and collaborative word processing
+to get it done. The basic idea was to pair Ron&#8217;s manual control expertise with
+our bicycle dyanmics expertise to study the dynamics, control and handling
+qualities of bicycles with the theoretical constructs supported by extension
+experimentation. Our work paid off and we recieved the grant, albiet at a
+smaller income than asked for so we had to cut back some of the scope (which
+was probably already too large!). This set us up for a two year study where
+we&#8217;d develop a manunal control model, verify it and the basic bicycle dynamics
+with an instrumented bicycle and a robotic bicycle and finally do some work on
+handling qualities predictions.</p>
+<p>When I got back to Davis in September 2009 we started gearing up for the grant
+work that would start come October 1st. I had to get my qualifying exam done
+in October and I also signed up for a Spanish class (which wasn&#8217;t necessarily a
+good idea for the grant&#8217;s sake). This gave a little slow start, as neither Luke
+or I realized that the scope of what we had to do didn&#8217;t really allow any more
+time for classes. We got moving though and started to plan out the bicycle(s)
+we wre going to build. Our proposal</p>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This chapter details the design and implementation of an instrumented bicycle
+capable of accuratley measuring much of the necessary kinematics and kinetics
+associated with controlling the bicycle.</p>
+<p>The bicycle&#8217;s primary design criteria were as follows</p>
+<ol class="arabic simple">
+<li>Sized for our intended riders</li>
+<li>Accurately measure the rider&#8217;s applied steer torque</li>
+</ol>
+<p>#. Accurately measure the three dimensional rates and orientations of the
+bicylce frame and fork.
+#. Accurately measure the rear wheel rotational rate relative to the bicycle
+frame.
+#. Restrict the rider&#8217;s biomechanical movement to more closely meet the Whipple
+model rigid rider assumption. This also requires the bicycle to be self
+propelled, as no rider leg movemnt is allowed.
+#. Measure a lateral disturbance force</p>
+<p>Secondary</p>
+<ol class="arabic simple">
+<li>Measure the rider&#8217;s restricted upper body motion</li>
+<li>Measure the reaction forces between the rider and bicycle</li>
+</ol>
+<p>We had very succesful results measuring the complete kinematic configuration of
+the bicycle and rider with the motion capture techniques, but I no longer had
+access to a system as good as the one at Vrije, especially not if we intended
+to capture the motion of the system on the ground as opposed the small space
+afforded by the treadmill. With this in mind, we decided to expand the
+on board measurement techniques used in the Delft Instrumented bicycle. The
+downside was inaccurate location tracking of the system. Being that this
+wouldn&#8217;t be detrimental to system identification, we moved forward.</p>
+</div>
 <div class="section" id="bicycle-frame">
 <h2>Bicycle frame<a class="headerlink" href="#bicycle-frame" title="Permalink to this headline">¶</a></h2>
+<p>The bicycle frame is a large Surly 1 x 1 model. It is designed as a single
+speed off road bicycle for 26in wheels with fat tires. The frame is constructed
+from butted cromoly steel tubing. It has both front and rear v-brake and disc
+brake mounts. We choose it primarily because it was steel and had disc brake
+mounts which were going to be used for wheel speed encoder mounts. It was also
+a good size for the intended riders.</p>
+</div>
+<div class="section" id="propulsion">
+<h2>Propulsion<a class="headerlink" href="#propulsion" title="Permalink to this headline">¶</a></h2>
+<p>To allow teh bicycle to be propelled forward without requiring the rider to
+pedal, we opted for a bicycle electric hub motor. Amped Bikes donated a direct
+drive kit for our use and we purchased a light 36 volt lithium ion battery as a
+substitute for the heavy lead acid batteries which came with the kit. The kit
+had a motor controller with a rudmentary &#8220;cruise control&#8221;. I desired the cruise
+control to allow the rider to set the speed of the experiment and then focus
+their attention to lateral control as opposed to throttle control. This worked
+well for the experiments performed on the floor, but was more difficult on the
+treadmill as matching the cruise control to the speed of the treadmill proved
+difficult. So sort of feedback control could alleviate the difficulties.</p>
+</div>
+<div class="section" id="orientations-rates-and-accelerations">
+<h2>Orientations, Rates and Accelerations<a class="headerlink" href="#orientations-rates-and-accelerations" title="Permalink to this headline">¶</a></h2>
+<p>The Whipple bicycle model at constant speed fundamentally has two important
+states of the lateral dynamics: roll and steer (as defined in Chapter
+<a class="reference internal" href="eom.html#eom"><em>Bicycle Equations Of Motion</em></a>). Ideally one would like to measure the angular orientation, rate
+and accelerations of both the rear frame and the front frame. Sensors that
+allow indpendent and accurate measurements off each are potentially ideal, to
+avoid having to estimate measurements.</p>
+<p>Steer angle is easy to measure with either some form of potentiometers or
+encoders and has been accurately measured on many bicycle and motorcycle
+systems. Same goes for the roll and steer rates, which can be measured directly
+with rate gyro or encoders. The angular accelerations aren&#8217;t directly
+measurable, but after-the-fact numerical differentiation with filtering is
+often acceptable. The linear acceleration of point on the body is directly
+measurment with accelemeters, and the angular accelerations can be computed if
+the acceretaion and location of poitns are measured. The roll angle is the most
+tricky measurement. Integration of the roll rate measurment is an option, but
+difinite initial conditions and some way to account for the drift is required,
+and not trivial. The roll angle can be estimated from other measurments and if
+a bicycle model is assumed accurate estimations can be computed with estimation
+techniques such as a Kalman filter. This also poses some problems depending on
+how you&#8217;d want to use the data. If you want the <em>actual</em> roll angle of the
+physical rear frame, assuming a bicycle model and using a Kalman filter is not
+the way to go as you&#8217;ve built in the assumptions of the bicycle model into you
+estimation technique.</p>
+<table border="1" class="docutils">
+<caption>Table of maximal measured values found in all experimental data
+taken in Chapter <em class="xref std std-ref">motioncapture</em>. The ranges were determined from 95
+percentiles, the accuracy as a percentage of the range and the bandwith as
+95 percentile of the power in the signal.</caption>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Measurement</th>
+<th class="head">Range</th>
+<th class="head">Accuracy</th>
+<th class="head">Bandwidth</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Roll Angle</td>
+<td><span class="math">\(\pm 8\)</span> deg</td>
+<td>0.2 deg</td>
+<td>45 hz</td>
+</tr>
+<tr class="row-odd"><td>Roll Rate</td>
+<td><span class="math">\(\pm 30\)</span> deg/s</td>
+<td>0.6 deg/s</td>
+<td>40 hz</td>
+</tr>
+<tr class="row-even"><td>Roll Acceleration</td>
+<td><span class="math">\(\pm 100 \frac{\textrm{deg}}{\textrm{s}}\)</span></td>
+<td><span class="math">\(2 \frac{\textrm{deg}}{\textrm{s}}\)</span></td>
+<td>25 hz</td>
+</tr>
+<tr class="row-odd"><td>Steer Angle</td>
+<td><span class="math">\(\pm 65\)</span> deg</td>
+<td>1 deg</td>
+<td>45 hz</td>
+</tr>
+<tr class="row-even"><td>Steer Rate</td>
+<td><span class="math">\(\pm 150\)</span> deg</td>
+<td>1.5 deg/s</td>
+<td>35 hz</td>
+</tr>
+<tr class="row-odd"><td>Steer Acceleration</td>
+<td><span class="math">\(\pm 600 \frac{\textrm{deg}}{\textrm{s}}\)</span></td>
+<td><span class="math">\(12 \frac{\textrm{deg}}{\textrm{s}}\)</span></td>
+<td>30 hz</td>
+</tr>
+</tbody>
+</table>
+<p>The class of sensors that are called Inertial Measurement Units (IMU) or
+Attitude heading reference systems (AHRS) have become more affordable and small
+enough to be very appropriate for measurements such as ours due to the advent
+of MEMs technology and very small rate gyros and accelerometers. An IMU can
+potentially be rigidly affixed to each body of the system to give complete
+kinematic details of the motion.</p>
+<dl class="docutils">
+<dt>Inertial Measurement Units</dt>
+<dd>An inertial measurement unit typically measures the body fixed the angular rate
+and acceleration of rigid body and point respecitvely.</dd>
+<dt>Attitude Heading Reference System</dt>
+<dd>An attitude heading reference system measures what an IMU does but also oftern
+includes earth magnetic field measuresments and or gps combined with an
+estimation algorithm to provide orientation and/or location estimations along
+with the other measurements.</dd>
+</dl>
+<p>Many of these were in our budget range so we scouted the companies to see what
+was offered.</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Add a small version of the IMU selection spreadsheet</p>
+</div>
+<p>We chose the VN-100 development board from a relatively new company called
+VectorNav due to price, on board orientation calculations and the potential
+ease of collecting data via a typical RS232 serial line. We&#8217;d place a single
+VN-100 on the bicycle frame to measure the angular orientations and rates along
+with the acceleration a point the frame. The VN-100 relied on additional
+magentometer readings and an on-board proprietary Kalman filter for computing
+the orientation.</p>
+<p>The VN-100 would be used in tandem with sensors to measure the front frame
+motion. I went with a similar design and setup as the Delft intrsumented
+bicycye: a pontentiometer for relative steering angle measurement and a single
+axis rate gyro for the body fixed angular rate about the steer axis.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Sensor</td>
+<td>Measurements</td>
+</tr>
+<tr class="row-even"><td>VN-100</td>
+<td>Rear frame angular rates and acceleration of a point (estimations of
+orientation)</td>
+</tr>
+<tr class="row-odd"><td>Single axis rate gyro (Silicon Sensing CRS03-04)</td>
+<td>Bodyfixed angular rate about the steer axis</td>
+</tr>
+<tr class="row-even"><td>Rotory potentiometer (SP22F)</td>
+<td>Relative steer angle</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li>rate gyro was super expensive for little gain</li>
+<li>i couldn&#8217;t ingtegrate the vn-100 into the rest of the DAQ</li>
+<li>VN-100 sucked at giving orientation</li>
+</ul>
+<div class="section" id="steer-angle">
+<h3>Steer Angle<a class="headerlink" href="#steer-angle" title="Permalink to this headline">¶</a></h3>
+<p>I adopted the same steering angle measurement device that I use on the Delft
+instrumented bicycle, with some minor improvements such as better tension
+adjustablity and switching to a screw mount potentiometer.</p>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">add the</p>
+</div>
+<p>The VN-100 turned out to be a poor choice for our application in mutliple ways.
+The second of which I&#8217;ll talk about in a later section. The first is that the
+orientation estimations were very poor. I wanted <em>at least</em> accurate estimate
+of the roll angle of the bicycle. The VN-100 repdeatly did not provide this.
+VectorNav worked with me and tried offer various methods of tuning the VN-100
+with state covariance weightings for the Kalman filter and also to tune out any
+static magenetic fields from the bicycle frame. The highly likely issues were
+associated with both the wheel rotationing and teh front frame rotation all
+relative to the rear frame, with could cause varying distrubances in the
+magnetic field. The hub motor definitely affecting the magnetometer readings
+and these may have been too great to tune out. I also realized that going with
+a proprietary estimator is a bad idead, especially when one has a good idea of
+the dynamics of the rigid body that the sensor is attached to. In our case if
+the Kalman filter was programmable, we could taylor it with the a bicycle model
+to improve the orientaion estimation significantly. Also if the VN-100 could
+accept input signals, the filter could be tuned well too. After countless hours
+trying to tune their proprietary filter I gave and went to the roll angle
+measurement design that I should have done in the beginning.</p>
+<div class="admonition-todo admonition" id="index-2">
+<p class="first admonition-title">Todo</p>
+<p class="last">cite Boniolo for roll angle estimation, talk about Danique&#8217;s work,
+cite other people that handle this problem too.</p>
+</div>
+</div>
+<div class="section" id="roll-angle-trailer">
+<h3>Roll angle trailer<a class="headerlink" href="#roll-angle-trailer" title="Permalink to this headline">¶</a></h3>
+<p>I designed a simple trailer to that was pulled behind the bicycle to measure
+roll angle with a potentiometer, much in the way the steer angle was measured.
+The trailer needed to be light such that it didn&#8217;t adversly affect the lateral
+dynamics and to give a good estimate of the roll angle. The trailer had two
+caster polyurethane wheels (roller blade wheels) attached to a frame which
+attached via a revolute joint aligned with the roll axis to a yoke that
+attached at the axle of the rear wheel.</p>
+<div class="admonition-todo admonition" id="index-3">
+<p class="first admonition-title">Todo</p>
+<p class="last">Make nice figure or photo of the trailer.</p>
+</div>
+</div>
+</div>
+<div class="section" id="lateral-force">
+<h2>Lateral Force<a class="headerlink" href="#lateral-force" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="strain-gauge-amplification">
+<h2>Strain Gauge Amplification<a class="headerlink" href="#strain-gauge-amplification" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="seat-post">
+<h2>Seat Post<a class="headerlink" href="#seat-post" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="foot-pegs">
+<h2>Foot Pegs<a class="headerlink" href="#foot-pegs" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="rider-rigidification">
+<h2>Rider rigidification<a class="headerlink" href="#rider-rigidification" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="data-aquisition">
+<h2>Data aquisition<a class="headerlink" href="#data-aquisition" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="time-sychronization">
+<h2>Time sychronization<a class="headerlink" href="#time-sychronization" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="daq-software">
+<h2>DAQ Software<a class="headerlink" href="#daq-software" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="steer-torque">
 <h2>Steer Torque<a class="headerlink" href="#steer-torque" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="literature-review">
-<h3>Literature Review<a class="headerlink" href="#literature-review" title="Permalink to this headline">¶</a></h3>
 <p>There are very few published studies that measure or attempt to measure steer
 torque on a bicycle or lightweight single track vehicle. There are a more
 analytical studies that attempt to predict steer torques. The following lists
 some that I have read.</p>
 <div class="section" id="steer-torque-from-models">
-<h4>Steer torque from models<a class="headerlink" href="#steer-torque-from-models" title="Permalink to this headline">¶</a></h4>
+<h3>Steer torque from models<a class="headerlink" href="#steer-torque-from-models" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
 <dt>[Limebeer2006]</dt>
 <dd>Limebeer and Sharp show a graph of steer torque for the benchmark bicycle model
@@ -106,13 +394,13 @@ and steer from 0 to 45 degrees are under 3 Nm.</dd>
 </dl>
 </div>
 <div class="section" id="steer-torque-from-experiments">
-<h4>Steer Torque From Experiments<a class="headerlink" href="#steer-torque-from-experiments" title="Permalink to this headline">¶</a></h4>
+<h3>Steer Torque From Experiments<a class="headerlink" href="#steer-torque-from-experiments" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
 <dt>[Cain2010]</dt>
 <dd>Stephen Cain built an instrumented bicycle with a steer torque measuring device
 and studied steady turns.</dd>
 <dt>[Weir1979a]</dt>
-<dd><p class="first">Weir et al. designed an instrumented motorcycle with a torque sensor. The range
+<dd>Weir et al. designed an instrumented motorcycle with a torque sensor. The range
 was +/- 70 Nm with 1% accuracy and&gt;10 Hz dynamic range. The crosstalk due to
 the other moments on the steer were removed with by utilizing two thrust
 bearings. It included stops to prevent sensor overload protection and weighed
@@ -123,12 +411,13 @@ steady turning and straight running and that more sensitivity would be
 needed to measure these accurately. Weir used this to measure steer torques
 for two motorcycles at various speeds (&gt;10 m/s) for steady turning and lane
 change maneuvers. The steady turning produced torques in the range of -10 to
-30 Nm and the lane change produced -20 to 55 Nm.</p>
-<div class="admonition-todo last admonition" id="index-0">
+30 Nm and the lane change produced -20 to 55 Nm.</dd>
+</dl>
+<div class="admonition-todo admonition" id="index-4">
 <p class="first admonition-title">Todo</p>
 <p class="last"><a class="reference external" href="http://biosport.ucdavis.edu/research-projects/bicycle/instrumented-bicycle/steer-torque-measurement/weirSteerTorque.png">http://biosport.ucdavis.edu/research-projects/bicycle/instrumented-bicycle/steer-torque-measurement/weirSteerTorque.png</a></p>
 </div>
-</dd>
+<dl class="docutils">
 <dt>[Lorenzo1997]</dt>
 <dd>David de Lorenzo instrumeted a bike to measure pedal forces, handlebar forces,
 hub forces to measure the in-plane structural loads. He took the bike to the
@@ -143,27 +432,29 @@ Nm. The calibration information leads me to believe that the crosstalk from the
 all of the forces and moments on the handlebars gives a very low accuracy for
 the reported torques, probably in the +/- 1 to 3 Nm range.</dd>
 <dt>[Biral2003]</dt>
-<dd><p class="first">Biral et al. designed a custom steer torque measurement system using a
+<dd>Biral et al. designed a custom steer torque measurement system using a
 cantilever beam. They don&#8217;t specifically discuss the cross talk, but do mention
 that they use a half-bridge strain gauge. This design seems that it could be
 susceptible to cross talk from the forces applied to the handlebars by the
 rider. But they also report experimental values for torque that match model
 predictions very well. The measure torques from -20 to 20 Nm for a slalom
-maneuver at 13 m/s.</p>
-<div class="admonition-todo last admonition" id="index-1">
+maneuver at 13 m/s.</dd>
+</dl>
+<div class="admonition-todo admonition" id="index-5">
 <p class="first admonition-title">Todo</p>
 <p class="last">Biral&#8217;s Steer Torque Design</p>
 </div>
-</dd>
+<dl class="docutils">
 <dt>[Astrom2005]</dt>
-<dd><p class="first">Åström et al. shows a steer torque measurement system constructed for the UCSB
+<dd>Åström et al. shows a steer torque measurement system constructed for the UCSB
 instrumented bicycle but with little extra information. They use a linear force
-transducer of some sort mounted on the handlebars.</p>
-<div class="admonition-todo last admonition" id="index-2">
+transducer of some sort mounted on the handlebars.</dd>
+</dl>
+<div class="admonition-todo admonition" id="index-6">
 <p class="first admonition-title">Todo</p>
 <p class="last">UCSB Steer Torque Measurement</p>
 </div>
-</dd>
+<dl class="docutils">
 <dt>[Cheng2003]</dt>
 <dd>This is a report about a design project at UCSB to develop and implement a
 steer torque measurement device (same one shown the Åström paper). He gives a
@@ -193,12 +484,12 @@ right turn. There seems to be no counter-torque in the data for turns. For the
 sharp turns the highest reported torque is about 10 Nm, for the steady turning
 he reports the highest average torque as 1 Nm.</dd>
 </dl>
-</div>
-</div>
 <div class="section" id="design">
-<h3>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h3>
+<h4>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
 <div class="section" id="initial-design-ideas">
-<h4>Initial Design Ideas<a class="headerlink" href="#initial-design-ideas" title="Permalink to this headline">¶</a></h4>
+<h3>Initial Design Ideas<a class="headerlink" href="#initial-design-ideas" title="Permalink to this headline">¶</a></h3>
 <p>We are planning on measuring the steer torque the rider applies to control a
 bicycle. This will be used for human control model identification and for use
 in the necessary feedback loops required control the riderless bicycle.
@@ -215,73 +506,74 @@ eliminate or minimize the crosstalk and get good, noiseless, accurate readings.
 The following are some basic designs we are working with:</p>
 <dl class="docutils">
 <dt>Åström Design</dt>
-<dd><p class="first">This is a sketch of what was designed for the UCSB instrumented bicycle and
+<dd>This is a sketch of what was designed for the UCSB instrumented bicycle and
 presented in a <cite>2005 paper by Karl Åström et al</cite>.
 It uses an off-the-shelf axial load cell mounted between a floating handlebar
 and a bar extending from the steer tube. This seems to be a good design, but
-it would be nice to eliminate the handlebar bearings and the rod ends.</p>
-<div class="admonition-todo last admonition" id="index-3">
+it would be nice to eliminate the handlebar bearings and the rod ends.</dd>
+</dl>
+<div class="admonition-todo admonition" id="index-7">
 <p class="first admonition-title">Todo</p>
 <p class="last">Astrom Design</p>
 </div>
-</dd>
+<dl class="docutils">
 <dt>Landman Design</dt>
 <dd>My professor, <a class="reference external" href="http://eng.odu.edu/aerospace/aefaculty/dlandman.shtml">Drew Landman</a> , from Virginia who I
 worked with designed force balances for wind tunnel testing at the <a class="reference external" href="http://www.nasa.gov/vision/earth/improvingflight/fst_overview.html">LFST</a>
 suggested a <cite>redesign that eliminates the bearings and replaces them with
 flexures</cite> .</dd>
 <dt>Weir Design</dt>
-<dd><p class="first">David Weir designed a motorcycle steer torque measurement system in his <cite>1979
+<dd>David Weir designed a motorcycle steer torque measurement system in his <cite>1979
 technical repor</cite> t that also floats the handlebars
 on bearings but uses an off-the-shelf torque sensor instead. The sketch shows
 the basic concept. The handlebars are floating on bearings and the torque
 sensor connects the handlebars to the steer tube. He claimed that the design
 lacked low range resolution. Motorcycles can experience torques that are as
-high as 50 Nm according to some models.</p>
-<div class="admonition-todo last admonition" id="index-4">
+high as 50 Nm according to some models.</dd>
+</dl>
+<div class="admonition-todo admonition" id="index-8">
 <p class="first admonition-title">Todo</p>
 <p class="last">Weir Design</p>
 </div>
-</dd>
+<dl class="docutils">
 <dt>Internal Stem Design</dt>
-<dd><p class="first">This is a design that we came up with when preparing our abstract on the topic.
+<dd>This is a design that we came up with when preparing our abstract on the topic.
 It is fundamentally the same as the Åström design but includes flexure elements
-instead of rod ends and is a bit smaller in scale.</p>
-<div class="admonition-todo admonition" id="index-5">
+instead of rod ends and is a bit smaller in scale.</dd>
+</dl>
+<div class="admonition-todo admonition" id="index-9">
 <p class="first admonition-title">Todo</p>
 <p class="last">Internal Stem Design</p>
 </div>
-<div class="admonition-todo last admonition" id="index-6">
+<div class="admonition-todo admonition" id="index-10">
 <p class="first admonition-title">Todo</p>
 <p class="last">steerTorque.png</p>
 </div>
-</dd>
+<dl class="docutils">
 <dt>Double Steer Design</dt>
-<dd><p class="first">This design separates the handlebar and stem&#8217;s rotation axis from the steer
+<dd>This design separates the handlebar and stem&#8217;s rotation axis from the steer
 tube and fork&#8217;s rotation axis much the way many long wheel base recumbents or
 bakfiets are designed. The load cell is then place on the connecting rod. This
-design is is prone to slop in the steer mechanism.</p>
-<blockquote class="last">
-<div><div class="admonition-todo admonition" id="index-7">
+design is is prone to slop in the steer mechanism.</dd>
+</dl>
+<div class="admonition-todo admonition" id="index-11">
 <p class="first admonition-title">Todo</p>
 <p class="last">Double Steer Design</p>
 </div>
-</div></blockquote>
-</dd>
+<dl class="docutils">
 <dt>Bearing-less design</dt>
-<dd><p class="first">Luke came up with this design and was able to eliminate the need for bearings.
+<dd>Luke came up with this design and was able to eliminate the need for bearings.
 Two arms are clamped to the steer tube and a load cell is placed between the
 arms. The difference in this is that not all of the torque is transferred
-through the load cell, but maybe enough is that we can measure it.</p>
-<div class="admonition-todo last admonition" id="index-8">
+through the load cell, but maybe enough is that we can measure it.</dd>
+</dl>
+<div class="admonition-todo admonition" id="index-12">
 <p class="first admonition-title">Todo</p>
 <p class="last">Bearing-less Design</p>
 </div>
-</dd>
-</dl>
 </div>
 <div class="section" id="forces-on-the-steer-tube">
-<h4>Forces on the steer tube<a class="headerlink" href="#forces-on-the-steer-tube" title="Permalink to this headline">¶</a></h4>
+<h3>Forces on the steer tube<a class="headerlink" href="#forces-on-the-steer-tube" title="Permalink to this headline">¶</a></h3>
 <p>Ideally, we&#8217;d like to slap a strain gauge on the steer tube to measure the
 shear strain and get a good torque reading but this isn&#8217;t so easily done. The
 bicycle steer tube has various other forces acting on it. For the most basic
@@ -290,7 +582,7 @@ and compression. Likewise the person can apply forces to the handlbars which
 also put the steer tube into bending and compression. It turns out that the
 moments in the steer tube can be as high as 200 times the steer torques we are
 trying to measure.</p>
-<div class="admonition-todo admonition" id="index-9">
+<div class="admonition-todo admonition" id="index-13">
 <p class="first admonition-title">Todo</p>
 <p class="last">Basic Bicycle Forces</p>
 </div>
@@ -301,7 +593,7 @@ shear and torsion create strain in the direction normal to axial. The following
 comes from Beckwith and Margoni&#8217;s Mechanical Measurements and shows two
 possible strain gage bridge configurations that can reduce or eliminate strains
 not due to torsion.</p>
-<div class="admonition-todo admonition" id="index-10">
+<div class="admonition-todo admonition" id="index-14">
 <p class="first admonition-title">Todo</p>
 <p class="last">Strain Bridge Configuration for Torsion</p>
 </div>
@@ -314,33 +606,33 @@ look into what the forces in the steer tube actually look like.</p>
 <p>We modeled the fork as a basic beam supported by the headset bearings (points
 C and D) and the forces/moments due to the ground reaction force and force
 applied to the handlebars were calculated.</p>
-<div class="admonition-todo admonition" id="index-11">
+<div class="admonition-todo admonition" id="index-15">
 <p class="first admonition-title">Todo</p>
 <p class="last">Fork Modeled as a Beam</p>
 </div>
 <p>The following graphs show what the shear and bending moment diagrams for
 various loadings look like both from the side and the front of the bike.</p>
-<div class="admonition-todo admonition" id="index-12">
+<div class="admonition-todo admonition" id="index-16">
 <p class="first admonition-title">Todo</p>
 <p class="last">mvdiagram01.png</p>
 </div>
-<div class="admonition-todo admonition" id="index-13">
+<div class="admonition-todo admonition" id="index-17">
 <p class="first admonition-title">Todo</p>
 <p class="last">mvdiagram02.png</p>
 </div>
-<div class="admonition-todo admonition" id="index-14">
+<div class="admonition-todo admonition" id="index-18">
 <p class="first admonition-title">Todo</p>
 <p class="last">mvdiagram03.png</p>
 </div>
-<div class="admonition-todo admonition" id="index-15">
+<div class="admonition-todo admonition" id="index-19">
 <p class="first admonition-title">Todo</p>
 <p class="last">mvdiagram04.png</p>
 </div>
-<div class="admonition-todo admonition" id="index-16">
+<div class="admonition-todo admonition" id="index-20">
 <p class="first admonition-title">Todo</p>
 <p class="last">mvdiagram05.png</p>
 </div>
-<div class="admonition-todo admonition" id="index-17">
+<div class="admonition-todo admonition" id="index-21">
 <p class="first admonition-title">Todo</p>
 <p class="last">mvdiagram06.png</p>
 </div>
@@ -360,13 +652,13 @@ measured. We are looking at a <a class="reference external" href="http://www.fut
 sensor that has a max torque of either <a class="reference external" href="http://www.futek.com/product.aspx?stock=FSH02594">6 Nm</a> or <a class="reference external" href="http://www.futek.com/product.aspx?stock=FSH02595">12 Nm</a> but are unsure what the
 best range and accuracy for these measurements are since there seems to be no
 public data from bicycle steer torque measurements.</p>
-<div class="admonition-todo admonition" id="index-18">
+<div class="admonition-todo admonition" id="index-22">
 <p class="first admonition-title">Todo</p>
 <p class="last">Torque Measurement Design</p>
 </div>
 </div>
 <div class="section" id="torque-wrench-experiments">
-<h4>Torque Wrench Experiments<a class="headerlink" href="#torque-wrench-experiments" title="Permalink to this headline">¶</a></h4>
+<h3>Torque Wrench Experiments<a class="headerlink" href="#torque-wrench-experiments" title="Permalink to this headline">¶</a></h3>
 <p>Following Cheng&#8217;s lead, we decided to do some experiments with a accurate
 torque wrench to see get an idea of maximum torques. We made a little
 attachment to the steer tube that allowed easy connection of various torque
@@ -374,15 +666,15 @@ wrenches. A helmet camera was mounted such that it could view the torque
 wrench, handlebars and speedometer relative to the bicycle frame. The torque
 wrench had a range from 0 to 8.5 Nm and a +/- 2% accuracy of full scale (+/-
 0.17 Nm). The speed was maintained by an electric hub motor (i.e. no pedaling).</p>
-<div class="admonition-todo admonition" id="index-19">
+<div class="admonition-todo admonition" id="index-23">
 <p class="first admonition-title">Todo</p>
 <p class="last">Torque wrench mount</p>
 </div>
-<div class="admonition-todo admonition" id="index-20">
+<div class="admonition-todo admonition" id="index-24">
 <p class="first admonition-title">Todo</p>
 <p class="last">Torque wrench face</p>
 </div>
-<div class="admonition-todo admonition" id="index-21">
+<div class="admonition-todo admonition" id="index-25">
 <p class="first admonition-title">Todo</p>
 <p class="last">Torque camera</p>
 </div>
@@ -401,39 +693,39 @@ circle tracking (radius = 5 and 10 meters). All of the videos and data can be
 downloaded <a class="reference external" href="http://www.archive.org/details/BicycleSteerTorqueExperiment01">here</a> . The results
 ( <cite>R code</cite> ), are shown in the
 following graphs:</p>
-<div class="admonition-todo admonition" id="index-22">
+<div class="admonition-todo admonition" id="index-26">
 <p class="first admonition-title">Todo</p>
 <p class="last">torqueHist.png</p>
 </div>
-<div class="admonition-todo admonition" id="index-23">
+<div class="admonition-todo admonition" id="index-27">
 <p class="first admonition-title">Todo</p>
 <p class="last">torqueSpeed.png</p>
 </div>
-<div class="admonition-todo admonition" id="index-24">
+<div class="admonition-todo admonition" id="index-28">
 <p class="first admonition-title">Todo</p>
 <p class="last">Circle5.png</p>
 </div>
-<div class="admonition-todo admonition" id="index-25">
+<div class="admonition-todo admonition" id="index-29">
 <p class="first admonition-title">Todo</p>
 <p class="last">Circle10.png</p>
 </div>
-<div class="admonition-todo admonition" id="index-26">
+<div class="admonition-todo admonition" id="index-30">
 <p class="first admonition-title">Todo</p>
 <p class="last">HalfCircle6.png</p>
 </div>
-<div class="admonition-todo admonition" id="index-27">
+<div class="admonition-todo admonition" id="index-31">
 <p class="first admonition-title">Todo</p>
 <p class="last">HalfCircle10.png</p>
 </div>
-<div class="admonition-todo admonition" id="index-28">
+<div class="admonition-todo admonition" id="index-32">
 <p class="first admonition-title">Todo</p>
 <p class="last">LaneChange.png</p>
 </div>
-<div class="admonition-todo admonition" id="index-29">
+<div class="admonition-todo admonition" id="index-33">
 <p class="first admonition-title">Todo</p>
 <p class="last">LineTrack.png</p>
 </div>
-<div class="admonition-todo admonition" id="index-30">
+<div class="admonition-todo admonition" id="index-34">
 <p class="first admonition-title">Todo</p>
 <p class="last">Slalom.png</p>
 </div>
@@ -467,15 +759,13 @@ for different maneuvers:</p>
 <p>There seems to be little to no speed dependency on the max and min torque values.</p>
 </div>
 <div class="section" id="final-steer-assembly-design">
-<h4>Final Steer Assembly Design<a class="headerlink" href="#final-steer-assembly-design" title="Permalink to this headline">¶</a></h4>
-<div class="admonition-todo admonition" id="index-31">
+<h3>Final Steer Assembly Design<a class="headerlink" href="#final-steer-assembly-design" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-todo admonition" id="index-35">
 <p class="first admonition-title">Todo</p>
 <p class="last">Final Steer Torque Measurement Design</p>
 </div>
-</div>
-</div>
 <div class="section" id="steer-dynamics">
-<h3>Steer Dynamics<a class="headerlink" href="#steer-dynamics" title="Permalink to this headline">¶</a></h3>
+<h4>Steer Dynamics<a class="headerlink" href="#steer-dynamics" title="Permalink to this headline">¶</a></h4>
 <p>The final design was setup to eliminate measuring anything but the torque in
 the steer tube along the steer axis, but this measured torque, <span class="math">\(T_M\)</span>,
 does not equal the input torque typically used for out bicycle models, (i.e.
@@ -556,8 +846,7 @@ of the angular momentum of <span class="math">\(H\)</span> in <span class="math"
 cross product of the vector from <span class="math">\(s\)</span> to <span class="math">\(h_o\)</span> with the mass times
 the acceleration of <span class="math">\(h_o\)</span> in <span class="math">\(N\)</span>:</p>
 <div class="math">
-\[\sum \bar{T}^{H/s} = ^N\dot{\bar{H}}^{H/h_o} + \bar{r}^{h_o/s} \times m_H
-\ ^N\bar{a}^{ho}\]</div>
+\[\sum \bar{T}^{H/s} = ^N\dot{\bar{H}}^{H/h_o} + \bar{r}^{h_o/s} \times m_H ^N\bar{a}^{ho}\]</div>
 <p>The only torques applied to the handlebar that we are interested in act about the steer axis.</p>
 <div class="math">
 \[\sum T^{H/s}_3 = T_\delta - T_F - T_M - T_V\]</div>
@@ -565,8 +854,12 @@ the acceleration of <span class="math">\(h_o\)</span> in <span class="math">\(N\
 relationship:</p>
 <div class="math">
 \[T_\delta - F\operatorname{sgn}({\dot{\delta}}) - T_M - c(w_{h3} - w_{b3}) = (^N\dot{\bar{H}}^{H/h_o} + ^s\bar{r}^h_o \times m_H
-\ ^N\bar{a}^s) \cdot \hat{h}_3\]</div>
+^N\bar{a}^s) \cdot \hat{h}_3\]</div>
 <p>And <span class="math">\(T_\delta\)</span> can be solved for:</p>
+<div class="admonition-todo admonition" id="index-36">
+<p class="first admonition-title">Todo</p>
+<p class="last">the following equation is giving errors in the latex document</p>
+</div>
 <div class="math">
 \[\begin{split}\begin{align}
 T_{\delta} = &amp;
@@ -601,8 +894,10 @@ d_{s2} w_{b2} w_{b3} - d_{s2} \dot{w}_{b1} +
 a_{v2})\cos(\delta) - \\\notag
 &amp; c (- w_{b3} + w_{h3}) + T_F + T_s
 \end{align}\end{split}\]</div>
+</div>
+</div>
 <div class="section" id="experiments">
-<h4>Experiments<a class="headerlink" href="#experiments" title="Permalink to this headline">¶</a></h4>
+<h3>Experiments<a class="headerlink" href="#experiments" title="Permalink to this headline">¶</a></h3>
 <p>The first thing we did was to try to characterize the friction in the bearings.
 We did this by mounting the bicycle frame such that the steer axis was
 vertical, the wheel was off the ground, and the bicycle frame was made very
@@ -612,38 +907,13 @@ us to perturb the handlebars and let the vibrations damp out. We recorded data
 from the steer potentiometer, steer rate gyro and the torque sensor during
 these perturbations. For now, we simply used the steer angle signals to
 estimate both the viscous and coulomb friction from the two bearing sets.</p>
-</div>
-</div>
-</div>
-<div class="section" id="rates-and-accelerations">
-<h2>Rates and accelerations<a class="headerlink" href="#rates-and-accelerations" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="lateral-force">
-<h2>Lateral Force<a class="headerlink" href="#lateral-force" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="rider-rigidification">
-<h2>Rider rigidification<a class="headerlink" href="#rider-rigidification" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="wiring-diagram">
-<h2>Wiring diagram<a class="headerlink" href="#wiring-diagram" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="data-aquisition">
-<h2>Data aquisition<a class="headerlink" href="#data-aquisition" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="time-sychronization">
-<h2>Time sychronization<a class="headerlink" href="#time-sychronization" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="roll-angle-trailer">
-<h2>Roll angle trailer<a class="headerlink" href="#roll-angle-trailer" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="daq-software">
-<h2>DAQ Software<a class="headerlink" href="#daq-software" title="Permalink to this headline">¶</a></h2>
 <table class="docutils footnote" frame="void" id="id14" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label">[1]</td><td>The elasticity of the steer column may also be a factor.</td></tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
 

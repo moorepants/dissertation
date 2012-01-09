@@ -23,6 +23,9 @@ speeds.stable = 7.0;
 speeds.capsize = 10.0;
 speedNames = fieldnames(speeds);
 
+par = par_text_to_struct([HUMAN_CONTROL_DIR filesep ...
+    'parameters/RigidCharliePar.txt']);
+
 % create the neuromuscular block
 wnm = 30;
 zetanm = 0.717;
@@ -121,7 +124,6 @@ kPhiDot.capsize = nan;
 % feedback for stability.
 
 % create the bicycle block
-par = par_text_to_struct([HUMAN_CONTROL_DIR filesep 'parameters/RigidCharliePar.txt']);
 [Ab, Bb, Cb, Db] = whipple_pull_force_abcd(par, speeds.weave);
 bicycle = ss(Ab, Bb, Cb, Db);
 bicycleTF = tf(bicycle);

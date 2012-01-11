@@ -158,7 +158,7 @@ Bicycle Robots
    Another one on the Honda robot, but probably in Japanese.
 [Yamakita2006]_
    implements a modified controller from the one presented in [Yamakita2005]_
-   with an additional :math:`H_\inf` controller. They show some successful roll
+   with an additional :math:`H_\infty` controller. They show some successful roll
    stabilization of a robot scooter in which they only implement the roll
    stabilization control.
 [Micchini2006]_
@@ -183,7 +183,7 @@ Bicycle Robots
 [Solveberg2007]_
    Read. MS thesis on controlling a bicycle robot.
 [Thanh2008]_
-   Thanh designs a controller with :math:`H_2/H_\inf` techniques and applies it
+   Thanh designs a controller with :math:`H_2/H_\infty` techniques and applies it
    to a bicycle robot which uses a flywheel for stabilization. He compares it
    to a PD controller and a genetic algorithm and shows that it is more robust.
 [Tanaka2009]_
@@ -383,7 +383,7 @@ control, than human operator control.
 
 Variations on PID control of steer angle or steer torque with feedback of the
 roll angle are the most popular controller designs, many them being successful.
-LQR type follow close behind. H_inf and other more modern control designs make
+LQR type follow close behind. :math:`H_\infty` and other more modern control designs make
 up the rest. It is clear that roll stabilization is the critical task and must
 be conquered before path tracking can be employed.
 
@@ -768,7 +768,7 @@ and a first order lead filter for a mental workload model. His control elements
 include a roll angle feedback gain, a reference signal prefilter, and a
 compensator with proportional, integral and lead control terms. The proportional
 term in the compensator is the only speed dependent term. They select the
-numerical values for the control elements using :math:`H_\infinity` loop
+numerical values for the control elements using :math:`H_\infty` loop
 shaping. They finally show simulation results with good performance with
 regards to disturbance rejection and roll tracking.
 

@@ -45,6 +45,8 @@ or I realized that the scope of what we had to do didn't really allow any more
 time for classes. We got moving though and started to plan out the bicycle(s)
 we wre going to build. Our proposal 
 
+Mention Maury's empty lab.
+
 Introduction
 ============
 
@@ -57,12 +59,12 @@ The bicycle's primary design criteria were as follows
 #. Sized for our intended riders
 #. Accurately measure the rider's applied steer torque
 #. Accurately measure the three dimensional rates and orientations of the
-bicylce frame and fork.
+   bicylce frame and fork.
 #. Accurately measure the rear wheel rotational rate relative to the bicycle
-frame.
+   frame.
 #. Restrict the rider's biomechanical movement to more closely meet the Whipple
-model rigid rider assumption. This also requires the bicycle to be self
-propelled, as no rider leg movemnt is allowed.
+   model rigid rider assumption. This also requires the bicycle to be self
+   propelled, as no rider leg movemnt is allowed.
 #. Measure a lateral disturbance force
 
 Secondary
@@ -79,8 +81,8 @@ on board measurement techniques used in the Delft Instrumented bicycle. The
 downside was inaccurate location tracking of the system. Being that this
 wouldn't be detrimental to system identification, we moved forward.
 
-Bicycle frame
-=============
+Bicycle
+=======
 
 The bicycle frame is a large Surly 1 x 1 model. It is designed as a single
 speed off road bicycle for 26in wheels with fat tires. The frame is constructed
@@ -88,6 +90,8 @@ from butted cromoly steel tubing. It has both front and rear v-brake and disc
 brake mounts. We choose it primarily because it was steel and had disc brake
 mounts which were going to be used for wheel speed encoder mounts. It was also
 a good size for the intended riders.
+
+.. todo:: add photo of bicycle frame and components
 
 Propulsion
 ==========
@@ -216,8 +220,11 @@ axis rate gyro for the body fixed angular rate about the steer axis.
 - i couldn't ingtegrate the vn-100 into the rest of the DAQ
 - VN-100 sucked at giving orientation
 
+.. todo:: wheel speed
+
+
 Steer Angle
-~~~~~~~~~~~
+===========
 
 I adopted the same steering angle measurement device that I use on the Delft
 instrumented bicycle, with some minor improvements such as better tension
@@ -247,8 +254,9 @@ measurement design that I should have done in the beginning.
 .. todo:: cite Boniolo for roll angle estimation, talk about Danique's work,
    cite other people that handle this problem too.
 
+
 Roll angle trailer
-~~~~~~~~~~~~~~~~~~
+==================
 
 I designed a simple trailer to that was pulled behind the bicycle to measure
 roll angle with a potentiometer, much in the way the steer angle was measured.
@@ -260,29 +268,430 @@ attached at the axle of the rear wheel.
 
 .. todo:: Make nice figure or photo of the trailer.
 
+.. figure:: figures/davisbicycle/trailer-angle.*
+
+   figTrailerAngle
+
+   The yoke pitch angle :math:`alpha` and the potentiometer angle :math:`\beta`
+   as a function of the bicycle roll angle :math:`\theta` for different for
+   various joint heights :math:`h`. The potentiometer angle is highly linear
+   with respect to the roll angle.
+
+.. todo:: Put in the correct values for the roll angle trailer.
+
 Lateral Force
 =============
 
-Strain Gauge Amplification
-==========================
+I got the idea of for lateral force perturbations from some of my first email
+exchanges with Arend and when I was in Delft we did several experiments with
+lateral perturbations, but the main probably was that we didn't measure it. We
+weren't able to come up with a clever way of perturbing the system with a
+harmoinic input [#]_, so I simply attached a 100 lb force load cell (Interface
+SSM-100) inline with a rope attached to the underside of the bicycle seat. This
+worked for the first round of experiments, but only provided a negative lateral
+force as it could only be pulled. Ideally, the rider shouldn't know when or
+which direction (or magnitude?) of the disturbance. We solved these by
+attaching the load cell inline with a push/pull stick which was attached to the
+seat via a ball joint.  The rider wore a helmet with a blinder on the side of
+the lateral force stick so that they could see the movements of the stick or
+the person operating the stick. Finally, on the treadmill we wrote a simple
+program which randomly instructed the stick operator when and which direction
+to applied the force.  During the floor runs, we retained the blinder and
+instructed the operator with a series of random push/pull sequences. The
+operator applied as many perturbations as possible on the length of the track.
+
+.. todo:: add picture of ball joint attachement under the seat
+
+.. todo:: Example perturbation measurment.
+
+.. todo:: Calibration of lateral force
+
 
 Seat Post
 =========
 
+I had intended to measure the forces at all of the points of interaction of the
+rider and bicycle with the seat being a primary location. Cal Stone
+[Stone1990]_ developed a seat post which was capable of measuring five
+components of force in the seat post shaft with an array of strain gauges. It
+was not capable of measuring the torque about the seat axis and I had intended
+to add the strain bridge to measure the sixth component. The seatpost was
+instrumented by simply gluing strain gage bridges onto a stock seatpost. Due to
+this the accuracy of the measurements was probably not high.
+
 Foot Pegs
 =========
 
-Rider rigidification
-====================
+We designed a set of foot pegs which were capable of measuring the downward
+force applied at the interface of the human's feet. Each foot peg was fit with
+two strain gage bridges.
+
+Strain Gauge Amplification
+==========================
+
+All of the load cells required analog amplification of the bridge signals to
+bring them up to a level measurable by the NI USB-6218 which had a maximum
+range of :math:`\pm 10` volts. I purchased the Futek CSG-110 strain amplifier
+for the torque sensor and had the sensor factory calibrated in tandem with the
+amplifier. Cal Stone [Stone1990]_ had developed a custom amplifier for the
+seatpost and handlebars which could amplify up to 14 bridge signals. Being that
+I was intending to make use of the seat post already, the amplifier box was
+used for the remaining strain gage amplification. I didn't ever hook up the
+seat post and foot pegs, so the amplifier was only used to for the lateral
+force load cell. I used 16.5k resistors for the first stage analog amplifier.
+
+Calibration
+===========
+
+All of the analog sensors I used require some sort of calibration that develops
+a relationship between the measured voltage from the sensor and the physical
+phenomena that is being measured. I self calibrated some sensors, had one
+calibrated at the factory and used the reported manufacturer specifications for
+others.
+
+Potentionmeters
+---------------
+
+I calibrated the steer angle sensor by inserting a custom protractor into the
+steer tube of the fork and measuring the voltage of the potentiometer output at
+a series of distinct angles. This calibration was done anytime the timing belt
+or pulleys were disegaged.
+
+.. todo:: image of the protractor
+
+The roll angle potentiometer was calibrated by measuring the bicycle frame's
+absolute roll angle with a digital level and recording the voltage output for a
+sweep of angles.
+
+For both cases potentiometer's output voltage is ratiometric with respect to
+the supply voltage :math:`V_s` and the potentiometer angle can be computed
+given the average calibration supply voltage :math:`V_c` and the slope and
+intercept of the calibration curve relating voltage to angle the angle.
+Depending on the calibration the angle could be the rotation angle of the
+potentiometer as in the case of the roll angle measurement or the actual steer
+angle in the case of the steer angle due to the gearing from the steer tube [#]_.
+
+.. math::
+
+   \delta = \frac{V_c}{V_s} m V + b
+
+Rate Gyros and Accelerometers
+-----------------------------
+
+The analog accelerometers and rate gyros typically have specifications for the
+sensitivity and the zero bias, where both are ratiometric (i.e. scale with
+respect to the supply voltage). The sensitivty gives the linear relationship
+of the output voltage for a given acceleration or rate. The zero bias is the
+output voltage of the sensor for zero acceleration or rate for a given supply
+voltage.
+
+.. math::
+
+   \dot{\delta}_m = m \left(V - \frac{V_s}{V_C} z\right)
+
+.. todo:: These only seem to ratiometric in the bias (i.e. the slope doesn't
+   change with respect to supply voltage change. This needs to be checked better.
+
+Wheel Rate
+----------
+
+We measured rear wheel angular speed with the same technique used with the
+Delft instrumented bicycle. We mounted a small DC motor such that a knurled
+roller wheel attached to its shaft rolled against the rear tire. The voltage of
+of a DC motor has a linear relationship with the rotational speed of the motor.
+To generate a calibration curve, we used an AMETEK 1726 Digital Tachometer to
+measure the rotational speed in rpm and digital multimeter to measure the
+voltage for a sweep of motor rotational speeds.
+
+.. list-table::
+   :header-rows: 1
+
+   * - RPM
+     - Voltage
+   * - 42.5
+     - 0.094
+   * - 62.0
+     - 0.1385
+   * - 89.0
+     - 0.199
+   * - 132.0
+     - 0.291
+   * - 185.0
+     - 0.406
+   * - 271.5
+     - 0.595
+   * - 391.0
+     - 0.857
+   * - 569.0
+     - 1.252
+   * - 855.0
+     - 1.879
+   * - 1243.0
+     - 2.738
+   * - 1785.0
+     - 3.91
+   * - 2588.0
+     - 5.67
+
+The relationship from motor rotational speed to voltage is :math:`mV+b` with
+the slope and intercept of the rpm to voltage curve determined by regression is
+:math:`m=456.3862\frac{\textrm{rpm}}{\textrm{volt}}\)` and
+:math:`b=-1.2846\textrm{ rpm}\)`. We then attached a small disc to the motor
+shaft such that the disc rubs against the rotating tire. The disc diameter was
+chosen such that the motor would ouput 0 to 10 volts for a bicycle forward
+speed range of about 0 to 30 mph. The rotational speed of the rear wheel as a
+function of voltage can be written as a linear realtionship
+
+.. math::
+
+   \dot{\theta}_R=s_f(mV+b)\frac{r_d}{r_c}
+
+where :math:`r_d` is the radius of the generator disc and :math:`r_c` is
+distance from the rear wheel center to the disc/tire contact point and
+:math:`s_f=\frac{2\pi}{60}` is a scaling factor from rpm to radians per second.
+:math:`r_d=0.028985` m and :math:`r_c=0.333375` m when the generator was first
+attached (runs 0 to XX) and :math:`r_c=0.3199511` m after the generator was
+remounted (runs XX to XX). The relationship between the rear wheel rate as a
+function of voltage can more generally be rewritten as
+
+.. math::
+
+   \dot{\theta}_R = m_R V + b_R
+
+where :math:`m_R=\frac{s_fmr_d}{r_c}` and :math:`b_R=\frac{s_fbr_d}{r_c}`. The
+nominal forward speed of the bicycle can also be computed
+
+.. math::
+
+   v = \dot{\theta}_R * r_R
+
+Lateral Force
+-------------
+
+The lateral force was calibrated by applying a series of compressive and
+tensile loads to the load cell and measuring the amplified voltage output.
+Before calibrations, the amplifier offset voltage potentiometer was set to
+about 2.5 v and the nulling potentiometer adjusted so that the voltage was zero
+for the no load case.
+
+.. math::
+
+   F = \frac{V_c}{V_s} (m V + b)
+
+Steer Torque
+------------
+
+The steer torque sensor was calibrated at the factory in tandem with the
+amplifier and Futek supplies a certifeid calibration document with the
+calibration data. The CSG-110 amplifier supplies constant 10 vdc to excite the
+strain gauge brigde. I did not measure this voltage because the maximum voltage
+for the NI USB-6218 is 10 V, so no ratiometric scaling was used. As long as the
+battery supplied 12+ V to the CSG-110, this would not be an issue.
+
+.. math::
+
+   T_{\delta} = m V + b
+
+.. todo:: include a link to a copy of the calibration sheet
+
+Software
+--------
+
+I wrote a simple program that collects the data for the self calibrations and
+generates a generic calibration file for the various sensors. The data for the
+manufacturer supplied calibration data was manually entered to create similar
+files. These files are parsed to build the database described XXX.
+
+Rider Harnesses
+===============
+
+The bicycle was designed to accomodate free rider biomechanical modtion and a
+subset of motions.
+
+Rigid
+-----
+
+The harness was constructed such that the rider was rigidified as much as
+possible with respect to the rear frame. A medical back brace was used to
+rigidify the spine and hip motion. I then attached the brace to the bicycle
+frame via a stout adjustable arm. Finally, I fashioned some knee straps with
+hard drive magnets and a attachment plate on the frame so that the rider's
+legs would be rigid with respect to the rear frame. The magnets were weak
+enough that the rider could remove his legs in an emergency. This left the
+rider's arms and head free to move. The arm motion was required for controlling
+the bicycle, although one could imagine fixing the rider's arms and only
+allowing control with motion of their hands. The head probably should have been
+rigidified with respect to the body cast, but we didn't. Jan had great plans
+for a halo like ring with nails sticking through to the rider's scalp so that
+they couldn't move their head without excrutiating pain, we just never got
+around to making it.
+
+Restricted
+----------
+
+A second harness was partially developed to restrict the rider's motion to that
+described in :ref:`eom`. A back brace which left the hips free to move was used
+to keep the spine straight and a custom molded hip braced was developed to hold
+securely to the hip bone. The hip brace would then be attached via a revolute
+in the roll direction to allow the hips to roll about the seat. The back brace
+would then be attached to the hip brace via a join which would allow upper body
+lean with respect to the hips.
 
 Data aquisition
 ===============
 
+Both the VectorNav VN-100 and the NI USB-6218 were connected to a small ASUS
+EEEPC netbook which was mounted on the rear rack of the bicycle. The devices
+were controlled and the data logged using Matlab. I interacted with the VN-100
+with Matlab's Serial I/O toolbox and the NI USB-6218 with the Data Aquisition
+Toolbox. A custom program written withing Matlab's Graphical User Interface
+framework was designed to allow the user to set metadata before each run, arm
+the system and view the raw data signals after the run.
+
+- Automatically increments run numbers
+- Set metadata: rider, environment, speed, manuever, notes
+- Initializes the system
+- View raw data time history traces
+- Load previous runs, view the time traces, edit the metadata and resave
+- Save output as a mat
+- Convert mat file to hdf5 format
+
+.. todo:: Screenshot of the gui
+
+- nice if you could delete runs and only increment of the latest run (it may do
+  this)
+
+Due to the time synchronization issue we were limited to a single trigger
+setup, versus a multiple trigger for repeated runs. (i.e. we had to stop after
+every run to re-initialize the computer, versus allowing the rider to trigger a
+series of runs in a row without having to stop).
+
+The source code for the software is available on Github, including some tools
+for initial post processing.
+
 Time sychronization
 ===================
 
-DAQ Software
-============
+When we originally chose to use the VectorNav VN-100 and the NI USB-6218 with a
+netbook PC, we'd convinced ourselves that they would all work together
+seamlessly. The manufacturers of each device seemed to think so and so did we.
+This turned out to be very wrong. The main issue, which seems to rear its head
+in data aquisition often, is time synchronization of all the hardware involved.
+A PC running a vanilla operating system is not capable of detailed time
+management of processes. This is certainly true of collecting serial data from
+two independent devices. My intention was to collect data from both the VN-100
+and the USB-6218 simulataneously with the Matlab Serial I/O and Data aquisition
+toolboxes, hopefully triggering the initial collection of data from the two
+devices simulatenaously or by reading the VN-100 serial data through the
+USB-6218. The simultaneously triggering was hampering primarily by the VN-100's
+asychrnoous data transfer and no apparent ways to either start it with a
+trigger or by recording some signal from it through the USB-6218. It may be
+possible to read serial data through the USB-6218, but I never was able to
+figure it out. It very well may have been missing the features to do so, or
+that Matlab didn't have a robust enough interaction with the USB-6218 to do so.
+I struggled quite a bit with this unforseen issue and we started looking at
+solutions to measure the same event with both the VN-100 and the USB-6218 and
+to synchronize the signals afterwards. We would need to select a sensor which
+was also on the VN-100 and then excite the two sensors with the same event.
+Ideally this event would be a step input to both sensors. We tried rate gyros
+and accelerometers but couldn't come up with an adequate event, until we
+mentioned the problem to Ron and he immediately suggested just riding over a
+bump! This was the ticket. We ended up attaching an additional three axis
+acceleromater to the VN-100 development board which would read the same
+vertical component of acceleration and constructing a bump for the bicycle to
+travel over at the being of each run. This provided us with two signals which
+could be syncrhonized in time.
+
+Bump
+----
+
+The accelerometers had a :math:`\pm 3` g range, so we needed a bump which would
+provide veritcal accelerations within that range for speeds from 1 to 7 m/s.
+For a sinusodial shaped bump, the vertical accelration for a given speed can
+easily be computed. The height of a bump as a function of time is
+
+.. math::
+   :label: eqBumpHeight
+
+   y(t) = \frac{h}{2}\left[1 - \operatorname{cos}\left(\frac{2 \pi v}{L}t\right)\right]
+
+where the maximum bump height is :math:`h`, :math:`v` is the forward speed and
+:math:`L` is the length of the bump. The acceleration
+
+.. math::
+
+   \frac{d y(t)}{dt} = 2 h \left(\frac{\pi v}{L}\right)^2
+   \operatorname{cos}\left( \frac{2 \pi v}{L} t \right)
+
+Being that the cosine varies from -1 to 1, the maximum acceleration due to the
+bump and acceleration due to gravity is
+
+.. math::
+
+   a = 2 h \left(\frac{\pi v}{L}\right)^2 + g
+
+The maximum height of of a 1 meter long bump and forward speed of 7 m/s to give
+a 3 g acceleration is
+
+.. math::
+
+  h = \frac{a - g}{2}\left(\frac{L}{\pi v}\right)^2 =
+  \frac{3 * 9.81 \textrm{m/s} - 9.81 \textrm{m/s}}{2}
+  \left(\frac{1 \textrm{m}}{\pi 7 \textrm{m/s}}\right)^2 = 0.020 m
+
+I fashioned a very low sinusoidal bump from would that we laid on the track on
+the floor at teh beginning of the track and also launched under the bicycle on
+the treadmill. The bump lauching is somewhat amusing and we had to construct a
+"bump catcher" so that the bump didn't fly off the back of the treadmill and
+hurt anyone or anything.
+
+.. todo:: photo of the bump design and bump catcher, maybe the video
+
+Signal Synchronization
+----------------------
+
+The bump provides the event and the acceleration output of the tandem
+accelerometers logs the event. The time shift between the two signals can be
+computed by minimizing the least squares with respect to on signal minus the
+other signal which has been interpolated at the sample times of the first
+signal.
+
+.. figure:: figures/davisbicycle/unsync.*
+
+   This plot shows the accelerometer signals collected by both the NI USB-6218
+   and the VN-100 for a typical run. The spikes in acceleration are due to the
+   bicycle traversing the bump. The NI signal starts about a third of a second
+   before the VN signal.
+
+The basic algoritm for computing the error between the two signals is:
+
+1. Shift the NI signal some time tau.
+2. Truncate both signals around the common data.
+3. Interpolate the NI signal at the VN time samples.
+4. Compute the sum of squares of the VN signal minus the interpolated NI
+   signal.
+
+Using this formulation, you can then minimize the error with respect to tau.
+The minimization requires a good guess, as the minimzing function has local
+minima. I use both the location of the max values in the signals and finding
+the mimimal value of the error as a function of a fixed number of tau values to
+get good guesses. See the source code for the gorey details.
+
+.. figure:: figures/davisbicycle/sync.*
+   :width: 4in
+
+   This plot shows the same accelerometer signals shown in the previous figure
+   after finding the optimal time shift.
+
+The computed time shift is used to shift and truncate all of the signals.
+
+Things to Fix
+=============
+
+The steering universal joint needs keyways.
+Git rid of the VN-100 and replace with two rate gyros.
+Add some gearing to the roll angle measurement.
+Do away with the slip clutch.
 
 Steer Torque
 ============
@@ -860,5 +1269,18 @@ from the steer potentiometer, steer rate gyro and the torque sensor during
 these perturbations. For now, we simply used the steer angle signals to
 estimate both the viscous and coulomb friction from the two bearing sets.
 
+.. rubric:: Footnotes
+
+.. [#] a sum of sines would be ideal, see [Lange2011]_ for some ideas
+   on other types of inputs
+
+.. [#] It slipped my mind to add a step up gear for the roll angle measurement,
+   leaving the output voltage range small with respect to the roll angle range.
+   Ideally, the potentiometer should rotate its full rotation for a desired
+   roll angle range.
 
 .. [#] The elasticity of the steer column may also be a factor.
+
+
+
+

@@ -28,8 +28,12 @@ not necessarily reflect the views of the National Science Foundation.
 * Arend
 * Jodi
 * Jim
-* Grad interns: Danique, Peter, Chris, Gilbert
-* Undergrad interns
+* Grad interns: Danique, Peter, Chris, Gilbert, Garry
+* Undergrad interns: Steven Yen, Mohammed, Joe, Eric, Chet, Steven
+* Librarians: Bob in particular
+* Vrije: Knoek van Soest and Richard Casius
+* Riders: Victor, Charlie, Luke
+* Jan, Tai, Alvin
 * Others...
 
     We would like to thank Knoek van Soest and Richard Casius of the

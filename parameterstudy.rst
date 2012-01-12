@@ -65,6 +65,8 @@ The following sections provide some the results.
 
 .. todo:: maybe cite Sharp1994
 
+.. todo:: Cossalter1999 shows how steady turn torque is affected by trail.
+
 Geometric Variation
 ===================
 

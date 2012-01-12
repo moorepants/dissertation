@@ -587,6 +587,8 @@ right half plane zero. The Whipple model matches the [Limebeer2006]_
 interpretation, i.e. that the right half plane zero is the steer torque to
 steer angle transfer function.
 
+.. todo:: Quote cossalter 2007 on the second def of coutnersteer
+
 The first and most common definition of countersteer is
 
 - Steer torque is applied in the opposite direction you want to turn which in
@@ -655,6 +657,11 @@ function has a right half plane zero.
    and Astrom2005 talk about? Being that they don't use the Whipple model and
    they look at steer to roll transfer functions.
 
+.. todo:: It'd be interesting to see how this works with rider lean torque too.
+   Weir 1972 says that controlling heading is easier by rider lean control due to
+   the fact that there is no right half plane zero (as opposed to steer torque to
+   heading, which does have a right half plane zero).
+
 Human Operator Control
 ----------------------
 
@@ -685,6 +692,14 @@ develops a more up-to-date model with the same type of structure as van
 Lunteren and Stassen, where he feeds back roll angle and steer angle, and
 drives steer torque with PID controllers. He also points out a sign error in
 van Lunteren and Stassen's work.
+
+[Roland1972]_
+   They develop a PID controller with a time delay and pole? for both steer
+   torque and rider lean torque control to stabilize the inner roll loop. The
+   previewed error in the desired path in several future time steps is weighted
+   to calculate a cumlative error which is then multiplied by a gain to compute
+   an adjustement to the commanded roll angle. They show simulations of both
+   good roll stabilization and slalom path tracking.
 
 Weir and Zellner
 ~~~~~~~~~~~~~~~~

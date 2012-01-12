@@ -47,6 +47,8 @@ systems.
 Lateral Force Input
 ===================
 
+.. todo:: Roland1973 laterally perturbs a motorcycle model.
+
 The Whipple model is typically defined with three input forces roll torque
 :math:`T_4`, rear wheel torque :math:`T_6` and steer torque :math:`T_7`. Here I
 add a fourth input, a lateral force :math:`F_{c_l}`, which acts on a point on
@@ -1085,6 +1087,9 @@ We intended to develop a harness and pair it with a force measuring seat post
 and foot pegs which measure the downward force applied by the feet to the
 bicycle with the goal to characterize the force interaction between the rider
 and the bicycle which causes the bicycle to roll.
+
+.. todo:: mention how changing the roll angle when you off the seat is very
+   easy
 
 Conclusions
 ===========

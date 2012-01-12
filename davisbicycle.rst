@@ -251,8 +251,7 @@ accept input signals, the filter could be tuned well too. After countless hours
 trying to tune their proprietary filter I gave and went to the roll angle
 measurement design that I should have done in the beginning.
 
-.. todo:: cite Boniolo for roll angle estimation, talk about Danique's work,
-   cite other people that handle this problem too.
+.. todo:: cite jackson1998 for steer angle
 
 
 Roll angle trailer
@@ -278,6 +277,10 @@ attached at the axle of the rear wheel.
    with respect to the roll angle.
 
 .. todo:: Put in the correct values for the roll angle trailer.
+
+.. todo:: cite Boniolo for roll angle estimation, talk about Danique's work,
+   cite other people that handle this problem too.
+
 
 Lateral Force
 =============
@@ -556,7 +559,14 @@ the system and view the raw data signals after the run.
 - Save output as a mat
 - Convert mat file to hdf5 format
 
-.. todo:: Screenshot of the gui
+.. _figGui:
+
+.. figure:: figures/davisbicycle/bicycle-daq-gui.*
+   :width: 6 in
+
+   figGUI
+
+   A screenshot of the software running under Matlab 7.8.0 (2009a) on Windows XP .
 
 - nice if you could delete runs and only increment of the latest run (it may do
   this)
@@ -696,30 +706,189 @@ Do away with the slip clutch.
 Steer Torque
 ============
 
-Literature Review
------------------
+Steer torque has been shown to be the most effective input required to control
+a bicycle and the input that the human most likely uses to control a bicycle.
+For the bicycle-rider system as a whole, the steer torque effectively a state.
+Accurately measuring the applied steer torque can provide rich data with which
+to understand the bicycle dynamics and the validity of the underlying models.
+But steer torque is one of the more difficult variables to properly measure.
+The require steering torque for controlling a bicycle in normal manuevers is a
+relatively low magnitude. This small torque can be hidden by the other forces a
+rider may apply to the bicycle's handlebars. Secondly, the small magnitude
+torque requires a well designed load cell and strain gague bridge to give
+accurate measurments.
+
+[Weir1972]_ demonstrates that steer angle control input has poor gain and phase
+margin as compared to steer torque control input.
+
+[Roland1972]_ differentiaties steer torque input from steer angle.
 
 There are very few published studies that measure or attempt to measure steer
-torque on a bicycle or lightweight single track vehicle. There are a more
-analytical studies that attempt to predict steer torques. The following lists
-some that I have read.
+torque on a bicycle or lightweight single track vehicle and these measurements
+typically do not match the results of the analytical models. There have been
+more attempts at measuring the steer torque on motorcycles.
 
-Steer torque from models
-~~~~~~~~~~~~~~~~~~~~~~~~
+.. todo:: go through articl database looking for more examples of steer torque
+   stuff
+
+Bicycle Experiments
+-------------------
+
+[Lorenzo1997]_
+   David de Lorenzo instrumeted a bike to measure pedal forces, handlebar
+   forces, hub forces to measure the in-plane structural loads. He took the
+   bike to the trails and had 7 riders do a downhill section. The hand
+   reactions were measured with a handlerbar sensitive to x (pointing forward
+   and parallel to the ground) and z (pointing upwards, perpendicular to the
+   ground) axis forces on both the left and right sides of the handlebar. Net
+   torque about any vector in the fork plane of symmetry can be calculated from
+   these. Figure 3d shows a plot of steering torque with maximums around 7 Nm.
+   The stem extension torque (representing the torque from pushin down and up
+   on the handlebars) reaches 15 Nm. The calibration information leads me to
+   believe that the crosstalk from the all of the forces and moments on the
+   handlebars gives a very low accuracy for the reported torques, probably in
+   the +/- 1 to 3 Nm range.
+
+   .. todo::diagram of lorenzo's design
+
+[Jackson1998]_
+   They don't measure steer torque but attempt predict the contributions to
+   torque on the front frame based on orientation, rate and acceleration data
+   taken while riding a bicycle with no-hands.
+[Cheng2003]_
+   This is a report about a design project at UCSB to develop and implement a
+   steer torque measurement device (same one shown the Åström paper). The
+   experiments and measurements seem to be one of a kind for bicycles. They
+   begin with doing some basic experiments by attaching a torque wrench to a
+   bicycle and made left at right turns at speeds from 0 to 13 m/s (0 to
+   30mph). The torques were under 5 Nm except for the 13 m/s trial which read
+   about 20 Nm. They designed a pretty nice compac torque measurement setup by
+   mounting the handlebars on bearings and using a linear force transducer to
+   connect the handlbars to the steer tube which reduced the effects of other
+   moments and forces acting on the steer tube. The use of bearings and rodends
+   may be questionable as there is bearing friction and slop.  Furthermore,
+   downward forces on the handlebars could possibly still be transmitted to the
+   load cell. The design does allow one to choose the lever arm for the load
+   cell, thus giving some choice to amplify the force signal. They set it up to
+   measure from 0 to 84 Nm with a Model SM Series S-type load cell from
+   Interface with a 670 Newton range. They used a transducer amplifier also for
+   signal conditioning. There are several sections on calibration, with some
+   description of the use of pulleys and cables to apply a torque to the
+   handlebars. They measured the torque during two different manuever types: a
+   sharp turn at various angles and steady turns on various diameter circles
+   both at 10mph (4.5 meters/second). The rider maintained constant speed
+   through visual feedback of a speedometer. He talks of very noisy
+   measurements and filters the noise by some type of moving average. He does
+   not identify an countersteering. He claims the rider turns the handle bars
+   right to initiate a right turn, which counter to what model predict. There
+   seems to be no counter-torque in the data for turns. For the sharp turns the
+   highest reported torque is about 10 Nm, for the steady turning he reports
+   the highest average torque as 1 Nm.
+
+   .. figure:: figures/davisbicycle/cheng-steer-torque-design.*
+
+[Astrom2005]_
+   Åström et al. talks briefly about the a steer torque measurement system
+   constructed for the UCSB instrumented bicycle but with little extra
+   information. They use a linear force transducer of some sort mounted on the
+   handlebars.
+[Iuchi2006]_
+   They construct a bicycle with a steer motor and controller which treats the
+   rider's addtional input as additive instead of a disturbance. The rider's
+   steer torque contribution is estimated from the motor torque and the
+   handlebar and motor moments of inertia. Little detail is given to properly
+   assess the design, but measuring steer torque by motor current may be
+   effective.
+[Cain2010]_
+   He designed a custom torque sensor that fit inside a bicycle steer tube. He
+   mostly removed the crosstalk effects due to an axial load on the sensor, but
+   the design is still susetible to bending moments on the steer tube. He also
+   didn't account for the dynamic inertial affects of the handlebar and fork/wheel
+   which are above and below the sensor, but these are potentially zero for
+   steady turns. His measured steer torques for steady turns never exceeded a
+   magnitude of 2.4 n-m. He wasn't able to predict steer torque well with his
+   bicycel model and only points to the fact that the sensor was 90% oversized.
+[Ouden2011]_
+   Designs a steer torque sensor for a bicycle which has a range of about
+   +/-7.5 n-m. He was aware of crosstalk issues with respect to the other
+   forces applied to the handlebars and tried to design accordingly, but found
+   that his design was still very suseptible to handlebar loads. He modifies
+   the device to eventually get more reliable readings. He doesn't account for
+   the inertial effects of the front frame.
+
+Motorcycle Experiments
+----------------------
+
+[Dohring195X]_
+   Supposedly he measured steering torque, but I've yet to see that.
+[Weir1979a]_
+   Weir et al. designed an instrumented motorcycle with a torque sensor. The range
+   was +/- 70 Nm with 1% accuracy and >10 Hz dynamic range. The crosstalk due to
+   the other moments on the steer were removed with by utilizing two thrust
+   bearings. It included stops to prevent sensor overload protection and weighed
+   14 Newtons. They comment that the handlebars are significantly rigid for their
+   purposes. It was a modular design set up for multiple motorcycles. They
+   comment on the range being too large for small amplitude inputs used in
+   steady turning and straight running and that more sensitivity would be
+   needed to measure these accurately. Weir used this to measure steer torques
+   for two motorcycles at various speeds (>10 m/s) for steady turning and lane
+   change maneuvers. The steady turning produced torques in the range of -10 to
+   30 Nm and the lane change produced -20 to 55 Nm.
+
+   .. figure:: figures/davisbicycle/weir-torque-load-cell.*
+      :width: 4in
+
+      The steer torque measurement design from [Weir1979a]_. The adaptor plate
+      allowed one to attached the main housing to a varierty of motorcycle forks.
+      The handlebar mounting block "floated" on a set of thrust bearings that
+      resisted all forces applied to the handlebars except the the moment about
+      the steer axis. The Lebow torque sensor resisted the moment about the
+      steering axis to give a pure torque measurment.
+
+[Sugizaki1988]_
+   They measure steer torque on four motorcycles during high speed lane
+   changes. No detail of the steering torque measurment system is shown but
+   they show the trime traces of steer torque for some of the manuevers which
+   vary between -20 and 20 Nm. The time traces have little visivle human remant
+   or noise.
+[Taro2000]_
+   Measures steer torque, but I don't have the paper.
+[Bortoluzzi2000]_
+   Same description of the transducer as Biral2003.
+[Biral2003]_
+   Biral et al. designed a custom steer torque measurement system for a
+   motorcycle using a cantilever beam. The handlebars were mounted on a bearing
+   similar in idea to [Weir1979a]_ but the steering torque load is transmitted
+   through a thin cantilever beam which engagaes the fork. This design seems
+   that it could be susceptible to cross talk from the forces applied to the
+   handlebars by the rider, as it relies on the bearing to take all of the
+   non-steering torque loads. But they report experimental values for torque
+   that match their model predictions very well. The measure torques from -20 to
+   20 Nm for a slalom maneuver at 40 m/s.
+
+   .. figure:: figures/davisbicycle/biral-steer-torque-design.*
+      :width: 4in
+
+[Capitani2006]_
+   They measure steer torque on a scooter during a lange change and turns to
+   compare with their model. No detail is given on how steer torque is
+   measured, so I can comment on the quality of the measurement but they report
+   values of -15 to 40 n-m on a couple of graphs. This is extremely poor and I
+   wouldn't trust the data or the model.
+[Evertse20XX]_
+   He mounts 2 axis load cells on at the handlebar grips to measure the forces
+   on the grip. This puts the sensor right at the human/machine interface thus
+   negating the need to worry about the interial affects of the front frame.
+
+   .. todo:: find his thesis and see what he measured
+
+Bicycle Models
+--------------
 
 [Limebeer2006]_
-  Limebeer and Sharp show a graph of steer torque for the benchmark bicycle model
-  on page 47 for step inputs of steer torque that range from -0.5 to 2.5 Nm for
-  extreme roll and steer angles.
-
-[Sharp2007]_
-  Robin Sharp uses a multi-degree of freedom motorcycle model and an LQR
-  controller with preview to control a motorcycle moving at 30 m/s through a 4
-  meter lane change and a 250 meter S-turn. For the lane change he gets torques
-  ranging from about -20 Nm to 55 Nm for a more aggressive control and -4 to 6 Nm
-  for less aggressive control. The S-turn gives torques from -40 Nm to 70 Nm with
-  a sharp peak in torque in the middle of the S-turn.
-
+   Limebeer and Sharp show a graph of a steer torque prefilter (i.e. torque
+   generated for roll control) output to command a ~40 degree roll angle for
+   the benchmark bicycle model. The torques are in the realm of -0.5 to 2.5 Nm.
 [Sharp2007a]_
   Robin Sharp uses the benchmark bicycle model and an LQR controller with preview
   to follow a randomly generated path that has about 2 meter lateral deviations.
@@ -727,102 +896,183 @@ Steer torque from models
   to 15 Nm. Medium control reduces the torques to under +/- 10 Nm. Straight line
   to circle path maneuvers show torques ranging from -0.5 to 0.5 Nm for loose
   controls and -2.5 to 2.5 for medium controls.
-
+[Connors2008]_
+   They model a recumbent bicycle with the whipple model and additional
+   rotationing legs. The bicycle is stabilized in roll from 5 to 30 m/s
+   requiring up to +/- 8nm of steering torque, which is a function of the leg
+   osciallatio frequency.
 [Sharp2008a]_
   Robin Sharp used the benchmark bicycle model and an LQR controller with preview
   to make a bicycle track a 4 meter lane change at 6 m/s. During this manuever,
   the steer toque ranged from about -1 to 1 Nm. He also showed a very fine steer
   torque variation in the range of 0 to 0.0025 Nm about 10 meters before the
   start of the lane change.
-
 [Peterson2009]_
   Peterson and Hubbard show the steady turning required steering torques for the
   benchmark bicycle on page 7. The torques for lean angles from 0 to 10 degrees
   and steer from 0 to 45 degrees are under 3 Nm.
 
-Steer Torque From Experiments
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Motorcycle Models
+-----------------
 
-[Cain2010]_
-  Stephen Cain built an instrumented bicycle with a steer torque measuring device
-  and studied steady turns.
+[Sharp1971]_
+   Reports steady state motorcycle steering torques from -25 n-m to 2.35 Nm.
+   What angles and what speeds?
+[Weir1979]_
+   his thesis has steer torque from models
+[Cossalter1999]_
+   Studies steady turning of a motorcycle model with torodial tires and tires
+   as force generators. For slower speed steady turns, the model predicts
+   steering torques up to 10 n-m.
+[Tanelli2006]_
+   They stablize a motorcycle model at roll angle ups to 30 degrees with -5 to
+   7.5 nm.
+[Sharp2007]_
+   Robin Sharp uses a multi-degree of freedom motorcycle model and an LQR
+   controller with preview to control a motorcycle moving at 30 m/s through a 4
+   meter lane change and a 250 meter S-turn. For the lane change he gets torques
+   ranging from about -20 Nm to 55 Nm for a more aggressive control and -4 to 6 Nm
+   for less aggressive control. The S-turn gives torques from -40 Nm to 70 Nm with
+   a sharp peak in torque in the middle of the S-turn.
+[Cossalter2007]_
+   They study steady turning of motorcycles and show a plot that predicts steer
+   torques in the range of -3 nm to 10 nm for lateral accelerations from 0 to
+   11 m/s^2 and speeds from 5 to 50 m/s.
+[Marumo2007]_
+   Their steer controller for Sharps four degree of freedom motorcycle model
+   shows a -50 nm maximum torque for a commanded roll angle of 20 degrees.
 
-[Weir1979a]_
-  Weir et al. designed an instrumented motorcycle with a torque sensor. The range
-  was +/- 70 Nm with 1% accuracy and\>10 Hz dynamic range. The crosstalk due to
-  the other moments on the steer were removed with by utilizing two thrust
-  bearings. It included stops to prevent sensor overload protection and weighed
-  14 Newtons. They comment that the handlebars are significantly rigid for their
-  purposes. It was a modular design set up for multiple motorcycles. They
-  comment on the range being too large for small amplitude inputs used in
-  steady turning and straight running and that more sensitivity would be
-  needed to measure these accurately. Weir used this to measure steer torques
-  for two motorcycles at various speeds (\>10 m/s) for steady turning and lane
-  change maneuvers. The steady turning produced torques in the range of -10 to
-  30 Nm and the lane change produced -20 to 55 Nm.
+.. todo:: talk about how noone accounts for the inertial affects related to teh
+   position of the sensor
 
-.. todo:: http://biosport.ucdavis.edu/research-projects/bicycle/instrumented-bicycle/steer-torque-measurement/weirSteerTorque.png
+.. todo:: talk about how bearings may not remove all cross talk
 
-[Lorenzo1997]_
-  David de Lorenzo instrumeted a bike to measure pedal forces, handlebar forces,
-  hub forces to measure the in-plane structural loads. He took the bike to the
-  trails and had 7 riders do a downhill section. The hand reactions were measured
-  with a handlerbar sensitive to x (pointing forward and parallel to the ground)
-  and z (pointing upwards, perpendicular to the ground) axis forces on both the
-  left and right sides of the handlebar. Net torque about any vector in the fork
-  plane of symmetry can be calculated from these. Figure 3d shows a plot of
-  steering torque with maximums around 7 Nm. The stem extension torque
-  (representing the torque from pushin down and up on the handlebars) reaches 15
-  Nm. The calibration information leads me to believe that the crosstalk from the
-  all of the forces and moments on the handlebars gives a very low accuracy for
-  the reported torques, probably in the +/- 1 to 3 Nm range.
+Steering torque has been measured in relatively few instances of bicycle
+experiments and not many more for motorcycles. Of these, very few prove that
+their design wasn't suspectible to cross talk and for the small torque control
+used in typical bicycle control (i.e. less than 10 Nm, but the majority less
+than 5 Nm). Most of these designs measure the torque somewhere inbetween the
+rider hand interface and the ground contact point. This is an acceptly maybe
+ideal way to measure the steer torque, but no one has accounted for the dynamic
+inertial effects of the front frame above or below the sensor. [Everste2009]_
+is the only design which mitigates this issue.
 
-[Biral2003]_
-  Biral et al. designed a custom steer torque measurement system using a
-  cantilever beam. They don't specifically discuss the cross talk, but do mention
-  that they use a half-bridge strain gauge. This design seems that it could be
-  susceptible to cross talk from the forces applied to the handlebars by the
-  rider. But they also report experimental values for torque that match model
-  predictions very well. The measure torques from -20 to 20 Nm for a slalom
-  maneuver at 13 m/s.
+With these previous works in mind, I wanted to develop a very accurate steer
+torque measurement system for our bicycle. If you are intersted in extracting
+the "pure torque" applied by the rider to control the bicycle for model
+validation purposes, it is critical to this measurement correct.
 
-.. todo:: Biral's Steer Torque Design
+I started by taking some crude steer torque measurements myself, similar to the
+first method presented by [Cheng2003]_, as I hadn't found any of the pre 2008
+references yet. Secondly, I address the issue of the potential loads acting on
+the steer tube other than steer torque. Then I present various design ideas
+and the final design. And finally, I show the calculations to account for the
+inertial effects of the front frame.
 
-[Astrom2005]_
-  Åström et al. shows a steer torque measurement system constructed for the UCSB
-  instrumented bicycle but with little extra information. They use a linear force
-  transducer of some sort mounted on the handlebars.
+Torque Wrench Experiments
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. todo:: UCSB Steer Torque Measurement
+Following Cheng's lead, we decided to do some experiments with a accurate
+torque wrench to see get an idea of maximum torques. We made a little
+attachment to the steer tube that allowed easy connection of various torque
+wrenches. A helmet camera was mounted such that it could view the torque
+wrench, handlebars and speedometer relative to the bicycle frame. The torque
+wrench had a range from 0 to 8.5 Nm and a +/- 2% accuracy of full scale (+/-
+0.17 Nm). The speed was maintained by an electric hub motor (i.e. no pedaling).
 
-[Cheng2003]_
-  This is a report about a design project at UCSB to develop and implement a
-  steer torque measurement device (same one shown the Åström paper). He gives a
-  pretty bad anedoctal introduction to bicycle dynamics, but the experiments and
-  measurements seem to be one of a kind. They did some basic experiments by
-  attaching a torque wrench to a bicycle and made left at right turns at speeds
-  from 0 to 13 m/s (0 to 30mph). The torques were under 5Nm except for the 13 m/s
-  trial which read about 20 Nm. They designed a pretty nice compac torque
-  measurement setup by mounting the handlebars on bearings and using a linear
-  force transducer to connect the handlbars to the steer tube which reduced the
-  effects of other moments and forces acting on the steer tube. The use of
-  bearings and rodends may be questionable as there is bearing friction and slop.
-  Furthermore, downward forces on the handlebars could possibly still be
-  transmitted to the load cell. The design does allow one to choose the lever arm
-  for the load cell, thus giving some choice to amplify the force signal. They
-  set it up to measure from 0 to 84 Nm with a Model SM Series S-type load cell
-  from Interface with a 670 Newton range. They used a transducer amplifier also
-  for signal conditioning. There are several sections on calibration, with some
-  description of the use of pulleys and cables to apply a torque to the
-  handlebars. They measured the torque during two different manuever types: a
-  sharp turn at various angles and steady turns on various diameter circles both
-  at 10mph (4.5 meters/second). The rider maintained constant speed through
-  visual feedback of a speedometer. He talks of very noisy measurements and
-  filters the noise by some type of moving average. He does not identify an
-  countersteering. He claims the rider turns the handle bars right to initiate a
-  right turn. There seems to be no counter-torque in the data for turns. For the
-  sharp turns the highest reported torque is about 10 Nm, for the steady turning
-  he reports the highest average torque as 1 Nm.
+.. todo:: Torque wrench mount
+
+.. todo:: Torque wrench face
+
+.. todo:: Torque camera
+
+The `data file` includes the run
+number that corresponds to the video number, the rider's estimate of the speed
+after the run in miles per hour, the maximum reading from the torque needle
+after the run in inch-lbs, the rider's name, the maneuver, the minimum speed
+seen on the video footage in miles per hour, the maximum speed seen on the
+video footage in miles per hour, the maximum torque seen on the video footage
+in inch-lbs, the minimum torque seen on the video footage in newton-meters, and
+the rotation sense for each run (+ for clockwise [right turn] and - for counter
+clockwise [left turn]) . There were seven different maneuvers: straight into
+tracking a half circle (radius = 6 meters and 10 meters), tracking a straight
+line, straight to a 2 meter lane change, slalom with 3 meter spacing, steady
+circle tracking (radius = 5 and 10 meters). All of the videos and data can be
+downloaded `here
+<http://www.archive.org/details/BicycleSteerTorqueExperiment01>`_ . The results
+( `R code` ), are shown in the
+following graphs:
+
+.. todo:: torqueHist.png
+
+.. todo:: torqueSpeed.png
+
+.. todo:: Circle5.png
+
+.. todo:: Circle10.png
+
+.. todo:: HalfCircle6.png
+
+.. todo:: HalfCircle10.png
+
+.. todo:: LaneChange.png
+
+.. todo:: LineTrack.png
+
+.. todo:: Slalom.png
+
+The primary goal was to determine the maximum torques we will see for the types
+of maneuvers we are interested in. The histograms shows that we never recorded
+any torques higher than 5 Nm. The following shows the max and min torque values
+for different maneuvers:
+
+ManeuverMax Torque
+
+Min Torque
+
+Steady Circle (r = 10m)
+
+3.4
+
+-2.4
+
+Steady Circle (r = 5m)
+
+2.4
+
+-2.2
+
+Half Circle (r = 10m)
+
+3.8
+
+-3.2
+
+Half Circle (r = 6m)
+
+3.4
+
+-5.0
+
+Lane Change (2m)
+
+2.9
+
+-2.6
+
+Line Tracking
+
+2.6
+
+-3.4
+
+Slalom
+
+4.5
+
+-4.8
+
+There seems to be little to no speed dependency on the max and min torque values.
 
 Design
 ------
@@ -968,110 +1218,6 @@ public data from bicycle steer torque measurements.
 
 .. todo:: Torque Measurement Design
 
-Torque Wrench Experiments
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Following Cheng's lead, we decided to do some experiments with a accurate
-torque wrench to see get an idea of maximum torques. We made a little
-attachment to the steer tube that allowed easy connection of various torque
-wrenches. A helmet camera was mounted such that it could view the torque
-wrench, handlebars and speedometer relative to the bicycle frame. The torque
-wrench had a range from 0 to 8.5 Nm and a +/- 2% accuracy of full scale (+/-
-0.17 Nm). The speed was maintained by an electric hub motor (i.e. no pedaling).
-
-.. todo:: Torque wrench mount
-
-.. todo:: Torque wrench face
-
-.. todo:: Torque camera
-
-The `data file` includes the run
-number that corresponds to the video number, the rider's estimate of the speed
-after the run in miles per hour, the maximum reading from the torque needle
-after the run in inch-lbs, the rider's name, the maneuver, the minimum speed
-seen on the video footage in miles per hour, the maximum speed seen on the
-video footage in miles per hour, the maximum torque seen on the video footage
-in inch-lbs, the minimum torque seen on the video footage in newton-meters, and
-the rotation sense for each run (+ for clockwise [right turn] and - for counter
-clockwise [left turn]) . There were seven different maneuvers: straight into
-tracking a half circle (radius = 6 meters and 10 meters), tracking a straight
-line, straight to a 2 meter lane change, slalom with 3 meter spacing, steady
-circle tracking (radius = 5 and 10 meters). All of the videos and data can be
-downloaded `here
-<http://www.archive.org/details/BicycleSteerTorqueExperiment01>`_ . The results
-( `R code` ), are shown in the
-following graphs:
-
-.. todo:: torqueHist.png
-
-.. todo:: torqueSpeed.png
-
-.. todo:: Circle5.png
-
-.. todo:: Circle10.png
-
-.. todo:: HalfCircle6.png
-
-.. todo:: HalfCircle10.png
-
-.. todo:: LaneChange.png
-
-.. todo:: LineTrack.png
-
-.. todo:: Slalom.png
-
-The primary goal was to determine the maximum torques we will see for the types
-of maneuvers we are interested in. The histograms shows that we never recorded
-any torques higher than 5 Nm. The following shows the max and min torque values
-for different maneuvers:
-
-ManeuverMax Torque
-
-Min Torque
-
-Steady Circle (r = 10m)
-
-3.4
-
--2.4
-
-Steady Circle (r = 5m)
-
-2.4
-
--2.2
-
-Half Circle (r = 10m)
-
-3.8
-
--3.2
-
-Half Circle (r = 6m)
-
-3.4
-
--5.0
-
-Lane Change (2m)
-
-2.9
-
--2.6
-
-Line Tracking
-
-2.6
-
--3.4
-
-Slalom
-
-4.5
-
--4.8
-
-There seems to be little to no speed dependency on the max and min torque values.
 
 Final Steer Assembly Design
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~

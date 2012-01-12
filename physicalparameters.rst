@@ -13,6 +13,9 @@ Physical Parameters
 
 .. todo:: tables are not centered in the html or pdf
 
+.. todo:: Talk about weight of clamps, in particular how much weight and
+   inertia the new clamps have.
+
 Preface
 =======
 
@@ -72,6 +75,10 @@ uncertainty from the indirect measurement techniques. Patterson
 with a rider. [Connors2009]_ and [Stevens2009]_ used a computer aided
 design package to estimate the parameters. [Escalona2010]_ measured a
 bicycle for his bicycle dynamics class in Spain.
+
+.. todo:: Roland1973 measures a motorcycle's parameters
+
+.. todo:: Zytveld measured his bicycle with a pendulum.
 
 Here I document the indirect measurement of ten real bicycles' physical
 parameters. We improve upon these methods by both increasing and reporting the

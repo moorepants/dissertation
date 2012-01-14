@@ -1,5 +1,5 @@
 /* The name of this program is ArmsDynamics.c */
-/* Created by Autolev 4.1 on Mon Dec 12 15:21:57 2011 */
+/* Created by Autolev 4.1 on Sat Jan 14 10:44:44 2012 */
 
 #include <ctype.h> 
 #include <math.h>  

@@ -1,9 +1,8 @@
-function A = arms_state_space(eq, p)
+function [A, B] = arms_state_space(eq, p)
 
 delta = 1e-11; % perturbance value
 
 % make sure the constraint equations are properly solved
-
 eq = constraints(eq, p);
 
 % build the stability matrix by numerically calculating the partial
@@ -13,7 +12,8 @@ A = zeros(length(eq));
 for j = 1:length(eq);
     perturb1 = eq; %initialize function input
     perturb2 = eq; %initialize function input
-    perturb1(j) = perturb1(j) + delta; %perturb the jth variable
+    % perturb the jth variable
+    perturb1(j) = perturb1(j) + delta;
     perturb2(j) = perturb2(j) - delta;
     % solve differential equations for perturbed state, making sure the
     % constraints are satisfied
@@ -21,6 +21,23 @@ for j = 1:length(eq);
     prime2 = arms_ode(0.0, constraints(perturb2, p), p);
     % compute partial derivative
     A(:, j) = (prime1 - prime2) ./ 2 ./ delta;
+end
+
+inputEq = [0; 0; 0; 0];
+B = zeros(length(eq), length(inputEq));
+for j = 1:length(inputEq)
+    % initialize function input
+    perturb1 = inputEq;
+    perturb2 = inputEq;
+    % perturb the jth variable
+    perturb1(j) = perturb1(j) + delta;
+    perturb2(j) = perturb2(j) - delta;
+    % solve differential equations for perturbed state, making sure the
+    % constraints are satisfied
+    prime1 = arms_ode(0.0, eq, p, perturb1);
+    prime2 = arms_ode(0.0, eq, p, perturb2);
+    % compute partial derivative
+    B(:, j) = (prime1 - prime2) ./ 2 ./ delta;
 end
 
 function eq = constraints(eq, p)

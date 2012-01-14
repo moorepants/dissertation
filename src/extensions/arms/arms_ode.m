@@ -1,5 +1,5 @@
-function xd = arms_ode(t, x, p)
-% function xd = arms_ode(t, x, p)
+function xd = arms_ode(t, x, p, varargin)
+% function xd = arms_ode(t, x, p, varargin)
 %
 % Returns the derivatives of the states of the Whipple model with arms.
 %
@@ -12,6 +12,8 @@ function xd = arms_ode(t, x, p)
 %   q15, q16, u4, u6, u7.
 % p : structure
 %   The parameters.
+% u : double, size(4, 1), optional
+%   The inputs T4, T6, T7, Fcl at time t.
 %
 % Returns
 % -------
@@ -91,10 +93,18 @@ rf = p.rf;
 rr = p.rr;
 
 % inputs to be specified
-Fcl = 0;
-T4 = 0;
-T6 = 0;
-T7 = 0;
+if size(varargin, 2) > 0
+    inputs = varargin{1}
+    T4 = inputs(1);
+    T6 = inputs(2);
+    T7 = inputs(3);
+    Fcl = inputs(4);
+else
+    T4 = 0;
+    T6 = 0;
+    T7 = 0;
+    Fcl = 0;
+end
 
 % initialize matrices
 z = zeros(2310,1);

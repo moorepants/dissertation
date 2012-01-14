@@ -29,7 +29,7 @@ speed = 0:0.1:10;
 w = zeros(19, length(speed));
 for k = 1:length(speed)
     eq = [0, 0, 0, q4, q5, 0, q7, 0, qRight, qLeft, 0, -speed(k) / p.rr, 0];
-    A = arms_state_space(eq, p);
+    [A, B] = arms_state_space(eq, p);
     w(:, k) = eig(A);
 end
 

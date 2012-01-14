@@ -2457,3 +2457,7 @@ xd(16) = q16p;
 xd(17) = u4p;
 xd(18) = u6p;
 xd(19) = u7p;
+
+% These are the front wheel contact points for use in full outputs.
+%q17 = q1 + d1*z(366) + d2*z(368) + z(62)*z(368) + z(407)*(d3+z(61)) - rr*z(628);
+%q18 = q2 + d1*z(369) + d2*z(371) + rr*z(629) + z(62)*z(371) + z(408)*(d3+z(61));

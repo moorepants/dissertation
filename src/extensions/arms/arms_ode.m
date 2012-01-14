@@ -94,7 +94,7 @@ rr = p.rr;
 
 % inputs to be specified
 if size(varargin, 2) > 0
-    inputs = varargin{1}
+    inputs = varargin{1};
     T4 = inputs(1);
     T6 = inputs(2);
     T7 = inputs(3);

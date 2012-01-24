@@ -6,9 +6,9 @@ from dtk import bicycle
 
 pathToParameters = '/media/Data/Documents/School/UC Davis/Bicycle Mechanics/BicycleParameters/data'
 
-# load the rigid bicycle and seat Jason on it
-rigidWithRider = bp.Bicycle('Rigid', forceRawCalc=True, pathToData=pathToParameters)
-rigidWithRider.add_rider('Jason', reCalc=True)
+# load the rigid bicycle and seat Luke
+rigidWithRider = bp.Bicycle('Rigidcl', forceRawCalc=True, pathToData=pathToParameters)
+rigidWithRider.add_rider('Luke', reCalc=True)
 h = rigidWithRider.human
 
 # find the inertia of the humans without arms, this is with respect to the
@@ -23,7 +23,7 @@ riderPar = {'IBxx': humanInertia[0, 0],
             'yB': humanCoM[1][0],
             'zB': humanCoM[2][0]}
 
-rigid = bp.Bicycle('Rigid', forceRawCalc=True, pathToData=pathToParameters)
+rigid = bp.Bicycle('Rigidcl', forceRawCalc=True, pathToData=pathToParameters)
 benchmark = bp.rider.combine_bike_rider(rigid.parameters['Benchmark'], riderPar)
 benchmark = bp.io.remove_uncertainties(benchmark)
 par = bicycle.benchmark_to_moore(benchmark)

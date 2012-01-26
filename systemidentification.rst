@@ -14,3 +14,9 @@ System Identification
 * Identify which parameters can be identified on the given data
 * Relationship between speed and gains
 * Whipple model versus whipple model with arms
+
+Whipple Model Validity
+======================
+
+[Biral2003]_ and [Teerhuis2010]_ do a feed forward sim of their models with the
+measured steering torque.

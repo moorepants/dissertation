@@ -311,6 +311,8 @@ control, than human operator control.
    and LQR optimal control.
 [Bjermeland2006]_
    a masters these on controlling a bicycle, I don't have it.
+[Chen2006]_
+   fuzzy
 [Sharp2007a]_
    He develops a path tracking controller for the benchmark bicycle
    [Meijaard2007]_ based on full state feedback and optimal control (LQR). He
@@ -700,6 +702,8 @@ van Lunteren and Stassen's work.
    to calculate a cumlative error which is then multiplied by a gain to compute
    an adjustement to the commanded roll angle. They show simulations of both
    good roll stabilization and slalom path tracking.
+
+.. todo:: Add Eaton1973
 
 Weir and Zellner
 ~~~~~~~~~~~~~~~~

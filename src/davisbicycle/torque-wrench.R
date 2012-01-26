@@ -1,4 +1,4 @@
-# Filename: analyze.r
+# Filename: torque-wrench.R
 # Date: April 6, 2010
 # Author: Jason Moore
 # Description: Analyzes the data from the bicycle torque wrench experiments
@@ -7,7 +7,7 @@
 rm(list = ls())
 
 # read the data
-data <- read.csv('data.txt')
+data <- read.csv('torque-wrench-data.txt')
 
 # miles per hour to meters per second
 mph2mps = 0.44704
@@ -16,19 +16,21 @@ inchlb2nm = 0.112984829
 
 averageSpeed <- (data$MaxSpeed + data$MinSpeed) / 2
 
+"../../figures/davisbicycle/" -> figDir
+
 # histogram of the average run speeds
-png("speedHist.png")
+png(paste(figDir, "twrench-speed-histogram.png", sep=""))
 hist(averageSpeed)
 dev.off()
 
 # histogram of the max/min torque values
-png("torqueHist.png")
+png(paste(figDir, "twrench-torque-histogram.png", sep=""))
 hist(abs(c(data$MinTorque, inchlb2nm * data$MaxTorque)), main ="Histogram
 of Torque Values", xlab="Absolute value of max and min torques", breaks=25)
 dev.off()
 
 # torque versus speed for all the runs
-png("torqueSpeed.png")
+png(paste(figDir, "twrench-torque-speed.png", sep=""))
 plot(0:10,-5:5, type="n", main="Max and Min Torques as a Function of Speed",
 xlab="Speed [m/s]", ylab="Torque [Nm]")
 points(mph2mps * averageSpeed, data$MinTorque, pch=19)
@@ -39,7 +41,7 @@ maneuvers <- unique(data$Maneuver)
 print(maneuvers)
 for(maneuver in levels(maneuvers)){
     print(maneuver)
-    png(paste(maneuver, ".png", sep=""))
+    png(paste(figDir, "twrench-", maneuver, ".png", sep=""))
     x <- subset(mph2mps*averageSpeed, data$Maneuver==maneuver)
     y <- subset(data$MinTorque, data$Maneuver==maneuver)
     y2 <- subset(inchlb2nm*data$MaxTorque, data$Maneuver==maneuver)

@@ -17,123 +17,185 @@ Preface
 At the beginning of 2009 I was in Delft working with Jodi and Arend on much of
 the work explained in the previous Chapters. I was still also in contact with
 Mont and Luke back in Davis. Before I'd come to Delft, Luke had mentioned the
-possibilties of applying for an NSF grant to fund the remainder of our PhD
-research. Mont doesn't have big track record in grant funding for his lab and
-we'd spent the first few years taking teaching assistance positions which ate
-up most of our available research time outside of classes. I fortunately got
-the Fulbright grant which gave me a year to focus on research and Jodi's PhD
-budget helped fund the research costs and some of my conference trips. At the
-beginning of December 2008 Luke sent me an email with a renewed interest in
-applying for the NSF grant and Mont seemed to be on board. Mont also talked
-with Ron and got him interested. We spent the next two months writing our grant
-proposal primarily using video conferencing and collaborative word processing
-to get it done. The basic idea was to pair Ron's manual control expertise with
-our bicycle dyanmics expertise to study the dynamics, control and handling
-qualities of bicycles with the theoretical constructs supported by extension
-experimentation. Our work paid off and we recieved the grant, albiet at a
-smaller income than asked for so we had to cut back some of the scope (which
-was probably already too large!). This set us up for a two year study where
-we'd develop a manunal control model, verify it and the basic bicycle dynamics
-with an instrumented bicycle and a robotic bicycle and finally do some work on
-handling qualities predictions.
+possibilities of applying for an NSF grant to fund the remainder of our bicycle
+dynamics projects. This was enticing, as Mont doesn't have much of a track
+record of getting any grant funding for his lab, preferring to work spend more
+time on research of less expensive endeavours. Also, we'd spent the first few
+years taking teaching assistance positions which ate up most of our available
+research time outside of classes. I fortunately got the Fulbright grant which
+gave me a year's stipend so that I could focus on research and Jodi's PhD
+budget helped fund the practical research costs in Delft and some of my
+conference trips. At the beginning of December 2008 Luke sent me an email with
+a renewed interest in applying for the NSF grant and Mont seemed to be on
+board. Mont also talked with Ron and got him interested. We spent the next two
+months writing our grant proposal primarily using video conferencing and
+collaborative word processing to get it done. The basic idea was to pair Ron's
+manual control expertise with our bicycle dynamics expertise to study the
+dynamics, control and handling qualities of bicycles with the theoretical
+constructs supported by extensive experimentation. Our work paid off and we
+received the grant, albeit at a smaller amount than asked for so we had to cut
+back some of the scope (which Arend correctly forecast of being too large!).
+This set us up for a two year study where we'd develop a manual control model,
+verify it and the basic bicycle dynamics with an instrumented bicycle and a
+robotic bicycle and finally do some work on handling qualities predictions.
 
 When I got back to Davis in September 2009 we started gearing up for the grant
-work that would start come October 1st. I had to get my qualifying exam done
-in October and I also signed up for a Spanish class (which wasn't necessarily a
-good idea for the grant's sake). This gave a little slow start, as neither Luke
-or I realized that the scope of what we had to do didn't really allow any more
-time for classes. We got moving though and started to plan out the bicycle(s)
-we wre going to build. Our proposal 
+work that would start come October 1st. I had to get my qualifying exam done in
+October and I also signed up for a Spanish class (which wasn't necessarily a
+good idea for the grant's sake). Luke also took some programming classes and
+this gave us a really slow start, as neither Luke or I realized that the scope
+of what we had to do didn't really allow any more time for classes. We got
+moving though and started to plan out the bicycle(s) we were going to build. Our
+proposal called for two bicycles, but somehow Luke and I hatched a plan to
+build a single multi-purpose bicycle to "save money". Arend sent Danique over
+in January 2010 to do her internship with us. She was super bright and really
+started to make some progress on the custom data acquisition system we'd
+planned. We'd decided to go fairly low level and use an Arduino paired with
+several digital sensors. During this time, Luke and I had our roughest moments
+working together which was mostly rooted in my frustrations with the progress
+of this bicycle design. I'd already built a bicycle with Jodi that did almost
+everything I needed and I felt like I was reinventing the wheel. Things
+eventually broke down after the stress boiled to the top and we sat down with
+Mont to figure out how to solve things. The conclusion was to split the
+bicycle's back up and each of us move forward more independently. I think this
+was the absolutely right move for me in terms of getting the project done as
+I'd planned and the stress immediately went away. But the part I'm bothered
+about is that I wasn't able to work in a direct team with Luke when the
+pressure to get things done was high. I know that if we work together, the
+final product would be many times greater than our independent work because we
+have several complimenting skill sets, but conflicting visions of the final
+product and the path to get there really put a wall between us. I'm continually
+learning how to do teamwork and probably always will be. I doubt it is one of
+my strong points, as I always want to be in control. I hope that I can develop
+strong team environments for my students in the future too.
 
-Mention Maury's empty lab.
+Nevertheless, the instrumented bicycle moved forward. I was awarded an extra
+grant to cover my stipend for the summer of 2010 and we used the grant money
+that would have cover me to hire Gilbert, a new student in our lab, to help us
+out for the summer. Between me, Gilbert and our undergraduate interns Mohammed,
+Stephen, Eric, and Chet we plowed through the bicycle construction through the
+summer to hopefully be back on schedule for experimentation in the fall. It
+ended up taking me all fall quarter and some into the new year to get the
+bicycle in a working state. This chapter details all that went into its design
+and operation.
 
 Introduction
 ============
 
 This chapter details the design and implementation of an instrumented bicycle
-capable of accuratley measuring much of the necessary kinematics and kinetics
+capable of accurately measuring much of the necessary kinematics and kinetics
 associated with controlling the bicycle.
 
-The bicycle's primary design criteria were as follows
+I had considered using motion capture for the kinematics as we had very
+successful results measuring the complete kinematic configuration of the
+bicycle and rider with motion capture techniques, but I no longer had access to
+a system as good as the one at the Vrije Universiteit. The systems available
+were could capture the motion on the treadmill but were not especially not
+suited to capture the motion of the bicycle on the ground. With this in mind,
+we decided to expand the on board measurement techniques used in the Delft
+Instrumented bicycle. The primary downside was inaccurate location tracking of
+the system. Being that this wouldn't be detrimental to system identification,
+we moved forward.
 
-#. Sized for our intended riders
-#. Accurately measure the rider's applied steer torque
-#. Accurately measure the three dimensional rates and orientations of the
-   bicylce frame and fork.
-#. Accurately measure the rear wheel rotational rate relative to the bicycle
+The bicycle's primary design criteria were as follows:
+
+- Sized for average adult males which were our intended riders.
+- Accurately measure the rider's applied steering torque.
+- Accurately measure the fundamental kinematics of the bicycle:
+
+   - Three dimensional rates and orientations of the bicycle frame and fork.
+   - Rear wheel rotational rate relative to the bicycle frame.
+
+- Restrict the rider's biomechanical movement to more closely meet the Whipple
+   model rigid rider assumption. This in turn also requires the bicycle to be
+   self propelled so that the rider does not have to move their legs.
+- Accurately apply and measure a lateral disturbance force to the bicycle
    frame.
-#. Restrict the rider's biomechanical movement to more closely meet the Whipple
-   model rigid rider assumption. This also requires the bicycle to be self
-   propelled, as no rider leg movemnt is allowed.
-#. Measure a lateral disturbance force
 
-Secondary
+From early on, I intended to attempt some experiments with some constrained
+rider biomechanical motion, such as leaning for example. These became secondary
+design criteria as the project progessed and were never fully implemented, but
+I'll discuss them for completeness. They are as follows:
 
-#. Measure the rider's restricted upper body motion
-#. Measure the reaction forces between the rider and bicycle
+- Restrict the rider's body motion to a limited set and measure the additional
+   kinematics.
 
-We had very succesful results measuring the complete kinematic configuration of
-the bicycle and rider with the motion capture techniques, but I no longer had
-access to a system as good as the one at Vrije, especially not if we intended
-to capture the motion of the system on the ground as opposed the small space
-afforded by the treadmill. With this in mind, we decided to expand the
-on board measurement techniques used in the Delft Instrumented bicycle. The
-downside was inaccurate location tracking of the system. Being that this
-wouldn't be detrimental to system identification, we moved forward.
+   - Hip roll, torso relative to hip lean, torso relative to hip twist, and
+      lateral knee motions.
+
+- Measure the additional reaction forces between the rider and bicycle.
+
+   - Forces and moments in the seatpost and forces at the foot pegs.
 
 Bicycle
 =======
 
-The bicycle frame is a large Surly 1 x 1 model. It is designed as a single
-speed off road bicycle for 26in wheels with fat tires. The frame is constructed
-from butted cromoly steel tubing. It has both front and rear v-brake and disc
-brake mounts. We choose it primarily because it was steel and had disc brake
-mounts which were going to be used for wheel speed encoder mounts. It was also
-a good size for the intended riders.
+Our original requirements for a bicycle were as follows:
 
-.. todo:: add photo of bicycle frame and components
+- Steel frame for easy modification and welding.
+- Disc brake mounts for speed encoders.
+- 100mm front dropout spacing and 135mm rear dropout spacing.
+- 1-1/8 threadless headset to allow for easy modification.
+- Round tubes for head, down, top, and seat tube (i.e. nothing non standard)
+- Ideally a horizontal top tube for equipment mounting purposes.
+- Threaded rack mount for instrumentation mounting.
+- Accept 700c tires so that we can use high pressure.
+- Size: 54-58cm for our intended riders.
 
-Propulsion
-==========
+We chose a large Surly 1x1 model. It is designed as a single speed off road
+bicycle for 26" wheels with fat tires, but can be setup with 700c higher
+pressure tires. The frame is constructed from butted 4130 CroMoly steel tubing.
+It has both front and rear V-brake in addition to  disc brake mounts. Otherwise
+it met all of our requirements. We purchase some standard components including
+700c aluminum wheels with 23c Continental Gatorskin high pressure tires and
+basic handlebars and brakes.
 
-To allow teh bicycle to be propelled forward without requiring the rider to
-pedal, we opted for a bicycle electric hub motor. Amped Bikes donated a direct
-drive kit for our use and we purchased a light 36 volt lithium ion battery as a
-substitute for the heavy lead acid batteries which came with the kit. The kit
-had a motor controller with a rudmentary "cruise control". I desired the cruise
-control to allow the rider to set the speed of the experiment and then focus
-their attention to lateral control as opposed to throttle control. This worked
-well for the experiments performed on the floor, but was more difficult on the
-treadmill as matching the cruise control to the speed of the treadmill proved
-difficult. So sort of feedback control could alleviate the difficulties.
+.. figure:: figures/davisbicycle/surly.*
+   :width: 4in
+   :target: _images/surly.jpg
+
+   figSurly
+
+   The Surly 1x1 with 700c wheels and basic handlebars for upright seating. An
+   Amped Bikes geared hub motor is shown installed along with the lead acid battery
+   kit on the rear rack.
+
+To allow the bicycle to be propelled forward without requiring the rider to
+pedal, we opted for a bicycle electric hub motor kit.
+`<http://www.ampedbikes.com Amped Bikes>`_ donated both a direct drive and
+geared kit for our use. I used the direct drive version on the instrumented
+bicycle. The kits come with heavy 36v lead acid batteries so we purchased a
+light, ~2.75 kg, 36 volt lithium ion battery as a substitute to help decrease
+the over bicycle weight. The kit comes with a motor controller with a
+rudimentary "cruise control". We needed some form of cruise control to allow
+the rider to set the speed during the experiment and then focus their attention
+to lateral control as opposed to throttle control. The Amped Bike cruise
+control worked well for the experiments performed on the floor, but was more
+difficult to match the cruise control to the speed of the treadmill. Some sort
+of feedback control would alleviate the difficulties, but we made due. The
+exposed wires from the hub motor are also easily susceptible to damage. The
+bicycle fell over once, damaged the wires and shorted the hall effects sensors
+in the hub. I spent a couple of weeks repairing it [#]_.
 
 Orientations, Rates and Accelerations
 =====================================
 
 The Whipple bicycle model at constant speed fundamentally has two important
-states of the lateral dynamics: roll and steer (as defined in Chapter
-:ref:`eom`). Ideally one would like to measure the angular orientation, rate
-and accelerations of both the rear frame and the front frame. Sensors that
-allow indpendent and accurate measurements off each are potentially ideal, to
-avoid having to estimate measurements.
+states that describe the lateral dynamics: roll and steer (as defined in
+Chapter :ref:`eom`). Ideally one would like to measure the angular orientation,
+angular rate and angular accelerations of both the rear frame and the front
+frame. Sensors that allow independent and accurate measurements of each are
+ideal, to avoid having to estimate measurements through differentiation,
+integration or state estimators.
 
-Steer angle is easy to measure with either some form of potentiometers or
-encoders and has been accurately measured on many bicycle and motorcycle
-systems. Same goes for the roll and steer rates, which can be measured directly
-with rate gyro or encoders. The angular accelerations aren't directly
-measurable, but after-the-fact numerical differentiation with filtering is
-often acceptable. The linear acceleration of point on the body is directly
-measurment with accelemeters, and the angular accelerations can be computed if
-the acceretaion and location of poitns are measured. The roll angle is the most
-tricky measurement. Integration of the roll rate measurment is an option, but
-difinite initial conditions and some way to account for the drift is required,
-and not trivial. The roll angle can be estimated from other measurments and if
-a bicycle model is assumed accurate estimations can be computed with estimation
-techniques such as a Kalman filter. This also poses some problems depending on
-how you'd want to use the data. If you want the *actual* roll angle of the
-physical rear frame, assuming a bicycle model and using a Kalman filter is not
-the way to go as you've built in the assumptions of the bicycle model into you
-estimation technique.
+The steer angle is easy to measure with either some form of potentiometer or
+encoder and has been accurately measured on many bicycle and motorcycle
+systems. The same goes for the yaw, roll, pitch and steer rates, which are
+typically measured directly with rate gyros. The angular accelerations aren't
+directly measurable, but after-the-fact numerical differentiation with
+filtering is often acceptable. The angular accelerations can also be computed
+if the acceleration and location of two points are measured with
+accelerometers.
 
 .. list-table:: Table of maximal measured values found in all experimental data
    taken in Chapter :ref:`motioncapture`. The ranges were determined from 95
@@ -170,61 +232,108 @@ estimation technique.
      - :math:`12 \frac{\textrm{deg}}{\textrm{s}}`
      - 30 hz
 
-The class of sensors that are called Inertial Measurement Units (IMU) or
-Attitude heading reference systems (AHRS) have become more affordable and small
-enough to be very appropriate for measurements such as ours due to the advent
-of MEMs technology and very small rate gyros and accelerometers. An IMU can
-potentially be rigidly affixed to each body of the system to give complete
-kinematic details of the motion.
+The roll angle is the most tricky measurement. Integration of the roll rate
+measurement is an option, but definite initial conditions and some way to
+account for the signal drift is required, and not trivial. Distance lasers have
+been used to directly measure the roll angle with respect to the ground but are
+particularly expensive [Everste2009]_. [Boniolo2009]_, [Boniolo2008]_ develop a
+simple algorithm to remove the low frequency drift and only require yaw rate,
+roll rate and speed measurements to get peak roll estimation errors of 5
+degrees. The roll angle can also be estimated with a state estimator such as a
+Kalman filter ([Gustafsson2002]_, [Teerhuis2010]_). The plant in the Kalman
+filter can be general 3D motion of a rigid body or a model of some order and
+complexity of the bicycle. Constraining the estimation with the use of a
+bicycle model as the plant could have drawbacks when using the resulting angle
+for model validation but can give potentially great results otherwise. These
+types of algorithms are implemented in many sensor packages.
+
+.. todo:: find other's that measured roll angle
+
+There is a class of sensors called Inertial Measurement Units (IMU) or Attitude
+heading reference systems (AHRS) have become more affordable and small enough
+to be very appropriate for orientation and rate estimation due to the advent of
+MEMs rate gyros and accelerometers. An IMU can potentially be rigidly affixed
+to each body of the system to give complete kinematic details of the motion.
 
 Inertial Measurement Units
    An inertial measurement unit typically measures the body fixed the angular rate
-   and acceleration of rigid body and point respecitvely.
+   of a rigid body and the acceleration of a single point.
 Attitude Heading Reference System
-   An attitude heading reference system measures what an IMU does but also oftern
-   includes earth magnetic field measuresments and or gps combined with an
-   estimation algorithm to provide orientation and/or location estimations along
-   with the other measurements.
+   An attitude heading reference system measures what an IMU does but also
+   often includes earth magnetic field measurements and or GPS combined with an
+   estimation algorithm to provide orientation and/or location estimations
+   along with the other measurements.
 
-Many of these were in our budget range so we scouted the companies to see what
-was offered.
+Many of these were in our budget range so we scouted various companies
+(MemSense, Navionex, MotionNode, MicroPilot, Crossbow, VectorNav, Ch Robotics,
+..) to see what was offered [#]_.
 
-.. todo:: Add a small version of the IMU selection spreadsheet
-
-We chose the VN-100 development board from a relatively new company called
-VectorNav due to price, on board orientation calculations and the potential
-ease of collecting data via a typical RS232 serial line. We'd place a single
+We ended up choosing the VN-100 development board from a relatively new company
+called VectorNav due to price, on board orientation calculations and the
+potential ease of collecting data via a typical RS-232 serial interface. Both
+Matlab and Python have good serial interface packages. We placed a single
 VN-100 on the bicycle frame to measure the angular orientations and rates along
-with the acceleration a point the frame. The VN-100 relied on additional
-magentometer readings and an on-board proprietary Kalman filter for computing
-the orientation.
+with the acceleration of a point on the frame. The VN-100 relied on additional
+magnetometer readings and an on-board proprietary algorithm with a Kalman
+filter for computing the real time orientation about the three axes.
 
-The VN-100 would be used in tandem with sensors to measure the front frame
-motion. I went with a similar design and setup as the Delft intrsumented
-bicycye: a pontentiometer for relative steering angle measurement and a single
-axis rate gyro for the body fixed angular rate about the steer axis.
+Since the front frame is attached to the rear frame via a revolute joint a
+single additional rate measurement is needed to measure the motion. I went with
+a similar design and setup as the Delft instrumented bicycle: a potentiometer
+for relative steering angle measurement and a single axis rate gyro for the
+body fixed angular rate of the front frame about the steer axis.
 
-.. list-table::
+.. list-table:: Initial Kinematic Sensors
 
-   * - Sensor
-     - Measurements
-   * - VN-100
-     - Rear frame angular rates and acceleration of a point (estimations of
-       orientation)
-   * - Single axis rate gyro (Silicon Sensing CRS03-04)
-     - Bodyfixed angular rate about the steer axis
-   * - Rotory potentiometer (SP22F)
-     - Relative steer angle
+   * - Measurements
+     - Range
+     - Accuracy
+     - Sensor
+   * - Yaw Angle, Roll Angle, Pitch Angle
+     - :math:`\pm180` degrees, :math:`\pm180` degrees, :math:`\pm180` degrees
+     - < 2 degress, < 0.5 degrees, < 0.5 degrees (3 sigma)
+     - VN-100
+   * - Yaw Rate, Roll Rate, Pitch Rate
+     - :math:`\pm500` deg/s, :math:`\pm500` deg/s, :math:`\pm500` deg/s
+     -
+     - VN-100
+   * - Rear frame 3D point acceleration
+     - :math:`\pm2` g
+     -
+     - VN-100
+   * - Front frame fixed angular rate about the steer axis
+     - :math:`\pm200` deg/s
+     -
+     - Single axis rate gyro (Silicon Sensing CRS03-04)
+   * - Steer Angle
+     -
+     -
+     - Rotary potentiometer (SP22F)
+   * - Rear wheel rate
+     -
+     -
+     -
 
 - rate gyro was super expensive for little gain
 - i couldn't ingtegrate the vn-100 into the rest of the DAQ
 - VN-100 sucked at giving orientation
 
-.. todo:: wheel speed
+Wheel Rate
+----------
 
+I measured the rear wheel speed in the same fashion as the Delft bicycle. We
+mounted a small DC permanent magnet motor (Globe Motors E-2120 without the
+encoder) to the rear frame in much the same way as a simple generator for a
+bicycle light works. A small knurled aluminum disc on the motor shaft engaged
+the sidewall of the tire tangentially. The voltage of DC motors is linearly
+proportional to the angular speed of the wheel. The disc diameter was chosen
+such that the top speed of the bicycle would give the maximum measurable output
+of 10 volts.
+
+.. todo:: Figure of the wheel speed motor
 
 Steer Angle
-===========
+-----------
 
 I adopted the same steering angle measurement device that I use on the Delft
 instrumented bicycle, with some minor improvements such as better tension
@@ -253,9 +362,8 @@ measurement design that I should have done in the beginning.
 
 .. todo:: cite jackson1998 for steer angle
 
-
 Roll angle trailer
-==================
+------------------
 
 I designed a simple trailer to that was pulled behind the bicycle to measure
 roll angle with a potentiometer, much in the way the steer angle was measured.
@@ -280,7 +388,6 @@ attached at the axle of the rear wheel.
 
 .. todo:: cite Boniolo for roll angle estimation, talk about Danique's work,
    cite other people that handle this problem too.
-
 
 Lateral Force
 =============
@@ -308,7 +415,6 @@ operator applied as many perturbations as possible on the length of the track.
 .. todo:: Example perturbation measurment.
 
 .. todo:: Calibration of lateral force
-
 
 Seat Post
 =========
@@ -540,8 +646,8 @@ in the roll direction to allow the hips to roll about the seat. The back brace
 would then be attached to the hip brace via a join which would allow upper body
 lean with respect to the hips.
 
-Data aquisition
-===============
+Data acquisition
+================
 
 Both the VectorNav VN-100 and the NI USB-6218 were connected to a small ASUS
 EEEPC netbook which was mounted on the rear rack of the bicycle. The devices
@@ -579,38 +685,38 @@ series of runs in a row without having to stop).
 The source code for the software is available on Github, including some tools
 for initial post processing.
 
-Time sychronization
-===================
+Time Synchronization
+====================
 
 When we originally chose to use the VectorNav VN-100 and the NI USB-6218 with a
 netbook PC, we'd convinced ourselves that they would all work together
-seamlessly. The manufacturers of each device seemed to think so and so did we.
-This turned out to be very wrong. The main issue, which seems to rear its head
-in data aquisition often, is time synchronization of all the hardware involved.
-A PC running a vanilla operating system is not capable of detailed time
-management of processes. This is certainly true of collecting serial data from
-two independent devices. My intention was to collect data from both the VN-100
-and the USB-6218 simulataneously with the Matlab Serial I/O and Data aquisition
-toolboxes, hopefully triggering the initial collection of data from the two
-devices simulatenaously or by reading the VN-100 serial data through the
-USB-6218. The simultaneously triggering was hampering primarily by the VN-100's
-asychrnoous data transfer and no apparent ways to either start it with a
-trigger or by recording some signal from it through the USB-6218. It may be
-possible to read serial data through the USB-6218, but I never was able to
-figure it out. It very well may have been missing the features to do so, or
-that Matlab didn't have a robust enough interaction with the USB-6218 to do so.
-I struggled quite a bit with this unforseen issue and we started looking at
-solutions to measure the same event with both the VN-100 and the USB-6218 and
-to synchronize the signals afterwards. We would need to select a sensor which
-was also on the VN-100 and then excite the two sensors with the same event.
-Ideally this event would be a step input to both sensors. We tried rate gyros
-and accelerometers but couldn't come up with an adequate event, until we
-mentioned the problem to Ron and he immediately suggested just riding over a
-bump! This was the ticket. We ended up attaching an additional three axis
-acceleromater to the VN-100 development board which would read the same
-vertical component of acceleration and constructing a bump for the bicycle to
-travel over at the being of each run. This provided us with two signals which
-could be syncrhonized in time.
+seamlessly. The manufacturers of each device seemed to think so and their
+disconnected knowledge helped convince us.  This turned out to be very wrong.
+The main issue, which seems to rear its head in data aquisition often, is time
+synchronization of all the hardware involved. A PC running a vanilla operating
+system is not capable of detailed time management of processes. This is
+certainly true of collecting serial data from two independent devices. My
+intention was to collect data from both the VN-100 and the USB-6218
+simulataneously with the Matlab Serial I/O and Data aquisition toolboxes,
+hopefully triggering the initial collection of data from the two devices
+simulatenaously or by reading the VN-100 serial data through the USB-6218. The
+simultaneously triggering was hampering primarily by the VN-100's asychrnoous
+data transfer and no apparent ways to either start it with a trigger or by
+recording some signal from it through the USB-6218. It may be possible to read
+serial data through the USB-6218, but I never was able to figure it out. It
+very well may have been missing the features to do so, or that Matlab didn't
+have a robust enough interaction with the USB-6218 to do so.  I struggled quite
+a bit with this unforseen issue and we started looking at solutions to measure
+the same event with both the VN-100 and the USB-6218 and to synchronize the
+signals afterwards. We would need to select a sensor which was also on the
+VN-100 and then excite the two sensors with the same event.  Ideally this event
+would be a step input to both sensors. We tried rate gyros and accelerometers
+but couldn't come up with an adequate event, until we mentioned the problem to
+Ron and he immediately suggested just riding over a bump! This was the ticket.
+We ended up attaching an additional three axis acceleromater to the VN-100
+development board which would read the same vertical component of acceleration
+and constructing a bump for the bicycle to travel over at the being of each
+run. This provided us with two signals which could be syncrhonized in time.
 
 Bump
 ----
@@ -810,17 +916,19 @@ Bicycle Experiments
    bicycel model and only points to the fact that the sensor was 90% oversized.
 [Ouden2011]_
    Designs a steer torque sensor for a bicycle which has a range of about
-   +/-7.5 n-m. He was aware of crosstalk issues with respect to the other
-   forces applied to the handlebars and tried to design accordingly, but found
-   that his design was still very suseptible to handlebar loads. He modifies
-   the device to eventually get more reliable readings. He doesn't account for
-   the inertial effects of the front frame.
+   +/-7.5 n-m. He was accutely aware of crosstalk issues with respect to the
+   other forces applied to the handlebars and tried to design accordingly, but
+   found that his design was still very suseptible to handlebar loads. He
+   modifies the device to eventually get more reliable readings. He doesn't
+   account for the inertial effects of the front frame.
 
 Motorcycle Experiments
 ----------------------
 
 [Dohring195X]_
    Supposedly he measured steering torque, but I've yet to see that.
+[Fu1965]_
+   Measures steering torque in steady turns.
 [Weir1979a]_
    Weir et al. designed an instrumented motorcycle with a torque sensor. The range
    was +/- 70 Nm with 1% accuracy and >10 Hz dynamic range. The crosstalk due to
@@ -879,8 +987,10 @@ Motorcycle Experiments
    He mounts 2 axis load cells on at the handlebar grips to measure the forces
    on the grip. This puts the sensor right at the human/machine interface thus
    negating the need to worry about the interial affects of the front frame.
-
    .. todo:: find his thesis and see what he measured
+[Teerhuis2010]_
+   Measured motorcycle steer torque.
+
 
 Bicycle Models
 --------------
@@ -972,113 +1082,106 @@ inertial effects of the front frame.
 Torque Wrench Experiments
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Following Cheng's lead, we decided to do some experiments with a accurate
-torque wrench to see get an idea of maximum torques. We made a little
-attachment to the steer tube that allowed easy connection of various torque
-wrenches. A helmet camera was mounted such that it could view the torque
-wrench, handlebars and speedometer relative to the bicycle frame. The torque
-wrench had a range from 0 to 8.5 Nm and a +/- 2% accuracy of full scale (+/-
-0.17 Nm). The speed was maintained by an electric hub motor (i.e. no pedaling).
+Following Cheng's lead, we decided to do some experiments with an accurate
+torque wrench to get an idea of the maximum torques we would see in our
+experiments. We designed a simple attachment to the steer tube that allowed
+easy connection of various torque wrenches. A helmet camera was mounted to the
+bicycle such that it could view the torque wrench, handlebars and speedometer
+relative to the bicycle frame. The torque wrench had a range from 0 to 8.5 Nm
+and a +/- 2% accuracy of full scale (+/- 0.17 Nm) for static measurements. The
+bicylce speed was held constant by an electric hub motor (i.e. no pedaling).
 
-.. todo:: Torque wrench mount
+.. todo:: add type of torque wrench
 
-.. todo:: Torque wrench face
+.. figure:: figures/davisbicycle/torque-wrench-mount.*
 
-.. todo:: Torque camera
+   figTorqueWrenchMount
 
-The `data file` includes the run
-number that corresponds to the video number, the rider's estimate of the speed
-after the run in miles per hour, the maximum reading from the torque needle
-after the run in inch-lbs, the rider's name, the maneuver, the minimum speed
-seen on the video footage in miles per hour, the maximum speed seen on the
-video footage in miles per hour, the maximum torque seen on the video footage
-in inch-lbs, the minimum torque seen on the video footage in newton-meters, and
-the rotation sense for each run (+ for clockwise [right turn] and - for counter
-clockwise [left turn]) . There were seven different maneuvers: straight into
-tracking a half circle (radius = 6 meters and 10 meters), tracking a straight
-line, straight to a 2 meter lane change, slalom with 3 meter spacing, steady
-circle tracking (radius = 5 and 10 meters). All of the videos and data can be
-downloaded `here
-<http://www.archive.org/details/BicycleSteerTorqueExperiment01>`_ . The results
-( `R code` ), are shown in the
-following graphs:
+   The mounting bracket for the torque wrenches. The lower portion clamps to a
+   1 1/8" steer tube and the upper portion clamps of a 1/4" socket end.
 
-.. todo:: torqueHist.png
+.. figure:: figures/davisbicycle/torque-wrench-face.*
 
-.. todo:: torqueSpeed.png
+   figTorqueWrenchFace
 
-.. todo:: Circle5.png
+   The dial indicator face of the torque wrench which reads out in inch pounds
+   and newton meters.
 
-.. todo:: Circle10.png
+.. figure:: figures/davisbicycle/torque-wrench-camera.*
 
-.. todo:: HalfCircle6.png
+   figTorqueWrenchCamera
 
-.. todo:: HalfCircle10.png
+   The complete setup with the frame mounted helmet camera.
 
-.. todo:: LaneChange.png
+.. todo:: size the torque wrench images
 
-.. todo:: LineTrack.png
+We recorded video data for two riders performing seven different maneuvers:
+straight run into tracking a half circle of radius 6 and 10 meters, tracking a
+straight line, 2 meter lane change, slalom with 3 meter spacing, and steady
+circle tracking of radius 5 and 10 meters. I viewed the videos and noted down
+the maximum and minimum torques for each run. I ignored obviously high torque
+readings from accelerations due to riding over bumps.
 
-.. todo:: Slalom.png
+The single comma seperated data file includes the run number that corresponds
+to the video number, the rider's estimate of the speed after the run in miles
+per hour, the maximum reading from the torque needle after the run in inch-lbs,
+the rider's name, the maneuver, the minimum speed seen on the video footage in
+miles per hour, the maximum speed seen on the video footage in miles per hour,
+the maximum torque seen on the video footage in inch-lbs, the minimum torque
+seen on the video footage in newton-meters, and the rotation sense for each run
+(+ for clockwise [right turn] and - for counter clockwise [left turn]). The
+videos, data file and R source code are archived at
+`<http://www.archive.org/details/BicycleSteerTorqueExperiment01>`_ .
+
+I created several figures, including :ref:`figTwrenchTorqueHistogram` and
+:ref:`figTwrenchTorqueSpeed` to get an idea of the range torques we would
+expect to see.
+
+.. figure:: figures/davisbicycle/twrench-torque-histogram.*
 
 The primary goal was to determine the maximum torques we will see for the types
 of maneuvers we are interested in. The histograms shows that we never recorded
-any torques higher than 5 Nm. The following shows the max and min torque values
-for different maneuvers:
+any torques higher than 5 n-m and table :ref:`XXX` gives the maximum and
+minimum torques for each maneuever. Figure :ref:`XXX` shows all of the recorded
+torques as a function of speed. There may be an underliying depedency on speed,
+i.e. that the maximum torques decrease as speed decreases.
 
-ManeuverMax Torque
+.. list-table::
+   :header-rows: 1
 
-Min Torque
+   * - Maneuver
+     - Maximum Torque
+     - Minimum Torque
+   * - Steady Circle (r = 10m)
+     - 3.4
+     - -2.4
+   * - Steady Circle (r = 5m)
+     - 2.4
+     - -2.2
+   * - Half Circle (r = 10m)
+     - 3.8
+     - -3.2
+   * - Half Circle (r = 6m)
+     - 3.4
+     - -5.0
+   * - Lane Change (2m)
+     - 2.9
+     - -2.6
+   * - Line Tracking
+     - 2.6
+     - -3.4
+   * - Slalom
+     - 4.5
+     - -4.8
 
-Steady Circle (r = 10m)
+.. figure:: figures/davisbicycle/twrench-torque-speed.*
 
-3.4
-
--2.4
-
-Steady Circle (r = 5m)
-
-2.4
-
--2.2
-
-Half Circle (r = 10m)
-
-3.8
-
--3.2
-
-Half Circle (r = 6m)
-
-3.4
-
--5.0
-
-Lane Change (2m)
-
-2.9
-
--2.6
-
-Line Tracking
-
-2.6
-
--3.4
-
-Slalom
-
-4.5
-
--4.8
-
-There seems to be little to no speed dependency on the max and min torque values.
+This set of experiments corraborates with the previously cited experimental
+findings that steer torques in bicycle control are typicaly very small. Ideally
+our sensor's range should be somewhere around +/- 8 to 10 n-m.
 
 Design
 ------
-
-Initial Design Ideas
-~~~~~~~~~~~~~~~~~~~~
 
 We are planning on measuring the steer torque the rider applies to control a
 bicycle. This will be used for human control model identification and for use
@@ -1093,332 +1196,458 @@ forces and moments applied to the fork will corrupt the relatively small torque
 measurements as they can be hundreds of times larger in magnitude. With this in
 mind, we are trying to come up with a way to isolate the torque measurement to
 eliminate or minimize the crosstalk and get good, noiseless, accurate readings.
-The following are some basic designs we are working with:
-
-Åström Design
-  This is a sketch of what was designed for the UCSB instrumented bicycle and
-  presented in a `2005 paper by Karl Åström et al`.
-  It uses an off-the-shelf axial load cell mounted between a floating handlebar
-  and a bar extending from the steer tube. This seems to be a good design, but
-  it would be nice to eliminate the handlebar bearings and the rod ends.
-
-.. todo:: Astrom Design
-
-Landman Design
-  My professor, `Drew Landman
-  <http://eng.odu.edu/aerospace/aefaculty/dlandman.shtml>`_ , from Virginia who I
-  worked with designed force balances for wind tunnel testing at the `LFST
-  <http://www.nasa.gov/vision/earth/improvingflight/fst_overview.html>`_
-  suggested a `redesign that eliminates the bearings and replaces them with
-  flexures` .
-
-Weir Design
-  David Weir designed a motorcycle steer torque measurement system in his `1979
-  technical repor` t that also floats the handlebars
-  on bearings but uses an off-the-shelf torque sensor instead. The sketch shows
-  the basic concept. The handlebars are floating on bearings and the torque
-  sensor connects the handlebars to the steer tube. He claimed that the design
-  lacked low range resolution. Motorcycles can experience torques that are as
-  high as 50 Nm according to some models.
-
-.. todo:: Weir Design
-
-Internal Stem Design
-  This is a design that we came up with when preparing our abstract on the topic.
-  It is fundamentally the same as the Åström design but includes flexure elements
-  instead of rod ends and is a bit smaller in scale.
-
-.. todo:: Internal Stem Design
-
-.. todo:: steerTorque.png
-
-Double Steer Design
-  This design separates the handlebar and stem's rotation axis from the steer
-  tube and fork's rotation axis much the way many long wheel base recumbents or
-  bakfiets are designed. The load cell is then place on the connecting rod. This
-  design is is prone to slop in the steer mechanism.
-
-.. todo:: Double Steer Design
-
-Bearing-less design
-  Luke came up with this design and was able to eliminate the need for bearings.
-  Two arms are clamped to the steer tube and a load cell is placed between the
-  arms. The difference in this is that not all of the torque is transferred
-  through the load cell, but maybe enough is that we can measure it.
-
-.. todo:: Bearing-less Design
 
 Forces on the steer tube
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Ideally, we'd like to slap a strain gauge on the steer tube to measure the
-shear strain and get a good torque reading but this isn't so easily done. The
-bicycle steer tube has various other forces acting on it. For the most basic
-case a the ground contact force at the front wheel puts the fork into bending
-and compression. Likewise the person can apply forces to the handlbars which
-also put the steer tube into bending and compression. It turns out that the
-moments in the steer tube can be as high as 200 times the steer torques we are
-trying to measure.
+One of the simplest ways to measure steer torque may be to apply a strain gauge
+bridge primarily sensitive in torque to the steer tube of the fork. This method
+and others would require that the cross sentivity of the bridge to other loads
+in the steer tube to be neglible. For example, [LorenzoXXXX]_ effectively did
+this with his handlebar design but used several other brigdes to measure
+additional moments and forces in handlebar assembly and calibrated the set of
+bridges together to help eliminate the crosstalk. The measured steer torques
+are less than 10 n-m and the loads due to the applied forces at the wheel
+contact, headset bearings and handlebars can potentially be orders of magnitude
+greater. [Ouden2011]_ clearly experinced the difficultly in removing the cross
+talk from a steer torque sensor and few studies have addressed this.
 
-.. todo:: Basic Bicycle Forces
+Assuming we may want to measure steer torque somewhere between the handlebars
+and fork crown, a simple static analysis can be performed to gage the relative
+magnitudes of loads in the steer tube. The bicycle steer tube has various other
+forces acting on it. For the most basic case, a the ground contact force at the
+front wheel puts the fork into bending and compression. Likewise the person can
+apply forces to the handlbars which also put the steer tube into bending and
+compression. Figure :ref:`figBicycleForces` shows the free body diagram for a
+bicycle statically loaded.
 
-There are ways to apply strain gauges to a bar in torsion that would
-theorectically cancel all of the axial and bending strain components. Both
-bending moments and axial forces only create strain in the axial direction and
-shear and torsion create strain in the direction normal to axial. The following
-comes from Beckwith and Margoni's Mechanical Measurements and shows two
-possible strain gage bridge configurations that can reduce or eliminate strains
-not due to torsion.
+.. figure:: figures/davisbicycle/bicycle-forces.*
 
-.. todo:: Strain Bridge Configuration for Torsion
+   figBicycleForces
 
-L seems to be a good choice for the steer torque measurement, but in reality it
-is impossible to align strain gages perfectly. This can introduce
-cross-sensitivity or cross talk. If the cross talk strains due to the bending
-moments are only 1% of the of the total strain due to the moments, that can
-still corrupt the steer torque measurement. With this in mind we decided to
-look into what the forces in the steer tube actually look like.
+   The free body diagram allows for an external steering torque, independent
+   downward forces on each handlebar, the ground reaction forces and a force
+   acting on the mass of the bicycle and rider due to vertical acceleration.
+   The vertical acceleration is simply due to gravity when static, but can be
+   thought of as a multiple of gravity for dynamic purposes.
 
-We modeled the fork as a basic beam supported by the headset bearings (points
-C and D) and the forces/moments due to the ground reaction force and force
-applied to the handlebars were calculated.
+The forces and moments acting on the fork can be isolated algebrically and the
+fork modeled as a basic beam supported by the headset bearings (points C and D)
+and the forces/moments due to the ground reaction force and force applied to
+the handlebars were calculated and applied to points A and B.
 
-.. todo:: Fork Modeled as a Beam
+.. figure:: figures/davisbicycle/beam.*
 
-The following graphs show what the shear and bending moment diagrams for
-various loadings look like both from the side and the front of the bike.
+   figForkBeam
 
-.. todo:: mvdiagram01.png
-.. todo:: mvdiagram02.png
-.. todo:: mvdiagram03.png
-.. todo:: mvdiagram04.png
-.. todo:: mvdiagram05.png
-.. todo:: mvdiagram06.png
+   The free body diagram of the fork under the loads shown in Figure
+   :ref:`figBicycleForces`. The headset bearings at C and D are assumed to not
+   resist moments.
 
-These graphs show that the bending moments and shear stresses can be of much
-larger magnitude than the steer torques, so cross talk is a major concern.
-These graphs also show that it if no loads are placed on the handlebars the
-entire portion of the steer tube/stem above the headset has no bending moments
-and no shear stress. This is the ideal place for a torque sensor, if we can
-eliminate the transfer of forces applied to the handlebars to the steer tube.
+The following graph shows what the shear and bending moment diagrams for a 2g
+vertical acceleration and ~200 N force on one handlebar grip look like both
+from the side and the front of the bike.
 
-This leads us to a design idea that isolates the steer torque sensor from the
-handlebar and fork forces. The basic design idea is sketched below. It includes
-a separate "headset" for the handlebars that take up any handlebar forces. The
-handlebar is connected to the steer torque sensor via a zero backlash universal
-joint so no moments can be transferred to the sensor. The steer motor will need
-to be mounted above the u-joint so torques from the rider or the motor can be
-measured. We are looking at a `Futek <http://www.futek.com/>`_ Reaction Torque
-sensor that has a max torque of either `6 Nm
-<http://www.futek.com/product.aspx?stock=FSH02594>`_ or `12 Nm
-<http://www.futek.com/product.aspx?stock=FSH02595>`_ but are unsure what the
-best range and accuracy for these measurements are since there seems to be no
-public data from bicycle steer torque measurements.
+.. figure:: figures/davisbicycle/fork-load-diagram.*
 
+   figForkLoad
 
-.. todo:: Torque Measurement Design
+   The shear and bending diagrams of the fork under a 2g acceleration and a
+   right side handlebar load.
 
+This graph shows that the bending moments and shear stresses can be of much
+larger magnitude than the steer torques. Misalignment of strain gages and thus
+sensor crosstalk are magnified by the differences in loads and need to be
+carefully accounted for. If the cross talk strains due to the bending moments
+are even 1% of the of the total strain due to the moments, that can still
+corrupt the steer torque measurement. These graphs also show that it if no
+loads are placed on the handlebars the entire portion of the steer tube/stem
+above the headset has no bending moments and no shear stress. This is the ideal
+place for a torque sensor, if one can eliminate the transfer of forces applied
+to the handlebars to the steer tube.
 
-Final Steer Assembly Design
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This lead me through several design ideas but utlimately to a design that
+isolates the steer torque sensor from the handlebar and fork loads with a zero
+backlash telescoping universal joint. I selected the Futek TF350 torque sensor
+with a +/- 11 nm range and the CSG-110 amplifier to measure torque.
 
-.. todo:: Final Steer Torque Measurement Design
+.. figure:: figures/davisbicycle/steer-torque-design.*
+
+   figSteerTorqueDesign
+
+   The final steer torque design. The steer torque sensor is mounted atop the
+   universal joint such that the only load component which can be transferred
+   through the sensor is an axial torque.
+
+.. todo:: an exploded drawing would be better
+
+.. todo:: add some about the crappiness of the slip clutch (slop and rating is
+   for at a certain rpm)
 
 Steer Dynamics
 --------------
 
-The final design was setup to eliminate measuring anything but the torque in
-the steer tube along the steer axis, but this measured torque, :math:`T_M`,
-does not equal the input torque typically used for out bicycle models, (i.e.
-:math:`T_\delta`).  But there is a relationship from :math:`T_M` to
-:math:`T_\delta` that requires one to know, at a minimum[#]_ the friction in
-the lower and upper bearings (this is potentially both viscous and coulomb) and
-the inertia of the handlebar/fork assembly above and below the torque sensor at
-a minimum.
+The final design was setup to exclusively measure the torque in the steer tube
+along the steer axis, but this measured torque, :math:`T_M`, does not equate to
+the input torque used for out bicycle models, (i.e. :math:`T_\delta`). The
+steer torque in the model is defined as the torque between the front frame and
+the rear frame about the steer axis. If the torque sensor measures the steering
+torque anywhere but at the interface of the human and the front frame, one must
+account for the inerital effects of the front frame. As far as I can tell, no
+one who has measured steer torque on a single track vehicle has accounted for
+these effects. There is a relationship from :math:`T_M` to :math:`T_\delta`
+that requires one to know, at a minimum [#]_ the friction in the steer axis
+bearings (this is potentially both viscous and coulomb) and the inertial
+characteristics of the front frame above the torque sensor.
 
-We measure the torque in the steering column, :math:`T_M`, from a sensor that
-is mounted between both the handlebars and fork steer tube and two sets of
-bearings: the headset and the slip clutch bearings. We are interested in
-knowing the torque applied about the steer axis by the rider's contact forces
-to the handlebars, :math:`T_\delta`. It turns out that this is a function of
-much of the data measured on the bicycle.
+In our case, we measure the torque in the steering column, :math:`T_M`, from a
+sensor that is mounted between the handlebars and fork steer tube and between
+two sets of bearings: the headset and the slip clutch bearings. We are
+interested in knowing the torque applied about the steer axis by the rider's
+contact forces to the handlebars, :math:`T_\delta`.
 
 A free body diagram can be drawn of the upper portion of the handlebar/fork
 assembly, where the lower portion is cut at the steer torque sensor. The
 torques acting on the handlebar about the steer axis are the measured torque,
-:math:`T_M`, the rider applied steer torque, :math:`T_\delta`, and the
-friction from the upper bearing set which can be described by coulomb,
-:math:`T_F`, and viscous friction, :math:`T_V`.
+:math:`T_M`, the rider applied steer torque, :math:`T_\delta`, and the friction
+from the upper bearing set, :math:`T_U`, which can be described by coulomb,
+:math:`T_{U_F}`, and viscous friction, :math:`T_{U_V}`.
 
-The coulomb friction can be described as a piecewise function:
+.. figure:: figures/davisbicycle/handlebar-free-body.*
 
-.. math::
-   :label: coulomb
+   figHandlebarFreeBody
 
-   T_F = F\operatorname{sgn}(\dot\delta) = \left\{
-   \begin{array}{rl}
-     F & \textrm{if $\dot{\delta}>0$}\\
-     0 & \textrm{if $\dot{\delta}=0$}\\
-     -F & \textrm{if $\dot{\delta}<0$}\\
-   \end{array}
-   \right.
-
-and viscous friction as a function linear in the steer rate:
-
-.. math::
-   :label: viscous
-
-   T_V = c\dot{\delta}
-
-where :math:`F` is the coulomb friction force and :math:`c` is the viscous
-damping coefficient.
+   A free body diagram of the handlebar with all of the torques acting on it
+   about the steer axis. The rear frame, :math:`B`, is at an abritrary
+   orientation with respect to the Newtonian reference frame.
 
 We measure the angular rate of the bicycle frame, :math:`B`, with three rate
 gyros:
 
 .. math::
-   :label: framerate
+   :label: frameRate
 
    ^N\bar{\omega}^B = w_{b1}\hat{b}_1 + w_{b2}\hat{b}_2 + w_{b3}\hat{b}_3
 
-The handlebar, :math:`H`, is connected to the bicycle frame, :math:`B`, by a
+The handlebar, :math:`G`, is connected to the bicycle frame, :math:`B`, by a
 revolute joint that rotates through the steering angle, :math:`\delta`, and we
-measure the angular rate of the handlebar about the steer axis directly with a
-rate gyro. The angular rate of the handlebar can be written as follows:
+measure the body fixed angular rate of the handlebar, :math:`w_{h3}` about the
+steer axis directly with a rate gyro. The angular rate of the handlebar can be
+written as follows
 
 .. math::
-   :label: handlebarrate
+   :label: handlebarRate
 
-   ^N\bar{\omega}^H = (w_{b1}\cos(\delta) + w_{b2}\sin(\delta))\hat{h}_1
-   + (-w_{b1}\sin(\delta) + w_{b2}\cos(\delta))\hat{h}_2 + w_{h3}\hat{h}_3
+   ^N\bar{\omega}^G = (w_{b1}\cos(\delta) + w_{b2}\sin(\delta))\hat{g}_1 +
+   (-w_{b1}\sin(\delta) + w_{b2}\cos(\delta))\hat{g}_2 +
+   w_{h3}\hat{g}_3
 
 The steer rate, :math:`\dot{\delta}`, can be computed by subtracting the
 angular rate of the bicycle frame about the steer axis from the angular rate of
-the handlebar/fork about the steer axis.
+the handlebar about the steer axis.
 
 .. math::
-   :label: steerrate
+   :label: steerRate
 
    \dot{\delta} = w_{h3} - w_{b3}
 
-We measure the acceleration of a point, :math:`v`, on the bicycle frame.
+I now define a point, :math:`s`, on the steer axis such that it is located the
+minimum distance from the center of mass of the handlebar, :math:`g_o`.
+
+.. math::
+   :label: locationOfGo
+
+   \bar{r}^{g_o/s} = d\hat{g}_1
+
+We also measure the acceleration of a point, :math:`v`, on the bicycle frame.
 
 .. math::
    :label: accelerationOfV
 
    ^N\bar{a}^v = a_{v1}\hat{b}_1 + a_{v2}\hat{b}_2 + a_{v3}\hat{b}_3
 
-We also know the location of a point on the steer axis, :math:`s`, relative to point
-:math:`v`.
+The location of point :math:`v` is known with respect to :math:`s`
 
 .. math::
    :label: locationOfV
 
    \bar{r}^{s/v} = d_{s1}\hat{b}_1 + d_{s3}\hat{b}_3
 
-The location of the center of mass of the handlebar, :math:`h_o`, is also known
-relative to point :math:`s`.
-
-.. math::
-   :label: locationOfHo
-
-   \bar{r}^{h_o/s} = d\hat{h}_1
-
-:math:`^N\bar{a}^{h_o}` can be calculated using the two point thereom for
-acceleration [Kane1985]_ twice staring at the point :math:`v`:
+:math:`^N\bar{a}^{g_o}` can now be calculated using the two point thereom for
+acceleration [Kane1985]_ twice staring at the point :math:`v`
 
 .. math::
    ^N\bar{a}^s = ^N\bar{a}^v + ^N\dot{\bar{\omega}}^B\times\bar{r}^{s/v} +
    ^N\bar{\omega}^B\times(^N\bar{\omega}^B\times\bar{r}^{s/v})
 
 .. math::
-   ^N\bar{a}^{h_o} = ^N\bar{a}^s + ^N\dot{\bar{\omega}}^H\times\bar{r}^{h_o/s} +
-   ^N\bar{\omega}^H\times(^N\bar{\omega}^H\times\bar{r}^{h_o/s})
+   ^N\bar{a}^{g_o} = ^N\bar{a}^s + ^N\dot{\bar{\omega}}^G\times\bar{r}^{g_o/s} +
+   ^N\bar{\omega}^G\times(^N\bar{\omega}^G\times\bar{r}^{g_o/s})
 
-The angular momentum of the handlebar about its center of mass is:
+The angular momentum of the handlebar about its center of mass is
 
-.. math:: ^N\bar{H}^{H/h_o} = I^{H/h_o} \cdot ^N\bar{\omega}^H
+.. math:: ^N\bar{H}^{G/g_o} = I^{G/g_o} \cdot ^N\bar{\omega}^G
 
-where :math:`I^{H/h_o}` is the inertia dyadic with reference to the center of mass
+where :math:`I^{G/g_o}` is the inertia dyadic with reference to the center of mass
 which exhibits symmetry about the :math:`13`-plane.
 
-The dynamic equations of motion of the handlebar can be written as the sum of
-the torques on the handlebar about point :math:`s` is equal to the derivative
-of the angular momentum of :math:`H` in :math:`N` about :math:`h_o` plus the
-cross product of the vector from :math:`s` to :math:`h_o` with the mass times
-the acceleration of :math:`h_o` in :math:`N`:
+Now, the dynamic equations of motion of the handlebar can be written such that the
+sum of the torques on the handlebar about point :math:`s` is equal to the
+derivative of the angular momentum of :math:`G` in :math:`N` about :math:`g_o`
+plus the cross product of the vector from :math:`s` to :math:`g_o` with the
+mass times the acceleration of :math:`g_o` in :math:`N`:
 
 .. math::
-   \sum \bar{T}^{H/s} = ^N\dot{\bar{H}}^{H/h_o} + \bar{r}^{h_o/s} \times m_H ^N\bar{a}^{ho}
+   :label: eqEuler
 
-The only torques applied to the handlebar that we are interested in act about the steer axis.
+   \sum \bar{T}^{G/s} = ^N\dot{\bar{H}}^{G/g_o} +
+   \bar{r}^{g_o/s} \times m_G ^N\bar{a}^{g_o}
 
-.. math:: \sum T^{H/s}_3 = T_\delta - T_F - T_M - T_V
-
-Looking at only the 3 component of the equation of motion gives the following
-relationship:
+I'm only interesting in the components of the previous equation in which the
+steer torque appears, so only the torques about the steer axis are examined.
 
 .. math::
-   T_\delta - F\operatorname{sgn}({\dot{\delta}}) - T_M - c(w_{h3} - w_{b3}) = (^N\dot{\bar{H}}^{H/h_o} + ^s\bar{r}^h_o \times m_H
-   ^N\bar{a}^s) \cdot \hat{h}_3
+   :label: eqSteerAxisTorques
 
-And :math:`T_\delta` can be solved for:
+   \sum T^{G/s}_3 = T_\delta - T_U - T_M
+   \left(^N\dot{\bar{H}}^{G/g_o} + ^s\bar{r}^g_o \times m_G
+   ^N\bar{a}^s\right) \cdot \hat{g}_3
+
+And :math:`T_\delta` can be solved for
 
 .. todo:: the following equation is giving errors in the latex document
 
 .. math::
+   :label: eqSteerTorque
 
-   \begin{align}
-   T_{\delta} = &
-   I_{H33} \dot{w}_{h3} + \\\notag
-   & (I_{H11} (w_{b1}\cos(\delta) +
-   w_{b2}\sin(\delta)) +
-   I_{H31} w_{h3}) (-w_{b1}\sin(\delta) +
-   w_{b2}\cos(\delta)) + \\\notag
-   & I_{H22} (- w_{b1} \sin(\delta) +
-   w_{b2}\cos(\delta))
-   (w_{b1}\cos(\delta) +
-   w_{b2}\sin(\delta)) + \\\notag
-   & I_{H31} (- (- w_{b3} + w_{h3}) w_{b1}
-   \sin(\delta) +
-   (-w_{b3} + w_{h3})
-   w_{b2}\cos(\delta) +
-   \sin(\delta)\dot{w}_{b2} +
-   \cos(\delta)\dot{w}_{b1}) +\\\notag
-   & d m_H (d (-w_{b1}\sin(\delta) + w_{b2}
-   \cos(\delta))(w_{b1}\cos(\delta) +
-   w_{b2}\sin(\delta)) +
-   d \dot{w}_{h3}) - \\\notag
-   & d m_H (- d_{s1} w_{b2}^{2} + d_{s2}
-   \dot{w}_{b2} - (d_{s1}
-   w_{b3} - d_{s2}
-   w_{b1}) w_{b3} +
-   a_{v1})
-   \sin(\delta) +\\\notag
-   & d m_H(d_{s1} w_{b1}w_{b2} +
-   d_{s1} \dot{w}_{b3} +
-   d_{s2} w_{b2} w_{b3} - d_{s2} \dot{w}_{b1} +
-   a_{v2})\cos(\delta) - \\\notag
-   & c (- w_{b3} + w_{h3}) + T_F + T_s
-   \end{align}
+   T_{\delta} =
+   & I_{G_{22}} \left[ \left( -w_{b1} s_\delta + w_{b2} c_\delta \right)
+   c_\delta + w_{b2} s_\delta \right] + I_{G_{33}} \dot{w}_{g3} + \\
+   & I_{G_{31}} \left[ (-w_{g3} + w_{b3} ) w_{b1} s_\delta +
+   (-w_{b3} + w_{g3}) w_{b2} c_\delta +
+   s_\delta \dot{w}_{b2} + c_\delta \dot{w}_{b1} \right] + \\
+   & \left[ I_{G_{11}} (w_{b1} c_\delta + w_{b2}s_\delta) +
+   I_{G_{31}} w_{g3} \right] \left[-w_{b1} s_\delta +
+   w_{b2} c_\delta \right] + \\
+   & d m_G \left[ d (-w_{b1} s_\delta + w_{b2} c_\delta)
+   (w_{b1} c_\delta + w_{b2} s_\delta) + d \dot{w}_{g3} \right] - \\
+   & d m_G \left[-d_{s1} w_{b2}^{2} + d_{s3} \dot{w}_{b2} -
+   (d_{s1} w_{b3} - d_{s3} w_{b1}) w_{b3} + a_{v1} \right] s_\delta + \\
+   & d m_G \left[d_{s1} w_{b1} w_{b2} + d_{s1} \dot{w}_{b3} +
+   d_{s3} w_{b2} w_{b3} - d_{s3} \dot{w}_{b1} + a_{v2} \right]
+   c_\delta + \\
+   & T_U + T_M
 
-Experiments
-~~~~~~~~~~~
+.. todo:: I can expand the H dot terms as factors of the 4 inertia components.
+   This cleans it up a bit, but not sure if it helps explain it.
 
-The first thing we did was to try to characterize the friction in the bearings.
-We did this by mounting the bicycle frame such that the steer axis was
-vertical, the wheel was off the ground, and the bicycle frame was made very
-rigid. Secondly, we attached two springs to the handlebars such that the force
-from the springs acted on a lever arm relative to the steer axis. This allowed
-us to perturb the handlebars and let the vibrations damp out. We recorded data
-from the steer potentiometer, steer rate gyro and the torque sensor during
-these perturbations. For now, we simply used the steer angle signals to
-estimate both the viscous and coulomb friction from the two bearing sets.
+The expression for steer torque can be linearized by assuming that the steer
+and pitch angles are small.
+
+.. math::
+   :label: eqSteerTorqueLinear
+
+   T_{\delta} = T_M + T_U + (I_{G_{33}} + d^2 m_G) \dot{w}_{g3} +
+   (I_{G_{31}} - d d_{s3} m_G) \dot{w}_{b1} + d d_{s1} m_G \dot{w}_{b3} +
+   d m_G a_{v2}
+
+.. todo:: Say something qualitative about the additional torques.
+
+All of the terms in :math:`T_\delta` are measured by the on board sensors or
+are the physical parameters except for the upper bearing frictional torque,
+:math:`T_U`. We estimated this torque through some experiments.
+
+Bearing Friction
+~~~~~~~~~~~~~~~~
+
+The torque sensor is mounted between two sets of bearings. The upper set are
+tapered roller bearings and the lower are typical bicycle headset bearings.
+Each are preloaded a nomimal amount during installation. We assume that the
+rotary friction due to each bearing set can be described as the sum of viscous
+and Coloumb friction. The Coulomb friction can be described as a piecewise
+function of the steering rate, :eq:`eqCoulomb`, and viscous friction as a
+function linear in the steer rate, :eq:`eqViscous`.
+
+.. math::
+   :label: eqCoulomb
+
+   T_{Bc} = t_B \operatorname{sgn}(\dot\delta) =
+   \begin{cases}
+     T_B  & \textrm{if $\dot{\delta}>0$}\\
+     0    & \textrm{if $\dot{\delta}=0$}\\
+     -T_B & \textrm{if $\dot{\delta}<0$}
+   \end{cases}
+
+.. math::
+   :label: eqViscous
+
+   T_{Bv} = c_B \dot{\delta}
+
+The total friction due to all of the bearings is
+
+.. math::
+   :label: eqTotalBearingFriction
+
+   T_B = T_{Bc} + T_{Bv}
+
+To estimate :math:`t_B` and :math:`c_B`, we set up the bicycle such that the
+steer axis was vertical, the front wheel was off the ground, and the rear frame
+was rigidly fixed in inertial space. We then attached two springs of stiffness
+:math:`k` each to the handlebars such that the force from the springs acted on
+a lever arm, :math:`l`, relative to the steer axis.
+
+.. todo:: image of the experimental setup
+
+This configuration allowed us to apply small perturbations to the handlebars
+and measure the dampened vibrations in the steer angle, steer rate and steer
+torque. For the first set of trials the sensors were mounted as they normally
+are, with the steer angle and rate measurements taken just above the headset
+and the steer torque measured between the upper and lower bearing sets. We also
+took data for a second set of trials with the steer rate sensor mounted to the
+top of the steer column in case the steer column to account for any torsional
+flexibility.
+
+The equations of motion governing the system are
+
+.. math::
+
+   I_{HF} \ddot{\delta} + c_B \dot{\delta} + t_B
+   \operatorname{sgn}(\dot{\delta}) + 2 k l^2 \delta = 0
+
+The length of the lever arm was 0.231 meters. The spring stiffness was
+estimated by suspending an 11.4 kg mass from one of the spring and letting it
+osciallate while measureing its vertical acceleration via an accelerometer. A
+grey box identification routine was used to estimate the spring stiffness for
+three trials. We found the average spring stiffnes to be :math:`904.7 \pm 0.6`
+N/m. The inertia of the handlebar, fork and front wheel about the steer axis,
+:math:`I_{HF}`, was computed based on the measurements described in Chapter
+:ref:`physcialparmaeters` and found to be :math:`0.1297+/-0.0005` :math:`kg
+\cdot m^2` [#]_.
+
+The friction coefficients are found with a non-linear grey box identification
+based on the measured steer angle over 15 trials (runs 209-223) where the
+steering assembly was perturbed from equilibrium. The resulting viscous
+coefficient is :math:`c_B = 0.34 \pm 0.04` :math:`N \cdot m \cdot s^2` and the
+Coulomb coefficient is :math:`t_B = 0.15 \pm 0.05` :math:`N \cdot m`.
+
+.. todo:: Show example fit?
+
+To calculate the applied steer torque, :math:`T_\delta`, we need an estimate of
+the upper bearing friction, :math:`T_U`. A simple assumption is that the
+friction in the upper bearings equals the friction in the lower bearings,
+:math:`T_U = T_B / 2`, but for some of the trials we measured the torque
+between the bearings, the steer angle just above the lower bearings and the
+steer rate above the upper bearings. This information allows the estimation of
+the upper and lower bearing friction idependently. The equations of motion of
+the assembly above the torque sensor are
+
+.. math::
+   :label: eqUpperBearingEOM
+
+   I_G \ddot{\delta}_U + c_U \dot{\delta} + t_U
+   \operatorname(sgn)(\dot{\delta}) + 2 k l^2 \delta = -T_m
+
+The friction coefficients of the upper bearings can be estimated by treating
+the measured torque as an input and the measured steer rate as the output in a
+non-linear grey box formulation. The moment of inertia of the handlebars about
+the steer axis, i.e. the portion above the torque sensor, :math:`I_G` is
+computed from the physical parameters measurement and is :math:`0.0656 \pm
+0.0003` :math:`kg \cdot m^2`.
+
+Assuming :math:`I_G`, :math:`k`, and :math:`l` as fixed parameters gave poor
+fits (around 50% of the data varialbily was accouted for by the model), and
+thus most likely poor estimates of the friction coefficients. The viscous
+coefficient was found to be :math:`c_U = 0.6 \pm 0.1` and the Coulomb friction
+as :math:`t_U = 4.0E-8 \pm 7E-8`. These results are questionable. From the
+previous excellent estimates of :math:`I_{HF}`, I would have not expected our
+:math:`I_G` number to be a poor estimate, but this leaves either our
+precomputed value of :math:`I_G` or the measure torque :math:`T_m` as the most
+likely candidates to being incorrect. If :math:`I_G` is a free parameter in the
+identification the data fits well, but :math:`I_G` is different than what was
+found with other techniques, :math:`I_G = 0.0955 \pm 0.0005`. The fits for the
+7 trials rose to over 87% and the viscous friction was :math:`c_U = 0.38 \pm
+0.06` and the Coulomb :math:`t_U = 0.08 \pm 0.06`. The same can be done to
+compute the lower bearing friction, but my fits were very poor. The results of
+finding the upper bearing and lower bearing friction are inconclusive. So the
+assumption that the upper friction is half of the total friction is used to
+compute the actual steer torque.
+
+.. todo:: This all makes me feel like the measured torque during the
+   experiments is incorrect or that my individual measurment of the handlebar
+   moment of inertia is wrong (but that would mean that the sum of the
+   handlebar, fork and wheel inertia has to be right!)...uh
+
+Rider Applied Torque
+~~~~~~~~~~~~~~~~~~~~
+
+With decent estimates of the torque due to upper bearing friction the actual
+rider applied steering torque, :math:`T_\delta`, can be computed using
+Equation :ref:`eqSteerTorque`.
+
+.. figure:: figures/davisbicycle/steer-torque-components.*
+
+   figSteerTorqueComponents
+
+   This is a plot of the steer torque components for run #700. The top plot
+   shows the additive viscous and Coulomb friction. The total bearing friction
+   during the run is under 0.3 Nm or so. The second plot shows the torque the
+   rider must apply to overcome the handlebar inertia. The dominant term is the
+   :math:`I_{G_{33}} w_{b3}` and during the peak accelerations the additive
+   torque is up to 1.5 Nm for this run. The third plot shows the total additive
+   torque which is up to 2 Nm. And finally the last plot shows the difference
+   in the measured torque and the rider applied torque. There are large
+   differences, especially at the peaks.
+
+Data Processing
+---------------
+
+To handle processing the data, I developed an object oriented program,
+BicycleDataProcessor, in Python that interacts with an HDF5 database containing
+the data. The program makes use of PyTables for database interaction and the
+SciPy/NumPy/matplotlib stack for computation and plotting. The program is
+functional but definitely a prototype that could leverage other packages to
+make it more robust. The structure is currently based on three clases:
+
+Signal
+   This is a subclass of the NumPy ndarray. It tracks a 1 dimensional time
+   series along with its units. There are basic methods for typical signal
+   processing such as differentiation, filtering and frequency spectrum.
+RawSignal
+   The is a subclass of Signal which for the raw signals. This attributes
+   are populated from the database. In addition to the Signal methods, it has
+   the ability to scale the signal based on calibration data.
+Sensor
+   This class contains calibration data for particular sensors and has methods
+   to extract the correct calibration constants based on calibration date.
+Run
+   This is the primary class which stores the metadata and signal data for a
+   specific run. It has methods to process the raw data into  more
+   meaningful time series that are useful for analyzing the bicycle dynamics.
+   There are also methods for plotting and exporting the data.
+
+The data collection and intial processing follows this pattern:
+
+1. Collect data via the BicycleDAQ software. This stores the metadata and
+   raw signal data for each run in a Matlab mat file.
+2. Convert the mat file to an HDF5 file using Matlab's HDF5 utilities. This
+   step needs to be removed, as SciPy can import the mat files directly. This
+   is a remnant of learing PyTables.
+3. Build the complete HDF5 database with BicycleDataProcessor.
+4. Load runs from the database and manipulate then for further processing.
+
+This approach works fairly well and allows for easy querying of the 700+ runs.
 
 .. rubric:: Footnotes
 
+.. [#] See `<http://biosport.ucdavis.edu/blog/hub-motor-woes>'_ for repair
+   details.
+
+.. [#] See our selection spreadsheet at
+`<https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0Asn6BMg-bB_EdFJKVXFfeEgyMnpwR0JXNVlOYjg0Q0E&output=html.>`_
+
 .. [#] a sum of sines would be ideal, see [Lange2011]_ for some ideas
-   on other types of inputs
+   on other types of inputs. It has been shown that a sum of sines signal is
+   not detectable by humans (ask Ron for this citation).
 
 .. [#] It slipped my mind to add a step up gear for the roll angle measurement,
    leaving the output voltage range small with respect to the roll angle range.
@@ -1427,6 +1656,7 @@ estimate both the viscous and coulomb friction from the two bearing sets.
 
 .. [#] The elasticity of the steer column may also be a factor.
 
-
-
-
+.. [#] If :math:`I_HF` is left as a free parameter, along with :math:`c_B` and
+   :math:`t_B`, the mean of :math:`I_HF` over 15 trials is identified to be
+   :math:`0.1269 \pm 0.0008`. This good agreement lends confidence to the
+   methods in Chapter :ref:`physicalparameters`.

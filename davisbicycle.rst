@@ -328,10 +328,9 @@ I measured the rear wheel speed in the same fashion as the Delft bicycle. We
 mounted a small DC permanent magnet motor (Globe Motors E-2120 without the
 encoder) to the rear frame in much the same way as a simple generator for a
 bicycle light works. A small knurled aluminum disc on the motor shaft engaged
-the sidewall of the tire tangentially. The voltage of DC motors is linearly
-proportional to the angular speed of the wheel. The disc diameter was chosen
-such that the top speed of the bicycle would give the maximum measurable output
-of 10 volts.
+the sidewall of the tire. The voltage of DC motors is linearly proportional to
+the angular speed of the wheel. The disc diameter was chosen such that the top
+speed of the bicycle would give the maximum measurable output of 10 volts.
 
 .. todo:: find which runs the speedometer was mounted differently
 

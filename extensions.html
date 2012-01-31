@@ -56,7 +56,7 @@
 <span id="extensions"></span><h1>Extensions of the Whipple Model<a class="headerlink" href="#extensions-of-the-whipple-model" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated January 08, 2012 at 20:00:19 PST).
+<p class="last">This document is a draft which is updated regularly (Last updated January 30, 2012 at 22:16:53 PST).
 Once I submit if for my doctoral degree at UC Davis, it will be done. So for
 now use at your own risk. The information may or may not be correct.
 Reviews, comments and suggestions are welcome.</p>
@@ -94,6 +94,10 @@ systems.</p>
 </div>
 <div class="section" id="lateral-force-input">
 <h2>Lateral Force Input<a class="headerlink" href="#lateral-force-input" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Roland1973 laterally perturbs a motorcycle model.</p>
+</div>
 <p>The Whipple model is typically defined with three input forces roll torque
 <span class="math">\(T_4\)</span>, rear wheel torque <span class="math">\(T_6\)</span> and steer torque <span class="math">\(T_7\)</span>. Here I
 add a fourth input, a lateral force <span class="math">\(F_{c_l}\)</span>, which acts on a point on
@@ -154,7 +158,7 @@ The frequency response for the roll angle, <span class="math">\(q_4\)</span>, an
 point just below the seat (red). The parameter set used was for the Jason on
 the Davis instrumented bicycle and was linearized at a forward speed of 7 m/s.</div>
 </div>
-<div class="admonition-todo admonition" id="index-0">
+<div class="admonition-todo admonition" id="index-1">
 <p class="first admonition-title">Todo</p>
 <p class="last">I don&#8217;t know how interesting these graphs are. Showing the
 relationship for magnitude of the outputs with respect to the location of the
@@ -275,7 +279,7 @@ accelerations of the mass centers along with the mass and inertia of the new
 bodies. The masses are simply defined as <span class="math">\(m_g\)</span>, <span class="math">\(m_h\)</span>, <span class="math">\(m_i\)</span>
 and <span class="math">\(m_j\)</span>. The arms segments are assumed to be symmetric about their
 associated <span class="math">\(2\)</span> axes, thus <span class="math">\(I_{11} = I_{22}\)</span>.</p>
-<div class="admonition-todo admonition" id="index-1">
+<div class="admonition-todo admonition" id="index-2">
 <p class="first admonition-title">Todo</p>
 <p class="last">I could reduce the number of parameters due to the symmetry of the
 problem, i.e. m_g = m_h and the left and right inertias are equivalent.
@@ -329,11 +333,11 @@ parameter set associated with Jason seated on the Davis instrumented bicycle
 calculated with the Yeadon method. This plot shares similar characteristics
 as the one presented in [Schwab2010].</div>
 </div>
-<div class="admonition-todo admonition" id="index-2">
+<div class="admonition-todo admonition" id="index-3">
 <p class="first admonition-title">Todo</p>
 <p class="last">Eigenvector component plots could help describe the motion.</p>
 </div>
-<div class="admonition-todo admonition" id="index-3">
+<div class="admonition-todo admonition" id="index-4">
 <p class="first admonition-title">Todo</p>
 <p class="last">Compare transfer function from steer torque to roll angle for the
 Whipple model and the arms model.</p>
@@ -366,16 +370,16 @@ in San Francisco and was able to ride the full scale prototype and eventually
 purchased a 16&#8221; version. The bicycle alone stays very stable even to extremely
 low speeds, but when I as an experienced rider tried ride and control it the
 steering felt less responsive than I&#8217;d prefer.</p>
-<div class="admonition-todo admonition" id="index-4">
+<div class="admonition-todo admonition" id="index-5">
 <p class="first admonition-title">Todo</p>
 <p class="last">are their any gyro stablized two wheel vehicles earlier than the
 car? Find a good citation.</p>
 </div>
-<div class="admonition-todo admonition" id="index-5">
+<div class="admonition-todo admonition" id="index-6">
 <p class="first admonition-title">Todo</p>
 <p class="last">Add citation to the gyrobike website.</p>
 </div>
-<div class="admonition-todo admonition" id="index-6">
+<div class="admonition-todo admonition" id="index-7">
 <p class="first admonition-title">Todo</p>
 <p class="last">Check size of gyrobike wheel.</p>
 </div>
@@ -455,7 +459,7 @@ front wheel) and a rigid child is seated on the bicycle.</div>
 flywheel must spin at almost 4000 rpm for the system to be stable and the time
 constant of the unstable eigenvalue doesn&#8217;t decrease decrease much until you at
 least have the flywheel spinning at 200 rpm.</p>
-<div class="admonition-todo admonition" id="index-7">
+<div class="admonition-todo admonition" id="index-8">
 <p class="first admonition-title">Todo</p>
 <p class="last">It would be interesting to know how fast the gyro wheel does spin. It
 it has three speed settings.</p>
@@ -477,11 +481,11 @@ the velocity too much results in an unstable system.</div>
 The non-linear simulation of bicycle traveling at 4.6 m/s with the flywheel
 spining at.</div>
 </div>
-<div class="admonition-todo admonition" id="index-8">
+<div class="admonition-todo admonition" id="index-9">
 <p class="first admonition-title">Todo</p>
 <p class="last">Plot the flywheel rate on this plot too.</p>
 </div>
-<div class="admonition-todo admonition" id="index-9">
+<div class="admonition-todo admonition" id="index-10">
 <p class="first admonition-title">Todo</p>
 <p class="last">Other possible plots: weave and capsize speeds as a function of flywheel
 speed, 3D plot versus both parameters (u6 and u9)</p>
@@ -496,7 +500,7 @@ simple leaning rider can be modeled by adding an additional rider lean degree
 of freedom, <span class="math">\(q_9\)</span>, with an accompanying rider lean torque, <span class="math">\(T_9\)</span>.
 [Sharp2008], [Schwab2008], [Peterson2008a], have all modeled this system
 explicitly.</p>
-<div class="admonition-todo admonition" id="index-10">
+<div class="admonition-todo admonition" id="index-11">
 <p class="first admonition-title">Todo</p>
 <p class="last">talk a bit more about the conclusions in those papers.</p>
 </div>
@@ -584,7 +588,7 @@ c_4c_9u_4-s_9c_4s_{\lambda-5}u_5-c_4c_9c_{\lambda-5}u_9)+
 s_9s_{\lambda-5}\dot{u}_4-\\
 &amp;s_9c_{\lambda-5}u_4u_5-c_9\dot{u}_5-(s_4c_9+
 s_9c_4c_{\lambda-5})\dot{u}_3)\hat{g}_3\end{split}\]</div>
-<div class="admonition-todo admonition" id="index-11">
+<div class="admonition-todo admonition" id="index-12">
 <p class="first admonition-title">Todo</p>
 <p class="last">I&#8217;m not sure how useful it is to print out these long equations.
 Maybe I shouldn&#8217;t do it and refer to the code.</p>
@@ -645,7 +649,7 @@ The parameters used are taken from [Lorenzo1996], which he estimated,
 <div class="legend">
 Needs a caption.</div>
 </div>
-<div class="admonition-todo admonition" id="index-12">
+<div class="admonition-todo admonition" id="index-13">
 <p class="first admonition-title">Todo</p>
 <p class="last">These plots were generated with rider parameters based on my original
 method, it wouldn&#8217;t take much to update the parameters to reflect the yeadon
@@ -857,7 +861,7 @@ rotating about a line just below the seat that runs fore to aft.</p>
 <div class="legend">
 The hip trace from run # 3104.</div>
 </div>
-<div class="admonition-todo admonition" id="index-13">
+<div class="admonition-todo admonition" id="index-14">
 <p class="first admonition-title">Todo</p>
 <p class="last">improve this plot and draw the arc of the hip motion</p>
 </div>
@@ -893,7 +897,7 @@ dependent on the hip angle. Finally, the spine would be stiffened with a back
 brace and a single revolute joint for back lean relative to the hips would be
 measured. I also considered measuring the rider&#8217;s torso twist angle relative to
 the hips.</p>
-<div class="admonition-todo admonition" id="index-14">
+<div class="admonition-todo admonition" id="index-15">
 <p class="first admonition-title">Todo</p>
 <p class="last">Add the Autodesk Inventor drawing of this model, or even an
 animation.</p>
@@ -902,6 +906,11 @@ animation.</p>
 and foot pegs which measure the downward force applied by the feet to the
 bicycle with the goal to characterize the force interaction between the rider
 and the bicycle which causes the bicycle to roll.</p>
+<div class="admonition-todo admonition" id="index-16">
+<p class="first admonition-title">Todo</p>
+<p class="last">mention how changing the roll angle when you off the seat is very
+easy</p>
+</div>
 </div>
 <div class="section" id="conclusions">
 <h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>

@@ -56,7 +56,7 @@
 <span id="id1"></span><h1>Control<a class="headerlink" href="#control" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated January 08, 2012 at 20:00:16 PST).
+<p class="last">This document is a draft which is updated regularly (Last updated January 30, 2012 at 22:16:48 PST).
 Once I submit if for my doctoral degree at UC Davis, it will be done. So for
 now use at your own risk. The information may or may not be correct.
 Reviews, comments and suggestions are welcome.</p>
@@ -201,13 +201,21 @@ explicitly measuring the human&#8217;s torque input.</dd>
 <dd>Another one on the Honda robot, but probably in Japanese.</dd>
 <dt>[Yamakita2006]</dt>
 <dd>implements a modified controller from the one presented in [Yamakita2005]
-with an additional <span class="math">\(H_\inf\)</span> controller. They show some successful roll
+with an additional <span class="math">\(H_\infty\)</span> controller. They show some successful roll
 stabilization of a robot scooter in which they only implement the roll
 stabilization control.</dd>
 <dt>[Micchini2006]</dt>
 <dd>constructed a robot bicycle (I&#8217;ve asked him for more info on this one).</dd>
 <dt>[Suprapto2006]</dt>
 <dd>Find and read.</dd>
+<dt>[Murata2011]</dt>
+<dd>The Murata Manufacturing company designed a bicycle robot to demonstrate the
+utility of their sensors which debuted sometime in 2006 [Murata2011].
+There is little published detail on the control techniques but they seem to
+primarily make use of a roll rate gyro with steering and a gyro actuator.
+They also have other sensors such as ultrasonic sensors for obstacle
+detection. They demonstrate stability at zero, reverse and forward speeds,
+stopping for obstacles, and tracking a narrow s-curve.</dd>
 <dt>[Taura2007]</dt>
 <dd>master&#8217;s thesis on acrobatic bike robot..maybe a wheely (need to find this
 one). Probably in Japanese.</dd>
@@ -218,7 +226,7 @@ robot at both zero forward speed up to 2 m/s.</dd>
 <dt>[Solveberg2007]</dt>
 <dd>Read. MS thesis on controlling a bicycle robot.</dd>
 <dt>[Thanh2008]</dt>
-<dd>Thanh designs a controller with <span class="math">\(H_2/H_\inf\)</span> techniques and applies it
+<dd>Thanh designs a controller with <span class="math">\(H_2/H_\infty\)</span> techniques and applies it
 to a bicycle robot which uses a flywheel for stabilization. He compares it
 to a PD controller and a genetic algorithm and shows that it is more robust.</dd>
 <dt>[Tanaka2009]</dt>
@@ -233,14 +241,6 @@ and straight ahead running.</dd>
 <dd>Read</dd>
 <dt>[Keo2011]</dt>
 <dd>Read</dd>
-<dt>[Murata2011]</dt>
-<dd>The Murata Manufacturing company designed a bicycle robot to demonstrate the
-utility of their sensors which debuted sometime in 2006 [Murata2011].
-There is little published detail on the control techniques but they seem to
-primarily make use of a roll rate gyro with steering and a gyro actuator.
-They also have other sensors such as ultrasonic sensors for obstacle
-detection. They demonstrate stability at zero, reverse and forward speeds,
-stopping for obstacles, and tracking a narrow s-curve.</dd>
 <dt>[BicyRobo2011]</dt>
 <dd>In 2011 the first <a class="reference external" href="http://bicyrobo.ait.ac.th/">BicyRobo Thailand student competition</a> occurred and many videos on the internet
 demonstrate the successful design of some teams. The full size bicycle
@@ -351,6 +351,8 @@ methods: a classical lead/lag compensator design, Ackerman pole placement
 and LQR optimal control.</dd>
 <dt>[Bjermeland2006]</dt>
 <dd>a masters these on controlling a bicycle, I don&#8217;t have it.</dd>
+<dt>[Chen2006]</dt>
+<dd>fuzzy</dd>
 <dt>[Sharp2007a]</dt>
 <dd>He develops a path tracking controller for the benchmark bicycle
 [Meijaard2007] based on full state feedback and optimal control (LQR). He
@@ -433,22 +435,23 @@ conference proceedings for other examples.</p>
 </div>
 <p>Variations on PID control of steer angle or steer torque with feedback of the
 roll angle are the most popular controller designs, many them being successful.
-LQR type follow close behind. H_inf and other more modern control designs make
+LQR type follow close behind. <span class="math">\(H_\infty\)</span> and other more modern control designs make
 up the rest. It is clear that roll stabilization is the critical task and must
 be conquered before path tracking can be employed.</p>
 </div>
 <div class="section" id="roll-stabilization">
 <h3>Roll Stabilization<a class="headerlink" href="#roll-stabilization" title="Permalink to this headline">¶</a></h3>
 <p>It turns out that the bicycle can be stablized with simple feedback of roll
-angle or roll rate. [Mutsaerts2010] in fact demonstrates the simple roll rate
-feedback stabilization with a small robotic bicycle. But these are not
-necessarily good controllers, and certainly not controllers which mimic the
-human controller. Regardless, their simplicity allows one to  demonstrate some
-of the interesting system dynamics. Take for example Charlie riding on the
-Rigidcl bicycle at 5.0 m/s (unstable in weave). The linear Whipple model steer
-torque to roll and steer angle transfer functions are</p>
-<div class="math">
-\[\left(\frac{\phi}{T_\phi}\right)_b(s) =
+angle or roll rate, with the combinatio of both being working in most cases.
+[Mutsaerts2010] in fact demonstrates the simple roll rate feedback
+stabilization with a small robotic bicycle. But these are not necessarily good
+controllers, and certainly not controllers which mimic the human.  Regardless,
+their simplicity allows one to  demonstrate some of the interesting system
+dynamics. Take for example Charlie riding on the Rigidcl bicycle at 7 m/s. The
+linear Whipple model about the nominal configuration gives the steer torque and
+roll torque to roll and steer angle transfer functions as</p>
+<div class="math" id="equation-eqExampleBicycleTransferFunctions">
+<span class="eqno">(1)</span>\[\left(\frac{\phi}{T_\phi}\right)_b(s) =
 \frac{0.0095052 (s+26.32) (s+16.78)}
 {(s+22.28) (s+0.5872) (s^2 + 2.801s + 11.24)}\]\[\left(\frac{\delta}{T_\phi}\right)_b(s) =
 \frac{-0.094941 (s-3.744) (s+2.729)}
@@ -464,35 +467,42 @@ gives a negative output?</p>
 </div>
 <p>The denominators of the transfer functions show that we have three stable
 modes, as expected. The numerators are potentially more interesting. Note that
-the steer torque to steer angle transfer function has a right half plane zero
-at <span class="math">\(s=2.934\)</span>. This single right half plane zero means that the steer
-angle response will exhibit an initial undershoot for a given steer torque
-input [Hoagg2007]. The step response of the two transfer functions is shown in
-Figure <em class="xref std std-ref">figStableStepResponse</em>.</p>
+the steer torque to steer angle and the roll torque to steer angle transfer
+functions both have a single right half plane zero. This single right half
+plane zero means that the steer angle response from either input will exhibit
+an initial undershoot for a given steer torque input [Hoagg2007]. This
+phenomena can be demonstrated by examining the step response of the two
+transfer functions is shown in Figure <em class="xref std std-ref">figStableStepResponse</em>.</p>
 <div class="figure">
 <img alt="_images/stable-step-response.png" src="_images/stable-step-response.png" />
 <p class="caption">figStableStepResponse</p>
 <div class="legend">
 The upper graph shows the roll and steer angle time histories for a step
 response roll torque to the Whipple model linearized about the nomimal
-configuration. The parameters are taken from the rider Charlie on the Rigicl
-bicycle and the speed is 7 m/s which is within the stable speed range. The
-lower graph input is for a step input to steer torque.</div>
+configuration.  The lower graph input is for a step input to steer torque.
+The parameters are taken from the rider Charlie on the Rigicl bicycle and
+the speed is 7 m/s which is within the stable speed range.</div>
 </div>
 <p>As expected we see initial undershoot in the steer angle. In this case, the
 initial undershoot is initially departs in the asymptotic direction, but
-reverses and settles at a negative steer angle. This is easily demonstrated
-while riding a bicycle by placing ones flat open palms on the handlbebar grips.
-By applying a torque intending to turn the handlebars in the positive
+reverses and settles to a negative steer angle. This is easily demonstrated
+while riding a bicycle by placing one&#8217;s flat open palms on the handlbebar
+grips.  By applying a torque intending to turn the handlebars in the positive
 direction, the handlebars initially go in the correct direction, but once the
 frame rolls in the negative direction, the steering angle reverses and puts the
-bicycle into a steady turn with constant steer torque.</p>
-<p>If we examine the change in the zeros as a function of forward speed for the
-steer torque to roll and steer angle transfer functions, we see that the steer
-angle zeros do not change with respect to speed while the roll angle zeros do
-increase. But more importantly, there is always a right half plane zero in the
-steer angle transfer function and never one in the roll angle transfer
-function.</p>
+bicycle into a steady turn in the negative direction.</p>
+<p>If we examine the change in the transfer function zeros as a function of
+forward speed, we see that both the steer angle transfer functions always have
+a right half plane zero always have a right half plane zero. And for
+<span class="math">\(\frac{\delta}{T_\delta}(s)\)</span>, the zeros do not change with respect to
+speed. It is also interesting to note that at low speeds both roll angle
+transfer functions eventually develop right half plane zeros. For roll torque,
+this would mean that at low speeds a positive roll torque step input (i.e from
+a gust of wind) would cause a positive roll angle initial overshoot with the
+roll angle settling to a negative value at steady state. I&#8217;ve often felt like I
+fall into the wind on my bicycle and this could confirm it at least for low
+speeds, but it may be tied more to phenomena associtated with the rider&#8217;s
+biomechanical degrees of freedom.</p>
 <div class="figure" id="figzerowrtspeed">
 <img alt="_images/zeros-wrt-speed.png" src="_images/zeros-wrt-speed.png" style="width: 4in;" />
 <p class="caption">figZerosWrtSpeed</p>
@@ -553,7 +563,7 @@ polynomials, the zeros are found</p>
 function of the total potential energy of the system divided by the roll moment
 of inertia with respect to the center of mass.</p>
 <div class="math">
-\[s_{\delta} = \pm\sqrt{-frac{g m_T z_T}{{I_T}_{xx}}}\]</div>
+\[s_{\delta} = \pm\sqrt{-\frac{g m_T z_T}{{I_T}_{xx}}}\]</div>
 <div class="admonition-todo admonition" id="index-6">
 <p class="first admonition-title">Todo</p>
 <p class="last">What does this mean? How can you change the total potential energy
@@ -561,8 +571,8 @@ and moment of inertia such that you don&#8217;t have a right half plane zero in 
 steer?</p>
 </div>
 <p>This right half plane zero is important for understanding how to control a
-bicycle. Controlling by steer torque will unintuitive behavior of the
-resutling motion.</p>
+bicycle. Controlling by steer torque causes unintuitive behavior of the
+bicycle.</p>
 <p>Notice too that the roll torque transfer function zeros are both functions of
 speed. The steer angle zero varies little and has a right half plane zero for
 all speeds of interest. But more interestingly, one roll angle zero is positive
@@ -573,19 +583,29 @@ will see an initial undershoot response in roll angle but not at higher speeds.<
 <p>Countersteering is a confusing topic and people give different definitions.
 Motorcycle driving instructors teach their students to steer into the obstacle
 that they want to go around.</p>
-<p>[Limebeer2006] and [Sharp2008] duly note that countersteering is used for
-potentially conflicting ideas. They examine the effects of the right half plane
-zero of simplified point mass model in much the same way as [Astrom2005].
-Sharp and Limebeer develop a steer torque to roll angle transfer function which
-has a right half plane zero and Astrom develops a <em>steer angle</em> to roll angle
-transfer function that has a right half plane zero. The Whipple model on the
-otherhand does not have a right half plane zero in the &#8220;steer&#8221; to roll angle
-transfer function.</p>
-<p>Here are some potential definitions of countersteer:</p>
+<p>[Limebeer2006] and [Sharp2008] duly note that the term countersteering is
+used for potentially two conflicting ideas. They examine the effects of the
+right half plane zero of simplified point mass model in much the same way as
+[Astrom2005].  Sharp and Limebeer show that both the steer torque to steer
+angle and steer torque to lateral deviation have right half plane zeros and
+Astrom develops a <em>steer angle</em> to roll angle transfer function that has a
+right half plane zero. The Whipple model matches the [Limebeer2006]
+interpretation, i.e. that the right half plane zero is the steer torque to
+steer angle transfer function.</p>
+<div class="admonition-todo admonition" id="index-7">
+<p class="first admonition-title">Todo</p>
+<p class="last">Quote cossalter 2007 on the second def of coutnersteer</p>
+</div>
+<p>The first and most common definition of countersteer is</p>
 <ul class="simple">
-<li>Steer torque is applied intially in the opposite direction you want to turn.</li>
-<li>Steer torque reverses sign to maintain steady turn.</li>
-<li>Steer angle is opposite the direction of the turn.</li>
+<li>Steer torque is applied in the opposite direction you want to turn which in
+turn causes the steer angle to initially depart in the opposite direction of
+the turn, but the steer angle reverses.</li>
+</ul>
+<p>The second definition regards what happens to the steer torque</p>
+<ul class="simple">
+<li>The applied steer torque may reverse sign to maintain steady turn. This is
+true at high speeds.</li>
 </ul>
 <p>The step response at a stable speed shows that for a given roll angle departure
 the natural stability enforces that steer angle must initially depart in the
@@ -599,22 +619,24 @@ negative steady turn.</p>
 to observe that one needs to control the bicycle as other speeds are
 potentially outside the stable speed range.</p>
 <p>Below the weave critical speed, the bicycle can be stabilized by a simple gain
-on roll rate feedback.</p>
+on roll rate feedback. Note that this gain is negative, giving positive
+feedback. This implies to apply steer torque in the same sense as the rate of
+fall. <a class="footnote-reference" href="#id141" id="id94">[1]</a></p>
 <div class="figure">
 <img alt="_images/commanded-steer-torque.png" src="_images/commanded-steer-torque.png" />
 <p class="caption">figWeaveStepResponse</p>
 <div class="legend">
 The step response to a commanded steer torque at 5.0 m/s which is below the
-weave speed.</div>
+weave speed. The gain is set to -5.</div>
 </div>
 <p>And above the weave critical speed, the bicycle can be stabilzed by a simple
-gain on roll angle feedback.</p>
+gain on roll angle feedback which is also negative.</p>
 <div class="figure">
 <img alt="_images/commanded-roll-angle.png" src="_images/commanded-roll-angle.png" />
 <p class="caption">figCapsizeResponse</p>
 <div class="legend">
 The step response to a commanded roll angle at 10 m/s which is above the
-capsize speed.</div>
+capsize speed. The gain is set to -10.1.</div>
 </div>
 <p>For steer torque control inputs, countersteering amounts to this: To get the
 bicycle into a positive turn, one must initially apply a negative steer
@@ -623,7 +645,7 @@ The steer angle exhibits initial undershoot due to the right half plane zero
 and settles to a positive angle at steady state. This is the case for at least
 all speeds above very slow speeds where the steer torque to roll angle transfer
 function has a right half plane zero.</p>
-<div class="admonition-todo admonition" id="index-7">
+<div class="admonition-todo admonition" id="index-8">
 <p class="first admonition-title">Todo</p>
 <p class="last">apples to apples comparisons to the step response of speeds below, in
 and above the stable speed range is difficult. The graphs I&#8217;ve made give a
@@ -631,17 +653,24 @@ step response to commanded steer torque, steer torque and commaned roll
 angle respectively. It might be better to show the response to the &#8220;same&#8221;
 command. Then they could be plotted on one graph or something.</p>
 </div>
-<div class="admonition-todo admonition" id="index-8">
+<div class="admonition-todo admonition" id="index-9">
 <p class="first admonition-title">Todo</p>
 <p class="last">Limebeer2006 talks about this other countersteering idea. While you
 are in a steady turn you may have to apply torque in the opposite direction to
 maintain it. My graphs don&#8217;t show that and the distinction.</p>
 </div>
-<div class="admonition-todo admonition" id="index-9">
+<div class="admonition-todo admonition" id="index-10">
 <p class="first admonition-title">Todo</p>
 <p class="last">How does this relate to the right half plane zeros that Limebeer2006
 and Astrom2005 talk about? Being that they don&#8217;t use the Whipple model and
 they look at steer to roll transfer functions.</p>
+</div>
+<div class="admonition-todo admonition" id="index-11">
+<p class="first admonition-title">Todo</p>
+<p class="last">It&#8217;d be interesting to see how this works with rider lean torque too.
+Weir 1972 says that controlling heading is easier by rider lean control due to
+the fact that there is no right half plane zero (as opposed to steer torque to
+heading, which does have a right half plane zero).</p>
 </div>
 </div>
 </div>
@@ -650,7 +679,7 @@ they look at steer to roll transfer functions.</p>
 <p>There are very fewer studies focusing on human control of a bicycle or
 motorcycle with the intent of identifying the human controller or controlling
 the vehicle with a human-like controller.</p>
-<div class="admonition-todo admonition" id="index-10">
+<div class="admonition-todo admonition" id="index-12">
 <p class="first admonition-title">Todo</p>
 <p class="last">talk about learned control, unconscious vs conscious, upper cortex</p>
 </div>
@@ -674,6 +703,19 @@ develops a more up-to-date model with the same type of structure as van
 Lunteren and Stassen, where he feeds back roll angle and steer angle, and
 drives steer torque with PID controllers. He also points out a sign error in
 van Lunteren and Stassen&#8217;s work.</p>
+<dl class="docutils">
+<dt>[Roland1972]</dt>
+<dd>They develop a PID controller with a time delay and pole? for both steer
+torque and rider lean torque control to stabilize the inner roll loop. The
+previewed error in the desired path in several future time steps is weighted
+to calculate a cumlative error which is then multiplied by a gain to compute
+an adjustement to the commanded roll angle. They show simulations of both
+good roll stabilization and slalom path tracking.</dd>
+</dl>
+<div class="admonition-todo admonition" id="index-13">
+<p class="first admonition-title">Todo</p>
+<p class="last">Add Eaton1973</p>
+</div>
 </div>
 <div class="section" id="weir-and-zellner">
 <h4>Weir and Zellner<a class="headerlink" href="#weir-and-zellner" title="Permalink to this headline">¶</a></h4>
@@ -698,7 +740,7 @@ important studies involving manual control of the motorcycle [Weir1978],
 [Weir1979], including a detailed technical report for the U.S. Department of
 Transportation [Weir1979a] in which much experimental work was done verifying
 their mathematical models.</p>
-<div class="admonition-todo admonition" id="index-11">
+<div class="admonition-todo admonition" id="index-14">
 <p class="first admonition-title">Todo</p>
 <p class="last">There are some other Weir papers I could cite, and I should look over
 Weir1979a again to get the main conclusions.</p>
@@ -722,7 +764,7 @@ crossover model dictates will stabilize the bicycle at non intended roll
 angles. To control roll angle, he claims that we do not do this in a continuous
 but that we apply discrete pulses when the roll angle meets a threshold. This
 model has similar form to the one developed by us in the next section.</p>
-<div class="admonition-todo admonition" id="index-12">
+<div class="admonition-todo admonition" id="index-15">
 <p class="first admonition-title">Todo</p>
 <p class="last">Cerebellum is the lower brain (learned control). High cortical
 regions and outer cortex is the higher brain. Under-conscious control or sub
@@ -744,7 +786,7 @@ control. But a combination of fuzzy logic and crossover type control may prove
 useful in describing the human control system. Liu and Wu have done extensive
 work applying fuzzy control to single track vehicles ([Liu1994], [Wu1994],
 [Wu1995], [Wu1996], [Wu1996a], [Wu1996b], [Wu1996c]).</p>
-<div class="admonition-todo admonition" id="index-13">
+<div class="admonition-todo admonition" id="index-16">
 <p class="first admonition-title">Todo</p>
 <p class="last">Read some of the Wu and Liu stuff and say something about it.</p>
 </div>
@@ -759,7 +801,7 @@ and a first order lead filter for a mental workload model. His control elements
 include a roll angle feedback gain, a reference signal prefilter, and a
 compensator with proportional, integral and lead control terms. The proportional
 term in the compensator is the only speed dependent term. They select the
-numerical values for the control elements using <span class="math">\(H_\infinity\)</span> loop
+numerical values for the control elements using <span class="math">\(H_\infty\)</span> loop
 shaping. They finally show simulation results with good performance with
 regards to disturbance rejection and roll tracking.</p>
 </div>
@@ -843,12 +885,12 @@ transfer function conforms to the dictates of a sound control system design
 around the crossover frequency [Hess1997]. The form of this transfer function
 for many control tasks takes the form</p>
 <div class="math" id="equation-crossover">
-<span class="eqno">(1)</span>\[G_{human}G_{plant}(s) = \frac{\omega_c e^{-\tau_e s}}{s}\]</div>
+<span class="eqno">(2)</span>\[G_{human}G_{plant}(s) = \frac{\omega_c e^{-\tau_e s}}{s}\]</div>
 <p>The model is governed by only two parameters: the cross over frequency,
 <span class="math">\(\omega_c\)</span> and the effective time delay, <span class="math">\(\tau_e\)</span>. The simplicity
 of this model and its ability to describe many human in the loop systems is
 powerful.</p>
-<div class="admonition-todo admonition" id="index-14">
+<div class="admonition-todo admonition" id="index-17">
 <p class="first admonition-title">Todo</p>
 <p class="last">read Ron&#8217;s work on manual control again and write a summary here.</p>
 </div>
@@ -881,10 +923,10 @@ loops manage the path following. We include a simple second order model of the
 human&#8217;s neuromuscular dynamics which produces a steer torque from the steer
 angle error.</p>
 <div class="math" id="equation-eqNeuromuscular">
-<span class="eqno">(2)</span>\[G_{nm} = \frac{\omega_{nm}^2}{s^2 + 2\zeta_{nm}\omega_{nm}s + \omega_{nm}}\]</div>
+<span class="eqno">(3)</span>\[G_{nm} = \frac{\omega_{nm}^2}{s^2 + 2\zeta_{nm}\omega_{nm}s + \omega_{nm}}\]</div>
 <p>The neuromuscular parameters, <span class="math">\(\zeta_{nm},\omega_{nm}\)</span>, were chosen to
 such that the innermost loop gave a typical response for a human operator.</p>
-<div class="admonition-todo admonition" id="index-15">
+<div class="admonition-todo admonition" id="index-18">
 <p class="first admonition-title">Todo</p>
 <p class="last">Why is that the proprioception is required?? Is it a function of
 adding the neuromuscular model, cause people can stablize roll with P, D or
@@ -894,7 +936,7 @@ PD on roll angle.</p>
 configuration with the primary control input being steer torque. The inner
 loops are closed with sequential gains starting with the proprioceptive steer
 angle loop, followed by the vestibular roll rate loop and the visual roll angle
-loop <a class="footnote-reference" href="#id137" id="id128">[1]</a>, Figure <a class="reference internal" href="#figinnerloops"><em>figInnerLoops</em></a>. The steer angle loop in essense
+loop <a class="footnote-reference" href="#id142" id="id132">[2]</a>, Figure <a class="reference internal" href="#figinnerloops"><em>figInnerLoops</em></a>. The steer angle loop in essense
 captures the force/feel or haptic feedback we use while interacting with the
 handlebars. The need for this loop is readily apparent when trying to control a
 bicycle simulation with a joystick or steering wheel with no haptic feedback as
@@ -919,7 +961,7 @@ performance. The two inner most loop gains are chosen such that all of the
 oscillatory roots of the closed loop have at least a 0.15 damping ratio.
 Whereas the three outer loop gains are chosen such that the open loop crossover
 frequencies are half the previous.</p>
-<div class="admonition-todo admonition" id="index-16">
+<div class="admonition-todo admonition" id="index-19">
 <p class="first admonition-title">Todo</p>
 <p class="last">Why do we need the proprioceptive loop?</p>
 </div>
@@ -938,7 +980,7 @@ to push the poles originating at the bicycle weave eigenvalue to a higher
 frequency with 0.15 damping. The closed loop transfer function for the steer
 loop is</p>
 <div class="math" id="equation-eqDeltaLoop">
-<span class="eqno">(3)</span>\[G_{\delta c} = \frac{\delta}{\delta_c} =
+<span class="eqno">(4)</span>\[G_{\delta c} = \frac{\delta}{\delta_c} =
 \frac{ G_{\delta o}}{1 + G_{\delta o}}\]\[G_{\delta o}(s) = k_\delta G_{nm} \left(\frac{\delta}{T_\delta}]\right)_b\]</div>
 <p>A numerical example of Charlie on the Rigidcl bicycle at 5 m/s gives</p>
 <div class="math">
@@ -1015,7 +1057,7 @@ need to introduce a positive feedback on roll rate. So it turns out that with
 a slight negative gain we can maintain the neuromuscular mode behavior but
 introduce the require sign change for stability.</p>
 <div class="math" id="equation-eqPhiDotLoop">
-<span class="eqno">(4)</span>\[G_{\dot{\phi} c} = \frac{\dot{\phi}}{\dot{\phi}_c} =
+<span class="eqno">(5)</span>\[G_{\dot{\phi} c} = \frac{\dot{\phi}}{\dot{\phi}_c} =
 \frac{G_{\dot{\phi} o}}{1 + G_{\dot{\phi} o}}\]\[G_{\dot{\phi} o} = k_\dot{\phi} k_\delta G_{nm} \left(\frac{\dot{\phi}}{T_\delta}\right)_b
 [1 - G_{\delta c}]\]</div>
 <div class="figure">
@@ -1025,7 +1067,7 @@ introduce the require sign change for stability.</p>
 The damping ratio of all roots to the closed loop roll rate loop as a
 function of gain.</div>
 </div>
-<div class="admonition-todo admonition" id="index-17">
+<div class="admonition-todo admonition" id="index-20">
 <p class="first admonition-title">Todo</p>
 <p class="last">I don&#8217;t know how to explain the choice in gain for the roll rate loop
 in terms of the Bode diagram. Some help please!</p>
@@ -1048,12 +1090,12 @@ set by measuring the gain of transfer function at the desired crossover
 frequency and realizing that a unit change in gain will raise or lower the gain
 curve.</p>
 <div class="math" id="equation-eqPhiLoop">
-<span class="eqno">(5)</span>\[G_{\phi c} = \frac{\phi}{\phi_c} =
+<span class="eqno">(6)</span>\[G_{\phi c} = \frac{\phi}{\phi_c} =
 \frac{G_{\phi o}}{1 + G_{\phi o}}\]\[G_{\phi o} = k_\phi k_\dot{\phi} k_\delta G_{nm}
 \left(\frac{\phi}{T_\delta}\right)_b
 [1 - G_{\dot{\phi} c}] [1 - G_{\delta c}]\]</div>
 <div class="math" id="equation-eqKPhi">
-<span class="eqno">(6)</span>\[k_\phi = \frac{1}{|G_{\phi o}(2j)|}\]</div>
+<span class="eqno">(7)</span>\[k_\phi = \frac{1}{|G_{\phi o}(2j)|}\]</div>
 <div class="figure" id="figphibode">
 <img alt="_images/phi-bode.png" src="_images/phi-bode.png" />
 <p class="caption">figPhiBode</p>
@@ -1078,12 +1120,12 @@ the counter steering. The system has a steady state error?? Should it?</div>
 <p>The remaining loops are closed using the rule of thumb [Hess1997] of crossing
 over at half the previous loops crossover frequency.</p>
 <div class="math" id="equation-eqPsiLoop">
-<span class="eqno">(7)</span>\[G_{\psi c} = \frac{\psi}{\psi_c} =
+<span class="eqno">(8)</span>\[G_{\psi c} = \frac{\psi}{\psi_c} =
 \frac{G_{\psi o}}{1 + G_{\psi o}}\]\[G_{\psi o} = k_\psi k_\phi k_\dot{\phi} k_\delta G_{nm}
 \left(\frac{\psi}{T_\delta}\right)_b
 [1 - G_{\phi c}] [1 - G_{\dot{\phi} c}] [1 - G_{\delta c}]\]</div>
 <div class="math" id="equation-eqKPsi">
-<span class="eqno">(8)</span>\[k_\psi = \frac{1}{|G_{\psi o}(1j)|}\]</div>
+<span class="eqno">(9)</span>\[k_\psi = \frac{1}{|G_{\psi o}(1j)|}\]</div>
 <div class="figure" id="figpsibode">
 <img alt="_images/psi-bode.png" src="_images/psi-bode.png" />
 <p class="caption">figPsiBode</p>
@@ -1092,12 +1134,12 @@ The open loop frequency response for the yaw angle loop. Blue is gain of
 unity and the green line is uses the gain to give desired crossover.</div>
 </div>
 <div class="math" id="equation-eqYqLoop">
-<span class="eqno">(9)</span>\[G_{y_q c} = \frac{y_q}{{y_q}_c} =
+<span class="eqno">(10)</span>\[G_{y_q c} = \frac{y_q}{{y_q}_c} =
 \frac{G_{y_q o}}{1 + G_{y_q o}}\]\[G_{y_q o} = k_{y_q} k_\psi k_\phi k_\dot{\phi} k_\delta G_{nm}
 \left(\frac{y_q}{T_\delta}\right)_b
 [1 - G_{\psi c}] [1 - G_{\phi c}] [1 - G_{\dot{\phi} c}] [1 - G_{\delta c}]\]</div>
 <div class="math" id="equation-eqKYq">
-<span class="eqno">(10)</span>\[k_{y_q} = \frac{1}{|G_{y_q o}(0.5j)|}\]</div>
+<span class="eqno">(11)</span>\[k_{y_q} = \frac{1}{|G_{y_q o}(0.5j)|}\]</div>
 <div class="figure" id="figyqbode">
 <img alt="_images/yq-bode.png" src="_images/yq-bode.png" />
 <p class="caption">figYqBode</p>
@@ -1190,10 +1232,17 @@ and the source code for doing so is included.</p>
 <dd>The closed loop transfer function of loop <span class="math">\(x\)</span>.</dd>
 </dl>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="id137" rules="none">
+<table class="docutils footnote" frame="void" id="id141" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id128">[1]</a></td><td>[Doyle1988] notes that his riders can balance even while blindfolded.
+<tr><td class="label"><a class="fn-backref" href="#id94">[1]</a></td><td>The system can be stabilized by negative roll angle feedback at speeds
+close to the weave critical speed.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id142" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id132">[2]</a></td><td>[Doyle1988] notes that his riders can balance even while blindfolded.
 This is even true for people who&#8217;ve been blind since birth. So the roll
 angle dectection, must not necessarily be all visual based.</td></tr>
 </tbody>

@@ -113,9 +113,9 @@ The bicycle's primary design criteria were as follows:
    frame.
 
 From early on, I intended to attempt some experiments with some constrained
-rider biomechanical motion, such as leaning for example. These became secondary
-design criteria as the project progessed and were never fully implemented, but
-I'll discuss them for completeness. They are as follows:
+rider biomechanical motion, such as leaning. The design for this led to
+secondary design criteria as the project progessed and were never fully
+implemented, but I'll discuss them for completeness. They are as follows:
 
 - Restrict the rider's body motion to a limited set and measure the additional
    kinematics.
@@ -142,11 +142,11 @@ Our original requirements for a bicycle were as follows:
 - Accept 700c tires so that we can use high pressure.
 - Size: 54-58cm for our intended riders.
 
-We chose a large Surly 1x1 model. It is designed as a single speed off road
+We chose a large size Surly 1x1 model. It is designed as a single speed off road
 bicycle for 26" wheels with fat tires, but can be setup with 700c higher
 pressure tires. The frame is constructed from butted 4130 CroMoly steel tubing.
 It has both front and rear V-brake in addition to  disc brake mounts. Otherwise
-it met all of our requirements. We purchase some standard components including
+it met all of our requirements. We purchased some standard components including
 700c aluminum wheels with 23c Continental Gatorskin high pressure tires and
 basic handlebars and brakes.
 
@@ -291,16 +291,16 @@ body fixed angular rate of the front frame about the steer axis.
      - Sensor
    * - Yaw Angle, Roll Angle, Pitch Angle
      - :math:`\pm180` degrees, :math:`\pm180` degrees, :math:`\pm180` degrees
-     - < 2 degress, < 0.5 degrees, < 0.5 degrees (3 sigma)
+     - < 2 degress, < 0.5 degrees, < 0.5 degrees (3 sigma)*
      - VN-100
    * - Yaw Rate, Roll Rate, Pitch Rate
      - :math:`\pm500` deg/s, :math:`\pm500` deg/s, :math:`\pm500` deg/s
-     -
-     - VN-100
+     - :math:`<\pm0.06` deg/s (bias stability)*
+     - VN-100 (Invensense IDG500 and ISZ500)
    * - Rear frame 3D point acceleration
      - :math:`\pm2` g
-     -
-     - VN-100
+     - x/y :math`<2` mg, z :math:`<3` mg (bias stability)
+     - VN-100 (Analog Devices ADXL325)
    * - Front frame fixed angular rate about the steer axis
      - :math:`\pm200` deg/s
      -
@@ -314,9 +314,12 @@ body fixed angular rate of the front frame about the steer axis.
      -
      -
 
-- rate gyro was super expensive for little gain
-- i couldn't ingtegrate the vn-100 into the rest of the DAQ
-- VN-100 sucked at giving orientation
+* Accuracies reported with respect to the calibrated and filtered output.
+
+.. todo::
+   - rate gyro was super expensive for little gain
+   - i couldn't ingtegrate the vn-100 into the rest of the DAQ
+   - VN-100 sucked at giving orientation
 
 Wheel Rate
 ----------
@@ -330,7 +333,17 @@ proportional to the angular speed of the wheel. The disc diameter was chosen
 such that the top speed of the bicycle would give the maximum measurable output
 of 10 volts.
 
-.. todo:: Figure of the wheel speed motor
+.. todo:: find which runs the speedometer was mounted differently
+
+.. figure:: figures/davisbicycle/speedometer.jpg
+   :width: 4in
+
+   figSpeedometer
+
+   The wheel rate sensor mounted just below the bottom bracket. This was the
+   original configuration. We later remounted it so that the motor disc
+   contacted the tire casing tagential to the linear velocity at the contact
+   point.
 
 Steer Angle
 -----------
@@ -562,6 +575,8 @@ distance from the rear wheel center to the disc/tire contact point and
 attached (runs 0 to XX) and :math:`r_c=0.3199511` m after the generator was
 remounted (runs XX to XX). The relationship between the rear wheel rate as a
 function of voltage can more generally be rewritten as
+
+.. todo:: find which runs the speedometer was mounted differently
 
 .. math::
 

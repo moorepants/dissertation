@@ -11,20 +11,3 @@ Davis Experiments
    now use at your own risk. The information may or may not be correct.
    Reviews, comments and suggestions are welcome.
 
-Experimental Design
-===================
-
-Environments
-------------
-
-* Treadmill
-* Gym
-
-Manuevers
----------
-
-* Balance
-* Track Line
-* Disturbance
-* Blind
-* Riders

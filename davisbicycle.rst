@@ -15,140 +15,150 @@ Preface
 =======
 
 At the beginning of 2009 I was in Delft working with Jodi and Arend on much of
-the work explained in the previous Chapters. I was still also in contact with
+the work explained in the previous chapters. I was still also in contact with
 Mont and Luke back in Davis. Before I'd come to Delft, Luke had mentioned the
 possibilities of applying for an NSF grant to fund the remainder of our bicycle
-dynamics projects. This was enticing, as Mont doesn't have much of a track
-record of getting any grant funding for his lab, preferring to work spend more
-time on research of less expensive endeavours. Also, we'd spent the first few
-years taking teaching assistance positions which ate up most of our available
-research time outside of classes. I fortunately got the Fulbright grant which
-gave me a year's stipend so that I could focus on research and Jodi's PhD
-budget helped fund the practical research costs in Delft and some of my
-conference trips. At the beginning of December 2008 Luke sent me an email with
-a renewed interest in applying for the NSF grant and Mont seemed to be on
+dynamics projects. This was enticing, as Mont has not had much grant funding
+over the years for his lab, preferring to work spend more time researching less
+expensive endeavours than grant writing. We really needed some dedicated
+research time, as we spent the first few years taking teaching assistance
+positions which ate up most of our available research time outside of our
+classes. I fortunately got a Fulbright grant for the 2008 school year which
+gave me a year's stipend so that I could focus on research and on top of that
+Jodi's PhD budget helped fund the practical research costs in Delft and some of
+my conference trips. At the beginning of December 2008 Luke sent me an email
+with a renewed interest in applying for the NSF grant and Mont seemed to be on
 board. Mont also talked with Ron and got him interested. We spent the next two
-months writing our grant proposal primarily using video conferencing and
-collaborative word processing to get it done. The basic idea was to pair Ron's
-manual control expertise with our bicycle dynamics expertise to study the
-dynamics, control and handling qualities of bicycles with the theoretical
-constructs supported by extensive experimentation. Our work paid off and we
-received the grant, albeit at a smaller amount than asked for so we had to cut
-back some of the scope (which Arend correctly forecast of being too large!).
-This set us up for a two year study where we'd develop a manual control model,
-verify it and the basic bicycle dynamics with an instrumented bicycle and a
-robotic bicycle and finally do some work on handling qualities predictions.
+months writing our grant proposal using video conferencing and collaborative
+word processing to get it done. The basic idea was to pair Ron's manual control
+expertise with our bicycle dynamics expertise to study the dynamics, control
+and handling qualities of bicycles with the theoretical constructs supported by
+extensive experimentation. Our work paid off and we received the grant, albeit
+at a smaller amount than asked for so we had to cut back some of the scope
+(which Arend had correctly forecast of being too large!).  This set us up for a
+two year study where we'd develop a manual control model, verify it and the
+basic bicycle dynamics with both an instrumented bicycle and a robotic bicycle,
+and wrap it up with some work on handling qualities predictions.
 
 When I got back to Davis in September 2009 we started gearing up for the grant
-work that would start come October 1st. I had to get my qualifying exam done in
+work that would start October 1st. I had to get my qualifying exam done in
 October and I also signed up for a Spanish class (which wasn't necessarily a
 good idea for the grant's sake). Luke also took some programming classes and
 this gave us a really slow start, as neither Luke or I realized that the scope
 of what we had to do didn't really allow any more time for classes. We got
-moving though and started to plan out the bicycle(s) we were going to build. Our
-proposal called for two bicycles, but somehow Luke and I hatched a plan to
+moving though and started to plan out the bicycle(s) we were going to build.
+
+Our proposal called for two bicycles, but somehow Luke and I hatched a plan to
 build a single multi-purpose bicycle to "save money". Arend sent Danique over
-in January 2010 to do her internship with us. She was super bright and really
-started to make some progress on the custom data acquisition system we'd
-planned. We'd decided to go fairly low level and use an Arduino paired with
-several digital sensors. During this time, Luke and I had our roughest moments
-working together which was mostly rooted in my frustrations with the progress
-of this bicycle design. I'd already built a bicycle with Jodi that did almost
-everything I needed and I felt like I was reinventing the wheel. Things
-eventually broke down after the stress boiled to the top and we sat down with
-Mont to figure out how to solve things. The conclusion was to split the
-bicycle's back up and each of us move forward more independently. I think this
-was the absolutely right move for me in terms of getting the project done as
-I'd planned and the stress immediately went away. But the part I'm bothered
-about is that I wasn't able to work in a direct team with Luke when the
-pressure to get things done was high. I know that if we work together, the
-final product would be many times greater than our independent work because we
-have several complimenting skill sets, but conflicting visions of the final
-product and the path to get there really put a wall between us. I'm continually
-learning how to do teamwork and probably always will be. I doubt it is one of
-my strong points, as I always want to be in control. I hope that I can develop
-strong team environments for my students in the future too.
+in January 2010 to do her internship with us. She was super bright and made
+great progress on the custom data acquisition system we'd envisioned. We'd
+decided to go fairly low level and use an Arduino paired with with a set of
+digital sensors. During this time, Luke and I had our roughest moments working
+together which was mostly rooted in my frustrations with the progress of this
+bicycle design. I'd already built a bicycle with Jodi that did almost
+everything I needed and I felt like I was reinventing the wheel and wasting
+time with all this low level data acquisition work. Things eventually broke
+down after the stress boiled to the top and we sat down with Mont to figure out
+how to solve things. The conclusion was to split the bicycle back into two and
+each of us move forward more independently. I think this was the absolutely
+right move for me in terms of getting the project done as I'd planned and the
+stress immediately went away. But the part I'm still bothered about was my
+inability to work in a direct team with Luke when the pressure to get things
+done was high. I know that if we work together, the final product would be many
+times greater than our independent work because of our complimentary skill
+sets, but conflicting visions of the final product and the path to get there
+really put a wall between us. I'm continually learning how to do teamwork and
+probably always will be. I doubt it is one of my strong points, as I always
+tend to want control. I hope that I can develop strong team environments for my
+students in the future too.
 
 Nevertheless, the instrumented bicycle moved forward. I was awarded an extra
-grant to cover my stipend for the summer of 2010 and we used the grant money
-that would have cover me to hire Gilbert, a new student in our lab, to help us
-out for the summer. Between me, Gilbert and our undergraduate interns Mohammed,
+grant to cover my stipend for the summer of 2010 and we used the NSF funds that
+would have covered me to hire Gilbert, a new student in our lab, to help us out
+for the summer. Between me, Gilbert and our undergraduate interns Mohammed,
 Stephen, Eric, and Chet we plowed through the bicycle construction through the
-summer to hopefully be back on schedule for experimentation in the fall. It
-ended up taking me all fall quarter and some into the new year to get the
-bicycle in a working state. This chapter details all that went into its design
-and operation.
+summer pretty much putting the instrumented bicycle back on schedule for
+experimentation in the fall. But even with the summer push, it ended up taking
+me all fall quarter and some into the new year to get the bicycle in a working
+state and ready for the experimentation. This chapter details all that went
+into its design and operation of the Davis instrumented bicycle.
 
 Introduction
 ============
 
 This chapter details the design and implementation of an instrumented bicycle
-capable of accurately measuring much of the necessary kinematics and kinetics
-associated with controlling the bicycle.
+capable of accurately measuring the essential kinematics and kinetics
+associated with the human control of the bicycle.
 
-I had considered using motion capture for the kinematics as we had very
-successful results measuring the complete kinematic configuration of the
-bicycle and rider with motion capture techniques, but I no longer had access to
-a system as good as the one at the Vrije Universiteit. The systems available
-were could capture the motion on the treadmill but were not especially not
-suited to capture the motion of the bicycle on the ground. With this in mind,
-we decided to expand the on board measurement techniques used in the Delft
-Instrumented bicycle. The primary downside was inaccurate location tracking of
-the system. Being that this wouldn't be detrimental to system identification,
-we moved forward.
+I had originally considered using motion capture for the kinematics as we had
+very successful results measuring the complete kinematic configuration of the
+bicycle and rider with motion capture techniques as explained in Chapter
+:ref:`motioncapture`, but I no longer had access to a system as good as the one
+at the Vrije Universiteit. The systems available here could capture the motion
+on the treadmill but were not especially not suited to capture the motion of
+the bicycle on the ground. With this in mind, we decided to expand upon the on
+board measurement techniques used in the Delft Instrumented bicycle as the
+basic design principal as this would allow the bicycle to collect data in a
+variety of environments. The most notable downside was inaccurate location
+tracking of the system. But we concluded that this wouldn't be detrimental to
+system identification and moved forward with the instrumentation.
 
 The bicycle's primary design criteria were as follows:
 
-- Sized for average adult males which were our intended riders.
-- Accurately measure the rider's applied steering torque.
-- Accurately measure the fundamental kinematics of the bicycle:
-
-   - Three dimensional rates and orientations of the bicycle frame and fork.
-   - Rear wheel rotational rate relative to the bicycle frame.
-
+- Sized for our intended riders: average adult males.
 - Restrict the rider's biomechanical movement to more closely meet the Whipple
-   model rigid rider assumption. This in turn also requires the bicycle to be
-   self propelled so that the rider does not have to move their legs.
+  model rigid rider assumption. This in turn also requires the bicycle to be
+  self propelled so that the rider does not have to move their legs.
+- Accurately measure the rider's applied steering torque.
+- Accurately measure the fundamental kinematics of the bicycle: three
+  dimensional rates and orientations of the bicycle rear frame, front frame and
+  wheels.
 - Accurately apply and measure a lateral disturbance force to the bicycle
-   frame.
+  frame.
 
 From early on, I intended to attempt some experiments with some constrained
-rider biomechanical motion, such as leaning. The design for this led to
-secondary design criteria as the project progessed and were never fully
-implemented, but I'll discuss them for completeness. They are as follows:
+rider biomechanical motion, such as leaning, because the interplay of the
+various control inputs available to the rider are a common research topic with
+little experimental backing. This led to secondary design criteria but as the
+project progressed and they were never fully implemented, but I'll discuss them
+for completeness. They are as follows:
 
 - Restrict the rider's body motion to a limited set and measure the additional
-   kinematics.
+  kinematics: hip roll, torso relative to hip lean, torso relative to hip
+  twist, and lateral knee motions.
+- Measure the additional reaction forces between the rider and bicycle: forces
+  and moments in the seatpost and forces at the foot pegs.
 
-   - Hip roll, torso relative to hip lean, torso relative to hip twist, and
-      lateral knee motions.
-
-- Measure the additional reaction forces between the rider and bicycle.
-
-   - Forces and moments in the seatpost and forces at the foot pegs.
+These criteria framed the subsequent design choices described herein.
 
 Bicycle
 =======
 
-Our original requirements for a bicycle were as follows:
+We needed a bicycle that would allow for easy modification and various mounting
+points for sensors and data acquisition equipment. Our original requirements
+for a bicycle were as follows:
 
 - Steel frame for easy modification and welding.
-- Disc brake mounts for speed encoders.
+- Disc brake brackets for mounting the wheel speed encoders.
 - 100mm front dropout spacing and 135mm rear dropout spacing.
 - 1-1/8 threadless headset to allow for easy modification.
 - Round tubes for head, down, top, and seat tube (i.e. nothing non standard)
 - Ideally a horizontal top tube for equipment mounting purposes.
 - Threaded rack mount for instrumentation mounting.
-- Accept 700c tires so that we can use high pressure.
+- Accept 700c high pressure tires.
 - Size: 54-58cm for our intended riders.
+- An electric hub motor for forward propulsion.
 
-We chose a large size Surly 1x1 model. It is designed as a single speed off road
-bicycle for 26" wheels with fat tires, but can be setup with 700c higher
-pressure tires. The frame is constructed from butted 4130 CroMoly steel tubing.
-It has both front and rear V-brake in addition to  disc brake mounts. Otherwise
-it met all of our requirements. We purchased some standard components including
-700c aluminum wheels with 23c Continental Gatorskin high pressure tires and
-basic handlebars and brakes.
+We ended up choosing a large size Surly 1x1 model, Figure :ref:`figSurly`. It
+is designed as a single speed off road bicycle for 26" wheels with fat tires,
+but can be setup with 700c higher pressure tires. The frame is constructed from
+butted 4130 CroMoly steel tubing. It has both front and rear cantilever brake
+mounts in addition to disc brake mounts. Otherwise it met all of our
+requirements. We purchased some standard components including 700c aluminum
+wheels with 23c Continental Gatorskin high pressure tires and basic handlebars
+and brakes.
+
+.. _figSurly:
 
 .. figure:: figures/davisbicycle/surly.*
    :width: 4in
@@ -157,50 +167,46 @@ basic handlebars and brakes.
    figSurly
 
    The Surly 1x1 with 700c wheels and basic handlebars for upright seating. An
-   Amped Bikes geared hub motor is shown installed along with the lead acid battery
-   kit on the rear rack.
+   Amped Bikes geared hub motor is shown installed along with the lead acid
+   battery kit on the rear rack.
 
 To allow the bicycle to be propelled forward without requiring the rider to
-pedal, we opted for a bicycle electric hub motor kit.
-`<http://www.ampedbikes.com Amped Bikes>`_ donated both a direct drive and
-geared kit for our use. I used the direct drive version on the instrumented
-bicycle. The kits come with heavy 36v lead acid batteries so we purchased a
-light, ~2.75 kg, 36 volt lithium ion battery as a substitute to help decrease
-the over bicycle weight. The kit comes with a motor controller with a
-rudimentary "cruise control". We needed some form of cruise control to allow
-the rider to set the speed during the experiment and then focus their attention
-to lateral control as opposed to throttle control. The Amped Bike cruise
-control worked well for the experiments performed on the floor, but was more
-difficult to match the cruise control to the speed of the treadmill. Some sort
-of feedback control would alleviate the difficulties, but we made due. The
-exposed wires from the hub motor are also easily susceptible to damage. The
-bicycle fell over once, damaged the wires and shorted the hall effects sensors
-in the hub. I spent a couple of weeks repairing it [#]_.
+pedal, we opted for a bicycle electric hub motor kit.  `Amped Bikes
+<http://www.ampedbikes.com>`_ graciously donated both direct drive and geared
+kits which included the motors, controllers, throttle and 36 volt lead acid
+batteries. I used the direct drive version on the instrumented bicycle. The
+lead acid batteries were very heavy so we purchased a light, ~2.8 kg, 36 volt
+lithium ion battery as a substitute to help decrease the over bicycle weight.
+The kit comes with a motor controller with a rudimentary "cruise control". We
+needed some form of cruise control to allow the rider to set the speed during
+the experiment and then focus their attention to lateral control as opposed to
+throttle control. The Amped Bike cruise control worked well for the experiments
+performed on the floor, but was more difficult to match the cruise control to
+the speed of the treadmill. Some sort of feedback control would alleviate the
+difficulties, but we made due. The exposed wires from the hub motor are also
+easily susceptible to damage. The bicycle fell over once, damaged the wires and
+shorted the hall effects sensors in the hub. I spent a couple of weeks
+repairing it [#]_. Overall, the motor met our needs for constant speed
+propulsion and the single battery would last an entire day of experimentation.
 
 Orientations, Rates and Accelerations
 =====================================
 
-The Whipple bicycle model at constant speed fundamentally has two important
-states that describe the lateral dynamics: roll and steer (as defined in
-Chapter :ref:`eom`). Ideally one would like to measure the angular orientation,
-angular rate and angular accelerations of both the rear frame and the front
-frame. Sensors that allow independent and accurate measurements of each are
+The constant speed Whipple bicycle model fundamentally has two important states
+that describe the lateral dynamics: roll and steer (as defined in Chapter
+:ref:`eom`). Ideally one would like to measure the angular orientation, angular
+rate and angular accelerations of both the rear frame and the front frame.
+Sensors that allow direct, independent and accurate measurements of each are
 ideal, to avoid having to estimate measurements through differentiation,
-integration or state estimators.
+integration or state estimators. Table :ref:`tabKinematicSensors` gives general
+ranges of bicycle kinematic motions from my previously collected data.
 
-The steer angle is easy to measure with either some form of potentiometer or
-encoder and has been accurately measured on many bicycle and motorcycle
-systems. The same goes for the yaw, roll, pitch and steer rates, which are
-typically measured directly with rate gyros. The angular accelerations aren't
-directly measurable, but after-the-fact numerical differentiation with
-filtering is often acceptable. The angular accelerations can also be computed
-if the acceleration and location of two points are measured with
-accelerometers.
+.. _tabKinematicSensors:
 
 .. list-table:: Table of maximal measured values found in all experimental data
    taken in Chapter :ref:`motioncapture`. The ranges were determined from 95
-   percentiles, the accuracy as a percentage of the range and the bandwith as
-   95 percentile of the power in the signal.
+   percentiles, the accuracy as a percentage of the range and the bandwidth as
+   75th percentile of the power in the signal.
    :header-rows: 1
 
    * - Measurement
@@ -232,131 +238,94 @@ accelerometers.
      - :math:`12 \frac{\textrm{deg}}{\textrm{s}}`
      - 30 hz
 
-The roll angle is the most tricky measurement. Integration of the roll rate
-measurement is an option, but definite initial conditions and some way to
-account for the signal drift is required, and not trivial. Distance lasers have
-been used to directly measure the roll angle with respect to the ground but are
-particularly expensive [Everste2009]_. [Boniolo2009]_, [Boniolo2008]_ develop a
-simple algorithm to remove the low frequency drift and only require yaw rate,
-roll rate and speed measurements to get peak roll estimation errors of 5
-degrees. The roll angle can also be estimated with a state estimator such as a
-Kalman filter ([Gustafsson2002]_, [Teerhuis2010]_). The plant in the Kalman
-filter can be general 3D motion of a rigid body or a model of some order and
-complexity of the bicycle. Constraining the estimation with the use of a
-bicycle model as the plant could have drawbacks when using the resulting angle
-for model validation but can give potentially great results otherwise. These
-types of algorithms are implemented in many sensor packages.
+The steer angle is easy to measure with either some form of write recorder,
+potentiometer or encoder and has been accurately measured on many bicycle and
+motorcycle systems since the early 50's. [Dohring1953]_. The same goes for the
+yaw, roll, pitch and steer rates, which are typically measured directly with
+rate gyros, which have also been available for the later half of the 20th
+century. The direct measurement of angular accelerations has yet to mature
+[Ovaska1998]_, so numerical differentiation and filtering of the angular rates
+is often used. The angular accelerations can also be computed if the
+acceleration and location of multiple points are measured with accelerometers.
+Most all experimental work with bicycles and motorcycles provide good examples
+of employing these type of kinematic sensors.
 
-.. todo:: find other's that measured roll angle
+On the other hand, the roll angle is typically the most difficult kinematic
+measurement due to the fact that both the bicycle translates with respect to
+the ground plane and that the ground plane may not be normal to gravity.
+Integration of the easier roll rate measurement is an option, but definite
+initial conditions and some way to account for the drift due to integration is
+required, and not necessarily trivial. Past researchers have measured the roll
+angle with a variety of methods from trailers and third wheels to lasers and
+rate gyros with complementary state estimators.
 
-There is a class of sensors called Inertial Measurement Units (IMU) or Attitude
-heading reference systems (AHRS) have become more affordable and small enough
-to be very appropriate for orientation and rate estimation due to the advent of
-MEMs rate gyros and accelerometers. An IMU can potentially be rigidly affixed
-to each body of the system to give complete kinematic details of the motion.
+[Dohring1953]_ may have used a trailer to measure roll angle. [Kondo1955]_
+measured stuff XXX, ask Yumi to translate. [Kageyama1959]_ and [Fu1965]_
+introduced one of the earliest direct roll angle measurements. They made use of
+a third wheel attached to one side of the motorcycle and measured the angle
+between the wheel mounting arm and the motorcycle frame. [Singh1964]_ also used
+a third wheel after having little luck with accelerometers and rate gyros. He
+obtained decent measurements but abandoned the wheel because it was too large,
+dangerous and susceptible to vibration. [Roland1971]_ measured roll angle with
+a potentiometric free gyro with seemingly good results. Their data was captured
+with direct write recorders in a pace car. [Eaton1973c]_ used a third wheel and
+a potentiometer to measure roll angle on a motorcycle, but also had
+reliability issues. [Zytveld1975]_ used a small trailer with two roller skate
+wheels and potentiometer to measure the roll angle on this robotic motorbike.
+
+.. todo:: Ask Yumi to translate Kondo
+
+.. todo:: Find out if Dohring uses a roll angle trailer.
+
+The modern techniques often focus around roll angle estimation. [Boniolo2008]_,
+[Boniolo2009]_ develop a simple algorithm to remove the low frequency drift and
+only require yaw rate, roll rate and speed measurements to get peak roll
+estimation errors of 5 degrees, which were larger than we could accept. But
+their methods did allow for roll angle estimation on banked curves. Distance
+lasers have been used to directly measure the roll angle with respect to the
+ground but are particularly expensive [Everste2009]_. The roll angle can also
+be estimated with a state estimator such as a Kalman filter ([Gustafsson2002]_,
+[Teerhuis2010]_). The plant in the Kalman filter can be general 3D motion of a
+rigid body or a model of some order and complexity of the bicycle. Constraining
+the estimation with the use of a bicycle model as the plant could have
+drawbacks when using the resulting angle for model validation but can give
+potentially great results otherwise. These types of algorithms are implemented
+in many modern sensor packages and we decided to pursue one of these.
+
+There is a class of sensors called Inertial Measurement Units (IMU) and/or
+Attitude Heading Reference Systems (AHRS) that have recently become very
+affordable and small enough to be very appropriate for orientation and rate
+estimation due to the advent of MEMs rate gyros, accelerometers, magnetometers
+and GPS technologies. An IMU can theoretically be rigidly affixed to each body
+of the system to give complete kinematic details of the motion of that body.
 
 Inertial Measurement Units
-   An inertial measurement unit typically measures the body fixed the angular rate
-   of a rigid body and the acceleration of a single point.
+   An inertial measurement unit typically measures three components of body
+   fixed the angular rate of a rigid body and the three dimensional
+   acceleration of a single point.
 Attitude Heading Reference System
    An attitude heading reference system measures what an IMU does but also
-   often includes earth magnetic field measurements and or GPS combined with an
-   estimation algorithm to provide orientation and/or location estimations
-   along with the other measurements.
+   often includes earth magnetic field measurements and/or GPS combined with
+   microprocessor and estimation algorithm to additionally provide orientation
+   and/or location estimations.
 
-Many of these were in our budget range so we scouted various companies
-(MemSense, Navionex, MotionNode, MicroPilot, Crossbow, VectorNav, Ch Robotics,
-..) to see what was offered [#]_.
-
-We ended up choosing the VN-100 development board from a relatively new company
-called VectorNav due to price, on board orientation calculations and the
-potential ease of collecting data via a typical RS-232 serial interface. Both
-Matlab and Python have good serial interface packages. We placed a single
-VN-100 on the bicycle frame to measure the angular orientations and rates along
-with the acceleration of a point on the frame. The VN-100 relied on additional
-magnetometer readings and an on-board proprietary algorithm with a Kalman
-filter for computing the real time orientation about the three axes.
-
-Since the front frame is attached to the rear frame via a revolute joint a
-single additional rate measurement is needed to measure the motion. I went with
-a similar design and setup as the Delft instrumented bicycle: a potentiometer
-for relative steering angle measurement and a single axis rate gyro for the
-body fixed angular rate of the front frame about the steer axis.
-
-.. list-table:: Initial Kinematic Sensors
-
-   * - Measurements
-     - Range
-     - Accuracy
-     - Sensor
-   * - Yaw Angle, Roll Angle, Pitch Angle
-     - :math:`\pm180` degrees, :math:`\pm180` degrees, :math:`\pm180` degrees
-     - < 2 degress, < 0.5 degrees, < 0.5 degrees (3 sigma)*
-     - VN-100
-   * - Yaw Rate, Roll Rate, Pitch Rate
-     - :math:`\pm500` deg/s, :math:`\pm500` deg/s, :math:`\pm500` deg/s
-     - :math:`<\pm0.06` deg/s (bias stability)*
-     - VN-100 (Invensense IDG500 and ISZ500)
-   * - Rear frame 3D point acceleration
-     - :math:`\pm2` g
-     - x/y :math`<2` mg, z :math:`<3` mg (bias stability)
-     - VN-100 (Analog Devices ADXL325)
-   * - Front frame fixed angular rate about the steer axis
-     - :math:`\pm200` deg/s
-     -
-     - Single axis rate gyro (Silicon Sensing CRS03-04)
-   * - Steer Angle
-     -
-     -
-     - Rotary potentiometer (SP22F)
-   * - Rear wheel rate
-     -
-     -
-     -
-
-* Accuracies reported with respect to the calibrated and filtered output.
-
-.. todo::
-   - rate gyro was super expensive for little gain
-   - i couldn't ingtegrate the vn-100 into the rest of the DAQ
-   - VN-100 sucked at giving orientation
-
-Wheel Rate
-----------
-
-I measured the rear wheel speed in the same fashion as the Delft bicycle. We
-mounted a small DC permanent magnet motor (Globe Motors E-2120 without the
-encoder) to the rear frame in much the same way as a simple generator for a
-bicycle light works. A small knurled aluminum disc on the motor shaft engaged
-the sidewall of the tire. The voltage of DC motors is linearly proportional to
-the angular speed of the wheel. The disc diameter was chosen such that the top
-speed of the bicycle would give the maximum measurable output of 10 volts.
-
-.. todo:: find which runs the speedometer was mounted differently
-
-.. figure:: figures/davisbicycle/speedometer.jpg
-   :width: 4in
-
-   figSpeedometer
-
-   The wheel rate sensor mounted just below the bottom bracket. This was the
-   original configuration. We later remounted it so that the motor disc
-   contacted the tire casing tagential to the linear velocity at the contact
-   point.
-
-Steer Angle
------------
-
-I adopted the same steering angle measurement device that I use on the Delft
-instrumented bicycle, with some minor improvements such as better tension
-adjustablity and switching to a screw mount potentiometer.
-
-.. todo:: add the
+Many of these systems were within our budget range so we scouted various
+companies (MemSense, Navionex, MotionNode, MicroPilot, Crossbow, VectorNav, Ch
+Robotics, ..) to see what was offered [#]_. We ended up choosing the VN-100
+development board from a relatively new company called `VectorNav
+<http://www.vectornav.com>` due to price, on board orientation calculations and
+the potential ease of collecting data via a typical RS-232 serial interface. My
+preferred software tools, Matlab and Python, both had good serial interface
+packages. We placed a single VN-100 on the rear frame to measure the angular
+orientations and rates along with the acceleration of a point on the rear
+frame. The VN-100 relies on additional magnetometer readings and an on-board
+proprietary algorithm based on a Kalman filter for computing the real time
+orientation about the three axes.
 
 The VN-100 turned out to be a poor choice for our application in mutliple ways.
 The second of which I'll talk about in a later section. The first is that the
 orientation estimations were very poor. I wanted *at least* accurate estimate
-of the roll angle of the bicycle. The VN-100 repdeatly did not provide this.
+of the roll angle of the bicycle. The VN-100 repeatedly did not provide this.
 VectorNav worked with me and tried offer various methods of tuning the VN-100
 with state covariance weightings for the Kalman filter and also to tune out any
 static magenetic fields from the bicycle frame. The highly likely issues were
@@ -373,9 +342,6 @@ trying to tune their proprietary filter I gave and went to the roll angle
 measurement design that I should have done in the beginning.
 
 .. todo:: cite jackson1998 for steer angle
-
-Roll angle trailer
-------------------
 
 I designed a simple trailer to that was pulled behind the bicycle to measure
 roll angle with a potentiometer, much in the way the steer angle was measured.
@@ -401,8 +367,82 @@ attached at the axle of the rear wheel.
 .. todo:: cite Boniolo for roll angle estimation, talk about Danique's work,
    cite other people that handle this problem too.
 
+Since the front frame is attached to the rear frame via a revolute joint only
+an additional single orientation and rate measurement is needed to measure the
+front frame motion.  I went with a similar design and setup as the Delft
+instrumented bicycle: a potentiometer for relative steering angle measurement
+and a single axis rate gyro for the body fixed angular rate of the front frame
+about the steer axis. I modified the same steering angle measurement design
+that I use on the Delft instrumented bicycle, with some minor improvements such
+as better tension adjustability and switching to a screw mount potentiometer.
+
+.. list-table:: Initial Kinematic Sensors
+
+   * - Measurements
+     - Range
+     - Accuracy
+     - Sensor
+   * - Yaw Angle, Roll Angle, Pitch Angle
+     - :math:`\pm180` degrees, :math:`\pm180` degrees, :math:`\pm180` degrees
+     - < 2 degrees, < 0.5 degrees, < 0.5 degrees (3 sigma)*
+     - VN-100
+   * - Yaw Rate, Roll Rate, Pitch Rate
+     - :math:`\pm500` deg/s, :math:`\pm500` deg/s, :math:`\pm500` deg/s
+     - :math:`<\pm0.06` deg/s (bias stability)*
+     - VN-100 (Invensense IDG500 and ISZ500)
+   * - Rear frame 3D point acceleration
+     - :math:`\pm2` g
+     - x/y :math`<2` mg, z :math:`<3` mg (bias stability)
+     - VN-100 (Analog Devices ADXL325)
+   * - Front frame fixed angular rate about the steer axis
+     - :math:`\pm200` deg/s
+     - See manufactures spec sheet
+     - Single axis rate gyro (Silicon Sensing CRS03-04S)
+   * - Steer Angle
+     - \pm 42.5^\circ (pot 340^\circ \pm 5^\circ with 1:4 gear reduction)
+     -
+     - Single turn potentiometer (ETI Systems SP22F)
+   * - Rear wheel rate
+     - Up to 
+     -
+     -
+
+* Accuracies reported with respect to the calibrated and filtered output.
+
+.. todo::
+   - rate gyro was super expensive for little gain
+   - i couldn't integrate the vn-100 into the rest of the DAQ
+   - VN-100 sucked at giving orientation
+
+Wheel Rate
+----------
+
+I measured the rear wheel speed in the same fashion as the Delft bicycle. We
+mounted a small DC permanent magnet motor (Globe Motors E-2120 without the
+encoder) to the rear frame in much the same way as a simple generator for a
+bicycle light works. A small knurled aluminum disc on the motor shaft engaged
+the sidewall of the tire. The voltage of DC motors is linearly proportional to
+the angular speed of the wheel. The disc diameter was chosen such that the top
+speed of the bicycle would give the maximum measurable output of 10 volts.
+
+.. todo:: find which runs the speedometer was mounted differently
+
+.. figure:: figures/davisbicycle/speedometer.jpg
+   :width: 4in
+
+   figSpeedometer
+
+   The wheel rate sensor mounted just below the bottom bracket. This was the
+   original configuration. We later remounted it so that the motor disc
+   contacted the tire casing tagential to the linear velocity at the contact
+   point.
+
+
 Lateral Force
 =============
+
+.. todo:: Eaton1973 applied later distubrance with weights and Roland1971 used
+   a rocket, Doria 2011 tapped the handlebars
 
 I got the idea of for lateral force perturbations from some of my first email
 exchanges with Arend and when I was in Delft we did several experiments with
@@ -633,6 +673,8 @@ subset of motions.
 
 Rigid
 -----
+
+.. cite Eaton1973c and maybe Doyle as he mentioned it
 
 The harness was constructed such that the rider was rigidified as much as
 possible with respect to the rear frame. A medical back brace was used to

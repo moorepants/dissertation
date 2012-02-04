@@ -192,19 +192,20 @@ propulsion and the single battery would last an entire day of experimentation.
 Orientations, Rates and Accelerations
 =====================================
 
-The constant speed Whipple bicycle model fundamentally has two important states
-that describe the lateral dynamics: roll and steer (as defined in Chapter
-:ref:`eom`). Ideally one would like to measure the angular orientation, angular
-rate and angular accelerations of both the rear frame and the front frame.
-Sensors that allow direct, independent and accurate measurements of each are
-ideal, to avoid having to estimate measurements through differentiation,
-integration or state estimators. Table :ref:`tabKinematicSensors` gives general
-ranges of bicycle kinematic motions from my previously collected data.
+The two most important states that describe the lateral dynamics of the bicycle
+are roll and steer (as defined in Chapter :ref:`eom`). Ideally one would like
+to measure the angular orientation, angular rate and angular accelerations of
+both the rear frame and the front frame. Sensors that allow direct, independent
+and accurate measurements of each are ideal, to avoid having to estimate
+measurements through differentiation, integration or state estimators.  The two
+bodies share many of the kinematic measurements due to them being connected by
+a revolute joint. Table :ref:`tabKinematicSensors` gives general ranges of
+bicycle kinematic motions from my previously collected data.
 
 .. _tabKinematicSensors:
 
 .. list-table:: Table of maximal measured values found in all experimental data
-   taken in Chapter :ref:`motioncapture`. The ranges were determined from 95
+   taken in Chapter :ref:`motioncapture`. The ranges were determined from 75
    percentiles, the accuracy as a percentage of the range and the bandwidth as
    75th percentile of the power in the signal.
    :header-rows: 1
@@ -238,17 +239,14 @@ ranges of bicycle kinematic motions from my previously collected data.
      - :math:`12 \frac{\textrm{deg}}{\textrm{s}}`
      - 30 hz
 
-The steer angle is easy to measure with either some form of write recorder,
-potentiometer or encoder and has been accurately measured on many bicycle and
-motorcycle systems since the early 50's. [Dohring1953]_. The same goes for the
-yaw, roll, pitch and steer rates, which are typically measured directly with
-rate gyros, which have also been available for the later half of the 20th
-century. The direct measurement of angular accelerations has yet to mature
-[Ovaska1998]_, so numerical differentiation and filtering of the angular rates
-is often used. The angular accelerations can also be computed if the
-acceleration and location of multiple points are measured with accelerometers.
-Most all experimental work with bicycles and motorcycles provide good examples
-of employing these type of kinematic sensors.
+The yaw, roll, pitch and steer rates, are typically measured directly with rate
+gyros, which have been available for the later half of the 20th century. The
+direct measurement of angular accelerations has yet to mature [Ovaska1998]_, so
+numerical differentiation and filtering of the angular rates is often used. The
+angular accelerations can also be computed if the acceleration and location of
+multiple points are measured with accelerometers. Most all experimental work
+with bicycles and motorcycles provide good examples of employing these type of
+kinematic sensors.
 
 On the other hand, the roll angle is typically the most difficult kinematic
 measurement due to the fact that both the bicycle translates with respect to
@@ -259,25 +257,23 @@ required, and not necessarily trivial. Past researchers have measured the roll
 angle with a variety of methods from trailers and third wheels to lasers and
 rate gyros with complementary state estimators.
 
-[Dohring1953]_ may have used a trailer to measure roll angle. [Kondo1955]_
-measured stuff XXX, ask Yumi to translate. [Kageyama1959]_ and [Fu1965]_
-introduced one of the earliest direct roll angle measurements. They made use of
-a third wheel attached to one side of the motorcycle and measured the angle
-between the wheel mounting arm and the motorcycle frame. [Singh1964]_ also used
-a third wheel after having little luck with accelerometers and rate gyros. He
-obtained decent measurements but abandoned the wheel because it was too large,
-dangerous and susceptible to vibration. [Roland1971]_ measured roll angle with
-a potentiometric free gyro with seemingly good results. Their data was captured
-with direct write recorders in a pace car. [Eaton1973c]_ used a third wheel and
-a potentiometer to measure roll angle on a motorcycle, but also had
-reliability issues. [Zytveld1975]_ used a small trailer with two roller skate
-wheels and potentiometer to measure the roll angle on this robotic motorbike.
-
-.. todo:: Ask Yumi to translate Kondo
+[Dohring1953]_ may have used a trailer to measure roll angle. [Kageyama1959]_
+and [Fu1965]_ introduced one of the earliest direct roll angle measurements.
+They made use of a third wheel attached to one side of the motorcycle and
+measured the angle between the wheel mounting arm and the motorcycle frame.
+[Singh1964]_ also used a third wheel after having little luck with
+accelerometers and rate gyros. He obtained decent measurements but abandoned
+the wheel because it was too large, dangerous and susceptible to vibration.
+[Roland1971]_ measured roll angle with a potentiometric free gyro with
+seemingly good results. Their data was captured with direct write recorders in
+a pace car. [Eaton1973c]_ used a third wheel and a potentiometer to measure
+roll angle on a motorcycle, but also had reliability issues. [Zytveld1975]_
+used a small trailer with two roller skate wheels and potentiometer to measure
+the roll angle on this robotic motorbike.
 
 .. todo:: Find out if Dohring uses a roll angle trailer.
 
-The modern techniques often focus around roll angle estimation. [Boniolo2008]_,
+More modern techniques often focus around roll angle estimation. [Boniolo2008]_,
 [Boniolo2009]_ develop a simple algorithm to remove the low frequency drift and
 only require yaw rate, roll rate and speed measurements to get peak roll
 estimation errors of 5 degrees, which were larger than we could accept. But
@@ -322,38 +318,51 @@ frame. The VN-100 relies on additional magnetometer readings and an on-board
 proprietary algorithm based on a Kalman filter for computing the real time
 orientation about the three axes.
 
-The VN-100 turned out to be a poor choice for our application in mutliple ways.
+The VN-100 turned out to be a poor choice for our application in multiple ways.
 The second of which I'll talk about in a later section. The first is that the
 orientation estimations were very poor. I wanted *at least* accurate estimate
 of the roll angle of the bicycle. The VN-100 repeatedly did not provide this.
 VectorNav worked with me and tried offer various methods of tuning the VN-100
 with state covariance weightings for the Kalman filter and also to tune out any
-static magenetic fields from the bicycle frame. The highly likely issues were
-associated with both the wheel rotationing and teh front frame rotation all
-relative to the rear frame, with could cause varying distrubances in the
-magnetic field. The hub motor definitely affecting the magnetometer readings
-and these may have been too great to tune out. I also realized that going with
-a proprietary estimator is a bad idead, especially when one has a good idea of
-the dynamics of the rigid body that the sensor is attached to. In our case if
-the Kalman filter was programmable, we could taylor it with the a bicycle model
-to improve the orientaion estimation significantly. Also if the VN-100 could
-accept input signals, the filter could be tuned well too. After countless hours
-trying to tune their proprietary filter I gave and went to the roll angle
-measurement design that I should have done in the beginning.
+static magnetic fields from the bicycle frame, but with no success. The highly
+likely issues were associated with both the wheel and front frame relative
+rotations to the rear frame, with could cause varying disturbances in the
+magnetic field. The hub motor also negatively affected the sensor readings and
+these may have been too great to tune out. I also realized that going with a
+proprietary generic estimator is a bad idea, especially when one has a good
+models of the dynamics of the rigid body that the sensor is attached to. In our
+case if the Kalman filter was programmable, we could tailor it with the bicycle
+model to improve the orientation estimation significantly. Also if the VN-100
+could accept input signals, the filter could be tuned well too. After countless
+hours trying to tune their proprietary filter I gave up and went with a classic
+roll angle measurement design that I should have done in the beginning.
 
-.. todo:: cite jackson1998 for steer angle
+I designed a simple trailer, Figure :ref:`figRollTrailer`, that was pulled
+behind the bicycle to measure roll angle with a potentiometer, much in the way
+the steer angle was measured.  The trailer needed to be light such that it
+didn't adversely affect the lateral dynamics and be able to give a good
+estimate of the roll angle. All of our experiments were to be on smooth
+surfaces, so the vibration issues that on-road tests have seen were of little
+concern. I designed the trailer around two caster style polyurethane wheels
+(roller blade wheels). They were attached to a frame which attached via a
+revolute joint aligned with the roll axis to a yoke that attached at the axle
+of the rear wheel.
 
-I designed a simple trailer to that was pulled behind the bicycle to measure
-roll angle with a potentiometer, much in the way the steer angle was measured.
-The trailer needed to be light such that it didn't adversly affect the lateral
-dynamics and to give a good estimate of the roll angle. The trailer had two
-caster polyurethane wheels (roller blade wheels) attached to a frame which
-attached via a revolute joint aligned with the roll axis to a yoke that
-attached at the axle of the rear wheel.
+.. figRollTrailer::
 
-.. todo:: Make nice figure or photo of the trailer.
+.. figure:: figures/davisbicycle/roll-trailer-annotated.png
+   :width: 5in
+
+   figRollTrailer
+
+   On left is photo of the roll angle trailer with it's components annotated.
+   The right photo shows it attached to the instrumented bicycle.
+
+.. todo:: talk about the geometry design of the trailer
+The 
 
 .. figure:: figures/davisbicycle/trailer-angle.*
+   :width: 4in
 
    figTrailerAngle
 
@@ -367,14 +376,19 @@ attached at the axle of the rear wheel.
 .. todo:: cite Boniolo for roll angle estimation, talk about Danique's work,
    cite other people that handle this problem too.
 
-Since the front frame is attached to the rear frame via a revolute joint only
-an additional single orientation and rate measurement is needed to measure the
-front frame motion.  I went with a similar design and setup as the Delft
-instrumented bicycle: a potentiometer for relative steering angle measurement
-and a single axis rate gyro for the body fixed angular rate of the front frame
-about the steer axis. I modified the same steering angle measurement design
-that I use on the Delft instrumented bicycle, with some minor improvements such
-as better tension adjustability and switching to a screw mount potentiometer.
+The steer angle is easy to measure with either some form of write recorder,
+potentiometer or encoder and has been accurately measured on many bicycle and
+motorcycle systems since the early 50's. [Dohring1953]_. Since the front frame
+is attached to the rear frame via a revolute joint only an additional single
+orientation and rate measurement is needed to measure the front frame motion.
+I went with a similar design and setup as the Delft instrumented bicycle: a
+potentiometer for relative steering angle measurement and a single axis rate
+gyro for the body fixed angular rate of the front frame about the steer axis. I
+modified the same steering angle measurement design that I use on the Delft
+instrumented bicycle, with some minor improvements such as better tension
+adjustability and switching to a screw mount potentiometer.
+
+.. todo:: steer angle and rate figure
 
 .. list-table:: Initial Kinematic Sensors
 
@@ -981,10 +995,12 @@ Bicycle Experiments
 Motorcycle Experiments
 ----------------------
 
-[Dohring195X]_
-   Supposedly he measured steering torque, but I've yet to see that.
+[Kondo1955]_
+   Measured steering torque.
 [Fu1965]_
    Measures steering torque in steady turns.
+[Eaton1973]_
+   Measured steering torque
 [Weir1979a]_
    Weir et al. designed an instrumented motorcycle with a torque sensor. The range
    was +/- 70 Nm with 1% accuracy and >10 Hz dynamic range. The crosstalk due to

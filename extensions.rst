@@ -971,6 +971,8 @@ dependence on stability across a range of speeds for ranges of stiffness and
 damping at the biomechanical joints can shed more light on the system for more
 conclusive results.
 
+.. secFlexibleRider:
+
 Flexible rider (hip rotation, back lean and twist)
 ==================================================
 

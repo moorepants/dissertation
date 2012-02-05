@@ -192,40 +192,94 @@ propulsion and the single battery would last an entire day of experimentation.
 Rider Harnesses
 ===============
 
-The bicycle was designed to accomodate a range of motion restrictions for the
-rider. Firstly, the rider can simply completely free rider biomechanical
-modtion,  and a subset of motions.
+The bicycle was designed to accomodate a range of allowable rider motions. I
+designed it with three modes in mind. Firstly, the rider can simply have
+complete free rider biomechanical motion as they would when normally riding a
+bicycle. The second design was intended to restrict almost all of the rider's
+ability to move with respect to the bicycle frame to better mimic the rigid
+rider assumptions in many bicycle models. And thirdly, a harness was designed
+to restrict the rider's movement to a particular subset of hypothesized
+dominant motions.
 
-Rigid
------
+Rigid Rider
+-----------
 
-.. cite Eaton1973c and maybe Doyle as he mentioned it
+Rigid rider models are often employed in single track vehicle research but the
+rider has been rigidified very few times in experimental work. This potentially
+problematic as the rigid rider assumption is a large one. [Eaton1973c]_
+rigidfied his motorcyclists' torso and performed several perturbation tests
+with the rider's hands off the handlebars! He found it difficult to identifying
+the linear modes of motion. [Doyle1987]_ comments on the utility of rigidifying
+the rider which was very inline with his techniques to simplify the system, but
+he left the rider free to move in his experiments. Jim Papadopolous has been a
+proponent of using recumbent bicycles in studies due to the natural
+rigidification of the rider. His thoughts and the difficulties we had in the
+studies from Chapters :ref:`delftbicycle` and :ref:`motioncapture` influenced
+my decision of restricting the rider's motion.
 
-The harness was constructed such that the rider was rigidified as much as
-possible with respect to the rear frame. A medical back brace was used to
-rigidify the spine and hip motion. I then attached the brace to the bicycle
-frame via a stout adjustable arm. Finally, I fashioned some knee straps with
-hard drive magnets and a attachment plate on the frame so that the rider's
-legs would be rigid with respect to the rear frame. The magnets were weak
-enough that the rider could remove his legs in an emergency. This left the
-rider's arms and head free to move. The arm motion was required for controlling
-the bicycle, although one could imagine fixing the rider's arms and only
-allowing control with motion of their hands. The head probably should have been
-rigidified with respect to the body cast, but we didn't. Jan had great plans
-for a halo like ring with nails sticking through to the rider's scalp so that
-they couldn't move their head without excrutiating pain, we just never got
-around to making it.
+I constructed a harness such that the rider was rigidified as much as possible
+with respect to the rear frame. A medical back brace was used to rigidify the
+spine and hip motion. I then attached the brace to the bicycle frame via a
+stout adjustable arm.
+
+.. figRigidHarness:
+
+.. figure:: figures/davisbicycle/rigid-harness.*
+   :width: 4in
+
+   figRigidHarness
+
+   Me strapped into the rigid rider harness. The arm allows for multiple
+   degrees of adjustability to allow different riders and seating positions.
+
+I fashioned some knee straps with strong magnets taken from computer hard
+drives which would engage with a ferrous attachment plate on the frame so that
+the rider's legs would be rigid with respect to the rear frame. Chapters
+:ref:`delftbicycle` and :ref:`motioncapture` showed the rider tends to use
+lateral knee motions and we wanted to eliminate that as a confounding factor.
+The magnets were weak enough that the rider could remove his legs in an
+emergency.
+
+.. figKneeRestraints:
+
+.. figure:: figures/davisbicycle/knee-constraints.*
+
+   figKneeConstraints
+
+   The left image shows the knee straps with hard drive magnets and the right
+   image shows the knee attachment plates mounted to the top tube of the
+   bicylce.
+
+This left the rider's arms and head free to move. The arm motion was required
+for controlling the bicycle, although one could imagine fixing the rider's arms
+and only allowing control with motion of their hands. The head probably should
+have been rigidified with respect to the body cast, but we didn't due to
+comfort reasons. Nonetheless, Jan had great plans for a halo like ring with
+nails sticking through to the rider's scalp so that they couldn't move their
+head without excruciating pain, we just never got around to making it.
 
 Restricted
 ----------
 
 A second harness was partially developed to restrict the rider's motion to that
-described in :ref:`eom`. A back brace which left the hips free to move was used
-to keep the spine straight and a custom molded hip braced was developed to hold
-securely to the hip bone. The hip brace would then be attached via a revolute
-in the roll direction to allow the hips to roll about the seat. The back brace
-would then be attached to the hip brace via a join which would allow upper body
-lean with respect to the hips.
+described in :ref:`secFlexibleRider`. A back brace which left the hips free to
+move was used to keep the spine straight and a custom molded hip braced was
+developed to hold securely to the hip bone. The plane was to attach the hip
+brace to the bicycle seat via a revolute in the roll direction which would
+allow the hips to *only* roll about the seat. The back brace would then be
+attached to the hip brace via a joint which would allow torso lean with respect
+to the hips. The feet would be attached to the foot pegs via clip in pedals.
+Forces applied from the feet to the foot pegs would effectively allow the
+rider's hips to roll with respect to the bicycle frame (in reality the mass
+difference in rider and bicycle would cause the bicycle frame to roll with
+respect to the inertial reference frame).
+
+.. todo:: take a photo of the partially constructed brace
+
+My hypothesis was that this restricted motion would be all that would be needed
+to effective control the bicycle with no hands and would provide the next
+effective means of control along with steer torque. This design was only
+partially finished, so the merits of it were never tested.
 
 Orientations, Rates and Accelerations
 =====================================

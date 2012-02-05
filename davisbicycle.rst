@@ -189,6 +189,44 @@ shorted the hall effects sensors in the hub. I spent a couple of weeks
 repairing it [#]_. Overall, the motor met our needs for constant speed
 propulsion and the single battery would last an entire day of experimentation.
 
+Rider Harnesses
+===============
+
+The bicycle was designed to accomodate a range of motion restrictions for the
+rider. Firstly, the rider can simply completely free rider biomechanical
+modtion,  and a subset of motions.
+
+Rigid
+-----
+
+.. cite Eaton1973c and maybe Doyle as he mentioned it
+
+The harness was constructed such that the rider was rigidified as much as
+possible with respect to the rear frame. A medical back brace was used to
+rigidify the spine and hip motion. I then attached the brace to the bicycle
+frame via a stout adjustable arm. Finally, I fashioned some knee straps with
+hard drive magnets and a attachment plate on the frame so that the rider's
+legs would be rigid with respect to the rear frame. The magnets were weak
+enough that the rider could remove his legs in an emergency. This left the
+rider's arms and head free to move. The arm motion was required for controlling
+the bicycle, although one could imagine fixing the rider's arms and only
+allowing control with motion of their hands. The head probably should have been
+rigidified with respect to the body cast, but we didn't. Jan had great plans
+for a halo like ring with nails sticking through to the rider's scalp so that
+they couldn't move their head without excrutiating pain, we just never got
+around to making it.
+
+Restricted
+----------
+
+A second harness was partially developed to restrict the rider's motion to that
+described in :ref:`eom`. A back brace which left the hips free to move was used
+to keep the spine straight and a custom molded hip braced was developed to hold
+securely to the hip bone. The hip brace would then be attached via a revolute
+in the roll direction to allow the hips to roll about the seat. The back brace
+would then be attached to the hip brace via a join which would allow upper body
+lean with respect to the hips.
+
 Orientations, Rates and Accelerations
 =====================================
 
@@ -238,6 +276,9 @@ bicycle kinematic motions from my previously collected data.
      - :math:`\pm 600 \frac{\textrm{deg}}{\textrm{s}}`
      - :math:`12 \frac{\textrm{deg}}{\textrm{s}}`
      - 30 hz
+
+Roll
+----
 
 The yaw, roll, pitch and steer rates, are typically measured directly with rate
 gyros, which have been available for the later half of the 20th century. The
@@ -358,8 +399,14 @@ of the rear wheel.
    On left is photo of the roll angle trailer with it's components annotated.
    The right photo shows it attached to the instrumented bicycle.
 
-.. todo:: talk about the geometry design of the trailer
-The 
+The potentiometer effectively measures the angle between the yoke and the main
+trailer frame [#]_. For a direct measurement of the true roll angle of the bicycle,
+the trailer roll axis must lie in the ground plane, but this is physically
+impossible so it is preferable for the axis to be as close to the ground as
+possible. Figure :ref:`figTrailerAngle` shows how the yoke pitch angle and the
+trailer roll angle change as a function of the bicycle roll angle for various
+heights above the ground. Notice that the trailer roll angle is virtually
+identical to the bicycle roll angle for given heights.
 
 .. figure:: figures/davisbicycle/trailer-angle.*
    :width: 4in
@@ -373,73 +420,48 @@ The
 
 .. todo:: Put in the correct values for the roll angle trailer.
 
-.. todo:: cite Boniolo for roll angle estimation, talk about Danique's work,
-   cite other people that handle this problem too.
+Steer
+-----
 
 The steer angle is easy to measure with either some form of write recorder,
 potentiometer or encoder and has been accurately measured on many bicycle and
-motorcycle systems since the early 50's. [Dohring1953]_. Since the front frame
-is attached to the rear frame via a revolute joint only an additional single
-orientation and rate measurement is needed to measure the front frame motion.
-I went with a similar design and setup as the Delft instrumented bicycle: a
-potentiometer for relative steering angle measurement and a single axis rate
-gyro for the body fixed angular rate of the front frame about the steer axis. I
-modified the same steering angle measurement design that I use on the Delft
-instrumented bicycle, with some minor improvements such as better tension
-adjustability and switching to a screw mount potentiometer.
+motorcycle systems since the early 50's (e.g. [Dohring1953]_). Because the
+front frame is attached to the rear frame via a revolute joint only an
+additional single orientation and rate measurement is needed to measure the
+front frame motion. I used a similar design and setup as the Delft instrumented
+bicycle: a potentiometer for relative steering angle measurement and a single
+axis rate gyro for the body fixed angular rate of the front frame about the
+steer axis [#]_. I modified the design with some minor improvements such as better
+tension adjustability and switching to a screw mount potentiometer.
 
-.. todo:: steer angle and rate figure
-
-.. list-table:: Initial Kinematic Sensors
-
-   * - Measurements
-     - Range
-     - Accuracy
-     - Sensor
-   * - Yaw Angle, Roll Angle, Pitch Angle
-     - :math:`\pm180` degrees, :math:`\pm180` degrees, :math:`\pm180` degrees
-     - < 2 degrees, < 0.5 degrees, < 0.5 degrees (3 sigma)*
-     - VN-100
-   * - Yaw Rate, Roll Rate, Pitch Rate
-     - :math:`\pm500` deg/s, :math:`\pm500` deg/s, :math:`\pm500` deg/s
-     - :math:`<\pm0.06` deg/s (bias stability)*
-     - VN-100 (Invensense IDG500 and ISZ500)
-   * - Rear frame 3D point acceleration
-     - :math:`\pm2` g
-     - x/y :math`<2` mg, z :math:`<3` mg (bias stability)
-     - VN-100 (Analog Devices ADXL325)
-   * - Front frame fixed angular rate about the steer axis
-     - :math:`\pm200` deg/s
-     - See manufactures spec sheet
-     - Single axis rate gyro (Silicon Sensing CRS03-04S)
-   * - Steer Angle
-     - \pm 42.5^\circ (pot 340^\circ \pm 5^\circ with 1:4 gear reduction)
-     -
-     - Single turn potentiometer (ETI Systems SP22F)
-   * - Rear wheel rate
-     - Up to 
-     -
-     -
-
-* Accuracies reported with respect to the calibrated and filtered output.
-
-.. todo::
-   - rate gyro was super expensive for little gain
-   - i couldn't integrate the vn-100 into the rest of the DAQ
-   - VN-100 sucked at giving orientation
+.. todo:: steer angle and rate figure, take a picture
 
 Wheel Rate
 ----------
 
-I measured the rear wheel speed in the same fashion as the Delft bicycle. We
-mounted a small DC permanent magnet motor (Globe Motors E-2120 without the
-encoder) to the rear frame in much the same way as a simple generator for a
-bicycle light works. A small knurled aluminum disc on the motor shaft engaged
-the sidewall of the tire. The voltage of DC motors is linearly proportional to
-the angular speed of the wheel. The disc diameter was chosen such that the top
-speed of the bicycle would give the maximum measurable output of 10 volts.
+As have been shown in previous chapters, the bicycle dynamics are highly
+dependent on the speed of the bicycle. This requires good estimations of the
+average speed for each constant speed run. I measured the rear wheel rate in
+the same fashion as the Delft instrumented bicycle. We mounted a small DC
+permanent magnet motor (Globe Motors E-2120 without the encoder) to the rear
+frame in much the same way as a simple friction generator for a bicycle light.
+A small knurled aluminum disc on the motor shaft engaged the sidewall of the
+tire which is radius :math:`r_c` from the wheel hub. :math:`r_c` was slighty
+different for runs 0 to 226 than for run numbers greater than 226 because it
+was remounted for better contact disc to tire contact.
 
-.. todo:: find which runs the speedometer was mounted differently
+.. math::
+   :label: eqDiscContactRadius
+
+   r_c =
+   \begin{cases}
+      0.333 m & \textrm{if $\leq 226$}\\
+      0.320 m & \textrm{if $> 226$}
+   \end{cases}
+
+The voltage of DC motors is linearly proportional to the angular speed of the
+disc. The disc diameter, :math:`r_d=0.029` m, was chosen such that 0 to 10
+volts would correspond to approximately 0 to 30 mph.
 
 .. figure:: figures/davisbicycle/speedometer.jpg
    :width: 4in
@@ -451,9 +473,62 @@ speed of the bicycle would give the maximum measurable output of 10 volts.
    contacted the tire casing tagential to the linear velocity at the contact
    point.
 
+Sensors
+-------
+
+.. list-table:: Final Kinematic Sensors, * Accuracies reported with respect
+   to the calibrated and filtered output.
+
+   * - Measurements
+     - Range
+     - Accuracy
+     - Sensor
+   * - Roll Angle
+     - \pm 42.5^\circ (pot 340^\circ \pm 5^\circ with 1:4 gear reduction)
+     -
+     - Single turn potentiometer (ETI Systems SP22F)
+   * - Steer Angle
+     - pot 340^\circ \pm 5^\circ
+     -
+     - Single turn potentiometer (ETI Systems SP22F)
+   * - Yaw Rate, Roll Rate, Pitch Rate
+     - :math:`\pm500` deg/s, :math:`\pm500` deg/s, :math:`\pm500` deg/s
+     - :math:`<\pm0.06` deg/s (bias stability)*
+     - VN-100 (Invensense IDG500 and ISZ500)
+   * - Front frame fixed angular rate about the steer axis
+     - :math:`\pm200` deg/s
+     - See manufactures spec sheet
+     - Single axis rate gyro (Silicon Sensing CRS03-04S)
+   * - Rear wheel rate
+     - 0 - 40 rad/s
+     -
+     - Globe Motors E-2120 DC Motor without the encoder
+   * - Rear frame 3D point acceleration
+     - :math:`\pm2` g
+     - x/y :math`<2` mg, z :math:`<3` mg (bias stability)
+     - VN-100 (Analog Devices ADXL325)
+
+.. todo:: come up with some accuracies for some of the measurments
+
+Kinetics
+========
+
+A human is able to use a multitude of contact forces and body movements to
+control the bicycle. The forces applied by the rider's hands to the handlebars
+are the most obvious and most effective method of controlling the bicycle [#]_.
+But the rider also can impart forces through the seat and the foot pegs. If the
+rider is controlling the bicycle without touching the handlebar, these would be
+the only locations of rider to bicycle contact. For a complete dynamic picture
+of the rider's control inputs, all of the essential forces and moments at the
+rider/bicycle interface's need be measured. In the case of the rigidified
+rider, the steering torque is sufficient for characterizing the control inputs.
+
+For the sake of perturbing the closed loop bicycle/rider system, we also needed
+to measure and externally applied force or torque, opting for a simple lateral
+force perturbation.
 
 Lateral Force
-=============
+-------------
 
 .. todo:: Eaton1973 applied later distubrance with weights and Roland1971 used
    a rocket, Doria 2011 tapped the handlebars
@@ -679,43 +754,6 @@ generates a generic calibration file for the various sensors. The data for the
 manufacturer supplied calibration data was manually entered to create similar
 files. These files are parsed to build the database described XXX.
 
-Rider Harnesses
-===============
-
-The bicycle was designed to accomodate free rider biomechanical modtion and a
-subset of motions.
-
-Rigid
------
-
-.. cite Eaton1973c and maybe Doyle as he mentioned it
-
-The harness was constructed such that the rider was rigidified as much as
-possible with respect to the rear frame. A medical back brace was used to
-rigidify the spine and hip motion. I then attached the brace to the bicycle
-frame via a stout adjustable arm. Finally, I fashioned some knee straps with
-hard drive magnets and a attachment plate on the frame so that the rider's
-legs would be rigid with respect to the rear frame. The magnets were weak
-enough that the rider could remove his legs in an emergency. This left the
-rider's arms and head free to move. The arm motion was required for controlling
-the bicycle, although one could imagine fixing the rider's arms and only
-allowing control with motion of their hands. The head probably should have been
-rigidified with respect to the body cast, but we didn't. Jan had great plans
-for a halo like ring with nails sticking through to the rider's scalp so that
-they couldn't move their head without excrutiating pain, we just never got
-around to making it.
-
-Restricted
-----------
-
-A second harness was partially developed to restrict the rider's motion to that
-described in :ref:`eom`. A back brace which left the hips free to move was used
-to keep the spine straight and a custom molded hip braced was developed to hold
-securely to the hip bone. The hip brace would then be attached via a revolute
-in the roll direction to allow the hips to roll about the seat. The back brace
-would then be attached to the hip brace via a join which would allow upper body
-lean with respect to the hips.
-
 Data acquisition
 ================
 
@@ -860,7 +898,7 @@ The basic algoritm for computing the error between the two signals is:
 Using this formulation, you can then minimize the error with respect to tau.
 The minimization requires a good guess, as the minimzing function has local
 minima. I use both the location of the max values in the signals and finding
-the mimimal value of the error as a function of a fixed number of tau values to
+the minimal value of the error as a function of a fixed number of tau values to
 get good guesses. See the source code for the gorey details.
 
 .. figure:: figures/davisbicycle/sync.*
@@ -874,10 +912,10 @@ The computed time shift is used to shift and truncate all of the signals.
 Things to Fix
 =============
 
-The steering universal joint needs keyways.
-Git rid of the VN-100 and replace with two rate gyros.
-Add some gearing to the roll angle measurement.
-Do away with the slip clutch.
+- The steering universal joint needs keyways.
+- Git rid of the VN-100 and replace with two rate gyros.
+- Add some gearing to the roll angle measurement.
+- Do away with the slip clutch.
 
 Steer Torque
 ============
@@ -904,22 +942,22 @@ torque on a bicycle or lightweight single track vehicle and these measurements
 typically do not match the results of the analytical models. There have been
 more attempts at measuring the steer torque on motorcycles.
 
-.. todo:: go through articl database looking for more examples of steer torque
+.. todo:: go through article database looking for more examples of steer torque
    stuff
 
 Bicycle Experiments
 -------------------
 
 [Lorenzo1997]_
-   David de Lorenzo instrumeted a bike to measure pedal forces, handlebar
+   David de Lorenzo instrumented a bike to measure pedal forces, handlebar
    forces, hub forces to measure the in-plane structural loads. He took the
    bike to the trails and had 7 riders do a downhill section. The hand
-   reactions were measured with a handlerbar sensitive to x (pointing forward
+   reactions were measured with a handlebar sensitive to x (pointing forward
    and parallel to the ground) and z (pointing upwards, perpendicular to the
    ground) axis forces on both the left and right sides of the handlebar. Net
    torque about any vector in the fork plane of symmetry can be calculated from
    these. Figure 3d shows a plot of steering torque with maximums around 7 Nm.
-   The stem extension torque (representing the torque from pushin down and up
+   The stem extension torque (representing the torque from pushing down and up
    on the handlebars) reaches 15 Nm. The calibration information leads me to
    believe that the crosstalk from the all of the forces and moments on the
    handlebars gives a very low accuracy for the reported torques, probably in
@@ -964,7 +1002,7 @@ Bicycle Experiments
    .. figure:: figures/davisbicycle/cheng-steer-torque-design.*
 
 [Astrom2005]_
-   Åström et al. talks briefly about the a steer torque measurement system
+   Åström et al. talks briefly about the steer torque measurement system
    constructed for the UCSB instrumented bicycle but with little extra
    information. They use a linear force transducer of some sort mounted on the
    handlebars.
@@ -986,9 +1024,9 @@ Bicycle Experiments
    bicycel model and only points to the fact that the sensor was 90% oversized.
 [Ouden2011]_
    Designs a steer torque sensor for a bicycle which has a range of about
-   +/-7.5 n-m. He was accutely aware of crosstalk issues with respect to the
+   +/-7.5 n-m. He was accurately aware of crosstalk issues with respect to the
    other forces applied to the handlebars and tried to design accordingly, but
-   found that his design was still very suseptible to handlebar loads. He
+   found that his design was still very susceptible to handlebar loads. He
    modifies the device to eventually get more reliable readings. He doesn't
    account for the inertial effects of the front frame.
 
@@ -1000,7 +1038,7 @@ Motorcycle Experiments
 [Fu1965]_
    Measures steering torque in steady turns.
 [Eaton1973]_
-   Measured steering torque
+   Measured steering torque: one handed bar
 [Weir1979a]_
    Weir et al. designed an instrumented motorcycle with a torque sensor. The range
    was +/- 70 Nm with 1% accuracy and >10 Hz dynamic range. The crosstalk due to
@@ -1131,7 +1169,7 @@ Motorcycle Models
 
 Steering torque has been measured in relatively few instances of bicycle
 experiments and not many more for motorcycles. Of these, very few prove that
-their design wasn't suspectible to cross talk and for the small torque control
+their design wasn't susceptible to cross talk and for the small torque control
 used in typical bicycle control (i.e. less than 10 Nm, but the majority less
 than 5 Nm). Most of these designs measure the torque somewhere inbetween the
 rider hand interface and the ground contact point. This is an acceptly maybe
@@ -1365,7 +1403,7 @@ the input torque used for out bicycle models, (i.e. :math:`T_\delta`). The
 steer torque in the model is defined as the torque between the front frame and
 the rear frame about the steer axis. If the torque sensor measures the steering
 torque anywhere but at the interface of the human and the front frame, one must
-account for the inerital effects of the front frame. As far as I can tell, no
+account for the inertial effects of the front frame. As far as I can tell, no
 one who has measured steer torque on a single track vehicle has accounted for
 these effects. There is a relationship from :math:`T_M` to :math:`T_\delta`
 that requires one to know, at a minimum [#]_ the friction in the steer axis
@@ -1390,7 +1428,7 @@ from the upper bearing set, :math:`T_U`, which can be described by coulomb,
    figHandlebarFreeBody
 
    A free body diagram of the handlebar with all of the torques acting on it
-   about the steer axis. The rear frame, :math:`B`, is at an abritrary
+   about the steer axis. The rear frame, :math:`B`, is at an arbitrary
    orientation with respect to the Newtonian reference frame.
 
 We measure the angular rate of the bicycle frame, :math:`B`, with three rate
@@ -1534,7 +1572,7 @@ Bearing Friction
 
 The torque sensor is mounted between two sets of bearings. The upper set are
 tapered roller bearings and the lower are typical bicycle headset bearings.
-Each are preloaded a nomimal amount during installation. We assume that the
+Each are preloaded a nominal amount during installation. We assume that the
 rotary friction due to each bearing set can be described as the sum of viscous
 and Coloumb friction. The Coulomb friction can be described as a piecewise
 function of the steering rate, :eq:`eqCoulomb`, and viscous friction as a
@@ -1588,9 +1626,9 @@ The equations of motion governing the system are
 
 The length of the lever arm was 0.231 meters. The spring stiffness was
 estimated by suspending an 11.4 kg mass from one of the spring and letting it
-osciallate while measureing its vertical acceleration via an accelerometer. A
+oscillate while measuring its vertical acceleration via an accelerometer. A
 grey box identification routine was used to estimate the spring stiffness for
-three trials. We found the average spring stiffnes to be :math:`904.7 \pm 0.6`
+three trials. We found the average spring stiffness to be :math:`904.7 \pm 0.6`
 N/m. The inertia of the handlebar, fork and front wheel about the steer axis,
 :math:`I_{HF}`, was computed based on the measurements described in Chapter
 :ref:`physcialparmaeters` and found to be :math:`0.1297+/-0.0005` :math:`kg
@@ -1610,7 +1648,7 @@ friction in the upper bearings equals the friction in the lower bearings,
 :math:`T_U = T_B / 2`, but for some of the trials we measured the torque
 between the bearings, the steer angle just above the lower bearings and the
 steer rate above the upper bearings. This information allows the estimation of
-the upper and lower bearing friction idependently. The equations of motion of
+the upper and lower bearing friction independently. The equations of motion of
 the assembly above the torque sensor are
 
 .. math::
@@ -1627,7 +1665,7 @@ computed from the physical parameters measurement and is :math:`0.0656 \pm
 0.0003` :math:`kg \cdot m^2`.
 
 Assuming :math:`I_G`, :math:`k`, and :math:`l` as fixed parameters gave poor
-fits (around 50% of the data varialbily was accouted for by the model), and
+fits (around 50% of the data variability was accounted for by the model), and
 thus most likely poor estimates of the friction coefficients. The viscous
 coefficient was found to be :math:`c_U = 0.6 \pm 0.1` and the Coulomb friction
 as :math:`t_U = 4.0E-8 \pm 7E-8`. These results are questionable. From the
@@ -1716,6 +1754,29 @@ This approach works fairly well and allows for easy querying of the 700+ runs.
 
 .. [#] See our selection spreadsheet at
 `<https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0Asn6BMg-bB_EdFJKVXFfeEgyMnpwR0JXNVlOYjg0Q0E&output=html.>`_
+
+.. [#] As designed, the potentiometer measures exactly the angle between the
+   yoke and the trailer frame. This is somewhat limiting as the full range of
+   the potentiometer isn't utilized as was in the steering angle design. This
+   effectively reduces the measured voltage range from the potentiometer,
+   especifally since the measured angles are often no more than 10 degrees. The
+   NI USB-6218 has 16 bit resolution so it still adequatedly measures the data,
+   but a step down gearing would improve the resolution of the roll
+   measurement.
+
+.. [#] The Silicon Sensing rate gyros had to be purchased in bulk but they
+   offered samples. A single sample gyro cost upwards of $300 with half of the
+   price required to ship a giant box from Japan to California. I initially
+   thought that this was worth it for the quality of the sensor, but I never
+   saw any apreciable difference in the sensor quality as compare to the rate
+   gyros on the VN-100 which can be purchased individually for less than $50.
+
+.. [#] [Weir1972]_ shows that large rider lean angles are required relative to
+   steer control. [Sharp2008a]_ shows that the use of steer torque control is
+   always the more optimal choice than rider lean torque control for optimal
+   control based on path deviation error and control power. [Moore2011]_
+   experimentally shows that the steering angle magnitudes are much larger than
+   other rider body movements.
 
 .. [#] a sum of sines would be ideal, see [Lange2011]_ for some ideas
    on other types of inputs. It has been shown that a sum of sines signal is

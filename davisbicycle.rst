@@ -192,7 +192,7 @@ propulsion and the single battery would last an entire day of experimentation.
 Rider Harnesses
 ===============
 
-The bicycle was designed to accomodate a range of allowable rider motions. I
+The bicycle was designed to accommodate a range of allowable rider motions. I
 designed it with three modes in mind. Firstly, the rider can simply have
 complete free rider biomechanical motion as they would when normally riding a
 bicycle. The second design was intended to restrict almost all of the rider's
@@ -242,7 +242,8 @@ emergency.
 
 .. figKneeRestraints:
 
-.. figure:: figures/davisbicycle/knee-constraints.*
+.. figure:: figures/davisbicycle/knee-restraints.*
+   :width: 6in
 
    figKneeConstraints
 
@@ -270,9 +271,9 @@ allow the hips to *only* roll about the seat. The back brace would then be
 attached to the hip brace via a joint which would allow torso lean with respect
 to the hips. The feet would be attached to the foot pegs via clip in pedals.
 Forces applied from the feet to the foot pegs would effectively allow the
-rider's hips to roll with respect to the bicycle frame (in reality the mass
-difference in rider and bicycle would cause the bicycle frame to roll with
-respect to the inertial reference frame).
+rider's hips to roll with respect to the bicycle frame (in reality because the
+rider is more massive and more inert the bicycle frame would roll with respect
+to the inertial reference frame).
 
 .. todo:: take a photo of the partially constructed brace
 
@@ -331,9 +332,6 @@ bicycle kinematic motions from my previously collected data.
      - :math:`12 \frac{\textrm{deg}}{\textrm{s}}`
      - 30 hz
 
-Roll
-----
-
 The yaw, roll, pitch and steer rates, are typically measured directly with rate
 gyros, which have been available for the later half of the 20th century. The
 direct measurement of angular accelerations has yet to mature [Ovaska1998]_, so
@@ -342,6 +340,9 @@ angular accelerations can also be computed if the acceleration and location of
 multiple points are measured with accelerometers. Most all experimental work
 with bicycles and motorcycles provide good examples of employing these type of
 kinematic sensors.
+
+Roll
+----
 
 On the other hand, the roll angle is typically the most difficult kinematic
 measurement due to the fact that both the bicycle translates with respect to
@@ -500,7 +501,7 @@ the same fashion as the Delft instrumented bicycle. We mounted a small DC
 permanent magnet motor (Globe Motors E-2120 without the encoder) to the rear
 frame in much the same way as a simple friction generator for a bicycle light.
 A small knurled aluminum disc on the motor shaft engaged the sidewall of the
-tire which is radius :math:`r_c` from the wheel hub. :math:`r_c` was slighty
+tire which is radius :math:`r_c` from the wheel hub. :math:`r_c` was slightly
 different for runs 0 to 226 than for run numbers greater than 226 because it
 was remounted for better contact disc to tire contact.
 
@@ -509,8 +510,8 @@ was remounted for better contact disc to tire contact.
 
    r_c =
    \begin{cases}
-      0.333 m & \textrm{if $\leq 226$}\\
-      0.320 m & \textrm{if $> 226$}
+      0.333 m & \textrm{if the run number is $\leq 226$}\\
+      0.320 m & \textrm{if the run number is $> 226$}
    \end{cases}
 
 The voltage of DC motors is linearly proportional to the angular speed of the
@@ -564,6 +565,62 @@ Sensors
 
 .. todo:: come up with some accuracies for some of the measurments
 
+The VN-100 was mounted to the rear frame with its factory X axis aligned with
+:math:`\hat{c}_1`, Y axis aligned with the :math:`-\hat{c}_3`, and Z axis
+aligned with :math:`\hat{c}_2` as described in Chapter :ref:`eom`. I made use
+of the VN-100's ability output it's measurements with respect to a different
+reference frame than the factory frame and aligned the X, Y and Z axes wlth the
+:math:`\hat{c}_1`, :math:`\hat{c}_2` and :math:`\hat{c}_3` axes, respectively.
+This pre-output rotation matrix was recorded in the metadata for each run. The
+steer rate gyro was attached such that its axis was aligned with
+:math:`\hat{e}_3`.
+
+The yaw, roll and pitch rates as defined in Chapter :ref:`eom` are computed
+from the measured body fixed rear frame rates :math:`omega_{x,y,z}`, the
+measured roll angle :math:`q_4` and the steer axis tilt :math:`\lambda`
+
+.. math::
+   :label: eqRearFrameRates
+
+   u_3 = \frac{\omega_x \sin(\lambda) - \omega_z \cos(\lambda)}
+   {\cos(q_4)}
+
+   u_4 = \omega_x \cos(\lambda) + \omega_z \sin(\lambda)
+
+   u_5 = \omega_y + \omega_x \sin(\lambda) \tan(q_4) - \omega_z
+   \cos(\lambda) \tan(q_4)
+
+The steer rate is found be subtracting the body fixed rear frame rate,
+:math:`\omega_z` from the body fixed front frame rate, :math:`omega_{ff_z}`
+
+.. math::
+   :label: eqSteerRate
+
+   u_7 = \omega_{ff_z} - \omega_z
+
+The yaw angle, :math:`q_3`, can be estimated by integrating the yaw rate,
+:math:`u_3`. The result is affected by drift but for runs that are centered
+around zero, this drift can be removed by subtracting the resulting line from a
+linear regression on the drifted data. The resulting yaw angle can be used to
+compute estimates for the rear wheel contact velocities: :math:`u_1` and
+:math:`u_2` by making use of the measured rear wheel rate, :math:`u_6`.
+
+.. math::
+   :label: eqRearContactRates
+
+   u_1 = -u_6 r_R \cos(q_3)
+
+   u_2 = -u_6 r_R \sin{q_3)
+
+The rear wheel contact rates can also be integrated and the linear drift
+subtracted out to find the position from an arbitrary initial condition.
+
+.. todo:: add the calculations for the front wheel contact point with respect
+   to the rear wheel contact point
+
+.. todo:: There maybe a sign error some where in the lateral contact point
+   definitions that I've seen in some of the data. Check this out.
+
 Kinetics
 ========
 
@@ -581,626 +638,382 @@ For the sake of perturbing the closed loop bicycle/rider system, we also needed
 to measure and externally applied force or torque, opting for a simple lateral
 force perturbation.
 
-Lateral Force
--------------
+Lateral Perturbation Force
+--------------------------
 
-.. todo:: Eaton1973 applied later distubrance with weights and Roland1971 used
-   a rocket, Doria 2011 tapped the handlebars
+I was introduced to the idea of external lateral force perturbations from some
+of my first email exchanges with Arend and when I was in Delft we did several
+experiments with lateral perturbations [Kooijman2009a]_. We applied the pulisve
+type of perturbations without measuring the applied force assuming they could
+be modeled as impulses. [Roland1971]_ on the other hand attached a calibrated
+rocket to the handelbars of a riderless bicycle to give a know step input to
+steer torque. [Eaton1973c]_ had the motorcycle rider tap the handlebars to
+applied an impulse and also drop weights from the side of the motorcycle to
+apply a roll torque. [Doria2011]_ similarly had the motorcycle rider apply
+impulsive forces to the handlebars to excite the weave mode. [Lange2011]_
+discusses several methods of applying a pure roll torque to the bicycle
+including a mass swing, a mass slider, a rope, and lateral accelerating the
+ground. His designs are intended to apply an oscillatory roll torque to
+facilitate system identification in the frequency domain [#]_.
 
-I got the idea of for lateral force perturbations from some of my first email
-exchanges with Arend and when I was in Delft we did several experiments with
-lateral perturbations, but the main probably was that we didn't measure it. We
-weren't able to come up with a clever way of perturbing the system with a
-harmoinic input [#]_, so I simply attached a 100 lb force load cell (Interface
-SSM-100) inline with a rope attached to the underside of the bicycle seat. This
-worked for the first round of experiments, but only provided a negative lateral
-force as it could only be pulled. Ideally, the rider shouldn't know when or
-which direction (or magnitude?) of the disturbance. We solved these by
-attaching the load cell inline with a push/pull stick which was attached to the
-seat via a ball joint.  The rider wore a helmet with a blinder on the side of
-the lateral force stick so that they could see the movements of the stick or
-the person operating the stick. Finally, on the treadmill we wrote a simple
-program which randomly instructed the stick operator when and which direction
-to applied the force.  During the floor runs, we retained the blinder and
-instructed the operator with a series of random push/pull sequences. The
-operator applied as many perturbations as possible on the length of the track.
+We weren't able to come up with a clever way of perturbing the system with a
+harmonic input and frankly I did not think a great deal about the perturbation
+methods, so I simply attached a 100 lb force load cell (Interface SSM-100)
+inline with a rope attached to the underside of the bicycle seat. We intended
+to apply impulsive lateral forces to the bicycle rear frame. This worked
+for the first round of experiments, but only provided a negative lateral force
+as it could only be pulled. After the first experiment attempts, we solved this
+by attaching the load cell inline with a push/pull stick which was attached to
+the seat via a ball joint. The ball joint prevented any external moments from
+being applied to the bicycle in a mostly lateral direction.
 
-.. todo:: add picture of ball joint attachement under the seat
+.. figure:: figures/davisbicycle/lateral-force-stick.*
+   :width: 4in
 
-.. todo:: Example perturbation measurment.
+   figLateralForceStick
 
-.. todo:: Calibration of lateral force
+   The lateral force stick attached to the underside of the seat. A rod end was
+   used at the connection to prevent moments from being applied to the rear
+   frame.
+
+We were also concerned with the rider predicting the lateral perturbations.
+Ideally the rider shouldn't be able to predict when or the direction of the
+upcoming perturbation. The rider wore a helmet with a blinder on the side of
+the lateral force stick so that they could not see the movements of the stick
+or the person operating the stick. And secondly, we wrote a simple program
+which randomly instructed the perturber when and which direction to apply the
+force for the treadmill experiments. During the runs in the gymnasium, we
+retained the blinder and provided the perturber with a series of random
+push/pull sequences before each run. The operator applied as many perturbations
+as possible over the length of the track, which didn't give much
+unpredictability in the time of perturbation.
+
+.. figure:: figures/davisbicycle/perturbation.*
+
+   figPerturbation
+
+   The left figure shows an example of a lateral perturbation sequence during a
+   treadmill run. The right figure shows the profile of a perturbation over one
+   second.
 
 Seat Post
-=========
+---------
 
-I had intended to measure the forces at all of the points of interaction of the
-rider and bicycle with the seat being a primary location. Cal Stone
-[Stone1990]_ developed a seat post which was capable of measuring five
-components of force in the seat post shaft with an array of strain gauges. It
-was not capable of measuring the torque about the seat axis and I had intended
-to add the strain bridge to measure the sixth component. The seatpost was
-instrumented by simply gluing strain gage bridges onto a stock seatpost. Due to
-this the accuracy of the measurements was probably not high.
+As already mentioned, I had intended to measure the forces at all of the
+rider/bicycle interfaces. Cal Stone [Stone1990]_ developed a seat post which
+was capable of measuring five components of force in the seat post with an
+array of strain gauges. I was going to add a strain gage bridge for the
+remaining unmeasured component, torque about the seat axis, to complete the
+force measurements and use the seat post in combination with the flexible rider
+harness. The seatpost was originally instrumented by simply gluing strain gage
+bridges onto a stock seatpost and carefully calibrating the sensor for a
+variety of loading combinations. The accuracy of the seat post force
+measurements was not all that high due to the small strains seen along the
+outer wall of the seat post. In a way, the use of the seatpost was more because
+of the convenience of having access to it than obtaining the actual kinetics
+involved when using the flexible rider harness. Gilbert and I spent an awful
+lot of time figuring out how to use and calibrate the seatpost and associated
+equipment. Fortunately, a copy of Cal's research notes were found that help
+decipher most of the work. We even got in touch with Cal and he provided
+additional information. But as time constraints weighed in, we had to abandon
+the effort.
+
+.. figure:: figures/davisbicycle/seat-post-calibration.*
+   :width: 4in
+
+   figSeatPostCalibration
+
+   The seat post mounted in Maury Hull's calibration frame.
 
 Foot Pegs
-=========
+---------
 
-We designed a set of foot pegs which were capable of measuring the downward
-force applied at the interface of the human's feet. Each foot peg was fit with
-two strain gage bridges.
+Gilbert designed a set of foot pegs such that clipless bicycle pedals could be
+screwed into the ends providing secure attachment of the feet but allowing
+easier detachment. Each foot peg was fit with two strain gage bridges to
+measure the downward force applied by the rider's feet. These were also
+abandoned due to time constraints.
 
-Strain Gauge Amplification
-==========================
+.. figure:: figures/davisbicycle/foot-peg.*
+   :width: 4in
 
-All of the load cells required analog amplification of the bridge signals to
-bring them up to a level measurable by the NI USB-6218 which had a maximum
-range of :math:`\pm 10` volts. I purchased the Futek CSG-110 strain amplifier
-for the torque sensor and had the sensor factory calibrated in tandem with the
-amplifier. Cal Stone [Stone1990]_ had developed a custom amplifier for the
-seatpost and handlebars which could amplify up to 14 bridge signals. Being that
-I was intending to make use of the seat post already, the amplifier box was
-used for the remaining strain gage amplification. I didn't ever hook up the
-seat post and foot pegs, so the amplifier was only used to for the lateral
-force load cell. I used 16.5k resistors for the first stage analog amplifier.
+   figFootPeg
 
-Calibration
-===========
-
-All of the analog sensors I used require some sort of calibration that develops
-a relationship between the measured voltage from the sensor and the physical
-phenomena that is being measured. I self calibrated some sensors, had one
-calibrated at the factory and used the reported manufacturer specifications for
-others.
-
-Potentionmeters
----------------
-
-I calibrated the steer angle sensor by inserting a custom protractor into the
-steer tube of the fork and measuring the voltage of the potentiometer output at
-a series of distinct angles. This calibration was done anytime the timing belt
-or pulleys were disegaged.
-
-.. todo:: image of the protractor
-
-The roll angle potentiometer was calibrated by measuring the bicycle frame's
-absolute roll angle with a digital level and recording the voltage output for a
-sweep of angles.
-
-For both cases potentiometer's output voltage is ratiometric with respect to
-the supply voltage :math:`V_s` and the potentiometer angle can be computed
-given the average calibration supply voltage :math:`V_c` and the slope and
-intercept of the calibration curve relating voltage to angle the angle.
-Depending on the calibration the angle could be the rotation angle of the
-potentiometer as in the case of the roll angle measurement or the actual steer
-angle in the case of the steer angle due to the gearing from the steer tube [#]_.
-
-.. math::
-
-   \delta = \frac{V_c}{V_s} m V + b
-
-Rate Gyros and Accelerometers
------------------------------
-
-The analog accelerometers and rate gyros typically have specifications for the
-sensitivity and the zero bias, where both are ratiometric (i.e. scale with
-respect to the supply voltage). The sensitivty gives the linear relationship
-of the output voltage for a given acceleration or rate. The zero bias is the
-output voltage of the sensor for zero acceleration or rate for a given supply
-voltage.
-
-.. math::
-
-   \dot{\delta}_m = m \left(V - \frac{V_s}{V_C} z\right)
-
-.. todo:: These only seem to ratiometric in the bias (i.e. the slope doesn't
-   change with respect to supply voltage change. This needs to be checked better.
-
-Wheel Rate
-----------
-
-We measured rear wheel angular speed with the same technique used with the
-Delft instrumented bicycle. We mounted a small DC motor such that a knurled
-roller wheel attached to its shaft rolled against the rear tire. The voltage of
-of a DC motor has a linear relationship with the rotational speed of the motor.
-To generate a calibration curve, we used an AMETEK 1726 Digital Tachometer to
-measure the rotational speed in rpm and digital multimeter to measure the
-voltage for a sweep of motor rotational speeds.
-
-.. list-table::
-   :header-rows: 1
-
-   * - RPM
-     - Voltage
-   * - 42.5
-     - 0.094
-   * - 62.0
-     - 0.1385
-   * - 89.0
-     - 0.199
-   * - 132.0
-     - 0.291
-   * - 185.0
-     - 0.406
-   * - 271.5
-     - 0.595
-   * - 391.0
-     - 0.857
-   * - 569.0
-     - 1.252
-   * - 855.0
-     - 1.879
-   * - 1243.0
-     - 2.738
-   * - 1785.0
-     - 3.91
-   * - 2588.0
-     - 5.67
-
-The relationship from motor rotational speed to voltage is :math:`mV+b` with
-the slope and intercept of the rpm to voltage curve determined by regression is
-:math:`m=456.3862\frac{\textrm{rpm}}{\textrm{volt}}\)` and
-:math:`b=-1.2846\textrm{ rpm}\)`. We then attached a small disc to the motor
-shaft such that the disc rubs against the rotating tire. The disc diameter was
-chosen such that the motor would ouput 0 to 10 volts for a bicycle forward
-speed range of about 0 to 30 mph. The rotational speed of the rear wheel as a
-function of voltage can be written as a linear realtionship
-
-.. math::
-
-   \dot{\theta}_R=s_f(mV+b)\frac{r_d}{r_c}
-
-where :math:`r_d` is the radius of the generator disc and :math:`r_c` is
-distance from the rear wheel center to the disc/tire contact point and
-:math:`s_f=\frac{2\pi}{60}` is a scaling factor from rpm to radians per second.
-:math:`r_d=0.028985` m and :math:`r_c=0.333375` m when the generator was first
-attached (runs 0 to XX) and :math:`r_c=0.3199511` m after the generator was
-remounted (runs XX to XX). The relationship between the rear wheel rate as a
-function of voltage can more generally be rewritten as
-
-.. todo:: find which runs the speedometer was mounted differently
-
-.. math::
-
-   \dot{\theta}_R = m_R V + b_R
-
-where :math:`m_R=\frac{s_fmr_d}{r_c}` and :math:`b_R=\frac{s_fbr_d}{r_c}`. The
-nominal forward speed of the bicycle can also be computed
-
-.. math::
-
-   v = \dot{\theta}_R * r_R
-
-Lateral Force
--------------
-
-The lateral force was calibrated by applying a series of compressive and
-tensile loads to the load cell and measuring the amplified voltage output.
-Before calibrations, the amplifier offset voltage potentiometer was set to
-about 2.5 v and the nulling potentiometer adjusted so that the voltage was zero
-for the no load case.
-
-.. math::
-
-   F = \frac{V_c}{V_s} (m V + b)
+   One of the foot pegs after the strain gages were applied. The 7075 aluminum
+   peg was press fit into the bottom bracket insert made from 1018 steel.
 
 Steer Torque
 ------------
 
-The steer torque sensor was calibrated at the factory in tandem with the
-amplifier and Futek supplies a certifeid calibration document with the
-calibration data. The CSG-110 amplifier supplies constant 10 vdc to excite the
-strain gauge brigde. I did not measure this voltage because the maximum voltage
-for the NI USB-6218 is 10 V, so no ratiometric scaling was used. As long as the
-battery supplied 12+ V to the CSG-110, this would not be an issue.
-
-.. math::
-
-   T_{\delta} = m V + b
-
-.. todo:: include a link to a copy of the calibration sheet
-
-Software
---------
-
-I wrote a simple program that collects the data for the self calibrations and
-generates a generic calibration file for the various sensors. The data for the
-manufacturer supplied calibration data was manually entered to create similar
-files. These files are parsed to build the database described XXX.
-
-Data acquisition
-================
-
-Both the VectorNav VN-100 and the NI USB-6218 were connected to a small ASUS
-EEEPC netbook which was mounted on the rear rack of the bicycle. The devices
-were controlled and the data logged using Matlab. I interacted with the VN-100
-with Matlab's Serial I/O toolbox and the NI USB-6218 with the Data Aquisition
-Toolbox. A custom program written withing Matlab's Graphical User Interface
-framework was designed to allow the user to set metadata before each run, arm
-the system and view the raw data signals after the run.
-
-- Automatically increments run numbers
-- Set metadata: rider, environment, speed, manuever, notes
-- Initializes the system
-- View raw data time history traces
-- Load previous runs, view the time traces, edit the metadata and resave
-- Save output as a mat
-- Convert mat file to hdf5 format
-
-.. _figGui:
-
-.. figure:: figures/davisbicycle/bicycle-daq-gui.*
-   :width: 6 in
-
-   figGUI
-
-   A screenshot of the software running under Matlab 7.8.0 (2009a) on Windows XP .
-
-- nice if you could delete runs and only increment of the latest run (it may do
-  this)
-
-Due to the time synchronization issue we were limited to a single trigger
-setup, versus a multiple trigger for repeated runs. (i.e. we had to stop after
-every run to re-initialize the computer, versus allowing the rider to trigger a
-series of runs in a row without having to stop).
-
-The source code for the software is available on Github, including some tools
-for initial post processing.
-
-Time Synchronization
-====================
-
-When we originally chose to use the VectorNav VN-100 and the NI USB-6218 with a
-netbook PC, we'd convinced ourselves that they would all work together
-seamlessly. The manufacturers of each device seemed to think so and their
-disconnected knowledge helped convince us.  This turned out to be very wrong.
-The main issue, which seems to rear its head in data aquisition often, is time
-synchronization of all the hardware involved. A PC running a vanilla operating
-system is not capable of detailed time management of processes. This is
-certainly true of collecting serial data from two independent devices. My
-intention was to collect data from both the VN-100 and the USB-6218
-simulataneously with the Matlab Serial I/O and Data aquisition toolboxes,
-hopefully triggering the initial collection of data from the two devices
-simulatenaously or by reading the VN-100 serial data through the USB-6218. The
-simultaneously triggering was hampering primarily by the VN-100's asychrnoous
-data transfer and no apparent ways to either start it with a trigger or by
-recording some signal from it through the USB-6218. It may be possible to read
-serial data through the USB-6218, but I never was able to figure it out. It
-very well may have been missing the features to do so, or that Matlab didn't
-have a robust enough interaction with the USB-6218 to do so.  I struggled quite
-a bit with this unforseen issue and we started looking at solutions to measure
-the same event with both the VN-100 and the USB-6218 and to synchronize the
-signals afterwards. We would need to select a sensor which was also on the
-VN-100 and then excite the two sensors with the same event.  Ideally this event
-would be a step input to both sensors. We tried rate gyros and accelerometers
-but couldn't come up with an adequate event, until we mentioned the problem to
-Ron and he immediately suggested just riding over a bump! This was the ticket.
-We ended up attaching an additional three axis acceleromater to the VN-100
-development board which would read the same vertical component of acceleration
-and constructing a bump for the bicycle to travel over at the being of each
-run. This provided us with two signals which could be syncrhonized in time.
-
-Bump
-----
-
-The accelerometers had a :math:`\pm 3` g range, so we needed a bump which would
-provide veritcal accelerations within that range for speeds from 1 to 7 m/s.
-For a sinusodial shaped bump, the vertical accelration for a given speed can
-easily be computed. The height of a bump as a function of time is
-
-.. math::
-   :label: eqBumpHeight
-
-   y(t) = \frac{h}{2}\left[1 - \operatorname{cos}\left(\frac{2 \pi v}{L}t\right)\right]
-
-where the maximum bump height is :math:`h`, :math:`v` is the forward speed and
-:math:`L` is the length of the bump. The acceleration
-
-.. math::
-
-   \frac{d y(t)}{dt} = 2 h \left(\frac{\pi v}{L}\right)^2
-   \operatorname{cos}\left( \frac{2 \pi v}{L} t \right)
-
-Being that the cosine varies from -1 to 1, the maximum acceleration due to the
-bump and acceleration due to gravity is
-
-.. math::
-
-   a = 2 h \left(\frac{\pi v}{L}\right)^2 + g
-
-The maximum height of of a 1 meter long bump and forward speed of 7 m/s to give
-a 3 g acceleration is
-
-.. math::
-
-  h = \frac{a - g}{2}\left(\frac{L}{\pi v}\right)^2 =
-  \frac{3 * 9.81 \textrm{m/s} - 9.81 \textrm{m/s}}{2}
-  \left(\frac{1 \textrm{m}}{\pi 7 \textrm{m/s}}\right)^2 = 0.020 m
-
-I fashioned a very low sinusoidal bump from would that we laid on the track on
-the floor at teh beginning of the track and also launched under the bicycle on
-the treadmill. The bump lauching is somewhat amusing and we had to construct a
-"bump catcher" so that the bump didn't fly off the back of the treadmill and
-hurt anyone or anything.
-
-.. todo:: photo of the bump design and bump catcher, maybe the video
-
-Signal Synchronization
-----------------------
-
-The bump provides the event and the acceleration output of the tandem
-accelerometers logs the event. The time shift between the two signals can be
-computed by minimizing the least squares with respect to on signal minus the
-other signal which has been interpolated at the sample times of the first
-signal.
-
-.. figure:: figures/davisbicycle/unsync.*
-
-   This plot shows the accelerometer signals collected by both the NI USB-6218
-   and the VN-100 for a typical run. The spikes in acceleration are due to the
-   bicycle traversing the bump. The NI signal starts about a third of a second
-   before the VN signal.
-
-The basic algoritm for computing the error between the two signals is:
-
-1. Shift the NI signal some time tau.
-2. Truncate both signals around the common data.
-3. Interpolate the NI signal at the VN time samples.
-4. Compute the sum of squares of the VN signal minus the interpolated NI
-   signal.
-
-Using this formulation, you can then minimize the error with respect to tau.
-The minimization requires a good guess, as the minimzing function has local
-minima. I use both the location of the max values in the signals and finding
-the minimal value of the error as a function of a fixed number of tau values to
-get good guesses. See the source code for the gorey details.
-
-.. figure:: figures/davisbicycle/sync.*
-   :width: 4in
-
-   This plot shows the same accelerometer signals shown in the previous figure
-   after finding the optimal time shift.
-
-The computed time shift is used to shift and truncate all of the signals.
-
-Things to Fix
-=============
-
-- The steering universal joint needs keyways.
-- Git rid of the VN-100 and replace with two rate gyros.
-- Add some gearing to the roll angle measurement.
-- Do away with the slip clutch.
-
-Steer Torque
-============
-
-Steer torque has been shown to be the most effective input required to control
-a bicycle and the input that the human most likely uses to control a bicycle.
-For the bicycle-rider system as a whole, the steer torque effectively a state.
-Accurately measuring the applied steer torque can provide rich data with which
-to understand the bicycle dynamics and the validity of the underlying models.
-But steer torque is one of the more difficult variables to properly measure.
-The require steering torque for controlling a bicycle in normal manuevers is a
-relatively low magnitude. This small torque can be hidden by the other forces a
-rider may apply to the bicycle's handlebars. Secondly, the small magnitude
-torque requires a well designed load cell and strain gague bridge to give
-accurate measurments.
-
-[Weir1972]_ demonstrates that steer angle control input has poor gain and phase
-margin as compared to steer torque control input.
-
-[Roland1972]_ differentiaties steer torque input from steer angle.
+A rider applies forces to the handlebars that cause the front frame to rotate
+relative to the bicycle frame. These forces can be lumped into an effective
+steer torque. Steer torque is the most effective natural input to controlling a
+bicycle and the input that the human most often utilizes. [Roland1972]_
+explicitly differentiates steer torque based control than steer angle as
+opposed to [Lunteren1969]_ which hypothesized that steer angle was the
+controlled input. [Weir1972]_ demonstrates that steer angle control input has
+poor gain and phase margins as compared to steer torque control input.
+[Weir1979a]_ shows that a no hand lane change is much less "precise and
+efficient" as steer torque control. [Sharp2008a]_ shows that steer torque is
+always the optimal control input when the cost function is based on control
+power. Accurately measuring the applied steer torque can provide rich data with
+which to understand the bicycle dynamics and the validity of the underlying
+models. But steer torque is one of the more difficult variables to properly
+measure. The required steering torque for controlling a bicycle in normal
+maneuvers is a relatively low magnitude, < 5 Nm. This small torque can be
+hidden by the other potentially large forces a rider may apply to the bicycle's
+handlebars. These small torque magnitudes require a well designed load cell to
+give accurate measurements.
 
 There are very few published studies that measure or attempt to measure steer
-torque on a bicycle or lightweight single track vehicle and these measurements
+torque on a bicycle or lightweight single track vehicles and these measurements
 typically do not match the results of the analytical models. There have been
 more attempts at measuring the steer torque on motorcycles.
 
-.. todo:: go through article database looking for more examples of steer torque
-   stuff
-
 Bicycle Experiments
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 [Lorenzo1997]_
-   David de Lorenzo instrumented a bike to measure pedal forces, handlebar
-   forces, hub forces to measure the in-plane structural loads. He took the
-   bike to the trails and had 7 riders do a downhill section. The hand
-   reactions were measured with a handlebar sensitive to x (pointing forward
-   and parallel to the ground) and z (pointing upwards, perpendicular to the
-   ground) axis forces on both the left and right sides of the handlebar. Net
-   torque about any vector in the fork plane of symmetry can be calculated from
-   these. Figure 3d shows a plot of steering torque with maximums around 7 Nm.
-   The stem extension torque (representing the torque from pushing down and up
-   on the handlebars) reaches 15 Nm. The calibration information leads me to
-   believe that the crosstalk from the all of the forces and moments on the
-   handlebars gives a very low accuracy for the reported torques, probably in
-   the +/- 1 to 3 Nm range.
+   David de Lorenzo instrumented a bicycle which could measure pedal,
+   handlebar, and hub forces to characterize the in-plane structural loads
+   during downhill mountain biking. The handlebar forces were measured with a
+   handlebar sensitive to :math:`x` (pointing forward and parallel to the
+   ground) and :math:`z` (pointing upwards, perpendicular to the ground) axis
+   forces on both the left and right sides of the handlebar. Net torque about
+   any vector in the fork plane of symmetry can be calculated from the applied
+   forces. Figure 3d shows a single plot of steering torque with maximums
+   around 7 Nm. The stem extension torque (representing the torque from pushing
+   down and up on the handlebars) reaches 15 Nm, which is about twice the
+   maximum steer torque shown. The calibration details leads me to believe
+   that the crosstalk from the all of the forces and moments on the handlebars
+   gives a very low accuracy for the reported torques, probably in the
+   :math:`\pm 1` to 3 Nm range.
 
    .. todo::diagram of lorenzo's design
 
 [Jackson1998]_
-   They don't measure steer torque but attempt predict the contributions to
-   torque on the front frame based on orientation, rate and acceleration data
-   taken while riding a bicycle with no-hands.
+   They don't measure steer torque explicitly but attempt to predict the
+   contributions to the torques acting on the front frame based on orientation,
+   rate and acceleration data taken while riding a bicycle with no-hands. They
+   show a single graph with torques under :math:`\pm2.5` Nm acting on the front
+   frame about the steer axis..
 [Cheng2003]_
    This is a report about a design project at UCSB to develop and implement a
-   steer torque measurement device (same one shown the Åström paper). The
-   experiments and measurements seem to be one of a kind for bicycles. They
-   begin with doing some basic experiments by attaching a torque wrench to a
-   bicycle and made left at right turns at speeds from 0 to 13 m/s (0 to
-   30mph). The torques were under 5 Nm except for the 13 m/s trial which read
-   about 20 Nm. They designed a pretty nice compac torque measurement setup by
-   mounting the handlebars on bearings and using a linear force transducer to
-   connect the handlbars to the steer tube which reduced the effects of other
-   moments and forces acting on the steer tube. The use of bearings and rodends
-   may be questionable as there is bearing friction and slop.  Furthermore,
-   downward forces on the handlebars could possibly still be transmitted to the
-   load cell. The design does allow one to choose the lever arm for the load
-   cell, thus giving some choice to amplify the force signal. They set it up to
-   measure from 0 to 84 Nm with a Model SM Series S-type load cell from
-   Interface with a 670 Newton range. They used a transducer amplifier also for
-   signal conditioning. There are several sections on calibration, with some
-   description of the use of pulleys and cables to apply a torque to the
-   handlebars. They measured the torque during two different manuever types: a
-   sharp turn at various angles and steady turns on various diameter circles
-   both at 10mph (4.5 meters/second). The rider maintained constant speed
-   through visual feedback of a speedometer. He talks of very noisy
-   measurements and filters the noise by some type of moving average. He does
-   not identify an countersteering. He claims the rider turns the handle bars
-   right to initiate a right turn, which counter to what model predict. There
-   seems to be no counter-torque in the data for turns. For the sharp turns the
-   highest reported torque is about 10 Nm, for the steady turning he reports
-   the highest average torque as 1 Nm.
-
-   .. figure:: figures/davisbicycle/cheng-steer-torque-design.*
-
+   steer torque measurement device on a bicycle. The experiments and
+   measurements seem to be one of a kind for bicycles at that time. They begin
+   with doing some basic experiments by attaching a torque wrench to a bicycle
+   and made left at right turns at speeds from 0 to 13 m/s (0 to 30mph). The
+   torques were found to be under 5 Nm except for the 13 m/s trial which read
+   about 20 Nm.  They designed a pretty nice compact torque measurement setup
+   by mounting the handlebars on bearings and using a linear force transducer
+   to connect the handlebars to the steer tube, Figure :ref:`figCheng`, which
+   reduced the effects of other moments and forces acting on the steer tube. It
+   seems that downward forces applied to the handlebars could possibly still be
+   transmitted to the load cell. The design does allow one to choose the lever
+   arm for the load cell, thus giving some choice to amplify the force signal.
+   They set it up to measure from 0 to 84 Nm with a Model SM Series S-type load
+   cell from Interface with a 670 Newton range. This range is quite large with
+   respect to the torque values found in the first experiments. They self
+   calibrated the sensor with with a set of pulleys and cables to apply a pure
+   torque to the handlebars. They measured the torque during two different
+   maneuver types: a sharp turn at various angles and steady turns on various
+   diameter circles both at 10mph (4.5 meters/second). The rider maintained
+   constant speed through visual feedback of a speedometer. The signals were
+   very noisy and he filters the data a moving average. He was not able to
+   identify any countersteering. He claims the rider turns the handle bars
+   right to initiate a right turn, which is counter to what models predict. For
+   the sharp turns the highest reported torque is about 10 Nm, for the steady
+   turning he reports the highest average torque as 1 Nm.
 [Astrom2005]_
    Åström et al. talks briefly about the steer torque measurement system
    constructed for the UCSB instrumented bicycle but with little extra
-   information. They use a linear force transducer of some sort mounted on the
-   handlebars.
+   information.
+
+   .. figCheng:
+
+   .. figure:: figures/davisbicycle/cheng-steer-torque-design.*
+      :width: 3in
+
+      figCheng
+
+      Cheng's design, from [Astrom2005]_.
+
 [Iuchi2006]_
    They construct a bicycle with a steer motor and controller which treats the
-   rider's addtional input as additive instead of a disturbance. The rider's
-   steer torque contribution is estimated from the motor torque and the
+   rider's additional input as an additive input instead of a disturbance. The
+   rider's steer torque contribution is estimated from the motor torque and the
    handlebar and motor moments of inertia. Little detail is given to properly
    assess the design, but measuring steer torque by motor current may be
-   effective.
+   effective. They are one of the few studies that takes into account some of
+   the inertial effects of the handlebar.
 [Cain2010]_
    He designed a custom torque sensor that fit inside a bicycle steer tube. He
    mostly removed the crosstalk effects due to an axial load on the sensor, but
-   the design is still susetible to bending moments on the steer tube. He also
-   didn't account for the dynamic inertial affects of the handlebar and fork/wheel
-   which are above and below the sensor, but these are potentially zero for
-   steady turns. His measured steer torques for steady turns never exceeded a
-   magnitude of 2.4 n-m. He wasn't able to predict steer torque well with his
-   bicycel model and only points to the fact that the sensor was 90% oversized.
+   the design still seems very likely susceptible to bending moments on the
+   steer tube. He also didn't account for the dynamic inertial affects of the
+   handlebar and fork/wheel which are above and below the sensor, but this is
+   most likely inconsequential for steady turns. His measured steer torques for
+   steady turns never exceeded a magnitude of 2.4 Nm. He wasn't able to predict
+   steer torque well with his bicycle model and only points to the fact that
+   the sensor was 90% oversized for an explanation.
 [Ouden2011]_
    Designs a steer torque sensor for a bicycle which has a range of about
-   +/-7.5 n-m. He was accurately aware of crosstalk issues with respect to the
-   other forces applied to the handlebars and tried to design accordingly, but
-   found that his design was still very susceptible to handlebar loads. He
-   modifies the device to eventually get more reliable readings. He doesn't
-   account for the inertial effects of the front frame.
+   :math:`\pm7.5` Nm. He was acutely aware of crosstalk issues with respect to
+   the other forces applied to the handlebars and tried to design accordingly,
+   but found that his design was still very susceptible to handlebar loads. He
+   modifies the device to eventually get more reliable readings. He also didn't
+   account for the inertial effects of the front frame. He had test subjects
+   ride the bicycle around town so the data is difficult to interpret.
 
 Motorcycle Experiments
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~
 
 [Kondo1955]_
-   Measured steering torque.
+   Kondo's work is the first measurement of steer torque that I've come across.
+   He does not give great detail of the sensor and shows only one plot of steer
+   torque and steer angle from experimental measurements. The units for the
+   steering force are in kilograms and I'm not completely sure what was being
+   measured. My poor understanding is limited by the light translations I got
+   help with.
 [Fu1965]_
-   Measures steering torque in steady turns.
+   Measures steering torque in steady turns but the resulting data is not
+   published in this paper. He refers to it as future work in the review
+   section. He claims agreement with [Kageyama1959]_ of which he was a
+   co-author, but I wasn't able find this paper.
 [Eaton1973]_
-   Measured steering torque: one handed bar
+   Eaton attached a torque bar with strain gages to the top of the motorcycle
+   handlebar and had the rider control the motorcycle with one hand to get a
+   measure of steering torque. The steer torque sensor design was very
+   simplistic, but he found good agree with his motorcycle model when
+   identifying the motorcycle from the steer torque input and roll angle output.
+   The motorcycle steer torque measurements are probably more forgiving as the
+   steer torques are of a much higher average magnitude. For his roll
+   stabilization tasks (i.e. straight riding) he measured maximum values of
+   steer torques as 3.4 Nm for speeds of 15 to 30 mph.
+
+   .. figEatonSteerTorque:
+
+   .. figure:: figures/davisbicycle/eaton-steer-torque.*
+      :width: 3in
+
+      figEatonSteerTorque
+
+      Eaton's simple bar torque sensor.
+
 [Weir1979a]_
-   Weir et al. designed an instrumented motorcycle with a torque sensor. The range
-   was +/- 70 Nm with 1% accuracy and >10 Hz dynamic range. The crosstalk due to
-   the other moments on the steer were removed with by utilizing two thrust
-   bearings. It included stops to prevent sensor overload protection and weighed
-   14 Newtons. They comment that the handlebars are significantly rigid for their
-   purposes. It was a modular design set up for multiple motorcycles. They
-   comment on the range being too large for small amplitude inputs used in
-   steady turning and straight running and that more sensitivity would be
-   needed to measure these accurately. Weir used this to measure steer torques
-   for two motorcycles at various speeds (>10 m/s) for steady turning and lane
-   change maneuvers. The steady turning produced torques in the range of -10 to
-   30 Nm and the lane change produced -20 to 55 Nm.
+   Weir et al. designed a modular torque sensor which could be affixed to
+   multiple motorcycles. The range was +/- 70 Nm with 1% accuracy and >10 Hz
+   dynamic range. The crosstalk due to the other moments on the steer were
+   removed with by utilizing two thrust bearings. It included stops to prevent
+   sensor overload protection and weighed 14 Newtons. They comment that the
+   handlebars are significantly rigid for their purposes. They comment that the
+   range is too large for small amplitude inputs used in steady turning and
+   straight running and that more sensitivity would be needed to measure these
+   accurately. Weir used this to measure steer torques for several motorcycles
+   at various speeds (>10 m/s) for steady turning and lane change maneuvers.
+   The steady turning produced torques in the range of -10 to 30 Nm and the
+   lane change produced -20 to 55 Nm.
 
    .. figure:: figures/davisbicycle/weir-torque-load-cell.*
       :width: 4in
 
       The steer torque measurement design from [Weir1979a]_. The adaptor plate
-      allowed one to attached the main housing to a varierty of motorcycle forks.
+      allowed one to attached the main housing to a variety of motorcycle forks.
       The handlebar mounting block "floated" on a set of thrust bearings that
-      resisted all forces applied to the handlebars except the the moment about
+      resisted all forces applied to the handlebars except the moment about
       the steer axis. The Lebow torque sensor resisted the moment about the
-      steering axis to give a pure torque measurment.
+      steering axis to give a pure torque measurement.
 
 [Sugizaki1988]_
    They measure steer torque on four motorcycles during high speed lane
-   changes. No detail of the steering torque measurment system is shown but
-   they show the trime traces of steer torque for some of the manuevers which
-   vary between -20 and 20 Nm. The time traces have little visivle human remant
-   or noise.
+   changes. No detail of the steering torque measurement system is given but
+   they show the time traces of steer torque for some of the maneuvers which
+   vary between -20 and 20 Nm. The time traces have little visible human remnant
+   or noise, which questionable.
 [Taro2000]_
-   Measures steer torque, but I don't have the paper.
+   He supposedly measures steer torque, but I haven't located the paper.
 [Bortoluzzi2000]_
-   Same description of the transducer as Biral2003.
+   Same description of the transducer as [Biral2003]_.
 [Biral2003]_
    Biral et al. designed a custom steer torque measurement system for a
    motorcycle using a cantilever beam. The handlebars were mounted on a bearing
    similar in idea to [Weir1979a]_ but the steering torque load is transmitted
-   through a thin cantilever beam which engagaes the fork. This design seems
-   that it could be susceptible to cross talk from the forces applied to the
-   handlebars by the rider, as it relies on the bearing to take all of the
-   non-steering torque loads. But they report experimental values for torque
-   that match their model predictions very well. The measure torques from -20 to
-   20 Nm for a slalom maneuver at 40 m/s.
+   through a thin cantilever beam which engages the fork. The design is such
+   that other handlebar forces will not influence the torque measurement. It
+   includes stops in case the beam break. They report experimental values for
+   torque that match their model predictions very well. The measure torques
+   from -20 to 20 Nm for a slalom maneuver at 40 m/s.
+
+   .. figBiralSteerTorque:
 
    .. figure:: figures/davisbicycle/biral-steer-torque-design.*
       :width: 4in
 
-[Capitani2006]_
-   They measure steer torque on a scooter during a lange change and turns to
-   compare with their model. No detail is given on how steer torque is
-   measured, so I can comment on the quality of the measurement but they report
-   values of -15 to 40 n-m on a couple of graphs. This is extremely poor and I
-   wouldn't trust the data or the model.
-[Evertse20XX]_
-   He mounts 2 axis load cells on at the handlebar grips to measure the forces
-   on the grip. This puts the sensor right at the human/machine interface thus
-   negating the need to worry about the interial affects of the front frame.
-   .. todo:: find his thesis and see what he measured
-[Teerhuis2010]_
-   Measured motorcycle steer torque.
+      figBiralSteerTorque
 
+      The cantilever beam design.
+
+[Capitani2006]_
+   They measure steer torque on a scooter during a lane change and turning to
+   compare with their model. No detail is given on how steer torque is
+   measured, so I can't comment on the quality of the measurement but they
+   report values of -15 to 40 Nm on a couple of graphs. The paper is extremely
+   poor and makes false conclusions. I'm really surprised it made it through
+   peer review. I wouldn't trust the data or the model.
+[Evertse2010]_
+   He mounts two axis load cells on at the handlebar grips to measure the forces
+   on the grip. This puts the sensor right at the human/machine interface thus
+   negating the need to worry about the inertial affects of the front frame.
+   For his obstacle maneuver tests the maximum steer torques were no greater
+   than 40 Nm.
+[Teerhuis2010]_
+   Measured motorcycle steer torque in steady turns and slalom maneuvers. The
+   torques in the two time history graphs are less than 20 Nm.
 
 Bicycle Models
---------------
+~~~~~~~~~~~~~~
 
 [Limebeer2006]_
    Limebeer and Sharp show a graph of a steer torque prefilter (i.e. torque
    generated for roll control) output to command a ~40 degree roll angle for
    the benchmark bicycle model. The torques are in the realm of -0.5 to 2.5 Nm.
 [Sharp2007a]_
-  Robin Sharp uses the benchmark bicycle model and an LQR controller with preview
-  to follow a randomly generated path that has about 2 meter lateral deviations.
-  The bicycle is traveling at 10 m/s and the steer torque ranges from about -15
-  to 15 Nm. Medium control reduces the torques to under +/- 10 Nm. Straight line
-  to circle path maneuvers show torques ranging from -0.5 to 0.5 Nm for loose
-  controls and -2.5 to 2.5 for medium controls.
+   Robin Sharp uses the benchmark bicycle model and an LQR controller with
+   preview to follow a randomly generated path that has about 2 meter lateral
+   deviations. The bicycle is traveling at 10 m/s and the steer torque ranges
+   from about -15 to 15 Nm. Medium control reduces the torques to under
+   :math:`\pm 10` Nm. Straight line to circle path maneuvers show torques
+   ranging from -0.5 to 0.5 Nm for loose control and -2.5 to 2.5 for medium
+   control.
 [Connors2008]_
-   They model a recumbent bicycle with the whipple model and additional
-   rotationing legs. The bicycle is stabilized in roll from 5 to 30 m/s
-   requiring up to +/- 8nm of steering torque, which is a function of the leg
-   osciallatio frequency.
+   They model a recumbent bicycle with the Whipple model and additional
+   rotating legs. The bicycle is stabilized in roll from 5 to 30 m/s requiring
+   up to :math:`\pm 8` Nm of steering torque, which is a function of the leg
+   oscillation frequency.
 [Sharp2008a]_
-  Robin Sharp used the benchmark bicycle model and an LQR controller with preview
-  to make a bicycle track a 4 meter lane change at 6 m/s. During this manuever,
-  the steer toque ranged from about -1 to 1 Nm. He also showed a very fine steer
-  torque variation in the range of 0 to 0.0025 Nm about 10 meters before the
-  start of the lane change.
+   Robin Sharp used the benchmark bicycle model and an LQR controller with
+   preview to make a bicycle track a 4 meter lane change at 6 m/s. During this
+   maneuver, the steer toque ranged from about -1 to 1 Nm. He also showed a
+   very fine steer torque variation in the range of 0 to 0.0025 Nm about 10
+   meters before the start of the lane change.
 [Peterson2009]_
-  Peterson and Hubbard show the steady turning required steering torques for the
-  benchmark bicycle on page 7. The torques for lean angles from 0 to 10 degrees
-  and steer from 0 to 45 degrees are under 3 Nm.
+   Peterson and Hubbard show the steady turning required steering torques for
+   the benchmark bicycle on page 7. The torques for lean angles from 0 to 10
+   degrees and steer from 0 to 45 degrees are under 3 Nm.
 
 Motorcycle Models
------------------
+~~~~~~~~~~~~~~~~~
 
 [Sharp1971]_
-   Reports steady state motorcycle steering torques from -25 n-m to 2.35 Nm.
-   What angles and what speeds?
-[Weir1979]_
-   his thesis has steer torque from models
+   Reports steady state motorcycle steering torques for 10 degree banking turns
+   in the range of -25 Nm to 2.35 Nm for speeds 10 ft/s to 160 ft/s.
 [Cossalter1999]_
-   Studies steady turning of a motorcycle model with torodial tires and tires
+   Studies steady turning of a motorcycle model with toroidal tires and tires
    as force generators. For slower speed steady turns, the model predicts
-   steering torques up to 10 n-m.
+   steering torques up to 10 Nm.
 [Tanelli2006]_
-   They stablize a motorcycle model at roll angle ups to 30 degrees with -5 to
-   7.5 nm.
+   They stabilize a motorcycle model at roll angle ups to 30 degrees with -5 to
+   7.5 Nm of steer torque.
 [Sharp2007]_
    Robin Sharp uses a multi-degree of freedom motorcycle model and an LQR
    controller with preview to control a motorcycle moving at 30 m/s through a 4
@@ -1210,11 +1023,11 @@ Motorcycle Models
    a sharp peak in torque in the middle of the S-turn.
 [Cossalter2007]_
    They study steady turning of motorcycles and show a plot that predicts steer
-   torques in the range of -3 nm to 10 nm for lateral accelerations from 0 to
+   torques in the range of -3 to 10 Nm for lateral accelerations from 0 to
    11 m/s^2 and speeds from 5 to 50 m/s.
 [Marumo2007]_
    Their steer controller for Sharps four degree of freedom motorcycle model
-   shows a -50 nm maximum torque for a commanded roll angle of 20 degrees.
+   shows a -50 nm maximum steer torque for a commanded roll angle of 20 degrees.
 
 .. todo:: talk about how noone accounts for the inertial affects related to teh
    position of the sensor
@@ -1222,62 +1035,80 @@ Motorcycle Models
 .. todo:: talk about how bearings may not remove all cross talk
 
 Steering torque has been measured in relatively few instances of bicycle
-experiments and not many more for motorcycles. Of these, very few prove that
-their design wasn't susceptible to cross talk and for the small torque control
-used in typical bicycle control (i.e. less than 10 Nm, but the majority less
-than 5 Nm). Most of these designs measure the torque somewhere inbetween the
-rider hand interface and the ground contact point. This is an acceptly maybe
-ideal way to measure the steer torque, but no one has accounted for the dynamic
-inertial effects of the front frame above or below the sensor. [Everste2009]_
-is the only design which mitigates this issue.
+experiments and not all that many more for motorcycles. Of these, very few
+prove that their design is measures a pure rider applied steer torque. This is
+more consequential for bicycles than motorcycles because the small torques used
+in typical bicycle control are certainly less than 10 Nm with the majority less
+than 5 Nm. [Ouden2011]_, in particular, showed how sensitive the torque
+measurements are to other handlebar loads. Also, most of these designs measure
+the torque somewhere in between the rider hands and the ground contact point.
+This is a physically ideal way to measure the steer torque, but no one has
+accounted for the dynamic inertial effects of the front frame above or below
+the sensor.  [Everste2010]_ may be the only design which mitigates this issue.
+I'll show later in this chapter that for maneuvers that require large steer
+angular accelerations, that this is a significant additive effect.
 
 With these previous works in mind, I wanted to develop a very accurate steer
-torque measurement system for our bicycle. If you are intersted in extracting
+torque measurement system for our bicycle. If one is interested in extracting
 the "pure torque" applied by the rider to control the bicycle for model
-validation purposes, it is critical to this measurement correct.
+validation purposes, it is critical to take care of several important details.
+
+Another thing to note is the differences in magnitudes of steer torques in the
+bicycle models as compared to the bicycle experiments. The steer torque used to
+control the various models presented are much lower than the measured values.
+This implies that there may be some missing components of torque in the models,
+especially with respect to tire interactions with the ground.
 
 I started by taking some crude steer torque measurements myself, similar to the
-first method presented by [Cheng2003]_, as I hadn't found any of the pre 2008
-references yet. Secondly, I address the issue of the potential loads acting on
-the steer tube other than steer torque. Then I present various design ideas
-and the final design. And finally, I show the calculations to account for the
-inertial effects of the front frame.
+first method presented by [Cheng2003]_, as I hadn't found Cheng's paper or any
+of the post 2008 references yet. Secondly, I address the issue of the potential
+loads acting on the steer tube other than steer torque. Then I present various
+design ideas and the final design. And finally, I show the calculations to
+account for the inertial effects of the front frame.
 
 Torque Wrench Experiments
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Following Cheng's lead, we decided to do some experiments with an accurate
-torque wrench to get an idea of the maximum torques we would see in our
-experiments. We designed a simple attachment to the steer tube that allowed
-easy connection of various torque wrenches. A helmet camera was mounted to the
-bicycle such that it could view the torque wrench, handlebars and speedometer
-relative to the bicycle frame. The torque wrench had a range from 0 to 8.5 Nm
-and a +/- 2% accuracy of full scale (+/- 0.17 Nm) for static measurements. The
-bicylce speed was held constant by an electric hub motor (i.e. no pedaling).
+Following in Cheng's footsteps, we decided to do some experiments with an
+accurate torque wrench to get an idea of the maximum torques we would see in
+our experiments. We designed a simple attachment to the steer tube that allowed
+easy connection of various torque wrenches, Figure :ref:`figTorqueWrenchMount`.
+A helmet camera was mounted to the bicycle such that it could view the torque
+wrench, handlebars and speedometer relative to the bicycle frame, Figure
+:ref:`figTorqueWrenchCamera`. The torque wrench (CDI Torque Products 751LDIN)
+had a range from 1.7 to 8.5 Nm and a :math:`\pm 2\%` accuracy of full scale
+(:math:`\pm 0.17` Nm) for static measurements, Figure
+:ref:`figTorqueWrenchFace`. The bicycle speed was maintained by an electric hub
+motor (i.e.  no pedaling).
 
-.. todo:: add type of torque wrench
+.. figTorqueWrenchMount:
 
 .. figure:: figures/davisbicycle/torque-wrench-mount.*
+   :width: 3in
 
    figTorqueWrenchMount
 
    The mounting bracket for the torque wrenches. The lower portion clamps to a
    1 1/8" steer tube and the upper portion clamps of a 1/4" socket end.
 
+.. figTorqueWrenchFace:
+
 .. figure:: figures/davisbicycle/torque-wrench-face.*
+   :width: 4in
 
    figTorqueWrenchFace
 
    The dial indicator face of the torque wrench which reads out in inch pounds
    and newton meters.
 
+.. figTorqueWrenchCamera:
+
 .. figure:: figures/davisbicycle/torque-wrench-camera.*
+   :width: 4in
 
    figTorqueWrenchCamera
 
    The complete setup with the frame mounted helmet camera.
-
-.. todo:: size the torque wrench images
 
 We recorded video data for two riders performing seven different maneuvers:
 straight run into tracking a half circle of radius 6 and 10 meters, tracking a
@@ -1286,7 +1117,7 @@ circle tracking of radius 5 and 10 meters. I viewed the videos and noted down
 the maximum and minimum torques for each run. I ignored obviously high torque
 readings from accelerations due to riding over bumps.
 
-The single comma seperated data file includes the run number that corresponds
+The single comma separated data file includes the run number that corresponds
 to the video number, the rider's estimate of the speed after the run in miles
 per hour, the maximum reading from the torque needle after the run in inch-lbs,
 the rider's name, the maneuver, the minimum speed seen on the video footage in
@@ -1297,18 +1128,23 @@ seen on the video footage in newton-meters, and the rotation sense for each run
 videos, data file and R source code are archived at
 `<http://www.archive.org/details/BicycleSteerTorqueExperiment01>`_ .
 
-I created several figures, including :ref:`figTwrenchTorqueHistogram` and
-:ref:`figTwrenchTorqueSpeed` to get an idea of the range torques we would
-expect to see.
+The primary goal was to determine the maximum torques we will see for the types
+of maneuvers we are interested in. The histogram,
+:ref:`figTwrenchTorqueHistogram`, shows that we never recorded any torques
+higher than 5 Nm and table :ref:`tabTorqueManeuver` gives the maximum and
+minimum torques for each maneuver. Figure :ref:`figTwrenchTorqueSpeed` shows
+all of the recorded torques as a function of speed. There may be an underlying
+dependency on speed, i.e. that the maximum torques decrease as speed decreases.
+
+.. figTwrenchTorqueHistogram:
 
 .. figure:: figures/davisbicycle/twrench-torque-histogram.*
+   :width: 4in
 
-The primary goal was to determine the maximum torques we will see for the types
-of maneuvers we are interested in. The histograms shows that we never recorded
-any torques higher than 5 n-m and table :ref:`XXX` gives the maximum and
-minimum torques for each maneuever. Figure :ref:`XXX` shows all of the recorded
-torques as a function of speed. There may be an underliying depedency on speed,
-i.e. that the maximum torques decrease as speed decreases.
+   A histogram of the maximum recorded torques for all runs. The median is
+   around 2 Nm with torques measured up to 5 Nm.
+
+.. tabTorqueManeuver:
 
 .. list-table::
    :header-rows: 1
@@ -1338,42 +1174,49 @@ i.e. that the maximum torques decrease as speed decreases.
      - 4.5
      - -4.8
 
-.. figure:: figures/davisbicycle/twrench-torque-speed.*
+.. figTwrenchTorqueSpeed:
 
-This set of experiments corraborates with the previously cited experimental
-findings that steer torques in bicycle control are typicaly very small. Ideally
-our sensor's range should be somewhere around +/- 8 to 10 n-m.
+.. figure:: figures/davisbicycle/twrench-torque-speed.*
+   :width: 4in
+
+   figTwrenchTorqueSpeed
+
+   The maximum torques as for each run as a function of speed.
+
+This set of experiments enforces the previously cited experimental findings
+that steer torques in bicycle control are typically very small. Ideally our
+sensor's range should be somewhere around :math:`\pm 8` to 10 Nm.
 
 Design
-------
+~~~~~~
 
 We are planning on measuring the steer torque the rider applies to control a
-bicycle. This will be used for human control model identification and for use
-in the necessary feedback loops required control the riderless bicycle.
-Measuring the steer torque is not trivial. This is because various models
-predict torques ranging in the 0-2 Nm (0-1.5 ft lbs) range with signal
-variations and reversals requiring +/- 0.01 Nm (0.01 ft lbs) in measurement
-accuracy. The range and accuracy are easily measured with modern torque
-sensors, but the fact that large moments can be applied to the fork and
-handlebars by the ground and/or rider introduces the problem of crosstalk. The
-forces and moments applied to the fork will corrupt the relatively small torque
-measurements as they can be hundreds of times larger in magnitude. With this in
-mind, we are trying to come up with a way to isolate the torque measurement to
-eliminate or minimize the crosstalk and get good, noiseless, accurate readings.
+bicycle. This will be used for both the bicycle model validation and the  human
+control model identification. Measuring the steer torque is not
+trivial. This is because various models predict torques ranging in the 0-2 Nm
+(0-1.5 ft lbs) range with signal variations and reversals requiring +/- 0.01 Nm
+(0.01 ft lbs) in measurement accuracy. The range and accuracy are easily
+measured with modern torque sensors, but the fact that large moments can be
+applied to the fork and handlebars by the ground and/or rider introduces the
+problem of crosstalk. The forces and moments applied to the fork will corrupt
+the relatively small torque measurements as they can be hundreds of times
+larger in magnitude. With this in mind, we are trying to come up with a way to
+isolate the torque measurement to eliminate or minimize the crosstalk and get
+good, noiseless, accurate readings.
 
 Forces on the steer tube
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 One of the simplest ways to measure steer torque may be to apply a strain gauge
 bridge primarily sensitive in torque to the steer tube of the fork. This method
-and others would require that the cross sentivity of the bridge to other loads
-in the steer tube to be neglible. For example, [LorenzoXXXX]_ effectively did
-this with his handlebar design but used several other brigdes to measure
+and others would require that the cross sensitivity of the bridge to other loads
+in the steer tube to be negligible. For example, [LorenzoXXXX]_ effectively did
+this with his handlebar design but used several other bridges to measure
 additional moments and forces in handlebar assembly and calibrated the set of
 bridges together to help eliminate the crosstalk. The measured steer torques
 are less than 10 n-m and the loads due to the applied forces at the wheel
 contact, headset bearings and handlebars can potentially be orders of magnitude
-greater. [Ouden2011]_ clearly experinced the difficultly in removing the cross
+greater. [Ouden2011]_ clearly experienced the difficultly in removing the cross
 talk from a steer torque sensor and few studies have addressed this.
 
 Assuming we may want to measure steer torque somewhere between the handlebars
@@ -1436,6 +1279,7 @@ backlash telescoping universal joint. I selected the Futek TF350 torque sensor
 with a +/- 11 nm range and the CSG-110 amplifier to measure torque.
 
 .. figure:: figures/davisbicycle/steer-torque-design.*
+   :width: 5in
 
    figSteerTorqueDesign
 
@@ -1449,7 +1293,7 @@ with a +/- 11 nm range and the CSG-110 amplifier to measure torque.
    for at a certain rpm)
 
 Steer Dynamics
---------------
+~~~~~~~~~~~~~~
 
 The final design was setup to exclusively measure the torque in the steer tube
 along the steer axis, but this measured torque, :math:`T_M`, does not equate to
@@ -1762,6 +1606,346 @@ Equation :ref:`eqSteerTorque`.
    in the measured torque and the rider applied torque. There are large
    differences, especially at the peaks.
 
+Strain Gauge Amplification
+--------------------------
+
+All of the load cells (lateral force, steer torque, seat post and foot pegs)
+required analog amplification of the millivolt bridge signals to bring them up
+to a level measurable by the NI USB-6218 which had a maximum input range of
+:math:`\pm 10` volts at 16 bit. I purchased the Futek CSG-110 strain gage
+amplifier for the torque sensor and had the sensor factory calibrated in tandem
+with the amplifier for a :math:`\pm10` volt output. Cal Stone [Stone1990]_ had
+developed a custom amplifier for his seatpost and handlebars which could
+amplify up to fourteen bridge signals.  Because I was intending to make use of
+the seat post, the amplifier box was used for all the other strain gages. I did
+not make use of the seat post and foot pegs, so the amplifier was only used
+for the lateral force load cell. I used the amplifier box as was except for
+changing the first stage analog amplifier resistor to 16.5k ohm for a
+:math:`\pm100` lbs range of the lateral force load cell. Cal Stone's thesis,
+his research notes and the system electrical diagram give the details of the
+circuit designs.
+
+.. todo:: link to the electrical diagram
+
+Calibration
+===========
+
+All of the analog sensors I used require some sort of calibration that develops
+a relationship between the measured voltage from the sensor and the physical
+phenomena that is being measured. I self calibrated some sensors, had one
+calibrated at the factory and used the reported manufacturer specifications for
+others.
+
+Potentiometers
+--------------
+
+I calibrated the steer angle sensor by inserting a custom protractor into the
+steer tube of the fork and measuring the voltage of the potentiometer output at
+a series of distinct angles. This calibration was done anytime the timing belt
+or pulleys were disegaged.
+
+.. todo:: image of the protractor
+
+The roll angle potentiometer was calibrated by measuring the bicycle frame's
+absolute roll angle with a digital level and recording the voltage output for a
+sweep of angles.
+
+For both cases potentiometer's output voltage is ratiometric with respect to
+the supply voltage :math:`V_s` and the potentiometer angle can be computed
+given the average calibration supply voltage :math:`V_c` and the slope and
+intercept of the calibration curve relating voltage to angle the angle.
+Depending on the calibration the angle could be the rotation angle of the
+potentiometer as in the case of the roll angle measurement or the actual steer
+angle in the case of the steer angle due to the gearing from the steer tube [#]_.
+
+.. math::
+
+   \delta = \frac{V_c}{V_s} m V + b
+
+Rate Gyros and Accelerometers
+-----------------------------
+
+The analog accelerometers and rate gyros typically have specifications for the
+sensitivity and the zero bias, where both are ratiometric (i.e. scale with
+respect to the supply voltage). The sensitivty gives the linear relationship
+of the output voltage for a given acceleration or rate. The zero bias is the
+output voltage of the sensor for zero acceleration or rate for a given supply
+voltage.
+
+.. math::
+
+   \dot{\delta}_m = m \left(V - \frac{V_s}{V_C} z\right)
+
+.. todo:: These only seem to ratiometric in the bias (i.e. the slope doesn't
+   change with respect to supply voltage change. This needs to be checked better.
+
+Wheel Rate
+----------
+
+We measured rear wheel angular speed with the same technique used with the
+Delft instrumented bicycle. We mounted a small DC motor such that a knurled
+roller wheel attached to its shaft rolled against the rear tire. The voltage of
+of a DC motor has a linear relationship with the rotational speed of the motor.
+To generate a calibration curve, we used an AMETEK 1726 Digital Tachometer to
+measure the rotational speed in rpm and digital multimeter to measure the
+voltage for a sweep of motor rotational speeds.
+
+.. list-table::
+   :header-rows: 1
+
+   * - RPM
+     - Voltage
+   * - 42.5
+     - 0.094
+   * - 62.0
+     - 0.1385
+   * - 89.0
+     - 0.199
+   * - 132.0
+     - 0.291
+   * - 185.0
+     - 0.406
+   * - 271.5
+     - 0.595
+   * - 391.0
+     - 0.857
+   * - 569.0
+     - 1.252
+   * - 855.0
+     - 1.879
+   * - 1243.0
+     - 2.738
+   * - 1785.0
+     - 3.91
+   * - 2588.0
+     - 5.67
+
+The relationship from motor rotational speed to voltage is :math:`mV+b` with
+the slope and intercept of the rpm to voltage curve determined by regression is
+:math:`m=456.3862\frac{\textrm{rpm}}{\textrm{volt}}\)` and
+:math:`b=-1.2846\textrm{ rpm}\)`. We then attached a small disc to the motor
+shaft such that the disc rubs against the rotating tire. The disc diameter was
+chosen such that the motor would ouput 0 to 10 volts for a bicycle forward
+speed range of about 0 to 30 mph. The rotational speed of the rear wheel as a
+function of voltage can be written as a linear realtionship
+
+.. math::
+
+   \dot{\theta}_R=s_f(mV+b)\frac{r_d}{r_c}
+
+where :math:`r_d` is the radius of the generator disc and :math:`r_c` is
+distance from the rear wheel center to the disc/tire contact point and
+:math:`s_f=\frac{2\pi}{60}` is a scaling factor from rpm to radians per second.
+:math:`r_d=0.028985` m and :math:`r_c=0.333375` m when the generator was first
+attached (runs 0 to XX) and :math:`r_c=0.3199511` m after the generator was
+remounted (runs XX to XX). The relationship between the rear wheel rate as a
+function of voltage can more generally be rewritten as
+
+.. todo:: find which runs the speedometer was mounted differently
+
+.. math::
+
+   \dot{\theta}_R = m_R V + b_R
+
+where :math:`m_R=\frac{s_fmr_d}{r_c}` and :math:`b_R=\frac{s_fbr_d}{r_c}`. The
+nominal forward speed of the bicycle can also be computed
+
+.. math::
+
+   v = \dot{\theta}_R * r_R
+
+Lateral Force
+-------------
+
+The lateral force was calibrated by applying a series of compressive and
+tensile loads to the load cell and measuring the amplified voltage output.
+Before calibrations, the amplifier offset voltage potentiometer was set to
+about 2.5 v and the nulling potentiometer adjusted so that the voltage was zero
+for the no load case.
+
+.. math::
+
+   F = \frac{V_c}{V_s} (m V + b)
+
+Steer Torque
+------------
+
+The steer torque sensor was calibrated at the factory in tandem with the
+amplifier and Futek supplies a certifeid calibration document with the
+calibration data. The CSG-110 amplifier supplies constant 10 vdc to excite the
+strain gauge brigde. I did not measure this voltage because the maximum voltage
+for the NI USB-6218 is 10 V, so no ratiometric scaling was used. As long as the
+battery supplied 12+ V to the CSG-110, this would not be an issue.
+
+.. math::
+
+   T_{\delta} = m V + b
+
+.. todo:: include a link to a copy of the calibration sheet
+
+Software
+--------
+
+I wrote a simple program that collects the data for the self calibrations and
+generates a generic calibration file for the various sensors. The data for the
+manufacturer supplied calibration data was manually entered to create similar
+files. These files are parsed to build the database described XXX.
+
+Data acquisition
+================
+
+Both the VectorNav VN-100 and the NI USB-6218 were connected to a small ASUS
+EEEPC netbook which was mounted on the rear rack of the bicycle. The devices
+were controlled and the data logged using Matlab. I interacted with the VN-100
+with Matlab's Serial I/O toolbox and the NI USB-6218 with the Data Aquisition
+Toolbox. A custom program written withing Matlab's Graphical User Interface
+framework was designed to allow the user to set metadata before each run, arm
+the system and view the raw data signals after the run.
+
+- Automatically increments run numbers
+- Set metadata: rider, environment, speed, manuever, notes
+- Initializes the system
+- View raw data time history traces
+- Load previous runs, view the time traces, edit the metadata and resave
+- Save output as a mat
+- Convert mat file to hdf5 format
+
+.. _figGui:
+
+.. figure:: figures/davisbicycle/bicycle-daq-gui.*
+   :width: 6 in
+
+   figGUI
+
+   A screenshot of the software running under Matlab 7.8.0 (2009a) on Windows XP .
+
+- nice if you could delete runs and only increment of the latest run (it may do
+  this)
+
+Due to the time synchronization issue we were limited to a single trigger
+setup, versus a multiple trigger for repeated runs. (i.e. we had to stop after
+every run to re-initialize the computer, versus allowing the rider to trigger a
+series of runs in a row without having to stop).
+
+The source code for the software is available on Github, including some tools
+for initial post processing.
+
+Time Synchronization
+====================
+
+When we originally chose to use the VectorNav VN-100 and the NI USB-6218 with a
+netbook PC, we'd convinced ourselves that they would all work together
+seamlessly. The manufacturers of each device seemed to think so and their
+disconnected knowledge helped convince us.  This turned out to be very wrong.
+The main issue, which seems to rear its head in data aquisition often, is time
+synchronization of all the hardware involved. A PC running a vanilla operating
+system is not capable of detailed time management of processes. This is
+certainly true of collecting serial data from two independent devices. My
+intention was to collect data from both the VN-100 and the USB-6218
+simulataneously with the Matlab Serial I/O and Data aquisition toolboxes,
+hopefully triggering the initial collection of data from the two devices
+simulatenaously or by reading the VN-100 serial data through the USB-6218. The
+simultaneously triggering was hampering primarily by the VN-100's asychrnoous
+data transfer and no apparent ways to either start it with a trigger or by
+recording some signal from it through the USB-6218. It may be possible to read
+serial data through the USB-6218, but I never was able to figure it out. It
+very well may have been missing the features to do so, or that Matlab didn't
+have a robust enough interaction with the USB-6218 to do so.  I struggled quite
+a bit with this unforseen issue and we started looking at solutions to measure
+the same event with both the VN-100 and the USB-6218 and to synchronize the
+signals afterwards. We would need to select a sensor which was also on the
+VN-100 and then excite the two sensors with the same event.  Ideally this event
+would be a step input to both sensors. We tried rate gyros and accelerometers
+but couldn't come up with an adequate event, until we mentioned the problem to
+Ron and he immediately suggested just riding over a bump! This was the ticket.
+We ended up attaching an additional three axis acceleromater to the VN-100
+development board which would read the same vertical component of acceleration
+and constructing a bump for the bicycle to travel over at the being of each
+run. This provided us with two signals which could be syncrhonized in time.
+
+Bump
+----
+
+The accelerometers had a :math:`\pm 3` g range, so we needed a bump which would
+provide veritcal accelerations within that range for speeds from 1 to 7 m/s.
+For a sinusodial shaped bump, the vertical accelration for a given speed can
+easily be computed. The height of a bump as a function of time is
+
+.. math::
+   :label: eqBumpHeight
+
+   y(t) = \frac{h}{2}\left[1 - \operatorname{cos}\left(\frac{2 \pi v}{L}t\right)\right]
+
+where the maximum bump height is :math:`h`, :math:`v` is the forward speed and
+:math:`L` is the length of the bump. The acceleration
+
+.. math::
+
+   \frac{d y(t)}{dt} = 2 h \left(\frac{\pi v}{L}\right)^2
+   \operatorname{cos}\left( \frac{2 \pi v}{L} t \right)
+
+Being that the cosine varies from -1 to 1, the maximum acceleration due to the
+bump and acceleration due to gravity is
+
+.. math::
+
+   a = 2 h \left(\frac{\pi v}{L}\right)^2 + g
+
+The maximum height of of a 1 meter long bump and forward speed of 7 m/s to give
+a 3 g acceleration is
+
+.. math::
+
+  h = \frac{a - g}{2}\left(\frac{L}{\pi v}\right)^2 =
+  \frac{3 * 9.81 \textrm{m/s} - 9.81 \textrm{m/s}}{2}
+  \left(\frac{1 \textrm{m}}{\pi 7 \textrm{m/s}}\right)^2 = 0.020 m
+
+I fashioned a very low sinusoidal bump from would that we laid on the track on
+the floor at teh beginning of the track and also launched under the bicycle on
+the treadmill. The bump lauching is somewhat amusing and we had to construct a
+"bump catcher" so that the bump didn't fly off the back of the treadmill and
+hurt anyone or anything.
+
+.. todo:: photo of the bump design and bump catcher, maybe the video
+
+Signal Synchronization
+----------------------
+
+The bump provides the event and the acceleration output of the tandem
+accelerometers logs the event. The time shift between the two signals can be
+computed by minimizing the least squares with respect to on signal minus the
+other signal which has been interpolated at the sample times of the first
+signal.
+
+.. figure:: figures/davisbicycle/unsync.*
+
+   This plot shows the accelerometer signals collected by both the NI USB-6218
+   and the VN-100 for a typical run. The spikes in acceleration are due to the
+   bicycle traversing the bump. The NI signal starts about a third of a second
+   before the VN signal.
+
+The basic algoritm for computing the error between the two signals is:
+
+1. Shift the NI signal some time tau.
+2. Truncate both signals around the common data.
+3. Interpolate the NI signal at the VN time samples.
+4. Compute the sum of squares of the VN signal minus the interpolated NI
+   signal.
+
+Using this formulation, you can then minimize the error with respect to tau.
+The minimization requires a good guess, as the minimzing function has local
+minima. I use both the location of the max values in the signals and finding
+the minimal value of the error as a function of a fixed number of tau values to
+get good guesses. See the source code for the gorey details.
+
+.. figure:: figures/davisbicycle/sync.*
+   :width: 4in
+
+   This plot shows the same accelerometer signals shown in the previous figure
+   after finding the optimal time shift.
+
+The computed time shift is used to shift and truncate all of the signals.
+
 Data Processing
 ---------------
 
@@ -1801,6 +1985,15 @@ The data collection and intial processing follows this pattern:
 
 This approach works fairly well and allows for easy querying of the 700+ runs.
 
+Things to Fix
+=============
+
+- The steering universal joint needs keyways.
+- Git rid of the VN-100 and replace with two rate gyros.
+- Add some gearing to the roll angle measurement.
+- Do away with the slip clutch.
+
+
 .. rubric:: Footnotes
 
 .. [#] See `<http://biosport.ucdavis.edu/blog/hub-motor-woes>'_ for repair
@@ -1832,14 +2025,16 @@ This approach works fairly well and allows for easy querying of the 700+ runs.
    experimentally shows that the steering angle magnitudes are much larger than
    other rider body movements.
 
-.. [#] a sum of sines would be ideal, see [Lange2011]_ for some ideas
-   on other types of inputs. It has been shown that a sum of sines signal is
-   not detectable by humans (ask Ron for this citation).
-
 .. [#] It slipped my mind to add a step up gear for the roll angle measurement,
    leaving the output voltage range small with respect to the roll angle range.
    Ideally, the potentiometer should rotate its full rotation for a desired
    roll angle range.
+
+.. [#] A sum of sines would be ideal, see [Lange2011]_ for some ideas
+   on other types of inputs. It has been shown that a sum of sines signal is
+   not detectable by humans (ask Ron for this citation).
+
+   .. todo:: ask Ron about the sum of sines citation
 
 .. [#] The elasticity of the steer column may also be a factor.
 

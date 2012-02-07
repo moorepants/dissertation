@@ -1093,6 +1093,9 @@ and the bicycle which causes the bicycle to roll.
 .. todo:: mention how changing the roll angle when you off the seat is very
    easy
 
+.. todo:: cite Weir1979a about the motorcycle rolling and the body staying
+   still.
+
 Conclusions
 ===========
 

@@ -19,18 +19,21 @@ averageSpeed <- (data$MaxSpeed + data$MinSpeed) / 2
 "../../figures/davisbicycle/" -> figDir
 
 # histogram of the average run speeds
-png(paste(figDir, "twrench-speed-histogram.png", sep=""))
+png(paste(figDir, "twrench-speed-histogram.png", sep=""),
+	width=800, height=800, pointsize=10, res=200)
 hist(averageSpeed)
 dev.off()
 
 # histogram of the max/min torque values
-png(paste(figDir, "twrench-torque-histogram.png", sep=""))
+png(paste(figDir, "twrench-torque-histogram.png", sep=""),
+	width=800, height=800, pointsize=10, res=200)
 hist(abs(c(data$MinTorque, inchlb2nm * data$MaxTorque)), main ="Histogram
 of Torque Values", xlab="Absolute value of max and min torques", breaks=25)
 dev.off()
 
 # torque versus speed for all the runs
-png(paste(figDir, "twrench-torque-speed.png", sep=""))
+png(paste(figDir, "twrench-torque-speed.png", sep=""),
+	width=800, height=800, pointsize=10, res=200)
 plot(0:10,-5:5, type="n", main="Max and Min Torques as a Function of Speed",
 xlab="Speed [m/s]", ylab="Torque [Nm]")
 points(mph2mps * averageSpeed, data$MinTorque, pch=19)

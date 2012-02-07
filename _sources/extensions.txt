@@ -971,6 +971,8 @@ dependence on stability across a range of speeds for ranges of stiffness and
 damping at the biomechanical joints can shed more light on the system for more
 conclusive results.
 
+.. secFlexibleRider:
+
 Flexible rider (hip rotation, back lean and twist)
 ==================================================
 
@@ -1090,6 +1092,9 @@ and the bicycle which causes the bicycle to roll.
 
 .. todo:: mention how changing the roll angle when you off the seat is very
    easy
+
+.. todo:: cite Weir1979a about the motorcycle rolling and the body staying
+   still.
 
 Conclusions
 ===========

@@ -15,6 +15,24 @@ System Identification
 * Relationship between speed and gains
 * Whipple model versus whipple model with arms
 
+Experimental Design
+===================
+
+Environments
+------------
+
+* Treadmill
+* Gym
+
+Manuevers
+---------
+
+* Balance
+* Track Line
+* Disturbance
+* Blind
+* Riders
+
 Whipple Model Validity
 ======================
 

@@ -1036,7 +1036,7 @@ Motorcycle Models
 
 Steering torque has been measured in relatively few instances of bicycle
 experiments and not all that many more for motorcycles. Of these, very few
-prove that their design is measures a pure rider applied steer torque. This is
+prove that their design measures a pure rider applied steer torque. This is
 more consequential for bicycles than motorcycles because the small torques used
 in typical bicycle control are certainly less than 10 Nm with the majority less
 than 5 Nm. [Ouden2011]_, in particular, showed how sensitive the torque
@@ -1187,37 +1187,31 @@ This set of experiments enforces the previously cited experimental findings
 that steer torques in bicycle control are typically very small. Ideally our
 sensor's range should be somewhere around :math:`\pm 8` to 10 Nm.
 
-Design
-~~~~~~
-
-We are planning on measuring the steer torque the rider applies to control a
-bicycle. This will be used for both the bicycle model validation and the  human
-control model identification. Measuring the steer torque is not
-trivial. This is because various models predict torques ranging in the 0-2 Nm
-(0-1.5 ft lbs) range with signal variations and reversals requiring +/- 0.01 Nm
-(0.01 ft lbs) in measurement accuracy. The range and accuracy are easily
-measured with modern torque sensors, but the fact that large moments can be
-applied to the fork and handlebars by the ground and/or rider introduces the
-problem of crosstalk. The forces and moments applied to the fork will corrupt
-the relatively small torque measurements as they can be hundreds of times
-larger in magnitude. With this in mind, we are trying to come up with a way to
-isolate the torque measurement to eliminate or minimize the crosstalk and get
-good, noiseless, accurate readings.
-
 Forces on the steer tube
 ~~~~~~~~~~~~~~~~~~~~~~~~
+
+Measuring the steer torque is not trivial. This is because various models
+predict torques ranging in the 0-2 Nm (0-1.5 ft lbs) range with signal
+variations and reversals requiring :math:`\pm 0.01` Nm (0.01 ft lbs) in
+measurement accuracy. The range and accuracy are easily measured with modern
+torque sensors, but the fact that large moments can be applied to the fork and
+handlebars by the ground and/or rider introduces the problem of crosstalk. The
+forces and moments applied to the fork will corrupt the relatively small torque
+measurements as they can be hundreds of times larger in magnitude. With this in
+mind, we are trying to come up with a way to isolate the torque measurement to
+eliminate or minimize the crosstalk and get good, noiseless, accurate readings.
 
 One of the simplest ways to measure steer torque may be to apply a strain gauge
 bridge primarily sensitive in torque to the steer tube of the fork. This method
 and others would require that the cross sensitivity of the bridge to other loads
-in the steer tube to be negligible. For example, [LorenzoXXXX]_ effectively did
+in the steer tube to be negligible. For example, [Lorenzo1997]_ effectively did
 this with his handlebar design but used several other bridges to measure
 additional moments and forces in handlebar assembly and calibrated the set of
 bridges together to help eliminate the crosstalk. The measured steer torques
 are less than 10 n-m and the loads due to the applied forces at the wheel
 contact, headset bearings and handlebars can potentially be orders of magnitude
 greater. [Ouden2011]_ clearly experienced the difficultly in removing the cross
-talk from a steer torque sensor and few studies have addressed this.
+talk from a steer torque sensor and few studies have explicitly addressed this.
 
 Assuming we may want to measure steer torque somewhere between the handlebars
 and fork crown, a simple static analysis can be performed to gage the relative
@@ -1256,6 +1250,7 @@ vertical acceleration and ~200 N force on one handlebar grip look like both
 from the side and the front of the bike.
 
 .. figure:: figures/davisbicycle/fork-load-diagram.*
+   :width: 5in
 
    figForkLoad
 
@@ -1263,20 +1258,29 @@ from the side and the front of the bike.
    right side handlebar load.
 
 This graph shows that the bending moments and shear stresses can be of much
-larger magnitude than the steer torques. Misalignment of strain gages and thus
-sensor crosstalk are magnified by the differences in loads and need to be
+larger magnitude than the steer torques. Misalignment of strain gages and the
+resulting sensor crosstalk are magnified by the differences in loads and need to be
 carefully accounted for. If the cross talk strains due to the bending moments
 are even 1% of the of the total strain due to the moments, that can still
-corrupt the steer torque measurement. These graphs also show that it if no
-loads are placed on the handlebars the entire portion of the steer tube/stem
-above the headset has no bending moments and no shear stress. This is the ideal
-place for a torque sensor, if one can eliminate the transfer of forces applied
-to the handlebars to the steer tube.
+corrupt the steer torque measurement.
+
+This analisys also predicts that it if no loads are placed on the handlebars
+the entire portion of the steer tube/stem above the headset has no bending
+moments and no shear stress. This could be the ideal place for a torque sensor,
+if one can eliminate the transfer of forces applied to the handlebars to the
+steer tube.
 
 This lead me through several design ideas but utlimately to a design that
 isolates the steer torque sensor from the handlebar and fork loads with a zero
-backlash telescoping universal joint. I selected the Futek TF350 torque sensor
-with a +/- 11 nm range and the CSG-110 amplifier to measure torque.
+backlash telescoping double universal joint. The idea solidified after thinking
+about an upside down tall bike I had created several years before. This
+bicycle's tall handlebar, to reach the high rider, was attached to the bicycle
+stem at the headset by a horizontal revolute joint which prevented the rider
+from applying a fore/aft moment to the handlebar extension, but the rider could
+still apply steer torques. My design exploited this odd feature by using a
+universal joint which could only transmit a torque about it's primary axis. The
+telescoping degree of freedom was added after Gilbert helped me realize it was
+needed.
 
 .. figure:: figures/davisbicycle/steer-torque-design.*
    :width: 5in
@@ -1287,10 +1291,33 @@ with a +/- 11 nm range and the CSG-110 amplifier to measure torque.
    universal joint such that the only load component which can be transferred
    through the sensor is an axial torque.
 
-.. todo:: an exploded drawing would be better
-
-.. todo:: add some about the crappiness of the slip clutch (slop and rating is
-   for at a certain rpm)
+I attached the universal joint to a Futek 150 in-lb (:math:`\pm 17` Nm) TFF350
+torque sensor for accurate torque measurements. The torque sensor overloads at
+150% of the rated output (i.e. 22.5 Nm), so some care was needed to protect the
+sensor from overload and to prevent the rider from losing steer control if the
+sensor were to break. I sourced out a "slip" clutch that was distributed by
+`<http://www.sdp-si.com Stock Drive Products`. It turned out that the device
+was a the Torq-Tender manufactured by `Zero-Max Inc.
+<http://www.zero-max.com`, but as usual practice SDP doesn't readily provide that
+information. This particular expensive torque overload protection turned into
+a major headache. SDP lists the rated torques but with no indication of the
+operating speed the torques are measured at. It turns out they are with respect
+to an 1800 rpm operating speed. Being that my rates were rather low, I
+purchased a much larger torque sensor than I needed. It was rather painful
+trying to get them to change the springs around the Christmas holidays and
+check the torque rating at zero rotational speed. The second issue had to do
+with it not actually being a slip clutch. I wanted the torque protection to
+slip at a given torque (just under overload of the sensor).  The friction based
+slipping would still allow the rider to control the bicycle, but SDP mistakenly
+called them "slip clutches" when in fact they are more like binary torque
+limiters and transfer little to no torque after the limit is reached, so the
+rider would most likely crash if the torque limiter broke loose. Thirdly, there
+was slop in the torque limiter.  I used shim material to take up much of the
+slop, but there remained some backlash. I ultimately locked the slip clutch and
+relied on careful attendance of the bicycle and the fact that the rider was
+unlikely to ever apply greater than 22.5 Nm of torque. The runs 0-226 may have
+some slight slop in the torque limiter and runs greater than 226 the limiter
+was locked.
 
 Steer Dynamics
 ~~~~~~~~~~~~~~
@@ -1300,26 +1327,30 @@ along the steer axis, but this measured torque, :math:`T_M`, does not equate to
 the input torque used for out bicycle models, (i.e. :math:`T_\delta`). The
 steer torque in the model is defined as the torque between the front frame and
 the rear frame about the steer axis. If the torque sensor measures the steering
-torque anywhere but at the interface of the human and the front frame, one must
-account for the inertial effects of the front frame. As far as I can tell, no
-one who has measured steer torque on a single track vehicle has accounted for
-these effects. There is a relationship from :math:`T_M` to :math:`T_\delta`
-that requires one to know, at a minimum [#]_ the friction in the steer axis
-bearings (this is potentially both viscous and coulomb) and the inertial
-characteristics of the front frame above the torque sensor.
+torque anywhere but at the interface of the human's hands and the front frame,
+one must account for the inertial effects of the front frame. As far as I can
+tell, no one who has measured steer torque on a single track vehicle has
+accounted for these effects. There is a relationship from :math:`T_M` to
+:math:`T_\delta` that requires one to know, at a minimum [#]_ the friction in
+the steer axis bearings above the torque sensor (this is potentially both
+viscous and coulomb) and the inertial characteristics of the front frame above
+the torque sensor.
 
-In our case, we measure the torque in the steering column, :math:`T_M`, from a
-sensor that is mounted between the handlebars and fork steer tube and between
-two sets of bearings: the headset and the slip clutch bearings. We are
-interested in knowing the torque applied about the steer axis by the rider's
-contact forces to the handlebars, :math:`T_\delta`.
+In our case, we measured the torque in the steering column, :math:`T_M`, from a
+sensor that is mounted between the handlebars and the fork. The sensor was also
+mounted between two sets of bearings: the headset and the slip clutch bearings.
+We are interested in knowing the torque applied about the steer axis by the
+rider's contact forces to the handlebars, :math:`T_\delta`.
 
 A free body diagram can be drawn of the upper portion of the handlebar/fork
-assembly, where the lower portion is cut at the steer torque sensor. The
-torques acting on the handlebar about the steer axis are the measured torque,
-:math:`T_M`, the rider applied steer torque, :math:`T_\delta`, and the friction
-from the upper bearing set, :math:`T_U`, which can be described by coulomb,
-:math:`T_{U_F}`, and viscous friction, :math:`T_{U_V}`.
+assembly, where the lower portion is cut at the steer torque sensor, Figure
+:ref:`figHandlebarFreeBody`. The torques acting on the handlebar about the
+steer axis are the measured torque, :math:`T_M`, the rider applied steer
+torque, :math:`T_\delta`, and the friction from the upper bearing set,
+:math:`T_U`, which can be described by coulomb, :math:`T_{U_F}`, and viscous
+friction, :math:`T_{U_V}`.
+
+.. figHandlebarFreeBody::
 
 .. figure:: figures/davisbicycle/handlebar-free-body.*
 
@@ -1330,7 +1361,7 @@ from the upper bearing set, :math:`T_U`, which can be described by coulomb,
    orientation with respect to the Newtonian reference frame.
 
 We measure the angular rate of the bicycle frame, :math:`B`, with three rate
-gyros:
+gyros
 
 .. math::
    :label: frameRate
@@ -1381,7 +1412,7 @@ The location of point :math:`v` is known with respect to :math:`s`
 
    \bar{r}^{s/v} = d_{s1}\hat{b}_1 + d_{s3}\hat{b}_3
 
-:math:`^N\bar{a}^{g_o}` can now be calculated using the two point thereom for
+:math:`^N\bar{a}^{g_o}` can now be calculated using the two point theorem for
 acceleration [Kane1985]_ twice staring at the point :math:`v`
 
 .. math::
@@ -1411,7 +1442,7 @@ mass times the acceleration of :math:`g_o` in :math:`N`:
    \sum \bar{T}^{G/s} = ^N\dot{\bar{H}}^{G/g_o} +
    \bar{r}^{g_o/s} \times m_G ^N\bar{a}^{g_o}
 
-I'm only interesting in the components of the previous equation in which the
+I'm only interested in the components of the previous equation in which the
 steer torque appears, so only the torques about the steer axis are examined.
 
 .. math::
@@ -1502,9 +1533,23 @@ To estimate :math:`t_B` and :math:`c_B`, we set up the bicycle such that the
 steer axis was vertical, the front wheel was off the ground, and the rear frame
 was rigidly fixed in inertial space. We then attached two springs of stiffness
 :math:`k` each to the handlebars such that the force from the springs acted on
-a lever arm, :math:`l`, relative to the steer axis.
+a lever arm, :math:`l`, relative to the steer axis, Figure
+:ref:`figSteerExperiment`.
 
-.. todo:: image of the experimental setup
+.. figSteerExperiment::
+
+.. figure:: figures/davisbicycle/steer-experiment.*
+   :width: 4in
+
+   figSteerExperiment
+
+   An overhead view of the steer friction experimental setup. The steer axis of
+   the bicycle is plumb with vertical and the bicycle frame is secured such
+   that it is rigid with respect to the earth. The wheel was fixed from
+   rotation relative to the fork. Two springs in series were attached to the
+   handlebars.
+
+.. todo:: video of the experiment
 
 This configuration allowed us to apply small perturbations to the handlebars
 and measure the dampened vibrations in the steer angle, steer rate and steer
@@ -1529,7 +1574,7 @@ grey box identification routine was used to estimate the spring stiffness for
 three trials. We found the average spring stiffness to be :math:`904.7 \pm 0.6`
 N/m. The inertia of the handlebar, fork and front wheel about the steer axis,
 :math:`I_{HF}`, was computed based on the measurements described in Chapter
-:ref:`physcialparmaeters` and found to be :math:`0.1297+/-0.0005` :math:`kg
+:ref:`physcialparameters` and found to be :math:`0.1297+/-0.0005` :math:`kg
 \cdot m^2` [#]_.
 
 The friction coefficients are found with a non-linear grey box identification
@@ -1539,6 +1584,8 @@ coefficient is :math:`c_B = 0.34 \pm 0.04` :math:`N \cdot m \cdot s^2` and the
 Coulomb coefficient is :math:`t_B = 0.15 \pm 0.05` :math:`N \cdot m`.
 
 .. todo:: Show example fit?
+
+.. todo:: link to the source files and data
 
 To calculate the applied steer torque, :math:`T_\delta`, we need an estimate of
 the upper bearing friction, :math:`T_U`. A simple assumption is that the
@@ -1581,7 +1628,7 @@ assumption that the upper friction is half of the total friction is used to
 compute the actual steer torque.
 
 .. todo:: This all makes me feel like the measured torque during the
-   experiments is incorrect or that my individual measurment of the handlebar
+   experiments is incorrect or that my individual measurement of the handlebar
    moment of inertia is wrong (but that would mean that the sum of the
    handlebar, fork and wheel inertia has to be right!)...uh
 
@@ -1592,7 +1639,10 @@ With decent estimates of the torque due to upper bearing friction the actual
 rider applied steering torque, :math:`T_\delta`, can be computed using
 Equation :ref:`eqSteerTorque`.
 
+.. figSteerTorqueComponents::
+
 .. figure:: figures/davisbicycle/steer-torque-components.*
+   :width: 5in
 
    figSteerTorqueComponents
 
@@ -1630,11 +1680,11 @@ circuit designs.
 Calibration
 ===========
 
-All of the analog sensors I used require some sort of calibration that develops
-a relationship between the measured voltage from the sensor and the physical
-phenomena that is being measured. I self calibrated some sensors, had one
-calibrated at the factory and used the reported manufacturer specifications for
-others.
+All of the analog sensors I used require some sort of calibration that can be
+used to develop a relationship between the measured voltage from the sensor and
+the physical phenomena that is being measured. I self calibrated some sensors,
+had one calibrated at the factory and used the reported manufacturer
+specifications for others.
 
 Potentiometers
 --------------
@@ -1642,23 +1692,38 @@ Potentiometers
 I calibrated the steer angle sensor by inserting a custom protractor into the
 steer tube of the fork and measuring the voltage of the potentiometer output at
 a series of distinct angles. This calibration was done anytime the timing belt
-or pulleys were disegaged.
+or pulleys were disengaged.
 
-.. todo:: image of the protractor
+.. figSteerAngleCalibration::
+
+.. figure:: figures/davisbicycle/steer-angle-calibration.*
+
+   figSteerAngleCalibration
+
+   The left image shows the protractor mounted in the fork. It is pinned in
+   place with a roll pin for precise alignment with the front brake mounting
+   hole. The right image shows the underside of the protractor with the
+   engraved angles at every five degrees and the scribe line on the center of
+   the downtube.
 
 The roll angle potentiometer was calibrated by measuring the bicycle frame's
 absolute roll angle with a digital level and recording the voltage output for a
-sweep of angles.
+sweep of angles. I also took static measurements each day of experiments so
+that the roll angle could be computed from the accelerometer's output in case
+the bias in the roll angle calibration was poor.
+
+.. todo:: take photo of roll angle calibration
 
 For both cases potentiometer's output voltage is ratiometric with respect to
 the supply voltage :math:`V_s` and the potentiometer angle can be computed
 given the average calibration supply voltage :math:`V_c` and the slope and
 intercept of the calibration curve relating voltage to angle the angle.
-Depending on the calibration the angle could be the rotation angle of the
+Depending on the calibration, the angle could be the rotation angle of the
 potentiometer as in the case of the roll angle measurement or the actual steer
 angle in the case of the steer angle due to the gearing from the steer tube [#]_.
 
 .. math::
+   :label: eqPotentiometerCalibration
 
    \delta = \frac{V_c}{V_s} m V + b
 
@@ -1667,7 +1732,7 @@ Rate Gyros and Accelerometers
 
 The analog accelerometers and rate gyros typically have specifications for the
 sensitivity and the zero bias, where both are ratiometric (i.e. scale with
-respect to the supply voltage). The sensitivty gives the linear relationship
+respect to the supply voltage). The sensitivity gives the linear relationship
 of the output voltage for a given acceleration or rate. The zero bias is the
 output voltage of the sensor for zero acceleration or rate for a given supply
 voltage.
@@ -1690,7 +1755,7 @@ To generate a calibration curve, we used an AMETEK 1726 Digital Tachometer to
 measure the rotational speed in rpm and digital multimeter to measure the
 voltage for a sweep of motor rotational speeds.
 
-.. list-table::
+.. list-table:: DC Tachometer Calibration Data
    :header-rows: 1
 
    * - RPM
@@ -1725,9 +1790,9 @@ the slope and intercept of the rpm to voltage curve determined by regression is
 :math:`m=456.3862\frac{\textrm{rpm}}{\textrm{volt}}\)` and
 :math:`b=-1.2846\textrm{ rpm}\)`. We then attached a small disc to the motor
 shaft such that the disc rubs against the rotating tire. The disc diameter was
-chosen such that the motor would ouput 0 to 10 volts for a bicycle forward
+chosen such that the motor would output 0 to 10 volts for a bicycle forward
 speed range of about 0 to 30 mph. The rotational speed of the rear wheel as a
-function of voltage can be written as a linear realtionship
+function of voltage can be written as a linear relationship
 
 .. math::
 
@@ -1737,11 +1802,9 @@ where :math:`r_d` is the radius of the generator disc and :math:`r_c` is
 distance from the rear wheel center to the disc/tire contact point and
 :math:`s_f=\frac{2\pi}{60}` is a scaling factor from rpm to radians per second.
 :math:`r_d=0.028985` m and :math:`r_c=0.333375` m when the generator was first
-attached (runs 0 to XX) and :math:`r_c=0.3199511` m after the generator was
-remounted (runs XX to XX). The relationship between the rear wheel rate as a
+attached (runs 0 to 226) and :math:`r_c=0.3199511` m after the generator was
+remounted (runs 227 to end). The relationship between the rear wheel rate as a
 function of voltage can more generally be rewritten as
-
-.. todo:: find which runs the speedometer was mounted differently
 
 .. math::
 
@@ -1767,6 +1830,15 @@ for the no load case.
 
    F = \frac{V_c}{V_s} (m V + b)
 
+.. figLoadCellCalibration::
+
+.. figure:: figures/davisbicycle/load-cell-calibration.*
+
+   figLoadCellCalibration
+
+   The load cell under a compressive static loading during the calibration
+   procedure.
+
 Steer Torque
 ------------
 
@@ -1781,7 +1853,47 @@ battery supplied 12+ V to the CSG-110, this would not be an issue.
 
    T_{\delta} = m V + b
 
+.. list-table:: Factory Calibration Data Clock Wise Torque
+
+   * - Load (in-lb)
+     - Output (Vdc)
+   * - 0
+     - 0.000
+   * - 30
+     - 1.998
+   * - 60
+     - 3.993
+   * - 90
+     - 5.997
+   * - 120
+     - 7.994
+   * - 150
+     - 9.997
+   * - 0
+     - 0.002
+
+.. list-table:: Factory Calibration Data Counter Clockwise Torque
+
+   * - Load (in-lb)
+     - Output (Vdc)
+   * - 0
+     - 0.000
+   * - 30
+     - -1.995
+   * - 60
+     - -3.994
+   * - 90
+     - -5.989
+   * - 120
+     - -7.986
+   * - 150
+     - -9.986
+   * - 0
+     - 0.002
+
 .. todo:: include a link to a copy of the calibration sheet
+
+.. todo:: compute the slope and intercept
 
 Software
 --------
@@ -1789,26 +1901,42 @@ Software
 I wrote a simple program that collects the data for the self calibrations and
 generates a generic calibration file for the various sensors. The data for the
 manufacturer supplied calibration data was manually entered to create similar
-files. These files are parsed to build the database described XXX.
+data files. These files are parsed to and collected into a calibration table
+into a database. The calibrations are applied with respect to date. The
+calibration for a particular run is with respect to the date up to and nearest
+the run date.
 
-Data acquisition
-================
+Software
+========
+
+Data Acquisition
+----------------
 
 Both the VectorNav VN-100 and the NI USB-6218 were connected to a small ASUS
-EEEPC netbook which was mounted on the rear rack of the bicycle. The devices
-were controlled and the data logged using Matlab. I interacted with the VN-100
-with Matlab's Serial I/O toolbox and the NI USB-6218 with the Data Aquisition
-Toolbox. A custom program written withing Matlab's Graphical User Interface
-framework was designed to allow the user to set metadata before each run, arm
-the system and view the raw data signals after the run.
+EEEPC netbook which was mounted on the rear rack of the bicycle, Figure
+:ref:`laptop`. The devices were controlled and the data logged using Matlab. I
+interacted with the VN-100 with Matlab's Serial I/O toolbox and the NI USB-6218
+with the Data Acquisition Toolbox. A custom program written within Matlab's
+Graphical User Interface framework was designed to allow the user to set
+metadata before each run, arm the system and view the raw data signals after
+the run. The general features are as follows:
 
 - Automatically increments run numbers
-- Set metadata: rider, environment, speed, manuever, notes
+- Set metadata: rider, environment, speed, maneuver, notes
 - Initializes the system
 - View raw data time history traces
 - Load previous runs, view the time traces, edit the metadata and resave
-- Save output as a mat
-- Convert mat file to hdf5 format
+- Save output as a Matlab mat file
+- Convert's the run and calibration mat files to hdf5 format
+- Collects calibration data
+
+.. _figLaptop:
+
+.. figure:: figures/davisbicycle/laptop.*
+
+   figLaptop
+
+   The laptop mounted to the rear rack.
 
 .. _figGui:
 
@@ -1819,56 +1947,56 @@ the system and view the raw data signals after the run.
 
    A screenshot of the software running under Matlab 7.8.0 (2009a) on Windows XP .
 
-- nice if you could delete runs and only increment of the latest run (it may do
-  this)
+Due to the time synchronization issue talked about below we were limited to a
+single trigger setup, versus a multiple trigger for repeated runs. (i.e. we had
+to stop after every run to re-initialize the devices, versus allowing the
+rider to trigger a series of runs in a row without having to stop).
 
-Due to the time synchronization issue we were limited to a single trigger
-setup, versus a multiple trigger for repeated runs. (i.e. we had to stop after
-every run to re-initialize the computer, versus allowing the rider to trigger a
-series of runs in a row without having to stop).
-
-The source code for the software is available on Github, including some tools
-for initial post processing.
+The source code for the software is available in a Github repository:
+https://github.com/moorepants/BicycleDAQ, including some tools for initial post
+processing of the collected data.
 
 Time Synchronization
-====================
+--------------------
 
 When we originally chose to use the VectorNav VN-100 and the NI USB-6218 with a
 netbook PC, we'd convinced ourselves that they would all work together
 seamlessly. The manufacturers of each device seemed to think so and their
-disconnected knowledge helped convince us.  This turned out to be very wrong.
-The main issue, which seems to rear its head in data aquisition often, is time
+disconnected knowledge helped convince us too. This turned out to be very wrong.
+The main issue, which seems to rear its head often in data acquisition, is time
 synchronization of all the hardware involved. A PC running a vanilla operating
 system is not capable of detailed time management of processes. This is
 certainly true of collecting serial data from two independent devices. My
 intention was to collect data from both the VN-100 and the USB-6218
-simulataneously with the Matlab Serial I/O and Data aquisition toolboxes,
+simultaneously with the Matlab Serial I/O and Data acquisition toolboxes,
 hopefully triggering the initial collection of data from the two devices
-simulatenaously or by reading the VN-100 serial data through the USB-6218. The
-simultaneously triggering was hampering primarily by the VN-100's asychrnoous
+simultaneously or by reading the VN-100 serial data through the USB-6218. 
+
+The simultaneous triggering was hampered primarily by the VN-100's asynchronous
 data transfer and no apparent ways to either start it with a trigger or by
 recording some signal from it through the USB-6218. It may be possible to read
-serial data through the USB-6218, but I never was able to figure it out. It
-very well may have been missing the features to do so, or that Matlab didn't
-have a robust enough interaction with the USB-6218 to do so.  I struggled quite
-a bit with this unforseen issue and we started looking at solutions to measure
-the same event with both the VN-100 and the USB-6218 and to synchronize the
-signals afterwards. We would need to select a sensor which was also on the
-VN-100 and then excite the two sensors with the same event.  Ideally this event
-would be a step input to both sensors. We tried rate gyros and accelerometers
-but couldn't come up with an adequate event, until we mentioned the problem to
-Ron and he immediately suggested just riding over a bump! This was the ticket.
-We ended up attaching an additional three axis acceleromater to the VN-100
-development board which would read the same vertical component of acceleration
-and constructing a bump for the bicycle to travel over at the being of each
-run. This provided us with two signals which could be syncrhonized in time.
+serial data through the USB-6218, but I did not figure it out. It very well may
+have been missing the features to do so, or that Matlab didn't have a robust
+enough interaction with the USB-6218 to do so. I struggled quite a bit with
+this unforeseen issue and we started looking at solutions to measure the same
+event with both the VN-100 and the USB-6218 and to synchronize the signals
+afterwards. [Ouden2011]_ had to use a similar technique. We would need to
+select a sensor which was also on the VN-100 and then excite the two sensors
+with the same event. Ideally this event would be a step input to both sensors.
+We tried rate gyros and accelerometers but couldn't come up with an adequate
+event, until we mentioned the problem to Ron and he immediately suggested just
+riding over a bump! This was the ticket.  We ended up attaching an additional
+three axis accelerometer to the VN-100 development board which would read the
+same vertical component of acceleration and constructing a bump for the bicycle
+to travel over at the being of each run.  This provided us with two signals
+which could be synchronized in time.
 
 Bump
-----
+~~~~
 
 The accelerometers had a :math:`\pm 3` g range, so we needed a bump which would
-provide veritcal accelerations within that range for speeds from 1 to 7 m/s.
-For a sinusodial shaped bump, the vertical accelration for a given speed can
+provide vertical accelerations within that range for speeds from 1 to 7 m/s.
+For a sinusoidal shaped bump, the vertical acceleration for a given speed can
 easily be computed. The height of a bump as a function of time is
 
 .. math::
@@ -1891,7 +2019,7 @@ bump and acceleration due to gravity is
 
    a = 2 h \left(\frac{\pi v}{L}\right)^2 + g
 
-The maximum height of of a 1 meter long bump and forward speed of 7 m/s to give
+The maximum height of a 1 meter long bump and forward speed of 7 m/s to give
 a 3 g acceleration is
 
 .. math::
@@ -1900,13 +2028,19 @@ a 3 g acceleration is
   \frac{3 * 9.81 \textrm{m/s} - 9.81 \textrm{m/s}}{2}
   \left(\frac{1 \textrm{m}}{\pi 7 \textrm{m/s}}\right)^2 = 0.020 m
 
+.. figure:: figures/davisbicycle/bump.*
+
+   figBump
+
+   The sinusoidal profile of the finished bump.
+
 I fashioned a very low sinusoidal bump from would that we laid on the track on
-the floor at teh beginning of the track and also launched under the bicycle on
-the treadmill. The bump lauching is somewhat amusing and we had to construct a
+the floor at the beginning of the track and also launched under the bicycle on
+the treadmill. The bump launching is somewhat amusing and we had to construct a
 "bump catcher" so that the bump didn't fly off the back of the treadmill and
 hurt anyone or anything.
 
-.. todo:: photo of the bump design and bump catcher, maybe the video
+.. todo:: bump catcher video
 
 Signal Synchronization
 ----------------------
@@ -1917,14 +2051,19 @@ computed by minimizing the least squares with respect to on signal minus the
 other signal which has been interpolated at the sample times of the first
 signal.
 
+.. _figUnsync:
+
 .. figure:: figures/davisbicycle/unsync.*
+   :width: 4in
+
+   figUnsync
 
    This plot shows the accelerometer signals collected by both the NI USB-6218
    and the VN-100 for a typical run. The spikes in acceleration are due to the
    bicycle traversing the bump. The NI signal starts about a third of a second
    before the VN signal.
 
-The basic algoritm for computing the error between the two signals is:
+The basic algorithm for computing the error between the two signals is:
 
 1. Shift the NI signal some time tau.
 2. Truncate both signals around the common data.
@@ -1933,10 +2072,10 @@ The basic algoritm for computing the error between the two signals is:
    signal.
 
 Using this formulation, you can then minimize the error with respect to tau.
-The minimization requires a good guess, as the minimzing function has local
+The minimization requires a good guess, as the minimizing function has local
 minima. I use both the location of the max values in the signals and finding
 the minimal value of the error as a function of a fixed number of tau values to
-get good guesses. See the source code for the gorey details.
+get good guesses. See the source code for the gory details.
 
 .. figure:: figures/davisbicycle/sync.*
    :width: 4in
@@ -1949,12 +2088,15 @@ The computed time shift is used to shift and truncate all of the signals.
 Data Processing
 ---------------
 
-To handle processing the data, I developed an object oriented program,
-BicycleDataProcessor, in Python that interacts with an HDF5 database containing
-the data. The program makes use of PyTables for database interaction and the
-SciPy/NumPy/matplotlib stack for computation and plotting. The program is
-functional but definitely a prototype that could leverage other packages to
-make it more robust. The structure is currently based on three clases:
+To handle processing the large amount of data, I developed an object oriented
+program, `BicycleDataProcessor
+<https://github.com/moorepants/BicycleDataProcessor>`, in Python that interacts
+with an HDF5 database containing the data. The program makes use of `PyTables
+<http://www.pytables.org>` for database interaction and the
+`SciPy/NumPy<http://www.scipy.org>`/`matplotlib<http://matplotlib.sourceforge.net>`
+stack for computation and plotting. The program is functional but definitely a
+prototype that could leverage other packages to make it more robust. The
+structure is currently based on three classes:
 
 Signal
    This is a subclass of the NumPy ndarray. It tracks a 1 dimensional time
@@ -1973,26 +2115,62 @@ Run
    meaningful time series that are useful for analyzing the bicycle dynamics.
    There are also methods for plotting and exporting the data.
 
-The data collection and intial processing follows this pattern:
+The data collection and initial processing follows this pattern:
 
 1. Collect data via the BicycleDAQ software. This stores the metadata and
    raw signal data for each run in a Matlab mat file.
 2. Convert the mat file to an HDF5 file using Matlab's HDF5 utilities. This
    step needs to be removed, as SciPy can import the mat files directly. This
-   is a remnant of learing PyTables.
+   is a remnant of learning PyTables.
 3. Build the complete HDF5 database with BicycleDataProcessor.
-4. Load runs from the database and manipulate then for further processing.
+4. Load runs from the database and manipulate then for further processing such
+   as plotting.
 
-This approach works fairly well and allows for easy querying of the 700+ runs.
+This approach works fairly well and allows for easy querying of the 700+ runs
+for further data analysis. The processed data can be exported to Matlab and
+generic formats for integration with other software tools. This example gives
+the basics of loading a run and plotting the processed data::
 
-Things to Fix
-=============
+   dataset = bdp.DataSet()
+   dataset.open()
+   trial = bdp.Run('00699', dataset.database, pathToParameterData='...', filterFreq=40.)
+   dataset.close()
+   fig = trial.plot('PullForce', 'RollAngle', 'SteerAngle', 'SteerTorque')
 
-- The steering universal joint needs keyways.
-- Git rid of the VN-100 and replace with two rate gyros.
-- Add some gearing to the roll angle measurement.
-- Do away with the slip clutch.
+.. _figProcessedData:
 
+.. figure:: figures/davisbicycle/processed-data.*
+   :width: 6in
+
+   figProcessedData
+
+   The resulting output of a basic plot command for a run.
+
+Conclusion
+==========
+
+In this chapter I gave a detailed description of the Davis instrumented bicycle
+with the hope that enough information is present for someone to make use of the
+bicycle and/or recreate one (of course with improvements). The bicycle served
+us well in terms of the kinematic and kinetic data we were interested in
+collecting.
+
+Some recommendations for improvements are as follows:
+
+- Power the entire system from the hub motor battery to reduce the number of
+  batteries to keep up with.
+- The steering universal joint needs keyways instead of set screws for a more
+  solid connection.
+- Git rid of the VN-100 and replace with two analog rate gyros for yaw and roll. This
+  would take away the time synchronization issue. The newer versions of the
+  VN-100 offer more capabilities including synchronization signals, so that could
+  be looked into, but overall it is still a poor (and expensive) choice for the
+  system this application.
+- Add some gearing to the roll angle measurement for better resolution. And
+  develop a more accurate calibration scheme. Perhaps by making use of the
+  on-board accelerometers.
+- Do away with the torque limiter. Another solution for safeguarding the sensor
+  and rider for failure is needed.
 
 .. rubric:: Footnotes
 
@@ -2032,9 +2210,9 @@ Things to Fix
 
 .. [#] A sum of sines would be ideal, see [Lange2011]_ for some ideas
    on other types of inputs. It has been shown that a sum of sines signal is
-   not detectable by humans (ask Ron for this citation).
+   not detectable by humans [McRuer1974]_.
 
-   .. todo:: ask Ron about the sum of sines citation
+   .. todo:: check the McRuer reference
 
 .. [#] The elasticity of the steer column may also be a factor.
 

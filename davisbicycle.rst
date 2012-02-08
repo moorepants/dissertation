@@ -1656,6 +1656,8 @@ Equation :ref:`eqSteerTorque`.
    in the measured torque and the rider applied torque. There are large
    differences, especially at the peaks.
 
+.. todo:: second graph has wrong time scale
+
 Strain Gauge Amplification
 --------------------------
 

@@ -1697,6 +1697,7 @@ or pulleys were disengaged.
 .. figSteerAngleCalibration::
 
 .. figure:: figures/davisbicycle/steer-angle-calibration.*
+   :width: 6in
 
    figSteerAngleCalibration
 
@@ -1833,6 +1834,7 @@ for the no load case.
 .. figLoadCellCalibration::
 
 .. figure:: figures/davisbicycle/load-cell-calibration.*
+   :width: 4in
 
    figLoadCellCalibration
 
@@ -1933,6 +1935,7 @@ the run. The general features are as follows:
 .. _figLaptop:
 
 .. figure:: figures/davisbicycle/laptop.*
+   :width: 4in
 
    figLaptop
 
@@ -2024,11 +2027,12 @@ a 3 g acceleration is
 
 .. math::
 
-  h = \frac{a - g}{2}\left(\frac{L}{\pi v}\right)^2 =
-  \frac{3 * 9.81 \textrm{m/s} - 9.81 \textrm{m/s}}{2}
-  \left(\frac{1 \textrm{m}}{\pi 7 \textrm{m/s}}\right)^2 = 0.020 m
+   h = \frac{a - g}{2}\left(\frac{L}{\pi v}\right)^2 =
+   \frac{3 * 9.81 \textrm{m/s} - 9.81 \textrm{m/s}}{2}
+   \left(\frac{1 \textrm{m}}{\pi 7 \textrm{m/s}}\right)^2 = 0.020 m
 
 .. figure:: figures/davisbicycle/bump.*
+   :width: 6in
 
    figBump
 

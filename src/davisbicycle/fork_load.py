@@ -112,7 +112,24 @@ print zM0
 
 title = 'Dynamic weight = {0} N\nHandlebar forces: left = {1} N, right = {2} N'.format(mTot*g, FHl, FHr)
 # plot the shear/moment diagrams from the side
+golden_mean = (np.sqrt(5) - 1.0) / 2.0
+fig_width = 5.0
+fig_height = fig_width * golden_mean
+params = {'backend': 'ps',
+          'axes.labelsize': 8,
+          'axes.titlesize': 10,
+          'text.fontsize': 8,
+          'legend.fontsize': 6,
+          'xtick.labelsize': 8,
+          'ytick.labelsize': 8,
+          'text.usetex': True,
+          'figure.figsize': [fig_width,fig_height],
+          'figure.dpi' : 200,
+          'figure.subplot.left' : 0.2,
+          'figure.subplot.bottom' : 0.15}
+plt.rcParams.update(params)
 plt.figure(0)
+
 a=plt.subplot(411)
 plt.title(title)
 plt.plot(z, Vx)
@@ -135,6 +152,7 @@ plt.ylim(tuple(nylim))
 plt.axvline(x = ls, color='k', linewidth=3)
 plt.axvline(x = ls + lhd, color='k', linewidth=3)
 plt.ylabel('My [Nm]')
+
 # plot the shear/moment diagrams from the front
 a = plt.subplot(413)
 plt.plot(z, Vy)
@@ -149,6 +167,7 @@ plt.ylim(tuple(nylim))
 plt.axvline(x = ls, color='k', linewidth=3)
 plt.axvline(x = ls + lhd, color='k', linewidth=3)
 plt.ylabel('Vy [N]')
+
 a = plt.subplot(414)
 plt.plot(z, Mx)
 plt.grid(b=True)
@@ -160,5 +179,6 @@ plt.axvline(x = ls, color='k', linewidth=3)
 plt.axvline(x = ls + lhd, color='k', linewidth=3)
 plt.ylabel('Mx [Nm]')
 plt.xlabel('z [m]')
+
 plt.gcf().savefig('../../figures/davisbicycle/fork-load-diagram.png', dpi=200)
 plt.show()

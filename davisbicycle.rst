@@ -865,6 +865,8 @@ Bicycle Experiments
    account for the inertial effects of the front frame. He had test subjects
    ride the bicycle around town so the data is difficult to interpret.
 
+.. todo:: [Wilson-Jones1951]_ supposedly measures steer torque
+
 Motorcycle Experiments
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1631,6 +1633,9 @@ compute the actual steer torque.
    experiments is incorrect or that my individual measurement of the handlebar
    moment of inertia is wrong (but that would mean that the sum of the
    handlebar, fork and wheel inertia has to be right!)...uh
+
+.. todo:: note that the bearing are under load when a rider is seated on the
+   bicycle and that we didn't measure the friction under that loading.
 
 Rider Applied Torque
 ~~~~~~~~~~~~~~~~~~~~

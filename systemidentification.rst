@@ -18,9 +18,6 @@ System Identification
 Literature
 ==========
 
-I've located very few explicit examples of identifying the vehicle and/or the
-bicycle
-
 Eaton
 -----
 
@@ -67,11 +64,61 @@ motorcycle transfer function.
 
 Eaton is one of very few who have identified the rider controller
 
-.. todo:: read the third Eaton paper
+.. todo:: .3 sec time delay
 
-.. todo:: find the name of the michigan institute
 
 .. todo:: show block diagram of his controller
+
+van Lunteren and Stassen
+------------------------
+
+At Delft University of Technology in the Man-Machines research group, van
+Lunteren and Stassen began work in 1962 to identify the human controller for a
+normal population of subjects and report on their work into the early 70's
+([Lunteren1967]_, [Lunteren1969]_, [Stassen1969]_, [Lunteren1970]_,
+[Lunteren1970a]_, [Lunteren1970b]_, [Luntern1973]_, [Stassen1973]_). They chose
+a bicycle simulator because it was a common task that average people could do
+and their studies could focus on a wider population of individuals as compared
+to most previous work based around trained pilots. The bicycle simulator did
+not capture all of the essential dynamics of a real bicycle as it's operation
+was based on only the simplified roll dynamics of Whipple's model, but
+nonetheless offered a similarly complex roll stabilization control task. The
+simulator is controlled by both the steering angle and the rider's lean angle,
+both of which are questionable as realistic inputs.
+
+They assumed the rider's control actions can be described with PID control with
+time delays and mention that this controller was chosen instead of a McRuer
+style controller primarily due to limitations of their computational equipment.
+The error in the roll angle is fed into two PID controllers each with a time
+delay: one to output the corrective steer angle and the other to output the
+corrective lean angle. They introduce a remnant term for each control action
+and the external disturbances to the bicycle model. The identification goal was
+to find the six gains and two times delays which for the controller. The
+preferred method was a real time estimation routine due to the speed of
+computations and reasonable agreement their correlation method. The results
+indicated that no integral control was used (i.e. only position and rate
+feedback). They could identify a bandwidth of about 2 Hz and noticed that when
+the system was undisturbed their was a 0.5 Hz dominant frequency in the rider's
+control actions. The rate feedback was more dominant in generating the lean
+control input than it was for the steer control input. Also, the found the time
+delay for lean to be larger than the steer time delay and postulate that the
+steer action is a result of cerebral activity while the lean is more of reflex
+pattern. Another finding resulting from analysis of Nyquist plots of different
+rider's identified control actions showed that riders chose different control
+actions. They attribute this to the roll stabilization being a sub-critical
+task (i.e. a more difficult task may force different riders to adopt similar
+control behavior). They also investigated the effects of drugs, such as
+alcohol, to the riders control behavior. They found correlations from drug dose
+to time delays and the error in the control actions. Their later studies
+introduced better identification methods and they found discrepancies in the
+identified time delays of the later work as compared to the newer work. For
+example, the steer control time delay was originally found to be around 1.5
+seconds and the improved methods found the delay to be around 0.7 seconds, and
+the discrepancy attributed to the bias due to remnant in their early work. They
+also introduced a visual tracking task into the simulator but had difficulties
+in getting reliable transfer function identification as compared to the roll
+stabilization transfer functions which improved in quality due with longer
+trials of 35 minutes.
 
 Vehicle
 -------
@@ -80,17 +127,19 @@ Vehicle
    He may have done some id like work.
 [Biral2003]_
    Motorcycle transfer functions.
-[Kooijman2006]_
+
+Kooijman
+--------
+
+[Kooijman2006]_, [Kooijman2008]_
    Simple ID of a riderless bicycle.
 
-Human
+Lange
 -----
 
-[Lunteren]_
-   Online id routines in the 
 [Lange2011]_
 
-[Mammar]_
+Doria2011
 
 Experimental Design
 ===================

@@ -972,6 +972,8 @@ Motorcycle Experiments
    Measured motorcycle steer torque in steady turns and slalom maneuvers. The
    torques in the two time history graphs are less than 20 Nm.
 
+.. todo:: cite James, he seems to have measured steer torque
+
 Bicycle Models
 ~~~~~~~~~~~~~~
 

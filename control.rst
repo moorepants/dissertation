@@ -705,6 +705,8 @@ van Lunteren and Stassen's work.
 
 .. todo:: Add Eaton1973
 
+.. todo:: Add Aoki1979
+
 Weir and Zellner
 ~~~~~~~~~~~~~~~~
 

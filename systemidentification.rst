@@ -301,40 +301,102 @@ system identification with the lateral pertubation runs and did not work with
 the lane change data. The lane changes were especially difficult on the
 treadmill.
 
+We chose three riders of similar age (28-29, 32, 34) (J, L, C), mass () and
+bicycling ability although Luke has more technical mountatin biking skill. Each
+rider's inertial properties were computed with Yeadon's method.
+
+Enviroments
+-----------
+
 Treadmill
----------
-
-Dr. James Jones at the vetinary school at here at Davis graciously let us use
-their horse treadmill during their downtime. The treadmill is 1 meter wider and
-5 meters long and has a speed range from 0.5 m/s to 17 m/s. This was only a
-third of the width treadmill at Vrije Univertiet, but after some practice runs
-we felt that narrow lane changes and the lateral perturbations could be
-successfully performed. We wanted to use the treadmill because the environment
-was very controllable, in particular fixed speeds,  and very long runs at
-constant speed could be done.
-
+   Dr. James Jones at the vetinary school at here at Davis graciously let us use
+   their horse treadmill during their downtime. The treadmill is 1 meter wider and
+   5 meters long and has a speed range from 0.5 m/s to 17 m/s. This was only a
+   third of the width treadmill at Vrije Univertiet, but after some practice runs
+   we felt that narrow lane changes and the lateral perturbations could be
+   successfully performed. We wanted to use the treadmill because the environment
+   was very controllable, in particular fixed speeds,  and very long runs at
+   constant speed could be done.
 Pavilion
---------
-
-The bicycle had all of the data collection equipment on board and is suitable
-for data collection non fixed enviroments. After lengthy beucratic negotiations
-we were able to make use of the UCD pavilion floor for the experiments. The
-floor was made of a stiff rubber and provided a rectangular wind free space of
-about 100' by 180'.
+   The bicycle had all of the data collection equipment on board and is suitable
+   for data collection non fixed enviroments. After lengthy beucratic negotiations
+   we were able to make use of the UCD pavilion floor for the experiments. The
+   floor was made of a stiff rubber and provided a rectangular wind free space of
+   about 100' by 180'. We road around the perimeter to build up speed and did our
+   manuevers on a straight section about 100 feet long. We were not able to travel
+   at speeds higher than about 7 m/s as tires would slip in the final turn into
+   the test section. This in door enviroment provided a wind free area.
 
 .. todo:: find out what the floor was made of
+
+.. todo:: Add some images of the treadmill and pavilion floor
 
 Manuevers
 ---------
 
-* Balance
-* Track Line
-* Disturbance
-* Blind
-* Riders
+System Test
+   This is a generic label for data collected during various system tests.
+Balance
+   The rider is instructed to simply balance the bicycle and keep a relatively
+   straight heading. They were instructed to focus one some point in the far
+   distance. There was an open door infront of the treadmill which allowed the
+   rider to look to a point outside. In the pavilion, the rider looked into the
+   rafters of the builing or at the furthest wall. We may have given slightly
+   different instructions to the riders and at least one did not understand the
+   instructions exactly during some of the earlier runs, but nonetheless these
+   can be analyzed with a control model that only has the roll and heading
+   loops closed and maybe with only the roll loop closed. We had a line taped
+   to the pavilion floor during these runs that was still in the periphery of
+   the rider's vision. This may have affected their heading control.
+Balance With Disturbance
+   Same as 'Balance' except that a lateral force perturbation is applied just
+   under the seat of the bicycle. On the treadmill, we sample for 60 to 90
+   minutes with five to eleven pertubations per run. On the pavilion floor we
+   were able to apply two to four perturbations per run due to the length of
+   the track. In the early runs (< 204), the lateral force was applied only in
+   the negative direction and the perturber decided when to apply the
+   pertubations. For the later runs, we applied a random sequence of positive
+   and negative perturbations. On the treadmill, the rider signaled when they
+   felt stable and the perturbation was applied at a random time between 0 and
+   1 second based on a simple computer program. On the pavilion floor, we
+   simply applied the pertubations as soon as the rider felt stable so that we
+   could get in as many as possible during each run.
+Track Straight Line
+   The rider was instructed to focus on a straight line that is on the ground
+   and attempt to keep the front wheel on the line. The line of site from the
+   rider's eyes to the the line on the ground was esentially tangent the top of
+   the front wheel. In the pavilion the line could be seen up to 100 feet
+   ahead, so there was a little perphiral view of the line. On the treadmill,
+   there was from 0.5 to 1.5 meters of preview line available.
+Track Straight Line With Disturbance
+   Same as "Track Straight Line" except that a lateral perturbation force is
+   applied to the seat of the bicycle. This was done in the same fashion as
+   described in "Balance With Disturbance".
+Lane Change
+   The rider attempted to track a line in the same fashion as "Track Straight
+   Line" except that the line was a single lane change. On the pavilion floor,
+   the line was taped on the ground and the rider was instructed to do whatever
+   feels best to stay on the line. They can use full preview looking ahead,
+   focus on the front wheel and line, or a combination of both. We also tried
+   some lane changes on the treadmill but the lack of preview of the line made
+   it especially difficult. We were able to manage it by marking a count down
+   on the belt so that the rider new when the lane change would arrive. The
+   rider also new the direction of lane change before hand for all the
+   scenarios.
+Blind With Disturbance
+   We did a run or two for each rider on the pavilion floor with the rider's
+   eyes closed to attempt to compeletely open the heading loop.
+
+.. todo:: dimensions of the lane changes
 
 Whipple Model Validity
 ======================
+
+The first topic to examine is the validity of our open loop bicycle and rider
+biomechanic's models. We will need a realistic model to have any hope of
+identifying the human controller. During all of the experiments we
+fundamentally have one or two external inputs, the steer torque and the lateral
+perturbation. The outputs can be any number of the measured quantities.
 
 [Biral2003]_ and [Teerhuis2010]_ do a feed forward sim of their models with the
 measured steering torque.

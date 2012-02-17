@@ -34,11 +34,11 @@ whip.parameters = moorePar
 # set the initial conditions to match Meijaard2007
 speedNaught = 4.6
 rollRateNaught = 0.5
-pitchAngle = bicycle.pitch_from_roll_and_steer(0., 0., moorePar['rF'], moorePar['rR'],
-        moorePar['d1'], moorePar['d2'], moorePar['d3'])
+pitchAngle = bicycle.pitch_from_roll_and_steer(0., 0., moorePar['rf'],
+        moorePar['rr'], moorePar['d1'], moorePar['d2'], moorePar['d3'])
 # set up the simulation
 whip.initialConditions = np.array([0.0] * 8 + [rollRateNaught, -speedNaught /
-    moorePar['rR'], 0.0])
+    moorePar['rr'], 0.0])
 whip.initialConditions[whip.stateNames.index('q5')] = pitchAngle
 
 # integration settings
@@ -51,7 +51,7 @@ whip.simulate()
 
 # plot figure 4 from Meijaard2007 using my model
 rollRate = whip.get_sim_output('u4')
-speed = -whip.get_sim_output('u6') * whip.parameters['rR']
+speed = -whip.get_sim_output('u6') * whip.parameters['rr']
 steerRate = whip.get_sim_output('u7')
 time = whip.simResults['t']
 newFig = bicycle.meijaard_figure_four(time, rollRate, steerRate, speed)

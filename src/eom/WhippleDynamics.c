@@ -1,5 +1,5 @@
 /* The name of this program is WhippleDynamics.c */
-/* Created by Autolev 4.1 on Tue Dec 13 23:17:55 2011 */
+/* Created by Autolev 4.1 on Fri Feb 17 10:44:49 2012 */
 
 #include <ctype.h> 
 #include <math.h>  

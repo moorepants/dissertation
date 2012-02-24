@@ -78,7 +78,7 @@ Unfortunately the word "model" will be used in varying contexts and with
 different meanings throughout this dissertation. I will attempt to be precise
 with my wording. For this chapter, I consider a dynamic model, such as the
 *Whipple Bicycle Model*, to be the equivalent to another dynamic model if at
-least the minimal set of equation of motions are the same (i.e. give the same
+least the minimal set of equations of motions are the same (i.e. give the same
 result when evaluated at a particular state). This implies that the Whipple
 Bicycle Model linearized about the nominal configuration is a different model
 than the non-linear *Whipple Bicycle Model*. I will try to be explicit when
@@ -112,7 +112,7 @@ reference frame. The *nominal configuration* is defined as the configuration
 when the steering angle is zero and the bicycle is upright with respect to
 gravity and the ground plane. The parameters presented in [Meijaard2007]_ are
 not necessarily the best choice of parameters, especially when looking at the
-model from a non-linear perspective, as they not the simplest nor a minimal set
+model from a non-linear perspective, as they are not the simplest nor a minimal set
 of parameters. For example, the benchmark parameters can been reduced in number
 by making use of gyrostats, see [Sharp2008]_. Choosing a minimum, constant set
 of parameters can certainly reduce the complexity of the resulting non-linear

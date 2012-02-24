@@ -74,7 +74,7 @@ Whipple Model
 The lowest order model that has had some experimental validation
 [Kooijman2008]_, is able to predict speed dependent stability and includes a
 complete physical description of the four rigid bodies is typically referred to
-as the "Whipple Model". This is in honor of Francis J.  W. Whipple, the first
+as the "Whipple Model". This is in honor of Francis J. W. Whipple, the first
 author to publish a correct derivation of the linear equations of motion of
 this particular bicycle model [Whipple1899]_.  This model will be used as a
 basis for all further studies proposed herein. Many researchers over the past

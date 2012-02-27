@@ -2177,13 +2177,13 @@ Some recommendations for improvements are as follows:
 - Git rid of the VN-100 and replace with two analog rate gyros for yaw and roll. This
   would take away the time synchronization issue. The newer versions of the
   VN-100 offer more capabilities including synchronization signals, so that could
-  be looked into, but overall it is still a poor (and expensive) choice for the
-  system this application.
+  be looked into, but overall it is still a poor (and expensive) choice for
+  this application.
 - Add some gearing to the roll angle measurement for better resolution. And
   develop a more accurate calibration scheme. Perhaps by making use of the
   on-board accelerometers.
 - Do away with the torque limiter. Another solution for safeguarding the sensor
-  and rider for failure is needed.
+  and rider in case of failure is needed.
 
 .. rubric:: Footnotes
 

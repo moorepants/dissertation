@@ -56,7 +56,7 @@
 <span id="davisbicycle"></span><h1>Davis Instrumented Bicycle<a class="headerlink" href="#davis-instrumented-bicycle" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated February 07, 2012 at 17:57:04 PST).
+<p class="last">This document is a draft which is updated regularly (Last updated February 29, 2012 at 11:33:39 PST).
 Once I submit if for my doctoral degree at UC Davis, it will be done. So for
 now use at your own risk. The information may or may not be correct.
 Reviews, comments and suggestions are welcome.</p>
@@ -222,7 +222,7 @@ the speed of the treadmill. Some sort of feedback control would alleviate the
 difficulties, but we made due. The exposed wires from the hub motor are also
 easily susceptible to damage. The bicycle fell over once, damaged the wires and
 shorted the hall effects sensors in the hub. I spent a couple of weeks
-repairing it <a class="footnote-reference" href="#id82" id="id1">[1]</a>. Overall, the motor met our needs for constant speed
+repairing it <a class="footnote-reference" href="#id83" id="id1">[1]</a>. Overall, the motor met our needs for constant speed
 propulsion and the single battery would last an entire day of experimentation.</p>
 </div>
 <div class="section" id="rider-harnesses">
@@ -440,7 +440,7 @@ and/or location estimations.</dd>
 </dl>
 <p>Many of these systems were within our budget range so we scouted various
 companies (MemSense, Navionex, MotionNode, MicroPilot, Crossbow, VectorNav, Ch
-Robotics, ..) to see what was offered <a class="footnote-reference" href="#id85" id="id17">[2]</a>. We ended up choosing the VN-100
+Robotics, ..) to see what was offered <a class="footnote-reference" href="#id86" id="id17">[2]</a>. We ended up choosing the VN-100
 development board from a relatively new company called <cite>VectorNav
 &lt;http://www.vectornav.com&gt;</cite> due to price, on board orientation calculations and
 the potential ease of collecting data via a typical RS-232 serial interface. My
@@ -486,7 +486,7 @@ On left is photo of the roll angle trailer with it&#8217;s components annotated.
 The right photo shows it attached to the instrumented bicycle.</div>
 </div>
 <p>The potentiometer effectively measures the angle between the yoke and the main
-trailer frame <a class="footnote-reference" href="#id86" id="id18">[3]</a>. For a direct measurement of the true roll angle of the bicycle,
+trailer frame <a class="footnote-reference" href="#id87" id="id18">[3]</a>. For a direct measurement of the true roll angle of the bicycle,
 the trailer roll axis must lie in the ground plane, but this is physically
 impossible so it is preferable for the axis to be as close to the ground as
 possible. Figure <em class="xref std std-ref">figTrailerAngle</em> shows how the yoke pitch angle and the
@@ -517,7 +517,7 @@ additional single orientation and rate measurement is needed to measure the
 front frame motion. I used a similar design and setup as the Delft instrumented
 bicycle: a potentiometer for relative steering angle measurement and a single
 axis rate gyro for the body fixed angular rate of the front frame about the
-steer axis <a class="footnote-reference" href="#id87" id="id20">[4]</a>. I modified the design with some minor improvements such as better
+steer axis <a class="footnote-reference" href="#id88" id="id20">[4]</a>. I modified the design with some minor improvements such as better
 tension adjustability and switching to a screw mount potentiometer.</p>
 <div class="admonition-todo admonition" id="index-3">
 <p class="first admonition-title">Todo</p>
@@ -654,7 +654,7 @@ definitions that I&#8217;ve seen in some of the data. Check this out.</p>
 <h2>Kinetics<a class="headerlink" href="#kinetics" title="Permalink to this headline">¶</a></h2>
 <p>A human is able to use a multitude of contact forces and body movements to
 control the bicycle. The forces applied by the rider&#8217;s hands to the handlebars
-are the most obvious and most effective method of controlling the bicycle <a class="footnote-reference" href="#id88" id="id21">[5]</a>.
+are the most obvious and most effective method of controlling the bicycle <a class="footnote-reference" href="#id89" id="id21">[5]</a>.
 But the rider also can impart forces through the seat and the foot pegs. If the
 rider is controlling the bicycle without touching the handlebar, these would be
 the only locations of rider to bicycle contact. For a complete dynamic picture
@@ -679,7 +679,7 @@ impulsive forces to the handlebars to excite the weave mode. [Lange2011]
 discusses several methods of applying a pure roll torque to the bicycle
 including a mass swing, a mass slider, a rope, and lateral accelerating the
 ground. His designs are intended to apply an oscillatory roll torque to
-facilitate system identification in the frequency domain <a class="footnote-reference" href="#id92" id="id27">[6]</a>.</p>
+facilitate system identification in the frequency domain <a class="footnote-reference" href="#id93" id="id27">[6]</a>.</p>
 <p>We weren&#8217;t able to come up with a clever way of perturbing the system with a
 harmonic input and frankly I did not think a great deal about the perturbation
 methods, so I simply attached a 100 lb force load cell (Interface SSM-100)
@@ -874,6 +874,10 @@ modifies the device to eventually get more reliable readings. He also didn&#8217
 account for the inertial effects of the front frame. He had test subjects
 ride the bicycle around town so the data is difficult to interpret.</dd>
 </dl>
+<div class="admonition-todo admonition" id="index-7">
+<p class="first admonition-title">Todo</p>
+<p class="last">[Wilson-Jones1951] supposedly measures steer torque</p>
+</div>
 </div>
 <div class="section" id="motorcycle-experiments">
 <h4>Motorcycle Experiments<a class="headerlink" href="#motorcycle-experiments" title="Permalink to this headline">¶</a></h4>
@@ -973,6 +977,10 @@ than 40 Nm.</dd>
 <dd>Measured motorcycle steer torque in steady turns and slalom maneuvers. The
 torques in the two time history graphs are less than 20 Nm.</dd>
 </dl>
+<div class="admonition-todo admonition" id="index-8">
+<p class="first admonition-title">Todo</p>
+<p class="last">cite James, he seems to have measured steer torque</p>
+</div>
 </div>
 <div class="section" id="bicycle-models">
 <h4>Bicycle Models<a class="headerlink" href="#bicycle-models" title="Permalink to this headline">¶</a></h4>
@@ -1034,12 +1042,12 @@ torques in the range of -3 to 10 Nm for lateral accelerations from 0 to
 <dd>Their steer controller for Sharps four degree of freedom motorcycle model
 shows a -50 nm maximum steer torque for a commanded roll angle of 20 degrees.</dd>
 </dl>
-<div class="admonition-todo admonition" id="index-7">
+<div class="admonition-todo admonition" id="index-9">
 <p class="first admonition-title">Todo</p>
 <p class="last">talk about how noone accounts for the inertial affects related to teh
 position of the sensor</p>
 </div>
-<div class="admonition-todo admonition" id="index-8">
+<div class="admonition-todo admonition" id="index-10">
 <p class="first admonition-title">Todo</p>
 <p class="last">talk about how bearings may not remove all cross talk</p>
 </div>
@@ -1316,7 +1324,7 @@ torque anywhere but at the interface of the human&#8217;s hands and the front fr
 one must account for the inertial effects of the front frame. As far as I can
 tell, no one who has measured steer torque on a single track vehicle has
 accounted for these effects. There is a relationship from <span class="math">\(T_M\)</span> to
-<span class="math">\(T_\delta\)</span> that requires one to know, at a minimum <a class="footnote-reference" href="#id93" id="id73">[7]</a> the friction in
+<span class="math">\(T_\delta\)</span> that requires one to know, at a minimum <a class="footnote-reference" href="#id94" id="id74">[7]</a> the friction in
 the steer axis bearings above the torque sensor (this is potentially both
 viscous and coulomb) and the inertial characteristics of the front frame above
 the torque sensor.</p>
@@ -1395,7 +1403,7 @@ steer torque appears, so only the torques about the steer axis are examined.</p>
 \left(^N\dot{\bar{H}}^{G/g_o} + ^s\bar{r}^g_o \times m_G
 ^N\bar{a}^s\right) \cdot \hat{g}_3\]</div>
 <p>And <span class="math">\(T_\delta\)</span> can be solved for</p>
-<div class="admonition-todo admonition" id="index-9">
+<div class="admonition-todo admonition" id="index-11">
 <p class="first admonition-title">Todo</p>
 <p class="last">the following equation is giving errors in the latex document</p>
 </div>
@@ -1417,7 +1425,7 @@ w_{b2} c_\delta \right] + \\
 d_{s3} w_{b2} w_{b3} - d_{s3} \dot{w}_{b1} + a_{v2} \right]
 c_\delta + \\
 &amp; T_U + T_M\end{split}\]</div>
-<div class="admonition-todo admonition" id="index-10">
+<div class="admonition-todo admonition" id="index-12">
 <p class="first admonition-title">Todo</p>
 <p class="last">I can expand the H dot terms as factors of the 4 inertia components.
 This cleans it up a bit, but not sure if it helps explain it.</p>
@@ -1428,7 +1436,7 @@ and pitch angles are small.</p>
 <span class="eqno">(14)</span>\[T_{\delta} = T_M + T_U + (I_{G_{33}} + d^2 m_G) \dot{w}_{g3} +
 (I_{G_{31}} - d d_{s3} m_G) \dot{w}_{b1} + d d_{s1} m_G \dot{w}_{b3} +
 d m_G a_{v2}\]</div>
-<div class="admonition-todo admonition" id="index-11">
+<div class="admonition-todo admonition" id="index-13">
 <p class="first admonition-title">Todo</p>
 <p class="last">Say something qualitative about the additional torques.</p>
 </div>
@@ -1473,7 +1481,7 @@ that it is rigid with respect to the earth. The wheel was fixed from
 rotation relative to the fork. Two springs in series were attached to the
 handlebars.</div>
 </div>
-<div class="admonition-todo admonition" id="index-12">
+<div class="admonition-todo admonition" id="index-14">
 <p class="first admonition-title">Todo</p>
 <p class="last">video of the experiment</p>
 </div>
@@ -1497,17 +1505,17 @@ three trials. We found the average spring stiffness to be <span class="math">\(9
 N/m. The inertia of the handlebar, fork and front wheel about the steer axis,
 <span class="math">\(I_{HF}\)</span>, was computed based on the measurements described in Chapter
 <em class="xref std std-ref">physcialparameters</em> and found to be <span class="math">\(0.1297+/-0.0005\)</span> <span class="math">\(kg
-\cdot m^2\)</span> <a class="footnote-reference" href="#id96" id="id75">[8]</a>.</p>
+\cdot m^2\)</span> <a class="footnote-reference" href="#id97" id="id76">[8]</a>.</p>
 <p>The friction coefficients are found with a non-linear grey box identification
 based on the measured steer angle over 15 trials (runs 209-223) where the
 steering assembly was perturbed from equilibrium. The resulting viscous
 coefficient is <span class="math">\(c_B = 0.34 \pm 0.04\)</span> <span class="math">\(N \cdot m \cdot s^2\)</span> and the
 Coulomb coefficient is <span class="math">\(t_B = 0.15 \pm 0.05\)</span> <span class="math">\(N \cdot m\)</span>.</p>
-<div class="admonition-todo admonition" id="index-13">
+<div class="admonition-todo admonition" id="index-15">
 <p class="first admonition-title">Todo</p>
 <p class="last">Show example fit?</p>
 </div>
-<div class="admonition-todo admonition" id="index-14">
+<div class="admonition-todo admonition" id="index-16">
 <p class="first admonition-title">Todo</p>
 <p class="last">link to the source files and data</p>
 </div>
@@ -1545,12 +1553,17 @@ compute the lower bearing friction, but my fits were very poor. The results of
 finding the upper bearing and lower bearing friction are inconclusive. So the
 assumption that the upper friction is half of the total friction is used to
 compute the actual steer torque.</p>
-<div class="admonition-todo admonition" id="index-15">
+<div class="admonition-todo admonition" id="index-17">
 <p class="first admonition-title">Todo</p>
 <p class="last">This all makes me feel like the measured torque during the
 experiments is incorrect or that my individual measurement of the handlebar
 moment of inertia is wrong (but that would mean that the sum of the
 handlebar, fork and wheel inertia has to be right!)...uh</p>
+</div>
+<div class="admonition-todo admonition" id="index-18">
+<p class="first admonition-title">Todo</p>
+<p class="last">note that the bearing are under load when a rider is seated on the
+bicycle and that we didn&#8217;t measure the friction under that loading.</p>
 </div>
 </div>
 <div class="section" id="rider-applied-torque">
@@ -1572,6 +1585,10 @@ torque which is up to 2 Nm. And finally the last plot shows the difference
 in the measured torque and the rider applied torque. There are large
 differences, especially at the peaks.</div>
 </div>
+<div class="admonition-todo admonition" id="index-19">
+<p class="first admonition-title">Todo</p>
+<p class="last">second graph has wrong time scale</p>
+</div>
 </div>
 </div>
 <div class="section" id="strain-gauge-amplification">
@@ -1591,7 +1608,7 @@ changing the first stage analog amplifier resistor to 16.5k ohm for a
 <span class="math">\(\pm100\)</span> lbs range of the lateral force load cell. Cal Stone&#8217;s thesis,
 his research notes and the system electrical diagram give the details of the
 circuit designs.</p>
-<div class="admonition-todo admonition" id="index-16">
+<div class="admonition-todo admonition" id="index-20">
 <p class="first admonition-title">Todo</p>
 <p class="last">link to the electrical diagram</p>
 </div>
@@ -1625,7 +1642,7 @@ absolute roll angle with a digital level and recording the voltage output for a
 sweep of angles. I also took static measurements each day of experiments so
 that the roll angle could be computed from the accelerometer&#8217;s output in case
 the bias in the roll angle calibration was poor.</p>
-<div class="admonition-todo admonition" id="index-17">
+<div class="admonition-todo admonition" id="index-21">
 <p class="first admonition-title">Todo</p>
 <p class="last">take photo of roll angle calibration</p>
 </div>
@@ -1635,7 +1652,7 @@ given the average calibration supply voltage <span class="math">\(V_c\)</span> a
 intercept of the calibration curve relating voltage to angle the angle.
 Depending on the calibration, the angle could be the rotation angle of the
 potentiometer as in the case of the roll angle measurement or the actual steer
-angle in the case of the steer angle due to the gearing from the steer tube <a class="footnote-reference" href="#id97" id="id77">[9]</a>.</p>
+angle in the case of the steer angle due to the gearing from the steer tube <a class="footnote-reference" href="#id98" id="id78">[9]</a>.</p>
 <div class="math" id="equation-eqPotentiometerCalibration">
 <span class="eqno">(19)</span>\[\delta = \frac{V_c}{V_s} m V + b\]</div>
 </div>
@@ -1649,14 +1666,14 @@ output voltage of the sensor for zero acceleration or rate for a given supply
 voltage.</p>
 <div class="math">
 \[\dot{\delta}_m = m \left(V - \frac{V_s}{V_C} z\right)\]</div>
-<div class="admonition-todo admonition" id="index-18">
+<div class="admonition-todo admonition" id="index-22">
 <p class="first admonition-title">Todo</p>
 <p class="last">These only seem to ratiometric in the bias (i.e. the slope doesn&#8217;t
 change with respect to supply voltage change. This needs to be checked better.</p>
 </div>
 </div>
-<div class="section" id="id78">
-<h3>Wheel Rate<a class="headerlink" href="#id78" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id79">
+<h3>Wheel Rate<a class="headerlink" href="#id79" title="Permalink to this headline">¶</a></h3>
 <p>We measured rear wheel angular speed with the same technique used with the
 Delft instrumented bicycle. We mounted a small DC motor such that a knurled
 roller wheel attached to its shaft rolled against the rear tire. The voltage of
@@ -1755,8 +1772,8 @@ The load cell under a compressive static loading during the calibration
 procedure.</div>
 </div>
 </div>
-<div class="section" id="id79">
-<h3>Steer Torque<a class="headerlink" href="#id79" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id80">
+<h3>Steer Torque<a class="headerlink" href="#id80" title="Permalink to this headline">¶</a></h3>
 <p>The steer torque sensor was calibrated at the factory in tandem with the
 amplifier and Futek supplies a certifeid calibration document with the
 calibration data. The CSG-110 amplifier supplies constant 10 vdc to excite the
@@ -1831,11 +1848,11 @@ battery supplied 12+ V to the CSG-110, this would not be an issue.</p>
 </tr>
 </tbody>
 </table>
-<div class="admonition-todo admonition" id="index-19">
+<div class="admonition-todo admonition" id="index-23">
 <p class="first admonition-title">Todo</p>
 <p class="last">include a link to a copy of the calibration sheet</p>
 </div>
-<div class="admonition-todo admonition" id="index-20">
+<div class="admonition-todo admonition" id="index-24">
 <p class="first admonition-title">Todo</p>
 <p class="last">compute the slope and intercept</p>
 </div>
@@ -1851,8 +1868,8 @@ calibration for a particular run is with respect to the date up to and nearest
 the run date.</p>
 </div>
 </div>
-<div class="section" id="id80">
-<h2>Software<a class="headerlink" href="#id80" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id81">
+<h2>Software<a class="headerlink" href="#id81" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="data-acquisition">
 <h3>Data Acquisition<a class="headerlink" href="#data-acquisition" title="Permalink to this headline">¶</a></h3>
 <p>Both the VectorNav VN-100 and the NI USB-6218 were connected to a small ASUS
@@ -1959,7 +1976,7 @@ the floor at the beginning of the track and also launched under the bicycle on
 the treadmill. The bump launching is somewhat amusing and we had to construct a
 &#8220;bump catcher&#8221; so that the bump didn&#8217;t fly off the back of the treadmill and
 hurt anyone or anything.</p>
-<div class="admonition-todo admonition" id="index-21">
+<div class="admonition-todo admonition" id="index-25">
 <p class="first admonition-title">Todo</p>
 <p class="last">bump catcher video</p>
 </div>
@@ -2076,30 +2093,30 @@ solid connection.</li>
 <li>Git rid of the VN-100 and replace with two analog rate gyros for yaw and roll. This
 would take away the time synchronization issue. The newer versions of the
 VN-100 offer more capabilities including synchronization signals, so that could
-be looked into, but overall it is still a poor (and expensive) choice for the
-system this application.</li>
+be looked into, but overall it is still a poor (and expensive) choice for
+this application.</li>
 <li>Add some gearing to the roll angle measurement for better resolution. And
 develop a more accurate calibration scheme. Perhaps by making use of the
 on-board accelerometers.</li>
 <li>Do away with the torque limiter. Another solution for safeguarding the sensor
-and rider for failure is needed.</li>
+and rider in case of failure is needed.</li>
 </ul>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="id82" rules="none">
+<table class="docutils footnote" frame="void" id="id83" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>See <a href="#id83"><span class="problematic" id="id84">`</span></a>&lt;<a class="reference external" href="http://biosport.ucdavis.edu/blog/hub-motor-woes">http://biosport.ucdavis.edu/blog/hub-motor-woes</a>&gt;&#8217;_ for repair
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>See <a href="#id84"><span class="problematic" id="id85">`</span></a>&lt;<a class="reference external" href="http://biosport.ucdavis.edu/blog/hub-motor-woes">http://biosport.ucdavis.edu/blog/hub-motor-woes</a>&gt;&#8217;_ for repair
 details.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id85" rules="none">
+<table class="docutils footnote" frame="void" id="id86" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id17">[2]</a></td><td>See our selection spreadsheet at</td></tr>
 </tbody>
 </table>
 <p><a class="reference external" href="https://docs.google.com/spreadsheet/pub?hl=en_US&amp;hl=en_US&amp;key=0Asn6BMg-bB_EdFJKVXFfeEgyMnpwR0JXNVlOYjg0Q0E&amp;output=html.">https://docs.google.com/spreadsheet/pub?hl=en_US&amp;hl=en_US&amp;key=0Asn6BMg-bB_EdFJKVXFfeEgyMnpwR0JXNVlOYjg0Q0E&amp;output=html.</a></p>
-<table class="docutils footnote" frame="void" id="id86" rules="none">
+<table class="docutils footnote" frame="void" id="id87" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id18">[3]</a></td><td>As designed, the potentiometer measures exactly the angle between the
@@ -2112,7 +2129,7 @@ but a step down gearing would improve the resolution of the roll
 measurement.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id87" rules="none">
+<table class="docutils footnote" frame="void" id="id88" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id20">[4]</a></td><td>The Silicon Sensing rate gyros had to be purchased in bulk but they
@@ -2123,7 +2140,7 @@ saw any apreciable difference in the sensor quality as compare to the rate
 gyros on the VN-100 which can be purchased individually for less than $50.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id88" rules="none">
+<table class="docutils footnote" frame="void" id="id89" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id21">[5]</a></td><td>[Weir1972] shows that large rider lean angles are required relative to
@@ -2134,7 +2151,7 @@ experimentally shows that the steering angle magnitudes are much larger than
 other rider body movements.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id92" rules="none">
+<table class="docutils footnote" frame="void" id="id93" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id27">[6]</a></td><td>It slipped my mind to add a step up gear for the roll angle measurement,
@@ -2143,29 +2160,29 @@ Ideally, the potentiometer should rotate its full rotation for a desired
 roll angle range.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id93" rules="none">
+<table class="docutils footnote" frame="void" id="id94" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id73">[7]</a></td><td><p class="first">A sum of sines would be ideal, see [Lange2011] for some ideas
+<tr><td class="label"><a class="fn-backref" href="#id74">[7]</a></td><td><p class="first">A sum of sines would be ideal, see [Lange2011] for some ideas
 on other types of inputs. It has been shown that a sum of sines signal is
 not detectable by humans [McRuer1974].</p>
-<div class="admonition-todo last admonition" id="index-22">
+<div class="admonition-todo last admonition" id="index-26">
 <p class="first admonition-title">Todo</p>
 <p class="last">check the McRuer reference</p>
 </div>
 </td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id96" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id75">[8]</a></td><td>The elasticity of the steer column may also be a factor.</td></tr>
-</tbody>
-</table>
 <table class="docutils footnote" frame="void" id="id97" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id77">[9]</a></td><td>If <span class="math">\(I_HF\)</span> is left as a free parameter, along with <span class="math">\(c_B\)</span> and
+<tr><td class="label"><a class="fn-backref" href="#id76">[8]</a></td><td>The elasticity of the steer column may also be a factor.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id98" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id78">[9]</a></td><td>If <span class="math">\(I_HF\)</span> is left as a free parameter, along with <span class="math">\(c_B\)</span> and
 <span class="math">\(t_B\)</span>, the mean of <span class="math">\(I_HF\)</span> over 15 trials is identified to be
 <span class="math">\(0.1269 \pm 0.0008\)</span>. This good agreement lends confidence to the
 methods in Chapter <a class="reference internal" href="physicalparameters.html#physicalparameters"><em>Physical Parameters</em></a>.</td></tr>

@@ -13,8 +13,8 @@ On the road to a higher degree, there are always many people who assist in the p
 from ones professors to librarions, but there are always some very special folks to thank.  
 One of these is [Dr.] Lamont Hubbard.   He has been my adviser since I took his
 multi-body dynamics course during the Winter of 2006.   Along the way he has 
-always been there for me academically in every way and has also become a great friend
-and we've worked together on many projects both inside and out of our academic lives.
+always been there for me academically in every way.   We've become great friends
+and have worked together on many projects both inside and out of our academic lives.
 
 .. todo:: Add many other acknowledgements.
 This material is partially based upon work supported by the National Science

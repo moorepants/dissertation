@@ -3,10 +3,10 @@ Introduction
 ============
 
 The bicycle is indeed a curious contraption. There are probably more bicycles
-in the world that any other kind of vehicle. The bicycle has a notable history
+in the world than any other kind of vehicle. The bicycle has a notable history
 and helped pave the way for the industrial revolution, the automobile, the
 airplane and some say the emancipation of western women. But it is
-often an overlooked item in this day an age, especially in the United States of
+often an overlooked item in this day and age, especially in the United States of
 America, where the automobile is the dominant form of transportation and the
 bicycle is mostly considered a child's toy. But in other parts of the world
 the bicycle can be viewed as a person's stepping stone to progress or the

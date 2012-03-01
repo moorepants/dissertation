@@ -7,17 +7,16 @@ Acknowledgements
    This document is a draft which is updated regularly (Last updated |today|).
    Once I submit if for my doctoral degree at UC Davis, it will be done. So for
    now use at your own risk. The information may or may not be correct.
-   Reviews, comments and suggestions are welcome.
+   Reviews, comments and suggestions are welcome and appreciated.
 
-There are an unbelievable amount of people who help one along on the road to a
-higher degree from yoru professors to the librarians but there are always some
-special folks to thank. Mont Hubbard has been my adviser since I took his
-multi-body dynamics course in the Winter of 2006. Along the way he has not only
-always been there for me academically in every way, but become a great friend
-and we've worked together on many projects together outside our academic lives.
+On the road to a higher degree, there are always many people who assist in the process,
+from ones professors to librarions, but there are always some very special folks to thank.  
+One of these is [Dr.] Lamont Hubbard.   He has been my adviser since I took his
+multi-body dynamics course during the Winter of 2006.   Along the way he has 
+always been there for me academically in every way and has also become a great friend
+and we've worked together on many projects both inside and out of our academic lives.
 
 .. todo:: Add many other acknowledgements.
-
 This material is partially based upon work supported by the National Science
 Foundation under Grant No. 0928339. Any opinions, findings, and conclusions or
 recommendations expressed in this material are those of the author(s) and do

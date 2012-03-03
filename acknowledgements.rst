@@ -10,7 +10,7 @@ Acknowledgements
    Reviews, comments and suggestions are welcome and appreciated.
 
 On the road to a higher degree, there are always many people who assist in the process,
-from ones professors to librarions, but there are always some very special folks to thank.  
+from one's professors to librarians, but there are always some very special folks to thank.  
 One of these is [Dr.] Lamont Hubbard.   He has been my adviser since I took his
 multi-body dynamics course during the Winter of 2006.   Along the way he has 
 always been there for me academically in every way.   We've become great friends

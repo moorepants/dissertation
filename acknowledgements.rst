@@ -9,14 +9,16 @@ Acknowledgements
    now use at your own risk. The information may or may not be correct.
    Reviews, comments and suggestions are welcome and appreciated.
 
-On the road to a higher degree, there are always many people who assist in the process,
-from one's professors to librarians, but there are always some very special folks to thank.  
-One of these is [Dr.] Lamont Hubbard.   He has been my adviser since I took his
-multi-body dynamics course during the Winter of 2006.   Along the way he has 
-always been there for me academically in every way.   We've become great friends
-and have worked together on many projects both inside and out of our academic lives.
+On the road to a higher degree, there are always many people who assist in the
+process, from one's professors to librarians, but there are always some very
+special folks to thank. One of these is Mont Hubbard. He has been my adviser
+since I took his multi-body dynamics course during the Winter of 2006.  Along
+the way he has always been there for me academically in every way.  We've
+become great friends and have worked together on many projects both inside and
+out of our academic lives.
 
 .. todo:: Add many other acknowledgements.
+
 This material is partially based upon work supported by the National Science
 Foundation under Grant No. 0928339. Any opinions, findings, and conclusions or
 recommendations expressed in this material are those of the author(s) and do

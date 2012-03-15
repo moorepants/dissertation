@@ -8,7 +8,7 @@ pathToParameters = '/media/Data/Documents/School/UC Davis/Bicycle Mechanics/Bicy
 
 # load the rigid bicycle and seat Luke
 rigidWithRider = bp.Bicycle('Rigidcl', forceRawCalc=True, pathToData=pathToParameters)
-rigidWithRider.add_rider('Luke', reCalc=True)
+rigidWithRider.add_rider('Charlie', reCalc=True)
 h = rigidWithRider.human
 
 # find the inertia of the humans without arms, this is with respect to the

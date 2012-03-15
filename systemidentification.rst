@@ -4,6 +4,13 @@
 System Identification
 =====================
 
+.. warning::
+
+   This document is a draft which is updated regularly (Last updated |today|).
+   Once I submit if for my doctoral degree at UC Davis, it will be done. So for
+   now use at your own risk. The information may or may not be correct.
+   Reviews, comments and suggestions are welcome.
+
 * Introduction and review
 * Model fitting
 * Control parameter estimation
@@ -297,7 +304,7 @@ repeating some of the experiments from Chapters :ref:`delftbicycle` and
 steer torque. We also tried out a single lane change manuever because we'd been
 using a lane change as our objective criteria in our simulations [Hess2012]_.
 It turned out that we were able to get reasonable results with preliminary
-system identification with the lateral pertubation runs and did not work with
+system identification with the lateral perturbation runs and did not pursue
 the lane change data. The lane changes were especially difficult on the
 treadmill.
 
@@ -305,8 +312,8 @@ We chose three riders of similar age (28-29, 32, 34) (J, L, C), mass () and
 bicycling ability although Luke has more technical mountatin biking skill. Each
 rider's inertial properties were computed with Yeadon's method.
 
-Enviroments
------------
+Environments
+------------
 
 Treadmill
    Dr. James Jones at the vetinary school at here at Davis graciously let us use
@@ -385,18 +392,315 @@ Lane Change
    scenarios.
 Blind With Disturbance
    We did a run or two for each rider on the pavilion floor with the rider's
-   eyes closed to attempt to compeletely open the heading loop.
+   eyes closed to attempt to completely open the heading loop.
 
 .. todo:: dimensions of the lane changes
 
-Whipple Model Validity
+Data
+====
+
+The experimental data was collected on seven different days. The first few days
+were mostly trials to test out the equipment, procedures and different
+maneuvers. The data from the trial days is valid data and we ended up using it
+in our analysis.
+
+February 4 2011 Runs 103-109
+   First trials on the treadmill to test things out. Only Jason rode. Bike fell
+   over, broke and we had to cut it short.
+February 28, 2011 Run 115-170
+   First trials in the at the pavilion. Jason rode. Tried lane changes, track
+   straight line and track straight line with disturbance.
+March 9, 2011 Runs 180-204
+   Second go at the treadmill, still just testing out things. Jason rode. Tried
+   track and balance with disturbance and some lane changes. Did the highest
+   speed during any trials 9 m/s.
+August 30, 2011 Runs 235-291
+   Jason and Luke rode and performed balance and tracking tasks with and
+   without perturbations at three speeds. On the treadmill.
+September 6, 2011 Runs 295-318
+   Charlie on the treadmill. Did balance and tracking with and without
+   perturbations.
+September 9, 2011 Runs 325-536
+   Luke, Charlie and Jason on the Pavilion floor for balance and tracking with
+   and without perturbations. Most of Luke and Charlie's runs are corrupt due
+   to the time synchronization issues.
+September 21, 2011 Runs 538-706
+   Luke and Charlie repeated the runs from September 9th. We added a couple of
+   blind runs for each of them.
+
+We recorded a large set of meta data for each run to help with parsing during
+analyses. We also video recorded all of the runs (minus a few video mishaps).
+I coded each run based on the notes, data quality and viewing the video for
+potential or definite corrupted data.
+
+Corrupt
+   If the data is completely unusable due to time synchronization issues or
+   other then this is set to true.
+Warning
+   Runs with a warning flag are questionable and potentially not usable.
+Knee
+   The rider's knees would sometimes de-clip from the frame during a
+   perturbation. This potentially invalidates the rigid rider assumption. An
+   array of 15 boolean values are stored for each run and each true value
+   represents a perturbation where a knee came off.
+Handlebar
+   On the treadmill the bicycle handlebars occasionally connected with the side
+   railings. Each perturbation during the run which this happen was recorded.
+Trailer
+   On the treadmill the roll trailer occasionally connected with the side of
+   the treadmill. Each perturbation during the run which this happened was
+   recorded.
+
+.. _figDataBarPlots:
+
+.. figure:: figures/systemidentification/raw-data-bar-plot.*
+   :width: 7in
+
+   figDataBarPlot
+
+   Four bar charts showing the number of runs that are potentially usable for
+   model identification. These include runs from the treadmill and pavilion,
+   one of the four primary maneuvers, and were not corrupt.
+
+.. _figTreadmillTimeHistory:
+
+.. figure:: figures/systemidentification/time-history-treadmill.*
+   :width: 7in
+
+   figTreadmillTimeHistory
+
+   The time histories of the computed signals for a typical treadmill run after
+   processing and filtering. Only a portion of the 90 second run is shown for
+   clarity.
+
+.. _figPavilionTimeHistory:
+
+.. figure:: figures/systemidentification/time-history-pavilion.*
+
+   figPavilionTimeHistory
+
+   The time histories of the computed signals for a typical pavilion run after
+   processing and filtering.
+
+System Identification
+=====================
+
+The primary goal in the analyses of the data is to identify the human control
+system. I will start by limiting the search with the control structure
+described in [Hess2012]_ and in Chapter :ref:`control`. We've shown that this
+control structure is robust for a range of speeds and lends itself to the
+dictates of the crossover model and thus common human operator modeling. But
+regardless of the control structure used we need to be confident that the plant
+(i.e. the bicycle) is well described by our choice of bicycle model. There is
+actually very little experimental validation of the passive dynamics of the
+bicycle and rider biomechanics and taking the various theorectical models for
+granted is potentially dangerous and will inevitably result in poor estimations
+of the controller. There is good reason to question some of assumptions such as
+knife, no side slip wheels. Using Eaton's [Eaton1973]_ lead, I will first attempt to
+identify the bicycle model and then proceed to the onto the controller.
+Preliminary attempts at identifying the controller with the Whipple model in
+place as the plant have underestimated the steer torque needed for a given
+trajectory and point to the need for a more in depth look at the validity of
+our bicycle models.
+
+Bicycle Model Validity
 ======================
 
 The first topic to examine is the validity of our open loop bicycle and rider
-biomechanic's models. We will need a realistic model to have any hope of
+biomechanic models. We will need a realistic model to have any hope of
 identifying the human controller. During all of the experiments we
-fundamentally have one or two external inputs, the steer torque and the lateral
-perturbation. The outputs can be any number of the measured quantities.
+fundamentally have one or two external or exogneous inputs: the steer torque
+and the lateral force. Both inputs are generated from manually control, the
+first from the rider nd the second from the person applying the pulsive
+perturbation. The outputs can be any subset of the measured kinematical
+variables. The problem can then be formulated as such: given the inputs and
+outputs of the system and some system structure, what model gives the best
+prediction of the output given the measured input. This a classic system
+identification problem and we will treat it as such.
+
+For this analysis, we limit our inputs to steer torque and lateral force and
+our outputs which are equal to the states as roll angle, steer angle, roll rate
+and steer rate. This ideal fourth order system can be described by the
+following continuous state space description.
+
+.. math::
+
+   \dot{x}(t) = \mathbf{F}(\theta)x(t) + \mathbf{G}(\theta)u(t)\\
+
+   \begin{bmatrix}
+     \dot{\phi} \\
+     \dot{\delta} \\
+     \ddot{\phi} \\
+     \ddot{\delta}
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+     0 & 0 & a_{\dot{\phi}\phi} & 0\\
+     0 & 0 & 0 & a_{\dot{\delta}\delta}\\
+     a_{\ddot{\phi}\phi} & a_{\ddot{\phi}\delta} &
+     a_{\ddot{\phi}\dot{\phi}} & a_{\ddot{\phi}\dot{\delta}}\\
+     a_{\ddot{\delta}\phi} & a_{\ddot{\delta}\delta} &
+     a_{\ddot{\delta}\dot{\phi}} & a_{\ddot{\delta}\dot{\delta}}
+   \end{bmatrix}
+   \begin{bmatrix}
+     \phi \\
+     \delta \\
+     \dot{\phi} \\
+     \dot{\delta}
+   \end{bmatrix}
+   +
+   \begin{bmatrix}
+     0 & 0 \\
+     0 & 0\\
+     b_{\ddot{\phi}T_\delta} & b_{\ddot{\phi}F_{c_l}}\\
+     b_{\ddot{\delta}T_\delta} & b_{\ddot{\delta}F_{c_l}}
+   \end{bmatrix}
+   \begin{bmatrix}
+     T_\delta\\
+     F_{c_l}
+   \end{bmatrix}
+
+   \eta(t) & = \mathbf{H}x(t)\\
+
+   \begin{bmatrix}
+     \phi \\
+     \delta \\
+     \dot{\phi} \\
+     \dot{\delta}
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+      1 & 0 & 0 & 0 \\
+      0 & 1 & 0 & 0 \\
+      0 & 0 & 1 & 0 \\
+      0 & 0 & 0 & 1
+   \end{bmatrix}
+   \begin{bmatrix}
+     \phi \\
+     \delta \\
+     \dot{\phi} \\
+     \dot{\delta}
+   \end{bmatrix}
+
+Assuming that this model structure can adequately capture the dynamics of
+interest in the bicycle/rider system, our goal is to accurately identify the
+unknown parameters :math:`\theta` which are made up of all or a subset of the
+unspecified entries in the :math:`\mathbf{F}` and :math:`\mathbf{G}` matrices.
+This continuous formulation is not easily used with noisy discrete data and the
+following difference equation can be assumed if we sample at :math:`t=kT`,
+:math:`k=1,2,\cdots` and that the values are constant over the sample period
+(i.e. zero order hold).
+
+.. math::
+
+   x(kT + T) & = \mathbf{A}(\theta)x(kT) + \mathbf{B}(\theta)u(kT) + w(kT)
+
+   y(kT) & = \mathbf{C}(\theta)x(kT) + v(kT)
+
+Where :math:`w` is the process noise which we assume is zero and :math:`v` is
+the measurement noise, which is assumed to be white and Gaussian with zero mean
+and known variance.Where :math:`w` is the process noise and :math:`v` is the measurement noise,
+both of which are assume to be white with zero mean and known covariances. This
+can finally be transformed by making use of the Kalman filter to get the
+optimal estimate of the states :math:`\hat{x}`
+
+.. math::
+
+   \hat{x}(kT + T, \theta) & = \mathbf{A}(\theta)\hat{x}(kT) +
+   \mathbf{B}(\theta)u(kT) + \mathbf{K}(\theta)e(kT)\\
+
+   y(kT) & = \mathbf{C}(\theta)\hat{x}(kT) + e(kT)
+
+where :math:`\mathbf{K}` is the Kalman gain matrix which is directly
+parameterized by \theta. This equation is called the directly parameterized
+innovations form and will be used in the identification process. The
+:math:`\mathbf{A}` and :math:`\mathbf{B}` matrices are related to
+:math:`\mathbf{F}` and :math:`\mathbf{G}` by
+
+.. math::
+
+   \mathbf{A}(\theta) = e^{\mathbf{F}(\theta)T}
+
+   \mathbf{B}(\theta) = \int_{\tau=0}^T e^{\mathbf{F}(\theta)\tau} \mathbf{G}(\theta) d\tau
+
+The predictor can be written as follows
+
+.. math::
+
+   \hat{y}(t|\theta) = \mathbf{C}(\theta) \left[qI - \mathbf{A}(\theta) +
+   \mathbf{K}(\theta) \right]^{-1} \left[\mathbf{B}(\theta) u(t) +
+   \mathbf{K}(\theta)y(t) \right]
+
+:math:`Y_N` is an :math:`pN x 1` vector
+
+.. math::
+
+   \left[y_1(1) \ldots y_1(N) \ldots y_p(1) \ldots y_p(N) \right]^T
+
+where :math:`p` are the number of outputs and :math:`N` is the number of samples.
+:math:`\hat{Y}_N(\theta)` is then the one step ahead prediction of :math:`Y_N`
+given :math:`y(s)` and :math:`u(s)` where :math:`s \leq t - 1`
+
+.. math::
+
+   \left[\hat{y}_1(1) \ldots \hat{y}_1(N) \ldots \hat{y}_p(1) \ldots \hat{y}_p(N) \right]^T
+
+The cost function is then the magnitude of the squares of the difference of
+:math:`Y_N` and :math:`\hat{Y}_N(\theta)`.
+
+.. math::
+
+   V_N(\theta) = \frac{1}{pN}|Y_N - \hat{Y}_N(\theta)|^2
+
+The value of :math:`\theta` which minimizes cost function is the best
+prediction
+
+.. math::
+
+   \hat{\theta}_N = \underset{x}{\operatorname{argmax}} V_N(\theta, Z^N)
+
+We made use of the Matlab System Identification Toolbox for the identification of
+the parameters :math:`\theta` in each run of this output error model structure.
+
+I further processed all of the signals that were generally symmetric about zero
+by subtracting the means. For some of the pavilion runs, this may actually
+introduce a small bias, especially in the roll angle.
+
+.. todo:: I should probably make use of the static measurements I did each day
+   to get a better idea of the roll angle bias.
+
+It turns out that finding a model than which meets the criterion isn't too
+difficult when the output error form is considered (:math:`K=0`). This model
+may be able to explain the data well, but the parameter estimation could be
+poor. Global minima in the search routine are quickly found when the number of
+parameters are 10-14. When the :math:`\mathbf{K}` matrix is added the number of
+unknown parameters increases by 16 and the global minima becomes more difficult
+to find, but if found the parameters identification seems to be a better and
+more repeatable estimate across runs.
+
+Figure \ref{fig:exampleFit} shows the example input and output data for a
+single run with both steer torque and lateral force as inputs. Notice that the
+identified model predicts the trajecotry extremely well and similar results are
+found for the majority of the runs. The Whipple model predicts the trajectory
+directions but the magnitudes are large, meaning that for a given trajectory,
+the Whipple model requires less torque than what was measured. The Whipple
+model with the arm inertial effects does a better job than the Whipple model,
+but still has some magnitude differences.
+
+.. todo:: Compare the fit from a k=0 fit and one without, note how we aren't
+   getting to the global minima
+
+\begin{figure}
+	\includegraphics{figures/example-fit.pdf}
+	\caption{The example results for the identification of a single run. The
+	experimentally measured steer torque and lateral force are shown in the top
+	two graphs. All of the signals were filtered with a 2nd order 15 hertz low
+	pass Butterworth filter. The remaining four graphs show the simulation
+	results for the Whipple model (W), Whipple model with the arm inertia (A),
+	and the identified model for that run (I) plotted with the measured data (M).
+	The percentages give the percent of variance explained by the model.}
+	\label{fig:exampleFit}
+\end{figure}
 
 [Biral2003]_ and [Teerhuis2010]_ do a feed forward sim of their models with the
 measured steering torque.

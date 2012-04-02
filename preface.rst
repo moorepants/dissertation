@@ -46,8 +46,8 @@ Reproducibility
 
 My intention is provide enough information in the form of data, computer code,
 and writing, that others will have a relatively easy time reproducing my work.
-A cornerstone of science is  that theoretically  every result presented should be
- reproducible. The ability of research to be reproducible is
+A cornerstone of science is  that  every result presented should be
+ reproducible. This ability of research to be reproducible is
 certainly a function of what type of research it is, but fortunately my
 research is such that reproducibility can mostly be accomplished if I provide
 enough information.
@@ -64,14 +64,14 @@ data sets
 Dissertation website
 ====================
 
-I've decided to publish my dissertation publicly on the internet from the day I
+I decided to publish my dissertation publicly on the internet from the day I
 started writing it. The first reason for this is that I want to take full
 advantage of the ability the web offers for conveying ideas and information, whether it be a
 video or an interactive program. Paper-based publication is a thing of the past
 and is an unbelievably limiting form of sharing, especially in science. Secondly,
 I want the process of writing my dissertation to be in the open with the
 ability for anyone to offer comments, suggestions and edits. Dissertations are
-historically considered to be the work of a single individual, but that is
+traditionally considered to be the work of a single individual, but that is
 never true. All the work we do is built on the works others have already accomplished
 and rarely does anyone produce their work without the help of others. I believe
 that we should strive to move away from the idea that some work is only due to one
@@ -90,7 +90,7 @@ is mostly based on the work that I have done in the past several years, but
 there are many other people's work that is wrapped up in it. Their
 writings and thoughts will inevitably be present in this text. I do not claim
 these as my own, but they will be required to tell the story of the research. I
-will do my best to acknowledge anyone's work in this thesis, but there will
+will do my best to acknowledge everyone's work in this thesis, but there will
 surely be some that I have forgotten. Please let me know if that is so, and I
 will remedy it.
 

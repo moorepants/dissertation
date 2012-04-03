@@ -21,7 +21,7 @@ derivation for my class project in Mont Hubbard's winter 2006 multi-body
 dynamics class and struggled with it well into the summer before finally
 getting a mostly correct answer. After the fact, I realized much of my pain was
 caused by a single missing apostrophe in my Autolev source code [#]_. But
-regardless of that another student in the class, Thomas Englehardt, also
+regardless of that, another student in the class, Thomas Englehardt, also
 derived the equations and helped me debug by sharing his code and going over
 his methods. Even then, it turned out that my original equations weren't
 "exactly" correct and it wasn't until Luke Peterson joined our lab and got the
@@ -39,7 +39,7 @@ dissertation. This section details derivation of the non-linear equations of
 motion using Kane's method [KaneLevinson1985]_. The equations of motion are
 algebraically unwieldy and no one so far has publicly printed them in a form
 compact enough to print on reasonably sized paper and certainly not in a form
-suitable for any in depth analytical understanding [#]_. My methodology relies
+suitable for any in-depth analytical understanding [#]_. My methodology relies
 heavily on computer aided algebra to do the bookkeeping in the derivation, so I
 will only describe the necessary details to derive the equations, leaving the
 algebra, trigonometry and calculus to the computer. The symbolic equations of
@@ -48,7 +48,7 @@ defunct software package for symbolically deriving equations of motion for
 multi-body systems. I've since used the open source software `SymPy
 <http://sympy.org>`_ to derive the equations with the help of the included
 ``mechanics`` package which was developed in our lab to provide a software
-package suitable of academia with similar capabilities as Autolev. The input
+package suitable for academia with capabilities similar to Autolev. The input
 code for both software packages are available in the ``src/eom`` directory of
 the dissertation source files.
 
@@ -61,24 +61,24 @@ the dissertation source files.
 Model Description
 -----------------
 
-The *Whipple Bicycle Model* [Whipple1899]_ is typically defined by these set of
+The *Whipple Bicycle Model* [Whipple1899]_ is typically defined by this set of
 assumptions:
 
 * The Whipple model is made up of four rigid bodies: the main frame (may or may
-  not include a rigid rider), the fork and handlebar assembly and two wheels.
+  not include a rigid rider), the fork and handlebar assembly, and two wheels.
 * The bodies are connected to each other by frictionless revolute joints.
 * The wheels have knife edges and contact the ground under pure rolling with no
   side-slip.
 * The complete bicycle is assumed to be laterally symmetric.
 * The bicycle rolls on flat ground.
 
-[Limebeer2006]_, [Meijaard2007]_, [Astrom2005]_ give great detail of the model.
+[Limebeer2006]_, [Meijaard2007]_, and [Astrom2005]_ give more details of the model.
 
 Unfortunately the word "model" will be used in varying contexts and with
-different meanings throughout this dissertation. I will attempt to be precise
-with my wording. For this chapter, I consider a dynamic model, such as the
+different meanings throughout this dissertation. I will attempt to be as precise
+as possible with my wording. For this chapter, I consider a dynamic model, such as the
 *Whipple Bicycle Model*, to be the equivalent to another dynamic model if at
-least the minimal set of equations of motions are the same (i.e. give the same
+least the minimal set of equations of motions are the same (i.e. they give the same
 result when evaluated at a particular state). This implies that the Whipple
 Bicycle Model linearized about the nominal configuration is a different model
 than the non-linear *Whipple Bicycle Model*. I will try to be explicit when

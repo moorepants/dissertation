@@ -64,15 +64,17 @@ Model Description
 The *Whipple Bicycle Model* [Whipple1899]_ is typically defined by this set of
 assumptions:
 
-* The Whipple model is made up of four rigid bodies: the main frame (may or may
-  not include a rigid rider), the fork and handlebar assembly, and two wheels.
+* The Whipple model is made up of four rigid bodies: the rear frame (the main
+  bicycle frame which may or may not include a rigid rider), the front frame
+  (typically the fork and handlebar assembly), and two wheels.
 * The bodies are connected to each other by frictionless revolute joints.
 * The wheels have knife edges and contact the ground under pure rolling with no
   side-slip.
 * The complete bicycle is assumed to be laterally symmetric.
 * The bicycle rolls on flat ground.
 
-[Limebeer2006]_, [Meijaard2007]_, and [Astrom2005]_ give more details of the model.
+[Astrom2005]_, [Limebeer2006]_, [Meijaard2007]_ provide great detail about this
+model.
 
 Unfortunately the word "model" will be used in varying contexts and with
 different meanings throughout this dissertation. I will attempt to be as precise

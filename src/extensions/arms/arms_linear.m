@@ -1,5 +1,15 @@
-p = load('armspar.mat');
-q = load('armsinit.mat');
+function arms_linear(rider)
+% function arms_linear(rider)
+%
+% Computes the state matrices for a set of speeds.
+%
+% Parameters
+% ----------
+% rider : char
+%   Either 'Charlie', 'Jason', or 'Luke'.
+
+p = load(['armspar-' rider '.mat']);
+q = load(['armsinit-' rider '.mat']);
 
 % we are looking at the nominal configuration
 q4 = 0;
@@ -25,19 +35,21 @@ left = @(qd)left_arm_constraint(qd, qi, p);
 qLeft = fsolve(left, [-q9g, q10g, -q11g, q12g], optimset('Display', 'Off'));
 
 % caluculate eigenvalues for a range of speeds
-speed = 0:1:10;
-speed = 3.9763366860048852;
-w = zeros(19, length(speed));
-stateMatrices = zeros(length(speed), 19, 19);
-inputMatrices = zeros(length(speed), 19, 4);
+speed = 0:0.1:10;
+w = zeros(4, length(speed));
+stateMatrices = zeros(length(speed), 4, 4);
+inputMatrices = zeros(length(speed), 4, 3);
 for k = 1:length(speed)
     eq = [0, 0, 0, q4, q5, 0, q7, 0, qRight, qLeft, 0, -speed(k) / p.rr, 0];
     [A, B] = arms_state_space(eq, p);
+    [A, B] = arms_reduce_system(A, B);
     stateMatrices(k, :, :) = A;
     inputMatrices(k, :, :) = B;
     w(:, k) = eig(A);
 end
 
-save('armsAB.mat', 'speed', 'stateMatrices', 'inputMatrices')
+save(['armsAB-' rider '.mat'], 'speed', 'stateMatrices', 'inputMatrices')
 
-plot(speed, w, '.')
+plot(speed, real(w), '.b')
+hold on
+plot(speed, imag(w), '.r')

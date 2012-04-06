@@ -6,9 +6,16 @@ from dtk import bicycle
 
 pathToParameters = '/media/Data/Documents/School/UC Davis/Bicycle Mechanics/BicycleParameters/data'
 
+rider = 'Luke'
+
+if rider == 'Jason':
+    bikeName = 'Rigid'
+elif rider == 'Charlie' or rider == 'Luke':
+    bikeName = 'Rigidcl'
+
 # load the rigid bicycle and seat Luke
-rigidWithRider = bp.Bicycle('Rigidcl', forceRawCalc=True, pathToData=pathToParameters)
-rigidWithRider.add_rider('Charlie', reCalc=True)
+rigidWithRider = bp.Bicycle(bikeName, forceRawCalc=True, pathToData=pathToParameters)
+rigidWithRider.add_rider(rider, reCalc=True)
 h = rigidWithRider.human
 
 # find the inertia of the humans without arms, this is with respect to the
@@ -23,7 +30,7 @@ riderPar = {'IBxx': humanInertia[0, 0],
             'yB': humanCoM[1][0],
             'zB': humanCoM[2][0]}
 
-rigid = bp.Bicycle('Rigidcl', forceRawCalc=True, pathToData=pathToParameters)
+rigid = bp.Bicycle(bikeName, forceRawCalc=True, pathToData=pathToParameters)
 benchmark = bp.rider.combine_bike_rider(rigid.parameters['Benchmark'], riderPar)
 benchmark = bp.io.remove_uncertainties(benchmark)
 par = bicycle.benchmark_to_moore(benchmark)
@@ -83,7 +90,7 @@ par['d4'] = (benchmark['xcl'] * cos(benchmark['lam']) - benchmark['zcl'] * sin(b
 par['d5'] = (benchmark['xcl'] * sin(benchmark['lam']) + benchmark['zcl'] * cos(benchmark['lam']) +
         benchmark['rR'] * cos(benchmark['lam']))
 
-io.savemat('armspar.mat', par)
+io.savemat('armspar-' + rider + '.mat', par)
 
 # now get some guesses for the arm angles at the nominal configuration
 # these guesses are not correct, as the mapping from yeadon's coordinates to
@@ -105,4 +112,4 @@ q['q14'] = h.CFG['CA1elevation']
 q['q15'] = h.CFG['CA1rotation']
 q['q16'] = -h.CFG['A1A2flexion']
 
-io.savemat('armsinit.mat', q)
+io.savemat('armsinit-' + rider + '.mat', q)

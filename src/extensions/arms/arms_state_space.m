@@ -1,4 +1,28 @@
 function [A, B] = arms_state_space(eq, p)
+% function [A, B] = arms_state_space(eq, p)
+%
+% Returns the state and input matrix for the model with respect to the
+% supplied equilibrium point and parameters.
+%
+% Parameters
+% ----------
+% eq : double, size(19, 1)
+%   The desired equilibrium point.
+% p : structure
+%   The model parameters.
+%
+% Returns
+% -------
+% A : double, size(19, 19)
+%   The state matrix. The states are [q1, q2, q3, q4, q5, q6, q7, q8, q9,
+%   q10, q11, q12, q13, q14, q15, q16, u4, u6, u7]'
+% B : double, size(19, 4)
+%   The input matrix. The inputs are [T4, T6, T7, Fcl]'
+%
+% Notes
+% -----
+% The system is fourth order but you can't just delete the rows and columns
+% to reduce the system. Use the reduce_arms function to do this properly.
 
 delta = 1e-11; % perturbance value
 

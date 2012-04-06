@@ -20,9 +20,9 @@ function h = arms_holonomic(qd, qi, p)
 % h : double, size(9, 1)
 %   The value of the holonomic constraints.
 
-q4 = qi(1);
-q5 = qi(2);
-q7 = qi(3);
+q4 = qi(1); % roll angle
+q5 = qi(2); % pitch angle
+q7 = qi(3); % steer angle
 
 q9 = qd(1);
 q10 = qd(2);
@@ -101,9 +101,9 @@ z(86) = z(5)*z(41) + z(6)*z(33);
 h = zeros(9, 1);
 
 % this is the roll, pitch, steer constraint
+h(1) = p.d2*z(54) + z(54)*z(62) + z(50)*(p.d3+z(61)) - p.d1*z(64) - p.rr*z(3);
 % these set of equations are the constraints which force the hands on the
 % grips and the arms to hang downward
-h(1) = p.d2*z(54) + z(54)*z(62) + z(50)*(p.d3+z(61)) - p.d1*z(64) - p.rr*z(3);
 h(2) = p.d6 + p.d10*z(10) + p.d12*z(18) + p.d13*z(68) - p.d1 - (p.d3+p.d9)*z(9);
 h(3) = p.d7 + p.d13*z(69) - p.d10*z(9) - p.d12*z(23) - (p.d3+p.d9)*z(10);
 h(4) = p.d8 + p.d12*z(26) + p.d13*z(70) - p.d11 - p.d2;

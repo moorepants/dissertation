@@ -11,16 +11,48 @@ System Identification
    now use at your own risk. The information may or may not be correct.
    Reviews, comments and suggestions are welcome.
 
-* Introduction and review
-* Model fitting
-* Control parameter estimation
-* Effects of rider, environment, speed and manuever to human control
-* State space form of control system
-* Fitting data
-* Estimation and/or calculation of the K matrix
-* Identify which parameters can be identified on the given data
-* Relationship between speed and gains
-* Whipple model versus whipple model with arms
+Outline
+=======
+
+* Preface
+* Introduction
+* Literature review
+  * Passive model identification
+  * Rider control model identification
+* Experimental Description
+* Data Description
+  * Processing methods
+* Parameter identification versus model identification
+  * Identifiability
+* Identification model structures
+  * Black Box
+    * Basic
+    * State Space
+    * Canonical Form
+  * Grey Box
+    * Structured State Space
+    * Structured Canonical Form
+    * Parameterized State Space
+* Passive Model Identification
+  * Black box ID
+    * SISO (ARX, ARMAX, State Space)
+    * System order
+  * Grey box ID
+    * Talk some about the identifiability of individual parameters.
+  * Structured State Space ID
+    * Coefficient plots
+  * Canonical Form ID
+    * Comparison of derived models with respect to rider and environment
+    * Quality of models with respect to variance explained by the data
+  * Comparison of identified models to first principle models
+    * Structured state space per run
+    * Regression results of general model
+    * Benchmark canonical form identification for sets of runs
+* Rider Controller identification
+  * Grey box identification of the 6 parameter control model
+  * Comparison of riders on the pavilion floor for different speed bins
+* Discussion of results
+* Conclusion
 
 Literature
 ==========
@@ -623,7 +655,7 @@ innovations form and will be used in the identification process. The
 
    \mathbf{B}(\theta) = \int_{\tau=0}^T e^{\mathbf{F}(\theta)\tau} \mathbf{G}(\theta) d\tau
 
-The predictor can be written as follows
+The one step ahead predictor for this system is
 
 .. math::
 
@@ -631,11 +663,20 @@ The predictor can be written as follows
    \mathbf{K}(\theta) \right]^{-1} \left[\mathbf{B}(\theta) u(t) +
    \mathbf{K}(\theta)y(t) \right]
 
-:math:`Y_N` is an :math:`pN x 1` vector
+where :math:`q` is the forward shift operator (:math:`q u(t) = u(t+1)`)
+[Ljung1999]_. The predictor is a vector of length :math:`p` where each entry is
+a ratio of polynomials in :math:`q`. These are transfer functions from the
+previous inputs and outputs to the current output. In general, the coefficients
+of :math:`q` are non-linear functions of the parameters :math:`\theta`.
+
+We can now construct the cost function, which will enable the computation of
+the parameters which give the best fit.
+
+:math:`Y_N` is an :math:`pN x 1` vector containing all of the current outputs
 
 .. math::
 
-   \left[y_1(1) \ldots y_1(N) \ldots y_p(1) \ldots y_p(N) \right]^T
+   \left[y_1(1) \ldots y_p(1) \ldots y_1(N) \ldots y_p(N) \right]^T
 
 where :math:`p` are the number of outputs and :math:`N` is the number of samples.
 :math:`\hat{Y}_N(\theta)` is then the one step ahead prediction of :math:`Y_N`
@@ -643,7 +684,7 @@ given :math:`y(s)` and :math:`u(s)` where :math:`s \leq t - 1`
 
 .. math::
 
-   \left[\hat{y}_1(1) \ldots \hat{y}_1(N) \ldots \hat{y}_p(1) \ldots \hat{y}_p(N) \right]^T
+   \left[\hat{y}_1(1) \ldots \hat{y}_p(1) \ldots \hat{y}_p(N) \ldots \hat{y}_p(N) \right]^T
 
 The cost function is then the magnitude of the squares of the difference of
 :math:`Y_N` and :math:`\hat{Y}_N(\theta)`.
@@ -652,6 +693,8 @@ The cost function is then the magnitude of the squares of the difference of
 
    V_N(\theta) = \frac{1}{pN}|Y_N - \hat{Y}_N(\theta)|^2
 
+.. todo:: do I need the 1/pN? I'm just copying that from the book somewhere.
+
 The value of :math:`\theta` which minimizes cost function is the best
 prediction
 
@@ -659,8 +702,11 @@ prediction
 
    \hat{\theta}_N = \underset{x}{\operatorname{argmax}} V_N(\theta, Z^N)
 
-We made use of the Matlab System Identification Toolbox for the identification of
-the parameters :math:`\theta` in each run of this output error model structure.
+where :math:`Z^N` are all the measured inputs and outputs.
+
+I made use of the Matlab System Identification Toolbox for the identification
+of the parameters :math:`\theta` in each run of this output error model
+structure. In particular a structured `idss` object was built for 
 
 I further processed all of the signals that were generally symmetric about zero
 by subtracting the means. For some of the pavilion runs, this may actually
@@ -704,3 +750,5 @@ but still has some magnitude differences.
 
 [Biral2003]_ and [Teerhuis2010]_ do a feed forward sim of their models with the
 measured steering torque.
+
+

@@ -17,40 +17,64 @@ Outline
 * Preface
 * Introduction
 * Literature review
+
   * Passive model identification
   * Rider control model identification
+
 * Experimental Description
 * Data Description
+
   * Processing methods
+
 * Parameter identification versus model identification
+
   * Identifiability
+
 * Identification model structures
+
   * Black Box
+
     * Basic
     * State Space
     * Canonical Form
+
   * Grey Box
+
     * Structured State Space
     * Structured Canonical Form
     * Parameterized State Space
+
 * Passive Model Identification
+
   * Black box ID
+
     * SISO (ARX, ARMAX, State Space)
     * System order
+
   * Grey box ID
+
     * Talk some about the identifiability of individual parameters.
+
   * Structured State Space ID
+
     * Coefficient plots
+
   * Canonical Form ID
+
     * Comparison of derived models with respect to rider and environment
     * Quality of models with respect to variance explained by the data
+
   * Comparison of identified models to first principle models
+
     * Structured state space per run
     * Regression results of general model
     * Benchmark canonical form identification for sets of runs
+
 * Rider Controller identification
+
   * Grey box identification of the 6 parameter control model
   * Comparison of riders on the pavilion floor for different speed bins
+
 * Discussion of results
 * Conclusion
 

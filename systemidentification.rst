@@ -10,7 +10,6 @@ System Identification
    Once I submit if for my doctoral degree at UC Davis, it will be done. So for
    now use at your own risk. The information may or may not be correct.
    Reviews, comments and suggestions are welcome.
-
 Outline
 =======
 
@@ -22,6 +21,8 @@ Outline
   * Rider control model identification
 
 * Experimental Description
+  * Answer question about whether bicycle dynamics are same on and off
+    treadmill
 * Data Description
 
   * Processing methods
@@ -77,6 +78,70 @@ Outline
 
 * Discussion of results
 * Conclusion
+
+Preface
+=======
+
+The work presented in this Chapter is intended to be the icing on the cake that
+takes into account all of the theory presented in the previous chapters and
+evaluates it with a large set of data taken with the instrumented bicycle. I
+started to think about system identification when I arrived at Delft and the
+discussions began with Arend and Jodi. I hadn't much clue about the formal
+field and theory on system identification. My first look at it was when Arend
+presented me with a light introduction by Ljung. We talked about it here and
+there but never really put together a solid experimental plan to do anything
+about it. Karl Astrom visited us in Delft in late 2008 and we talked some with
+him about ideas. I mainly recal him focusing on how to excite the system in a
+very controlled manner with an oscilating mass on the bicycle. Some of these
+ideas propogated through Arend to Peter and can be seen in the final sections
+of his thesis [Lange2011]_. Many of these ideas influenced our NSF proposal and
+ultimately the final portion of what I was to do for my dissertation work.
+
+Once I had gotten back to Davis we now had the resources availabe from NSF
+funding to make something happen. My goal had basically formalized into
+creating a instrumented bicycle to be controlled by person that was capable of
+measuring all of the kinematics and kinetics involved seen in regulated control
+tasks. It took some time into the project to really understand what we may be
+able to accomplish with that but it finally materialized into validating Ron's
+theoretic control model which is discussed in Chapter :ref:`control` with the
+instrumented bicycle. After our first experiments, over a year into the project
+timeline it became apparent that simple tasks with measured lateral
+perturbations would provide the best chance of us validating his model.
+Unfortunately, I had not thought a great deal about how to provide and measure
+these lateral perturbations but the manually exticed perturbations seemed to to
+trick.
+
+We ran a lot of preliminary system identifcation analyses on the first set of
+trial data, but it quickly became apparent that we had little understanding in
+the subject. The early analyses did give confidence that data was of good
+enough quality to do something with, but our goal of identifying the parameter
+of the controller were still far from our reach.
+
+We performed the final set of experiments around August and September of 2011
+to get a large sample of data for the final analyses. The NSF grant was to end
+at the end of September and I still had to figure out how to analsize all of
+the data, not to mention write up a ton of work for my dissertation. We ended
+up extending the NSF grant another year (as I think is typical with these
+things). I look back to our original proposal and in hindsight the scope was
+way too large. We nixed the handling qualities parts when the funding was
+lowered, but I now see that what we intended to do really took another 6-12
+months than we had intended.
+
+The final analses has forced me to figure out what system identification is all
+about and I've learned a great rapidly and much on my own. At this stage we
+weren't able to find any local experts on the subject to help us along but I've
+gotten some great insight from both the single track vehicle dynamics email
+list and in particular from personal communication with Karl Astrom. I still
+feel veyr weak in the subject but it is more clear how difficult identifcying
+complex systems is, expecially trying to identify physical parameters.
+
+As many doctoral students probably hope when starting their long trek to the
+PhD, I hoped for some grand findings to arise from this work. But I've been
+humbled a lot in that quest. I present here the work I've done with regards to
+identifying the bicycle and rider system with what I think are pretty good
+results, but I hope that it is more of guide for others to see some of the
+difficulties in excuting this kind of analyses with some ideas to better
+structure it.
 
 Literature
 ==========

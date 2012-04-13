@@ -8,3 +8,7 @@ tables-hide/
 *.all
 *.dir
 alTmp*
+
+# Matlab
+*.asv
+*.mat

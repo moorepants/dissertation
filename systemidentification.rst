@@ -10,6 +10,7 @@ System Identification
    Once I submit if for my doctoral degree at UC Davis, it will be done. So for
    now use at your own risk. The information may or may not be correct.
    Reviews, comments and suggestions are welcome.
+
 Outline
 =======
 
@@ -101,15 +102,16 @@ Once I had gotten back to Davis we now had the resources availabe from NSF
 funding to make something happen. My goal had basically formalized into
 creating a instrumented bicycle to be controlled by person that was capable of
 measuring all of the kinematics and kinetics involved seen in regulated control
-tasks. It took some time into the project to really understand what we may be
-able to accomplish with that but it finally materialized into validating Ron's
-theoretic control model which is discussed in Chapter :ref:`control` with the
-instrumented bicycle. After our first experiments, over a year into the project
-timeline it became apparent that simple tasks with measured lateral
-perturbations would provide the best chance of us validating his model.
-Unfortunately, I had not thought a great deal about how to provide and measure
-these lateral perturbations but the manually exticed perturbations seemed to to
-trick.
+tasks. We also orginally had hoped to be able to vary the dynamics of the
+bicycle, but the reduced funding nixed that idea. It took some time into the
+project to really understand what we may be able to accomplish with that but it
+finally materialized into validating Ron's theoretic control model which is
+discussed in Chapter :ref:`control` with data collected via the instrumented
+bicycle. After our first experiments, over a year into the project timeline it
+became apparent that simple tasks with measured lateral perturbations would
+provide the best chance of us validating his model. Unfortunately, I had not
+thought a great deal about how to provide and measure these lateral
+perturbations but the manually exticed perturbations seemed to to trick.
 
 We ran a lot of preliminary system identifcation analyses on the first set of
 trial data, but it quickly became apparent that we had little understanding in
@@ -121,19 +123,20 @@ We performed the final set of experiments around August and September of 2011
 to get a large sample of data for the final analyses. The NSF grant was to end
 at the end of September and I still had to figure out how to analsize all of
 the data, not to mention write up a ton of work for my dissertation. We ended
-up extending the NSF grant another year (as I think is typical with these
+up extending the NSF grant another year (as seems to be typical with these
 things). I look back to our original proposal and in hindsight the scope was
-way too large. We nixed the handling qualities parts when the funding was
-lowered, but I now see that what we intended to do really took another 6-12
-months than we had intended.
+way too large (accurately predicted by Arend). We nixed the handling qualities
+parts when the funding was lowered, but I now see that what we intended to do
+really took another 6-12 months than we had intended.
 
 The final analses has forced me to figure out what system identification is all
-about and I've learned a great rapidly and much on my own. At this stage we
-weren't able to find any local experts on the subject to help us along but I've
-gotten some great insight from both the single track vehicle dynamics email
-list and in particular from personal communication with Karl Astrom. I still
-feel veyr weak in the subject but it is more clear how difficult identifcying
-complex systems is, expecially trying to identify physical parameters.
+about and I've learned a great deal rapidly and much on my own. At this stage
+we weren't able to find any local experts on the subject to help us along but
+I've gotten some great insight from both the single track vehicle dynamics
+email list and in particular from personal communication with Karl Astrom. I
+still feel veyr weak in the subject but it is more clear how difficult
+identifcying complex systems is, expecially trying to identify physical
+parameters.
 
 As many doctoral students probably hope when starting their long trek to the
 PhD, I hoped for some grand findings to arise from this work. But I've been
@@ -143,12 +146,19 @@ results, but I hope that it is more of guide for others to see some of the
 difficulties in excuting this kind of analyses with some ideas to better
 structure it.
 
+Introduction
+============
+
+This chapter details system identification of the 
+
 Literature
 ==========
 
 Identification of the vehicle/rider dynamical model and identifcation of
 rider's controller have been studied several times in the past for single track
 vehicles.
+
+.. todo:: cite the british psycologist
 
 van Lunteren and Stassen
 ------------------------
@@ -840,4 +850,675 @@ but still has some magnitude differences.
 [Biral2003]_ and [Teerhuis2010]_ do a feed forward sim of their models with the
 measured steering torque.
 
+Canonical Identification
+------------------------
 
+Model structure
+~~~~~~~~~~~~~~~
+
+The identification of the linear dynamics of the bicycle can be formulated with
+respect to the benchmark canonical form realized in [Meijaard2007]_. If the
+time varying quantities in the equations are all known at each time step, the
+coefficients of the linear equations can be estimated given enough time steps.
+
+.. math::
+
+   M \ddot{q} + v C_1 \dot{q} + [g K_0 + v^2 K_2] q = T
+
+where the time varying states roll and steer are collected in the vector
+:math:`q = [\phi \quad \delta]^T` and the time varying inputs roll torque and
+steer torque are collected in the vector :math:`T = [T_\phi \quad T_\delta]^T`.
+This equation form assumes that the velocity is constant with respect to time
+as the model was linearized about a constant velocity equilibriumm, but the
+velocity can be treated as a time varying parameter if the acceleration is
+relatively small. I extend the equations to properly account for the lateral
+perturbation force, :math:`F`, which was the actual input we delivered during
+the experiments. It contributes to both the roll torque and steer torque
+equations.
+
+.. math::
+
+   M \ddot{q} + v C_1 \dot{q} + [g K_0 + v^2 K_2] q = T + H F
+
+where :math:`H = [H_{\phi F} \quad H_{\delta F}]^T` is a vector describing the
+linear contribution of the lateral force to the roll and steer torque
+equations. :math:`H_{\phi F}` is approximately the distance from the ground to
+the force application point. :math:`H_{\delta F}` is a distance that is a
+function of the bicycle geometry (trail, wheelbase) and the longitudinal
+location of the force application point. For our normal geometry bicycles,
+including the one used in the experiments, :math:`H_{\delta F} << H_{\phi F}`.
+I compute :math:`H` for each rider/bicycle from the state space form of the
+linear equations of motion calculated in Chapter :ref:`extensions`.
+
+.. todo:: Calculate what H_{\delta F\) actually is by hand.
+
+.. math::
+
+   \dot{x} = A x + B u
+
+where :math:`x = [\phi \quad \delta \quad \dot{\phi} \quad \dot{\delta}]^T` and
+:math:`u = [F \quad T_\phi \quad T_\delta]^T`. The state and input matrices can
+be sectioned.
+
+.. math::
+
+   A =
+   \begin{bmatrix}
+     0 & I \\
+     A_l & A_r
+   \end{bmatrix}
+
+.. math::
+
+   B =
+   \begin{bmatrix}
+     0 & 0\\
+     B_F &  B_T
+   \end{bmatrix}
+
+where :math:`A_l` and :math:`A_r` are the 2 x 2 submatrices corresponding to the states
+and their derivatives, respectively. :math:`B_F` and :math:`B_T` are the 2 x 1 and 2 x
+2 submatrices corresponding to the lateral force and the torques, respectively.
+The benchmark canonical form can now be written as
+
+.. math::
+
+   B_T^{-1} [ \ddot{q} - A_r \dot{q} - A_l q] = T + B_T^{-1} B_F F
+
+where
+
+.. math::
+
+   M = B_T^{-1}
+
+.. math::
+
+   vC_1 = -B_T^{-1} A_r
+
+.. math::
+
+   [gK_0 + v^2K_2] = -B_T^{-1} A_l
+
+.. math::
+
+   H = B_T^{-1} B_F
+
+.. list-table::
+
+   * - Rider
+     - :math:`H`
+   * - Charlie
+     - :math:`[0.9017 \quad 0.01121716]^T` m
+   * - Jason
+     - :math:`[0.942975 \quad 0.01062231]^T` m
+   * - Luke
+     - :math:`[0.9017 \quad 0.01121716]^T` m
+
+The location of the lateral force application point is the same for Charlie an
+Luke because they used the same seat height. The force was applied just below
+the seat, which was adjustable in height for different riders.
+
+Data processing
+~~~~~~~~~~~~~~~
+
+Chapter :ref:`davisbicycle` details how each of the signals were measured and
+processed to obtain
+
+For the following analysis, all of the signals were filtered with a second
+order low pass Butterworth filter at 15 Hz. The roll and steer accelerations
+were computed by numerically differentiating the roll and steer rate signals
+with a central differencing except for the end points being handled by forward
+and backward differencing. The mean was subtracted from all the signals except
+the lateral force.
+
+Identification
+~~~~~~~~~~~~~~
+
+A simple analytic identification problem can be formulated from the canonical
+form. If we have good measurements of :math:`q`, their first and second
+derivatives, forward speed :math:`v`, and the inputs :math:`T_\delta` and
+:math:`F`, the entries in the :math:`M`, :math:`C1`, :math:`K0`, :math:`K2` and
+:math:`H` matrices can be identified by forming two simple regressions, one for
+each equation in the canonical form. I use the instantaneous speed at each time
+step rather than the mean over a run to improve accuracy with respect to the
+speed parameter as it has some variablity.
+
+.. todo:: calculate the variablity in the forward speed measurement for each
+   run
+
+The roll and steer equation each can be put into a simple linear form
+
+.. math::
+
+   \Gamma \Theta = Y
+
+where :math:`\Theta` are the unknown coefficients and :math:`\Gamma` and
+:math:`\Theta` are made up of the inputs and outputs measured during a run.
+:math:`\Theta` can be all or a subset of the entries in the canonical matrices.
+If there are :math:`N` samples in a run and we desire to find :math:`M` entries
+in the equation, then :math:`\Gamma` is an :math:`N \times M` matrix and
+:math:`Y` is an :math:`N \times 1` vector. The Moore-Penrose puesdo inverse can
+be employed to solve for :math:`\Theta` analytically. The estimate of the
+unknown parameters is then
+
+.. math::
+
+   \hat{\Theta} = [\Gamma^T\Gamma]^{-1}\Gamma^T Y
+
+For example if we fix the mass terms in the steer torque equation and let the
+rest be free the linear equation is
+
+.. math::
+
+   \begin{bmatrix}
+      v(1) \dot{\phi}(1) & v(1) \dot{\delta}(1) & g \phi(1) & g \delta(1) &
+      v(1)^2 \phi(1) & v(1)^2 \delta(1) & - F(1)\\
+      \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots\\
+      v(N) \dot{\phi}(N) & v(N) \dot{\delta}(N) & g \phi(N) & g \delta(N) &
+      v(N)^2 \phi(N) & v(N)^2 \delta(N) & - F(N)\\
+   \end{bmatrix}
+   \begin{bmatrix}
+     C_{1\delta\phi}\\
+     C_{1\delta\delta}\\
+     K_{0\delta\phi}\\
+     K_{0\delta\delta}\\
+     K_{2\delta\phi}\\
+     K_{2\delta\delta}\\
+     H_{\delta F}
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+     T_\delta(1) - M_{\delta\phi} \ddot{\phi}(1) -
+     M_{\delta\delta} \ddot{\delta}(1)\\
+     \vdots\\
+     T_\delta(N) - M_{\delta\phi} \ddot{\phi}(N) -
+     M_{\delta\delta} \ddot{\delta}(N)
+   \end{bmatrix}
+
+The error in the fit is
+
+.. math::
+
+   \epsilon = \hat{Y} - Y = \Gamma \hat{\Theta} - Y
+
+.. todo:: discuss how this solves for noise
+
+This equation can be solved for each run individually, a portion of a run or if
+there are :math:`P` runs then they can be all collected in :math:`\Gamma` for
+best fit over multiple runs. If all the runs have the same number of time
+steps, :math:`\Gamma` then becomes an :math:`NP \times M` matrix and :math:`Y`
+an :math:`NP\times 1` vector if each run is the same length.
+
+The covarance of the parameter estimatations can be computed with respect to
+the error.
+
+.. math::
+
+   \sigma^2 = \frac{\epsilon^T\epsilon}{N - d}
+
+.. math::
+
+   U = \sigma^2 (\Gamma^T \Gamma)^{-1}
+
+Secondly, all of the parameters in the canonical matrices need not be
+estimated. The analytical benchmark bicycle model [Meijaard2007]_ gives a good
+idea of which entries in the matrices we may be more certain about from our
+physical parameters measurements in Chapter :ref:`physicalparameters`. I went
+through the benchmark formulation and fixed the parameters based on these
+rules:
+
+- If the parameter is greatly affected by trail, leave it free.
+- If the parameter is greatly affected by the front assembly moments and
+  products of inertia, leave it free.
+- If the parameter is equal or near to zero, fix it.
+
+For the roll equation this leaves :math:`M_{\phi\delta}`,
+:math:`C_{1\phi\delta}`, and :math:`K_{0\phi\delta}` as free parameters. And
+for the steer equation this leaves :math:`M_{\delta\phi}`,
+:math:`M_{\delta\delta}`, :math:`C_{1\delta\phi}`, :math:`C_{1\delta\delta}`,
+:math:`K_{0\delta\phi}`, :math:`K_{0\delta\delta}`, :math:`K_{2\delta\delta}`,
+and :math:`H_{\delta F}` as free. The choice of fixing the majority of the roll
+equation is also justified by the smaller variance seen in the state space
+estimation of the roll acceleration equation.
+
+I start by identifying the three coefficeints of the roll equation for the
+given time steps due to having much more certainty in the roll equation
+estimates from first principles.
+
+.. math::
+
+   \begin{bmatrix}
+      \ddot{\delta}(1) &
+      v(1) \dot{\delta}(1) &
+      g \delta(1) \\
+      \vdots & \vdots & \vdots\\
+      \ddot{\delta}(N) &
+      v(N) \dot{\delta}(N) &
+      g \delta(N) \\
+   \end{bmatrix}
+   \begin{bmatrix}
+     M_{\phi\delta} \\
+     C_{1\phi\delta} \\
+     K_{0\phi\delta}
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+     H_{\phi F} F(1)
+     - M_{\phi\phi} \ddot{\phi}(1)
+     - C_{1\phi\phi} v(1) \dot{\phi}(1)
+     - K_{0\phi\phi} g \phi(1)
+     - K_{2\phi\phi} v(1)^2 \phi(1)
+     - K_{2\phi\delta} v(1)^2 \delta(1) \\
+   \vdots\\
+     H_{\phi F} F(N)
+     - M_{\phi\phi} \ddot{\phi}(N)
+     - C_{N\phi\phi} v(N) \dot{\phi}(N)
+     - K_{0\phi\phi} g \phi(N)
+     - K_{2\phi\phi} v(N)^2 \phi(N)
+     - K_{2\phi\delta} v(N)^2 \delta(N) \\
+   \end{bmatrix}
+
+I then I enforce the assumptions that :math:`M_{\phi\delta} = M_{\delta\phi}`
+and :math:`K_{0\phi\delta} = K_{0\delta\phi}` to fix these values in the steer
+equation to the ones identified in the roll equation, leaving less free
+parameters in the steer equation. This matrix symmetry is likely enforced in
+reality due to the simple coupling of the front and rear frames by a revolute
+joint. It is also possible to solve the roll and steer equations simultaneously
+and enforce the symmetry but this was the easier solution. Finally, I identify
+the remaining steer equation coefficients.
+
+.. math::
+
+   \begin{bmatrix}
+     \ddot{\delta}(1) &
+     v(1) \dot{\phi}(1) &
+     v(1) \dot{\delta}(1) &
+     g \phi(1) &
+     v(1)^2 \delta(1) &
+     - F(1)\\
+     \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+     \ddot{\delta}(N) &
+     v(N) \dot{\phi}(N) &
+     v(N) \dot{\delta}(N) &
+     g \phi(N) &
+     v(N)^2 \delta(N) &
+     - F(N)\\
+   \end{bmatrix}
+   \begin{bmatrix}
+     M_{\delta\delta} \\
+     C_{1\delta\phi} \\
+     C_{1\delta\delta} \\
+     K_{0\delta\phi} \\
+     K_{2\delta\delta} \\
+     H_{\delta F}
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+     T_\delta(1)
+     - \hat{M}_{\delta\phi} \ddot{\phi}(1)
+     - K_{0\delta\delta} g \delta(1)
+     - \hat{K}_{2\delta\phi} v(1)^2 \phi(1) \\
+     \vdots\\
+     T_\delta(N)
+     - \hat{M}_{\delta\phi} \ddot{\phi}(N)
+     - K_{0\delta\delta} g \delta(N)
+     - \hat{K}_{2\delta\phi} v(N)^2 \phi(N) \\
+   \end{bmatrix}
+
+Results
+-------
+
+I selected data for three riders on the same bicycle, performing two maneuvers,
+on two different environments. I have little reason to believe the dynamics of
+the passive system should vary much with respect to different maneuvers, but
+there is potentially a small variation across riders primarily due to their
+inertial properties and there may be variation across environments because of
+the differences in the wheel to floor interaction. I opted to compute the best
+fit model across series of runs to benefit from the large dataset. This leaves
+these four scenarios:
+
+- All riders in both environments (n=1)
+- All riders in each environment (n=2)
+- Each rider in both environments (n=3)
+- Each rider in each environment (n=6)
+
+.. list-table::
+
+   * - Rider
+     - Environment
+     - Runs
+     - N
+   * - C
+     - H
+     - 24
+     - 267773
+   * - C
+     - P
+     - 87
+     - 118700
+   * - C
+     - A
+     - 111
+     - 386473
+   * - J
+     - H
+     - 57
+     - 804995
+   * - J
+     - P
+     - 93
+     - 112582
+   * - J
+     - A
+     - 150
+     - 917577
+   * - L
+     - H
+     - 25
+     - 272719
+   * - L
+     - P
+     - 88
+     - 125878
+   * - L
+     - A
+     - 113
+     - 398597
+   * - A
+     - H
+     - 106
+     - 1345487
+   * - A
+     - P
+     - 268
+     - 357160
+   * - A
+     - A
+     - 374
+     - 1702647
+
+A total of 12 different models can be derived from this perspective.
+
+Computing the estimate for riders: Charlie and environments: Horse Treadmill
+Number of runs: 24
+Shape of A: (267773, 3)
+Number of runs: 24
+Shape of A: (267773, 6)
+Done.
+Computing the estimate for riders: Charlie and environments: Pavillion Floor
+Number of runs: 87
+Shape of A: (118700, 3)
+Number of runs: 87
+Shape of A: (118700, 6)
+Done.
+Computing the estimate for riders: Charlie and environments: All
+Number of runs: 111
+Shape of A: (386473, 3)
+Number of runs: 111
+Shape of A: (386473, 6)
+Done.
+Computing the estimate for riders: Jason and environments: Horse Treadmill
+Number of runs: 57
+Shape of A: (804995, 3)
+Number of runs: 57
+Shape of A: (804995, 6)
+Done.
+Computing the estimate for riders: Jason and environments: Pavillion Floor
+Number of runs: 93
+Shape of A: (112582, 3)
+Number of runs: 93
+Shape of A: (112582, 6)
+Done.
+Computing the estimate for riders: Jason and environments: All
+Number of runs: 150
+Shape of A: (917577, 3)
+Number of runs: 150
+Shape of A: (917577, 6)
+Done.
+Computing the estimate for riders: Luke and environments: Horse Treadmill
+Number of runs: 25
+Shape of A: (272719, 3)
+Number of runs: 25
+Shape of A: (272719, 6)
+Done.
+Computing the estimate for riders: Luke and environments: Pavillion Floor
+Number of runs: 88
+Shape of A: (125878, 3)
+Number of runs: 88
+Shape of A: (125878, 6)
+Done.
+Computing the estimate for riders: Luke and environments: All
+Number of runs: 113
+Shape of A: (398597, 3)
+Number of runs: 113
+Shape of A: (398597, 6)
+Done.
+Computing the estimate for riders: All and environments: Horse Treadmill
+Number of runs: 106
+Shape of A: (1345487, 3)
+Number of runs: 106
+Shape of A: (1345487, 6)
+Done.
+Computing the estimate for riders: All and environments: Pavillion Floor
+Number of runs: 268
+Shape of A: (357160, 3)
+Number of runs: 268
+Shape of A: (357160, 6)
+Done.
+Computing the estimate for riders: All and environments: All
+Number of runs: 374
+Shape of A: (1702647, 3)
+Number of runs: 374
+Shape of A: (1702647, 6)
+Done.
+
+All riders in both environments
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here I'll make the assumption that the best fit model doesn't vary much across
+riders or environments. The assumption that the passive model of the bicycle
+and rider are similar with respect to rider can be justified by recognizing
+that the Whipple model predicts little difference in the dynamics with respect
+to the three bicycle/rider combinations. On the other hand, I have little
+reason to believe the enviromenters are the same except that both floors are
+made of a rubber like material. I calculated the best fit over 374 runs giving
+about 142 minutes of data sampled at 200 Hz, :math:`N=1720000`.
+
+.. figure:: figures/systemidentification/A-A-rlocus.*
+
+   The root locus of the identified model (circle), the Whipple model
+   (diamond), and the arm model (triangle) with respect to speed.
+
+The eigenvalues as a function of speed of the identified model can be compared
+to those of the Whipple and arm models. Figure :ref:`figAARloc` shows the root
+locus of the three models. We see clearly that the weave mode exists in all
+three models, with it being always stable in the arm model and with it being
+unstable at lower speeds in the other two models. The identified model is
+unstable over most of the shown speed range. Above 3 m/s or so, the Whipple
+model's weave mode diverges from the identified model to different asymptotes.
+The arm model weave mode diverges somewhere in between. Note that the arm model
+has an unstable real mode for all speeds. Figure :ref:`figAAEig` gives a
+different view of the root locus allowing one to more easily compare the real
+eigenvalues. The imaginary parts of the weave mode have similar curavture with
+respect to speed for all the models, with the identified model having about 1
+rad/s larger frequency of osciallation for all speeds. The identified model
+does have a stable speed range with the Whipple model underpredicting the weave
+critical speed by almost 2 m/s. The identifed caster mode is much faster than
+the one predicted by the Whipple model.
+
+.. figure:: figures/systemidentification/A-A-eig.*
+
+   Real and imaginary parts of the eigenvalues as a function of speed for model
+   identified from all runs, the Whipple model and the arm model.
+
+The identification process is structured around identifiying the input/output
+relationship among measured varibles. The frequency response provides a view
+into these relationships. Figures :ref:`fig` to :ref:`fig` give a picture of
+how the first principles models compare to the identified model with respect to
+frequency response. The frequency band from 1 rad/s to 12 rad/s is of most
+concern as it is the range the human operates in.
+
+The roll torque to roll angle shows that at 2 m/s the response if predicted
+well at high frequencies by all the models and that the Whipple model predicts
+the response well across all frequencies. At 4 m/s the two models only predict
+the high frequency behavior (>4 rad/s) with the arm model being slightly better
+
+.. figure:: figures/systemidentification/A-A-Tphi-Phi.*
+
+   Frequency response of the three models at four speeds. The color indicates
+   the model and the line type indicates the speed.
+
+.. figure:: figures/systemidentification/A-A-Tphi-Del.*
+
+   Frequency response of the three models at four speeds. The color indicates
+   the model and the line type indicates the speed.
+
+The steer torque to roll angle transfer function may be the most important to
+model accurately as it is the primary method of controlling the bicycle's
+direction. At 2 m/s the Whipple model magnitude matches at lower frequencies
+better and the arm model better at higher frequencies. At all higher speeds the
+Whipple and arm models don't match well at low frequencies.
+
+.. figure:: figures/systemidentification/A-A-Tdel-Phi.*
+
+   Frequency response of the three models at four speeds. The color indicates
+   the model and the line type indicates the speed.
+
+The steer torque to steer angle shows that speeds above 2 m/s the first
+principle models do not predict the response well at low frequencies.
+
+.. figure:: figures/systemidentification/A-A-Tdel-Del.*
+
+   Frequency response of the three models at four speeds. The color indicates
+   the model and the line type indicates the speed.
+
+The response changes more drastically with respect to speed for the first
+principles models than the identified model.
+
+.. include:: tables/systemidentification/canonical-id-table-one.rst
+
+.. include:: tables/systemidentification/canonical-id-table-two.rst
+
+.. todo:: add this caption to the tables
+
+Table Caption: Identified coefficients of the benchmark bicycle model for
+various sets of data. The first column indicates which rider's runs were used:
+(C)harlie, (J)ason, (L)uke or (A)ll. The second column indicates which
+environment's runs were used: (P)avilion Floor, (H)orse Treadmill, or (A)ll.
+The remaining columns give the resulting numerical value of the identified
+parameter, its standard deviation with respect to the model fit, and the
+percent difference with respect to the value predicted by the Whipple model.
+
+Each rider in both environments
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. todo:: Show the differences in the three rider models and point out that
+   Charlie seems more different.
+
+Comparison of identified models
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The identified models in Tables X and X have differences in their dynamics. The
+measurement errors, model structure and order dictate how well the models can
+predict the input-output behavior of each run or even each perturbation. I
+would ultimately like to select one or a small set of models that generally do
+a good job at predicting the measured behavior for each run. I have shown that
+the Whipple and arm models may not give good enough predictions.
+
+Figures X through X plot the steer torque to roll angle frequency response for
+three speeds: 2 m/s, 5.5 m/s and 9.0 m/s for each of the models in Tables X and
+X. At the lowest speed, all of the models have a similar frequency response,
+especially in the frequency band between about 1 an 20 rad/s. At 5.5 m/s the
+models are similar at a higher bandwith, 4 to 30 rad/s. At 9.0 m/s even higher,
+10 to 50 rad/s. For all speeds the variation among the response is most likely
+   well within the uncertainty of the models as group. The model derived from
+   all of the data (all rider and all runs), gives somewhat of a mean model and
+   if this model is significantly better at predicting the measured behavior of
+   the Whipple and arm models, it may be a good general candidate model for
+   this bicycle.
+
+.. todo:: Make a plot showing how all of the identified models frequency
+   responses compared at a single speed (could do multiple graphs. This would
+   hopefully support choosing the one identified model for all runs.
+
+.. figure:: figures/systemidentification/compare-id-bode-2.0.*
+
+   Steer torque to roll angle frequency responses at 2.0 m/s for all the
+   identified models in Tables X and X.
+
+.. figure:: figures/systemidentification/compare-id-bode-5.5.*
+
+   Steer torque to roll angle frequency responses at 5.5 m/s for all the
+   identified models in Tables X and X.
+
+.. figure:: figures/systemidentification/compare-id-bode-9.0.*
+
+   Steer torque to roll angle frequency responses at 9.0 m/s for all the
+   identified models in Tables X and X.
+
+The predictive capability of a given model can be quantified by mutliple
+methods. I've made use of two criterion to judge the quality of a model with
+respect to given data. The first is to simulate the system given the measured
+inputs.  This method works well when the open loop system is stable, but if it
+is unstable as so in the case of the bicycle, it may be difficult to simulate.
+Searching for initial conditions that give rise to a stable model for the
+duration of the run or simulating by weighting the future error less may
+relieve the instability issues. Another option is to see how well the inputs
+are predicted given the measured outputs. The canonical form of the equations
+lend themselves to this check and only two inputs per run need be checked.
+
+We designated the predicted torques on the system to be
+
+.. math::
+
+   y_p = M \ddot{q] + C \dot{q} + K q
+
+and the measured torques to be
+
+.. math::
+
+   y_m = T + H F
+
+:math:`y_p` and :math:`y_m` can be computed for each run along with the percent
+variance explained by the model for both the total roll torque and the steer
+torque
+
+.. math::
+
+   var = 1 - \frac{||y_p - y_m||}{||y_m - \bar{y}_m}}}
+
+This percentage can be used as criterion of which to judge the ability of model
+versus another to predict the measurement.
+
+I compute the percent variance for each of the 374 runs used in the canonical
+identification outlined earlier using each of the 12 identified models and both
+the Whipple and Arm models. This percentage can be used ascriterion of which to
+judge the ability of model versus another to predict the measurement.
+
+I compute the percent variance for each of the 374 runs used in the canonical
+identification outlined earlier using each of the 12 identified models and both
+the Whipple and Arm models. I then take the median of the percent variances
+over 12 sets of runs corresponding, each set corresponding to the set of runs
+used in computing the various identified models. The results give an idea of
+how well the various models are able to predict the data for all of the runs in
+a given set.
+
+.. include:: tables/systemidentification/median-roll.rst
+
+.. include:: tables/systemidentification/median-steer.rst
+
+.. todo:: Evaluate the model quality for each run (or a portion of each run).
+   This can be done by seeing how well the predicted inputs fit with respect to
+   the measured outupts or how well the outputs fit with respect to the
+   measured inputs.
+
+.. todo:: Plot the identified model A and B coefficients on the coefficient
+   plots from the previous section.
+
+Discussion
+----------
+
+- All identified models are unstable until very high speeds.
+- I'm not sure if the rider's arm stiffness can affect these results. Or how
+  much the different riders can effect this if we are only searching for the
+  passive bicycle-rider model. Why is there difference in the riders?

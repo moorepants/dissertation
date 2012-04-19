@@ -392,8 +392,8 @@ be conquered before path tracking can be employed.
 Roll Stabilization
 ------------------
 
-It turns out that the bicycle can be stablized with simple feedback of roll
-angle or roll rate, with the combinatio of both being working in most cases.
+It turns out that the bicycle can be stabilized with simple feedback of roll
+angle or roll rate, with the combination of both being working in most cases.
 [Mutsaerts2010]_ in fact demonstrates the simple roll rate feedback
 stabilization with a small robotic bicycle. But these are not necessarily good
 controllers, and certainly not controllers which mimic the human.  Regardless,

@@ -133,9 +133,10 @@ gh-pages: clean html
 	-git commit -am "Commit before making gh-pages in case I forgot to commit."
 	git symbolic-ref HEAD refs/heads/gh-pages
 	rm .git/index
-	git clean -fdx -e _build/ -e .gitignore -e README -e figures/ -e tables/ -e Makefile
+	git clean -fdx -e _build/ -e .gitignore -e README -e figures/ -e tables/ -e data/ -e Makefile
 	mv figures figures-hide
 	mv tables tables-hide
+	mv data data-hide
 	touch .nojekyll
 	cp -r _build/html/* .
 	rm -r _build/
@@ -148,6 +149,7 @@ commit-gh-pages:
 	git checkout master
 	mv figures-hide figures
 	mv tables-hide tables
+	mv data-hide data
 
 pushpdf:
 	scp _build/latex/HumanControlofaBicycle.pdf biosport@mae.ucdavis.edu:/home/grads/biosport/public_html/jkm/dissertation/

@@ -56,7 +56,7 @@
 <span id="eom"></span><h1>Bicycle Equations Of Motion<a class="headerlink" href="#bicycle-equations-of-motion" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated February 29, 2012 at 11:33:42 PST).
+<p class="last">This document is a draft which is updated regularly (Last updated April 18, 2012 at 19:21:41 PDT).
 Once I submit if for my doctoral degree at UC Davis, it will be done. So for
 now use at your own risk. The information may or may not be correct.
 Reviews, comments and suggestions are welcome.</p>
@@ -69,7 +69,7 @@ derivation for my class project in Mont Hubbard&#8217;s winter 2006 multi-body
 dynamics class and struggled with it well into the summer before finally
 getting a mostly correct answer. After the fact, I realized much of my pain was
 caused by a single missing apostrophe in my Autolev source code <a class="footnote-reference" href="#id47" id="id1">[1]</a>. But
-regardless of that another student in the class, Thomas Englehardt, also
+regardless of that, another student in the class, Thomas Englehardt, also
 derived the equations and helped me debug by sharing his code and going over
 his methods. Even then, it turned out that my original equations weren&#8217;t
 &#8220;exactly&#8221; correct and it wasn&#8217;t until Luke Peterson joined our lab and got the
@@ -86,7 +86,7 @@ dissertation. This section details derivation of the non-linear equations of
 motion using Kane&#8217;s method [KaneLevinson1985]. The equations of motion are
 algebraically unwieldy and no one so far has publicly printed them in a form
 compact enough to print on reasonably sized paper and certainly not in a form
-suitable for any in depth analytical understanding <a class="footnote-reference" href="#id48" id="id3">[2]</a>. My methodology relies
+suitable for any in-depth analytical understanding <a class="footnote-reference" href="#id48" id="id3">[2]</a>. My methodology relies
 heavily on computer aided algebra to do the bookkeeping in the derivation, so I
 will only describe the necessary details to derive the equations, leaving the
 algebra, trigonometry and calculus to the computer. The symbolic equations of
@@ -94,7 +94,7 @@ motion herein were originally developed using Autolev, a proprietary and now
 defunct software package for symbolically deriving equations of motion for
 multi-body systems. I&#8217;ve since used the open source software <a class="reference external" href="http://sympy.org">SymPy</a> to derive the equations with the help of the included
 <tt class="docutils literal"><span class="pre">mechanics</span></tt> package which was developed in our lab to provide a software
-package suitable of academia with similar capabilities as Autolev. The input
+package suitable for academia with capabilities similar to Autolev. The input
 code for both software packages are available in the <tt class="docutils literal"><span class="pre">src/eom</span></tt> directory of
 the dissertation source files.</p>
 <div class="admonition-todo admonition" id="index-0">
@@ -109,23 +109,25 @@ Autosim probably uses Kane&#8217;s method.</p>
 </div>
 <div class="section" id="model-description">
 <h3>Model Description<a class="headerlink" href="#model-description" title="Permalink to this headline">¶</a></h3>
-<p>The <em>Whipple Bicycle Model</em> [Whipple1899] is typically defined by these set of
+<p>The <em>Whipple Bicycle Model</em> [Whipple1899] is typically defined by this set of
 assumptions:</p>
 <ul class="simple">
-<li>The Whipple model is made up of four rigid bodies: the main frame (may or may
-not include a rigid rider), the fork and handlebar assembly and two wheels.</li>
+<li>The Whipple model is made up of four rigid bodies: the rear frame (the main
+bicycle frame which may or may not include a rigid rider), the front frame
+(typically the fork and handlebar assembly), and two wheels.</li>
 <li>The bodies are connected to each other by frictionless revolute joints.</li>
 <li>The wheels have knife edges and contact the ground under pure rolling with no
 side-slip.</li>
 <li>The complete bicycle is assumed to be laterally symmetric.</li>
 <li>The bicycle rolls on flat ground.</li>
 </ul>
-<p>[Limebeer2006], [Meijaard2007], [Astrom2005] give great detail of the model.</p>
+<p>[Astrom2005], [Limebeer2006], [Meijaard2007] provide great detail about this
+model.</p>
 <p>Unfortunately the word &#8220;model&#8221; will be used in varying contexts and with
-different meanings throughout this dissertation. I will attempt to be precise
-with my wording. For this chapter, I consider a dynamic model, such as the
+different meanings throughout this dissertation. I will attempt to be as precise
+as possible with my wording. For this chapter, I consider a dynamic model, such as the
 <em>Whipple Bicycle Model</em>, to be the equivalent to another dynamic model if at
-least the minimal set of equations of motions are the same (i.e. give the same
+least the minimal set of equations of motions are the same (i.e. they give the same
 result when evaluated at a particular state). This implies that the Whipple
 Bicycle Model linearized about the nominal configuration is a different model
 than the non-linear <em>Whipple Bicycle Model</em>. I will try to be explicit when

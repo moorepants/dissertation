@@ -56,7 +56,7 @@
 <span id="systemidentification"></span><h1>System Identification<a class="headerlink" href="#system-identification" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated April 18, 2012 at 19:21:51 PDT).
+<p class="last">This document is a draft which is updated regularly (Last updated April 19, 2012 at 15:55:21 PDT).
 Once I submit if for my doctoral degree at UC Davis, it will be done. So for
 now use at your own risk. The information may or may not be correct.
 Reviews, comments and suggestions are welcome.</p>
@@ -1183,19 +1183,22 @@ coefficients of <span class="math">\(q\)</span> are non-linear functions of the 
 <p class="last">the following doesn&#8217;t make sense, fix it up</p>
 </div>
 <p>We can now construct the cost function, which will enable the computation of
-the parameters which give the best fit.</p>
-<p><span class="math">\(Y_N\)</span> is an <span class="math">\(pN x 1\)</span> vector containing all of the current outputs</p>
+the parameters which give the best fit using optimization methods. We&#8217;d like to
+minimize the error in the predicted output with respect to the measured output
+at each time step. First form <span class="math">\(Y_N\)</span> which is a <span class="math">\(pN x 1\)</span> vector
+containing all of the current outputs at time <span class="math">\(kT\)</span>.</p>
 <div class="math">
-\[\left[y_1(1) \ldots y_p(1) \ldots y_1(N) \ldots y_p(N) \right]^T\]</div>
+\[Y_N = \left[y_1(1) \ldots y_p(1) \ldots y_1(N) \ldots y_p(N) \right]^T\]</div>
 <p>where <span class="math">\(p\)</span> are the number of outputs and <span class="math">\(N\)</span> is the number of samples.
-<span class="math">\(\hat{Y}_N(\theta)\)</span> is then the one step ahead prediction of <span class="math">\(Y_N\)</span>
-given <span class="math">\(y(s)\)</span> and <span class="math">\(u(s)\)</span> where <span class="math">\(s \leq t - 1\)</span></p>
+Then compute the predictor vector, <span class="math">\(\hat{Y}_N(\theta)\)</span>, the one step ahead
+prediction of <span class="math">\(Y_N\)</span> given <span class="math">\(y(s)\)</span> and <span class="math">\(u(s)\)</span> where <span class="math">\(s
+\leq t - 1\)</span></p>
 <div class="math">
-\[\left[\hat{y}_1(1) \ldots \hat{y}_p(1) \ldots \hat{y}_p(N) \ldots \hat{y}_p(N) \right]^T\]</div>
-<p>The cost function is then the magnitude of the squares of the difference of
-<span class="math">\(Y_N\)</span> and <span class="math">\(\hat{Y}_N(\theta)\)</span>.</p>
+\[\hat{Y}_N = \left[\hat{y}_1(1) \ldots \hat{y}_1(1) \ldots \hat{y}_p(N) \ldots \hat{y}_p(N) \right]^T\]</div>
+<p>The cost function is then the norm of the difference of <span class="math">\(Y_N\)</span> and
+<span class="math">\(\hat{Y}_N(\theta)\)</span> for all <span class="math">\(k\)</span>.</p>
 <div class="math">
-\[V_N(\theta) = \frac{1}{pN}|Y_N - \hat{Y}_N(\theta)|^2\]</div>
+\[V_N(\theta) = \frac{1}{pN}||Y_N - \hat{Y}_N(\theta)||\]</div>
 <div class="admonition-todo admonition" id="index-8">
 <p class="first admonition-title">Todo</p>
 <p class="last">do I need the 1/pN? I&#8217;m just copying that from the book somewhere.</p>
@@ -1209,12 +1212,12 @@ prediction</p>
 many of the issues association with optimization including only being able to
 find a local minima. The number unknown parameters in the <span class="math">\(\mathbf{K}\)</span>
 matrix are function of the number of states and the number of outputs, in our
-case in <span class="math">\(\mathbb{R}^{4\times4\)</span> which more than doubles the number of
+case in <span class="math">\(\mathbb{R}^{4\times4}\)</span> which more than doubles the number of
 unknowns present in the <span class="math">\(\mathbf{A}\)</span> and <span class="math">\(\math{B}\)</span> matrices. It is
 thus critical to reduce the number of unknown parameters to have a more likely
-chance at finding the global minima of the cost function. The accuracy of which
-the system parameters can be depend on the ability to estimate the
-<span class="math">\(\mathbf{K}\)</span> matrix.</p>
+chance at finding the global minima of the cost function. The accuracy of the
+system parameters depend on the ability to estimate the <span class="math">\(\mathbf{K}\)</span>
+matrix along with the other parameters.</p>
 <div class="admonition-todo admonition" id="index-9">
 <p class="first admonition-title">Todo</p>
 <p class="last">Compare the fit from a k=0 fit and one without, note how we aren&#8217;t
@@ -1223,9 +1226,8 @@ find a good model when searching for the noise</p>
 </div>
 <p>Before identification I further processed all of the signals that were
 generally symmetric about zero by subtracting the means over time. For some of
-the pavilion runs, this may have actually introduced a small bias, especially
-in the roll angle as my calibration procedures were more susceptible to error
-in the bias.</p>
+the pavilion runs, this may have actually introduced a small bias, as the short
+duration runs with unbalanced pertubations may not have a mean at true zero.</p>
 <p>I made use of the Matlab System Identification Toolbox for the identification
 of the parameters <span class="math">\(\theta\)</span> in each run of this model structure. In
 particular a structured <cite>idss</cite> object was built for with the initial guesses of
@@ -1259,8 +1261,20 @@ trajectory, the Whipple model requires less torque than what was measured. The
 Whipple model with the arm inertial effects does a better job than the Whipple
 model, but still has some magnitude differences and in particular has a harder
 time predicting the roll angle than the other two models.</p>
-<p>[Biral2003] and [Teerhuis2010] do a feed forward sim of their models with the
-measured steering torque.</p>
+<p>The identified models are almost always unstable and the even though the
+measured inputs stabilize the true system, they will not necessarily stabilize
+the models. This poses an issue when gaging the model quality by it&#8217;s
+percentage variance. A model that blows up during the simulation may not
+necessarily be a bad model, but will return a very small percent variance and
+loose its ability to be compared by that criteria. [Biral2003] and
+[Teerhuis2010] both are able to feed forward simulations of their models with
+the measured steering torque.  They both are dealing with high speed
+motorcycles which typically only have a slightly unstable capsize mode.
+[Teerhuis] uses a controller to compensate the torque for unbounded errors so
+that the simluation doesn&#8217;t blow up. The method I use here is to chose short
+duration portions of the runs for simulation and search for the best set of
+initial conditions to keep the model stable during the duration. This generally
+works but there is ultimately some uncomparable runs due to this issue.</p>
 <div class="figure">
 <img alt="_images/example-fit.png" src="_images/example-fit.png" />
 <p class="caption">The example results for the identification of a single run (#596). The
@@ -1289,7 +1303,7 @@ appears to be very tight and the first principles models predict it very well.
 The constant, linear and quadratic trends in the coefficients are not easily
 seen for most coefficients. This is due to the high variability in the results
 of a large number of repeated experiments at some speeds, more detailed
-regression models may be able to reveal the true trends <a href="#id62"><span class="problematic" id="id63"><span id="id57"></span>[1]_</span></a>.</p>
+regression models may be able to reveal the true trends <a href="#id64"><span class="problematic" id="id65"><span id="id58"></span>[1]_</span></a>.</p>
 <p>Figure <em class="xref std std-ref">figBode</em> gives another view of the resulting data. It is a frequency
 response plot at the mean speed for a set of runs. The blue lines give the mean
 and standard deviation of the magnitude and phase of the system transfer
@@ -1324,8 +1338,8 @@ line. The green line is the Whipple model and the red line is for the model
 which accounted for the arm inertial effects.</p>
 </div>
 </div>
-<div class="section" id="id58">
-<h4>CONCLUSION<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id59">
+<h4>CONCLUSION<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h4>
 <p>I have shown that a fourth order structured state space model is both adequate
 and good for describing the motion of the bicycle under manual control in a
 speed range from approximately 1.5 m/s to 9 m/s. The fact that higher order
@@ -1633,8 +1647,8 @@ the remaining steer equation coefficients.</p>
   - \hat{K}_{2\delta\phi} v(N)^2 \phi(N) \\
 \end{bmatrix}\end{split}\]</div>
 </div>
-<div class="section" id="id61">
-<h4>Results<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id62">
+<h4>Results<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h4>
 <p>I selected data for three riders on the same bicycle, performing two maneuvers,
 on two different environments. I have little reason to believe the dynamics of
 the passive system should vary much with respect to different maneuvers, but
@@ -2908,15 +2922,16 @@ with the measured outputs. I simulated all 14 models with the inputs from the
 374 runs and computed the percent variance explained by the model for each
 output. Since the models are typically unstable at all of the speeds we tested
 at I search for the set of initial conditions which minimizes the percent
-variance for all outputs. For the majority of runs and models, this is sufficient to to
-have a stable simulation for the the duration of the run. However, this is not
-always the case. For long duration runs I select a random 20 second section of
-the data to simulate, reducing the likelihood that the simulation blows up.
-Finally, I ignore any outputs varainces that are less than -100 percent as they
-are most likely due to unstable simulations. Table X presents the median
-percent variance across all runs for each model and each output. The best model
-seems to be the one generated from the data with Luke on the Pavilion Floor,
-once again but these results differ from the previous otherwise.</p>
+variance for all outputs. For the majority of runs and models, this is
+sufficient to to have a stable simulation for the the duration of the run.
+However, this is not always the case. For long duration runs I select a random
+20 second section of the data to simulate, reducing the likelihood that the
+simulation blows up.  Finally, I ignore any outputs varainces that are less
+than -100 percent as they are most likely due to unstable simulations. Table X
+presents the median percent variance across all runs for each model and each
+output. The best model seems to be the one generated from the data with Luke on
+the Pavilion Floor, once again but these results differ from the previous
+otherwise.</p>
 <ul class="simple">
 <li>For all outputs other than roll angle, the arm model is better than the
 Whipple model.</li>
@@ -2928,6 +2943,11 @@ input comparison results.</li>
 <li>All of the identified models are better predictors than the first principles
 models.</li>
 </ul>
+<div class="admonition-todo admonition" id="index-21">
+<p class="first admonition-title">Todo</p>
+<p class="last">the AIC could be checked for all these models to compare their
+quality</p>
+</div>
 <table border="1" class="docutils">
 <colgroup>
 <col width="27%" />
@@ -3089,25 +3109,111 @@ good predictor. Notice that the Whipple model is poorer than the arm model.</p>
 </tr>
 </tbody>
 </table>
-<div class="admonition-todo admonition" id="index-21">
+<div class="admonition-todo admonition" id="index-22">
 <p class="first admonition-title">Todo</p>
 <p class="last">show output comparison plot for one run with the top two and bottom
 two models.</p>
 </div>
-<div class="admonition-todo admonition" id="index-22">
-<p class="first admonition-title">Todo</p>
-<p class="last">Plot the identified model A and B coefficients on the coefficient
-plots from the previous section.</p>
-</div>
+<p>The orange line in Figure <a class="reference internal" href="#figcoefficients"><em>Coefficients of the linear dynamical equations of motion plotted as a
+function of speed. Each blue dot is a single experiment. The green line is
+the Whipple model and the red line is the arm model. Only experiments with
+a mean fit percentage greater than zero are shown. The orange line is the
+model identified with the canonical method using runs done be Luke in the
+pavilion which is presented and discussed in the next section.</em></a> is that of the L-P model and
+allows us to compare the results of the canonical identification process with
+those of the state space models. The L-P model seems to obviously be better at
+fitting the data, especially in the steer equation. This lends more confidence
+that this is a better model choice than the Whipple and arm model.</p>
 </div>
 <div class="section" id="discussion">
 <h4>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h4>
-<ul class="simple">
-<li>All identified models are unstable until very high speeds.</li>
-<li>I&#8217;m not sure if the rider&#8217;s arm stiffness can affect these results. Or how
-much the different riders can effect this if we are only searching for the
-passive bicycle-rider model. Why is there difference in the riders?</li>
-</ul>
+<dl class="docutils">
+<dt>Canonical formulation</dt>
+<dd><p class="first">The canonical realization seems to be a good method for identifiying a model
+for data from mutliple runs. It relies on quality measurements of the
+coordinates, their rates and accelerations. I use numerical differentiation
+of the rates to get the accelerations instead of direct measurements and the
+angles are not perfectly related to the rates through differentiation
+because they were measured from different sensors. The noise in the
+measurements and whether the measurements are accurately the derivatives of
+one another have bearing on the results. It is possible to identify all of
+the entries in the canonical matrices, but it is likely some of those are
+easily predicted from first princples and I fix them if that is the case.
+This leaves the roll equation mostly fixed and the steer equation mostly
+free and the results reflect better fits with respect to steer than roll as
+a result. This formulation does not explicitly account for process noise, so
+it may be be suspectible to similar accuracy errors as the state space
+formulation does.</p>
+<p class="last">It is suprising that a model from a small subset of the data is better at
+predicting all of the runs on an individual basis.</p>
+</dd>
+<dt>Input comparison</dt>
+<dd>The input prediction comparisons do not predict the roll torque well at all.
+It seems that the roll equation magnifies the noise in the coordinate, rate
+and acceleration measurments such that the resutling noise in the roll
+torque is equivalent in magnitude to the roll perturbations. But the roll
+pertubations do seem to clearly be present in the predictions. This results
+in difficultly comparing the quality of the resulting models with respect to
+the roll equation.</dd>
+<dt>Output comparison</dt>
+<dd>The output comparison (simulations) give more reasonable results because all
+four outputs generally fit well across runs given the measured inputs.  It
+is suprising that the ranking of model predition ability is different for
+the input comparisons than the output comparisons, but the fact that the
+model identified from Luke&#8217;s pavilion runs is the best from both
+comparisons, at least gives credencen to it further adoption. The first
+principles models are dead last in the ranking and the model identified from
+Jason&#8217;s pavilion runs is suprisingly poor due to poor roll angle prediction.</dd>
+<dt>Whipple model</dt>
+<dd><p class="first">The input comparisons show that the Whipple model is relatively reasonable
+at predicting the data but the output comparisons make it out to be much
+poorer. The Whipple model is clearly the worst at explaining the variance in
+the steer angle, roll rate and steer rate outputs and is second to worst in
+roll angle.</p>
+<p class="last">Also contrary to the Whipple model predictions, the weave mode of all
+identified models are unstable until at least 8-9 m/s or so. The caster mode
+is also typically much faster in the identified models. This implies that
+the real system does not benefit from open loop stability at all during most
+normal speed bicycling and that the rider is always responsible for
+stabilizing the vehicle. This may explain why none of the riders ever felt
+comfortable enough to try hands-free riding while strapped into the harness.</p>
+</dd>
+<dt>Arm model</dt>
+<dd>I had hypothesized that the arm model would better predict the measured
+motion because it more accurately modeled the fact that we allowed the rider
+full use of his arms to control the steering. This was validated with
+respect to the output simulation comparsons. They predict that the arm model
+is much better than the Whipple model for most of the output variables. But
+this is in constract to the input comparison predictions which were
+opposite, with the Whipple being much better than the arm model. More work
+is needed to verify which model is better, but I&#8217;m leaning with the output
+comparison results myself.</dd>
+<dt>Rider biomechanics may mot be modeled</dt>
+<dd>The models identified from Charlie&#8217;s runs are different than those of Jason
+and Luke. The models from Charlie&#8217;s runs do not predict the runs very well,
+even including the subset of Charlie&#8217;s. I&#8217;m not sure if the rider&#8217;s arm
+stiffness can affect these results. Or how much the different riders can
+effect this if we are only searching for the passive bicycle-rider model.
+The other potenital explanation is that I have too many outliers in
+Charlie&#8217;s runs. This could have something to do with all of the runs that
+had sycronization issues.</dd>
+<dt>Predicting derivatives</dt>
+<dd>The roll angle is more poorly predicted than the other variables. The steer
+angle and steer rate are better predicted than the roll angle and roll rate.
+In the output comparisons we enforce that the roll rate is the derivative of
+the roll and the same for the steer varibles. The poorer predictions of roll
+angle is probably due to noise and error in the indepedent measurements of
+these variables. I toyed with complementary filters to try an combine the
+angle and rate measurements in a way that filtered and enforced the
+derivative relationship between the measured varialbes, but did not have
+much luck improving the results. It may be better to focus on one each of
+the roll and steer variables for minimization purposes. It is well known
+that fitting models with much fewere inputs to outputs is difficult and the
+fewer ouputs reduces the number of noise terms to estimate.</dd>
+</dl>
+</div>
+<div class="section" id="id63">
+<h4>Conclusion<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h4>
 <p>The best candidate model for the measured system is the model identified from
 the data subset with rider Luke and the pavilion floor. I find no reason to use
 different models for each rider, environment as this model does a better job at
@@ -3118,6 +3224,16 @@ following section of this Chapter. I could use the individual bicycle
 identifications for each run, but using a model derived from a set of runs has
 the advantage that it will be less affected by the lack of identifying the
 process noise explicitly.</p>
+<p>Suggestions</p>
+<ul class="simple">
+<li>Fit to MISO, fix the <span class="math">\(a_{\phi\delta}\)</span> coefficient and make the noise
+with respect to the kinematical equations equal to zero giving 11-13 total
+parameters to fit</li>
+<li>Using model reduction techniques to combine many MISO and SISO models for a
+given run.</li>
+<li>Use better initial guess techniques and try global optimizers to get to the
+best solution</li>
+</ul>
 </div>
 </div>
 </div>

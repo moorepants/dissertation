@@ -1,3 +1,6 @@
+% This is an attempt to compare the identification as an output error model
+% and when estimating the Kalman gain matrix. It currently doesn't really
+% work well.
 PATH_TO_BICYCLE_SYSTEM_ID = '/media/Data/Documents/School/UC Davis/Bicycle Mechanics/BicycleSystemID';
 addpath([PATH_TO_BICYCLE_SYSTEM_ID '/src/matlab'])
 dataDir = [PATH_TO_BICYCLE_SYSTEM_ID filesep 'scripts' filesep 'statespaceid' filesep 'exports'];
@@ -5,18 +8,14 @@ dataDir = [PATH_TO_BICYCLE_SYSTEM_ID filesep 'scripts' filesep 'statespaceid' fi
 inputs = {'tDelta', 'fB'};
 states = {'phi', 'delta', 'phiDot', 'deltaDot'};
 outputs = {'phi', 'delta', 'phiDot', 'deltaDot'};
+outputs = {'delta', 'phiDot'};
 
-runID = '00596';
+runID = '00700';
 [data, v, rider] = build_id_data([runID '.mat'], outputs, inputs, ...
     dataDir, true);
 
 whippleModel = bicycle_structured(['Rigid' rider], v, 'states', states, ...
     'inputs', inputs, 'outputs', outputs);
-
-armModel = whippleModel;
-load(['../extensions/arms/armsAB-' rider '.mat'])
-armModel.A = squeeze(stateMatrices(round(v * 10) + 1, :, :));
-armModel.B = squeeze(inputMatrices(round(v * 10) + 1, :, [2, 3]));
 
 pemArgs = {'Maxiter', 100, ...
            'SearchMethod', 'auto', ...
@@ -28,7 +27,31 @@ pemArgs = {'Maxiter', 100, ...
 
 identifiedModel = pem(data, whippleModel, pemArgs{:});
 
-[YH, FIT, X0] = compare(data, identifiedModel, whippleModel, armModel);
+pemArgs = {'Maxiter', 1000, ...
+           'SearchMethod', 'auto', ...
+           'Focus', 'Prediction', ...
+           'InitialState', 'Estimate', ...
+           'Display', 'on', ...
+          };
+
+noiseStructured = whippleModel;
+noiseStructured.A = identifiedModel.A;
+noiseStructured.B = identifiedModel.B;
+% this doesn't seem to force the estimation of only the bottom two rows of
+% the K matrix, I'm not sure how to enforce it
+%noiseStructured.Ks = [0, 0, 0, 0;
+                      %0, 0, 0, 0;
+                      %nan, nan, nan, nan;
+                      %nan, nan, nan, nan];
+noiseStructured.Ks = [0, 0;
+                      0, 0;
+                      nan, nan;
+                      nan, nan];
+
+% this currently runs to the 1000th iteration
+noiseModel = pem(data, noiseStructured, pemArgs{:});
+
+[YH, FIT, X0] = compare(data, identifiedModel, noiseModel);
 
 time = data.SamplingInstants;
 
@@ -69,18 +92,16 @@ ylabels = {'\(\phi\) [rad]', '\(\delta\) [rad]',
            '$\dot{\phi}$ [rad/s]', '$\dot{\delta}$ [rad/s]'};
 
 f = squeeze(FIT);
-for i = 1:4
+for i = 1:length(outputs)
     ax = axesHandles(i + 2);
     lh = plot(ax, ...
               time, data.OutputData(:, i), 'k', ...
               time, YH{1}.OutputData(:, i), 'b', ...
-              time, YH{2}.OutputData(:, i), 'g', ...
-              time, YH{3}.OutputData(:, i), 'r');
+              time, YH{2}.OutputData(:, i), 'r');
     ylabel(ax, ylabels{i}, 'Interpreter', 'Latex')
     idLeg = sprintf('I (%1.0f%%)', f(1, i));
-    whipLeg = sprintf('W (%1.0f%%)', f(2, i));
-    armLeg = sprintf('A (%1.0f%%)', f(3, i));
-    leg = legend(ax, 'M', idLeg, whipLeg, armLeg);
+    noiseLeg = sprintf('N (%1.0f%%)', f(2, i));
+    leg = legend(ax, 'M', idLeg, noiseLeg);
     % I can't figure out how to change the legend line length!! the
     % following doesn't seem to work
     legLines = findobj(leg, 'type', 'line');
@@ -107,5 +128,5 @@ end
 % add the the time axis to the last bottom plot
 xlabel('Time [s]')
 
-saveas(fig, '../../figures/systemidentification/example-fit.png')
-saveas(fig, '../../figures/systemidentification/example-fit.pdf')
+saveas(fig, '../../figures/systemidentification/global-minima.png')
+saveas(fig, '../../figures/systemidentification/global-minima.pdf')

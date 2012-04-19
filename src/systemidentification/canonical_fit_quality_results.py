@@ -142,7 +142,9 @@ for s in sets:
 sdf = pandas.DataFrame(steerdf, index=[x[6:] for x in sInd])
 rdf = pandas.DataFrame(rolldf, index=[x[5:] for x in rInd])
 
+# Create an restructuredtext table for each of the input measures.
 per = lambda x: '{:.1%}'.format(x)
+
 shtml = sdf.to_html(float_format=per)
 with open('steer.html', 'w') as f:
     f.write(shtml)

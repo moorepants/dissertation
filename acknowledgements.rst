@@ -25,23 +25,23 @@ recommendations expressed in this material are those of the author(s) and do
 not necessarily reflect the views of the National Science Foundation.
 
 * Hubbard
+* Committees
 * Luke
-* Arend
-* Jodi
-* Jim
-* Grad interns: Danique, Peter, Chris, Gilbert, Garry
-* Undergrad interns: Steven Yen, Mohammed, Joe, Eric, Chet, Steven B.
+* Arend Schwab
+* Jodi Kooijman
+* Hess
+* Jim Papodopolous
+* Grad interns: Danique Fintelman, Peter, Chris, Gilbert, Garry
+* Undergrad interns: Steven Yen, Mohammed Osman, Joe Rinek, Eric, Chet, Steven B., Derek Pell
 * Librarians: Bob in particular
 * Vrije: Knoek van Soest and Richard Casius
 * Riders: Victor, Charlie, Luke
-* Jan, Tai, Alvin, Andrew, Zach
+* Jan Wright, Tai Stillwater, Alvin Yu, Andrew Kickertz, Zach , Ziqi, Elliot
+  Marshall, Garry Negroni
 * James Jones and George Crocker
+* Karl Astrom
+* Chet Kyle
+* Andy Ruina
+* Batavus, Amped Bikes
+* Fulbright
 * Others...
-
-    We would like to thank Knoek van Soest and Richard Casius of the
-    Faculty of Human Movement Sciences at the Vrije Universiteit,
-    Amsterdam for their cooperation and use of their equipment for the
-    experiments and for Richard’s expertise and help in operating the
-    motion capture system and data processing. Also, we thank Victor
-    Ahlm for a tireless day of bicycling and the Dutch bicycle
-    manufacturer, Batavus, for supplying the bicycles.

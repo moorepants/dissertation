@@ -192,6 +192,9 @@ simpler or more well studied system. The approaches to identifying the passive
 model include mode excitation techniques to system identification under more
 general inputs.
 
+.. todo:: What about Dohring. He took measurements of a motorcycle and did
+   something. Maybe I should review it.
+
 CALSPAN
 ~~~~~~~
 
@@ -823,7 +826,7 @@ Static Calibration
    angle. As this was never done.
 
 .. figure:: figures/systemidentification/pavilion-lane-change.*
-   
+
    The dimensions of the single lane change on the pavilion floor for runs
    115-139.
 
@@ -951,6 +954,8 @@ environment, maneuvers, and speed bins.
    Four bar charts showing the number of runs that are potentially usable for
    model identification. These include runs from the treadmill and pavilion,
    one of the four primary maneuvers, and were not corrupt.
+
+.. todo:: note how many runs were acutally usable
 
 The processed data provides filtered signals that correspond to the coordinates
 and speeds outlined in our models, Chapters :ref:`eom` and :ref:`extensions`.
@@ -1373,7 +1378,7 @@ between 2 and 10 rad/s, thus the better amplitude matching.
     line. The green line is the Whipple model and the red line is for the model
     which accounted for the arm inertial effects.
 
-CONCLUSION
+Conclusion
 ~~~~~~~~~~
 
 I have shown that a fourth order structured state space model is both adequate
@@ -2236,6 +2241,213 @@ Rider Controller Identification
 ===============================
 
 Do I really have to figure this out??
+
+Grey Box Models
+---------------
+
+The bicycle block for lateral deviation tracking has states :math:`x_b = \left[
+\phi \quad \delta \quad \dot{\phi} \quad \dot{\delta} \quad \psi \quad y_p
+\right]^T`, inputs :math:`u_b = \left[ T_\delta \quad F \right]^T`, and outputs
+:math:`y_b = \left[ \delta \quad \phi \quad \dot{\phi} \quad \psi \quad y_q
+\right]^T`. The state, input and output matrices are follows
+
+.. math::
+   :label: eqBicycleStateSpace
+
+   \mathbf{A}_b
+   =
+   \begin{bmatrix}
+     0 & 0 & 1 & 0 & 0 & 0 \\
+     0 & 0 & 0 & 1 & 0 & 0 \\
+     a_{b\ddot{phi}\phi} & a_{b\ddot{phi}\delta} &
+     a_{b\ddot{\phi}\dot{\phi}} & a_{b\ddot{\phi}\dot{\delta}} &
+     0 & 0 \\
+     a_{b\ddot{\delta}\phi} & a_{b\ddot{\delta}\delta} &
+     a_{b\ddot{\delta}\dot{\phi}} & a_{b\ddot{\delta}\dot{delta}} & 0 & 0 \\
+     0 & a_{b\dot{\psi}\delta} & 0 & a_{b\dot{\psi}\dot{\delta}} & 0 & 0\\
+     0 & 0 & 0 & 0 & a_{b\dot{y}_p\psi} & 0
+   \end{bmatrix}
+
+   \mathbf{B}_b
+   =
+   \begin{bmatrix}
+     0 & 0 \\
+     0 & 0 \\
+     b_{b\ddot{\phi}T_\delta} & b_{b\ddot{\phi}F} \\
+     b_{b\ddot{\delta}T_\delta} & b_{b\ddot{\delta}F} \\
+     0 & 0 \\
+     0 & 0
+   \end{bmatrix}
+
+   \mathbf{C}_b
+   =
+   \begin{bmatrix}
+     0 & 1 & 0 & 0 & 0 & 0 \\
+     1 & 0 & 0 & 0 & 0 & 0 \\
+     0 & 0 & 1 & 0 & 0 & 0 \\
+     0 & 0 & 0 & 0 & 1 & 0 \\
+     0 & 1 & 0 & 0 & c_{by_q\psi} & c_{by_qy_p} \\
+   \end{bmatrix}
+
+The neuromuscular block is described by the transfer function
+
+.. math::
+   :label: eqNeuromuscular
+
+   G_{nm}(s) = \frac{\omega_{nm}^2}{s^2 + 2 \zeta_{nm} \omega_{nm}s + \omega_{nm}}
+
+and can be written in state space form with the states :math:`x_{nm} = \left[
+T_\delta \quad \dot{T}_\delta \right]^T`, input :math:`u_{nm} = U_{nm}` and
+output :math:`y_{nm} = T_\delta`.
+
+.. math::
+   :label: eqNeuroStateSpace
+
+   \mathbf{A}_{nm}
+   =
+   \begin{bmatrix}
+     0 & 1 \\
+     -\omega^2 & - 2 \zeta \omega
+   \end{bmatrix}
+
+   \mathbf{B}_{nm}
+   =
+   \begin{bmatrix}
+     0 \\
+     \omega^2
+   \end{bmatrix}
+
+   \mathbf{C}_{nm}
+   =
+   \begin{bmatrix}
+     1 & 0
+   \end{bmatrix}
+
+The combined plant (rider nueromuscular model and bicycle) has states
+:math:`x_p = \left[ \phi \quad \delta \quad \dot{\phi} \quad \dot{\delta} \quad
+\psi \quad y_p \quad T_\delta \quad \dot{T}_\delta \right]^T`, inputs
+:math:`u_p = \left[ F \quad U_{nm} \right]^T`, and outputs :math:`y_p = \left[
+\delta \quad \phi \quad \dot{\phi} \quad \psi \quad y_q \right]^T`. The state,
+input and output matrices are follows
+
+.. math::
+   :label: eqPlantStateSpace
+
+   \mathbf{A}_p
+   =
+   \begin{bmatrix}
+     \mathbf{A}_b & \mathbf{B}_{bT_\delta} & 0_{6 \times 1} \\
+     0_{2 \times 6} & \mathbf{A}_{nm}
+   \end{bmatrix}
+
+   \mathbf{B}_p
+   =
+   \begin{bmatrix}
+     \mathbf{B}_{bF} & 0_{6 \times 2} \\
+     0_{2 \times 1} & \mathbf{B}_{nm}
+   \end{bmatrix}
+
+   \mathbf{C}_p
+   =
+   \begin{bmatrix}
+     \mathbf{C}_b & 0
+   \end{bmatrix}
+
+The sequential loop closure dictates that the commanded output variables are
+
+.. math::
+
+   \psi_c = k_{y_q} ({y_q}_c - y_q)
+
+   \phi_c = k_\psi (\psi_c - \psi)
+
+   \dot{\phi}_c = k_\phi (\phi_c - \phi)
+
+   \delta_c = k_\dot{\phi} (\dot{\phi}_c - \dot{\phi})
+
+and the input to the neuromuscular block as a function of the desired path
+is
+
+.. math::
+
+   U_{nm} = k_\delta * (\delta_c - \delta)
+
+The input to the neuromuscular block can be written in linear form as
+
+.. math::
+
+   U_{nm}
+   =
+   \begin{bmatrix}
+     -k_\delta k_\phi k_\dot{\phi} k_\psi \\
+     -k_\delta k_\phi k_\dot{\phi} \\
+     -k_\delta \\
+     -k_\delta k_\dot{\phi} \\
+     -k_\delta k_\phi k_\dot{\phi} k_\psi k_{y_q} \\
+     k_\delta k_\phi k_\dot{\phi} k_\psi k_{y_q}
+   \end{bmatrix}^T
+   \begin{bmatrix}
+      \psi \\
+      \phi \\
+      \delta \\
+      \dot{\phi} \\
+      y_q \\
+      y_c \\
+   \end{bmatrix}
+
+The closed loop state space for lateral deviation tracking can be form by
+inserting the controller output :math:`U_{nm}` into the plant dynamics
+:math:`(\mathbf{A}_p,\mathbf{B}p)` to rearrange the plant state space to be a
+function of the desired path and the lateral force, :math:`u_l = \left[ F \quad
+y_{qc} \right]^T`. The closed loop system :math:`(\mathbf{A}_p,\mathbf{B}p)`
+takes the same form as the plant system with excepetion to the steer torque
+acceleration equation, which is now a function of the controller gains, the
+neuromuscular parameters and the desired path of the front wheel contact point.
+The new entries to the state matrix are
+
+.. math::
+   a_{l\ddot{T}_\delta y_p} =
+   -\omega^2 k_\delta k_\phi k_\dot{\phi} k_\psi k_{y_q}
+
+   a_{l\ddot{T}_\delta \psi} =
+   -\omega^2 k_\delta k_\phi k_\dot{\phi} k_\psi (1 + c_{b y_q \psi} k_{y_q})
+
+   a_{l\ddot{T}_\delta \phi} = -\omega^2 k_\delta k_\phi k_\dot{\phi}
+
+   a_{l\ddot{T}_\delta \delta} =
+   -\omega^2 k_\delta (1 + c_{b y_q \delta} k_\phi k_\dot{\phi} k_\psi k_{y_q})
+
+   a_{l\ddot{T}_\delta \dot{\phi}} = -\omega^2 k_\delta k_\dot{\phi}
+
+and the column in the :math:`\mathbf{B}_l` matrix corresponding to the desired
+path now has a single non-zero entry
+
+.. math::
+
+   b_{l\ddot{T}_\delta y_qc} = \omega^2 k_\delta k_\phi k_\dot{\phi} k_\psi k_{y_q}
+
+The output matrix can be constructed to provide any desired outputs, which I
+choose a subset of the outputs we measured during the experiments such as steer
+angle, roll rate, steer torque, etc.
+
+Given that the bicycle model is known this analytical state space
+representation is parameterized by seven parameters: the five controller gains
+and the two neuromuscular parameters. The seven parameters are uniquely
+idenfitiable. The model is eighth order with two inputs.
+
+.. todo:: i think they are uniquely identifiable but I'm not real sure how to
+   check this throughly. it is function of what inputs and outputs that are
+   measured
+
+Notice that the controller is unlike an state or output feeback model in the
+sense that the gains only have the ability to affect a single row in the A and
+B matrices.
+
+I also make use of a second closed loop model which is essentially the same,
+but the outer lateral deviation tracking loop is removed and tracking a
+commanded heading is left. This model is seventh order with two inputs.
+
+.. todo:: Talk about the noise estimation.
 
 .. rubric:: Footnotes
 

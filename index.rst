@@ -30,27 +30,23 @@ Qualifying Exam Committee
 * Dr. Keith Williams, UC Davis
 * Dr. Micheal Hill, UC Davis
 
-Table of Contents
-=================
-
 .. toctree::
    :maxdepth: 2
 
-   preface.rst
-   acknowledgements.rst
-   abstract.rst
-   introduction.rst
-   eom.rst
-   extensions.rst
-   physicalparameters.rst
-   parameterstudy.rst
-   delftbicycle.rst
-   motioncapture.rst
-   davisbicycle.rst
-   control.rst
-   handling.rst
-   davisexperiments.rst
-   systemidentification.rst
-   todo.rst
+   preface
+   acknowledgements
+   abstract
+   introduction
+   eom
+   extensions
+   physicalparameters
+   parameterstudy
+   delftbicycle
+   motioncapture
+   davisbicycle
+   control
+   davisexperiments
+   systemidentification
+   todo
 
 * :ref:`search`

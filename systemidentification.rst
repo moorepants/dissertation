@@ -2406,25 +2406,52 @@ neuromuscular parameters and the desired path of the front wheel contact point.
 The new entries to the state matrix are
 
 .. math::
-   a_{l\ddot{T}_\delta y_p} =
-   -\omega^2 k_\delta k_\phi k_\dot{\phi} k_\psi k_{y_q}
+   :label: eqLateralStateSpace
 
-   a_{l\ddot{T}_\delta \psi} =
-   -\omega^2 k_\delta k_\phi k_\dot{\phi} k_\psi (1 + c_{b y_q \psi} k_{y_q})
+   x_l = \left[ \phi \quad \delta \quad \dot{\phi} \quad \dot{\delta} \quad
+   \psi \quad y_p \quad T_\delta \quad \dot{T}_\delta \right]^T
 
-   a_{l\ddot{T}_\delta \phi} = -\omega^2 k_\delta k_\phi k_\dot{\phi}
+   u_l = \left[ F \quad y_{qc} \right]^T
 
-   a_{l\ddot{T}_\delta \delta} =
-   -\omega^2 k_\delta (1 + c_{b y_q \delta} k_\phi k_\dot{\phi} k_\psi k_{y_q})
+   \mathbf{A}_l
+   =
+   \begin{bmatrix}
+     0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
+     0 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
+     a_{b\ddot{\phi}\phi} &
+     a_{b\ddot{\phi}\delta} &
+     a_{b\ddot{\phi}\dot{\phi}} &
+     a_{b\ddot{\phi}\dot{\delta}} &
+     0 & 0 & 0 & 0\\
+     a_{b\ddot{\delta}\phi} &
+     a_{b\ddot{\delta}\delta} &
+     a_{b\ddot{\delta}\dot{\phi}} &
+     a_{b\ddot{\delta}\dot{\delta}} &
+     0 & 0 & 0 & 0\\
+     0 & a_{b\dot{\psi}\delta} & 0 & a_{b\dot{\psi}\dot{\delta}} & 0 & 0 & 0 & 0\\
+     0 & 0 & 0 & 0 & a_{b\dot{y}_p\psi} & 0 & 0 & 0 \\
+     0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+     -\omega^2 k_\delta k_\dot{\phi} k_\phi &
+     -\omega^2 k_\delta (1 + c_{b y_q \delta} k_\dot{\phi} k_\phi k_\psi k_{y_q}) &
+     -\omega^2 k_\delta k_\dot{\phi} &
+     0 &
+     -\omega^2 k_\delta k_\dot{\phi} k_\phi k_\psi (1 + c_{b y_q \psi} k_{y_q}) &
+     -\omega^2 k_\delta k_\dot{\phi} k_\phi k_\psi k_{y_q} &
+     -\omega^2 &
+     -2 \omega \zeta
+   \end{bmatrix}
 
-   a_{l\ddot{T}_\delta \dot{\phi}} = -\omega^2 k_\delta k_\dot{\phi}
-
-and the column in the :math:`\mathbf{B}_l` matrix corresponding to the desired
-path now has a single non-zero entry
-
-.. math::
-
-   b_{l\ddot{T}_\delta y_qc} = \omega^2 k_\delta k_\phi k_\dot{\phi} k_\psi k_{y_q}
+   \mathbf{B}_l
+   =
+   \begin{bmatrix}
+     0 & 0 \\
+     0 & 0 \\
+     b_{b\ddot{\phi}F} & 0 \\
+     b_{b\ddot{\delta}F} & 0 \\
+     0 & 0 \\
+     0 & 0 \\
+     0 & \omega^2 k_\delta k_\dot{\phi} k_\phi k_\psi k_{y_q}
+   \end{bmatrix}
 
 The output matrix can be constructed to provide any desired outputs, which I
 choose a subset of the outputs we measured during the experiments such as steer
@@ -2439,13 +2466,68 @@ idenfitiable. The model is eighth order with two inputs.
    check this throughly. it is function of what inputs and outputs that are
    measured
 
+.. todo:: This next paragraph may be wrong. A state feedback would be something
+   like (A-BK)x where x is 6 x 1, B is 6 x 1 and K is 1 x 6 to get a gain
+   matrix single steer torque which is effectively the same as what is here,
+   except that our gains have a different interpretation. How does this relate
+   (A-BK)x? or the basic full state feedback. Interesting to note that the gain
+   structure is all multiplied by the neuro frequency. It is akin to only
+   having gains in the bottom row of the full state feedback K matrix, this
+   would only add gains to the bottomr row of A-BK.
+
 Notice that the controller is unlike an state or output feeback model in the
 sense that the gains only have the ability to affect a single row in the A and
-B matrices.
+B matrices. This reflects the some of the inherent limitations in the human has
+for sensory and acutuation in this system. Output feeback systems often have an
+observer so that full estimated state feedback can be used. This model assumes
+that the rider does not have that abitily and is able to sense noisy outputs
+and adjust his torque compesation within the limits of his neuromuscular system
+based on five simple gains.
 
 I also make use of a second closed loop model which is essentially the same,
 but the outer lateral deviation tracking loop is removed and tracking a
 commanded heading is left. This model is seventh order with two inputs.
+
+.. math::
+   :label: eqHeadingStateSpace
+
+   x_h = \left[ \phi \quad \delta \quad \dot{\phi} \quad \dot{\delta} \quad
+   \psi \quad T_\delta \quad \dot{T}_\delta \right]^T
+
+   u_h = \left[ F \quad y_{qc} \right]^T
+
+   \mathbf{A}_h
+   =
+   \begin{bmatrix}
+     0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+     0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+     a_{b\ddot{\phi}\phi} & a_{b\ddot{\phi}\delta} &
+     a_{b\ddot{\phi}\dot{\phi}} & a_{b\ddot{\phi}\dot{\delta}} &
+     0 & 0 & 0 \\
+     a_{b\ddot{\delta}\phi} & a_{b\ddot{\delta}\delta} &
+     a_{b\ddot{\delta}\dot{\phi}} & a_{b\ddot{\delta}\dot{\delta}} & 0 & 0 & 0 \\
+     0 & a_{b\dot{\psi}\delta} & 0 & a_{b\dot{\psi}\dot{\delta}} & 0 & 0 & 0 \\
+     0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+     -\omega^2 k_\delta k_\dot{\phi} k_\phi &
+     -\omega^2 k_\delta &
+     -\omega^2 k_\delta k_\dot{\phi} &
+     0 &
+     -\omega^2  k_\delta k_\phi k_\dot{\phi} k_{\psi} &
+     -\omega^2 &
+     -2 \omega \zeta
+   \end{bmatrix}
+
+   \mathbf{B}_h
+   =
+   \begin{bmatrix}
+     0 & 0 \\
+     0 & 0 \\
+     b_{b\ddot{\phi}F} & 0 \\
+     b_{b\ddot{\delta}F} & 0 \\
+     0 & 0 \\
+     0 & 0 \\
+     0 & \omega^2 k_\delta k_\phi k_\dot{\phi} k_\psi
+   \end{bmatrix}
 
 .. todo:: Talk about the noise estimation.
 

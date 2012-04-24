@@ -17,17 +17,26 @@ figOptions.PaperSize = [figWidth, figHeight];
 
 % create the bicycle block
 par = par_text_to_struct([HUMAN_CONTROL_DIR filesep 'parameters/RigidCharliePar.txt']);
-[Ab, Bb, Cb, Db] = whipple_pull_force_abcd(par, 5.0); % 5 m/s
-bicycle = ss(Ab, Bb, Cb, Db);
+v = 5.0;
+bicycle = whipple_pull_force_abcd(par, v);
+
+%%%% Now change the model to the one identified from Luke's pavilion runs.
+%%%load('../../../Bicycle Mechanics/CanonicalBicycleID/data/cid-L-P.mat')
+%%%invM = inv(M);
+%%%Aid = [-invM * [K0 * 9.81 + K2 * v^2], -invM * C1 * v];
+%%%Bid = [invM(:, 2), invM * H];
+%%%bicycle.A([9, 11], [4, 7, 9, 11]) = Aid;
+%%%bicycle.B([9, 11], [2, 3]) = Bid;
+
 bicycleTF = tf(bicycle);
 
 % create the neuromuscular block
 wnm = 30;
-zetanm = 0.717;
+zetanm = 0.707;
 neuromuscular = tf(wnm^2, [1, 2 * zetanm * wnm, wnm^2]);
 
 %% delta loop
-deltaOpen = neuromuscular * bicycleTF(7, 2);
+deltaOpen = neuromuscular * bicycleTF('delta', 'tDelta');
 display('The open steer loop.')
 zpk(deltaOpen)
 
@@ -42,27 +51,33 @@ sgrid(0.15:0.1:0.95, 5:5:40)
 saveas(deltaLocus, '../../figures/control/delta-locus.png')
 
 % calculate the damping ratio of the closed loop system
-%gainVec = [0.01:0.01:20 20:1:120];
-%zetaMat = zeros(6, length(gainVec));
-%polesMat = zeros(6, length(gainVec));
-%for i = 1:length(gainVec)
-    %deltaClosed = feedback(gainVec(i) * deltaOpen, 1);
-    %[~, z, p] = damp(deltaClosed);
-    %zetaMat(:, i) = z;
-    %polesMat(:, i) = p;
-%end
-%
-%deltaDamp = figure();
-%set(deltaDamp, figOptions)
-%plot(gainVec, zetaMat', 'k.', [gainVec(1), gainVec(end)], [0.15, 0.15], 'k--')
-%xlabel('k_\delta')
-%ylabel('\zeta')
-%title('Steer Angle Closed Loop')
-%saveas(deltaDamp, '../../figures/control/delta-damp.png')
-%saveas(deltaDamp, '../../figures/control/delta-damp.pdf')
+gainVec = [0.01:0.01:20 20:1:60];
+zetaMat = zeros(6, length(gainVec));
+polesMat = zeros(6, length(gainVec));
+for i = 1:length(gainVec)
+    deltaClosed = feedback(gainVec(i) * deltaOpen, 1);
+    [~, z, p] = damp(deltaClosed);
+    zetaMat(:, i) = z;
+    polesMat(:, i) = p;
+end
+
+deltaDamp = figure();
+set(deltaDamp, figOptions)
+plot(gainVec, zetaMat', 'k.', [gainVec(1), gainVec(end)], [0.15, 0.15], 'k--')
+xlabel('k_\delta')
+ylabel('\zeta')
+title('Steer Angle Closed Loop')
+saveas(deltaDamp, '../../figures/control/delta-damp.png')
+saveas(deltaDamp, '../../figures/control/delta-damp.pdf')
 
 % show how the bode plot looks for various gains
-bodeGains = [3.278, 7, 12, 30, 45.9];
+bodeGains = linspace(1, 100, 5);
+%[3.278, 7, 12, 30, 45.9];
+bodeLeg = cell(1, 5);
+for i = 1:length(bodeGains)
+    bodeLeg{i} = sprintf('%1.1f', bodeGains(i));
+end
+
 deltaBode = figure();
 hold all
 for k = bodeGains
@@ -70,7 +85,7 @@ for k = bodeGains
     bode(deltaClosed, {0.1, 100})
 end
 hold off
-legend({'3.278', '7.0', '12.0', '30.0', '45.9'})
+legend(bodeLeg)
 set(deltaBode, figOptions)
 saveas(deltaBode, '../../figures/control/delta-bode.png')
 
@@ -78,7 +93,7 @@ saveas(deltaBode, '../../figures/control/delta-bode.png')
 % ratio and the eigenvalues of the closed delta loop, but for now I'll set
 % the gain manually based off of viewing the plot. Refer to generate_data to
 % see how we automate it with the Bode design criteria.
-kDelta = 45.9;
+kDelta = input('Choose kDelta.\n');
 
 % delta / deltac
 deltaClosed = feedback(kDelta * deltaOpen, 1);
@@ -86,43 +101,44 @@ display('The closed steer loop')
 zpk(deltaClosed)
 
 % tDelta / deltac
-tDeltaDeltac = feedback(kDelta * neuromuscular, bicycleTF(7, 2));
+tDeltaDeltac = feedback(kDelta * neuromuscular, bicycleTF('delta', 'tDelta'));
 
 %% phiDot / deltac
-%gainVec = -2:0.005:1;
-%gainVec(find(gainVec == 0)) = [];
-%zetaMat = zeros(6, length(gainVec));
-%polesMat = zeros(6, length(gainVec));
-%for i = 1:length(gainVec)
-    %phiDotOpen = gainVec(i) * tDeltaDeltac * bicycleTF(12, 2);
-    %phiDotClosed = minreal(feedback(phiDotOpen, 1));
-    %[~, z, p] = damp(phiDotClosed);
-    %zetaMat(:, i) = z;
-    %polesMat(:, i) = p;
-%end
-%
-%phiDotDamp = figure();
-%set(phiDotDamp, figOptions)
-%plot(gainVec, zetaMat', 'k.', ...
-    %[gainVec(1), gainVec(end)], [0.15, 0.15], 'k--')
-%xlabel('k_\dot{\phi}')
-%ylabel('\zeta')
-%title('Roll Rate Closed Loop')
-%saveas(phiDotDamp, '../../figures/control/phiDot-damp.png')
-%saveas(phiDotDamp, '../../figures/control/phiDot-damp.pdf')
+gainVec = -10:0.01:1;
+gainVec(find(gainVec == 0)) = [];
+zetaMat = zeros(6, length(gainVec));
+polesMat = zeros(6, length(gainVec));
+for i = 1:length(gainVec)
+    phiDotOpen = gainVec(i) * tDeltaDeltac * bicycleTF('phiDot', 'tDelta');
+    phiDotClosed = minreal(feedback(phiDotOpen, 1));
+    [~, z, p] = damp(phiDotClosed);
+    zetaMat(:, i) = z;
+    polesMat(:, i) = p;
+end
 
-phiDotLocus = figure()
+phiDotDamp = figure();
+set(phiDotDamp, figOptions)
+plot(gainVec, zetaMat', 'k.', ...
+    [gainVec(1), gainVec(end)], [0.15, 0.15], 'k--')
+xlabel('k_\dot{\phi}')
+ylabel('\zeta')
+title('Roll Rate Closed Loop')
+saveas(phiDotDamp, '../../figures/control/phiDot-damp.png')
+saveas(phiDotDamp, '../../figures/control/phiDot-damp.pdf')
+
+phiDotLocus = figure();
 set(phiDotLocus, figOptions)
 set(phiDotLocus, 'PaperPosition', [0, 0, 4, 4], 'PaperSize', [4, 4])
-rlocus(minreal(tDeltaDeltac * bicycleTF(12, 2)), gainVec)
+rlocus(minreal(tDeltaDeltac * bicycleTF('phiDot', 'tDelta')), gainVec)
 xlim([-30 5])
 ylim([-30 30])
 sgrid(0.15:0.1:0.95, 5:5:40)
 saveas(phiDotLocus, '../../figures/control/phiDot-locus.png')
 
 % choose the gain manually
-kPhiDot = -0.062;
-phiDotOpen = kPhiDot * tDeltaDeltac * bicycleTF(12, 2);
+kPhiDot = input('Choose kPhiDot.\n');
+
+phiDotOpen = kPhiDot * tDeltaDeltac * bicycleTF('phiDot', 'tDelta');
 phiDotClosed = minreal(feedback(phiDotOpen, 1));
 display('Closed roll rate loop.')
 zpk(phiDotClosed)
@@ -133,13 +149,18 @@ set(phiDotBode, figOptions)
 saveas(phiDotBode, '../../figures/control/phiDot-bode.png')
 saveas(phiDotBode, '../../figures/control/phiDot-bode.pdf')
 
+% cross over frequencies
+cross.phi = 2;
+cross.psi = cross.phi / 2;
+cross.yQ = cross.psi / 2;
+
 %% roll loop
-tDeltaPhiDotc = feedback(kPhiDot * tDeltaDeltac, bicycleTF(12, 2));
-phiOpen = tDeltaPhiDotc * bicycleTF(4, 2);
+tDeltaPhiDotc = feedback(kPhiDot * tDeltaDeltac, bicycleTF('phiDot', 'tDelta'));
+phiOpen = tDeltaPhiDotc * bicycleTF('phi', 'tDelta');
 
 w = logspace(-1, 2, 1000);
 [mag, ~] = bode(phiOpen, w);
-kPhi = 1 / interp1(w, mag(:)', 2);
+kPhi = 1 / interp1(w, mag(:)', cross.phi);
 
 phiClosed = feedback(kPhi * phiOpen, 1);
 display('Roll angle loop closed.')
@@ -155,8 +176,8 @@ saveas(phiBode, '../../figures/control/phi-bode.png')
 saveas(phiBode, '../../figures/control/phi-bode.pdf')
 
 %% Step response to a commanded roll angle.
-tdeltaOverPhic = phiClosed / bicycleTF(4, 2);
-deltaOverPhic = tdeltaOverPhic * bicycle(7, 2);
+tdeltaOverPhic = phiClosed / bicycleTF('phi', 'tDelta');
+deltaOverPhic = tdeltaOverPhic * bicycle('delta', 'tDelta');
 
 time = linspace(0, 5, 200);
 u = deg2rad(10) * ones(length(time), 1);
@@ -174,11 +195,11 @@ legend('\phi', '\delta', 'T_\delta')
 saveas(comRollAngle, '../../figures/control/commanded-roll-angle-human.png')
 
 %% heading loop
-tDeltaPhic = feedback(kPhi * tDeltaPhiDotc, bicycleTF(4, 2));
-psiOpen = tDeltaPhic * bicycleTF(3, 2);
+tDeltaPhic = feedback(kPhi * tDeltaPhiDotc, bicycleTF('phi', 'tDelta'));
+psiOpen = tDeltaPhic * bicycleTF('psi', 'tDelta');
 
 [mag, ~] = bode(psiOpen, w);
-kPsi = 1 / interp1(w, mag(:)', 1);
+kPsi = 1 / interp1(w, mag(:)', cross.psi);
 
 psiClosed = feedback(kPsi * psiOpen, 1);
 
@@ -192,11 +213,11 @@ saveas(psiBode, '../../figures/control/psi-bode.png')
 saveas(psiBode, '../../figures/control/psi-bode.pdf')
 
 %% lateral deviation loop
-tDeltaPsic = feedback(kPsi * tDeltaPhic, bicycleTF(3, 2));
-yqOpen = tDeltaPsic * bicycleTF(18, 2);
+tDeltaPsic = feedback(kPsi * tDeltaPhic, bicycleTF('psi', 'tDelta'));
+yqOpen = tDeltaPsic * bicycleTF('yQ', 'tDelta');
 
 [mag, phase] = bode(yqOpen, w);
-kYq = 1 / interp1(w, mag(:)', 0.5);
+kYq = 1 / interp1(w, mag(:)', cross.yQ);
 
 yqClosed = feedback(kYq * yqOpen, 1);
 
@@ -210,11 +231,11 @@ saveas(yqBode, '../../figures/control/yq-bode.png')
 saveas(yqBode, '../../figures/control/yq-bode.pdf')
 
 % Show a step response to lateral deviation
-tdeltaOverYqc = yqClosed / bicycleTF(18, 2);
-phiOverYqc = tdeltaOverYqc * bicycle(4, 2);
-deltaOverYqc = tdeltaOverYqc * bicycle(7, 2);
+tdeltaOverYqc = yqClosed / bicycleTF('yQ', 'tDelta');
+phiOverYqc = tdeltaOverYqc * bicycle('phi', 'tDelta');
+deltaOverYqc = tdeltaOverYqc * bicycle('delta', 'tDelta');
 
-time = linspace(0, 5, 200);
+time = linspace(0, 10, 200);
 [yYq, ~] = step(yqClosed, time);
 [yPhi, ~] = step(phiOverYqc, time);
 [yDelta, ~] = step(deltaOverYqc, time);

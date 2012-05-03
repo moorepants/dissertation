@@ -74,8 +74,19 @@ Outline
 
 * Rider Controller identification
 
-  * Grey box identification of the 6 parameter control model
-  * Comparison of riders on the pavilion floor for different speed bins
+  * Grey box identification of the 7 parameter control model
+
+    * Lateral deviation loop
+    * Heading loop
+
+  * Data set
+  * System id process
+  * Resulting parameters
+  * Frequency response
+
+    * Crossover frequencies
+
+  * Compare to Ron's method
 
 * Discussion of results
 * Conclusion
@@ -2494,7 +2505,7 @@ commanded heading is left. This model is seventh order with two inputs.
    x_h = \left[ \phi \quad \delta \quad \dot{\phi} \quad \dot{\delta} \quad
    \psi \quad T_\delta \quad \dot{T}_\delta \right]^T
 
-   u_h = \left[ F \quad y_{qc} \right]^T
+   u_h = \left[ F \quad \psi_c \right]^T
 
    \mathbf{A}_h
    =
@@ -2531,11 +2542,106 @@ commanded heading is left. This model is seventh order with two inputs.
 
 .. todo:: Talk about the noise estimation.
 
+talk about which model was used for the bicycle and where the coefficients for
+the psi and y states are from
+
+Data
+----
+
+Only the runs with lateral disturbances are suitable for identifying the rider
+controller. I used the subset of 262 valid disturbance runs for the following
+analysis. This subset included runs from all three riders, both environments
+and both the lateral deviation and heading tracking maneuvers. All signals had
+their means subtracted except for the lateral force.
+
+Identification
+--------------
+
+Through trial and error with many different approaches [#]_ to identification,
+I found that the optimatal solution was not a trivial problem. The SIMO problem
+with noise full noise estimation has a minimum of 15 parameters. This problem
+is fraught with local minima. Even with the assumption of an output error
+structure and the reduced parameter space to seven, doesn't escape the
+difficulty of finding the true minima. To have a decent chance at finding a
+good solution, I opted to identify only the SISO system with the lateral force
+as the input and the steering angle as the output. The choice of steer angle as
+the sole output is much the same reason as [Lange2011]_. The steer angle is a
+very good quality measurement and along with steer torque reflects the rider's
+contribution to the system dynamics as a reaction to the lateral force.
+
+I used the prediction error method to find the optimal parameters for each run.
+A good solution required good initial parameter guesses of which I used a
+combination of stable starting guesses from the loop closure technique
+described in Chapter :ref:`control` and using random guesses from previous good
+and bad solutions as starting points.
+
+The criteria for a good model was based on the percentage of variance in the
+measurement output explained by the model. The mean percent varaince for all
+the identified runs is :math:`62 \pm 12 %`, and considering the large relative
+human remnant, fits above 30% are still relatively good. I ensured stability on
+in the identified models and no issues associated with unstable simulations
+corrupting the model quality criteria were present.
+
+It turned out that the identified parameters for the SISO model not only
+predicted the steer angle, but when extra outputs are added it predicts them
+well too.
+
+1. Process, filter and detrend the data.
+2. Construct the SISO grey box state space model.
+3. Identify the five gains and the neuromuscular frequency for the lateral
+   force and steer angle data using a variety of initial parameter guesses.
+4. Construct the SIMO grey box state space model.
+5. Identify the six parameters as before using the result of the SISO
+   identification as the initial parameter guess.
+
+.. figure:: figures/systemidentification/rider-id-treadmill.*
+   :width: 4in
+
+   Simulation of an identified model derived from the inputs and outputs (SIMO)
+   of one of Charlie's treadmill runs #288 (4.23 m/s) validated against the
+   data from run #289 (4.22 m/s). The black line is the processed and filtered
+   (low pass 15 hz) measured data, the blue line is the simulation from the
+   identified SIMO model and the green line is the identified SISO model.
+
+.. figure:: figures/systemidentification/rider-id-pavilion.*
+   :width: 4in
+
+   Simulation of an identified model derived from the inputs and outputs (SIMO)
+   of one of Luke's pavilion runs #657 (3.99 m/s) validated against the data
+   from run #658 (3.74 m/s). The black line is the processed and filtered (low
+   pass 15 hz) measured data, the blue line is the simulation from the
+   identified SIMO model, and the green line is the identified SISO model.
+
+The results in Figures X and X give average examples of the model's ability to
+predict the measured data in two different runs. Notice that the human's
+remnant is relatively large especially in the treadmill run. The model
+generally predicts the human's initial control response to the external input.
+This response is very repeatable across riders and runs with the level of
+remnant minimized in the second after the perturbation. The model considers the
+remnant as output error during the non perturbed portions of the run. Notice
+that the steer torque is well predicted around the perturbation. Previous
+identifications with the Whipple model predicted much lower torque magnitudes
+and much different parameters. Including the identified bicycle model proved to
+give better control predictions.
+
+I computed the optimal five gains and neuromuscular frequency for all 262 runs
+and recorded the percent variance of the steer angle output explained by the
+model for each run along with the identified parameters.
+
 .. rubric:: Footnotes
 
-   1 I spent some time trying to regress models to each of the speed dependent
+.. [#] I spent some time trying to regress models to each of the speed dependent
    coefficients in the state space model by assuming either a constant, linear
    or quadratic line. I tried simple regression techniques and also some mixed
    effects techniques to obviate the fact that some of the speed bins had many
    more runs than others. This method may be able to find a better model, but
    needs more work.
+
+.. [#] I tried many ways of identifiyig: explain a little
+
+.. [#] The nueromuscaulr damping ratio was fixed to 0.707 as per [XXXX]_. The
+   uniqueness of the identifiablity of the parameters is question if this is not
+   fized, as wildly different solutions for the neuromuscular frequency were often
+   found if the damping ratio was left free.
+   .. todo:: Get citation from Ron on this number
+

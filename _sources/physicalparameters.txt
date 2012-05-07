@@ -286,7 +286,7 @@ Section :ref:`secBicycleMeasuredParameters`.
 
 .. _figTireChalk:
 
-.. figure:: figures/physicalparameters/tireChalk.jpg
+.. figure:: figures/physicalparameters/tireChalk.*
    :align: center
    :width: 4in
 
@@ -316,7 +316,7 @@ tube angle, :math:`\gamma`.
 
 .. _figHeadtube:
 
-.. figure:: figures/physicalparameters/headtube.jpg
+.. figure:: figures/physicalparameters/headtube.*
    :align: center
    :width: 4in
 
@@ -354,7 +354,7 @@ surface.
 
 .. _figForkOffset:
 
-.. figure:: figures/physicalparameters/forkOffset.jpg
+.. figure:: figures/physicalparameters/forkOffset.*
    :align: center
    :width: 2.5in
 
@@ -388,11 +388,9 @@ table surface to the top of each axle are recorded with a height gage and the
 diameters of the axles are measured with a micrometer or caliper. Figure
 :ref:`figAlternativeGeometry`.
 
-.. todo:: svg files do not show up in the latex output
-
 .. _figAlternativeGeometry:
 
-.. figure:: figures/physicalparameters/alternativeGeometry.svg
+.. figure:: figures/physicalparameters/alternativeGeometry.*
    :align: center
 
    figAlternativeGeometry
@@ -464,7 +462,7 @@ resolution of 0.05 kg (A & D FV-150k Industrial Scale).
 
 .. _figMassScale:
 
-.. figure:: figures/physicalparameters/massScale.jpg
+.. figure:: figures/physicalparameters/massScale.*
    :align: center
    :width: 3in
 
@@ -507,11 +505,9 @@ axle and positive if it fell to the left of the rear axle. These measurements
 allow for the calculation of the center of mass location in the global
 reference frame.
 
-.. todo:: svg files do not show up in the latex output
-
 .. _figAngles:
 
-.. figure:: figures/physicalparameters/angles.svg
+.. figure:: figures/physicalparameters/angles.*
    :align: center
 
    figAngles
@@ -521,11 +517,9 @@ reference frame.
    :math:`XYZ_P`.
 
 
-.. todo:: svg files do not show up in the latex output
-
 .. _figTriangle:
 
-.. figure:: figures/physicalparameters/triangle.svg
+.. figure:: figures/physicalparameters/triangle.*
    :align: center
 
    figTriangle
@@ -535,7 +529,7 @@ reference frame.
 
 .. _figLevel:
 
-.. figure:: figures/physicalparameters/YellowFrameTorsionalThird.jpg
+.. figure:: figures/physicalparameters/YellowFrameTorsionalThird.*
    :align: center
    :width: 2.75in
 
@@ -549,7 +543,7 @@ reference frame.
 
 .. _figPendDist:
 
-.. figure:: figures/physicalparameters/pendDist.jpg
+.. figure:: figures/physicalparameters/pendDist.*
    :align: center
    :width: 2.75in
 
@@ -712,7 +706,7 @@ it in different orientations, Figure :ref:`figHandlebar`.
 
 .. _figHandlebar:
 
-.. figure:: figures/physicalparameters/handlebar.jpg
+.. figure:: figures/physicalparameters/handlebar.*
    :align: center
    :width: 2.5in
 
@@ -724,11 +718,9 @@ I choose the center of the stem clamp bolt to be the reference point (as was
 the front and rear wheel centers for the fork and frame). The location of this
 point relative to the front wheel center was measured.
 
-.. todo:: svg files do not show up in the latex output
-
 .. _figHandlebarGeometry:
 
-.. figure:: figures/physicalparameters/handlebarGeometry.svg
+.. figure:: figures/physicalparameters/handlebarGeometry.*
    :align: center
 
    figHandlebarGeometry
@@ -787,7 +779,7 @@ period of oscillation which is needed for the moment of inertia calculations.
 
 .. _figVoltage:
 
-.. figure:: figures/physicalparameters/BrowserFrameCompoundFirst1.png
+.. figure:: figures/physicalparameters/BrowserFrameCompoundFirst1.*
    :align: center
    :width: 4in
 
@@ -817,7 +809,7 @@ fashion for the Davis measurements.
 
 .. _figBeating:
 
-.. figure:: figures/physicalparameters/CrescendoForkTorsionalFirst2.png
+.. figure:: figures/physicalparameters/CrescendoForkTorsionalFirst2.*
    :align: center
    :width: 4in
 
@@ -889,7 +881,7 @@ various lower clamps.
 
 .. _figFixture:
 
-.. figure:: figures/physicalparameters/fixture.jpg
+.. figure:: figures/physicalparameters/fixture.*
    :align: center
    :width: 2in
 
@@ -917,7 +909,7 @@ averaged.
 
 .. _figRod:
 
-.. figure:: figures/physicalparameters/rod.jpg
+.. figure:: figures/physicalparameters/rod.*
    :align: center
    :width: 2in
 
@@ -959,7 +951,7 @@ from:
 
 .. _figFwheelTor:
 
-.. figure:: figures/physicalparameters/CrescendoFwheelTorsionalFirst.jpg
+.. figure:: figures/physicalparameters/CrescendoFwheelTorsionalFirst.*
    :align: center
    :width: 2.75in
 
@@ -969,7 +961,7 @@ from:
 
 .. _figWheelIyy:
 
-.. figure:: figures/physicalparameters/wheelIyy.jpg
+.. figure:: figures/physicalparameters/wheelIyy.*
    :align: center
    :width: 2.75in
 
@@ -1098,7 +1090,7 @@ pendulum length.
 
 .. _figFrameCompound:
 
-.. figure:: figures/physicalparameters/YellowFrameCompoundFirst.jpg
+.. figure:: figures/physicalparameters/YellowFrameCompoundFirst.*
    :align: center
    :width: 2in
 
@@ -1108,7 +1100,7 @@ pendulum length.
 
 .. _figForkCompound:
 
-.. figure:: figures/physicalparameters/BrowserInsForkCompoundFirst.jpg
+.. figure:: figures/physicalparameters/BrowserInsForkCompoundFirst.*
    :align: center
    :width: 2in
 
@@ -1137,7 +1129,7 @@ Equation :eq:`eqCompoundInertia`. The fork pendulum length is calculated using
 
 .. _figStratosFork:
 
-.. figure:: figures/physicalparameters/StratosForkTorsionalThird.jpg
+.. figure:: figures/physicalparameters/StratosForkTorsionalThird.*
    :align: center
    :width: 2.75in
 
@@ -1193,7 +1185,7 @@ axis to maintain symmetry about the :math:`XZ`-plane.
 
 .. _figMooreModel:
 
-.. figure:: figures/physicalparameters/mooreModel.png
+.. figure:: figures/physicalparameters/mooreModel.*
    :align: center
    :width: 5.222in
 
@@ -1260,11 +1252,9 @@ the bicycle.
    The distance from the intersection of the top tube and the head tube to the
    level of the handlebar grips.
 
-.. todo:: svg files do not show up in the latex output
-
 .. _figBatavusBrowserDim:
 
-.. figure:: figures/physicalparameters/batavusBrowserDim.svg
+.. figure:: figures/physicalparameters/batavusBrowserDim.*
    :align: center
 
    figBatavusBrowserDim

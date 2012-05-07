@@ -30,7 +30,7 @@
     <script type="text/javascript" src="_static/theme_extras.js"></script>
     <link rel="top" title="Human Control of a Bicycle: Jason K. Moore" href="index.html" />
     <link rel="next" title="TODO List" href="todo.html" />
-    <link rel="prev" title="Handling" href="handling.html" /> 
+    <link rel="prev" title="Control" href="control.html" /> 
   </head>
   <body>
       <div class="header"><h1 class="heading"><a href="index.html">
@@ -40,7 +40,7 @@
       <div class="topnav">
       
         <p>
-        «&#160;&#160;<a href="handling.html">Handling</a>
+        «&#160;&#160;<a href="control.html">Control</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
@@ -56,7 +56,7 @@
 <span id="systemidentification"></span><h1>System Identification<a class="headerlink" href="#system-identification" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated April 19, 2012 at 15:55:21 PDT).
+<p class="last">This document is a draft which is updated regularly (Last updated May 07, 2012 at 11:29:35 PDT).
 Once I submit if for my doctoral degree at UC Davis, it will be done. So for
 now use at your own risk. The information may or may not be correct.
 Reviews, comments and suggestions are welcome.</p>
@@ -136,8 +136,19 @@ Reviews, comments and suggestions are welcome.</p>
 </li>
 <li><p class="first">Rider Controller identification</p>
 <ul class="simple">
-<li>Grey box identification of the 6 parameter control model</li>
-<li>Comparison of riders on the pavilion floor for different speed bins</li>
+<li>Grey box identification of the 7 parameter control model<ul>
+<li>Lateral deviation loop</li>
+<li>Heading loop</li>
+</ul>
+</li>
+<li>Data set</li>
+<li>System id process</li>
+<li>Resulting parameters</li>
+<li>Frequency response<ul>
+<li>Crossover frequencies</li>
+</ul>
+</li>
+<li>Compare to Ron&#8217;s method</li>
 </ul>
 </li>
 <li><p class="first">Discussion of results</p>
@@ -246,6 +257,11 @@ principles models may not be very robust predictors of the motion due as a
 simpler or more well studied system. The approaches to identifying the passive
 model include mode excitation techniques to system identification under more
 general inputs.</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">What about Dohring. He took measurements of a motorcycle and did
+something. Maybe I should review it. I forget his conclusions.</p>
+</div>
 <div class="section" id="calspan">
 <h4>CALSPAN<a class="headerlink" href="#calspan" title="Permalink to this headline">¶</a></h4>
 <p>The earliest comprehensive bicycle model validation began at CALSPAN in the
@@ -253,9 +269,10 @@ late 60’s . This included several revolutionary studies, in one of which they
 made use of a rocket to apply know step torques to an uncontrolled riderless
 bicycle. In another, simulations of slalom maneuvers were visually compared
 with video footage.</p>
-<div class="admonition-todo admonition" id="index-0">
+<div class="admonition-todo admonition" id="index-1">
 <p class="first admonition-title">Todo</p>
-<p class="last">read over notes for these papers</p>
+<p class="last">read over notes for these papers, I&#8217;m sure there is a little more
+worth saying.</p>
 </div>
 </div>
 <div class="section" id="eaton">
@@ -304,9 +321,9 @@ were validation rather than identification.</p>
 <div class="section" id="aoki">
 <h4>Aoki<a class="headerlink" href="#aoki" title="Permalink to this headline">¶</a></h4>
 <p>[Aoki1979]</p>
-<div class="admonition-todo admonition" id="index-1">
+<div class="admonition-todo admonition" id="index-2">
 <p class="first admonition-title">Todo</p>
-<p class="last">James2002 cites this study</p>
+<p class="last">James2002 cites this study. He does experiments with a motorcycle.</p>
 </div>
 </div>
 <div class="section" id="weir-zellner-teper">
@@ -365,22 +382,22 @@ the uncertainty in the predictions.</p>
 </div>
 <div class="section" id="kooijman">
 <h4>Kooijman<a class="headerlink" href="#kooijman" title="Permalink to this headline">¶</a></h4>
-<p>My colleague at Delft, Jodi Kooijman, has worked on experimental validation of
-the benchmark bicycle [Meijaard2007] linear equations of motion for a
-riderless bicycle [Kooijman2006], [Kooijman2008], [Kooijman2009]. His
-instrumented bicycle measured the steer angle, forward speed, roll rate, and
-yaw rate. Due to the fact that the bicycle can be stable at certain speeds he
-was able to launch the bicycle in and around the stable speed range and perturb
-the bicycle with a lateral unmeasured impulse and record the stable decay in
-the steer, roll and yaw rates. The post perturbation time histories of the
-measured signals provided nice decaying oscillations and curves could be fit to
-find both the time constant and frequency of oscillation. These were then
-compared to the predicted weave response based on the first principle model
-numerically populated with measured physical parameters of the bicycle. He
-found good prediction abilities of the weave mode between 4 and 6 m/s. The
-&#8220;goodness&#8221; of fit were gaged by visual inspection with no uncertainty estimates
-in the models or the results from the dynamic measurements. The method was not
-able to predict the heavily damped caster mode nor the capsize mode. He also
+<p>Jodi Kooijman has worked on experimental validation of the benchmark bicycle
+[Meijaard2007] linear equations of motion for a riderless bicycle
+[Kooijman2006], [Kooijman2008], [Kooijman2009]. His instrumented bicycle
+measured the steer angle, forward speed, roll rate, and yaw rate. Due to the
+fact that the bicycle can be stable at certain speeds he was able to launch the
+bicycle in and around the stable speed range and perturb the bicycle with a
+lateral unmeasured impulse and record the stable decay in the steer, roll and
+yaw rates. The post perturbation time histories of the measured signals
+provided nice decaying oscillations and curves could be fit to find both the
+time constant and frequency of oscillation. These were then compared to the
+predicted weave response based on the first principle model numerically
+populated with measured physical parameters of the bicycle. He found good
+prediction abilities of the weave mode between 4 and 6 m/s. The &#8220;goodness&#8221; of
+fit were gaged by visual inspection with no uncertainty estimates in the models
+or the results from the dynamic measurements. The method was not able to
+predict the heavily damped caster mode nor the capsize mode. He also
 demonstrated that the measured dynamics were the same when the experiments were
 performed on a treadmill.</p>
 <p>In [Kooijman2011], Jodi constructed a bicycle with very unusual physical
@@ -550,7 +567,7 @@ acceleration and integrates it to get roll angular velocity. This is basically
 a continuous PD control on roll rate. But his non-continuous addition to the
 controller is based on a fuzzy logic-like rule &#8220;Make a pulse against the lean
 whenever it gets bigger that 1.6 degrees.&#8221;</p>
-<div class="admonition-todo admonition" id="index-2">
+<div class="admonition-todo admonition" id="index-3">
 <p class="first admonition-title">Todo</p>
 <p class="last">how are the pulses applied?</p>
 </div>
@@ -569,8 +586,8 @@ His intermittent control theory may be valid, but due to the unusual model
 development, simulation and analyses techniques it is hard to gage whether the
 need for intermittent control was simply artifact of poor modeling. His insight
 into the human control theory is very enlightening and his ways of wording
-bring the theory outside of the traditional control framework for easier
-understanding.</p>
+bring the theory outside of the traditional control framework for an expansion
+in understanding.</p>
 </div>
 <div class="section" id="lange">
 <h4>Lange<a class="headerlink" href="#lange" title="Permalink to this headline">¶</a></h4>
@@ -590,16 +607,16 @@ perturbations, 2) he identified a very high order finite impulse response model
 (only a function previous inputs) for the lateral force to steer angle SISO
 pair (lateral perturbation force input and steer angle as output) 3) low pass
 filtered the resulting responses, and 4) he identified the rider controller
-parameters with a grey box model using the filtered FIR simulation results. The
-grey box model was parameterized with eight gains and a time delay. He was able
-to identify the gains, but the time delay always gave a resulting unstable
-model, so he dropped it. Furthermore, all of the gains were not necessary for a
-good model predictions so he eliminated the unnecessary gains systematically to
-find the critical feedback elements. These turned out to be the gains for roll
-angle, roll rate, steer rate and the integral of the steer angle. The first
-three are as one may expect and he concludes that the steer angle integral
-could be equated to yaw angle feedback since they are proportional in the
-linear sense.</p>
+parameters with a grey box model using the filtered FIR simulation results as
+the base data. The grey box model was parameterized with eight gains and a time
+delay. He was able to identify the gains, but the time delay always gave a
+resulting unstable model, so he dropped it. Furthermore, all of the gains were
+not necessary for a good model predictions so he eliminated the unnecessary
+gains systematically to find the critical feedback elements. These turned out
+to be the gains for roll angle, roll rate, steer rate and the integral of the
+steer angle. The first three are as one may expect and he concludes that the
+steer angle integral could be equated to yaw angle feedback since they are
+proportional in the linear sense.</p>
 <p>Peter&#8217;s approach hinges on the averaging process in step one. The human remnant
 is large relative to the measurements and averaging potentially removes data
 that isn&#8217;t necessarily noise. This averaging is atypical, as process noise
@@ -762,7 +779,7 @@ bicyclists normally ride in.</p>
 <img alt="_images/pavilion.jpg" src="_images/pavilion.jpg" style="width: 3in;" />
 <p class="caption">Overhead view of the pavilion floor during a perturbation run.</p>
 </div>
-<div class="admonition-todo admonition" id="index-3">
+<div class="admonition-todo admonition" id="index-4">
 <p class="first admonition-title">Todo</p>
 <p class="last">find out what the floor material is on the treadmill and in the pavilion</p>
 </div>
@@ -836,14 +853,16 @@ eyes closed to attempt to completely open the heading loop. In hindsight,
 blind tests would be preferable when identifying the rider control system so
 that only inner roll stabilization loop need be analyzed.</dd>
 <dt>Static Calibration</dt>
-<dd>We took a short duration sample of the sensors signals while no rider was on
+<dd><p class="first">We took a short duration sample of the sensors signals while no rider was on
 the bicycle and the bicycle was fixed as close to vertical in roll before
 each set of runs. The static accelerometer readings could theoretically give
 the roll and pitch angles of the bicycle frame and be used to account for
 the bias in the roll angle measurements.
-.. todo:: It would not be a bad idea to figure out the accelerometer
-readings when the frame is know to be vertical and at the nominal pitch
-angle. As this was never done.</dd>
+.. todo:: It would not be a bad idea to figure out the accelerometer</p>
+<blockquote class="last">
+<div>readings when the frame is know to be vertical and at the nominal pitch
+angle. As this was never done.</div></blockquote>
+</dd>
 </dl>
 <div class="figure">
 <img alt="_images/pavilion-lane-change.png" src="_images/pavilion-lane-change.png" />
@@ -928,12 +947,12 @@ corruption coding described below. The signal table has a row for each raw and
 processed signal type and the classification information for each. The
 calibration table has a row for each calibration which provides information
 about the sensor and the data collected in the calibration.</p>
-<div class="admonition-todo admonition" id="index-4">
+<div class="admonition-todo admonition" id="index-5">
 <p class="first admonition-title">Todo</p>
 <p class="last">the descriptions of the collected data either need to be in an
 appendice or included with the BicycleDataProcessor documentation</p>
 </div>
-<div class="admonition-todo admonition" id="index-5">
+<div class="admonition-todo admonition" id="index-6">
 <p class="first admonition-title">Todo</p>
 <p class="last">Some of this belongs in the Davis Bicycle Chapter</p>
 </div>
@@ -970,6 +989,10 @@ environment, maneuvers, and speed bins.</p>
 Four bar charts showing the number of runs that are potentially usable for
 model identification. These include runs from the treadmill and pavilion,
 one of the four primary maneuvers, and were not corrupt.</div>
+</div>
+<div class="admonition-todo admonition" id="index-7">
+<p class="first admonition-title">Todo</p>
+<p class="last">note how many runs were acutally usable</p>
 </div>
 <p>The processed data provides filtered signals that correspond to the coordinates
 and speeds outlined in our models, Chapters <a class="reference internal" href="eom.html#eom"><em>Bicycle Equations Of Motion</em></a> and <a class="reference internal" href="extensions.html#extensions"><em>Extensions of the Whipple Model</em></a>.
@@ -1163,7 +1186,7 @@ matrices in equation <a href="#equation-eqInnovations">(3)</a> can be estimated 
 <p>and with a linear assumption can even be directly estimated in discrete form by</p>
 <div class="math">
 \[\mathbf{A}(\theta) = \mathbf{I} +  \mathbf{F}(\theta)T\]\[\mathbf{B}(\theta) = \int_{\tau=0}^T e^{\mathbf{F}(\theta)\tau} \mathbf{G}(\theta) d\tau\]</div>
-<div class="admonition-todo admonition" id="index-6">
+<div class="admonition-todo admonition" id="index-8">
 <p class="first admonition-title">Todo</p>
 <p class="last">what is the form of B when assuming e^{AT} = I + AT</p>
 </div>
@@ -1178,7 +1201,7 @@ a ratio of polynomials in <span class="math">\(q\)</span>. These are transfer fu
 from the previous inputs and outputs to the current output. In general, the
 coefficients of <span class="math">\(q\)</span> are non-linear functions of the parameters
 <span class="math">\(\theta\)</span>.</p>
-<div class="admonition-todo admonition" id="index-7">
+<div class="admonition-todo admonition" id="index-9">
 <p class="first admonition-title">Todo</p>
 <p class="last">the following doesn&#8217;t make sense, fix it up</p>
 </div>
@@ -1199,7 +1222,7 @@ prediction of <span class="math">\(Y_N\)</span> given <span class="math">\(y(s)\
 <span class="math">\(\hat{Y}_N(\theta)\)</span> for all <span class="math">\(k\)</span>.</p>
 <div class="math">
 \[V_N(\theta) = \frac{1}{pN}||Y_N - \hat{Y}_N(\theta)||\]</div>
-<div class="admonition-todo admonition" id="index-8">
+<div class="admonition-todo admonition" id="index-10">
 <p class="first admonition-title">Todo</p>
 <p class="last">do I need the 1/pN? I&#8217;m just copying that from the book somewhere.</p>
 </div>
@@ -1218,7 +1241,7 @@ thus critical to reduce the number of unknown parameters to have a more likely
 chance at finding the global minima of the cost function. The accuracy of the
 system parameters depend on the ability to estimate the <span class="math">\(\mathbf{K}\)</span>
 matrix along with the other parameters.</p>
-<div class="admonition-todo admonition" id="index-9">
+<div class="admonition-todo admonition" id="index-11">
 <p class="first admonition-title">Todo</p>
 <p class="last">Compare the fit from a k=0 fit and one without, note how we aren&#8217;t
 getting to the global minima&#8212;&gt; this isn&#8217;t really working out, can&#8217;t really
@@ -1233,7 +1256,7 @@ of the parameters <span class="math">\(\theta\)</span> in each run of this model
 particular a structured <cite>idss</cite> object was built for with the initial guesses of
 the unknown parameters based on the Whipple model and the initial guesses for
 the initial conditions and the Kalman gain matrix being equal to zero.</p>
-<div class="admonition-todo admonition" id="index-10">
+<div class="admonition-todo admonition" id="index-12">
 <p class="first admonition-title">Todo</p>
 <p class="last">more about the software?</p>
 </div>
@@ -1303,7 +1326,7 @@ appears to be very tight and the first principles models predict it very well.
 The constant, linear and quadratic trends in the coefficients are not easily
 seen for most coefficients. This is due to the high variability in the results
 of a large number of repeated experiments at some speeds, more detailed
-regression models may be able to reveal the true trends <a href="#id64"><span class="problematic" id="id65"><span id="id58"></span>[1]_</span></a>.</p>
+regression models may be able to reveal the true trends <a class="footnote-reference" href="#id73" id="id58">[1]</a>.</p>
 <p>Figure <em class="xref std std-ref">figBode</em> gives another view of the resulting data. It is a frequency
 response plot at the mean speed for a set of runs. The blue lines give the mean
 and standard deviation of the magnitude and phase of the system transfer
@@ -1324,7 +1347,7 @@ a mean fit percentage greater than zero are shown. The orange line is the
 model identified with the canonical method using runs done be Luke in the
 pavilion which is presented and discussed in the next section.</p>
 </div>
-<div class="admonition-todo admonition" id="index-11">
+<div class="admonition-todo admonition" id="index-13">
 <p class="first admonition-title">Todo</p>
 <p class="last">one way to evaluate the quality of the holistic models may would be to
 calculate the total error in the coefficient curves</p>
@@ -1339,7 +1362,7 @@ which accounted for the arm inertial effects.</p>
 </div>
 </div>
 <div class="section" id="id59">
-<h4>CONCLUSION<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h4>
+<h4>Conclusion<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h4>
 <p>I have shown that a fourth order structured state space model is both adequate
 and good for describing the motion of the bicycle under manual control in a
 speed range from approximately 1.5 m/s to 9 m/s. The fact that higher order
@@ -1404,7 +1427,7 @@ location of the force application point. For our normal geometry bicycles,
 including the one used in the experiments, <span class="math">\(H_{\delta F} &lt;&lt; H_{\phi F}\)</span>.
 I compute <span class="math">\(H\)</span> for each rider/bicycle from the state space form of the
 linear equations of motion calculated in Chapter <a class="reference internal" href="extensions.html#extensions"><em>Extensions of the Whipple Model</em></a>.</p>
-<div class="admonition-todo admonition" id="index-12">
+<div class="admonition-todo admonition" id="index-14">
 <p class="first admonition-title">Todo</p>
 <p class="last">Calculate what H_{delta F) actually is by hand.</p>
 </div>
@@ -1485,7 +1508,7 @@ derivatives, forward speed <span class="math">\(v\)</span>, and the inputs <span
 each equation in the canonical form. I use the instantaneous speed at each time
 step rather than the mean over a run to improve accuracy with respect to the
 speed parameter as it has some variablity.</p>
-<div class="admonition-todo admonition" id="index-13">
+<div class="admonition-todo admonition" id="index-15">
 <p class="first admonition-title">Todo</p>
 <p class="last">calculate the variablity in the forward speed measurement for each
 run</p>
@@ -1533,7 +1556,7 @@ rest be free the linear equation is</p>
 <p>The error in the fit is</p>
 <div class="math">
 \[\epsilon = \hat{Y} - Y = \Gamma \hat{\Theta} - Y\]</div>
-<div class="admonition-todo admonition" id="index-14">
+<div class="admonition-todo admonition" id="index-16">
 <p class="first admonition-title">Todo</p>
 <p class="last">discuss how this solves for noise</p>
 </div>
@@ -2304,7 +2327,7 @@ principles models than the identified model.</p>
 </tr>
 </tbody>
 </table>
-<div class="admonition-todo admonition" id="index-15">
+<div class="admonition-todo admonition" id="index-17">
 <p class="first admonition-title">Todo</p>
 <p class="last">add this caption to the tables</p>
 </div>
@@ -2318,7 +2341,7 @@ percent difference with respect to the value predicted by the Whipple model.</p>
 </div>
 <div class="section" id="each-rider-in-both-environments">
 <h4>Each rider in both environments<a class="headerlink" href="#each-rider-in-both-environments" title="Permalink to this headline">¶</a></h4>
-<div class="admonition-todo admonition" id="index-16">
+<div class="admonition-todo admonition" id="index-18">
 <p class="first admonition-title">Todo</p>
 <p class="last">Show the differences in the three rider models and point out that
 Charlie seems more different.</p>
@@ -2344,7 +2367,7 @@ all of the data (all rider and all runs), gives somewhat of a mean model and
 if this model is significantly better at predicting the measured behavior of
 the Whipple and arm models, it may be a good general candidate model for
 this bicycle.</div></blockquote>
-<div class="admonition-todo admonition" id="index-17">
+<div class="admonition-todo admonition" id="index-19">
 <p class="first admonition-title">Todo</p>
 <p class="last">Make a plot showing how all of the identified models frequency
 responses compared at a single speed (could do multiple graphs. This would
@@ -2880,7 +2903,7 @@ predicted roll torques. These are comparable to the measured roll torques. But
 Table X can still be used to gage which models are better with reference to
 each other. The values in Table X are only generated from the runs with
 disturbances as a relative measure of quality to zero is hard to make.</p>
-<div class="admonition-todo admonition" id="index-18">
+<div class="admonition-todo admonition" id="index-20">
 <p class="first admonition-title">Todo</p>
 <p class="last">Maybe this is where the complimentary filter should come in to play.
 Ultimately you&#8217;d like to measure the angle, angular rate and angular
@@ -2888,7 +2911,7 @@ acceleration directly and with little noise so that they are all related to
 each other by the derivative. The second option is to measure some of the
 signals and then combine them in a way that the derivitive is enforced.</p>
 </div>
-<div class="admonition-todo admonition" id="index-19">
+<div class="admonition-todo admonition" id="index-21">
 <p class="first admonition-title">Todo</p>
 <p class="last">If the roll torque is supposed to be zero in the runs without
 disturbances, how do I measured the percent variance explained by the model?</p>
@@ -2911,7 +2934,7 @@ structures don&#8217;t dictate that this can&#8217;t be. Keep in mind that all o
 frequency response of all 12 models shown in Figures X, X, and X are probably
 bounded in the uncertainty of the prediced responses and each is can be
 considered a &#8220;good&#8221; model and even including the Whipple model.</p>
-<div class="admonition-todo admonition" id="index-20">
+<div class="admonition-todo admonition" id="index-22">
 <p class="first admonition-title">Todo</p>
 <p class="last">I probably should have checked the fits with respect to the manuevers
 too to make sure the models were very different...</p>
@@ -2943,7 +2966,7 @@ input comparison results.</li>
 <li>All of the identified models are better predictors than the first principles
 models.</li>
 </ul>
-<div class="admonition-todo admonition" id="index-21">
+<div class="admonition-todo admonition" id="index-23">
 <p class="first admonition-title">Todo</p>
 <p class="last">the AIC could be checked for all these models to compare their
 quality</p>
@@ -3109,7 +3132,7 @@ good predictor. Notice that the Whipple model is poorer than the arm model.</p>
 </tr>
 </tbody>
 </table>
-<div class="admonition-todo admonition" id="index-22">
+<div class="admonition-todo admonition" id="index-24">
 <p class="first admonition-title">Todo</p>
 <p class="last">show output comparison plot for one run with the top two and bottom
 two models.</p>
@@ -3224,7 +3247,7 @@ following section of this Chapter. I could use the individual bicycle
 identifications for each run, but using a model derived from a set of runs has
 the advantage that it will be less affected by the lack of identifying the
 process noise explicitly.</p>
-<p>Suggestions</p>
+<p>Suggestions for improving the results.</p>
 <ul class="simple">
 <li>Fit to MISO, fix the <span class="math">\(a_{\phi\delta}\)</span> coefficient and make the noise
 with respect to the kinematical equations equal to zero giving 11-13 total
@@ -3239,7 +3262,595 @@ best solution</li>
 </div>
 <div class="section" id="rider-controller-identification">
 <h2>Rider Controller Identification<a class="headerlink" href="#rider-controller-identification" title="Permalink to this headline">¶</a></h2>
-<p>Do I really have to figure this out??</p>
+<p>Do I really have to figure this out?? Yes.</p>
+<p>Now that I have a reasonable estimate of the plant, the rider control system
+can be identified. There are many control structures that can and may work to
+explain the data. If the feedback and input variables are the same for a set of
+cotnrol strucutres they can be mapped to each other and are equivalent. Much of
+the difference in control structures such as PID, sequential loop closure, LQR
+are the physcial interpretations of the gains, delays, and such. Here I limit
+our control structure the one developed in [Hess2012] and Chapter
+<a class="reference internal" href="control.html#control"><em>Control</em></a>. With this stucture, I will have the ability to compare the
+results with the theorectical hypothesis we developed.</p>
+<div class="section" id="grey-box-models">
+<h3>Grey Box Models<a class="headerlink" href="#grey-box-models" title="Permalink to this headline">¶</a></h3>
+<p>The block diagram control structure in Chapter <a class="reference internal" href="control.html#control"><em>Control</em></a> can be written in
+state space form, which will be used in the identificatin procedure defined in
+the previous section. I&#8217;ll develop forms for pure heading tracking and lateral
+deviation tracking.</p>
+<div class="admonition-todo admonition" id="index-25">
+<p class="first admonition-title">Todo</p>
+<p class="last">maybe add the block diagram again here</p>
+</div>
+<p>The bicycle block for lateral deviation tracking has states <span class="math">\(x_b = \left[
+\phi \quad \delta \quad \dot{\phi} \quad \dot{\delta} \quad \psi \quad y_p
+\right]^T\)</span>, inputs <span class="math">\(u_b = \left[ T_\delta \quad F \right]^T\)</span>, and outputs
+<span class="math">\(y_b = \left[ \delta \quad \phi \quad \dot{\phi} \quad \psi \quad y_q
+\right]^T\)</span>. The state, input and output matrices are follows</p>
+<div class="math" id="equation-eqBicycleStateSpace">
+<span class="eqno">(5)</span>\[\begin{split}\mathbf{A}_b
+=
+\begin{bmatrix}
+  0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+  0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+  a_{b\ddot{phi}\phi} &amp; a_{b\ddot{phi}\delta} &amp;
+  a_{b\ddot{\phi}\dot{\phi}} &amp; a_{b\ddot{\phi}\dot{\delta}} &amp;
+  0 &amp; 0 \\
+  a_{b\ddot{\delta}\phi} &amp; a_{b\ddot{\delta}\delta} &amp;
+  a_{b\ddot{\delta}\dot{\phi}} &amp; a_{b\ddot{\delta}\dot{delta}} &amp; 0 &amp; 0 \\
+  0 &amp; a_{b\dot{\psi}\delta} &amp; 0 &amp; a_{b\dot{\psi}\dot{\delta}} &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; a_{b\dot{y}_p\psi} &amp; 0
+\end{bmatrix}\end{split}\]\[\begin{split}\mathbf{B}_b
+=
+\begin{bmatrix}
+  0 &amp; 0 \\
+  0 &amp; 0 \\
+  b_{b\ddot{\phi}T_\delta} &amp; b_{b\ddot{\phi}F} \\
+  b_{b\ddot{\delta}T_\delta} &amp; b_{b\ddot{\delta}F} \\
+  0 &amp; 0 \\
+  0 &amp; 0
+\end{bmatrix}\end{split}\]\[\begin{split}\mathbf{C}_b
+=
+\begin{bmatrix}
+  0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+  1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+  0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+  0 &amp; 1 &amp; 0 &amp; 0 &amp; c_{by_q\psi} &amp; c_{by_qy_p} \\
+\end{bmatrix}\end{split}\]</div>
+<p>The neuromuscular block is described by the transfer function</p>
+<div class="math" id="equation-eqNeuromuscular">
+<span class="eqno">(6)</span>\[G_{nm}(s) = \frac{\omega_{nm}^2}{s^2 + 2 \zeta_{nm} \omega_{nm}s + \omega_{nm}}\]</div>
+<p>and can be written in state space form with the states <span class="math">\(x_{nm} = \left[
+T_\delta \quad \dot{T}_\delta \right]^T\)</span>, input <span class="math">\(u_{nm} = U_{nm}\)</span> and
+output <span class="math">\(y_{nm} = T_\delta\)</span>.</p>
+<div class="math" id="equation-eqNeuroStateSpace">
+<span class="eqno">(7)</span>\[\begin{split}\mathbf{A}_{nm}
+=
+\begin{bmatrix}
+  0 &amp; 1 \\
+  -\omega^2 &amp; - 2 \zeta \omega
+\end{bmatrix}\end{split}\]\[\begin{split}\mathbf{B}_{nm}
+=
+\begin{bmatrix}
+  0 \\
+  \omega^2
+\end{bmatrix}\end{split}\]\[\begin{split}\mathbf{C}_{nm}
+=
+\begin{bmatrix}
+  1 &amp; 0
+\end{bmatrix}\end{split}\]</div>
+<p>The combined plant (rider nueromuscular model and bicycle) has states
+<span class="math">\(x_p = \left[ \phi \quad \delta \quad \dot{\phi} \quad \dot{\delta} \quad
+\psi \quad y_p \quad T_\delta \quad \dot{T}_\delta \right]^T\)</span>, inputs
+<span class="math">\(u_p = \left[ F \quad U_{nm} \right]^T\)</span>, and outputs <span class="math">\(y_p = \left[
+\delta \quad \phi \quad \dot{\phi} \quad \psi \quad y_q \right]^T\)</span>. The state,
+input and output matrices are follows</p>
+<div class="math" id="equation-eqPlantStateSpace">
+<span class="eqno">(8)</span>\[\begin{split}\mathbf{A}_p
+=
+\begin{bmatrix}
+  \mathbf{A}_b &amp; \mathbf{B}_{bT_\delta} &amp; 0_{6 \times 1} \\
+  0_{2 \times 6} &amp; \mathbf{A}_{nm}
+\end{bmatrix}\end{split}\]\[\begin{split}\mathbf{B}_p
+=
+\begin{bmatrix}
+  \mathbf{B}_{bF} &amp; 0_{6 \times 2} \\
+  0_{2 \times 1} &amp; \mathbf{B}_{nm}
+\end{bmatrix}\end{split}\]\[\begin{split}\mathbf{C}_p
+=
+\begin{bmatrix}
+  \mathbf{C}_b &amp; 0
+\end{bmatrix}\end{split}\]</div>
+<p>The sequential loop closure dictates that the commanded output variables are</p>
+<div class="math">
+\[\psi_c = k_{y_q} ({y_q}_c - y_q)\]\[\phi_c = k_\psi (\psi_c - \psi)\]\[\dot{\phi}_c = k_\phi (\phi_c - \phi)\]\[\delta_c = k_\dot{\phi} (\dot{\phi}_c - \dot{\phi})\]</div>
+<p>and the input to the neuromuscular block as a function of the desired path
+is</p>
+<div class="math">
+\[U_{nm} = k_\delta * (\delta_c - \delta)\]</div>
+<p>The input to the neuromuscular block can be written in linear form as</p>
+<div class="math">
+\[\begin{split}U_{nm}
+=
+\begin{bmatrix}
+  -k_\delta k_\phi k_\dot{\phi} k_\psi \\
+  -k_\delta k_\phi k_\dot{\phi} \\
+  -k_\delta \\
+  -k_\delta k_\dot{\phi} \\
+  -k_\delta k_\phi k_\dot{\phi} k_\psi k_{y_q} \\
+  k_\delta k_\phi k_\dot{\phi} k_\psi k_{y_q}
+\end{bmatrix}^T
+\begin{bmatrix}
+   \psi \\
+   \phi \\
+   \delta \\
+   \dot{\phi} \\
+   y_q \\
+   y_c \\
+\end{bmatrix}\end{split}\]</div>
+<p>The closed loop state space for lateral deviation tracking can be form by
+inserting the controller output <span class="math">\(U_{nm}\)</span> into the plant dynamics
+<span class="math">\((\mathbf{A}_p,\mathbf{B}p)\)</span> to rearrange the plant state space to be a
+function of the desired path and the lateral force, <span class="math">\(u_l = \left[ F \quad
+y_{qc} \right]^T\)</span>. The closed loop system <span class="math">\((\mathbf{A}_p,\mathbf{B}p)\)</span>
+takes the same form as the plant system with excepetion to the steer torque
+acceleration equation, which is now a function of the controller gains, the
+neuromuscular parameters and the desired path of the front wheel contact point.
+The new entries to the state matrix are</p>
+<div class="math" id="equation-eqLateralStateSpace">
+<span class="eqno">(9)</span>\[x_l = \left[ \phi \quad \delta \quad \dot{\phi} \quad \dot{\delta} \quad
+\psi \quad y_p \quad T_\delta \quad \dot{T}_\delta \right]^T\]\[u_l = \left[ F \quad y_{qc} \right]^T\]\[\begin{split}\mathbf{A}_l
+=
+\begin{bmatrix}
+  0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  a_{b\ddot{\phi}\phi} &amp;
+  a_{b\ddot{\phi}\delta} &amp;
+  a_{b\ddot{\phi}\dot{\phi}} &amp;
+  a_{b\ddot{\phi}\dot{\delta}} &amp;
+  0 &amp; 0 &amp; 0 &amp; 0\\
+  a_{b\ddot{\delta}\phi} &amp;
+  a_{b\ddot{\delta}\delta} &amp;
+  a_{b\ddot{\delta}\dot{\phi}} &amp;
+  a_{b\ddot{\delta}\dot{\delta}} &amp;
+  0 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; a_{b\dot{\psi}\delta} &amp; 0 &amp; a_{b\dot{\psi}\dot{\delta}} &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; a_{b\dot{y}_p\psi} &amp; 0 &amp; 0 &amp; 0 \\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+  -\omega^2 k_\delta k_\dot{\phi} k_\phi &amp;
+  -\omega^2 k_\delta (1 + c_{b y_q \delta} k_\dot{\phi} k_\phi k_\psi k_{y_q}) &amp;
+  -\omega^2 k_\delta k_\dot{\phi} &amp;
+  0 &amp;
+  -\omega^2 k_\delta k_\dot{\phi} k_\phi k_\psi (1 + c_{b y_q \psi} k_{y_q}) &amp;
+  -\omega^2 k_\delta k_\dot{\phi} k_\phi k_\psi k_{y_q} &amp;
+  -\omega^2 &amp;
+  -2 \omega \zeta
+\end{bmatrix}\end{split}\]\[\begin{split}\mathbf{B}_l
+=
+\begin{bmatrix}
+  0 &amp; 0 \\
+  0 &amp; 0 \\
+  b_{b\ddot{\phi}F} &amp; 0 \\
+  b_{b\ddot{\delta}F} &amp; 0 \\
+  0 &amp; 0 \\
+  0 &amp; 0 \\
+  0 &amp; \omega^2 k_\delta k_\dot{\phi} k_\phi k_\psi k_{y_q}
+\end{bmatrix}\end{split}\]</div>
+<p>The output matrix can be constructed to provide any desired outputs, which I
+choose a subset of the outputs we measured during the experiments such as steer
+angle, roll rate, steer torque, etc.</p>
+<p>Given that the bicycle model is known this analytical state space
+representation is parameterized by seven parameters: the five controller gains
+and the two neuromuscular parameters. The seven parameters are uniquely
+idenfitiable. The model is eighth order with two inputs.</p>
+<div class="admonition-todo admonition" id="index-26">
+<p class="first admonition-title">Todo</p>
+<p class="last">i think they are uniquely identifiable but I&#8217;m not real sure how to
+check this throughly. it is function of what inputs and outputs that are
+measured</p>
+</div>
+<div class="admonition-todo admonition" id="index-27">
+<p class="first admonition-title">Todo</p>
+<p class="last">This next paragraph may be wrong. A state feedback would be something
+like (A-BK)x where x is 6 x 1, B is 6 x 1 and K is 1 x 6 to get a gain
+matrix single steer torque which is effectively the same as what is here,
+except that our gains have a different interpretation. How does this relate
+(A-BK)x? or the basic full state feedback. Interesting to note that the gain
+structure is all multiplied by the neuro frequency. It is akin to only
+having gains in the bottom row of the full state feedback K matrix, this
+would only add gains to the bottomr row of A-BK.</p>
+</div>
+<p>Notice that the controller is unlike an state or output feeback model in the
+sense that the gains only have the ability to affect a single row in the A and
+B matrices. This reflects the some of the inherent limitations in the human has
+for sensory and acutuation in this system. Output feeback systems often have an
+observer so that full estimated state feedback can be used. This model assumes
+that the rider does not have that abitily and is able to sense noisy outputs
+and adjust his torque compesation within the limits of his neuromuscular system
+based on five simple gains.</p>
+<p>I also make use of a second closed loop model which is essentially the same,
+but the outer lateral deviation tracking loop is removed and tracking a
+commanded heading is left. This model is seventh order with two inputs.</p>
+<div class="math" id="equation-eqHeadingStateSpace">
+<span class="eqno">(10)</span>\[x_h = \left[ \phi \quad \delta \quad \dot{\phi} \quad \dot{\delta} \quad
+\psi \quad T_\delta \quad \dot{T}_\delta \right]^T\]\[u_h = \left[ F \quad \psi_c \right]^T\]\[\begin{split}\mathbf{A}_h
+=
+\begin{bmatrix}
+  0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+  0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+  a_{b\ddot{\phi}\phi} &amp; a_{b\ddot{\phi}\delta} &amp;
+  a_{b\ddot{\phi}\dot{\phi}} &amp; a_{b\ddot{\phi}\dot{\delta}} &amp;
+  0 &amp; 0 &amp; 0 \\
+  a_{b\ddot{\delta}\phi} &amp; a_{b\ddot{\delta}\delta} &amp;
+  a_{b\ddot{\delta}\dot{\phi}} &amp; a_{b\ddot{\delta}\dot{\delta}} &amp; 0 &amp; 0 &amp; 0 \\
+  0 &amp; a_{b\dot{\psi}\delta} &amp; 0 &amp; a_{b\dot{\psi}\dot{\delta}} &amp; 0 &amp; 0 &amp; 0 \\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+  -\omega^2 k_\delta k_\dot{\phi} k_\phi &amp;
+  -\omega^2 k_\delta &amp;
+  -\omega^2 k_\delta k_\dot{\phi} &amp;
+  0 &amp;
+  -\omega^2  k_\delta k_\phi k_\dot{\phi} k_{\psi} &amp;
+  -\omega^2 &amp;
+  -2 \omega \zeta
+\end{bmatrix}\end{split}\]\[\begin{split}\mathbf{B}_h
+=
+\begin{bmatrix}
+  0 &amp; 0 \\
+  0 &amp; 0 \\
+  b_{b\ddot{\phi}F} &amp; 0 \\
+  b_{b\ddot{\delta}F} &amp; 0 \\
+  0 &amp; 0 \\
+  0 &amp; 0 \\
+  0 &amp; \omega^2 k_\delta k_\phi k_\dot{\phi} k_\psi
+\end{bmatrix}\end{split}\]</div>
+<p>The numerical values from the model derived from Luke&#8217;s runs in the pavilion
+were used to populate the bicycle state space entries, except for the entries
+in the heading and lateral deviation acceleration equations which were
+calculated with the Whipple model. This has the consequence that those entries
+are developed with potentially erronous geometric values such as trail.</p>
+<p>In the following analysyses the Kalman gain matrix is assumed to be equal to
+zero and the model takes on an output error form. This was required to bring
+the number of parameters to a reasonable size and provide a chance at finding
+the optimal solution.</p>
+</div>
+<div class="section" id="id65">
+<h3>Data<a class="headerlink" href="#id65" title="Permalink to this headline">¶</a></h3>
+<p>Only the runs with lateral disturbances are suitable for identifying the rider
+controller. I used the subset of 262 valid disturbance runs for the following
+analysis. This subset included runs from all three riders, both environments
+and both the lateral deviation and heading tracking maneuvers. All signals had
+their means subtracted except for the lateral force.</p>
+</div>
+<div class="section" id="id66">
+<h3>Identification<a class="headerlink" href="#id66" title="Permalink to this headline">¶</a></h3>
+<p>Through trial and error with many different approaches <a class="footnote-reference" href="#id73" id="id67">[1]</a> to identification,
+I found that the optimal solution was not a trivial problem. The SIMO problem
+with noise full noise estimation has a minimum of 15 parameters. This problem
+is fraught with local minima. Even with the assumption of an output error
+structure and the reduced parameter space to seven, doesn&#8217;t escape the
+difficulty of finding the true minima. To have a decent chance at finding a
+good solution, I opted to identify only the SISO system with the lateral force
+as the input and the steering angle as the output. The choice of steer angle as
+the sole output is much the same reason as [Lange2011]. The steer angle is a
+very good quality measurement and along with steer torque reflects the rider&#8217;s
+contribution to the system dynamics as a reaction to the lateral force.</p>
+<p>I used the prediction error method [Ljung1999] to find the optimal parameters
+for each run.  A good solution required good initial parameter guesses of which
+I used a combination of stable starting guesses from the loop closure technique
+described in Chapter <a class="reference internal" href="control.html#control"><em>Control</em></a> and using random guesses from previous good
+and bad solutions as starting points.</p>
+<p>The criteria for a good model was based on the percentage of variance in the
+measurement output explained by the model. The mean percent variance for all
+the identified runs is <span class="math">\(62 \pm 12 %\)</span>, and considering the large relative
+human remnant, fits above 30% are still relatively good. I ensured stability on
+in the identified models and no issues associated with unstable simulations
+corrupting the model quality criteria were present.</p>
+<p>It turned out that the identified parameters for the SISO model not only
+predicted the steer angle, but when extra outputs are added it predicts them
+well too.</p>
+<ol class="arabic simple">
+<li>Process, filter and detrend the data.</li>
+<li>Construct the SISO (I: <span class="math">\(F_B\)</span>, O: <span class="math">\(\delta\)</span>) grey box state space model.</li>
+<li>Identify the five gains and the neuromuscular frequency for the lateral
+force and steer angle data using a variety of initial parameter guesses.</li>
+<li>Construct the SIMO grey box state space model.</li>
+<li>Identify the six parameters as before using the result of the SISO
+identification as the initial parameter guess.</li>
+</ol>
+<div class="figure">
+<img alt="_images/rider-id-treadmill-run.png" src="_images/rider-id-treadmill-run.png" style="width: 4in;" />
+<p class="caption">Simulation of an identified model derived from the inputs and outputs (SIMO)
+of one of Charlie&#8217;s treadmill runs #288 (4.23 m/s) validated against the
+data from run #289 (4.22 m/s). The black line is the processed and filtered
+(low pass 15 hz) measured data, the blue line is the simulation from the
+identified SIMO model and the green line is the identified SISO model.</p>
+</div>
+<div class="figure">
+<img alt="_images/rider-id-pavilion-run.png" src="_images/rider-id-pavilion-run.png" style="width: 4in;" />
+<p class="caption">Simulation of an identified model derived from the inputs and outputs (SIMO)
+of one of Luke&#8217;s pavilion runs #657 (3.99 m/s) validated against the data
+from run #658 (3.74 m/s). The black line is the processed and filtered (low
+pass 15 hz) measured data, the blue line is the simulation from the
+identified SIMO model, and the green line is the identified SISO model.</p>
+</div>
+<p>The results in Figures X and X give average examples of the model&#8217;s ability to
+predict the measured data in two different runs. Notice that the human&#8217;s
+remnant is relatively large especially in the treadmill run. The model
+generally predicts the human&#8217;s initial control response to the external input.
+This response is very repeatable across riders and runs with the level of
+remnant minimized in the second after the perturbation. The model considers the
+remnant as output error during the non perturbed portions of the run. Notice
+that the steer torque is well predicted around the perturbation. Previous
+identifications with the Whipple model predicted much lower torque magnitudes
+and much different parameters. Including the identified bicycle model proved to
+give better control predictions.</p>
+</div>
+<div class="section" id="id70">
+<h3>Results<a class="headerlink" href="#id70" title="Permalink to this headline">¶</a></h3>
+<p>I computed the optimal five gains and neuromuscular frequency for all 262 runs
+and recorded the percent variance of the steer angle output explained by the
+model for each run along with the identified parameters.</p>
+<p>The first set of quantities of interest are the identified parameters
+themselves. As I&#8217;ve already mentioned in the previous section, identifying the
+parameters accurately is a function of the number of free parameters, which
+parameters are free and the quality of the noise model. In my case, our noise
+model is an output error structure and may contribute to much more spread in
+the identified parameters. Figure X gives an idea of how the six identified
+speeds vary with speed. As shown in Chapter <a class="reference internal" href="control.html#control"><em>Control</em></a> the theory predicts
+that the gains are linear above about 2 m/s and that the neuromuscular
+frequency is a constant parameter with respect to the human operator.</p>
+<ul class="simple">
+<li>The gains increase with speed with <span class="math">\(k_\phi\)</span> and <span class="math">\(k_{y_q}\)</span> having
+small slopes.</li>
+<li>The low speed runs have much more spread. This is probably due to the fact
+that the human remnant is relatively large at these speeds and the model
+attempts to fit the noise rather than casting it as output error.</li>
+<li>The ~9 m/s have poorer data quality than other runs due to the treadmill
+interference in the measurement electronics, thus the spread is large.</li>
+<li>The neuromuscular frequency stays relatively constant just below 30 rad/s
+barring the higher variability in the low speed runs.</li>
+</ul>
+<div class="figure">
+<img alt="_images/par-vs-speed-box-all.png" src="_images/par-vs-speed-box-all.png" />
+<p class="caption">Each of the five idenitifed parameters as a function of speed. The parameter
+values are grouped into 0.5 m/s speed bins and boxplots showing their
+distrubutions are given for each speed bin. The red line gives the median of
+the speed bin, box bounds the quartiles and the whisker the 1.5 times the
+inner quarile range. The width of the boxes are proportional to the square
+of the number of runs in the bin. The green line gives the linear fit to the
+median values which are weighted with respect to the standard deviation of
+each speed bin. The neuromuscular frequency is the best constant that fits
+the data.</p>
+</div>
+<div class="section" id="loop-shaping">
+<h4>Loop Shaping<a class="headerlink" href="#loop-shaping" title="Permalink to this headline">¶</a></h4>
+<p>The values of the parameters are difficult to directly compare with the ones
+found by the loop shaping technique described in Chapter <a class="reference internal" href="control.html#control"><em>Control</em></a> due to
+some of the educated guesses about the rider&#8217;s internal control choices. But it
+is possible to evaluate the same loops&#8217; frequency responses in an effort to
+understand how the rider chooses the gains.</p>
+<p>Figure X shows the frequency response of the closed the inner most loop a
+single speed bin. The theory presented in [Hess2012] and Chapter
+<a class="reference internal" href="control.html#control"><em>Control</em></a> postulates that the rider chooses a gain such that the damping
+ratio of the high frequency neuromuscular around 10 rad/s and about gives about
+a 10 db peak (<span class="math">\(\zeta=0.15\)</span>). Figure X shows that there may be a more
+heavily damped neuromuscular peak, but the large variability in the lower
+frequencies indicates that this may not always be the rider&#8217;s choice. This may
+be explained by the fact that it is most critical to for the roll rate loop to
+exhibit the neuromuscular peaking and that there are not unique gains in the
+first too loops to achieve this.</p>
+<div class="figure">
+<img alt="_images/all-delta_deltac-4.png" src="_images/all-delta_deltac-4.png" />
+<p class="caption">Frequency responses of the closed steer angle loop. The grey lines plot the
+response of each individula run in the speed bin while the solid black line
+give the mean gain and phase bounded by the dotted black lines which
+indication the one sigma standard deviation.
+.. todo:: I&#8217;m not sure what the positive and negative phase shifts mean with</p>
+<div class="legend">
+<blockquote>
+<div>regards to a closed loop Bode plot.</div></blockquote>
+</div>
+</div>
+<p>Figure X shows the frequency response of the closed roll rate loop
+<span class="math">\(\frac{\dot{\phi}}{\dot{\phi}_c}(s)\)</span>. As was just pointed out, the theory
+is that this loop which completes the inner control loop, must exhibit this
+typical neuromuscular peaking seen in human-machine control tasks. The mean
+magnitude plots indicates that this is the case and that the riders do choose
+their steer and roll rate gains such that the inner loops exhibit the typical
+response.</p>
+<div class="figure">
+<img alt="_images/all-phiDot_phiDotc-4.png" src="_images/all-phiDot_phiDotc-4.png" />
+<p class="caption">Frequency responses of the closed roll rate loop. The grey lines plot the
+response of each individula run in the speed bin while the solid black line
+give the mean gain and phase bounded by the dotted black lines which
+indication the one sigma standard deviation.</p>
+</div>
+<p>Our theory for the selection of the remaining three gains suggests that the
+loops follow the dictates of the crossover model (i.e. 20 db slope around
+crossover) and that the crossover frequencies start at 2 and each successive
+loop is closed at half the previous crossover frequency such that the roll
+angle, heading and lateral deviation loops are closed in that order. Figures X
+through X show the empirically derived frequency responses for the remaining
+loops.</p>
+<div class="figure">
+<img alt="_images/all-phi_ePhi-4.png" src="_images/all-phi_ePhi-4.png" />
+<p class="caption">Frequency responses of the open roll angle loop. The grey lines plot the
+response of each individual run in the speed bin while the solid black line
+give the mean gain and phase bounded by the dotted black lines which
+indication the one sigma standard deviation.</p>
+</div>
+<div class="figure">
+<img alt="_images/all-psi_ePsi-4.png" src="_images/all-psi_ePsi-4.png" />
+<p class="caption">Frequency responses of the open heading loop. The grey lines plot the
+response of each individual run in the speed bin while the solid black line
+give the mean gain and phase bounded by the dotted black lines which
+indication the one sigma standard deviation.</p>
+</div>
+<div class="figure">
+<img alt="_images/all-yQ_eyQ-4.png" src="_images/all-yQ_eyQ-4.png" />
+<p class="caption">Frequency responses of the open lateral deviation loop. The grey lines plot the
+response of each individual run in the speed bin while the solid black line
+give the mean gain and phase bounded by the dotted black lines which
+indication the one sigma standard deviation.</p>
+</div>
+<p>The median crossover frequencies for this bin are <span class="math">\(w_{\phi c}=3.66\)</span>,
+<span class="math">\(w_{\psi c}= 0.98\)</span>, and <span class="math">\(w_{y_q c}=1.06\)</span>. This indicates that the
+rider is more aggressive than our theory with the higher roll crossover
+frequency in the roll angle loop. Also, the riders do not crossover at half the
+previous frequency, with the two outer loops crossing over at about the same
+frequency indicating that the lateral deviation tracking is more pertinent to
+the rider than the theory suggests. This may be partially due to the narrowness
+of the treadmill which constitutes 80% of the data.</p>
+<p>Our hypothesis is that the crossover frequencies are constant with respect to
+speed, so the distribution of the crossover frequencies for all runs should
+have a tight distribution regardless of speed. Secondly, we postulated that the
+rider crosses the roll angle loop around 2 rad/s. Figure X shows the
+distribution of the crossover frequencies for each loop where the median
+values of the crossover frequencies are <span class="math">\(w_{\phi c}=3.31\)</span>,
+<span class="math">\(w_{\psi c}= 1.20\)</span>, and <span class="math">\(w_{y_q c}=0.98\)</span>, all with relatively large
+standard deviations.</p>
+<div class="figure">
+<img alt="_images/crossover-all.png" src="_images/crossover-all.png" />
+</div>
+</div>
+<div class="section" id="full-system-response">
+<h4>Full System Response<a class="headerlink" href="#full-system-response" title="Permalink to this headline">¶</a></h4>
+<p>Once the loops are all closed the system output response to the two inputs
+<span class="math">\(F_B\)</span> and <span class="math">\(y_{qc}\)</span> can be examined. Given a commanded input
+<span class="math">\(y_{qc}\)</span>, the tracking performance can be gauged by the closed loop Bode
+plot <span class="math">\(\frac{y_q}{y_{qc}}(s)\)</span> given in Figure X. Notice that in general,
+the response is well behaved with a 0 dB magnitude out to about 10 rad/s, all
+poles are stable and the phase lag increases gradually with frequency.</p>
+<div class="figure">
+<img alt="_images/all-yQ_yQc-4.png" src="_images/all-yQ_yQc-4.png" />
+<p class="caption">Frequency responses of the closed system lateral devaition tracking
+response. The grey lines plot the response of each individual run in the
+speed bin while the solid black line give the mean gain and phase bounded by
+the dotted black lines which indication the one sigma standard deviation.</p>
+</div>
+<p>Similarly, the system&#8217;s response to the lateral disturbance force is favorable
+for all the identified models. Figure X shows a similar stable response.</p>
+<div class="figure">
+<img alt="_images/all-yQ_fB-4.png" src="_images/all-yQ_fB-4.png" />
+<p class="caption">Frequency responses of the closed system disturbance recovery response. The
+grey lines plot the response of each individual run in the speed bin while
+the solid black line give the mean gain and phase bounded by the dotted
+black lines which indication the one sigma standard deviation.</p>
+</div>
+<div class="figure">
+<img alt="_images/all-tDelta_fB-4.png" src="_images/all-tDelta_fB-4.png" />
+<p class="caption">Frequency responses of the closed system disturbance recovery response for
+steer torque. The grey lines plot the response of each individual run in the
+speed bin while the solid black line give the mean gain and phase bounded by
+the dotted black lines which indication the one sigma standard deviation.</p>
+</div>
+</div>
+</div>
+<div class="section" id="id72">
+<h3>Conclusion<a class="headerlink" href="#id72" title="Permalink to this headline">¶</a></h3>
+<p>I have shown that the rider controller can be identified from the collected
+data. The basic conclusions are:</p>
+<ul class="simple">
+<li>The fundamental, remnant-free, control response of the rider under lateral
+perturbations can be described reasonably well by the simple five gain
+sequential loop closure and an eighth order closed loop system.</li>
+<li>The identified gains seem to exhibit linear trends with respect to speed as
+predicted by theory and the identified neuromuscular frequency seems to be
+constant with a median around the theoretical prediction of 30 rad/s.</li>
+<li>The identified parameters show resemblance to the patterns in the theoretical
+loop closure techniques. Especially that the rider selects their gains such
+that the closed roll rate loop exhibits a 10 db peak around 10-11 rad/s and
+that the riders cross over the outer three loops in the predicted order.</li>
+<li>The parameters do not seem to be unique if the neuromuscular damping ratio is
+included.</li>
+</ul>
+<p>All of these conclusions are based on a weak and preliminary statistical view
+of the data. I believe the spread in the results can be tightened up
+significantly with further data processing and the use of simple statistical
+methods.</p>
+<dl class="docutils">
+<dt>Improving the bicycle model.</dt>
+<dd>To have any hope of identifying a realistic and accurate controller, the
+plant must have a very good representative model. The bicycle is an
+excellent platform for testing the human&#8217;s control system due to it&#8217;s low
+speed instability and the fact that non-trivial control is needed to stabilize
+and direct the non-minimum phase system, but the first principles models for
+bicycle/rider biomechanics are not yet adequate enough to describe the
+plant. This is mostly due to poor understanding of the tire to ground
+interaction and the rider&#8217;s complicated coupling to the bicycle frames in
+which the rider is free to use a multitude of actuations for control.
+But, as has been shown here, system identification can be used to develop a
+realistic plant model for specific bicycles and even small variation in
+riders. A data driven model is currently the best choice until the first
+principles models catch up.</dd>
+<dt>Estimating the process noise matrix.</dt>
+<dd>The better one can estimate the process noise in the system, the more
+accurate the parameter predictions will get. In all of my attempts I had
+little success in every estimating the optimal model when some or all of the
+process noise parameters were free. For the controller portion, the process
+noise is not awfully different than the rider&#8217;s control actions to the
+disturbance and it is very apparent in the low speed runs. This type of
+noise is much more difficult to properly account for. The parameter
+estimates from the output error structures used in this study are
+susceptible to the model fitting the noise and the control actions as
+opposed to just the control actions. The identifications fortunately were
+able to fit the control actions and not the noise and this is much more
+apparent and true in the treadmill runs. It may be possible to developed
+estimates to the process and measurement noise covariance matrices from the
+undisturbed runs where the human&#8217;s remnant is the dominant source of
+variability in the outputs.</dd>
+<dt>Fixing the neuromuscular model.</dt>
+<dd>The results give some indication that the neuromuscular model is an
+appropriate choice. The gain identification could possibly be improved by
+fixing both the neuromuscular frequency and damping ratio, and only
+estimating the gains. In general, the more parameters you can be confident
+about via first principles, the easier the model may fit the data.</dd>
+<dt>Removing outliers.</dt>
+<dd>A more systematic approach to the removal of outlier data using criteria
+from the resulting fit variance, parameters, and, frequency responses would
+help tighten up the data. The outliers are quite apparent in the data I&#8217;ve
+shown and a detailed look at why they are outliers may allow many of them to
+be removed.</dd>
+<dt>Mixed effects modeling.</dt>
+<dd>To take into account all the factors and repeated experiments there are
+statistical methods available that can account for these. One such is mixed
+effects or multilevel modeling. I explored the use of these in a preliminary
+fashion but need more time to understand the methods so that I apply them
+correctly.</dd>
+</dl>
+<p>If I had unlimited time, I would work on these ideas more thoroughly. The data
+is available if others would like to try out different methods, plant models,
+bicycle models, etc.</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="id73" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id67">[1]</a></td><td>I spent some time trying to regress models to each of the speed dependent
+coefficients in the state space model by assuming either a constant, linear
+or quadratic line. I tried simple regression techniques and also some mixed
+effects techniques to obviate the fact that some of the speed bins had many
+more runs than others. This method may be able to find a better model, but
+needs more work.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id74" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td>I tried many ways of identifiyig: explain a little</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id75" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[3]</td><td>The nueromuscaulr damping ratio was fixed to 0.707 as per [XXXX]. The
+uniqueness of the identifiablity of the parameters is question if this is not
+fized, as wildly different solutions for the neuromuscular frequency were often
+found if the damping ratio was left free.
+.. todo:: Get citation from Ron on this number</td></tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 
@@ -3270,7 +3881,7 @@ best solution</li>
       <div class="bottomnav">
       
         <p>
-        «&#160;&#160;<a href="handling.html">Handling</a>
+        «&#160;&#160;<a href="control.html">Control</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
@@ -3282,7 +3893,7 @@ best solution</li>
 
     <div class="footer">
         &copy; Copyright 2011, Jason K. Moore.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">
 var disqus_shortname = 'jkm-dissertation';

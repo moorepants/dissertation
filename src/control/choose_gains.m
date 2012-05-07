@@ -17,16 +17,16 @@ figOptions.PaperSize = [figWidth, figHeight];
 
 % create the bicycle block
 par = par_text_to_struct([HUMAN_CONTROL_DIR filesep 'parameters/RigidCharliePar.txt']);
-v = 5.0;
+v = 9.0;
 bicycle = whipple_pull_force_abcd(par, v);
 
-%%%% Now change the model to the one identified from Luke's pavilion runs.
-%%%load('../../../Bicycle Mechanics/CanonicalBicycleID/data/cid-L-P.mat')
-%%%invM = inv(M);
-%%%Aid = [-invM * [K0 * 9.81 + K2 * v^2], -invM * C1 * v];
-%%%Bid = [invM(:, 2), invM * H];
-%%%bicycle.A([9, 11], [4, 7, 9, 11]) = Aid;
-%%%bicycle.B([9, 11], [2, 3]) = Bid;
+% Now change the model to the one identified from Luke's pavilion runs.
+load('../../../Bicycle Mechanics/CanonicalBicycleID/data/cid-L-P.mat')
+invM = inv(M);
+Aid = [-invM * [K0 * 9.81 + K2 * v^2], -invM * C1 * v];
+Bid = [invM(:, 2), invM * H];
+bicycle.A([9, 11], [4, 7, 9, 11]) = Aid;
+bicycle.B([9, 11], [2, 3]) = Bid;
 
 bicycleTF = tf(bicycle);
 

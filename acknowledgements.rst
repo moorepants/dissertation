@@ -45,3 +45,19 @@ not necessarily reflect the views of the National Science Foundation.
 * Batavus, Amped Bikes
 * Fulbright
 * Others...
+
+Dissertation Committee
+======================
+
+* Dr. Mont Hubbard, UC Davis (Chair)
+* Dr. Ron Hess, UC Davis
+* Dr. A. L. Schwab, TU Delft
+
+Qualifying Exam Committee
+=========================
+
+* Dr. Ron Hess, UC Davis (Chair)
+* Dr. Fidelis Eke, UC Davis
+* Dr. Donald Margolis, UC Davis
+* Dr. Keith Williams, UC Davis
+* Dr. Micheal Hill, UC Davis

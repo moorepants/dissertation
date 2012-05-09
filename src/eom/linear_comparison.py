@@ -61,12 +61,21 @@ newFig = bicycle.meijaard_figure_four(time, rollRate, steerrate, speed)
 newFig.savefig('../../figures/eom/meijaard2007-figure-four-linear.png', dpi=300)
 
 # plot the eigenvalues vs speed
+settings = {'num':100,
+            'axes':'complex',
+            'pub':True,
+            'width':5.0}
 start = 0.0
 stop = -10.0 / moorePar['rr']
-rootLoci = whip.plot_root_loci('u6', start, stop, num=100, axes='parameter')
-rootLoci.savefig('../../figures/eom/root-loci.png', dpi=300)
-rootLoci = whip.plot_root_loci('u6', start, stop)
+rootLoci = whip.plot_root_loci('u6', start, stop, factor=('v',
+    -moorePar['rr']), units='m/s', **settings)
 rootLoci.savefig('../../figures/eom/root-loci-complex.png', dpi=300)
+
+settings['axes'] = 'parameter'
+settings['ylim'] = (-10, 10)
+rootLoci = whip.plot_root_loci('u6', start, stop, factor=('v',
+    -moorePar['rr']), units='m/s', **settings)
+rootLoci.savefig('../../figures/eom/root-loci.png', dpi=300)
 
 # now find the eigenvalues
 equilibrium[whip.stateNames.index('u6')] = -5.0 / moorePar['rr']

@@ -29,7 +29,6 @@ document <http://mae.ucdavis.edu/~biosport/jkm/dissertation/HumanControlofaBicyc
    motioncapture
    davisbicycle
    control
-   davisexperiments
    systemidentification
    todo
 

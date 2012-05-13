@@ -41,5 +41,5 @@ whip.linear(equilibrium)
 figs = whip.plot_eigenvectors(states=('u4', 'u7'), pub=True)
 
 for i, f in enumerate(figs):
-    speed = '1.5'
+    speed = '1p5'
     f.savefig('../../figures/parameterstudy/cres-evec-' + speed + '-' + str(i + 1) + '.png')

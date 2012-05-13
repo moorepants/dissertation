@@ -284,7 +284,7 @@ outriggers.
 
 .. _figCresEvecWeave:
 
-.. figure:: figures/parameterstudy/cres-evec-1.5-1.png
+.. figure:: figures/parameterstudy/cres-evec-1p5-1.png
 
    figCresEvecWeave
 
@@ -293,7 +293,7 @@ outriggers.
 
 .. _figCresEvecOsc:
 
-.. figure:: figures/parameterstudy/cres-evec-1.5-2.png
+.. figure:: figures/parameterstudy/cres-evec-1p5-2.png
 
    figCresEvecWeave
 

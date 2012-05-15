@@ -100,4 +100,5 @@ years. My parents, Cindy and Mark, have given me unconditional love and support
 through all of my schooling and I'm grateful to have such caring parents. My
 girlfriend, Yumi, has been by my side for the last two and half years where we
 have both been working to finish our doctoral degrees. Her love and support
-have helped kept me going through the high stress of getting all this done.
+have helped kept me going through the high stress of getting all this done. She
+also drew the wonderful studying bear drawing for my cover page.

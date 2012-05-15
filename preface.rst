@@ -231,8 +231,21 @@ packages we've developed:
    [Yeadon1990]_.
 
 This software stack is built upon several languages and software packages
-including: Python, NumPy, SciPy, Matplotlib, PyTables, Pandas, Uncertainties,
-SymPy, Autolev, Matlab.
+including: Python_, NumPy_, SciPy_, Matplotlib_, PyTables_, Pandas_, Uncertainties_,
+SymPy_, Autolev_, Matlab_.
+
+.. _Python: http://www.python.org
+.. _NumPy: http://www.numpy.org
+.. _SciPy: http://www.scipy.org
+.. _Matplotlib: http://matplotlib.sourceforge.net/
+.. _PyTables: http://www.pytables.org
+.. _Pandas: http://pandas.pydata.org/
+.. _Uncertainties: http://pypi.python.org/pypi/uncertainties/
+.. _SymPy: http://www.sympy.org
+.. _Autolev: http://www.autolev.com
+.. _Matlab: http://www.mathworks.com/products/matlab/
+
+.. todo:: Maybe do proper citations to these in the bibliography
 
 Data
 ----

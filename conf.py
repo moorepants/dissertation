@@ -173,15 +173,15 @@ htmlhelp_basename = 'HumanControlofaBicycledoc'
 # -- Options for LaTeX output --------------------------------------------------
 
 # The paper size ('letter' or 'a4').
-#latex_paper_size = 'letter'
+latex_paper_size = 'letter'
 
 # The font size ('10pt', '11pt' or '12pt').
-#latex_font_size = '10pt'
+latex_font_size = '10pt'
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'HumanControlofaBicycle.tex', u'Human Control of a Bicycle Documentation',
+  ('index', 'HumanControlofaBicycle.tex', u'Human Control of a Bicycle',
    u'Jason K. Moore', 'manual'),
 ]
 
@@ -192,7 +192,6 @@ latex_documents = [
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
 #latex_use_parts = False
-#latex_use_parts = True
 
 # If true, show page references after internal links.
 #latex_show_pagerefs = False
@@ -201,8 +200,12 @@ latex_documents = [
 #latex_show_urls = False
 
 # Additional stuff for the LaTeX preamble.
-#latex_preamble = ''
-
+latex_preamble = \
+"""
+\usepackage{setspace}
+\doublespacing
+\usepackage[top=1in, bottom=1in, left=1.5in, right=1in]{geometry}
+"""
 # Documents to append as an appendix to all manuals.
 #latex_appendices = []
 

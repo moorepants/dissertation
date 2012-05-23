@@ -1218,6 +1218,7 @@ phase. These modes describes a simple unstable inverted pendulum motion.
 
 .. figure:: figures/eom/eVecHalf.*
    :width: 6in
+   :align: center
    :target: _images/eVecHalf.png
 
    Normalized eigenvector components plotted in the real/imaginary plane for
@@ -1239,6 +1240,7 @@ with the roll at about twice the amplitude as steer.
 
 .. figure:: figures/eom/eVecThree.*
    :width: 6in
+   :align: center
    :target: _images/eVecThree.png
 
    Normalized eigenvector components plotted in the real/imaginary plane for
@@ -1254,6 +1256,7 @@ only leads the steer by about 10 degrees. The caster and capsize are similar to
 
 .. figure:: figures/eom/eVecFive.*
    :width: 6in
+   :align: center
    :target: _images/eVecFive.png
 
    Normalized eigenvector components plotted in the real/imaginary plane for
@@ -1268,6 +1271,7 @@ in roll.
 
 .. figure:: figures/eom/eVecSeven.*
    :width: 6in
+   :align: center
    :target: _images/eVecSeven.png
 
    Normalized eigenvector components plotted in the real/imaginary plane for

@@ -56,7 +56,7 @@
 <span id="davisbicycle"></span><h1>Davis Instrumented Bicycle<a class="headerlink" href="#davis-instrumented-bicycle" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated May 07, 2012 at 11:29:23 PDT).
+<p class="last">This document is a draft which is updated regularly (Last updated May 22, 2012 at 18:09:17 PDT).
 Once I submit if for my doctoral degree at UC Davis, it will be done. So for
 now use at your own risk. The information may or may not be correct.
 Reviews, comments and suggestions are welcome.</p>
@@ -635,7 +635,7 @@ linear regression on the drifted data. The resulting yaw angle can be used to
 compute estimates for the rear wheel contact velocities: <span class="math">\(u_1\)</span> and
 <span class="math">\(u_2\)</span> by making use of the measured rear wheel rate, <span class="math">\(u_6\)</span>.</p>
 <div class="math" id="equation-eqRearContactRates">
-<span class="eqno">(4)</span>\[u_1 = -u_6 r_R \cos(q_3)\]\[u_2 = -u_6 r_R \sin{q_3)\]</div>
+<span class="eqno">(4)</span>\[u_1 = -u_6 r_R \cos(q_3)\]\[u_2 = -u_6 r_R \sin(q_3)\]</div>
 <p>The rear wheel contact rates can also be integrated and the linear drift
 subtracted out to find the position from an arbitrary initial condition.</p>
 <div class="admonition-todo admonition" id="index-5">
@@ -1733,14 +1733,14 @@ voltage for a sweep of motor rotational speeds.</p>
 </table>
 <p>The relationship from motor rotational speed to voltage is <span class="math">\(mV+b\)</span> with
 the slope and intercept of the rpm to voltage curve determined by regression is
-<span class="math">\(m=456.3862\frac{\textrm{rpm}}{\textrm{volt}}\)\)</span> and
-<span class="math">\(b=-1.2846\textrm{ rpm}\)\)</span>. We then attached a small disc to the motor
+<span class="math">\(m=456.3862\frac{\textrm{rpm}}{\textrm{volt}}\)</span> and
+<span class="math">\(b=-1.2846\textrm{ rpm}\)</span>. We then attached a small disc to the motor
 shaft such that the disc rubs against the rotating tire. The disc diameter was
 chosen such that the motor would output 0 to 10 volts for a bicycle forward
 speed range of about 0 to 30 mph. The rotational speed of the rear wheel as a
 function of voltage can be written as a linear relationship</p>
-<div class="math">
-\[\dot{\theta}_R=s_f(mV+b)\frac{r_d}{r_c}\]</div>
+<div class="math" id="equation-eqTachSlope">
+<span class="eqno">(20)</span>\[\dot{\theta}_R = s_f (m V + b) \frac{r_d}{r_c}\]</div>
 <p>where <span class="math">\(r_d\)</span> is the radius of the generator disc and <span class="math">\(r_c\)</span> is
 distance from the rear wheel center to the disc/tire contact point and
 <span class="math">\(s_f=\frac{2\pi}{60}\)</span> is a scaling factor from rpm to radians per second.
@@ -1949,7 +1949,7 @@ provide vertical accelerations within that range for speeds from 1 to 7 m/s.
 For a sinusoidal shaped bump, the vertical acceleration for a given speed can
 easily be computed. The height of a bump as a function of time is</p>
 <div class="math" id="equation-eqBumpHeight">
-<span class="eqno">(20)</span>\[y(t) = \frac{h}{2}\left[1 - \operatorname{cos}\left(\frac{2 \pi v}{L}t\right)\right]\]</div>
+<span class="eqno">(21)</span>\[y(t) = \frac{h}{2}\left[1 - \operatorname{cos}\left(\frac{2 \pi v}{L}t\right)\right]\]</div>
 <p>where the maximum bump height is <span class="math">\(h\)</span>, <span class="math">\(v\)</span> is the forward speed and
 <span class="math">\(L\)</span> is the length of the bump. The acceleration</p>
 <div class="math">
@@ -2201,7 +2201,7 @@ methods in Chapter <a class="reference internal" href="physicalparameters.html#p
 <div id="disqus_thread"></div>
 <script type="text/javascript">
   /**
-    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
+    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread]
     */
   (function() {
    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -2240,6 +2240,19 @@ var disqus_shortname = 'jkm-dissertation';
   (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
 }());
 </script>
+
+<div align="center">
+<a rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+	<img
+	alt="Creative Commons License" style="border-width:0"
+	src="http://i.creativecommons.org/l/by/3.0/88x31.png" />
+</a>
+<br />
+This work is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+Attribution 3.0 Unported License</a>
+</div>
+
 
   </body>
 </html>

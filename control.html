@@ -56,7 +56,7 @@
 <span id="id1"></span><h1>Control<a class="headerlink" href="#control" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated May 07, 2012 at 11:29:22 PDT).
+<p class="last">This document is a draft which is updated regularly (Last updated May 22, 2012 at 18:09:16 PDT).
 Once I submit if for my doctoral degree at UC Davis, it will be done. So for
 now use at your own risk. The information may or may not be correct.
 Reviews, comments and suggestions are welcome.</p>
@@ -472,8 +472,8 @@ functions both have a single right half plane zero. This single right half
 plane zero means that the steer angle response from either input will exhibit
 an initial undershoot for a given steer torque input [Hoagg2007]. This
 phenomena can be demonstrated by examining the step response of the two
-transfer functions is shown in Figure <em class="xref std std-ref">figStableStepResponse</em>.</p>
-<div class="figure">
+transfer functions is shown in Figure <a class="reference internal" href="#figstablestepresponse"><em>figStableStepResponse</em></a>.</p>
+<div class="figure" id="figstablestepresponse">
 <img alt="_images/stable-step-response.png" src="_images/stable-step-response.png" />
 <p class="caption">figStableStepResponse</p>
 <div class="legend">
@@ -530,18 +530,22 @@ presented in [Meijaard2007].</p>
   0 &amp; {k_2}_{\delta\delta}
 \end{bmatrix}\end{split}\]</div>
 <p>The state, input and output matrices follow</p>
+<div class="admonition-todo admonition" id="index-6">
+<p class="first admonition-title">Todo</p>
+<p class="last">the multicolumn doesn&#8217;t work here</p>
+</div>
 <div class="math">
 \[\begin{split}A =
 \begin{bmatrix}
   0 &amp; 0 &amp; 1 &amp; 0 \\
   0 &amp; 0 &amp; 0 &amp; 1 \\
-  \multicolumn{2}{c}{-M^{-1}(g K_0 + v^2 K_2)} &amp;
-  \multicolumn{2}{c}{-M^{-1} v C_1}
+  &amp; &amp; &amp; -M^{-1}(g K_0 + v^2 K_2) &amp;
+  &amp; &amp; &amp; -M^{-1} v C_1
 \end{bmatrix}\end{split}\]\[\begin{split}B =
 \begin{bmatrix}
   0 &amp; 0 \\
   0 &amp; 0 \\
-  \multicolumn{2}{c}{M^{-1}}
+  &amp; M^{-1}
 \end{bmatrix}\end{split}\]\[\begin{split}C =
 \begin{bmatrix}
   1 &amp; 0 &amp; 0 &amp; 0 \\
@@ -550,7 +554,7 @@ presented in [Meijaard2007].</p>
 <p>The numerators the transfer functions from the inputs to the outputs are
 computed with</p>
 <div class="math">
-\[C\operatorname{adj}(sI-A)B\]</div>
+\[\mathbf{C} \operatorname{adj}(s \mathbf{I} - \mathbf{A}) \mathbf{B}\]</div>
 <p>Taking only the steer torque input and solving for the roots of the
 polynomials, the zeros are found</p>
 <div class="math">
@@ -559,12 +563,12 @@ polynomials, the zeros are found</p>
 -\frac{\sqrt{{c_1}_{\phi\delta}^{2} v^{2}
 -4 g {k_0}_{\phi\delta} m_{\phi\delta}
 -4 {k_2}_{\phi\delta} m_{\phi\delta} v^{2}}}{2 m_{\phi\delta}}\]\[s_{\delta} = \pm\sqrt{-\frac{g {k_0}_{\phi\phi}}{m_{\phi\phi}}}\]</div>
-<p>The zeros of <span class="math">\(\left(\frac{\delta}{T_\delta}\right)_b(s)\)</span> are simply a
+<p>The zeros of <span class="math">\(\left( \frac{\delta}{T_\delta} \right)_b(s)\)</span> are simply a
 function of the total potential energy of the system divided by the roll moment
 of inertia with respect to the center of mass.</p>
 <div class="math">
 \[s_{\delta} = \pm\sqrt{-\frac{g m_T z_T}{{I_T}_{xx}}}\]</div>
-<div class="admonition-todo admonition" id="index-6">
+<div class="admonition-todo admonition" id="index-7">
 <p class="first admonition-title">Todo</p>
 <p class="last">What does this mean? How can you change the total potential energy
 and moment of inertia such that you don&#8217;t have a right half plane zero in the
@@ -592,7 +596,7 @@ Astrom develops a <em>steer angle</em> to roll angle transfer function that has 
 right half plane zero. The Whipple model matches the [Limebeer2006]
 interpretation, i.e. that the right half plane zero is the steer torque to
 steer angle transfer function.</p>
-<div class="admonition-todo admonition" id="index-7">
+<div class="admonition-todo admonition" id="index-8">
 <p class="first admonition-title">Todo</p>
 <p class="last">Quote cossalter 2007 on the second def of coutnersteer</p>
 </div>
@@ -645,7 +649,7 @@ The steer angle exhibits initial undershoot due to the right half plane zero
 and settles to a positive angle at steady state. This is the case for at least
 all speeds above very slow speeds where the steer torque to roll angle transfer
 function has a right half plane zero.</p>
-<div class="admonition-todo admonition" id="index-8">
+<div class="admonition-todo admonition" id="index-9">
 <p class="first admonition-title">Todo</p>
 <p class="last">apples to apples comparisons to the step response of speeds below, in
 and above the stable speed range is difficult. The graphs I&#8217;ve made give a
@@ -653,19 +657,19 @@ step response to commanded steer torque, steer torque and commaned roll
 angle respectively. It might be better to show the response to the &#8220;same&#8221;
 command. Then they could be plotted on one graph or something.</p>
 </div>
-<div class="admonition-todo admonition" id="index-9">
+<div class="admonition-todo admonition" id="index-10">
 <p class="first admonition-title">Todo</p>
 <p class="last">Limebeer2006 talks about this other countersteering idea. While you
 are in a steady turn you may have to apply torque in the opposite direction to
 maintain it. My graphs don&#8217;t show that and the distinction.</p>
 </div>
-<div class="admonition-todo admonition" id="index-10">
+<div class="admonition-todo admonition" id="index-11">
 <p class="first admonition-title">Todo</p>
 <p class="last">How does this relate to the right half plane zeros that Limebeer2006
 and Astrom2005 talk about? Being that they don&#8217;t use the Whipple model and
 they look at steer to roll transfer functions.</p>
 </div>
-<div class="admonition-todo admonition" id="index-11">
+<div class="admonition-todo admonition" id="index-12">
 <p class="first admonition-title">Todo</p>
 <p class="last">It&#8217;d be interesting to see how this works with rider lean torque too.
 Weir 1972 says that controlling heading is easier by rider lean control due to
@@ -679,7 +683,7 @@ heading, which does have a right half plane zero).</p>
 <p>There are very fewer studies focusing on human control of a bicycle or
 motorcycle with the intent of identifying the human controller or controlling
 the vehicle with a human-like controller.</p>
-<div class="admonition-todo admonition" id="index-12">
+<div class="admonition-todo admonition" id="index-13">
 <p class="first admonition-title">Todo</p>
 <p class="last">talk about learned control, unconscious vs conscious, upper cortex</p>
 </div>
@@ -712,11 +716,11 @@ to calculate a cumlative error which is then multiplied by a gain to compute
 an adjustement to the commanded roll angle. They show simulations of both
 good roll stabilization and slalom path tracking.</dd>
 </dl>
-<div class="admonition-todo admonition" id="index-13">
+<div class="admonition-todo admonition" id="index-14">
 <p class="first admonition-title">Todo</p>
 <p class="last">Add Eaton1973</p>
 </div>
-<div class="admonition-todo admonition" id="index-14">
+<div class="admonition-todo admonition" id="index-15">
 <p class="first admonition-title">Todo</p>
 <p class="last">Add Aoki1979</p>
 </div>
@@ -744,7 +748,7 @@ important studies involving manual control of the motorcycle [Weir1978],
 [Weir1979], including a detailed technical report for the U.S. Department of
 Transportation [Weir1979a] in which much experimental work was done verifying
 their mathematical models.</p>
-<div class="admonition-todo admonition" id="index-15">
+<div class="admonition-todo admonition" id="index-16">
 <p class="first admonition-title">Todo</p>
 <p class="last">There are some other Weir papers I could cite, and I should look over
 Weir1979a again to get the main conclusions.</p>
@@ -768,7 +772,7 @@ crossover model dictates will stabilize the bicycle at non intended roll
 angles. To control roll angle, he claims that we do not do this in a continuous
 but that we apply discrete pulses when the roll angle meets a threshold. This
 model has similar form to the one developed by us in the next section.</p>
-<div class="admonition-todo admonition" id="index-16">
+<div class="admonition-todo admonition" id="index-17">
 <p class="first admonition-title">Todo</p>
 <p class="last">Cerebellum is the lower brain (learned control). High cortical
 regions and outer cortex is the higher brain. Under-conscious control or sub
@@ -790,7 +794,7 @@ control. But a combination of fuzzy logic and crossover type control may prove
 useful in describing the human control system. Liu and Wu have done extensive
 work applying fuzzy control to single track vehicles ([Liu1994], [Wu1994],
 [Wu1995], [Wu1996], [Wu1996a], [Wu1996b], [Wu1996c]).</p>
-<div class="admonition-todo admonition" id="index-17">
+<div class="admonition-todo admonition" id="index-18">
 <p class="first admonition-title">Todo</p>
 <p class="last">Read some of the Wu and Liu stuff and say something about it.</p>
 </div>
@@ -894,7 +898,7 @@ for many control tasks takes the form</p>
 <span class="math">\(\omega_c\)</span> and the effective time delay, <span class="math">\(\tau_e\)</span>. The simplicity
 of this model and its ability to describe many human in the loop systems is
 powerful.</p>
-<div class="admonition-todo admonition" id="index-18">
+<div class="admonition-todo admonition" id="index-19">
 <p class="first admonition-title">Todo</p>
 <p class="last">read Ron&#8217;s work on manual control again and write a summary here.</p>
 </div>
@@ -928,9 +932,10 @@ human&#8217;s neuromuscular dynamics which produces a steer torque from the stee
 angle error.</p>
 <div class="math" id="equation-eqNeuromuscular">
 <span class="eqno">(3)</span>\[G_{nm} = \frac{\omega_{nm}^2}{s^2 + 2\zeta_{nm}\omega_{nm}s + \omega_{nm}}\]</div>
-<p>The neuromuscular parameters, <span class="math">\(\zeta_{nm},\omega_{nm}\)</span>, were chosen to
-such that the innermost loop gave a typical response for a human operator.</p>
-<div class="admonition-todo admonition" id="index-19">
+<p>The neuromuscular parameters, <span class="math">\(\zeta_{nm}\)</span> and <span class="math">\(\omega_{nm}\)</span>, were
+chosen to such that the innermost loop gave a typical response for a human
+operator.</p>
+<div class="admonition-todo admonition" id="index-20">
 <p class="first admonition-title">Todo</p>
 <p class="last">Why is that the proprioception is required?? Is it a function of
 adding the neuromuscular model, cause people can stablize roll with P, D or
@@ -965,7 +970,7 @@ performance. The two inner most loop gains are chosen such that all of the
 oscillatory roots of the closed loop have at least a 0.15 damping ratio.
 Whereas the three outer loop gains are chosen such that the open loop crossover
 frequencies are half the previous.</p>
-<div class="admonition-todo admonition" id="index-20">
+<div class="admonition-todo admonition" id="index-21">
 <p class="first admonition-title">Todo</p>
 <p class="last">Why do we need the proprioceptive loop?</p>
 </div>
@@ -985,10 +990,11 @@ frequency with 0.15 damping. The closed loop transfer function for the steer
 loop is</p>
 <div class="math" id="equation-eqDeltaLoop">
 <span class="eqno">(4)</span>\[G_{\delta c} = \frac{\delta}{\delta_c} =
-\frac{ G_{\delta o}}{1 + G_{\delta o}}\]\[G_{\delta o}(s) = k_\delta G_{nm} \left(\frac{\delta}{T_\delta}]\right)_b\]</div>
+\frac{G_{\delta o}}{1 + G_{\delta o}}\]\[G_{\delta o}(s) = k_\delta G_{nm} \left(\frac{\delta}{T_\delta}\right)_b\]</div>
 <p>A numerical example of Charlie on the Rigidcl bicycle at 5 m/s gives</p>
-<div class="math">
-\[G_{\delta o}(s)|_{k_\delta = 1} = \frac{4990.0342 (s+2.934) (s-2.934)}
+<div class="math" id="equation-eqDeltaLoopNumerical">
+<span class="eqno">(5)</span>\[G_{\delta o}(s)|_{k_\delta = 1} =
+\frac{4990.0342 (s+2.934) (s-2.934)}
 {(s+17.08) (s+2.56) (s^2 - 1.306s + 5.18) (s^2 + 43.02s + 900)}\]</div>
 <p>The characteristic equation is 6th order and the caster, capsize and
 nueromuscular modes are all stable and weave model is unstable. The first loop
@@ -1048,10 +1054,20 @@ gains such that all the roots are stable and the damping ratio is at least
 stability.</div>
 </div>
 <p>With the loop closed the transfer function takes the form</p>
-<div class="math">
-\[G_{\delta c}(s) = \frac{229042.5688 (s+2.934) (s-2.934)}
+<div class="math" id="equation-eqDeltaClosed">
+<span class="eqno">(6)</span>\[G_{\delta c}(s) =
+\frac{229042.5688 (s+2.934) (s-2.934)}
 {(s+2.998) (s-2.333) (s^2 + 4.292s + 205.2) (s^2 + 56.4s + 1232)}\]</div>
 <p>Notice the single unstable poll at <span class="math">\(s=2.333\)</span>.</p>
+<div class="math" id="equation-eqPhiDotLoop">
+<span class="eqno">(7)</span>\[G_{\dot{\phi} c} =
+\frac{\dot{\phi}}{\dot{\phi}_c} =
+\frac{G_{\dot{\phi} o}}{1 + G_{\dot{\phi} o}}\]\[G_{\dot{\phi} o} =
+k_{\dot{\phi}}
+k_{\delta}
+G_{nm}
+\left( \frac{\dot{\phi}}{T_\delta} \right)_b
+[1 - G_{\delta c}]\]</div>
 <p>The roll rate loop closure is trickier to set. We want to maintain the 10db
 peaking on the neuromuscular mode that we just set, but select a roll rate gain
 such that any other new oscillatory mode also have a minimum damping ratio of
@@ -1060,10 +1076,6 @@ shape. Since the bicycle with steer control exhibits non-minimum behavior, we
 need to introduce a positive feedback on roll rate. So it turns out that with
 a slight negative gain we can maintain the neuromuscular mode behavior but
 introduce the require sign change for stability.</p>
-<div class="math" id="equation-eqPhiDotLoop">
-<span class="eqno">(5)</span>\[G_{\dot{\phi} c} = \frac{\dot{\phi}}{\dot{\phi}_c} =
-\frac{G_{\dot{\phi} o}}{1 + G_{\dot{\phi} o}}\]\[G_{\dot{\phi} o} = k_\dot{\phi} k_\delta G_{nm} \left(\frac{\dot{\phi}}{T_\delta}\right)_b
-[1 - G_{\delta c}]\]</div>
 <div class="figure">
 <img alt="_images/phiDot-damp.png" src="_images/phiDot-damp.png" style="width: 4in;" />
 <p class="caption">figPhiDotDamp</p>
@@ -1071,7 +1083,7 @@ introduce the require sign change for stability.</p>
 The damping ratio of all roots to the closed loop roll rate loop as a
 function of gain.</div>
 </div>
-<div class="admonition-todo admonition" id="index-21">
+<div class="admonition-todo admonition" id="index-22">
 <p class="first admonition-title">Todo</p>
 <p class="last">I don&#8217;t know how to explain the choice in gain for the roll rate loop
 in terms of the Bode diagram. Some help please!</p>
@@ -1083,8 +1095,9 @@ peaks with a 10db magnitude.</p>
 </div>
 <p>Notice that setting the phi loop gain affects the closed loop poles little, but
 moves the right half plane zero to the left half plane</p>
-<div class="math">
-\[G_{\dot{\phi} c} = \frac{243.1658 s (s+77.09) (s+14.79)}
+<div class="math" id="equation-eqPhiDotClosedNumerical">
+<span class="eqno">(8)</span>\[G_{\dot{\phi} c} =
+\frac{243.1658 s (s+77.09) (s+14.79)}
 {(s+3.572) (s-1.905) (s^2 + 2.936s + 208.7) (s^2 + 56.75s + 1244)}\]</div>
 <p>leaving the single unstable poll in need of stabilization.</p>
 <p>With the roll rate loop closed, the final three loops can be closed by setting
@@ -1094,12 +1107,20 @@ set by measuring the gain of transfer function at the desired crossover
 frequency and realizing that a unit change in gain will raise or lower the gain
 curve.</p>
 <div class="math" id="equation-eqPhiLoop">
-<span class="eqno">(6)</span>\[G_{\phi c} = \frac{\phi}{\phi_c} =
-\frac{G_{\phi o}}{1 + G_{\phi o}}\]\[G_{\phi o} = k_\phi k_\dot{\phi} k_\delta G_{nm}
-\left(\frac{\phi}{T_\delta}\right)_b
-[1 - G_{\dot{\phi} c}] [1 - G_{\delta c}]\]</div>
+<span class="eqno">(9)</span>\[G_{\phi c} =
+\frac{\phi}{\phi_c} =
+\frac{G_{\phi o}}{1 + G_{\phi o}}\]\[G_{\phi o} =
+k_{\phi}
+k_{\dot{\phi}}
+k_{\delta}
+G_{nm}
+\left(
+\frac{\phi}{T_\delta}
+\right)_b
+[1 - G_{\dot{\phi} c}]
+[1 - G_{\delta c}]\]</div>
 <div class="math" id="equation-eqKPhi">
-<span class="eqno">(7)</span>\[k_\phi = \frac{1}{|G_{\phi o}(2j)|}\]</div>
+<span class="eqno">(10)</span>\[k_{\phi} = \frac{1}{|G_{\phi o}(2j)|}\]</div>
 <div class="figure" id="figphibode">
 <img alt="_images/phi-bode.png" src="_images/phi-bode.png" />
 <p class="caption">figPhiBode</p>
@@ -1118,18 +1139,19 @@ XXX.</p>
 The response of the system for a commanded roll angle of 10 degrees. Notice
 the counter steering. The system has a steady state error?? Should it?</div>
 </div>
-<div class="math">
-\[G_{\phi c} = \frac{2504.8689 (s+77.09) (s+14.79)}
+<div class="math" id="equation-eqPsiLoopNumerical">
+<span class="eqno">(11)</span>\[G_{\phi c} = \frac{2504.8689 (s+77.09) (s+14.79)}
 {(s^2 + 2.049s + 4.53) (s^2 + 2.657s + 193.7) (s^2 + 56.65s + 1242)}\]</div>
 <p>The remaining loops are closed using the rule of thumb [Hess1997] of crossing
 over at half the previous loops crossover frequency.</p>
 <div class="math" id="equation-eqPsiLoop">
-<span class="eqno">(8)</span>\[G_{\psi c} = \frac{\psi}{\psi_c} =
-\frac{G_{\psi o}}{1 + G_{\psi o}}\]\[G_{\psi o} = k_\psi k_\phi k_\dot{\phi} k_\delta G_{nm}
+<span class="eqno">(12)</span>\[G_{\psi c} =
+\frac{\psi}{\psi_c} =
+\frac{G_{\psi o}}{1 + G_{\psi o}}\]\[G_{\psi o} = k_{\psi} k_{\phi} k_{\dot{\phi}} k_{\delta} G_{nm}
 \left(\frac{\psi}{T_\delta}\right)_b
 [1 - G_{\phi c}] [1 - G_{\dot{\phi} c}] [1 - G_{\delta c}]\]</div>
 <div class="math" id="equation-eqKPsi">
-<span class="eqno">(9)</span>\[k_\psi = \frac{1}{|G_{\psi o}(1j)|}\]</div>
+<span class="eqno">(13)</span>\[k_{\psi} = \frac{1}{|G_{\psi o}(1j)|}\]</div>
 <div class="figure" id="figpsibode">
 <img alt="_images/psi-bode.png" src="_images/psi-bode.png" />
 <p class="caption">figPsiBode</p>
@@ -1138,12 +1160,12 @@ The open loop frequency response for the yaw angle loop. Blue is gain of
 unity and the green line is uses the gain to give desired crossover.</div>
 </div>
 <div class="math" id="equation-eqYqLoop">
-<span class="eqno">(10)</span>\[G_{y_q c} = \frac{y_q}{{y_q}_c} =
-\frac{G_{y_q o}}{1 + G_{y_q o}}\]\[G_{y_q o} = k_{y_q} k_\psi k_\phi k_\dot{\phi} k_\delta G_{nm}
+<span class="eqno">(14)</span>\[G_{y_q c} = \frac{y_q}{{y_q}_c} =
+\frac{G_{y_q o}}{1 + G_{y_q o}}\]\[G_{y_q o} = k_{y_q} k_{\psi} k_{\phi} k_{\dot{\phi}} k_{\delta} G_{nm}
 \left(\frac{y_q}{T_\delta}\right)_b
 [1 - G_{\psi c}] [1 - G_{\phi c}] [1 - G_{\dot{\phi} c}] [1 - G_{\delta c}]\]</div>
 <div class="math" id="equation-eqKYq">
-<span class="eqno">(11)</span>\[k_{y_q} = \frac{1}{|G_{y_q o}(0.5j)|}\]</div>
+<span class="eqno">(15)</span>\[k_{y_q} = \frac{1}{|G_{y_q o}(0.5j)|}\]</div>
 <div class="figure" id="figyqbode">
 <img alt="_images/yq-bode.png" src="_images/yq-bode.png" />
 <p class="caption">figYqBode</p>
@@ -1169,7 +1191,7 @@ bicycle and rider. Notice that at higher speeds the gains change linearly, but
 at speeds below 3 m/s there is non-linear variation. These gains give a stable
 system which is capable of the lane change manuever, but due to the
 difficulties in selecting the gains with rules above the algorthm may be making
-poor choices, especially for <span class="math">\(k_\dot{\phi}\)</span>.</p>
+poor choices, especially for <span class="math">\(k_{\dot{\phi}}\)</span>.</p>
 <div class="figure" id="figgains">
 <img alt="_images/gains.png" src="_images/gains.png" style="width: 3in;" />
 <p class="caption">figGains</p>
@@ -1264,7 +1286,7 @@ angle dectection, must not necessarily be all visual based.</td></tr>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
   /**
-    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
+    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread]
     */
   (function() {
    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -1303,6 +1325,19 @@ var disqus_shortname = 'jkm-dissertation';
   (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
 }());
 </script>
+
+<div align="center">
+<a rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+	<img
+	alt="Creative Commons License" style="border-width:0"
+	src="http://i.creativecommons.org/l/by/3.0/88x31.png" />
+</a>
+<br />
+This work is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+Attribution 3.0 Unported License</a>
+</div>
+
 
   </body>
 </html>

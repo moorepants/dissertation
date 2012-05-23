@@ -610,7 +610,7 @@ compute estimates for the rear wheel contact velocities: :math:`u_1` and
 
    u_1 = -u_6 r_R \cos(q_3)
 
-   u_2 = -u_6 r_R \sin{q_3)
+   u_2 = -u_6 r_R \sin(q_3)
 
 The rear wheel contact rates can also be integrated and the linear drift
 subtracted out to find the position from an arbitrary initial condition.
@@ -1797,16 +1797,17 @@ voltage for a sweep of motor rotational speeds.
 
 The relationship from motor rotational speed to voltage is :math:`mV+b` with
 the slope and intercept of the rpm to voltage curve determined by regression is
-:math:`m=456.3862\frac{\textrm{rpm}}{\textrm{volt}}\)` and
-:math:`b=-1.2846\textrm{ rpm}\)`. We then attached a small disc to the motor
+:math:`m=456.3862\frac{\textrm{rpm}}{\textrm{volt}}` and
+:math:`b=-1.2846\textrm{ rpm}`. We then attached a small disc to the motor
 shaft such that the disc rubs against the rotating tire. The disc diameter was
 chosen such that the motor would output 0 to 10 volts for a bicycle forward
 speed range of about 0 to 30 mph. The rotational speed of the rear wheel as a
 function of voltage can be written as a linear relationship
 
 .. math::
+   :label: eqTachSlope
 
-   \dot{\theta}_R=s_f(mV+b)\frac{r_d}{r_c}
+   \dot{\theta}_R = s_f (m V + b) \frac{r_d}{r_c}
 
 where :math:`r_d` is the radius of the generator disc and :math:`r_c` is
 distance from the rear wheel center to the disc/tire contact point and

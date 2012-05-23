@@ -433,7 +433,7 @@ an initial undershoot for a given steer torque input [Hoagg2007]_. This
 phenomena can be demonstrated by examining the step response of the two
 transfer functions is shown in Figure :ref:`figStableStepResponse`.
 
-.. figStableStepResponse:
+.. _figStableStepResponse:
 
 .. figure:: figures/control/stable-step-response.*
 
@@ -507,21 +507,23 @@ presented in [Meijaard2007]_.
 
 The state, input and output matrices follow
 
+.. todo:: the multicolumn doesn't work here
+
 .. math::
 
    A =
    \begin{bmatrix}
      0 & 0 & 1 & 0 \\
      0 & 0 & 0 & 1 \\
-     \multicolumn{2}{c}{-M^{-1}(g K_0 + v^2 K_2)} &
-     \multicolumn{2}{c}{-M^{-1} v C_1}
+     & & & -M^{-1}(g K_0 + v^2 K_2) &
+     & & & -M^{-1} v C_1
    \end{bmatrix}
 
    B =
    \begin{bmatrix}
      0 & 0 \\
      0 & 0 \\
-     \multicolumn{2}{c}{M^{-1}}
+     & M^{-1}
    \end{bmatrix}
 
    C =
@@ -535,7 +537,7 @@ computed with
 
 .. math::
 
-   C\operatorname{adj}(sI-A)B
+   \mathbf{C} \operatorname{adj}(s \mathbf{I} - \mathbf{A}) \mathbf{B}
 
 Taking only the steer torque input and solving for the roots of the
 polynomials, the zeros are found
@@ -550,7 +552,7 @@ polynomials, the zeros are found
 
    s_{\delta} = \pm\sqrt{-\frac{g {k_0}_{\phi\phi}}{m_{\phi\phi}}}
 
-The zeros of :math:`\left(\frac{\delta}{T_\delta}\right)_b(s)` are simply a
+The zeros of :math:`\left( \frac{\delta}{T_\delta} \right)_b(s)` are simply a
 function of the total potential energy of the system divided by the roll moment
 of inertia with respect to the center of mass.
 
@@ -926,8 +928,9 @@ angle error.
 
    G_{nm} = \frac{\omega_{nm}^2}{s^2 + 2\zeta_{nm}\omega_{nm}s + \omega_{nm}}
 
-The neuromuscular parameters, :math:`\zeta_{nm},\omega_{nm}`, were chosen to
-such that the innermost loop gave a typical response for a human operator.
+The neuromuscular parameters, :math:`\zeta_{nm}` and :math:`\omega_{nm}`, were
+chosen to such that the innermost loop gave a typical response for a human
+operator.
 
 .. todo:: Why is that the proprioception is required?? Is it a function of
    adding the neuromuscular model, cause people can stablize roll with P, D or
@@ -992,15 +995,17 @@ loop is
    :label: eqDeltaLoop
 
    G_{\delta c} = \frac{\delta}{\delta_c} =
-   \frac{ G_{\delta o}}{1 + G_{\delta o}}
+   \frac{G_{\delta o}}{1 + G_{\delta o}}
 
-   G_{\delta o}(s) = k_\delta G_{nm} \left(\frac{\delta}{T_\delta}]\right)_b
+   G_{\delta o}(s) = k_\delta G_{nm} \left(\frac{\delta}{T_\delta}\right)_b
 
 A numerical example of Charlie on the Rigidcl bicycle at 5 m/s gives
 
 .. math::
+   :label: eqDeltaLoopNumerical
 
-   G_{\delta o}(s)|_{k_\delta = 1} = \frac{4990.0342 (s+2.934) (s-2.934)}
+   G_{\delta o}(s)|_{k_\delta = 1} =
+   \frac{4990.0342 (s+2.934) (s-2.934)}
    {(s+17.08) (s+2.56) (s^2 - 1.306s + 5.18) (s^2 + 43.02s + 900)}
 
 The characteristic equation is 6th order and the caster, capsize and
@@ -1076,11 +1081,27 @@ enough for good system performance.
 With the loop closed the transfer function takes the form
 
 .. math::
+   :label: eqDeltaClosed
 
-   G_{\delta c}(s) = \frac{229042.5688 (s+2.934) (s-2.934)}
+   G_{\delta c}(s) =
+   \frac{229042.5688 (s+2.934) (s-2.934)}
    {(s+2.998) (s-2.333) (s^2 + 4.292s + 205.2) (s^2 + 56.4s + 1232)}
 
 Notice the single unstable poll at :math:`s=2.333`.
+
+.. math::
+   :label: eqPhiDotLoop
+
+   G_{\dot{\phi} c} =
+   \frac{\dot{\phi}}{\dot{\phi}_c} =
+   \frac{G_{\dot{\phi} o}}{1 + G_{\dot{\phi} o}}
+
+   G_{\dot{\phi} o} =
+   k_{\dot{\phi}}
+   k_{\delta}
+   G_{nm}
+   \left( \frac{\dot{\phi}}{T_\delta} \right)_b
+   [1 - G_{\delta c}]
 
 The roll rate loop closure is trickier to set. We want to maintain the 10db
 peaking on the neuromuscular mode that we just set, but select a roll rate gain
@@ -1090,15 +1111,6 @@ shape. Since the bicycle with steer control exhibits non-minimum behavior, we
 need to introduce a positive feedback on roll rate. So it turns out that with
 a slight negative gain we can maintain the neuromuscular mode behavior but
 introduce the require sign change for stability.
-
-.. math::
-   :label: eqPhiDotLoop
-
-   G_{\dot{\phi} c} = \frac{\dot{\phi}}{\dot{\phi}_c} =
-   \frac{G_{\dot{\phi} o}}{1 + G_{\dot{\phi} o}}
-
-   G_{\dot{\phi} o} = k_\dot{\phi} k_\delta G_{nm} \left(\frac{\dot{\phi}}{T_\delta}\right)_b
-   [1 - G_{\delta c}]
 
 .. figure:: figures/control/phiDot-damp.*
    :width: 4in
@@ -1121,8 +1133,10 @@ Notice that setting the phi loop gain affects the closed loop poles little, but
 moves the right half plane zero to the left half plane
 
 .. math::
+   :label: eqPhiDotClosedNumerical
 
-   G_{\dot{\phi} c} = \frac{243.1658 s (s+77.09) (s+14.79)}
+   G_{\dot{\phi} c} =
+   \frac{243.1658 s (s+77.09) (s+14.79)}
    {(s+3.572) (s-1.905) (s^2 + 2.936s + 208.7) (s^2 + 56.75s + 1244)}
 
 leaving the single unstable poll in need of stabilization.
@@ -1137,17 +1151,25 @@ curve.
 .. math::
    :label: eqPhiLoop
 
-   G_{\phi c} = \frac{\phi}{\phi_c} =
+   G_{\phi c} =
+   \frac{\phi}{\phi_c} =
    \frac{G_{\phi o}}{1 + G_{\phi o}}
 
-   G_{\phi o} = k_\phi k_\dot{\phi} k_\delta G_{nm}
-   \left(\frac{\phi}{T_\delta}\right)_b
-   [1 - G_{\dot{\phi} c}] [1 - G_{\delta c}]
+   G_{\phi o} =
+   k_{\phi}
+   k_{\dot{\phi}}
+   k_{\delta}
+   G_{nm}
+   \left(
+   \frac{\phi}{T_\delta}
+   \right)_b
+   [1 - G_{\dot{\phi} c}]
+   [1 - G_{\delta c}]
 
 .. math::
    :label: eqKPhi
 
-   k_\phi = \frac{1}{|G_{\phi o}(2j)|}
+   k_{\phi} = \frac{1}{|G_{\phi o}(2j)|}
 
 .. _figPhiBode:
 
@@ -1172,6 +1194,7 @@ XXX.
    the counter steering. The system has a steady state error?? Should it?
 
 .. math::
+   :label: eqPsiLoopNumerical
 
    G_{\phi c} = \frac{2504.8689 (s+77.09) (s+14.79)}
    {(s^2 + 2.049s + 4.53) (s^2 + 2.657s + 193.7) (s^2 + 56.65s + 1242)}
@@ -1182,17 +1205,18 @@ over at half the previous loops crossover frequency.
 .. math::
    :label: eqPsiLoop
 
-   G_{\psi c} = \frac{\psi}{\psi_c} =
+   G_{\psi c} =
+   \frac{\psi}{\psi_c} =
    \frac{G_{\psi o}}{1 + G_{\psi o}}
 
-   G_{\psi o} = k_\psi k_\phi k_\dot{\phi} k_\delta G_{nm}
+   G_{\psi o} = k_{\psi} k_{\phi} k_{\dot{\phi}} k_{\delta} G_{nm}
    \left(\frac{\psi}{T_\delta}\right)_b
    [1 - G_{\phi c}] [1 - G_{\dot{\phi} c}] [1 - G_{\delta c}]
 
 .. math::
    :label: eqKPsi
 
-   k_\psi = \frac{1}{|G_{\psi o}(1j)|}
+   k_{\psi} = \frac{1}{|G_{\psi o}(1j)|}
 
 .. _figPsiBode:
 
@@ -1209,7 +1233,7 @@ over at half the previous loops crossover frequency.
    G_{y_q c} = \frac{y_q}{{y_q}_c} =
    \frac{G_{y_q o}}{1 + G_{y_q o}}
 
-   G_{y_q o} = k_{y_q} k_\psi k_\phi k_\dot{\phi} k_\delta G_{nm}
+   G_{y_q o} = k_{y_q} k_{\psi} k_{\phi} k_{\dot{\phi}} k_{\delta} G_{nm}
    \left(\frac{y_q}{T_\delta}\right)_b
    [1 - G_{\psi c}] [1 - G_{\phi c}] [1 - G_{\dot{\phi} c}] [1 - G_{\delta c}]
 
@@ -1246,7 +1270,7 @@ bicycle and rider. Notice that at higher speeds the gains change linearly, but
 at speeds below 3 m/s there is non-linear variation. These gains give a stable
 system which is capable of the lane change manuever, but due to the
 difficulties in selecting the gains with rules above the algorthm may be making
-poor choices, especially for :math:`k_\dot{\phi}`.
+poor choices, especially for :math:`k_{\dot{\phi}}`.
 
 .. _figGains:
 
@@ -1330,4 +1354,3 @@ Notation
 .. [#] [Doyle1988]_ notes that his riders can balance even while blindfolded.
    This is even true for people who've been blind since birth. So the roll
    angle dectection, must not necessarily be all visual based.
-

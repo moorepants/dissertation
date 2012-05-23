@@ -1264,8 +1264,8 @@ In general, the minimization problem is not trivial and may be susceptible to
 many of the issues association with optimization including only being able to
 find a local minima. The number unknown parameters in the :math:`\mathbf{K}`
 matrix are function of the number of states and the number of outputs, in our
-case in :math:`\mathbb{R}^{4\times4}` which more than doubles the number of
-unknowns present in the :math:`\mathbf{A}` and :math:`\math{B}` matrices. It is
+case in :math:`\mathbf{R}^{4\times4}` which more than doubles the number of
+unknowns present in the :math:`\mathbf{A}` and :math:`\mathbf{B}` matrices. It is
 thus critical to reduce the number of unknown parameters to have a more likely
 chance at finding the global minima of the cost function. The accuracy of the
 system parameters depend on the ability to estimate the :math:`\mathbf{K}`
@@ -1944,17 +1944,17 @@ models are similar at a higher bandwith, 4 to 30 rad/s. At 9.0 m/s even higher,
    responses compared at a single speed (could do multiple graphs. This would
    hopefully support choosing the one identified model for all runs.
 
-.. figure:: figures/systemidentification/compare-id-bode-2.0.*
+.. figure:: figures/systemidentification/compare-id-bode-2p0.*
 
    Steer torque to roll angle frequency responses at 2.0 m/s for all the
    identified models in Tables X and X.
 
-.. figure:: figures/systemidentification/compare-id-bode-5.5.*
+.. figure:: figures/systemidentification/compare-id-bode-5p5.*
 
    Steer torque to roll angle frequency responses at 5.5 m/s for all the
    identified models in Tables X and X.
 
-.. figure:: figures/systemidentification/compare-id-bode-9.0.*
+.. figure:: figures/systemidentification/compare-id-bode-9p0.*
 
    Steer torque to roll angle frequency responses at 9.0 m/s for all the
    identified models in Tables X and X.
@@ -2388,18 +2388,18 @@ The sequential loop closure dictates that the commanded output variables are
 
    \psi_c = k_{y_q} ({y_q}_c - y_q)
 
-   \phi_c = k_\psi (\psi_c - \psi)
+   \phi_c = k_{\psi} (\psi_c - \psi)
 
-   \dot{\phi}_c = k_\phi (\phi_c - \phi)
+   \dot{\phi}_c = k_{\phi} (\phi_c - \phi)
 
-   \delta_c = k_\dot{\phi} (\dot{\phi}_c - \dot{\phi})
+   \delta_c = k_{\dot{\phi}} (\dot{\phi}_c - \dot{\phi})
 
 and the input to the neuromuscular block as a function of the desired path
 is
 
 .. math::
 
-   U_{nm} = k_\delta * (\delta_c - \delta)
+   U_{nm} = k_{\delta} * (\delta_c - \delta)
 
 The input to the neuromuscular block can be written in linear form as
 
@@ -2408,12 +2408,12 @@ The input to the neuromuscular block can be written in linear form as
    U_{nm}
    =
    \begin{bmatrix}
-     -k_\delta k_\phi k_\dot{\phi} k_\psi \\
-     -k_\delta k_\phi k_\dot{\phi} \\
-     -k_\delta \\
-     -k_\delta k_\dot{\phi} \\
-     -k_\delta k_\phi k_\dot{\phi} k_\psi k_{y_q} \\
-     k_\delta k_\phi k_\dot{\phi} k_\psi k_{y_q}
+     -k_{\delta} k_{\phi} k_{\dot{\phi}} k_{\psi} \\
+     -k_{\delta} k_{\phi} k_{\dot{\phi}} \\
+     -k_{\delta} \\
+     -k_{\delta} k_{\dot{\phi}} \\
+     -k_{\delta} k_{\phi} k_{\dot{\phi}} k_{\psi} k_{y_q} \\
+     k_{\delta} k_{\phi} k_{\dot{\phi}} k_{\psi} k_{y_q}
    \end{bmatrix}^T
    \begin{bmatrix}
       \psi \\
@@ -2460,12 +2460,12 @@ The new entries to the state matrix are
      0 & a_{b\dot{\psi}\delta} & 0 & a_{b\dot{\psi}\dot{\delta}} & 0 & 0 & 0 & 0\\
      0 & 0 & 0 & 0 & a_{b\dot{y}_p\psi} & 0 & 0 & 0 \\
      0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
-     -\omega^2 k_\delta k_\dot{\phi} k_\phi &
-     -\omega^2 k_\delta (1 + c_{b y_q \delta} k_\dot{\phi} k_\phi k_\psi k_{y_q}) &
-     -\omega^2 k_\delta k_\dot{\phi} &
+     -\omega^2 k_{\delta} k_{\dot{\phi}} k_{\phi} &
+     -\omega^2 k_{\delta} (1 + c_{b y_q \delta} k_{\dot{\phi}} k_{\phi} k_{\psi} k_{y_q}) &
+     -\omega^2 k_{\delta} k_{\dot{\phi}} &
      0 &
-     -\omega^2 k_\delta k_\dot{\phi} k_\phi k_\psi (1 + c_{b y_q \psi} k_{y_q}) &
-     -\omega^2 k_\delta k_\dot{\phi} k_\phi k_\psi k_{y_q} &
+     -\omega^2 k_{\delta} k_{\dot{\phi}} k_{\phi} k_{\psi} (1 + c_{b y_q \psi} k_{y_q}) &
+     -\omega^2 k_{\delta} k_{\dot{\phi}} k_{\phi} k_{\psi} k_{y_q} &
      -\omega^2 &
      -2 \omega \zeta
    \end{bmatrix}
@@ -2479,7 +2479,7 @@ The new entries to the state matrix are
      b_{b\ddot{\delta}F} & 0 \\
      0 & 0 \\
      0 & 0 \\
-     0 & \omega^2 k_\delta k_\dot{\phi} k_\phi k_\psi k_{y_q}
+     0 & \omega^2 k_{\delta} k_{\dot{\phi}} k_{\phi} k_{\psi} k_{y_q}
    \end{bmatrix}
 
 The output matrix can be constructed to provide any desired outputs, which I
@@ -2537,11 +2537,11 @@ commanded heading is left. This model is seventh order with two inputs.
      a_{b\ddot{\delta}\dot{\phi}} & a_{b\ddot{\delta}\dot{\delta}} & 0 & 0 & 0 \\
      0 & a_{b\dot{\psi}\delta} & 0 & a_{b\dot{\psi}\dot{\delta}} & 0 & 0 & 0 \\
      0 & 0 & 0 & 0 & 0 & 0 & 1 \\
-     -\omega^2 k_\delta k_\dot{\phi} k_\phi &
-     -\omega^2 k_\delta &
-     -\omega^2 k_\delta k_\dot{\phi} &
+     -\omega^2 k_{\delta} k_{\dot{\phi}} k_{\phi} &
+     -\omega^2 k_{\delta} &
+     -\omega^2 k_{\delta} k_{\dot{\phi}} &
      0 &
-     -\omega^2  k_\delta k_\phi k_\dot{\phi} k_{\psi} &
+     -\omega^2  k_{\delta} k_{\phi} k_{\dot{\phi}} k_{{\psi}} &
      -\omega^2 &
      -2 \omega \zeta
    \end{bmatrix}
@@ -2555,7 +2555,7 @@ commanded heading is left. This model is seventh order with two inputs.
      b_{b\ddot{\delta}F} & 0 \\
      0 & 0 \\
      0 & 0 \\
-     0 & \omega^2 k_\delta k_\phi k_\dot{\phi} k_\psi
+     0 & \omega^2 k_{\delta} k_{\phi} k_{\dot{\phi}} k_{\psi}
    \end{bmatrix}
 
 The numerical values from the model derived from Luke's runs in the pavilion
@@ -2601,7 +2601,7 @@ and bad solutions as starting points.
 
 The criteria for a good model was based on the percentage of variance in the
 measurement output explained by the model. The mean percent variance for all
-the identified runs is :math:`62 \pm 12 %`, and considering the large relative
+the identified runs is :math:`62 \pm 12` percent, and considering the large relative
 human remnant, fits above 30% are still relatively good. I ensured stability on
 in the identified models and no issues associated with unstable simulations
 corrupting the model quality criteria were present.
@@ -2665,7 +2665,7 @@ speeds vary with speed. As shown in Chapter :ref:`control` the theory predicts
 that the gains are linear above about 2 m/s and that the neuromuscular
 frequency is a constant parameter with respect to the human operator.
 
-- The gains increase with speed with :math:`k_\phi` and :math:`k_{y_q}` having
+- The gains increase with speed with :math:`k_{\phi}` and :math:`k_{y_q}` having
   small slopes.
 - The low speed runs have much more spread. This is probably due to the fact
   that the human remnant is relatively large at these speeds and the model

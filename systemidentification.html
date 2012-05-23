@@ -56,7 +56,7 @@
 <span id="systemidentification"></span><h1>System Identification<a class="headerlink" href="#system-identification" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated May 07, 2012 at 11:29:35 PDT).
+<p class="last">This document is a draft which is updated regularly (Last updated May 22, 2012 at 18:09:30 PDT).
 Once I submit if for my doctoral degree at UC Davis, it will be done. So for
 now use at your own risk. The information may or may not be correct.
 Reviews, comments and suggestions are welcome.</p>
@@ -1235,8 +1235,8 @@ prediction</p>
 many of the issues association with optimization including only being able to
 find a local minima. The number unknown parameters in the <span class="math">\(\mathbf{K}\)</span>
 matrix are function of the number of states and the number of outputs, in our
-case in <span class="math">\(\mathbb{R}^{4\times4}\)</span> which more than doubles the number of
-unknowns present in the <span class="math">\(\mathbf{A}\)</span> and <span class="math">\(\math{B}\)</span> matrices. It is
+case in <span class="math">\(\mathbf{R}^{4\times4}\)</span> which more than doubles the number of
+unknowns present in the <span class="math">\(\mathbf{A}\)</span> and <span class="math">\(\mathbf{B}\)</span> matrices. It is
 thus critical to reduce the number of unknown parameters to have a more likely
 chance at finding the global minima of the cost function. The accuracy of the
 system parameters depend on the ability to estimate the <span class="math">\(\mathbf{K}\)</span>
@@ -2374,17 +2374,17 @@ responses compared at a single speed (could do multiple graphs. This would
 hopefully support choosing the one identified model for all runs.</p>
 </div>
 <div class="figure">
-<img alt="_images/compare-id-bode-2.0.png" src="_images/compare-id-bode-2.0.png" />
+<img alt="_images/compare-id-bode-2p0.png" src="_images/compare-id-bode-2p0.png" />
 <p class="caption">Steer torque to roll angle frequency responses at 2.0 m/s for all the
 identified models in Tables X and X.</p>
 </div>
 <div class="figure">
-<img alt="_images/compare-id-bode-5.5.png" src="_images/compare-id-bode-5.5.png" />
+<img alt="_images/compare-id-bode-5p5.png" src="_images/compare-id-bode-5p5.png" />
 <p class="caption">Steer torque to roll angle frequency responses at 5.5 m/s for all the
 identified models in Tables X and X.</p>
 </div>
 <div class="figure">
-<img alt="_images/compare-id-bode-9.0.png" src="_images/compare-id-bode-9.0.png" />
+<img alt="_images/compare-id-bode-9p0.png" src="_images/compare-id-bode-9p0.png" />
 <p class="caption">Steer torque to roll angle frequency responses at 9.0 m/s for all the
 identified models in Tables X and X.</p>
 </div>
@@ -3364,22 +3364,22 @@ input and output matrices are follows</p>
 \end{bmatrix}\end{split}\]</div>
 <p>The sequential loop closure dictates that the commanded output variables are</p>
 <div class="math">
-\[\psi_c = k_{y_q} ({y_q}_c - y_q)\]\[\phi_c = k_\psi (\psi_c - \psi)\]\[\dot{\phi}_c = k_\phi (\phi_c - \phi)\]\[\delta_c = k_\dot{\phi} (\dot{\phi}_c - \dot{\phi})\]</div>
+\[\psi_c = k_{y_q} ({y_q}_c - y_q)\]\[\phi_c = k_{\psi} (\psi_c - \psi)\]\[\dot{\phi}_c = k_{\phi} (\phi_c - \phi)\]\[\delta_c = k_{\dot{\phi}} (\dot{\phi}_c - \dot{\phi})\]</div>
 <p>and the input to the neuromuscular block as a function of the desired path
 is</p>
 <div class="math">
-\[U_{nm} = k_\delta * (\delta_c - \delta)\]</div>
+\[U_{nm} = k_{\delta} * (\delta_c - \delta)\]</div>
 <p>The input to the neuromuscular block can be written in linear form as</p>
 <div class="math">
 \[\begin{split}U_{nm}
 =
 \begin{bmatrix}
-  -k_\delta k_\phi k_\dot{\phi} k_\psi \\
-  -k_\delta k_\phi k_\dot{\phi} \\
-  -k_\delta \\
-  -k_\delta k_\dot{\phi} \\
-  -k_\delta k_\phi k_\dot{\phi} k_\psi k_{y_q} \\
-  k_\delta k_\phi k_\dot{\phi} k_\psi k_{y_q}
+  -k_{\delta} k_{\phi} k_{\dot{\phi}} k_{\psi} \\
+  -k_{\delta} k_{\phi} k_{\dot{\phi}} \\
+  -k_{\delta} \\
+  -k_{\delta} k_{\dot{\phi}} \\
+  -k_{\delta} k_{\phi} k_{\dot{\phi}} k_{\psi} k_{y_q} \\
+  k_{\delta} k_{\phi} k_{\dot{\phi}} k_{\psi} k_{y_q}
 \end{bmatrix}^T
 \begin{bmatrix}
    \psi \\
@@ -3418,12 +3418,12 @@ The new entries to the state matrix are</p>
   0 &amp; a_{b\dot{\psi}\delta} &amp; 0 &amp; a_{b\dot{\psi}\dot{\delta}} &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
   0 &amp; 0 &amp; 0 &amp; 0 &amp; a_{b\dot{y}_p\psi} &amp; 0 &amp; 0 &amp; 0 \\
   0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
-  -\omega^2 k_\delta k_\dot{\phi} k_\phi &amp;
-  -\omega^2 k_\delta (1 + c_{b y_q \delta} k_\dot{\phi} k_\phi k_\psi k_{y_q}) &amp;
-  -\omega^2 k_\delta k_\dot{\phi} &amp;
+  -\omega^2 k_{\delta} k_{\dot{\phi}} k_{\phi} &amp;
+  -\omega^2 k_{\delta} (1 + c_{b y_q \delta} k_{\dot{\phi}} k_{\phi} k_{\psi} k_{y_q}) &amp;
+  -\omega^2 k_{\delta} k_{\dot{\phi}} &amp;
   0 &amp;
-  -\omega^2 k_\delta k_\dot{\phi} k_\phi k_\psi (1 + c_{b y_q \psi} k_{y_q}) &amp;
-  -\omega^2 k_\delta k_\dot{\phi} k_\phi k_\psi k_{y_q} &amp;
+  -\omega^2 k_{\delta} k_{\dot{\phi}} k_{\phi} k_{\psi} (1 + c_{b y_q \psi} k_{y_q}) &amp;
+  -\omega^2 k_{\delta} k_{\dot{\phi}} k_{\phi} k_{\psi} k_{y_q} &amp;
   -\omega^2 &amp;
   -2 \omega \zeta
 \end{bmatrix}\end{split}\]\[\begin{split}\mathbf{B}_l
@@ -3435,7 +3435,7 @@ The new entries to the state matrix are</p>
   b_{b\ddot{\delta}F} &amp; 0 \\
   0 &amp; 0 \\
   0 &amp; 0 \\
-  0 &amp; \omega^2 k_\delta k_\dot{\phi} k_\phi k_\psi k_{y_q}
+  0 &amp; \omega^2 k_{\delta} k_{\dot{\phi}} k_{\phi} k_{\psi} k_{y_q}
 \end{bmatrix}\end{split}\]</div>
 <p>The output matrix can be constructed to provide any desired outputs, which I
 choose a subset of the outputs we measured during the experiments such as steer
@@ -3486,11 +3486,11 @@ commanded heading is left. This model is seventh order with two inputs.</p>
   a_{b\ddot{\delta}\dot{\phi}} &amp; a_{b\ddot{\delta}\dot{\delta}} &amp; 0 &amp; 0 &amp; 0 \\
   0 &amp; a_{b\dot{\psi}\delta} &amp; 0 &amp; a_{b\dot{\psi}\dot{\delta}} &amp; 0 &amp; 0 &amp; 0 \\
   0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
-  -\omega^2 k_\delta k_\dot{\phi} k_\phi &amp;
-  -\omega^2 k_\delta &amp;
-  -\omega^2 k_\delta k_\dot{\phi} &amp;
+  -\omega^2 k_{\delta} k_{\dot{\phi}} k_{\phi} &amp;
+  -\omega^2 k_{\delta} &amp;
+  -\omega^2 k_{\delta} k_{\dot{\phi}} &amp;
   0 &amp;
-  -\omega^2  k_\delta k_\phi k_\dot{\phi} k_{\psi} &amp;
+  -\omega^2  k_{\delta} k_{\phi} k_{\dot{\phi}} k_{{\psi}} &amp;
   -\omega^2 &amp;
   -2 \omega \zeta
 \end{bmatrix}\end{split}\]\[\begin{split}\mathbf{B}_h
@@ -3502,7 +3502,7 @@ commanded heading is left. This model is seventh order with two inputs.</p>
   b_{b\ddot{\delta}F} &amp; 0 \\
   0 &amp; 0 \\
   0 &amp; 0 \\
-  0 &amp; \omega^2 k_\delta k_\phi k_\dot{\phi} k_\psi
+  0 &amp; \omega^2 k_{\delta} k_{\phi} k_{\dot{\phi}} k_{\psi}
 \end{bmatrix}\end{split}\]</div>
 <p>The numerical values from the model derived from Luke&#8217;s runs in the pavilion
 were used to populate the bicycle state space entries, except for the entries
@@ -3542,7 +3542,7 @@ described in Chapter <a class="reference internal" href="control.html#control"><
 and bad solutions as starting points.</p>
 <p>The criteria for a good model was based on the percentage of variance in the
 measurement output explained by the model. The mean percent variance for all
-the identified runs is <span class="math">\(62 \pm 12 %\)</span>, and considering the large relative
+the identified runs is <span class="math">\(62 \pm 12\)</span> percent, and considering the large relative
 human remnant, fits above 30% are still relatively good. I ensured stability on
 in the identified models and no issues associated with unstable simulations
 corrupting the model quality criteria were present.</p>
@@ -3601,7 +3601,7 @@ speeds vary with speed. As shown in Chapter <a class="reference internal" href="
 that the gains are linear above about 2 m/s and that the neuromuscular
 frequency is a constant parameter with respect to the human operator.</p>
 <ul class="simple">
-<li>The gains increase with speed with <span class="math">\(k_\phi\)</span> and <span class="math">\(k_{y_q}\)</span> having
+<li>The gains increase with speed with <span class="math">\(k_{\phi}\)</span> and <span class="math">\(k_{y_q}\)</span> having
 small slopes.</li>
 <li>The low speed runs have much more spread. This is probably due to the fact
 that the human remnant is relatively large at these speeds and the model
@@ -3864,7 +3864,7 @@ found if the damping ratio was left free.
 <div id="disqus_thread"></div>
 <script type="text/javascript">
   /**
-    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
+    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread]
     */
   (function() {
    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -3903,6 +3903,19 @@ var disqus_shortname = 'jkm-dissertation';
   (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
 }());
 </script>
+
+<div align="center">
+<a rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+	<img
+	alt="Creative Commons License" style="border-width:0"
+	src="http://i.creativecommons.org/l/by/3.0/88x31.png" />
+</a>
+<br />
+This work is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+Attribution 3.0 Unported License</a>
+</div>
+
 
   </body>
 </html>

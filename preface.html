@@ -56,77 +56,314 @@
 <h1>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated May 07, 2012 at 11:29:34 PDT).
+<p class="last">This document is a draft which is updated regularly (Last updated May 22, 2012 at 18:09:28 PDT).
 Once I submit if for my doctoral degree at UC Davis, it will be done. So for
 now use at your own risk. The information may or may not be correct.
 Reviews, comments and suggestions are welcome.</p>
 </div>
-<p>The typical conversation with someone I&#8217;ve met over the past years that I&#8217;ve been
-a graduate student inevitably comes to this: &#8220;So what do you do?&#8221;. My reply
-is &#8220;I study how people balance on bicycles&#8221;. This is a great conversation
-starter as almost everyone recalls learning how to ride a bicycle. It is
-something we weren&#8217;t born to do and we almost always remember the
-feeling of learning the skill as it is a momentous occasion in most folks&#8217;
-lives. Usually everyone thinks the research is cool and can identify with it,
-but the next question (as is with most research), is &#8220;What application is that
-good for?&#8221;. As an engineer, we are trained to be application minded. It is
-certainly what drove me to start down this path in the first place.</p>
-<p>The roots of my interest in bicycle dynamics come from an earlier time but
-didn&#8217;t take hold until I attempted to model the bicycle in Mont Hubbard&#8217;s
-multi-body dynamics class. My first inquiries about bicycle dynamics came from
-my attempts to design a recumbent bicycle frame for my senior design project at
-Old Dominion University. Recumbents are notorious for not handling well and we
-were building one for the annual ASME Human Powered Vehicle challenge. It
-needed to be suitable for novice riders to control. I found myself in the
-design process where one needs to choose the wheel sizes, front end geometry
-and location and seating position of the rider. As an engineer is taught to, I
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The typical conversation with someone I&#8217;ve met over the past years that I&#8217;ve
+been a graduate student inevitably comes to this: &#8220;So what do you do in
+graduate school?&#8221;. My reply is &#8220;I study how people balance on bicycles&#8221;. This
+is a great conversation starter as almost everyone recalls learning how to ride
+a bicycle. It is something we weren&#8217;t born to do and we almost always remember
+the feeling of learning the skill. It is typically quite a momentous occasion
+in most folks&#8217; lives. Usually everyone thinks the research is cool and can
+identify with it, but the next question (as is with most research), is &#8220;What
+application is that good for?&#8221;. As an engineer, we are trained to be
+application minded. It is certainly what drove me to start down this path in
+the first place. There is an answer to this second question, but over the years
+I&#8217;ve gotten less enthusiastic about trying to justify why I&#8217;m working on this
+project with respect to an immediate application. An many ways this is simply
+the reality for the growing scientist. It becomes obvious that basic science
+simply needs to be performed, other even without regards to what it may or may
+not accomplish. The benefits down the road are inevitable and there is a large
+body of evidence to support that. But nonetheless my initial curiosity of bicycle
+dynamics is rooted in application and still is in many ways but I&#8217;m content
+with understanding difficult problems for basic progression in learning and
+science.</p>
+<p>My first inquiries about bicycle dynamics came from my attempts to design a
+recumbent bicycle frame for my senior design project at Old Dominion
+University. Recumbents are notorious for not being that easy to ride and we
+were building one for the annual ASME Human Powered Vehicle challenge which
+would be especially unusual with the extremely low center of gravity. It needed
+to be suitable for novice riders to control. I found myself in the design
+process where one needs to choose the wheel sizes, front end geometry and
+location and seating position of the rider. As a young engineer is taught, I
 went looking for technical guidelines to choose these parameters for our
 bicycle design. But all I came back with were many conflicting ideas from
-various bicycle fabricators and Bicycling Science 2nd Ed which gave a synopsis
-of Jones&#8217;, [Jones1970], conclusions from his famous study on the stability of
-bicycles. I studied this in detail and designed my bicycle geometry to be
-exactly what was specified as good handling by Jones.[#tubes]_ The bicycle was
-rideable (after lots of practice), but this was probably the first time I
-realized as a young engineer that there wasn&#8217;t a formula for everything.</p>
-<p>This dissertation will hopefully document the majority of work I&#8217;ve done at UC
-Davis and TU Delft since Fall 2005 with respect my dissertation topic.</p>
+various bicycle fabricators and the book Bicycling Science 2nd Ed [WilsonXXXX]
+which gave a synopsis of Jones&#8217;, [Jones1970], conclusions from his famous
+study on the stability of bicycles. I studied this in detail and designed my
+bicycle geometry to be exactly what was specified as good handling by Jones.
+<a class="footnote-reference" href="#tubes" id="id3">[1]</a> The bicycle turned out to be rideable (after lots of practice), but
+this was probably the first time I realized in my engineering career that there
+wasn&#8217;t a formula for everything.</p>
+<p>These particulars fell onto the back burner as I finished out my work at the
+Langley Full Scale Tunnel and did not re-emerge until a few classes at UC Davis
+brought these concepts back into my picture. In particular, I attempted to
+derive the equations of motion of the bicycle in Mont Hubbard&#8217;s multi-body
+dynamics class in the beginning of 2006 and the power to potentially properly
+answer the questions I had back at Old Dominion seemed to be at my finger tips.
+Little did I realize, that those answers simply introduce more difficult
+questions and a research project is born.</p>
+<p>I hope that this dissertation will document the majority of work I&#8217;ve done and
+my thoughts on bicycle dynamics, control, and handling at UC Davis and TU Delft
+since around December 2006. I of course won&#8217;t be able to add it all, especially
+since most of it has been written at the end of the project rather than as I
+went along, but this should be a good picture of what all transpired.</p>
+</div>
 <div class="section" id="reproducibility">
 <h2>Reproducibility<a class="headerlink" href="#reproducibility" title="Permalink to this headline">¶</a></h2>
-<p>My intention is provide enough information in the form of data, computer code,
-and writing, that others will have a relatively easy time reproducing my work.
-A cornerstone of science is  that  every result presented should be</p>
-<blockquote>
-<div>reproducible. This ability of research to be reproducible is</div></blockquote>
-<p>certainly a function of what type of research it is, but fortunately my
-research is such that reproducibility can mostly be accomplished if I provide
-enough information.</p>
+<p>Over the past few years, I&#8217;ve begun realize how reproducibility is crucial for
+science to improve and grow rapidly all the while building a deeply intact and
+strong foundation for future researchers and that it may not be as reproducible
+as we may all think it is. With that in mind, I have put a great deal of effort
+into making my work more accessible, reusable and ultimately reproducible which
+is the cornerstone of all scientific understanding. For the type of work
+presented, the majority is computational and the computer along with software
+have enabled our generation to make the work reproducible without too much
+extra effort. My intention is provide enough information in the form of data,
+source code, and writing, that others will have a <em>relatively</em> easy time
+reproducing my work. This has been mostly possible in the time frame that I&#8217;ve
+had to complete the work, but there are some holes in particular with respect
+to the work done in the earlier years of the project.</p>
+<div class="section" id="literature">
+<h3>Literature<a class="headerlink" href="#literature" title="Permalink to this headline">¶</a></h3>
+<p>I really enjoy reading older dissertations and technical reports because they
+typically have so much detail. Much more than any journal paper will ever have.
+I find these details to be invaluable for developing new research plans and
+understanding. This is especially when the null science is reported, which
+gives you a much better idea of what not to do. My dissertation is modeled
+after these type of longer documents and I&#8217;ve attempted to include as much
+detail in the decision making processes, methods and results as possible in
+the allowable time.</p>
+<p>This dissertation is partly original work that had not been published in any
+form yet and partly based on several journal and conference papers that I have
+written or co-authored over the years. I&#8217;ve given an outline below of the
+papers which have been subsumed into this thesis.</p>
+<dl class="docutils">
+<dt>[Findlay2006]</dt>
+<dd>This is an internal report I worked on with two other students in my
+controls class. We developed several controllers for a simple bicycle model.
+Some elements of this paper influenced Chapter <a class="reference internal" href="control.html#control"><em>Control</em></a>.</dd>
+<dt>[Moore2006]</dt>
+<dd>This is the internal report I wrote which described my first effort at
+deriving the equations of motion of the bicycle <a class="footnote-reference" href="#id32" id="id6">[2]</a>, estimating the physical
+parameters of the bicycle/rider, and running a numerical parameter study.</dd>
+<dt>[Moore2007]</dt>
+<dd>Luke and I wrote this short paper for the 11th International Symposium on
+Computer Simulation in Biomechanics in Tainan, Taiwan. We presented a basic
+rider biomechanic extension to the Whipple model which I had developed in
+[Moore2006]. This work contributes to Chapter <a class="reference internal" href="extensions.html#extensions"><em>Extensions of the Whipple Model</em></a>.</dd>
+<dt>[Moore2008]</dt>
+<dd>This is the polished and corrected version of my work I did in [Moore2006]
+which I submitted to the 2008 International Sports Engineering Conference in
+Biarritz, France. The model derivation is written out thoroughly in Chapter
+<a class="reference internal" href="eom.html#eom"><em>Bicycle Equations Of Motion</em></a>, the physical parameter estimation in Chapter
+<a class="reference internal" href="physicalparameters.html#physicalparameters"><em>Physical Parameters</em></a>, and the parameter studies in Chapter
+<a class="reference internal" href="parameterstudy.html#parameterstudy"><em>Parameter Studies</em></a>.</dd>
+<dt>[Kooijman2008a]</dt>
+<dd>Jodi presented this paper at a conference in Hungary not long after I had
+been in the Netherlands. It contained the results from the experimental
+studies we&#8217;d done during my first few months in Delft.</dd>
+<dt>[Moore2009b]</dt>
+<dd>I presented this paper at the 2009 Multibody Dynamics conference in Warsaw,
+Poland. This work focused on the motion identification experiments we did
+early in 2009.</dd>
+<dt>[Moore2009a]</dt>
+<dd>This paper presented a combination of the bicycle measurement technique used
+in [Kooijman2006] and an improved version of the human inertia estimation
+technique I developed in [Moore2006]. I presented it at the 2009 ASME
+conference in San Diego, CA. <a class="footnote-reference" href="#id33" id="id16">[3]</a></dd>
+<dt>[Kooijman2009a]</dt>
+<dd>This is a polished version of [Kooijman2008a]. Jodi presented it at the
+2009 ASME conference. This work is presented in Chapter <a class="reference internal" href="delftbicycle.html#delftbicycle"><em>Delft Instrumented Bicycle</em></a>.</dd>
+<dt>[Moore2010]</dt>
+<dd>This is a report on the work I did in the last few months I spent in Delft
+in which I used a modified technique from [Kooijman2006] to more accurately
+measure the physical parameters of a variety of bicycles. I presented it as
+a poster at the first Bicycle and Motorcycle Dynamics Conference in 2010.</dd>
+<dt>[Moore2010a]</dt>
+<dd>Jodi presented this paper for me at the International Sports Engineering
+Conference in 2010. It was about some extra statistical analyses of the data
+we collected in [Moore2009a]. This work can be found in Chapter
+<em class="xref std std-ref">motioncapture</em>.</dd>
+<dt>[Peterson2010]</dt>
+<dd>Dr. Hubbard presented this paper for us at the ISEA conference in 2010. It
+gave a premature look at the instrumented/robot bicycle we were developing.</dd>
+<dt>[Moore2011]</dt>
+<dd>The paper we wrote for the Warsaw conference, [Moore2009b], was accepted to
+be published in Multibody System Dynamics. This is mostly a polished version
+of [Moore2009b]. This work is presented in Chapter <em class="xref std std-ref">motioncapture</em>.</dd>
+<dt>[Hess2012]</dt>
+<dd>This work was originally presented at the Bicycle and Motorcycle Dynamics
+conference in 2010 and eventually published by IEEE in 2012. The work is
+expanded on and detailed in Chapter <a class="reference internal" href="control.html#control"><em>Control</em></a>.</dd>
+</dl>
+</div>
+<div class="section" id="source-code">
+<h3>Source Code<a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h3>
+<p>It is very possible to code every computation that an engineer does and in many
+ways the most preferable method to record it. It is not only a record of the
+working computation that contains all of the details needed but an executable
+source that can be reused. But this doesn&#8217;t mean one can simply drop all of
+their undocumented scripts into a folder, publish it to the web and expect
+anyone to ever be able to decipher it and actually use it. It takes much more
+effort to document the source code and to put it into a usable form. These
+techniques are very rarely, if at all, taught to engineers and once I got a
+taste of the development methods of software engineers and computer scientists
+I couldn&#8217;t believe how poorly we engineers execute our code. Not only does
+creating usable and well documented code help others to use it, it helps you to
+know what it is an be able to use it and is documented proof of working
+methods. I have no idea how much code &#8220;waste&#8221; is on my hard drive that I will
+never have the time to decipher again and make use of it.</p>
+<p>I have several layers of code that supports this document. In general all of
+the figures and tables are generated by scripts in the <cite>src</cite> directory included
+with the source to this dissertation. These scripts access a variety packages
+in my software stack with most of them being open source packages that I or
+some of my collaborators have written. The following gives a list of the
+packages we&#8217;ve developed:</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">include the git commit hashes for the version that works with the
+theses data</p>
+</div>
+<dl class="docutils">
+<dt><a class="reference external" href="https://github.com/moorepants/AutolevToolKit">AutolevToolKit</a> (Python)</dt>
+<dd>A collection of tools which parse <a class="reference external" href="http://www.autolev.com">Autolev</a>
+output for extracting the equations of motion and some basic tool to
+convert them to LaTeX. It has a prototype of a numerical dynamic system
+class with accompanying linear dynamic system class to make basic analysis
+quick and painless.</dd>
+<dt><a class="reference external" href="https://github.com/moorepants/BicycleDAQ">BicycleDAQ</a> (Matlab)</dt>
+<dd>A GUI tool that collects time series and meta data from the instrumented
+bicycle via the NI USB-6218 data acquisition board and the VectorNav VN-100.
+It has tools for also collecting calibration data for the various sensors.</dd>
+<dt><a class="reference external" href="https://github.com/moorepants/BicycleDataProcessor">BicycleDataProcessor</a> (Python)</dt>
+<dd>A tool that stores all of the data collected from the instrumented bicycle
+in a database for easy retrieval and manipulation. It also processes the
+raw data into the variables of interest, so you can directly compare it
+with models.</dd>
+<dt><a class="reference external" href="https://github.com/moorepants/BicycleID">BicycleID</a> (Python</dt>
+<dd>A GTK Gui for visualizing the bicycle model identification data.</dd>
+<dt><a class="reference external" href="http://pypi.python.org/pypi/BicycleParameters">BicycleParameters</a> (Python)</dt>
+<dd>A program that generates the physical parameters of a bicycle and rider
+from experimental measurements. It also allows for basic manipulation basic
+analysis with some widely used models.</dd>
+<dt><a class="reference external" href="https://github.com/moorepants/BicycleSystemID">BicycleSystemID</a> (Matlab &amp; Python)</dt>
+<dd>A set of tools for interacting with the Matlab System ID toolbox. It has
+functions built around the grey and black box identification of several
+bicycle, rider and control models.</dd>
+<dt><a class="reference external" href="https://github.com/moorepants/CanonicalBicycleID">CanonicalBicycleID</a> (Python)</dt>
+<dd>A module for identifying a 4th order bicycle model from the canonical form.</dd>
+<dt><a class="reference external" href="https://github.com/moorepants/DelftBicycleDataViewer">DelftBicycleDataViewer</a> (Matlab)</dt>
+<dd>A prototype video and data viewer for the Delft instrumented bicycle data.</dd>
+<dt><a class="reference external" href="https://github.com/moorepants/DynamicistToolKit">DynamicistToolKit</a> (Python)</dt>
+<dd>A clearing house for all the generic functions and classes that I write
+that may be useful across all the work I do.</dd>
+<dt><a class="reference external" href="https://github.com/moorepants/HumanControl">HumanControl</a> (Matlab)</dt>
+<dd>An implementation of our bicycle human control model from [Hess2012] and
+Chapter <a class="reference internal" href="control.html#control"><em>Control</em></a>. It computes the controller parameters for most
+bicycles and most speeds, simulates the model during lane changes, and
+computes a handling quality metric.</dd>
+<dt><a class="reference external" href="https://github.com/moorepants/DynamicistToolKit">MotionCapture</a> (Python &amp; Matlab)</dt>
+<dd>A Matlab GUI tool for interactively exploring the data from the bicycle
+motion capture experiments and python tools for basic statistics.</dd>
+<dt><a class="reference external" href="http://pypi.python.org/pypi/yeadon">Yeadon</a> (Python)</dt>
+<dd>A program that computes the inertia of a human using the method from
+[Yeadon1990].</dd>
+</dl>
+<p>This software stack is built upon several languages and software packages
+including: <a class="reference external" href="http://www.python.org">Python</a>, <a class="reference external" href="http://www.numpy.org">NumPy</a>, <a class="reference external" href="http://www.scipy.org">SciPy</a>, <a class="reference external" href="http://matplotlib.sourceforge.net/">Matplotlib</a>, <a class="reference external" href="http://www.pytables.org">PyTables</a>, <a class="reference external" href="http://pandas.pydata.org/">Pandas</a>, <a class="reference external" href="http://pypi.python.org/pypi/uncertainties/">Uncertainties</a>,
+<a class="reference external" href="http://www.sympy.org">SymPy</a>, <a class="reference external" href="http://www.autolev.com">Autolev</a>, <a class="reference external" href="http://www.mathworks.com/products/matlab/">Matlab</a>.</p>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">Maybe do proper citations to these in the bibliography</p>
+</div>
+</div>
 <div class="section" id="data">
 <h3>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h3>
-<p>Photos on picasaweb</p>
-<p>Videos of experiments</p>
-<p>data sets</p>
+<p>During the experimental studies, I&#8217;ve collected a fair amount of data. I&#8217;ve
+worked to provide at least the raw data from the experimental studies with
+enough meta data for it to be reusable. Also, the data is used directly with
+the software packages above.</p>
+<p>I&#8217;ve taken extensive photo documentation of the instrumentation construction
+and the experiments. The albums are divided into ones of the work done at <a class="reference external" href="http://picasaweb.google.com/moorepants/BicycleDynamics#">UC
+Davis</a> and the work
+done at <a class="reference external" href="http://picasaweb.google.com/moorepants/BicycleDynamicsTUDelft">TU Delft</a>.</p>
+<p>I&#8217;ve made several data sets available from all of the experimentation.</p>
+<div class="admonition-todo admonition" id="index-2">
+<p class="first admonition-title">Todo</p>
+<p class="last">add the links to the data sets and videos</p>
+</div>
+<dl class="docutils">
+<dt>Physical Parameters</dt>
+<dd>The physical parameter data consists of measured values such as geometry
+and mass of both the bicycles and the riders.</dd>
+<dt>Delft Instrumented Bicycle</dt>
+<dd>This data is in the form of comma separated text files with the time
+histories of the sensors and accompanying meta data in the header of each
+file. The various treadmill experiments with two riders are included. This
+includes video data for each of the runs</dd>
+<dt>Motion Capture</dt>
+<dd>This data set includes Matlab mat files for each run for several days of
+experimenting with several riders on the treadmill. There is also video data
+for a good portion of the runs.</dd>
+<dt><a class="reference external" href="http://archive.org/details/BicycleSteerTorqueExperiment01">Steer Torque Experiments</a></dt>
+<dd>There is video data for each run and also the manually derived comma
+separated value text file with the torque values determined from the video.</dd>
+<dt>Identification Experiments</dt>
+<dd>This data is available both as raw data mat files with included meta data
+for each run and as a single HDF5 database which stores the time histories
+of the sensors in multiple arrays and the meta data in tables. There is
+video data of all the runs.</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="dissertation-website">
 <h2>Dissertation website<a class="headerlink" href="#dissertation-website" title="Permalink to this headline">¶</a></h2>
 <p>I decided to publish my dissertation publicly on the internet from the day I
 started writing it. The first reason for this is that I want to take full
-advantage of the ability the web offers for conveying ideas and information, whether it be a
-video or an interactive program. Paper-based publication is a thing of the past
-and is an unbelievably limiting form of sharing, especially in science. Secondly,
-I want the process of writing my dissertation to be in the open with the
-ability for anyone to offer comments, suggestions and edits. Dissertations are
-traditionally considered to be the work of a single individual, but that is
-never true. All the work we do is built on the works others have already accomplished
-and rarely does anyone produce their work without the help of others. I believe
-that we should strive to move away from the idea that some work is only due to one
-person and embrace the fact that we need help from many people to complete
-something like a dissertation for a doctoral degree. I also want this work to be
-the best it can be, and if others are interested in helping me make it that way
-then an interactive website is a platform that is capable of promoting this.</p>
+advantage of the ability the web offers for conveying ideas and information,
+whether it be a video or an interactive program. Paper-based publication is a
+thing of the past and is an unbelievably limited form of sharing, especially in
+science. Secondly, I want the process of writing my dissertation to be in the
+open with the ability for anyone to offer comments, suggestions and edits.
+Dissertations are traditionally considered to be the work of a single
+individual, but that is never true. All the research we do as scientists is
+built upon the works of others and rarely does anyone produce their work
+without the help of others. Dissertations in the USA are typically very
+individualistically oriented but I&#8217;ve begun to believe that we should strive to
+move away from the idea that some work is only due to one person and embrace
+the fact that we need help from many people to complete something like a
+dissertation for a doctoral degree. So it is best to be collaborative from the
+beginning with a sufficient mechanism to provide credit where credit is due. I
+also want this work to be the best it can be, and if others are interested in
+helping me make it that way then an interactive website is a platform that is
+capable of promoting this.</p>
+<p>I desired to follow these basic rules when writing my dissertation:</p>
+<ul class="simple">
+<li>The content should be written presentation neutral.</li>
+<li>The primary presentation view is through a web browser, but a static PDF
+version is also available to suit UCD&#8217;s archaic submission rules.</li>
+<li>The source code for all the figures, animations, and interactive bits should
+be included with the dissertation.</li>
+<li>The experimentally collected data should all be available for download and
+use by others.</li>
+<li>Software tools should be developed if at all possible, instead of
+disconnected scripts.</li>
+</ul>
+<p>I&#8217;ve made use of the <a class="reference external" href="http://sphinx.pocoo.org/">Sphinx</a> publishing platform
+to write my dissertation and meet these goals. The source, which is written in
+reStructuredText, is available along with the source code for the figures at</p>
+<p><a class="reference external" href="https://github.com/moorepants/dissertation">https://github.com/moorepants/dissertation</a></p>
+<p>and the HTML version can be viewed and the PDF version downloaded at</p>
+<p><a class="reference external" href="http://moorepants.github.com/dissertation">http://moorepants.github.com/dissertation</a></p>
 </div>
-<div class="section" id="collaboration">
-<h2>Collaboration<a class="headerlink" href="#collaboration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="attribution">
+<h2>Attribution<a class="headerlink" href="#attribution" title="Permalink to this headline">¶</a></h2>
 <p>As a child, I was programmed to think that any form of plagiarism was evil: you
 shouldn&#8217;t copy anything. But how would we ever make any progress if we didn&#8217;t
 copy and improve on what others have done in the past? The work presented here
@@ -142,14 +379,41 @@ will remedy it.</p>
 <h2>Notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h2>
 <p>I attempt to keep notation consistent throughout each chapter, with much of the
 notation being consistent throughout the dissertation. The extensions chapter
-has different notation for each model.</p>
+has different notation for each model. The notation for the Chapter is given at
+the end of each Chapter. There are ultimately two notations forms for the
+bicycle: mine which follows a Kane-like syntax and the one adopted from
+[Meijaard2007].</p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>The written work and data are licensed under the <a class="reference external" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution
+3.0 Unported License</a>.</p>
+<p>You may share, rework, and use any of the materials provided you cite this work</p>
+<p><em>Moore, J. K., Human Control of a Bicycle, UC Davis Doctoral Dissertation, 2012</em></p>
+<p>All of the source code is licensed explicitly in the src directory under a BSD
+license.</p>
 <p class="rubric">Footnotes</p>
 <table class="docutils footnote" frame="void" id="tubes" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[1]</td><td>It wasn&#8217;t till after welding the bicycle frame together did I
+<tr><td class="label"><a class="fn-backref" href="#id3">[1]</a></td><td>It wasn&#8217;t till after welding the bicycle frame together did I
 realize that I&#8217;d cut a tube too long and the geometry was very
 different than I&#8217;d planned.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id32" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[2]</a></td><td>The equations derived here are slightly incorrect.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id33" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id16">[3]</a></td><td>This was a poor presentation as I arrove in San Diego after living for a
+year in the Netherlands. My mind was lost in experiencing everything I
+missed about my home country and I couldn&#8217;t focus on getting the
+presentation done.</td></tr>
 </tbody>
 </table>
 </div>
@@ -165,7 +429,7 @@ different than I&#8217;d planned.</td></tr>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
   /**
-    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
+    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread]
     */
   (function() {
    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -204,6 +468,19 @@ var disqus_shortname = 'jkm-dissertation';
   (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
 }());
 </script>
+
+<div align="center">
+<a rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+	<img
+	alt="Creative Commons License" style="border-width:0"
+	src="http://i.creativecommons.org/l/by/3.0/88x31.png" />
+</a>
+<br />
+This work is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+Attribution 3.0 Unported License</a>
+</div>
+
 
   </body>
 </html>

@@ -141,12 +141,15 @@ biomechanical motions play a smaller role in the vehicle motion.
 Conclusion
 ==========
 
-With the wide variety of models available, I've generally taken the approach of
-trying to use the simplest models as possible to predict the measured motion in
-my experiments rather than adding great complexity. In my case, this model is
-often the Whipple model [#]_ with or without various rider biomechanical models
-which attempt to account for the large affect the rider's freedom of movement
-can contribute to the system dynamics.
+Albert Einstein once said "Any intelligent fool can make things bigger, more
+complex, and more violent. It takes a touch of genius - and a lot of courage -
+to move in the opposite direction." With the wide variety of models available,
+I've generally taken the approach of trying to use the simplest models as
+possible to predict the measured motion in my experiments rather than adding
+great complexity. In my case, this model is often the Whipple model [#]_ with
+or without various rider biomechanical models which attempt to account for the
+large affect the rider's freedom of movement can contribute to the system
+dynamics.
 
 .. rubric:: Footnotes
 

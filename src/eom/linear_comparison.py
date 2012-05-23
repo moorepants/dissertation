@@ -59,6 +59,7 @@ steerrate = whip.get_sim_output('u7')
 time = whip.simResults['t']
 newFig = bicycle.meijaard_figure_four(time, rollRate, steerrate, speed)
 newFig.savefig('../../figures/eom/meijaard2007-figure-four-linear.png', dpi=300)
+newFig.savefig('../../figures/eom/meijaard2007-figure-four-linear.pdf')
 
 # plot the eigenvalues vs speed
 settings = {'num':100,
@@ -67,15 +68,57 @@ settings = {'num':100,
             'width':5.0}
 start = 0.0
 stop = -10.0 / moorePar['rr']
-rootLoci = whip.plot_root_loci('u6', start, stop, factor=('v',
+rootLocus = whip.plot_root_locus('u6', start, stop, factor=('v',
     -moorePar['rr']), units='m/s', **settings)
-rootLoci.savefig('../../figures/eom/root-loci-complex.png', dpi=300)
+rootLocus.savefig('../../figures/eom/root-locus-complex.png', dpi=300)
+rootLocus.savefig('../../figures/eom/root-locus-complex.pdf')
 
 settings['axes'] = 'parameter'
 settings['ylim'] = (-10, 10)
-rootLoci = whip.plot_root_loci('u6', start, stop, factor=('v',
+rootLocus = whip.plot_root_locus('u6', start, stop, factor=('v',
     -moorePar['rr']), units='m/s', **settings)
-rootLoci.savefig('../../figures/eom/root-loci.png', dpi=300)
+ax = rootLocus.axes[0]
+# find the lines
+firstVals = np.array([line.get_ydata()[0] for line in ax.lines])
+
+casterLine = ax.lines[np.argmin(firstVals)]
+capsizeLine = ax.lines[np.nonzero((firstVals > casterLine.get_ydata()[0]) &
+    (firstVals < 0))[0]]
+upperWeaveLine = ax.lines[np.argmax(firstVals)]
+lowerWeaveLine = ax.lines[np.nonzero((firstVals < upperWeaveLine.get_ydata()[0]) &
+        (firstVals > 0))[0]]
+
+for i, val in enumerate(firstVals):
+    if np.abs(val - 0.) < 1e-10:
+        ax.lines[i].set_color(upperWeaveLine.get_color())
+
+lowerWeaveLine.set_color(upperWeaveLine.get_color())
+
+ax.annotate('Caster',
+        casterLine.get_xydata()[np.argmin(np.abs(casterLine.get_xdata() -
+            1.0))], xytext=(2.5, -7.0), color=casterLine.get_color(),
+        arrowprops={'arrowstyle':"->", 'color':casterLine.get_color()})
+ax.annotate('Capsize',
+        capsizeLine.get_xydata()[np.argmin(np.abs(capsizeLine.get_xdata() -
+            7.0))], xytext=(8.25, 2.5), color=capsizeLine.get_color(),
+        arrowprops={'arrowstyle':"->", 'color':capsizeLine.get_color()})
+ax.annotate('Weave',
+        upperWeaveLine.get_xydata()[np.argmin(np.abs(upperWeaveLine.get_xdata() -
+            2.0))], xytext=(2.5, 6.0), color=upperWeaveLine.get_color(),
+        arrowprops={'arrowstyle':"->", 'color':upperWeaveLine.get_color()})
+
+weaveSpeed = upperWeaveLine.get_xdata()[upperWeaveLine.get_ydata() > 0.0][-1]
+capsizeSpeed = capsizeLine.get_xdata()[capsizeLine.get_ydata() >= 0.0][0]
+
+ax.plot([weaveSpeed, weaveSpeed], [-11.0, 0.], 'k-')
+ax.plot([weaveSpeed, weaveSpeed], [-11.0, 0.], 'ko')
+ax.plot([capsizeSpeed, capsizeSpeed], [-11.0, 0.], 'k-')
+ax.plot([capsizeSpeed, capsizeSpeed], [-11.0, 0.], 'ko')
+ax.text(4.5, -9.0, 'Stable')
+ax.arrow(weaveSpeed, -7.0, capsizeSpeed - weaveSpeed, 0.0, shape='full')
+
+rootLocus.savefig('../../figures/eom/root-locus.png', dpi=300)
+rootLocus.savefig('../../figures/eom/root-locus.pdf')
 
 # now find the eigenvalues
 equilibrium[whip.stateNames.index('u6')] = -5.0 / moorePar['rr']

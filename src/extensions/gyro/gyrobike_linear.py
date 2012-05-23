@@ -49,19 +49,19 @@ settings = {'num':100,
             'ylim':(-10, 10),
             'width':5.0}
 
-# generate a root loci with respect to speed for a baseline
+# generate a root locus with respect to speed for a baseline
 gyrobike.linear(equilibrium)
 start = 0.
 stop = -10.0 / moorePar['rr']
-flywheelOff = gyrobike.plot_root_loci('u6', start, stop, factor=('v',
+flywheelOff = gyrobike.plot_root_locus('u6', start, stop, factor=('v',
     -moorePar['rr']), units='m/s', **settings)
 flywheelOff.savefig(figDir + 'gyrobike-flywheel-off.png', dpi=200)
 
-# now generate a root loci with respect to flywheel speed
+# now generate a root locus with respect to flywheel speed
 gyrobike.linear(equilibrium)
 start = 0.
 stop = -10000. / 60. * 2 * np.pi
-flywheelOn = gyrobike.plot_root_loci('u9', start, stop, factor=('$u_9$', -60. /
+flywheelOn = gyrobike.plot_root_locus('u9', start, stop, factor=('$u_9$', -60. /
     2 / np.pi), units='rpm', **settings)
 flywheelOn.savefig(figDir + 'gyrobike-vary-flywheel.png', dpi=200)
 
@@ -75,18 +75,18 @@ moorePar['ig11'] = benchmarkPar['IDxx']
 moorePar['ig22'] = benchmarkPar['IDyy']
 gyrobike.set_parameters(moorePar)
 
-# generate a root loci with respect to speed for a baseline
+# generate a root locus with respect to speed for a baseline
 gyrobike.linear(equilibrium)
 start = 0.
 stop = -10.0 / moorePar['rr']
-flywheelOffRider = gyrobike.plot_root_loci('u6', start, stop, factor=('v',
+flywheelOffRider = gyrobike.plot_root_locus('u6', start, stop, factor=('v',
     -moorePar['rr']), units='m/s', **settings)
 flywheelOffRider.savefig(figDir + 'gyrobike-flywheel-off-rider.png', dpi=200)
 
-# now generate a root loci with respect to flywheel speed
+# now generate a root locus with respect to flywheel speed
 gyrobike.linear(equilibrium)
 start = 0.
 stop = -10000. / 60. * 2 * np.pi
-flywheelOnRider = gyrobike.plot_root_loci('u9', start, stop, factor=('$u_9$', -60. /
+flywheelOnRider = gyrobike.plot_root_locus('u9', start, stop, factor=('$u_9$', -60. /
     2 / np.pi), units='rpm',  **settings)
 flywheelOnRider.savefig(figDir + 'gyrobike-vary-flywheel-rider.png', dpi=200)

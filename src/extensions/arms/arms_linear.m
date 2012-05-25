@@ -8,8 +8,8 @@ function arms_linear(rider)
 % rider : char
 %   Either 'Charlie', 'Jason', or 'Luke'.
 
-p = load(['armspar-' rider '.mat']);
-q = load(['armsinit-' rider '.mat']);
+p = load(['../../../data/extensions/' 'armspar-' rider '.mat']);
+q = load(['../../../data/extensions/' 'armsinit-' rider '.mat']);
 
 % we are looking at the nominal configuration
 q4 = 0;
@@ -35,7 +35,7 @@ left = @(qd)left_arm_constraint(qd, qi, p);
 qLeft = fsolve(left, [-q9g, q10g, -q11g, q12g], optimset('Display', 'Off'));
 
 % caluculate eigenvalues for a range of speeds
-speed = 0:0.1:10;
+speed = 0:0.05:10;
 w = zeros(4, length(speed));
 stateMatrices = zeros(length(speed), 4, 4);
 inputMatrices = zeros(length(speed), 4, 3);
@@ -48,7 +48,7 @@ for k = 1:length(speed)
     w(:, k) = eig(A);
 end
 
-save(['armsAB-' rider '.mat'], 'speed', 'stateMatrices', 'inputMatrices')
+save(['../../../data/extensions/' 'armsAB-' rider '.mat'], 'speed', 'stateMatrices', 'inputMatrices')
 
 plot(speed, real(w), '.b')
 hold on

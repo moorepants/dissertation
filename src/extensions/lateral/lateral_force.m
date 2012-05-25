@@ -1,3 +1,6 @@
+% This script generates both an impulse and frequency response plot for a
+% bicycle with respect to a lateral force applied to the bicycle frame.
+
 addpath('/media/Data/Documents/School/UC Davis/Bicycle Mechanics/HumanControl')
 
 pathToFile = ['/media/Data/Documents/School/UC Davis/Bicycle Mechanics/' ...
@@ -37,15 +40,14 @@ lines = plot(t, y(:, 4, 1), 'b-', ...
 
 set(lines, 'linewidth', 2.0)
 set(gca, 'TickDir', 'out', ...
-    'Box', 'off', ...
-    'FontName', 'Computer Modern Roman')
+    'Box', 'off')
 title('Impulse Response')
 xlabel('Time [s]')
 ylabel('Angle [rad]')
-legend({'$q_4$', '$q_7$', '$q_4$', '$q_7$'}, 'interpreter', 'latex')
+legend({'$q_4$ $(T_4)$', '$q_7$ $(T_4)$', '$q_4$ $(F_{cl})$', '$q_7$ $(F_{cl})$'}, 'interpreter', 'latex')
 
-saveas(fig1, '../../figures/extensions/lat-force-impulse.png')
-saveas(fig1, '../../figures/extensions/lat-force-impulse.pdf')
+print(fig1, '-dpng', '-r300', '../../../figures/extensions/lat-force-impulse.png')
+saveas(fig1, '../../../figures/extensions/lat-force-impulse.pdf')
 
 [num, den] = ss2tf(A, B, C, D, 1);
 rollFromTorque = tf(num(4, :), den);
@@ -94,13 +96,12 @@ xLab = get(plotAxes(1), 'Xlabel');
 set(xLab, 'Units', 'normalized')
 set(xLab, 'Position', get(xLab, 'Position') + [0, raise + 0.1, 0])
 
-legend({'$q_4$', '$q_7$', '$q_4$', '$q_7$'}, 'interpreter', 'latex')
+legend({'$q_4$ $(T_4)$', '$q_7$ $(T_4)$', '$q_4$ $(F_{cl})$', '$q_7$ $(F_{cl})$'}, 'interpreter', 'latex')
 % find all the lines in the current figure
 lines = findobj(fig2, 'type', 'line');
 for i = 3:length(lines)
     set(lines, 'LineWidth', 2.0)
 end
 
-saveas(fig2, '../../figures/extensions/lat-force-bode.png')
-
-saveas(fig2, '../../figures/extensions/lat-force-bode.pdf')
+print(fig2, '-dpng', '-r300', '../../../figures/extensions/lat-force-bode.png')
+saveas(fig2, '../../../figures/extensions/lat-force-bode.pdf')

@@ -90,7 +90,7 @@ par['d4'] = (benchmark['xcl'] * cos(benchmark['lam']) - benchmark['zcl'] * sin(b
 par['d5'] = (benchmark['xcl'] * sin(benchmark['lam']) + benchmark['zcl'] * cos(benchmark['lam']) +
         benchmark['rR'] * cos(benchmark['lam']))
 
-io.savemat('armspar-' + rider + '.mat', par)
+io.savemat('../../../data/extensions/armspar-' + rider + '.mat', par)
 
 # now get some guesses for the arm angles at the nominal configuration
 # these guesses are not correct, as the mapping from yeadon's coordinates to
@@ -112,4 +112,4 @@ q['q14'] = h.CFG['CA1elevation']
 q['q15'] = h.CFG['CA1rotation']
 q['q16'] = -h.CFG['A1A2flexion']
 
-io.savemat('armsinit-' + rider + '.mat', q)
+io.savemat('../../../data/extensions/armsinit-' + rider + '.mat', q)

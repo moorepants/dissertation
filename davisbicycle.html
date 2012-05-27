@@ -56,7 +56,7 @@
 <span id="davisbicycle"></span><h1>Davis Instrumented Bicycle<a class="headerlink" href="#davis-instrumented-bicycle" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated May 22, 2012 at 18:09:17 PDT).
+<p class="last">This document is a draft which is updated regularly (Last updated May 27, 2012 at 13:00:06 PDT).
 Once I submit if for my doctoral degree at UC Davis, it will be done. So for
 now use at your own risk. The information may or may not be correct.
 Reviews, comments and suggestions are welcome.</p>
@@ -137,7 +137,7 @@ associated with the human control of the bicycle.</p>
 <p>I had originally considered using motion capture for the kinematics as we had
 very successful results measuring the complete kinematic configuration of the
 bicycle and rider with motion capture techniques as explained in Chapter
-<em class="xref std std-ref">motioncapture</em>, but I no longer had access to a system as good as the one
+<a class="reference internal" href="motioncapture.html#motioncapture"><em>Motion Capture</em></a>, but I no longer had access to a system as good as the one
 at the Vrije Universiteit. The systems available here could capture the motion
 on the treadmill but were not especially not suited to capture the motion of
 the bicycle on the ground. With this in mind, we decided to expand upon the on
@@ -237,6 +237,10 @@ to restrict the rider&#8217;s movement to a particular subset of hypothesized
 dominant motions.</p>
 <div class="section" id="rigid-rider">
 <h3>Rigid Rider<a class="headerlink" href="#rigid-rider" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">city Stassen1973 for the rider brace</p>
+</div>
 <p>Rigid rider models are often employed in single track vehicle research but the
 rider has been rigidified very few times in experimental work. This potentially
 problematic as the rigid rider assumption is a large one. [Eaton1973c]
@@ -247,7 +251,7 @@ the rider which was very inline with his techniques to simplify the system, but
 he left the rider free to move in his experiments. Jim Papadopolous has been a
 proponent of using recumbent bicycles in studies due to the natural
 rigidification of the rider. His thoughts and the difficulties we had in the
-studies from Chapters <a class="reference internal" href="delftbicycle.html#delftbicycle"><em>Delft Instrumented Bicycle</em></a> and <em class="xref std std-ref">motioncapture</em> influenced
+studies from Chapters <a class="reference internal" href="delftbicycle.html#delftbicycle"><em>Delft Instrumented Bicycle</em></a> and <a class="reference internal" href="motioncapture.html#motioncapture"><em>Motion Capture</em></a> influenced
 my decision of restricting the rider&#8217;s motion.</p>
 <p>I constructed a harness such that the rider was rigidified as much as possible
 with respect to the rear frame. A medical back brace was used to rigidify the
@@ -263,7 +267,7 @@ degrees of adjustability to allow different riders and seating positions.</div>
 <p>I fashioned some knee straps with strong magnets taken from computer hard
 drives which would engage with a ferrous attachment plate on the frame so that
 the rider&#8217;s legs would be rigid with respect to the rear frame. Chapters
-<a class="reference internal" href="delftbicycle.html#delftbicycle"><em>Delft Instrumented Bicycle</em></a> and <em class="xref std std-ref">motioncapture</em> showed the rider tends to use
+<a class="reference internal" href="delftbicycle.html#delftbicycle"><em>Delft Instrumented Bicycle</em></a> and <a class="reference internal" href="motioncapture.html#motioncapture"><em>Motion Capture</em></a> showed the rider tends to use
 lateral knee motions and we wanted to eliminate that as a confounding factor.
 The magnets were weak enough that the rider could remove his legs in an
 emergency.</p>
@@ -286,7 +290,7 @@ head without excruciating pain, we just never got around to making it.</p>
 <div class="section" id="restricted">
 <h3>Restricted<a class="headerlink" href="#restricted" title="Permalink to this headline">¶</a></h3>
 <p>A second harness was partially developed to restrict the rider&#8217;s motion to that
-described in <em class="xref std std-ref">secFlexibleRider</em>. A back brace which left the hips free to
+described in <a class="reference internal" href="extensions.html#secflexiblerider"><em>Flexible rider (hip rotation, back lean and twist)</em></a>. A back brace which left the hips free to
 move was used to keep the spine straight and a custom molded hip braced was
 developed to hold securely to the hip bone. The plane was to attach the hip
 brace to the bicycle seat via a revolute in the roll direction which would
@@ -297,7 +301,7 @@ Forces applied from the feet to the foot pegs would effectively allow the
 rider&#8217;s hips to roll with respect to the bicycle frame (in reality because the
 rider is more massive and more inert the bicycle frame would roll with respect
 to the inertial reference frame).</p>
-<div class="admonition-todo admonition" id="index-0">
+<div class="admonition-todo admonition" id="index-1">
 <p class="first admonition-title">Todo</p>
 <p class="last">take a photo of the partially constructed brace</p>
 </div>
@@ -323,7 +327,7 @@ percentiles, the accuracy as a percentage of the range and the bandwidth as
 bicycle kinematic motions from my previously collected data.</p>
 <table border="1" class="docutils" id="tabkinematicsensors">
 <caption>Table of maximal measured values found in all experimental data
-taken in Chapter <em class="xref std std-ref">motioncapture</em>. The ranges were determined from 75
+taken in Chapter <a class="reference internal" href="motioncapture.html#motioncapture"><em>Motion Capture</em></a>. The ranges were determined from 75
 percentiles, the accuracy as a percentage of the range and the bandwidth as
 75th percentile of the power in the signal.</caption>
 <colgroup>
@@ -403,7 +407,7 @@ a pace car. [Eaton1973c] used a third wheel and a potentiometer to measure
 roll angle on a motorcycle, but also had reliability issues. [Zytveld1975]
 used a small trailer with two roller skate wheels and potentiometer to measure
 the roll angle on this robotic motorbike.</p>
-<div class="admonition-todo admonition" id="index-1">
+<div class="admonition-todo admonition" id="index-2">
 <p class="first admonition-title">Todo</p>
 <p class="last">Find out if Dohring uses a roll angle trailer.</p>
 </div>
@@ -502,7 +506,7 @@ as a function of the bicycle roll angle <span class="math">\(\theta\)</span> for
 various joint heights <span class="math">\(h\)</span>. The potentiometer angle is highly linear
 with respect to the roll angle.</div>
 </div>
-<div class="admonition-todo admonition" id="index-2">
+<div class="admonition-todo admonition" id="index-3">
 <p class="first admonition-title">Todo</p>
 <p class="last">Put in the correct values for the roll angle trailer.</p>
 </div>
@@ -519,7 +523,7 @@ bicycle: a potentiometer for relative steering angle measurement and a single
 axis rate gyro for the body fixed angular rate of the front frame about the
 steer axis <a class="footnote-reference" href="#id88" id="id20">[4]</a>. I modified the design with some minor improvements such as better
 tension adjustability and switching to a screw mount potentiometer.</p>
-<div class="admonition-todo admonition" id="index-3">
+<div class="admonition-todo admonition" id="index-4">
 <p class="first admonition-title">Todo</p>
 <p class="last">steer angle and rate figure, take a picture</p>
 </div>
@@ -604,7 +608,7 @@ to the calibrated and filtered output.</caption>
 </tr>
 </tbody>
 </table>
-<div class="admonition-todo admonition" id="index-4">
+<div class="admonition-todo admonition" id="index-5">
 <p class="first admonition-title">Todo</p>
 <p class="last">come up with some accuracies for some of the measurments</p>
 </div>
@@ -638,12 +642,12 @@ compute estimates for the rear wheel contact velocities: <span class="math">\(u_
 <span class="eqno">(4)</span>\[u_1 = -u_6 r_R \cos(q_3)\]\[u_2 = -u_6 r_R \sin(q_3)\]</div>
 <p>The rear wheel contact rates can also be integrated and the linear drift
 subtracted out to find the position from an arbitrary initial condition.</p>
-<div class="admonition-todo admonition" id="index-5">
+<div class="admonition-todo admonition" id="index-6">
 <p class="first admonition-title">Todo</p>
 <p class="last">add the calculations for the front wheel contact point with respect
 to the rear wheel contact point</p>
 </div>
-<div class="admonition-todo admonition" id="index-6">
+<div class="admonition-todo admonition" id="index-7">
 <p class="first admonition-title">Todo</p>
 <p class="last">There maybe a sign error some where in the lateral contact point
 definitions that I&#8217;ve seen in some of the data. Check this out.</p>
@@ -874,7 +878,7 @@ modifies the device to eventually get more reliable readings. He also didn&#8217
 account for the inertial effects of the front frame. He had test subjects
 ride the bicycle around town so the data is difficult to interpret.</dd>
 </dl>
-<div class="admonition-todo admonition" id="index-7">
+<div class="admonition-todo admonition" id="index-8">
 <p class="first admonition-title">Todo</p>
 <p class="last">[Wilson-Jones1951] supposedly measures steer torque</p>
 </div>
@@ -977,7 +981,7 @@ than 40 Nm.</dd>
 <dd>Measured motorcycle steer torque in steady turns and slalom maneuvers. The
 torques in the two time history graphs are less than 20 Nm.</dd>
 </dl>
-<div class="admonition-todo admonition" id="index-8">
+<div class="admonition-todo admonition" id="index-9">
 <p class="first admonition-title">Todo</p>
 <p class="last">cite James, he seems to have measured steer torque</p>
 </div>
@@ -1042,12 +1046,12 @@ torques in the range of -3 to 10 Nm for lateral accelerations from 0 to
 <dd>Their steer controller for Sharps four degree of freedom motorcycle model
 shows a -50 nm maximum steer torque for a commanded roll angle of 20 degrees.</dd>
 </dl>
-<div class="admonition-todo admonition" id="index-9">
+<div class="admonition-todo admonition" id="index-10">
 <p class="first admonition-title">Todo</p>
 <p class="last">talk about how noone accounts for the inertial affects related to teh
 position of the sensor</p>
 </div>
-<div class="admonition-todo admonition" id="index-10">
+<div class="admonition-todo admonition" id="index-11">
 <p class="first admonition-title">Todo</p>
 <p class="last">talk about how bearings may not remove all cross talk</p>
 </div>
@@ -1403,7 +1407,7 @@ steer torque appears, so only the torques about the steer axis are examined.</p>
 \left(^N\dot{\bar{H}}^{G/g_o} + ^s\bar{r}^g_o \times m_G
 ^N\bar{a}^s\right) \cdot \hat{g}_3\]</div>
 <p>And <span class="math">\(T_\delta\)</span> can be solved for</p>
-<div class="admonition-todo admonition" id="index-11">
+<div class="admonition-todo admonition" id="index-12">
 <p class="first admonition-title">Todo</p>
 <p class="last">the following equation is giving errors in the latex document</p>
 </div>
@@ -1425,7 +1429,7 @@ w_{b2} c_\delta \right] + \\
 d_{s3} w_{b2} w_{b3} - d_{s3} \dot{w}_{b1} + a_{v2} \right]
 c_\delta + \\
 &amp; T_U + T_M\end{split}\]</div>
-<div class="admonition-todo admonition" id="index-12">
+<div class="admonition-todo admonition" id="index-13">
 <p class="first admonition-title">Todo</p>
 <p class="last">I can expand the H dot terms as factors of the 4 inertia components.
 This cleans it up a bit, but not sure if it helps explain it.</p>
@@ -1436,7 +1440,7 @@ and pitch angles are small.</p>
 <span class="eqno">(14)</span>\[T_{\delta} = T_M + T_U + (I_{G_{33}} + d^2 m_G) \dot{w}_{g3} +
 (I_{G_{31}} - d d_{s3} m_G) \dot{w}_{b1} + d d_{s1} m_G \dot{w}_{b3} +
 d m_G a_{v2}\]</div>
-<div class="admonition-todo admonition" id="index-13">
+<div class="admonition-todo admonition" id="index-14">
 <p class="first admonition-title">Todo</p>
 <p class="last">Say something qualitative about the additional torques.</p>
 </div>
@@ -1481,7 +1485,7 @@ that it is rigid with respect to the earth. The wheel was fixed from
 rotation relative to the fork. Two springs in series were attached to the
 handlebars.</div>
 </div>
-<div class="admonition-todo admonition" id="index-14">
+<div class="admonition-todo admonition" id="index-15">
 <p class="first admonition-title">Todo</p>
 <p class="last">video of the experiment</p>
 </div>
@@ -1511,11 +1515,11 @@ based on the measured steer angle over 15 trials (runs 209-223) where the
 steering assembly was perturbed from equilibrium. The resulting viscous
 coefficient is <span class="math">\(c_B = 0.34 \pm 0.04\)</span> <span class="math">\(N \cdot m \cdot s^2\)</span> and the
 Coulomb coefficient is <span class="math">\(t_B = 0.15 \pm 0.05\)</span> <span class="math">\(N \cdot m\)</span>.</p>
-<div class="admonition-todo admonition" id="index-15">
+<div class="admonition-todo admonition" id="index-16">
 <p class="first admonition-title">Todo</p>
 <p class="last">Show example fit?</p>
 </div>
-<div class="admonition-todo admonition" id="index-16">
+<div class="admonition-todo admonition" id="index-17">
 <p class="first admonition-title">Todo</p>
 <p class="last">link to the source files and data</p>
 </div>
@@ -1553,14 +1557,14 @@ compute the lower bearing friction, but my fits were very poor. The results of
 finding the upper bearing and lower bearing friction are inconclusive. So the
 assumption that the upper friction is half of the total friction is used to
 compute the actual steer torque.</p>
-<div class="admonition-todo admonition" id="index-17">
+<div class="admonition-todo admonition" id="index-18">
 <p class="first admonition-title">Todo</p>
 <p class="last">This all makes me feel like the measured torque during the
 experiments is incorrect or that my individual measurement of the handlebar
 moment of inertia is wrong (but that would mean that the sum of the
 handlebar, fork and wheel inertia has to be right!)...uh</p>
 </div>
-<div class="admonition-todo admonition" id="index-18">
+<div class="admonition-todo admonition" id="index-19">
 <p class="first admonition-title">Todo</p>
 <p class="last">note that the bearing are under load when a rider is seated on the
 bicycle and that we didn&#8217;t measure the friction under that loading.</p>
@@ -1585,7 +1589,7 @@ torque which is up to 2 Nm. And finally the last plot shows the difference
 in the measured torque and the rider applied torque. There are large
 differences, especially at the peaks.</div>
 </div>
-<div class="admonition-todo admonition" id="index-19">
+<div class="admonition-todo admonition" id="index-20">
 <p class="first admonition-title">Todo</p>
 <p class="last">second graph has wrong time scale</p>
 </div>
@@ -1608,7 +1612,7 @@ changing the first stage analog amplifier resistor to 16.5k ohm for a
 <span class="math">\(\pm100\)</span> lbs range of the lateral force load cell. Cal Stone&#8217;s thesis,
 his research notes and the system electrical diagram give the details of the
 circuit designs.</p>
-<div class="admonition-todo admonition" id="index-20">
+<div class="admonition-todo admonition" id="index-21">
 <p class="first admonition-title">Todo</p>
 <p class="last">link to the electrical diagram</p>
 </div>
@@ -1642,7 +1646,7 @@ absolute roll angle with a digital level and recording the voltage output for a
 sweep of angles. I also took static measurements each day of experiments so
 that the roll angle could be computed from the accelerometer&#8217;s output in case
 the bias in the roll angle calibration was poor.</p>
-<div class="admonition-todo admonition" id="index-21">
+<div class="admonition-todo admonition" id="index-22">
 <p class="first admonition-title">Todo</p>
 <p class="last">take photo of roll angle calibration</p>
 </div>
@@ -1666,7 +1670,7 @@ output voltage of the sensor for zero acceleration or rate for a given supply
 voltage.</p>
 <div class="math">
 \[\dot{\delta}_m = m \left(V - \frac{V_s}{V_C} z\right)\]</div>
-<div class="admonition-todo admonition" id="index-22">
+<div class="admonition-todo admonition" id="index-23">
 <p class="first admonition-title">Todo</p>
 <p class="last">These only seem to ratiometric in the bias (i.e. the slope doesn&#8217;t
 change with respect to supply voltage change. This needs to be checked better.</p>
@@ -1848,11 +1852,11 @@ battery supplied 12+ V to the CSG-110, this would not be an issue.</p>
 </tr>
 </tbody>
 </table>
-<div class="admonition-todo admonition" id="index-23">
+<div class="admonition-todo admonition" id="index-24">
 <p class="first admonition-title">Todo</p>
 <p class="last">include a link to a copy of the calibration sheet</p>
 </div>
-<div class="admonition-todo admonition" id="index-24">
+<div class="admonition-todo admonition" id="index-25">
 <p class="first admonition-title">Todo</p>
 <p class="last">compute the slope and intercept</p>
 </div>
@@ -1976,7 +1980,7 @@ the floor at the beginning of the track and also launched under the bicycle on
 the treadmill. The bump launching is somewhat amusing and we had to construct a
 &#8220;bump catcher&#8221; so that the bump didn&#8217;t fly off the back of the treadmill and
 hurt anyone or anything.</p>
-<div class="admonition-todo admonition" id="index-25">
+<div class="admonition-todo admonition" id="index-26">
 <p class="first admonition-title">Todo</p>
 <p class="last">bump catcher video</p>
 </div>
@@ -2166,7 +2170,7 @@ roll angle range.</td></tr>
 <tr><td class="label"><a class="fn-backref" href="#id74">[7]</a></td><td><p class="first">A sum of sines would be ideal, see [Lange2011] for some ideas
 on other types of inputs. It has been shown that a sum of sines signal is
 not detectable by humans [McRuer1974].</p>
-<div class="admonition-todo last admonition" id="index-26">
+<div class="admonition-todo last admonition" id="index-27">
 <p class="first admonition-title">Todo</p>
 <p class="last">check the McRuer reference</p>
 </div>

@@ -204,6 +204,8 @@ dominant motions.
 Rigid Rider
 -----------
 
+.. todo:: city Stassen1973 for the rider brace
+
 Rigid rider models are often employed in single track vehicle research but the
 rider has been rigidified very few times in experimental work. This potentially
 problematic as the rigid rider assumption is a large one. [Eaton1973c]_

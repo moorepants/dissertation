@@ -1,4 +1,4 @@
-.. _motioncapture.rst
+.. _motioncapture:
 
 ==============
 Motion Capture

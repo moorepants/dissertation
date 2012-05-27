@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 
-# dependencies
 import numpy as np
 import bicycleparameters as bp
 from dtk import bicycle
 
-# local dependencies
 try:
     f = open('RiderLean.py', 'r')
 except IOError:
@@ -73,20 +71,23 @@ settings = {'num':100,
             #'ylim':(-10, 10),
             'width':5.0}
 
-# plot a root loci
+# plot a root locus
 start = 0.
 stop = -10.0 / moorePar['rr']
-free = bike.plot_root_loci('u6', start, stop,
-        factor=('v', -moorePar['rr']), units='m/s', **settings)
-free.savefig('../../../figures/extensions/rider-lean.png', dpi=200)
+free = bike.plot_root_locus('u6', start, stop,
+        factor=('$v$', -moorePar['rr']), units='m/s', **settings)
+free.savefig('../../../figures/extensions/rider-lean.png', dpi=300)
+free.savefig('../../../figures/extensions/rider-lean.pdf')
 
+# set the stiffness and damping
 moorePar['k9'] = 128.0
 moorePar['c9'] = 50.0
 bike.set_parameters(moorePar)
 bike.linear(equilibrium)
-# plot a root loci
+# plot a root locus
 start = 0.
 stop = -10.0 / moorePar['rr']
-free = bike.plot_root_loci('u6', start, stop,
-        factor=('v', -moorePar['rr']), units='m/s', **settings)
-free.savefig('../../../figures/extensions/rider-lean-damp-stiff.png', dpi=200)
+free = bike.plot_root_locus('u6', start, stop,
+        factor=('$v$', -moorePar['rr']), units='m/s', **settings)
+free.savefig('../../../figures/extensions/rider-lean-damp-stiff.png', dpi=300)
+free.savefig('../../../figures/extensions/rider-lean-damp-stiff.pdf')

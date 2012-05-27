@@ -234,29 +234,10 @@ If = mec.inertia(F, if11, if22, if11, 0.0, 0.0, 0.0)
 # Rigid Bodies
 ##############
 
-rearFrame = mec.RigidBody()
-rearFrame.frame = C
-rearFrame.mass = mc
-rearFrame.mc = co
-rearFrame.inertia = (Ic, co)
-
-rearWheel = mec.RigidBody()
-rearWheel.frame = D
-rearWheel.mass = md
-rearWheel.mc = do
-rearWheel.inertia = (Id, do)
-
-frontFrame = mec.RigidBody()
-frontFrame.frame = E
-frontFrame.mass = me
-frontFrame.mc = eo
-frontFrame.inertia = (Ie, eo)
-
-frontWheel = mec.RigidBody()
-frontWheel.frame = F
-frontWheel.mass = mf
-frontWheel.mc = fo
-frontWheel.inertia = (If, fo)
+rearFrame = mec.RigidBody('Rear Frame', mc, (Ic, co), co, C)
+rearWheel = mec.RigidBody('Rear Wheel', md, (Id, do), do, D)
+frontFrame = mec.RigidBody('Front Frame', me, (Ie, eo), eo, E)
+frontWheel = mec.RigidBody('Front Wheel', mf, (If, fo), fo, F)
 
 bodyList = [rearFrame, rearWheel, frontFrame, frontWheel]
 

@@ -1512,7 +1512,8 @@ Notation
    use of his method to derive the equations of motion [Kane1975]_,
    [Kane1977]_, [Kane1977a]_, [Kane1978]_, [Man1979]_. Furthermore,
    [Zytveld1975]_ derived linear equations of motion of the bicycle and models
-   developed with AutoSim also employ a Kane based method [Sayers1990]_.
+   developed with AutoSim also employ Kane's method [Sayers1990]_,
+   [Sharp1999]_.
 
 .. [#psiaki] The coordinates are also used by [Franke1990]_, among others.
 

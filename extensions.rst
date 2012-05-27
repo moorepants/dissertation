@@ -15,7 +15,7 @@ Preface
 =======
 
 After I had derived the Whipple model, it was natural to start thinking about
-extending it to understand various other phenomna. It turned out that one of
+extending it to understand various other phenomena. It turned out that one of
 Mont's former students, David de Lorenzo, had worked on adding rider
 biomechanical degrees of freedom to the Whipple model in the early 90's,
 submitted the work to Vehicle System Dynamics, gotten a scathing review, and
@@ -50,6 +50,13 @@ models are all based on the basic formulation of the Whipple model in Chapter
 :ref:`eom` and I make use of the variables defined therein. Various
 combinations of these model extensions are used in the later Chapters for
 analysis of our more complicated systems.
+
+Notation
+========
+
+Each model presented in this chapter makes use of the notation defined in
+Chapter :ref:`eom` otherwise each model in each section is treated
+independently and may use the same notation of the other models.
 
 Lateral Force Input
 ===================
@@ -445,9 +452,9 @@ as fast as the caster mode and it is no longer dominated by steer angle. The
 mode decays in both roll and steer with roll dominant at low speeds and steer
 at high speeds. The unstable real eigenmode is dominant in roll angle and slows
 with increasing speed like the Whipple model, but is unstable for the given
-speeds. The stable osicallotory mode is dominant in steer and low speeds and
+speeds. The stable oscillatory mode is dominant in steer and low speeds and
 roll at high speeds. The 0.5 m/s case is interesting in that the mode is
-primarly a stable oscillation in steer angle around 0.3 hertz. As the speed
+primarily a stable oscillation in steer angle around 0.3 hertz. As the speed
 increases the larger roll angle magnitude is different in behavior than the
 Whipple weave mode.
 
@@ -518,11 +525,11 @@ Notation
 Front wheel flywheel
 ====================
 
-Another model extension that perked my interest involves adding an additional
-rotating wheel coincident with the front wheel. It has been shown theoretically
-that increasing the angular momentum of the front wheel via change in inertia
+Another model extension that perked my interest involves addition of an extra
+rotating wheel coincident with the front wheel. It is well known that that
+increasing the angular momentum of the front wheel via change in inertia
 ([Astrom2005]_, [Franke1990]_) or rotational speed, has a strong effect on the
-stability of the Whipple model. For the benchmark bicycle [Meijaard2007]_
+stability of the Whipple model. For the benchmark bicycle [Meijaard2007]_,
 independently increasing the moment of inertia of the front wheel, decreases
 both the weave and capsize speeds. A low weave speed may provide open loop
 stability advantages to riders at low speed, with the reasoning that a stable
@@ -531,23 +538,22 @@ both a bicycle without gyroscopic effects can be stable [Kooijman2011]_ and
 that humans can ride them [Jones1970]_ with little difficulty. The idea that
 gyroscopic action can stabilize a moving two wheeled vehicle has been
 demonstrated as early as the dawn of the 20th century, with the invention of
-the gyro car and the gyro monorail [Wikipedia?]_. Of more recent interest,
+the gyro monorail and the gyro car ([WikipediaGyromonrail2012]_,
+[WikipediaGyrocar2012]_) which made use of control servos to gyros to applied
+roll righting torques to the single track vehicles. Of more recent interest,
 several engineering students at Dartmouth University applied this theory to a
 compact flywheel mounted within the spokes of a children's bicycle wheel
-[Ward2006]_. This has since been developed into a commercially available
-product, the GyroBike, that claims to allow children to learn to ride easier,
-due to the bicycle's increased stability at low speeds [GyroBike2011]_. I was
-given an article about the bicycle from the Dartmouth alumni magazine and
-subsequently met the woman who was creating the startup company around the idea
-in San Francisco and was able to ride the full scale prototype and eventually
-purchased a 16" version. The bicycle alone stays very stable even to extremely
-low speeds, but when I as an experienced rider tried ride and control it the
-steering felt less responsive than I'd prefer.
-
-.. todo:: are their any gyro stablized two wheel vehicles earlier than the
-   car? Find a good citation.
-
-.. todo:: Add citation to the gyrobike website.
+[Ward2006]_ taking advantage of the fact that the flywheel imparts torques such
+that the bicycle steers into the fall. This has since been developed into a
+commercially available product, the GyroBike, that claims to allow children to
+learn to ride easier, due to the bicycle's increased stability at low speeds
+[GyroBike2011]_. I was given an article about the bicycle from the Dartmouth
+alumni magazine, subsequently met the woman created the startup company around
+the idea in San Francisco, was able to test ride the full scale prototype, and
+eventually purchased a 12" version of the bicycle. The bicycle alone stays very
+stable even to extremely low speeds, but when I, as an experienced rider, tried
+ride and control it the steering felt less responsive than one would generally
+prefer.
 
 .. todo:: Check size of gyrobike wheel.
 
@@ -564,11 +570,11 @@ steering felt less responsive than I'd prefer.
    </center>
 
 Using the Whipple model presented in Chapter :ref:`eom` as a base model, the
-GyroBike can be modeled by adding an additional symmetric rigid body, :math:`G`
-with mass :math:`m_g` to the system which rotates about the front wheel axis
-though a new generalized coordinate, :math:`q_9`. The angular velocity and
-acceleration of the new body are defined with respect to the simple kinematical
-differential equation
+flywheel's effect can be modeled by adding an additional symmetric rigid body,
+:math:`G` with mass :math:`m_g` to the system which rotates about the front
+wheel axis though a new generalized coordinate, :math:`q_9`. The angular
+velocity and acceleration of the new body are defined with the simple
+kinematical differential equation
 
 .. math::
    :label: eqQ9
@@ -589,12 +595,12 @@ same as the front wheel
 .. math::
    :label: eqVGo
 
-   ^N\bar{v}^{go} = ^N\bar{V}^{fo}
+   ^N\bar{v}^{g_o} = ^N\bar{v}^{f_o}
 
 .. math::
    :label: eqAGo
 
-   ^N\bar{a}^{go} = ^N\bar{a}^{fo}
+   ^N\bar{a}^{g_o} = ^N\bar{a}^{f_o}
 
 An additional torque, :math:`T_9`, is required to drive the flywheel relative
 to the front wheel
@@ -615,7 +621,7 @@ account the mass, :math:`m_g`, and inertia of the new body
 .. math::
    :label: eqIG
 
-   I_G =
+   \mathbf{I}_G =
    \begin{bmatrix}
      I_{G11} & 0 & 0\\
      0 & I_{G22} & 0\\
@@ -623,102 +629,171 @@ account the mass, :math:`m_g`, and inertia of the new body
    \end{bmatrix}
 
 The equations of motion are formed and linearized with respect to the nominal
-equilibrium point and a nominal angular velocity of the flywheel. The following
-figures show how increasing the speed of the flywheel pushes the weave and
-capsize critical speeds lower and lower, creating a stable speed range at
-speeds in which a person may learn to ride a bicycle.
+equilibrium point and a nominal angular velocity of the flywheel. Figures
+:ref:`10 <figGyroOff>`, :ref:`11 <figGyroVary>`, :ref:`12 <figGyroOffRider>`,
+and :ref:`13 <figGyroVaryRider>` show how adjusting the flywheel angular velocity can
+affect the stability of the bicycle which may be beneficial for people learning
+to ride a bicycle. All of the plots were generated using parameters measured
+from a production GyroBike and the rider's parameters were generated by scaling
+the Yeadon geometry of an adult, Charlie, to child size proportions which
+are detailed in Chapter :ref:`physicalparameters`.
 
-.. figure:: figures/extensions/gyrobike-flywheel-off.png
+.. _figGyroOff:
+
+.. figure:: figures/extensions/gyrobike-flywheel-off.*
    :width: 4in
    :align: center
+   :target: _images/gyrobike-flywheel-off.png
 
-   figGyroOff
+   The locus of the eigenvalue components with respect to the forward speed
+   when the flywheel is fixed to the front wheel (i.e. has the same angular
+   velocity as the front wheel). The solid lines show the real parts and the
+   dotted lines show the imaginary parts, with color matching the parts for a
+   given eigenvalue. Generated by ``src/extensions/gyro/gyrobike_linear.py``.
 
-   The root loci with respect to the rear wheel angular speed when the flywheel
-   is fixed to the front wheel (i.e. has the the same angular velocity as the
-   front wheel).
+.. _figGyroVary:
 
-.. figure:: figures/extensions/gyrobike-vary-flywheel.png
+.. figure:: figures/extensions/gyrobike-vary-flywheel.*
    :width: 4in
    :align: center
+   :target: _images/gyrobike-vary-flywheel.png
 
-   figGyroVary
+   The locus of the eigenvalue components with respect to the flywheel angular
+   speed when the forward velocity is 0.5 m/s. The solid lines show the real
+   parts and the dotted lines show the imaginary parts, with color matching the
+   parts for a given eigenvalue. Generated by
+   ``src/extensions/gyro/gyrobike_linear.py``.
 
-   The root loci with respect to the flywheel angular velocity when the the
-   forward velocity is 0.5 m/s. It shows that the system can certainly be made
-   stable by increasing the angular velocity of the flywheel, but it is also
-   interesting to note that increasing the velocity too much results in an
-   unstable system.
+:ref:`Figure 10 <figGyroOff>` depicts similar dynamics as one would expect from
+a riderless bicycle with a relatively low weave critical speed (~2.25 m/s).
+:ref:`Figure 11 <figGyroVary>` then shows that the very unstable system at low
+speeds can certainly be made stable by increasing the angular velocity of the
+flywheel. In particular the bicycle becomes stable around 1000 rpm but it is
+also interesting to note that increasing the velocity too much (> 3500 rpm)
+results in an de-stable system. The actual Gyrobike flywheel spins at speeds up
+to 2000 rpm and riderless stability can clearly be observed.
 
-.. figure:: figures/extensions/gyrobike-flywheel-off-rider.png
+.. _figGyroOffRider:
+
+.. figure:: figures/extensions/gyrobike-flywheel-off-rider.*
    :width: 4in
    :align: center
+   :target: _images/gyrobike-flywheel-off-rider.png
 
-   figGyroOffRider
+   The locus of the eigenvalue components with respect to the forward speed
+   when the flywheel is fixed to the front wheel (i.e. has the same angular
+   velocity as the front wheel) and a rigid child is seated on the bicycle. The
+   solid lines show the real parts and the dotted lines show the imaginary
+   parts, with color matching the parts for a given eigenvalue. Generated by
+   ``src/extensions/gyro/gyrobike_linear.py``.
 
-   The root loci with respect to the rear wheel angular speed when the flywheel
-   is fixed to the front wheel (i.e. has the the same angular velocity as the
-   front wheel) and a rigid child is seated on the bicycle.
+.. _figGyroVaryRider:
 
-Notice that if a child sized rider is rigidly added to the rear frame that the
-flywheel must spin at almost 4000 rpm for the system to be stable and the time
-constant of the unstable eigenvalue doesn't decrease decrease much until you at
-least have the flywheel spinning at 200 rpm.
-
-.. todo:: It would be interesting to know how fast the gyro wheel does spin. It
-   it has three speed settings.
-
-.. figure:: figures/extensions/gyrobike-vary-flywheel-rider.png
+.. figure:: figures/extensions/gyrobike-vary-flywheel-rider.*
    :width: 4in
    :align: center
+   :target: _images/gyrobike-vary-flywheel-rider.png
 
-   figGyroVaryRider
+   The locus of the eigenvalue components with respect to the flywheel angular
+   speed when the forward velocity is 0.5 m/s and a rigid child is seated on
+   the bicycle. The solid lines show the real parts and the dotted lines show
+   the imaginary parts, with color matching the parts for a given eigenvalue.
+   Generated by ``src/extensions/gyro/gyrobike_linear.py``.
 
-   The root loci with respect to the flywheel angular velocity when the the
-   forward velocity is 0.5 m/s when a rigid child is seated on the bicycle. It
-   shows that the system can certainly be made stable by increasing the angular
-   velocity of the flywheel, but it is also interesting to note that increasing
-   the velocity too much results in an unstable system.
+:ref:`Figure 12 <figGyroOffRider>` shows that the weave critical speed with a
+rider is about 1 m/s greater than without a rider. :ref:`Figure 13
+<figGyroOffRider>` shows that if a child sized rider is rigidly added to the
+rear frame that the flywheel must spin up to 3500 rpm for the system to be
+stable and the time constant of the unstable eigenvalue doesn't decrease
+relatively much until you at least have the flywheel spinning at 2000 rpm. Also
+as with the riderless case, the system can be de-stablized if the wheel spins at
+a high enough rate; in this case about 7000 rpm.
 
-.. figure:: figures/extensions/gyro-nonlin-sim.png
-   :width: 4in
+.. _figGyroNonLin:
+
+.. figure:: figures/extensions/gyro-nonlin-sim.*
+   :width: 5in
    :align: center
+   :target: _images/gyro-nonlin-sim.png
 
-   figGyroNonLin
+   The open loop non-linear simulation of the gyro bicycle given the initial
+   conditions: :math:`u_4=0.5` rad/s, :math:`u_6=-v/r_R` where :math:`v=0.5`
+   m/s, :math:`u_9=-5000` rpm.
 
-   The non-linear simulation of bicycle traveling at 4.6 m/s with the flywheel
-   spining at.
+:ref:`Figure 14 <figGyroNonLin>` shows the resulting time history of the
+non-linear model traveling at a very slow speed with the flywheel spinning fast
+enough to stabilize the bicycle. The gyroscopic torques causes the steer angle
+to change rapidly to steer into the fall. The conservative nature of the system
+causes the forward speed to increase slightly and in this case the flywheel
+rotational speed decreases slightly.
 
-.. todo:: Plot the flywheel rate on this plot too.
+This model and these examples give credence to the effectiveness of increasing
+the angular momentum of the front wheel in stabilizing the bicycle. The
+gyroscopic forces may not be necessarily for stability but have great power in
+stabilizing even very unstable systems. It does come a cost though, both in the
+flywheel weight and the need to spin the flywheel at high speeds. When the
+child rider's inertia is accounted for, very high spin speeds are needed to
+stabilize the system. And interestingly, increasing the flywheel speed too much
+can destabilize the system, albeit only marginally.
 
-.. todo:: Other possible plots: weave and capsize speeds as a function of flywheel
-   speed, 3D plot versus both parameters (u6 and u9)
+Notation
+--------
+
+:math:`G`
+   The flywheel rigid body.
+:math:`m_g`
+   Mass of the flywheel.
+:math:`q_9`
+   Angle of the flywheel with respect to the front wheel.
+:math:`u_9`
+   Angular rate of the flywheel with respect to the front wheel.
+:math:`g_o`
+   Flywheel mass center.
+:math:`T_9`
+   Torque acting between the front wheel and the flywheel.
+:math:`\mathbf{I}_G`
+   Inertia tensor of the flywheel.
+:math:`v`
+   The forward speed of the bicycle: :math:`v = - r_R u_6`.
 
 Leaning rider extension
 =======================
 
-A common assumption regarding how a person controls a bicycle with minimal or
-no steer input is that the rider can lean their body relative to the bicycle
-frame. This assumption is more often than not drawn for no-hands riding. A
-simple leaning rider can be modeled by adding an additional rider lean degree
-of freedom, :math:`q_9`, with an accompanying rider lean torque, :math:`T_9`.
-[Sharp2008]_, [Schwab2008]_, [Peterson2008a]_, have all modeled this system
-explicitly.
+A common assumption regarding how a person biomechanically controls a bicycle
+with minimal or no input via the handlebars is that the rider can lean their
+body relative to the bicycle rear frame. This assumption is more often than not
+drawn from observing no-hands riding and the rider seems to lean relative to
+the bicycle frame. A simple leaning rider can be modeled by adding an
+additional rider upper body as an inverted pendulum atop the bicycle.  This
+introduces an additional lean degree of freedom, :math:`q_9`, can be
+accompanied by a rider lean torque, :math:`T_9` which models the rider's
+ability to apply forces between the upper torso and the rear frame.
 
-.. todo:: talk a bit more about the conclusions in those papers.
+Many have created variations of this model in the past including
+[Lunteren1967]_, [Roland1972]_, [Weir1972]_, [Zytveld1975]_, [Nagai1983]_, etc.
+but as [Roland1972]_ points out the roll torque is the more realistic control
+input as opposed to roll angle as many of the other authors tend to prefer.
+Weir et al. notes the fact that lean control has much less authority than steer
+control and that the rider more or less leans equal and opposite to the
+vehicles roll angle [Weir1979a]_. The inverted pendulum with a roll torque has
+now been widely adopted and more recent works focus on understanding these
+types of models ([Sharp2007]_, [Sharp2008a]_, [Schwab2008]_, [Peterson2008a]_,
+etc.), with the hypothesis that control by roll torque is much less effective
+than steer torque being confirmed in all these studies.
 
-I define the upper body hinge as a horizontal line at a distance :math:`d_4`
-below the rear wheel center when the bicycle is in the nominal configuration.
-The direction cosine matrix relating the upper body to the rear frame is
+To build the same model, I define the upper body hinge as a horizontal line at
+a distance :math:`d_4` below the rear wheel center when the bicycle is in the
+nominal configuration. The direction cosine matrix relating the upper body to
+the rear frame is
 
 .. math::
    :label: eqDCMGtoC
 
    ^C\mathbf{R}^G =
    \begin{bmatrix}
-   c_\lambda & 0 & s_\lambda\\
-   -s_\lambda s_9 & c_9 & c_\lambda s_9\\
-   -s_\lambda c_9 & -s_9 & c_\lambda c_9
+     c_\lambda & 0 & s_\lambda\\
+     -s_\lambda s_9 & c_9 & c_\lambda s_9\\
+     -s_\lambda c_9 & -s_9 & c_\lambda c_9
    \end{bmatrix}
 
 A point, :math:`c_g`, on the hinge is then defined as
@@ -730,6 +805,13 @@ A point, :math:`c_g`, on the hinge is then defined as
 
 where :math:`\lambda` is the steer axis tilt and is a function of :math:`d_1`,
 :math:`d_2`, and :math:`d_3` as described in :ref:`eom`.
+
+The mass center is located by
+
+.. math::
+   :label: eqLocGo
+
+   \bar{R}^{g_o/c_g} = l_5 \hat{g}_1 + l_6 \hat{g}_3
 
 The angular velocity and angular acceleration of the upper body in the bicycle
 frame is defined as
@@ -780,11 +862,13 @@ are as follows
 
    ^N\omega^C\times(^N\omega^C\times\bar{r}^{c_g/d_o}) =
    &d_4(s_\lambda(u_5+s_4u_3)^2+(s_5u_4+c_4c_5u_3)(s_\lambda(s_5u_4+
-   c_4c_5u_3)+c_\lambda(c_5u_4-s_5c_4u_3)))\hat{c}_1 +\\
+   c_4c_5u_3)+\\
+   &c_\lambda(c_5u_4-s_5c_4u_3)))\hat{c}_1 +\\
    &d_4(u_5+s_4u_3)(c_\lambda(s_5u_4+c_4c_5u_3)-s_\lambda(c_5u_4-
    s_5c_4u_3))\hat{c}_2 -\\
    &d_4(c_\lambda(u_5+s_4u_3)^2+(c_5u_4-s_5c_4u_3)(s_\lambda(s_5u_4+
-   c_4c_5u_3)+c_\lambda(c_5u_4-s_5c_4u_3)))\hat{c}_3
+   c_4c_5u_3)+\\
+   &c_\lambda(c_5u_4-s_5c_4u_3)))\hat{c}_3
 
    ^N\bar{\alpha}^C\times\bar{r}^{c_g/d_o} =
    &d_4c_\lambda(c_4u_3u_4+\dot{u}_5+s_4\dot{u}_3)\hat{c}_1 +\\
@@ -802,65 +886,64 @@ are as follows
    ^N\bar{\alpha}^G\times\bar{r}^{g_o/c_g}
 
    ^N\omega^G\times(^N\omega^G\times\bar{r}^{g_o/c_g}) =
-   &(-l_5(s_9s_{\lambda-5}u_4-c_9u_5-(s_4c_9+s_9c_4c_{\lambda-5})u_3)^2-
-   (s_9u_5+c_9s_{\lambda-5}u_4+(s_4s_9-\\
+   &(-l_5(s_9s_{\lambda-5}u_4-c_9u_5-(s_4c_9+s_9c_4c_{\lambda-5})u_3)^2-\\
+   &(s_9u_5+c_9s_{\lambda-5}u_4+(s_4s_9-\\
    &c_4c_9c_{\lambda-5})u_3)(l_6(u_9+
-   c_{\lambda-5}u_4+c_4s_{\lambda-5}u_3)+l_5(s_9u_5+c_9s_{\lambda-5}u_4+
+   c_{\lambda-5}u_4+c_4s_{\lambda-5}u_3)+\\
+   &l_5(s_9u_5+c_9s_{\lambda-5}u_4+
    (s_4s_9-c_4c_9c_{\lambda-5})u_3)))\hat{g}_1 -\\
    &(s_9s_{\lambda-5}u_4-c_9u_5-(s_4c_9+s_9c_4c_{\lambda-5})u_3)(l_5(u_9+
-   c_{\lambda-5}u_4+c_4s_{\lambda-5}u_3)-l_6(s_9u_5+c_9s_{\lambda-5}u_4+\\
-   &(s_4s_9-c_4c_9c_{\lambda-5})u_3))\hat{g}_2+\\
-   &(-l_6(s_9s_{\lambda-5}u_4-c_9u_5-(s_4c_9+s_9c_4c_{\lambda-5})u_3)^2-
-   (u_9+c_{\lambda-5}u_4+c_4s_{\lambda-5}u_3)(l_6(u_9+c_{\lambda-5}u_4+\\
+   c_{\lambda-5}u_4+c_4s_{\lambda-5}u_3)-\\
+   &l_6(s_9u_5+c_9s_{\lambda-5}u_4+(s_4s_9-c_4c_9c_{\lambda-5})u_3))\hat{g}_2+\\
+   &(-l_6(s_9s_{\lambda-5}u_4-c_9u_5-(s_4c_9+s_9c_4c_{\lambda-5})u_3)^2-\\
+   &(u_9+c_{\lambda-5}u_4+c_4s_{\lambda-5}u_3)(l_6(u_9+c_{\lambda-5}u_4+\\
    &c_4s_{\lambda-5}u_3)+l_5(s_9u_5+c_9s_{\lambda-5}u_4+(s_4s_9-
    c_4c_9c_{\lambda-5})u_3)))\hat{g}_3
 
    ^N\bar{\alpha}^G\times\bar{r}^{g_o/c_g} =
    &-l_6(s_9u_5u_9+c_9s_{\lambda-5}u_4u_9+u_3(s_4s_9u_9+s_4s_9c_{\lambda-5}u_4-
-   c_4c_9u_4-s_9c_4s_{\lambda-5}u_5-c_4c_9c_{\lambda-5}u_9)+\\
-   &s_9s_{\lambda-5}\dot{u}_4-s_9c_{\lambda-5}u_4u_5-c_9\dot{u}_5-
+   c_4c_9u_4-s_9c_4s_{\lambda-5}u_5-\\
+   &c_4c_9c_{\lambda-5}u_9)+s_9s_{\lambda-5}\dot{u}_4-s_9c_{\lambda-5}u_4u_5-c_9\dot{u}_5-
    (s_4c_9+s_9c_4c_{\lambda-5})\dot{u}_3)\hat{g}_1 +\\
    &(l_6(s_4s_{\lambda-5}u_3u_4+c_4c_{\lambda-5}u_3u_5-s_{\lambda-5}u_4u_5-
-   \dot{u}_9-c_{\lambda-5}\dot{u}_4-c_4s_{\lambda-5}\dot{u}_3)+
-   l_5(s_9s_{\lambda-5}u_4u_9+c_9c_{\lambda-5}u_4u_5-\\
-   &c_9u_5u_9-u_3(s_4c_9u_9+s_9c_4u_4+s_4c_9c_{\lambda-5}u_4+
-   s_9c_4c_{\lambda-5}u_9-c_4c_9s_{\lambda-5}u_5)-
+   \dot{u}_9-c_{\lambda-5}\dot{u}_4-c_4s_{\lambda-5}\dot{u}_3)+\\
+   &l_5(s_9s_{\lambda-5}u_4u_9+c_9c_{\lambda-5}u_4u_5-
+   c_9u_5u_9-u_3(s_4c_9u_9+s_9c_4u_4+s_4c_9c_{\lambda-5}u_4+\\
+   &s_9c_4c_{\lambda-5}u_9-c_4c_9s_{\lambda-5}u_5)-
    s_9\dot{u}_5-c_9s_{\lambda-5}\dot{u}_4-
    (s_4s_9-c_4c_9c_{\lambda-5})\dot{u}_3))\hat{g}_2 +\\
    &l_5(s_9u_5u_9+c_9s_{\lambda-5}u_4u_9+u_3(s_4s_9u_9+s_4s_9c_{\lambda-5}u_4-
-   c_4c_9u_4-s_9c_4s_{\lambda-5}u_5-c_4c_9c_{\lambda-5}u_9)+
-   s_9s_{\lambda-5}\dot{u}_4-\\
-   &s_9c_{\lambda-5}u_4u_5-c_9\dot{u}_5-(s_4c_9+
+   c_4c_9u_4-s_9c_4s_{\lambda-5}u_5-\\
+   &c_4c_9c_{\lambda-5}u_9)+s_9s_{\lambda-5}\dot{u}_4-
+   s_9c_{\lambda-5}u_4u_5-c_9\dot{u}_5-(s_4c_9+
    s_9c_4c_{\lambda-5})\dot{u}_3)\hat{g}_3
-
-.. todo:: I'm not sure how useful it is to print out these long equations.
-   Maybe I shouldn't do it and refer to the code.
 
 I introduce two additional torques. The first is the input torque between the
 rear frame and the rider's upper body, :math:`T_9`. This can be considered as
-the active torque contribution of which the rider's control system would
-provide. The second torque is defined as
+the active torque contribution which the rider's control system would provide.
+The second torque is defined as
 
 .. math::
    :label: eqPassiveTorque
 
-   T_9^p = -c_9 * u_9 - k_9 * q_9
+   T_9^p = -c_9 u_9 - k_9 q_9
 
 where :math:`c_9` and :math:`k_9` are damping and stiffness coefficients which
 are introduced as way to characterize the passive torques generated by the
-tissue, ligament, tendon and bone structure. A free lean joint is far from
-realistic as large active torques would be required to keep the body upright.
-These equivalent to simple proportional and derivative negative feedback on the
-roll angle and could be defined as such also.
+tissue, ligament, tendon, and bone structure. A free lean joint without this
+passive torque is far from realistic as large active torques would be required
+to keep the body upright. These are equivalent to simple proportional and
+derivative negative feedback on the roll angle and could be defined as such
+also.
 
 The additional generalized force is
 
 .. math::
    :label: eqGravity
 
-  \bar{R}^{g_o} = m_Gg\hat{n}_3
+   \bar{R}^{g_o} = m_Gg\hat{n}_3
 
-and the generalized torques modified to include the new torques
+and the generalized torques are modified to include the new torques
 
 .. math::
    :label: eqGenTorques
@@ -874,52 +957,90 @@ The mass of the upper body is :math:`m_g` and it is assumed to by
 symmetric about the sagital plane
 
 .. math::
-   :label: eqIG
+   :label: eqIG2
 
-   I_G =
+   \mathbf{I}_G =
    \begin{bmatrix}
-   I_{G11} & 0 & I_{G13}\\
-   0 & I_{G22} & 0\\
-   I_{G13} & 0 & I_{G33}
+     I_{G11} & 0 & I_{G13}\\
+     0 & I_{G22} & 0\\
+     I_{G13} & 0 & I_{G33}
    \end{bmatrix}
 
 The equations of motion are formed with Kane's method and linearized as
-described in :ref:`eom`. This linear model has been explicitly explored by both
-[Schwab2008]_ and [Peterson2008a]_ with parameter values estimated from the by
-spliting the values of the benchmark parameter set. The following plot uses
-more realistic rider parameters which are generated with methods described in
-Chapter :ref:`physicalparameters` and the passive lean torque coefficients are
-set to zero. Notice that the largest eigenvalue is much larger than reported in
-Schwab and Peterson with a time to double of about a tenth of a second. We
-found that root difficult to stabilize when employing a manual control model
-based on the one presented in Chapter :ref:`control`, which suggests the need
-for some additional passive stabilization.
+described in Chapter :ref:`eom`. This linear model has been explicitly explored
+by both [Schwab2008]_ and [Peterson2008a]_ with parameter values estimated by
+proportioning the benchmark parameter set from [Meijaard2007]_. The following
+plot, :ref:`Figure 15 <figRiderLean>`, uses more realistic rider parameters
+which are generated with methods described in Chapter :ref:`physicalparameters`
+and the passive lean torque coefficients are set to zero. Notice that the
+largest eigenvalue is much larger than reported in Schwab and Peterson with a
+time to double of about a tenth of a second. We found that root difficult to
+stabilize when employing a manual control model based on the one presented in
+Chapter :ref:`control`, which suggests the need for some additional passive
+stabilization.
 
-.. figure:: figures/extensions/rider-lean.png
+.. _figRiderLean:
+
+.. figure:: figures/extensions/rider-lean.*
    :width: 5in
    :align: center
+   :target: _images/rider-lean.png
 
-   figRiderLean
+   The locus of the eigenvalue components with respect to the forward speed for
+   the leaning rider model. The solid lines show the real parts and the dotted
+   lines show the imaginary parts, with color matching the parts for a given
+   eigenvalue. Generated by ``src/extensions/lean/riderlean.py``.
 
-   Needs a caption.
+The damping stiffness coefficients can be selected such that the highly
+unstable rider mode is stabilized and the stable speed range observed in the
+Whipple model is restored, :ref:`Figure 16 <figRiderLeanPassive>`. It is likely
+that control strategies that work with the Whipple model can be applied to this
+model with appropriate stiffness and damping selections. The parameters used
+are taken from [Lorenzo1996]_, which he estimated, :math:`k_9=128` N-m/rad and
+:math:`c_9=50` N-m/rad/s.
 
-The damping stiffness coefficient can be selected to such that the highly
-unstable rider mode is stablized and the stable speed range observed in the
-Whipple model is restored and thus setting the model up for similar control.
-The parameters used are taken from [Lorenzo1996]_, which he estimated,
-:math:`k_9=128` N-m/rad and :math:`c_9=50` N-m/rad/s.
+.. _figRiderLeanPassive:
 
-.. figure:: figures/extensions/rider-lean-damp-stiff.png
+.. figure:: figures/extensions/rider-lean-damp-stiff.*
    :width: 5in
    :align: center
+   :target: _images/rider-lean-damp-stiff.png
 
-   figRiderLeanPassive
+   The locus of the eigenvalue components with respect to the forward speed for
+   the leaning rider model. The solid lines show the real parts and the dotted
+   lines show the imaginary parts, with color matching the parts for a given
+   eigenvalue. Generated by ``src/extensions/lean/riderlean.py``.
 
-   Needs a caption.
+The leaning rider model exhibits a very fast, unstable eigenmode which is
+constant with respect to speed when the upper body is treated like a simple
+inverted pendulum. In general, rider lean degrees of freedom have a
+de-stabilizing effect to the Whipple model. A combination of the rider's
+active and passive postural control most likely stabilize this mode in the real
+system, but it is debatable whether the passive control completely stabilizes
+the mode.
 
-.. todo:: These plots were generated with rider parameters based on my original
-   method, it wouldn't take much to update the parameters to reflect the yeadon
-   method.
+Notation
+--------
+
+:math:`d_4`
+   The distance to the torso hinge.
+:math:`l_5,l_6`
+   Distances to locate the upper body mass center.
+:math:`s_{\lambda-5}`, :math:`c_{\lambda-5}`
+   Shorthand for :math:`\operatorname{sin}(\lambda-q_5)` and
+   :math:`\operatorname{sin}(\lambda-q_5)`.
+:math:`c_g`
+   Rider hinge point.
+:math:`c_9,k_9`
+   The passive stiffness and damping coefficients.
+:math:`m_g`
+   Mass of the upper body (torso, arms, neck, and head).
+:math:`\mathbf{I}_g`
+   Inertia of the upper body.
+:math:`T_9`
+   The active torque acting between the rider's upper body and the rear frame.
+:math:`T_9^p`
+   The passive torque acting between the rider's upper body and the rear frame.
 
 David de Lorenzo extension
 ==========================
@@ -932,17 +1053,19 @@ some findings from a short conference paper that Luke Peterson and I put
 together for the 11th International Symposium on Computer Simulation in
 Biomechanics [Moore2007]_. I have included it here almost verbatim but have
 updated the writings to tie it into the dissertation and make it less dated. I
-also have not updated the derivation of the equations of motion to reflect the
-parameters and methodolgy presented in this dissertation, so I will leave those
-out but they can be found in the source code. None-the-less the model can be
+have not updated the derivation of the equations of motion to reflect the
+parameters and methodology presented in this dissertation, so I will leave those
+out but they can be found in the source code. Nonetheless the model can be
 systematically derived in the same fashion as the previous sections. The
-initial interest in this model was an unpublished paper by David de Lorenzo
-[Lorenzo1996]_ and Mont Hubbard which explored parameter studies of a model
-similar to the one that is presented. I have a inclination to try to get it
-published as a heavy review stopped it in its tracks in 1996, but that will
-have to wait. Here I pursue the effects that passive springs and dampers at the
-biomechanical joints have on the stability of the bicycle, much in the same way
-as the previous section but with a more complex rider model.
+initial interest in this model was based around an unpublished paper by David
+de Lorenzo [Lorenzo1996]_ and Mont Hubbard which explored parameter studies of
+a model similar to the one that is presented. I have a inclination to try to
+get it published as a heavy review stopped it in its tracks in 1996, but that
+will have to wait. Here I pursue the effects that passive springs and dampers
+at the biomechanical joints have on the stability of the bicycle, much in the
+same way as the previous section but with a more complex rider model.
+
+.. todo:: post the source code to the Taiwan paper
 
 Introduction
 ------------
@@ -978,22 +1101,21 @@ the foot pivot by a revolute joint and at the seat by a linear spring and
 damper in parallel. The third coordinate is the twist of the upper body
 relative to the lower body about a nominally vertical axis. Both upper body
 lean and twist motions are resisted by linear torsional springs and dampers,
-also in parallel. These rider degrees of freedom are detailed in
-:ref:`figLorenzoConfiguration` and are similar to the motorcycle rider model
+also in parallel. These rider degrees of freedom are detailed in :ref:`Figure
+17 <figLorenzoConfiguration>` and are similar to the motorcycle rider model
 constructed by Katayama, et al. [Katayama1988]_ with the exception of the rider
 twist. The lateral linear spring and damper represents the connection between
-the rider’s crotch and the seat [#]_. The spring and damper constants are
+the rider’s crotch and the seat [#crotch]_. The spring and damper constants are
 influenced by the seat and the properties of the skeletal muscle tissue of
 thighs and/or buttocks. The torsional springs and dampers represent the
 musculoskeletal stiffness and damping at the hips.
 
 .. _figLorenzoConfiguration:
 
-.. figure:: figures/extensions/lorenzo-configuration.png
+.. figure:: figures/extensions/lorenzo-configuration.*
    :width: 5 in
    :align: center
-
-   figLorenzoConfiguration
+   :target: _images/lorenzo-configuration.*
 
    Pictorial description of (a) the additional rider degrees of freedom and (b)
    the six rigid bodies.
@@ -1005,9 +1127,8 @@ generalized speeds, of which four are eliminated due to the nonholonomic
 constraints for the purely rolling wheels. The nonlinear equations of motion
 were linearized numerically about the nominal upright, constant velocity
 configuration using a central differencing method with an optimum perturbation
-size. The linear system about the nominal configuration and constant speed is
-tenth order in frame roll, steer, lower body lean, upper body lean and upper
-body twist.
+size. The linear system is tenth order in frame roll, steer, lower body lean,
+upper body lean, and upper body twist.
 
 The physical parameters are adapted from [Meijaard2007]_ with exception of the
 rider pivot point locations and the spring and damper constants. The pivot
@@ -1022,66 +1143,70 @@ Results and Discussion
 
 In order to understand how the eigenvalues impact each state variable of our
 system, it is essential to examine the components of each eigenvector
-corresponding to each generalized coordinate.  By detailed examination, we are
+corresponding to each generalized coordinate. By detailed examination, we are
 able to determine how each eigenvalue contributes to each generalized
 coordinate, across the range of speeds examined.
 
-Figure :ref:`figLorenzoEig` shows the real parts of the identified eigenvalues
-of the flexible rider model. By comparison to the Whipple model, it can be seen
-that the modes are greatly affected by the additional rider states. The weave
-mode has become unstable for all velocities due and no stable speed range is
-present.
+:ref:`Figure 18 <figLorenzoEig>` shows the real parts of the identified
+eigenvalues of the flexible rider model and :ref:`Figure 19
+<figLorenzoComplex>`. By comparison to the Whipple model, it can be seen that
+the modes are greatly affected by the additional rider states. The weave mode
+has become unstable for all velocities due and no stable speed range is
+present. Additionally, the rider modes are all complex.
 
 .. _figLorenzoEig:
 
-.. figure:: figures/extensions/lorenzo-eig.jpg
+.. figure:: figures/extensions/lorenzo-eig.*
    :align: center
-   :width: 5in
+   :width: 4in
+   :target: _images/lorenzo-eig.jpg
 
-   figLorenzoEig
-
-   The eigenvalues as a function of forward speed.
+   The real parts of the eigenvalues as a function of forward speed with the
+   stiffness and damping terms set to realistic values.
 
 .. _figLorenzoComplex:
 
-.. figure:: figures/extensions/lorenzo-plane.png
-   :width: 3 in
+.. figure:: figures/extensions/lorenzo-plane.*
+   :width: 2 in
    :align: center
+   :target: _images/lorenzo-plane.png
 
-   figLorenzoComplex
-
-   The root loci with respect to speed.
+   The root locus of the eigenvalues with respect to speed.
 
 Examining the eigenvector of the weave mode at different velocities we find
 that at low speeds the weave mode is dominated by frame roll and steer, while
-at high speeds the weave is dominated by upper body lean and twist. This
-phenomenon was also observed by Limebeer and Sharp [Limebeer2006]_.
-Furthermore, another unstable oscillatory eigenvalue pair is present at
-velocities below about 4 m/s for this parameter set.
+at high speeds the weave is dominated by upper body lean and twist,
+:ref:`Figure 19 <figLorenzoEigVec>`. This phenomenon was also observed by
+Limebeer and Sharp [Limebeer2006]_. Furthermore, another unstable oscillatory
+eigenvalue pair is present at velocities below about 4 m/s for this parameter
+set.
 
 .. _figLorenzoEigVec:
 
 .. figure:: figures/extensions/lorenzo-eigvec.png
-   :width: 6 in
+   :width: 5 in
    :align: center
 
    figLorenzoEigVec
 
-   The eigenvector components.
+   The weave mode eigenvector components for the Whipple model (left) and the
+   de Lorenzo model (right) at 5.0 m/s.
 
 As the stiffness and damping coefficients for the rider/frame coupling are
 increased (by factors of about :math:`10^3` and :math:`30` respectively), the
 eigenvalues begin to match those of the Whipple model, and a stable speed range
 reappears. However, the values of stiffness and damping for which a stable
-speed range did exist are unrealistically high.
+speed range did exist are unrealistically high :ref:`Figure 20
+<figLorenzoHigh>`.
+
+.. _figLorenzoHigh:
 
 .. figure:: figures/extensions/lorenzo-high.jpg
-   :width: 5 in
+   :width: 4 in
    :align: center
 
-   figLorenzoHigh
-
-   The eigen fucking values.
+   The real parts of the eigenvalues as a function of forward speed with the
+   stiffness and damping terms set to unrealistically stiff and damped values.
 
 Conclusion
 ----------
@@ -1100,20 +1225,20 @@ dependence on stability across a range of speeds for ranges of stiffness and
 damping at the biomechanical joints can shed more light on the system for more
 conclusive results.
 
-.. secFlexibleRider:
+.. _secFlexibleRider:
 
 Flexible rider (hip rotation, back lean and twist)
 ==================================================
 
 I've ended up thinking a great deal about the actual biomechanical motion one
 uses to balance a bicycle when riding no-handed and I've learned much about it
-by talking with colleagues such as Jim P., Jodi and Arend. For the final
-studies in this dissertation I had intended to do a thorough study of the
+by talking with colleagues such as Jim P., Jodi, Arend, and others. For the
+final studies in this dissertation I had intended to do a thorough study of the
 dynamics of balancing with no hands based around the structure of the actual
-biomechanics we employ. This no-hand biomechanical model also relates to
-what we may do even when we have our hands on the bars, albeit with much
-smaller magnitudes as steer is almost always the optimal control input to the
-bicycle which gives much more bang for the buck.
+biomechanics we employ. This no-hand biomechanical model also relates to what
+we may do even when we have our hands on the bars, albeit with much smaller
+magnitudes as steer is almost always the optimal control input to the bicycle
+which gives much more bang for the buck.
 
 It is relatively easy to learn to ride without using your hands and many people
 that know how to ride a bicycle can do so. Some can navigate roads and
@@ -1123,60 +1248,79 @@ turn is coupled to steering. Driving the roll angle, drives the steer angle
 which points you in the direction you want to go. In the purely mechanical
 sense one can imagine that a rider could "lean" relative to the rear frame,
 thus inducing the counter reaction causing the frame to roll the opposite
-direction you lean. This is often the chosen model [Peterson2008a]_,
-[Schwab2008]_,... others, and is most intuitive and simple model but I think
-the idea of leaning may in fact be too simplistic to describe what is really
-going on in a bicycle [#]_ . The rider's upper body is typically more than
-three times the mass of the bicycle and it takes much more force to move in
-inertial space than the low mass bicycle. The studies that are presented in
-:ref:`delftbicycle` and :ref:`motioncapture` show that the rider's upper body
-moves little relative to the rear frame and even inertially with respect to
-upper body roll or lean in inertial space, but that the bicycle frame can
-quickly roll relative to the inertially "fixed" rider. With that in mind, one can
-imagine rolling the bicycle frame underneath your body by using your leg and
-butt muscles. It is clearly evident when riding no hands as you feel the seat
-moving back and forth under your butt. Another interesting thing to note is
-that it is virtually impossible to control a bicycle without your hands and
-*your feet* placed on the grips and pedals. Removing your feet from the pedals
-takes away the ability to apply forces from the rider's body to the bicycle
-frame which can contribute to change in the bicycle roll angle. This leads me to
-believe that no hand control is dependent on the rider's ability to roll the
-bicycle frame using the lower extremity muscles which are critically dependent
-on the leg.
+direction you lean. This is often the chosen model [Zytveld1975]_,
+[Peterson2008a]_, [Schwab2008]_, [Sharp2008a]_, etc. and is most intuitive and
+simple model but I think the idea of leaning may in fact be too simplistic to
+describe what is really going on in a bicycle [#motorcyclelean]_.
+
+The rider's upper body is typically more than three times the mass of the
+bicycle and it takes proportionally as much force to move it. The studies that
+are presented in Chapters :ref:`delftbicycle` and :ref:`motioncapture` show
+that the rider's upper body both moves little relative to the rear frame and
+leans little with  with respect to inertial space [#weir]_. In contrast the bicycle can
+quickly roll relative to the inertially "fixed" rider. With that in mind, it is
+possible to imagine rolling the bicycle frame underneath your body by using
+your leg and butt muscles. It is clearly evident when riding no hands as you
+feel the seat moving back and forth under your butt. Another interesting thing
+to note is that it is virtually impossible to control a bicycle without your
+hands and *your feet* placed on the grips and pedals. Removing your feet from
+the pedals takes away the ability to apply forces from the rider's body to the
+bicycle frame which can contribute to change in the bicycle roll angle.
+Secondly, it is also of note that the roll angle of the bicycle can be command
+much easier when the rider is up off the seat (i.e. the rider contacts the
+bicycle only with his hands and feet). This leads me to believe that no hand
+control is dependent on the rider's ability to roll the bicycle frame using the
+lower extremity muscles which are critically dependent on the leg.
 
 If that is true, then there is a most likely a simple model that can capture
 the relative motion of the bicycle rear frame with respect to the lower
-extremities and hips. This lead me to examine the data from the motion capture
-experiments of a no-hand run with the rider pedaling. I plotted the motion of
-tail bone and hip markers in the rear frame reference frame from the
-perspective of looking at the rider's butt from behind. This plot was shows
-that the butt moves laterally with respect to bike frame a bit, but more
-prevalent is the curves that the hips follow. One can then visualize the hips
-rotating about a line just below the seat that runs fore to aft.
-
-.. figure:: figures/extensions/hip-trace.png
-   :width: 5in
-   :align: center
-
-   figHipTrace
-
-   The hip trace from run # 3104.
-
-.. todo:: improve this plot and draw the arc of the hip motion
-
-Gilbert and I worked on exploring this motion and theorizing a harness of some
-sort that would both constrain the rider's motion to these key motions and
-allows us to measure the forces and the kinematics involved. We created two
-videos of the rider. The first video is shot from behind and shows me balancing
-no-handed on a treadmill. I taped three sticks to my back: one across the
-shoulders, the second to the upper portion of my spine and the third to the
-lower portion. The idea was to visualize the dominant motion of the rider with
-respect to the bicycle frame and how the spine moved. I chose these sticks
-based on the motion capture studies we did. We observed that the spine bend can
-probably be described by a single joint in the middle of the spine and that the
-butt and hips roll about the seat.
+extremities and hips. To help confirm this I examined the data from the motion
+capture experiments (Chapter :ref:`motioncapture`) of a no-hand run with the
+rider pedaling. :ref:`Figure 21 <figHipTrace>` plots the motion of the tail
+bone and hip markers in the rear frame reference frame from the perspective of
+looking at the rider's torso from the front for a single run. This plot was
+shows that the tail bone moves laterally with respect to bike frame, but more
+prevalent are the curves that the hips follow. This gives indication that the
+hip bone basically rotates about an axis just below the seat that runs
+longitudinally with respect to the bicycle.
 
 .. raw:: html
+
+   <p>The following video shows a rider balancing at 10 km/h without using his
+   hands.</p>
+
+   <center>
+     <iframe width="480" height="360"
+       src="http://www.youtube.com/embed/7KXQPUsA3ds"
+       frameborder="0" allowfullscreen>
+     </iframe>
+   </center>
+
+.. _figHipTrace:
+
+.. figure:: figures/extensions/hip-trace.*
+   :width: 4in
+   :align: center
+   :target: _images/hip-trace.png
+
+   The hip trace from run # 3104. This plots the position of the two hip
+   markers and the tail bone marker in space over time. `View the video
+   <http://www.youtube.com/7KXQPUsA3ds>`_.
+
+Gilbert and I worked on exploring this motion and theorizing a harness of some
+sort that would both constrain the rider's motion in this was and allows us to
+measure the forces and the kinematics involved. We created a `video
+<http://www.youtube.com/embed/FcAp-DbHp9M>`_ shot from behind and shows me
+balancing no-handed on a treadmill. I taped three sticks to my back: one across
+the shoulders, the second to the upper portion of my spine and the third to the
+lower portion. The idea was to visualize the dominant motion of the rider with
+respect to the bicycle frame and how the spine moved. I chose these sticks
+based on the motion capture studies we did.  This video confirmed that the
+spine bend can probably be described by a single joint in the middle of the
+spine and that the butt and hips roll about the seat.
+
+.. raw:: html
+
    <p>The following video demonstrates that the bicycle frame does roll
    relative to the somewhat inertially fixed rider, that the hips rotate about
    the seat and also that the spine may only need one laterally rotational
@@ -1190,18 +1334,19 @@ butt and hips roll about the seat.
    </center>
 
 At this point, we constructed a mock-up of a harness that would both measure
-these motions and limit the rider to those motions.
+these motions and limit the rider to the observed motions.
 
 .. _figTestRiderHarness:
 
-.. figure:: figures/extensions/test-rider-harness.jpg
+.. figure:: figures/extensions/test-rider-harness.*
    :width: 3in
    :align: center
+   :target: _images/test-rider-harness.png
 
-   figTestRiderHarness
-
-   A mock-up of a harness to measure the dominant motions of the rider, which
-   also constrains the rider to some degree to the prescribed  motion.
+   A mock-up of a harness to measure the dominant motions of the rider's body
+   relative to the bicycle frame. The lower brace is affixed the rider's hips
+   and rotates relative to the bicycle frame. The second joint allows the
+   rider's torso to rotate relative to the hips.
 
 The model to described this motion would have a revolute joint just below the
 seat such that the riders hips can roll about the seat. The legs would be
@@ -1211,67 +1356,52 @@ brace and a single revolute joint for back lean relative to the hips would be
 measured. I also considered measuring the rider's torso twist angle relative to
 the hips.
 
-.. todo:: Add the Autodesk Inventor drawing of this model, or even an
-   animation.
-
 We intended to develop a harness and pair it with a force measuring seat post
 and foot pegs which measure the downward force applied by the feet to the
 bicycle with the goal to characterize the force interaction between the rider
-and the bicycle which causes the bicycle to roll.
-
-.. todo:: mention how changing the roll angle when you off the seat is very
-   easy
-
-.. todo:: cite Weir1979a about the motorcycle rolling and the body staying
-   still.
+and the bicycle which causes the bicycle to roll. I included this section to
+simply document the thoughts and effort, but none of this was ever executed in
+a proper experiment.
 
 Conclusions
 ===========
 
 I've presented several of the extensions to the Whipple model that I've made
-use of and talked some about there characteristics. It surely isn't exhaustive
-on any but provides some useful conclusions for the coming chapters.
+use of and gone over some about their characteristics. The details are
+exhaustive but provides some useful conclusions for the coming chapters.
 
 I showed that the lateral force input we used in the control experiments must
-be properly accounted for and not simply assumed to be characterized by a roll
-torque.
+be properly accounted for and not simply assumed to be characterized by a pure
+roll torque.
+
+The addition of the inertial affects of the arms change the system dynamics
+significantly. In particular, it eliminates any stability and the capsize mode
+becomes very unstable.
 
 Adding a flywheel to the front wheel of a bicycle can radically change it's
-stability regime and can make the model stable as very low speeds, slower than
+stability regime and can make the model stable at very low speeds, slower than
 average walking. But if the inertial effects of the rider are taken into
 account, the flywheel may have to spin at very high speeds for any significant
 change in dynamics.
 
-The addition of the inertial affects of the arms change the system dynamics
-significantly. In particular by eliminating the stable speed range and the
-capsize mode becomes very unstable.
-
-Adding various rider degrees of freedom create an unstable system, but passive
-forces acting on the new joints can potentially stabilize the new modes. The
-rider must use a combination of passive and active control on his body to keep
-the bicycle/rider system stable.
+Adding various rider degrees of freedom generally create an unstable system,
+but passive forces acting on the new joints can potentially stabilize the new
+modes. The rider must use a combination of passive and active control on his
+body to keep the bicycle/rider system stable.
 
 Finally, I've shown some ideas of developing a slightly different biomechanical
 model of the rider that may be a more realistic way of characterizing the
 motion used for non-steer related control of the bicycle.
 
-Notation
-========
-
-Each model presented in this chapter makes use of the notation defined in
-Chapter :ref:`eom` otherwise each model in each section is treated
-independently and may use the same notation
-
-:math:`c_g`
-   Rider hinge point.
-:math:`c_9,k_9`
-   The passive stiffness and damping coefficients.
-
 .. rubric:: Footnotes
 
-.. [#] We got a kick out of "crotch stiffness" i.e. the stiffness of the
+.. [#crotch] We got a kick out of "crotch stiffness" i.e. the stiffness of the
    crotch spring, and tried to encourage Mont to use the terminology when he
    presented this for us in Taiwan.
 
-.. [#] Leaning on a motorcycle makes more sense as the mass of the motorcycle
+.. [#motorcyclelean] Leaning on a motorcycle makes more sense as the mass of the motorcycle
    is comparable or more than the mass of the riders upper body.
+
+.. [#weir] [Weir1979a]_ points out that this with respect to motorcycles in
+   that the rider's upper body mostly stays still and rider's lean angle is
+   equal and opposite to the motorcycle.

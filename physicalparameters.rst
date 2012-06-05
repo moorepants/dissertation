@@ -34,7 +34,7 @@ measure an assortment of bicycles we had available around the lab in Delft
 [Moore2010]_. This was certainly a tedious task, but I believe a rich data set
 was created and the measurement methodology tightened up considerably. Once I
 was back in Davis, we setup almost identical equipment to measure the two new
-bicycles we were constructing, see Chatper :ref:`davisbicycle`.. Danique
+bicycles we were constructing, see Chatper :ref:`davisbicycle`. Danique
 Fintelman helped us come up with a more accurate geometry measurement. Steven
 Yen also used the equipment to measure a children's bicycle with a gyro wheel.
 Additionally, we improved the human parameter estimates when Chris Dembia

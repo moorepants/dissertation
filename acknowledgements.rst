@@ -9,6 +9,8 @@ Acknowledgements
    now use at your own risk. The information may or may not be correct.
    Reviews, comments and suggestions are welcome and appreciated.
 
+.. todo:: add the folks that helped with the body casts
+
 On the road to a higher degree, there are always many people who assist in the
 process, from one's professors to librarians, but there are always some very
 special folks to thank. Jonathan Eisen, a professor at Davis, pointed out once

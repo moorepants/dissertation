@@ -6,21 +6,24 @@ pathToData = '/media/Data/Documents/School/UC Davis/Bicycle Mechanics/BicyclePar
 pathToTables = '../../tables/physicalparameters'
 
 def create_tables(bikeNames, groupName):
-    batavusBikes = []
+    bikes = []
     for bike in bikeNames:
-        batavusBikes.append(bp.Bicycle(bike, pathToData=pathToData, forceRawCalc=True))
+        bikes.append(bp.Bicycle(bike, pathToData=pathToData,
+            forceRawCalc=True))
 
     for typ in ['Measured', 'Benchmark']:
-        tab = Table('Measured', True, batavusBikes)
+        tab = Table(typ, True, bikes)
         pathToTableFile = os.path.join(pathToTables, groupName + typ + '.rst')
         tab.create_rst_table(fileName=pathToTableFile)
     print('Tables created for', bikeNames)
 
 # make a tables for the batavus bikes
-batavusNames = ['Browser', 'Browserins', 'Stratos', 'Crescendo']
-delftNames = ['Fisher', 'Pista', 'Yellow', 'Yellowrev']
-davisNames = ['Rigid', 'Rigidcl']
-groupNames = ['batavus', 'delft', 'davis']
+batavusNames = ['Browser', 'Browserins', 'Stratos']
+delftNames = ['Crescendo', 'Fisher', 'Pista']
+yellowNames = ['Yellow', 'Yellowrev']
+davisNames = ['Rigid', 'Rigidcl', 'Gyro']
+groupNames = ['batavus', 'delft', 'yellow', 'davis']
 
-for pair in zip([batavusNames, delftNames, davisNames], groupNames):
+for pair in zip([batavusNames, delftNames, yellowNames, davisNames],
+        groupNames):
     create_tables(pair[0], pair[1])

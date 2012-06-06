@@ -41,85 +41,81 @@ methods. Once we could *see* the data, we went through every run manually and
 tried to build a data set of observations.
 
 I got frustrated at this point, because we'd finally got to the results part
-and it seemed to me that Jodi and Arend we taking over the results part. I felt
-as if I'd put all my 100% effort into the work up to that point and because I
-had this notion of ownership of the final product it seemed as if my colleagues
-were getting to do the grand finale, where as I wanted to be in control. We
-made it through it though, despite my discontent. Arend and Jodi didn't really
-understand my frustations and deemed it a cultural difference. I didn't buy
-that then, but now reflecting I tend to agree. My upbringing and school
-training left me with little experience with *true* teamwork and I've had my
-eye on the PhD dissertation as some kind of embodiment of my personal
-understanding of *everything* that has to do with the subject I've been
-studying. I had never really seen it as a collection of many people's effort
-and the result being my orchestration of the collective ideas. These kinds of
-realizations are what the heart the Fulbright grant is. I went into the grant
-thinking more about accomplishing the research goals that I proposed to do, but
-after the fact I realize that cultural understanding and personal interactions
-allowed me to grow a person and realize teh world in a more gloabl sense than
-any of the research accomplishments did. That kind of foresifth from the
-founders of grants like these are invaluable to humanity as a whole. I wish
-every high school student or college student in the U.S. was required to study
-abroad. I think the politcal climate we see in the world would be greatly
-affected.
+and it seemed to me that Jodi and Arend were getting to do the majority of the
+analysis. I felt as if I'd put all my 100% effort into the work up to that
+point and because I had this notion of ownership of the final product it seemed
+as if my colleagues were getting to do the grand finale, where as I wanted to
+be in control. We made it through it though, despite my discontent. Arend and
+Jodi didn't really understand my frustrations and deemed it a cultural
+difference. I didn't buy that then, but now reflecting I tend to agree. My
+upbringing and school training left me with little experience with *true*
+teamwork and I've had my eye on the PhD dissertation as some kind of embodiment
+of my personal understanding of *everything* that has to do with the subject
+I've been studying. I had never really seen it as a collection of many people's
+effort and the result being my orchestration of the collective ideas. These
+kinds of realizations reflect on what the heart the Fulbright grant is. I went
+into the grant thinking more about accomplishing the research goals that I
+proposed to do, but after the fact I realize that cultural understanding and
+personal interactions allowed me to grow a person and realize the world in a
+more global sense than any of the research accomplishments did. That kind of
+foresight from the founders of grants like these are invaluable to humanity as
+a whole. I wish every high school student or college student in the U.S. was
+required to study abroad. I think the political climate we see in the world
+would be positively affected in a great way.
 
-Another tactic that was new to me was sending in an abstract for a conference
-that really only talked about what we tend to do with the idea that it gives
-you a deadline to get something done. This worked well here, but I can't say
-that it has been succesful for me since. We first presented the results of this
+Another tactic I that was new to me was sending in an abstract for a conference
+that really only talked about what we hoped to do, with the idea that it gives
+us a deadline to get something done. This worked well here, but I can't say
+that it has been successful for me since. We first presented the results of this
 study at the ECCOMAS Multibody Dynamics conference in June of 2009 and I think
 it went pretty well [Moore2009]_.
 
 After the conference, the paper was selected to be published in the Multibody
 System Dynamics journal. I turned it down because Arend was more interested in
-publishing to the Journal of Biomechanics.  But I had recently been learning a
+publishing to the Journal of Biomechanics. But I had recently been learning a
 lot about the open science movement and knew that our University currently had
 an agreement with Springer that the open access fee would be waived for all
-articles published by UCD affliates and Multibody System Dynamics is a Springer
-journal. So I decided that would be the better choice, as journal titles seem
-like they are more and more irrelevant for my generation. We search for
-articles on the internet and read them regardless of where they published, the
-filtering of quality content is becoming an entirely different mechanism as it
-was for science in previous generations. I see the journal as a soon to be lost
-relic. The peer review may be consusmed by collective quality control by the
-readers.
+articles published by UCD affiliates and Multibody System Dynamics is a
+Springer journal. So I decided that would be the better choice, as journal
+titles seem like they are more and more irrelevant for my generation. We search
+for articles on the internet and read them regardless of where they published,
+the filtering of quality content is becoming an entirely different mechanism as
+it was for science in previous generations. I see the journal as a soon to be
+lost relic. And hopefully, the closed peer review system may be consumed by
+collective quality control by the readers.
 
 The work in this Chapter comes from two sources, the first is the peer reviewed
 Mutlibody System Dynamics article, [Moore2011]_, of which I've copied verbatim.
 The second is an addendum to the results which was presented at the ISEA 2010
 conference in Austria [Moore2010]_. It is a lead in to looking at the data with
-some other statiscal tools of which I've had a growing interest in, but less
-that adqequate understanding.
+some other statistical tools of which I've had a growing interest in, but less
+that adequate understanding.
 
 Experiment Design
 =================
 
-We performed a wide range of manuevers with three different riders at several
+We performed a wide range of maneuvers with three different riders at several
 speeds. The aim of this section is to provide a detailed description of the
 experiments and the accompanying data.
 
 The experiments were performed in a controlled environment while the motion of
 the bicycle and rider were measured with an active motion capture system
-[Northern2009]_. The rider rode on a :math:`$3\times5$` meter treadmill,
-(Figure :ref:`figMarkers`) capable of belt speeds up to 35 km/h.  Three male
-riders of similar age [23, 26, 31 years] and build [height (1.84, 1.83, 1.76 m)
-and mass (74, 72, 72 kg)] participated as subjects.  Each rode two different
-Dutch bicycles. Each rider performed all runs in one day in the same order (no
-randomization) and was instructed to bicycle comfortably at a constant speed in
-the range of 2 to 30 km/h for the duration of the run. There were at least 2
-repetitions of each speed with each bicycle. A run was sampled at a frequency
-of 100 Hz for 60 seconds.
+[Northern2009]_. The rider rode on a :math:`3 \times 5` meter treadmill,
+(:ref:`Figure 1 <figTreadmill>`) capable of belt speeds up to 35 km/h.  Three
+male riders [Victor, Jason, Jodi] of similar age [23, 26, 31 years] and build
+[height (1.84, 1.83, 1.76 m) and mass (74, 72, 72 kg)] participated as
+subjects. Each rode two different Dutch bicycles. Each rider performed all
+runs in one day in the same order (no randomization) and was instructed to
+bicycle comfortably at a constant speed in the range of 2 to 30 km/h for the
+duration of the run. There were at least 2 repetitions of each speed with each
+bicycle. A run was sampled at a frequency of 100 Hz for 60 seconds.
 
 Equipment
 ---------
 
 All of the experiments were performed on a 3x5 m treadmilll at the the Vrije
 Unitversetiet over a three day period. The treadmill had a 1% incline. We used
-two bicycle donated by Batavus: the Browser and the Stratos Deluxe. The three
-riders were all in their twenties, male and of similar build and athletic
-ability.
-
-.. todo:: Find the direction and magnitude of the treadmill incline.
+two bicycle donated by Batavus: the Browser and the Stratos Deluxe.
 
 Manuevers
 ---------
@@ -134,11 +130,11 @@ Normal
 Towed
    The towed experiments were the same as the normal except that a rope was
    attached to the headtube of the bicycle and attached to the front railing of
-   the treadmill. This allowed the rider to not have to pedal. The rider keep
+   the treadmill. This allowed the rider to not have to pedal. The rider kept
    the cranks horizontal and was left to choose which foot he wanted forward.
-   The rope could potentially applied lateral forces to the frame if the rider
-   drifted too much laterally. We may have held the rope and moved left and
-   right.
+   The rope could have potentially applied lateral forces to the frame if the
+   rider drifted too much laterally, but we also held the rope taught and moved
+   left and right to lessen the effect.
 Line tracking
    The line tracking manuever was the same at the normal manuever except that
    the rider was instructed to keep his front wheel on a line we drew on the
@@ -146,17 +142,12 @@ Line tracking
    lateral deviation control.
 No-hand
    We did some experiments with no hand riding (i.e. no steering control). The
-   rider's placed their hands on their hips and attempted to stablize roll and
+   riders placed their hands on their hips and attempted to stablize roll and
    yaw. Most of the these runs were with pedaling, but a few were taken with
    towing.
 
-.. todo:: Did we tie off the tow rope or did Arend hold it and move laterall
-   with the bicycle?
-
 Data
 ----
-
-.. todo:: include parameters for the riders
 
 The primary data was the three dimensional locations of the 31 markers for each
 run. We sampled at 100 hz, giving 31 markers * 3 coordinates * 100 hz * 60
@@ -166,7 +157,9 @@ total of 271. The data for the first rider ended up somewhat corrupted. There
 are a lot of irractic value changes in the data. The basic motion is there
 though and clever filtering could clean the data for use.
 
-.. todo:: Preliminary data day and tv show day data.
+We also collected data on the premilanary day with one rider and slightly
+different marker locations and we collected some data during a TV show filming
+of our work. We did not follow as strict protocols to the filmed experiments.
 
 Source Code
 -----------
@@ -176,8 +169,6 @@ resulting processed data files were viewed with a Matlab program.
 
 The source code can be found at
 `<http://github.com/moorepants/MotionCapture>`_.
-
-.. todo:: Write a detailed readme about the files.
 
 Principal Component Analysis
 ============================
@@ -255,8 +246,8 @@ Experiments
 
 To test our hypotheses, three riders performed a set of stability tasks in a
 controlled environment while the motion of the bicycle and rider were collected
-with a motion capture system. The tasks were performed on a :math:`3\times5`
-meter treadmill Figure :ref:`figTreadmill` capable of belt speeds up to 35 km/h.
+with a motion capture system. The tasks were performed on a :math:`3 \times 5`
+meter treadmill :ref:`Figure 1 <figTreadmill>` capable of belt speeds up to 35 km/h.
 The treadmill was chosen because the envelope of space was suitable for the
 motion capture system and it eliminated any disturbances such as wind, rough
 ground, and obstacles. We chose three male riders of similar age [31, 23, 26
@@ -269,10 +260,10 @@ by the manufacturer as “stable” and the Stratos Deluxe as “nervous.”
 
 .. figure:: figures/motioncapture/treadmill.*
    :width: 4.69in
+   :align: center
+   :target: treadmill.png
 
-   figTreadmill
-
-   The :math:`3\times5` m treadmill at the Vrije Universiteit Amsterdam.
+   The :math:`3 \times 5` m treadmill at the Vrije Universiteit Amsterdam.
 
 We made use of the Optotrak Certus Motion Capture System [Northern2009]_ to
 record the motion of the bicycle and rider during the stability tasks. The
@@ -282,36 +273,32 @@ sequential infrared signal and the infrared pulses are captured by camera
 modules each containing three cameras. The accuracy of the three dimensional
 measurements is :math:`\pm0.15` mm [Northern2009]_. The system has no hardware
 based noise reduction. Wiring harnesses were built for both the rider and the
-bicycles to facilitate easy bicycle and rider exchange Figure
-:ref:`figMarkers`.
+bicycles to facilitate easy bicycle and rider exchange
+:ref:`Figure 2 <figMarkers>`.
 
 .. _figMarkers:
 
-.. list-table:: Rider 1 and the Batavus Stratos Deluxe with marker positions.
-   Body marker positions visible from the rear.
+.. figure:: figures/motioncapture/markers.*
+   :width: 5.133in
+   :align: center
+   :target: _images/markers.jpg
 
-   * - |figJodiBikeMarkers|
-     - |figJodiMarkers|
-
-.. |figJodiBikeMarkers| image:: figures/motioncapture/jodi-bike-markers.*
-   :width: 3.35667in
-
-.. |figJodiMarkers| image:: figures/motioncapture/jodi-markers.*
-   :width: 1.77667in
+   Rider 1 and the Batavus Stratos Deluxe with marker positions.  Body marker
+   positions visible from the rear.
 
 The marker coordinates were measured with respect to an inertial frame,
 :math:`\mathbf{M}`, where the plane normal to :math:`\hat{\mathbf{m}}_3` is
 coplanar with the treadmill surface and :math:`\hat{\mathbf{m}}_3` is directed
 upward. We collected the three dimensional locations of 31 markers, 11 of which
-were located on the bicycle and 20 that mapped the rider
-Figure :ref:`figMarkerLocation`.
+were located on the bicycle and 20 that mapped the rider :ref:`Figure 3
+<figMarkerLocation>`.
 
 .. _figMarkerLocation:
 
 .. figure:: figures/motioncapture/marker-location.*
    :width: 3in
-
-   figMarkerLocation
+   :align: center
+   :target: _images/marker-location.png
 
    Schematic of the marker positions. The rider and bicycle are colored light
    gray and dark gray, respectively.
@@ -323,11 +310,11 @@ attached to the rear frame. A marker was attached on the right and left sides
 of the center of each wheel, the seat stays, the ends of the handlebars, and
 the head tube. A single marker was also attached to the back of the seat post.
 
-We recorded the locations of 20 points on the rider Figure
-:ref:`figMarkerLocation`: left and right sides of the helmet near the temple,
-back of the helmet, shoulders (greater tuberosity of the humerus), elbows
-(lateral epicondyle of the humerus), wrists (pisiform of the carpus), between
-the shoulder blades on the spine (T6 of the thoracic vertebrae), the tail bone
+We recorded the locations of 20 points on the rider :ref:`Figure 3
+<figMarkerLocation>`: left and right sides of the helmet near the temple, back
+of the helmet, shoulders (greater tuberosity of the humerus), elbows (lateral
+epicondyle of the humerus), wrists (pisiform of the carpus), between the
+shoulder blades on the spine (T6 of the thoracic vertebrae), the tail bone
 (coccyx), midpoint on the spine between the coccyx and shoulder blades (L1 on
 the lumbar vertebrae), hips (greater trochanter of the femur), knees (lateral
 epicondyle of the femur), ankles (lateral malleolus of the fibula) and feet
@@ -405,14 +392,14 @@ the riders were measured and weighed such that the body segment geometry, mass,
 center of gravity locations, and moments of inertia could be estimated. The
 physical parameter estimation methods are described in [Moore2009a]_. This data was used
 to calculate eigenvalues and eigenvectors of the uncontrolled open loop system
-Figure :ref:`figEigPlot`.
+:ref:`Figure 4 <figEigPlot>`.
 
 .. _figEigPlot:
 
 .. figure:: figures/motioncapture/eig-plot.*
-   :width: 7in
-
-   figEigPlot
+   :width: 6in
+   :align: center
+   :target: _images/eig-plot.png
 
    Eigenvalues of the Browser bicycle with the third rider rigidly
    attached as a function of speed. Note that the initially unstable
@@ -441,13 +428,13 @@ Relative motion
 ~~~~~~~~~~~~~~~
 
 We were interested in the analysis of three different marker combinations: the
-bicycle alone, the rider alone and the bicycle and rider together. The motion
+bicycle alone, the rider alone, and the bicycle and rider together. The motion
 of the bicycle and the bicycle-rider were calculated with reference to the
 :math:`\mathbf{N}` inertial frame[1] {The :math:`\mathbf{N}` frame is used
 instead of the :math:`\mathbf{M}` frame to comply with the vehicle coordinate
-standards used in [Meijaard2007]_ . See Appendix :ref:`inFrames` for the
+standards used in [Meijaard2007]_ . See Section :ref:`secInFrames` for the
 derivation.} and the motion of the rider was calculated with respect to the
-rear frame of the bicycle :math:`\mathbf{B}` Figure :ref:`figFrames`. These
+rear frame of the bicycle :math:`\mathbf{B}` :ref:`Figure 5 <figFrames>`. These
 three marker combinations allowed us to differentiate more easily between rider
 specific and bicycle specific motions. Furthermore, six of the variables that
 describe the configuration of the bicycle in time were calculated to give
@@ -455,14 +442,103 @@ insight into the rigid body dynamics. The configuration variables :math:`q_1`
 and :math:`q_2` locate the contact point of the rear wheel of the bicycle. The
 :math:`\mathbf{B}` frame captures the yaw (:math:`q_3`) and roll (:math:`q_4`)
 motions of the bicycle frame, the :math:`\mathbf{D}` frame is an intermediate
-frame that differs from :math:`\mathbf{B}` only by the bike’s headtube angle
+frame that differs from :math:`\mathbf{B}` only by the bike’s steer axis tilt
 (:math:`\lambda`), and the :math:`\mathbf{E}` frame captures the steering angle
 (:math:`q_7`) of the bicycle fork relative to the bicycle frame. The pitch of
 the bicycle frame (:math:`q_6`) is assumed to be zero. Details of these
-calculations are shown in Appendix :ref:`inFrames`.
+calculations are shown in Section :ref:`secInFrames`.
 
-.. todo:: should lambda be steer axis tilt or headtube angle?
-   be calculated with Equation :eq:`eqC`.
+.. _figFrames:
+
+.. figure:: figures/motioncapture/frames.*
+   :width: 3.86in
+   :align: center
+   :target: _images/frames.png
+
+   Diagram of the bicycle's inertial frame :math:`\mathbf{N}`, rear frame
+   :math:`\mathbf{B}`, front frame :math:`\mathbf{E}` and configuration
+   variables.
+
+.. _secPca:
+
+Principal Component Analysis
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We used Principal Component Analysis, PCA, [Jolliffe2002]_ to extract and
+characterize the dominant motions of the system. Calculating the principal
+components effectively transforms the space of the data to a space that
+maximizes the variance of the data. The typical advantage of PCA is that the
+dimension of the system can be reduced and still retain enough information to
+adequately describe the system. We are primarily interested in the way that PCA
+is able to extract linear components and rank them in order of variance from
+the mean position. If we assume that the components with the largest kinematic
+variance are motions that are the dominant motions used for control and
+propulsion (which in general is not necessarily true for dynamical systems) the
+comparison of these components for different riding conditions can give insight
+into what motions may be important for developing a biomechanical control model
+of the bicyclist.
+
+The repaired data from the motion capture measurements contained the :math:`x`,
+:math:`y`, and :math:`z` coordinates of each marker :math:`1` through :math:`l`
+at each time step :math:`j=1`, :math:`2`, :math:`\ldots`, :math:`n`. Each
+marker has three coordinates so there are a total of :math:`m=3l` coordinates
+:math:`i=1`, :math:`2`, :math:`\ldots`, :math:`m`. The coordinates at each time
+step can be collected in vector :math:`\mathbf{p}_j`.
+
+.. math::
+
+   \mathbf{p}_j^T
+    =\left[x_{1j}\quad\ldots\quad x_{lj}\quad y_{1j}\quad\ldots\quad
+    y_{lj}\quad z_{1j}\quad\ldots\quad z_{lj}\right]
+    =\left[p_{1j}\quad p_{2j}\quad\ldots\quad    p_{mj}\right]
+
+We can organize these coordinate vectors into a matrix, :math:`\mathbf{P}`,
+where the rows, :math:`i`, map a single coordinate of a marker through
+:math:`n` time steps.
+
+.. math::
+
+   \mathbf{P}=\left[ \begin{array}{cccccc}
+   |              & |              &        & |              &        & |             \\
+   \mathbf{p}_{1} & \mathbf{p}_{2} & \ldots & \mathbf{p}_{j} & \ldots & \mathbf{p}_{n}\\
+   |              & |              &        & |              &        & |
+   \end{array} \right]
+
+The principal components were calculated for the three marker combinations as
+described earlier where :math:`n=60\cdot100=6000` time steps. The number of
+rows of :math:`\mathbf{P}` were (:math:`m=3\cdot31=93`),
+(:math:`m=3\cdot11=33`) and (:math:`m=3\cdot20=60`) for the bicycle-rider, the
+bicycle alone and the rider alone, respectively.
+
+One method of determining the principal components is to calculate the
+eigenvectors of the covariance matrix of the mean-subtracted data. We begin by
+calculating the mean :math:`\mathbf{u}` Equation :eq:`eqMean` of the rows of
+:math:`\mathbf{P}` and subtracting it from each column of :math:`\mathbf{P}` to
+form the mean-subtracted data matrix :math:`\bar{\mathbf{P}}`, Equation
+:eq:`eqB`.
+
+.. math::
+   :label: eqMean
+
+   \mathbf{u}=\frac{1}{n}\sum_{j=1}^n\mathbf{p}_j
+
+A vector of ones
+
+.. math::
+   :label: eqH
+
+   \mathbf{h}^T=\left[h_1\quad h_2\quad\ldots\quad h_j\quad\ldots\quad h_n\right]
+   \textrm{ where }h_j=1\textrm{ for all }j
+
+allows us to subtract :math:`\mathbf{u}` from each column of :math:`\mathbf{P}`,
+
+.. math::
+   :label: eqB
+
+   \bar{\mathbf{P}}=\mathbf{P}-\mathbf{u}\mathbf{h}^T
+
+The covariance matrix :math:`\mathbf{C}` of :math:`\bar{\mathbf{P}}` can then
+be calculated with Equation :eq:`eqC`.
 
 .. math::
    :label: eqC
@@ -534,16 +610,16 @@ cumulative percentage of variance of the principal components, :math:`g_k`.
 
 Highly correlated data will show that even when :math:`k<<m`, :math:`g_k` is
 close to 100%. Using 10 components :math:`g_{10}` covers 100%
-(:math:`\sigma=2\cdot10^{-14}`%) of the variation in the data for the bicycle,
+(:math:`\sigma = 2 \cdot10^{-14}` %) of the variation in the data for the bicycle,
 rider and bicycle-rider. The matrix :math:`\mathbf{A}` can then be reduced to a
-:math:`k\times n` matrix and eigenvectors greater than :math:`\mathbf{v}_k` can
+:math:`k \times n` matrix and eigenvectors greater than :math:`\mathbf{v}_k` can
 be eliminated.
 
 Data Visualization
 ~~~~~~~~~~~~~~~~~~
 
 We developed a graphical user interface, “GUI”, in Matlab that easily allows
-different trials to be compared with one another Figure :ref:`figGUI`. The
+different trials to be compared with one another :ref:`Figure 6 <figGUI>`. The
 program loads in two different trials along with information on each trial. A
 graphical representation of the rider and bicycle are displayed in two adjacent
 screens and can be viewed from multiple perspectives. The animations of the
@@ -555,15 +631,13 @@ Frequency and amplitude information for the temporal coefficients
 
 .. _figGUI:
 
-.. figure:: figures/motioncapture/GUI.*
-   :width: 11.69in
-
-   figGUI
+.. figure:: figures/motioncapture/pca-gui.*
+   :width: 5in
+   :align: center
+   :target: _imags/pca-gui.png
 
    Screen shot of the Matlab graphical user interface (GUI) used to visualize
    principal components and compare between different components and trials.
-
-.. todo:: Add video of the GUI in action.
 
 Results
 -------
@@ -577,7 +651,7 @@ corresponding coefficients :math:`a_{ij}`. The principal components represent
 linear trajectories of the markers and the coefficients show how the markers
 follow the trajectories with time. We began processing the data by reviewing
 each principal component of each trial in the GUI and noting what type of
-motion we saw Table :ref:`tabTrialDesc`. These descriptions were subjective
+motion we saw :ref:`Table 1 <tabTrialDesc>`. These descriptions were subjective
 because we grouped marker movement based on our preconceived understanding of
 rider and bicycle motion. Some of the components displayed motions that were
 not physically possible such as the upper leg stretching in length during the
@@ -585,15 +659,14 @@ knee bounce. This is possible when examining a single component but when
 superimposed over the rest of the components the unrealistic motions are not
 present. Furthermore, for each component we examined amplitude and frequency
 content of the associated coefficients :math:`a_{ij}` as shown in Figures
-:ref:`figCoef3062` and :ref:`figFft3062` and noted the shape of the frequency
-spectrum and the frequencies at any distinct spikes.
+:ref:`6 <figCoef3062>` and :ref:`7 <figFft3062>` and noted the shape of the
+frequency spectrum and the frequencies at any distinct spikes.
 
 .. _tabTrialDesc:
 
 .. list-table:: Example raw trial description for the bicycle and rider during
    normal pedaling at 10 km/h.
    :header-rows: 1
-   :widths: 10 10 40 40
 
    * - :math:`i`
      - % Variance
@@ -644,9 +717,9 @@ spectrum and the frequencies at any distinct spikes.
 .. _figCoef3062:
 
 .. figure:: figures/motioncapture/coef3062.*
-   :width: 7.02in
-
-   figCoef3062
+   :width: 4in
+   :align: center
+   :target: _images/coef3062.png
 
    Coefficients :math:`a_{ij}` versus time content of the first five principal
    components for normal pedaling at 10 km/h.
@@ -654,22 +727,22 @@ spectrum and the frequencies at any distinct spikes.
 .. _figFft3062:
 
 .. figure:: figures/motioncapture/fft3062.*
-   :width: 6.97in
-
-   figFft3062
+   :width: 4in
+   :align: center
+   :target: _images/fft3062.png
 
    The frequency content of the first five principal components for normal
    pedaling at 10 km/h. The vertical black line represents the open loop weave
-   frequency (0.28 Hz) determined from Figure :ref:`figEigPlot` at this forward
-   speed. The pedaling frequency is about 0.8 Hz at this speed, see Figure
-   :ref:`figPedalSteerAngle`.
+   frequency (0.28 Hz) determined from :ref:`Figure 4 <figEigPlot>` at this
+   forward speed. The pedaling frequency is about 0.8 Hz at this speed, see
+   :ref:`Figure 10 >figSteerAnglePedal>`.
 
 Several conclusions can be drawn from examining the coefficient data. First,
 some of the components are linked by the frequencies of the coefficients and
 describe an identifiable motion. The most obvious of these is that the vertical
 and horizontal pedaling components make up the circular pedaling motion. Both
 vary periodically and have a dominant frequency which is defined by the
-cadence. In the example trial, Table :ref:`tabTrialDesc`, the upper body
+cadence. In the example trial, :ref:`Table 1 <tabTrialDesc>`, the upper body
 motions are also linked to the pedaling. Components 8 and 9 both correspond to
 a frequency that is twice the pedaling frequency, which may be due to the
 forces created during each pedal stroke. Component 6 seems to be the result of
@@ -678,7 +751,7 @@ motions of the bicycle that are not dominated by the pedaling frequency and may
 be candidate control motions. The percentage variance of each component gives
 an idea of the relative amplitude of the components. The descriptions of each
 trial were used to compile a list of motions that contribute to the principal
-components. These motions, illustrated in Figure :ref:`figMotions`, are:
+components. These motions, illustrated in :ref:`Figure 8 <figMotions>`, are:
 
 Drift
     The bicycle and rider drift longitudinally and laterally on the surface of
@@ -689,82 +762,48 @@ Steer
     Rotation of the front assembly with respect to the rear frame. The steering
     may appear linked to one of the pedaling components at the pedaling
     frequency or may be in one or more components sometimes combined with roll
-    and/or yaw at more random frequencies, Figure :ref:`figSteerRoll`.
+    and/or yaw at more random frequencies.
 Roll
     The bicycle and the rider roll with respect to the ground plane.  Roll is
-    typically linked with steer and/or yaw and often at the pedaling frequency,
-    Figure :ref:`figSteerRoll`.
+    typically linked with steer and/or yaw and often at the pedaling frequency.
 Yaw
     The heading angle of the bicycle and rider change together with respect to
     the ground plane. This is typically linked with steer, roll and/or the
-    drift, Figure :ref:`figYaw`.
+    drift.
 Pedaling
     This motion is defined by two or more components, typically a vertical and
     horizontal motion of the feet, that show the feet rotating around the crank
-    axle at a distinct frequency and the legs following suit, Figure
-    :ref:`figPedaling`.
+    axle at a distinct frequency and the legs following suit.
 Bend
     The spine bent laterally and was always connected with the vertical
-    pedaling component, Figure :ref:`figBend`.
+    pedaling component.
 Lean
     The upper body, shoulders and head lean laterally with respect to the rear
-    frame and was always linked with the horizontal pedaling component, Figure
-    :ref:`figLean`.
+    frame and was always linked with the horizontal pedaling component.
 Twist
     The shoulders rotate about the torso axis. This was linked to components
-    that contained steering motions, both random and at the pedaling frequency,
-    Figure :ref:`figTwist`.
+    that contained steering motions, both random and at the pedaling frequency.
 Bounce
     The knee markers bounce up and down, the back straightens and the head nods
-    at twice the pedaling frequency, Figure :ref:`figBounce`.
+    at twice the pedaling frequency.
 Knees
     The knees move laterally relative to the bicycle frame in both opposing
-    directions and the same direction at random low frequencies, Figure
-    :ref:`figKnees`.
+    directions and the same direction at random low frequencies.
 Head
     Head twists and random head motions showed up often. These seemed to
     be due to the rider looking around randomly.
 
 .. _figMotions:
 
-.. list-table:: Diagrams of the common motions. (a) Top view of bicycle steer
-   and roll, (b) bicycle yaw, (c) horizontal and vertical components of
-   pedaling, (d) spine bend, (e) rider lean, (f) top view of rider twist, (g)
-   knee bounce and (h) two lateral knee motions. All but pedaling (c) are
-   exaggerated for clarity.
+.. figure:: figures/motioncapture/motions.*
+   :width: 5.5in
+   :align: center
+   :target: _images/motions.png
 
-   * - |figSteerRoll|
-     - |figYaw|
-     - |figPedal|
-     - |figBend|
-   * - |figLean|
-     - |figTwist|
-     - |figBounce|
-     - |figKnees|
-
-.. |figSteerRoll| image:: figures/motioncapture/steer-roll.*
-   :width: 1.78333in
-
-.. |figYaw| image:: figures/motioncapture/yaw.*
-   :width: 1.59in
-
-.. |figPedal| image:: figures/motioncapture/pedal.*
-   :width: 1.60667in
-
-.. |figBend| image:: figures/motioncapture/bend.*
-   :width: 1.46667in
-
-.. |figLean| image:: figures/motioncapture/lean.*
-   :width: 1.54in
-
-.. |figTwist| image:: figures/motioncapture/twist.*
-   :width: 1.72333in
-
-.. |figBounce| image:: figures/motioncapture/bounce.*
-   :width: 1.46667in
-
-.. |figKnees| image:: figures/motioncapture/knees.*
-   :width: 1.76667in
+   Diagrams of the common motions. (a) Top view of bicycle steer and roll, (b)
+   bicycle yaw, (c) horizontal and vertical components of pedaling, (d) spine
+   bend, (e) rider lean, (f) top view of rider twist, (g) knee bounce and (h)
+   two lateral knee motions. All but pedaling (c) are exaggerated for clarity.
 
 Motion Characterization
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -795,27 +834,26 @@ coefficients were viewed simultaneously in the GUI enabling the determination
 of the motion class.
 
 The correlated coefficients were used to form six different classes of motions,
-Table :ref:`tabMotionClasses`, each made up of combinations of the previously
-described motions in Figure :ref:`figMotions`.
+Table :ref:`Table 3 <tabMotionClasses>`, each made up of combinations of the
+previously described motions in :ref:`Figure 8 <figMotions>`.
 
 .. _tabMotionClasses:
 
+.. tabularcolumns:: LL
+
 .. list-table:: The six primary motion classes.
    :header-rows: 1
-   :widths: 20 80
 
    * - Class Name
      - Class Description
    * - Drift
      - Drift
    * - Pedaling
-     - Pedaling :ref:`figPedaling`, Bend :ref:`figBend`, Lean :ref:`figLean`,
-       Twist :ref:`figTwist` Steer-Yaw-Roll & Steer and Roll
-       :ref:`figSteerRoll`, Yaw :ref:`figYaw`
+     - Pedaling, Bend, Lean, Twist, Steer-Yaw-Roll, Yaw
    * - Bounce
-     - Bounce :ref:`figBounce`
+     - Bounce
    * - Knees
-     - Knees :ref:`figKnees`
+     - Knees
    * - Other
      - Head and components that showed noise of some sort
 
@@ -833,7 +871,7 @@ components were recalculated without the components placed in the Drift and the
 Other classes.
 
 We also calculated various configuration variables from the bicycle marker
-locations (See Appendix :ref:`secInFrames` independent of the PCA perspective
+locations (See Section :ref:`secInFrames` independent of the PCA perspective
 for more specific motion characterizations. This allowed us to investigate the
 bicycle’s configuration variable time histories and frequency content
 explicitly.
@@ -841,7 +879,7 @@ explicitly.
 Characterization of motions during normal pedaling
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Figure :ref:`jellybean` shows how the relative percent variance of the four
+:ref:`Figure 9 <jellybean>` shows how the relative percent variance of the four
 classes: Pedaling, Steer-Yaw-Roll, Bounce and Knees varies with speed for Rider
 3 on the Batavus Browser bicycle. The percentage is the average of two runs at
 speeds 5 km/h and above. From the graph, it is clear that at 10 km/h and higher
@@ -860,8 +898,8 @@ runs. The Bounce roughly remains constant at all speeds.
 
 .. figure:: figures/motioncapture/pedaling4classes.*
    :width: 5.65667in
-
-   jellybean
+   :align: center
+   :target: _images/pedaling4classes.png
 
    The relative percent variance of the four classes: Pedaling, Steer-Yaw-Roll,
    Bounce and Knees, at the different speeds when the Drift and Other classes
@@ -869,46 +907,46 @@ runs. The Bounce roughly remains constant at all speeds.
    scaled to 100% (left axis), the dotted lines are scaled to 10% (right axis).
 
 The steer angle amplitude-frequency plot for each of the speeds calculated from
-the bicycle rigid body motions is given in Figure :ref:`figSteerAnglePedal`. It
-clearly shows that the steering actions take place at or around the pedaling
-frequency for high and low speeds, respectively. It also shows that the
-amplitude of the steering angle increases by 5000% when the speed decreases
-from 30 km/h to 2 km/h.  Figure :ref:`figSteerAnglePedal` also shows the open
-loop, rigid rider, weave eigenfrequency for each speed obtained from Figure
-:ref:`figEigPlot`. Apparently the open loop eigenfrequency is not a frequency
-in which the bicycle-rider operates.
+the bicycle rigid body motions is given in :ref:`Figure 10
+<figSteerAnglePedal>`. It clearly shows that the steering actions take place at
+or around the pedaling frequency for high and low speeds, respectively. It also
+shows that the amplitude of the steering angle increases by 5000% when the
+speed decreases from 30 km/h to 2 km/h. :ref:`Figure 10 <figSteerAnglePedal>`
+also shows the open loop, rigid rider, weave eigenfrequency for each speed
+obtained from :ref:`Figure 4 <figEigPlot>`. Apparently the open loop
+eigenfrequency is not a frequency in which the bicycle-rider operates.
 
 .. _figSteerAnglePedal:
 
 .. figure:: figures/motioncapture/steer-angle-pedal.*
    :width: 6.13in
-
-   figSteerAnglePedal
+   :align: center
+   :target: _images/steer-angle-pedal.png
 
    Steer angle amplitude plot for the nine different speeds for normal pedaling
    experiment. Solid vertical line indicates the pedaling frequency. Dashed
    vertical gray line indicates the bicycle-rigid rider open loop weave
-   eigenfrequency from Figure :ref:`figEigPlot`.
+   eigenfrequency from :ref:`Figure 4 <figEigPlot>`.
 
 Characterization of motions without pedaling
 --------------------------------------------
 
 During normal pedaling, all motions, including the control tasks, are dominated
 by the pedaling motions. Therefore we also looked at the motions of
-bicycle-rider system without the influence of pedaling. Figure
-:ref:`missjellybean` shows how the percent variance of by Steer-Yaw-Roll,
-Bounce and Knees varies with speed for Rider 3 on the Batavus Browser bicycle
-without pedaling. Since the bicycle is towed and the riders feet remain in the
-same, constant, position relative to bicycle, there is no pedaling class
-present in analysis. Furthermore, no bend, lean or twist motions with high
-variance were detected during the experiments.
+bicycle-rider system without the influence of pedaling.  :ref:`Figure 11
+<missjellybean>` shows how the percent variance of by Steer-Yaw-Roll, Bounce
+and Knees varies with speed for Rider 3 on the Batavus Browser bicycle without
+pedaling. Since the bicycle is towed and the riders feet remain in the same,
+constant, position relative to bicycle, there is no pedaling class present in
+analysis. Furthermore, no bend, lean or twist motions with high variance were
+detected during the experiments.
 
 .. _missjellybean:
 
 .. figure:: figures/motioncapture/towing3classes.*
    :width: 5.65667in
-
-   missjellybean
+   :align: center
+   :target: _images/towing3classes.png
 
    The percent variance of each of the three classes: Steer-Yaw-Roll, Bounce
    and Knees, at the speeds at which the Drift and Other classes were removed
@@ -925,7 +963,7 @@ would provide clearer results. Also note that as the bicycle becomes self
 stable above 16 km/h the total variance is tiny and thus any sort of random
 knee motion can be a relatively large motion.
 
-Figure :ref:`figSteerAngleTowing` shows the bicycle rigid body steer angle
+:ref:`Figure 12 <figSteerAngleTowing>` shows the bicycle rigid body steer angle
 frequency-amplitude plot for different speeds. Compared to normal pedaling, the
 amplitudes are about half the size at the low speeds and one tenth the size at
 high speeds, indicating that smaller steering angles were made. The frequency
@@ -939,12 +977,13 @@ eigenfrequency is not the frequency at which the bicycle is controlled.
 
 .. figure:: figures/motioncapture/steer-angle-towing.*
    :width: 6.24in
-
-   figSteerAngleTowing
+   :align: center
+   :target: _images/steer-angle-towing.png
 
    Steer angle amplitude plot for the nine different speeds for the tasks
    without pedaling. Dashed vertical grey line indicates the bicycle-rigid
-   rider open loop weave eigenfrequency obtained from Figure figEigPlot.
+   rider open loop weave eigenfrequency obtained from :ref:`Figure 4
+   <figEigPlot>`.
 
 Conclusions
 ===========
@@ -979,13 +1018,15 @@ a rider on a bicycle, but limitations in data reduction and motion grouping
 leave room for more objective statistical views into the motion of the
 bicycle-rider system.
 
+.. _secInFrames:
+
 Inertial frames and configuration variables
 ===========================================
 
 The transformation from marker coordinates to rigid body inertial frames and
-configuration variables shown in Figure :ref:`figFrames` is described here. A
-reference frame, :math:`\mathbf{N}`, with origin :math:`n_o` corresponding
-with the benchmark bicycle  is defined with respect to the Optotrak reference
+configuration variables shown in :ref:`Figure 5 <figFrames>` is described here.
+A reference frame, :math:`\mathbf{N}`, with origin :math:`n_o` corresponding
+with the benchmark bicycle is defined with respect to the Optotrak reference
 frame, :math:`\mathbf{M}`, Equation :eq:`eqNtoM`.
 
 .. math::
@@ -1021,7 +1062,7 @@ Thirty-one marker locations were recorded and the vector to each is defined as
 :math:`\ldots` for any additional virtual markers. To calculate the reference
 frame attached to the rear bicycle we formed a frame center plane from the seat
 post marker, :math:`m_{26}`, and two new additional virtual markers at the
-center of the rear wheel, :math:`$m_{36}$`, and the center of the head tube,
+center of the rear wheel, :math:`m_{36}`, and the center of the head tube,
 :math:`m_{33}`. For example, the center of the rear wheel was calculated by
 Equation :eq:`eqRearCenter` where :math:`m_{25}` and :math:`m_{31}` are the
 left and right rear wheel markers.
@@ -1057,7 +1098,7 @@ at rider motion relative to the bicycle. The subscripts, :math:`\mathbf{N}` and
 the position vectors are expressed in.
 
 .. math::
-   :label: eq:WrtRear
+   :label: eqWrtRear
 
    \mathbf{r}^{{m_{k}}/m_{36}}_\mathbf{B}=
    (\mathbf{r}^{{m_{k}}/m_{36}}_\mathbf{N}\cdot\hat{\mathbf{b}}_1)\hat{\mathbf{b}}_1+
@@ -1171,23 +1212,23 @@ Preface
 -------
 
 Once again, we collected more data than we knew what to do with [Moore2011]_
-and  only looked at a subset of it from one rider. I took my first statistics
+and only looked at a subset of it from one rider. I took my first statistics
 class once I was back at Davis in the Fall of 2009 with the intention of
 learning better ways to analyze large data sets and make more over arching
 conclusions with the bicycle data. In the process, I learned about mixed
 effects models and they seemed appropriate for our data sets and would
 potentially allow us to see how the kinematic motions changed with respect to
-speeds, riders, manuevers, etc. The first step in building a model like is to
+speeds, riders, maneuvers, etc. The first step in building a model like is to
 identify the independent and dependent variables. The dependent variables can
-be broken up into continous variables and factors.  Speeds the continous
-variable, with riders, bicycles and manuevers as the factors. The independent
+be broken up into continuous variables and factors. Speeds the continuous
+variable, with riders, bicycles and maneuvers as the factors. The independent
 variables are trickier because we recorded time histories, so various
 statistics need to be chosen. These could be things like the results of the PCA
-analyses, but more concrete the kinematic statisticss potentially allow for
+analyses, but more concrete the kinematic statistics potentially allow for
 more understanding. The PCA we did assumes nothing about the system being
 studied. For example, one statistic could be the standard deviation of various
 generalized coordinates. I never managed to get far with this as other things
-came up, but at least  started thinking about the relevant statistics. The
+came up, but at least started thinking about the relevant statistics. The
 following is a conference paper I submitted to the 2010 International Sports
 Engineering Association conference where basic statistics of the time histories
 are chosen and some visualization of the statistics with respect to speed are
@@ -1247,8 +1288,8 @@ Experimental Design
 
 The experiments were performed in a controlled environment while the motion of
 the bicycle and rider were measured with an active motion capture system
-[Northern2009]_. The rider rode on a :math:`$3\times5$` meter treadmill,
-(Figure :ref:`figMarkers`) capable of belt speeds up to 35 km/h.  Three male
+[Northern2009]_. The rider rode on a :math:`3\times5` meter treadmill,
+(:ref:`Figure 1 <figTreadmill>`) capable of belt speeds up to 35 km/h.  Three male
 riders of similar age [23, 26, 31 years] and build [height (1.84, 1.83, 1.76 m)
 and mass (74, 72, 72 kg)] participated as subjects.  Each rode two different
 Dutch bicycles. Each rider performed all runs in one day in the same order (no
@@ -1258,21 +1299,21 @@ repetitions of each speed with each bicycle. A run was sampled at a frequency
 of 100 Hz for 60 seconds.
 
 Bicycle markers were placed to easily extract the rigid body motion (i.e. body
-orientations and locations) of the frame and fork (Figure :ref:`figMarkers`).
+orientations and locations) of the frame and fork (:ref:`Figure 2 <figMarkers>`).
 Four markers were attached to the fork and seven to the rear frame. A marker
 was attached on the right and left sides of the center of each wheel, the seat
 stays, the ends of the handlebars, and the head tube. A single marker was also
 attached to the back of the seat post.
 
-We recorded the locations of 20 points on the rider (Figure :ref:`figMarkers`):
-left and right sides of the helmet near the temple, back of the helmet,
-shoulders (greater tuberosity of the humerus), elbows (lateral epicondyle of
-the humerus), wrists (pisiform of the carpus), between the shoulder blades on
-the spine (T6 of the thoracic vertebrae), the tail bone (coccyx), midpoint on
-the spine between the coccyx and shoulder blades (L1 on the lumbar vertebrae),
-hips (greater trochanter of the femur), knees (lateral epicondyle of the
-femur), ankles (lateral malleolus of the fibula) and feet (proximal metatarsal
-joint).
+We recorded the locations of 20 points on the rider (:ref:`Figure 2
+<figMarkers>`): left and right sides of the helmet near the temple, back of the
+helmet, shoulders (greater tuberosity of the humerus), elbows (lateral
+epicondyle of the humerus), wrists (pisiform of the carpus), between the
+shoulder blades on the spine (T6 of the thoracic vertebrae), the tail bone
+(coccyx), midpoint on the spine between the coccyx and shoulder blades (L1 on
+the lumbar vertebrae), hips (greater trochanter of the femur), knees (lateral
+epicondyle of the femur), ankles (lateral malleolus of the fibula) and feet
+(proximal metatarsal joint).
 
 Data Processsing
 ----------------
@@ -1292,15 +1333,16 @@ frame plane of symmetry for each marker. These are shown because we observed
 large lateral knee movement in video footage at low speeds [Kooijman2009a]_
 that may be used for additional control. The butt motion is plotted to give an
 idea of how the seat can potentially be shifted under the torso to control roll
-angle. Figures :ref:`fig3017wheel`, :ref:`fig3017bAng`, :ref:`fig3017rLat`, and
-:ref:`fig3017rAng` show examples of the time histories of these coordinates.
+angle. Figures :ref:`13 <fig3017wheel>`, :ref:`14 <fig3017bAng>`, :ref:`15
+<fig3017rLat>`, and :ref:`16 <fig3017rAng>` show examples of the time histories
+of these coordinates.
 
 .. _fig3017wheel:
 
 .. figure:: figures/motioncapture/3017wheel.*
    :width: 3in
-
-   fig3017wheel
+   :align: center
+   :target: _images/3017wheel.png
 
    The positions of the front and rear wheel contact points throughout a single
    a normal biking run at 10 km/h.
@@ -1309,8 +1351,8 @@ angle. Figures :ref:`fig3017wheel`, :ref:`fig3017bAng`, :ref:`fig3017rLat`, and
 
 .. figure:: figures/motioncapture/3017bAng.*
    :width: 3in
-
-   fig3017bAng
+   :align: center
+   :target: _images/3017bAng.png
 
    The bicycle yaw, roll and steer angles throughout a single a normal biking
    run at 10 km/h.
@@ -1319,8 +1361,8 @@ angle. Figures :ref:`fig3017wheel`, :ref:`fig3017bAng`, :ref:`fig3017rLat`, and
 
 .. figure:: figures/motioncapture/3017rLat.*
    :width: 3in
-
-   fig3017rLat
+   :align: center
+   :target: _images/3017rLat.png
 
    Lateral deviations of the knees and butt from the frame plane throughout a
    single normal biking run at 10 km/h.
@@ -1329,24 +1371,20 @@ angle. Figures :ref:`fig3017wheel`, :ref:`fig3017bAng`, :ref:`fig3017rLat`, and
 
 .. figure:: figures/motioncapture/3017rAng.*
    :width: 3in
-
-   fig3017rAng
+   :align: center
+   :target: _images/3017rAng.png
 
    Rider lean and twist angles throughout a single normal biking run at 10
    km/h.
 
-The primary coordinates are presented in Section :ref:`X`. The remaining are
-calcuated as follows. The instantaneous front wheel radius is
+The primary coordinates are presented in Section :ref:`secInFrames`. The
+remaining are calculated as follows. The instantaneous front wheel radius is
 
 .. math::
    :label: eqFrontRadius
 
    r_\mathbf{F} = \frac{-\mathbf{r}^{m_{32}/n_o} \cdot \hat{n}_3}
    {\operatorname{sin}[\operatorname{arccos}(\hat{e}_2 \cdot \hat{n}_3)]}
-
-::
-
-   rf[j] = np.dot(-r[31], n[2])/np.sin(np.arccos(np.dot(e[1], n[2])))
 
 The front wheel contact point is then
 
@@ -1357,12 +1395,6 @@ The front wheel contact point is then
    \frac{(\hat{e}_2 \times \hat{n}_3) \times \hat{e}_2}
    {|(\hat{e}_2 \times \hat{n}_3) \times \hat{e}_2|}
 
-::
-
-   rfvec = np.cross(np.cross(e[1], n[2]),e[1])
-   r_m32_m40 = rf[j] * uvec(rfvec)
-   r[39] = r[31] + r_m32_m40
-
 The coordinates to the front wheel contact points are then found by a dot
 product with the lateral and longitudinal unit vectors in the ground plane
 
@@ -1371,20 +1403,10 @@ product with the lateral and longitudinal unit vectors in the ground plane
 
    q_8 = \hat{n}_1 \cdot \mathbf{r}^{m_{40}/n_o}
 
-::
-
-   # x distance to the front wheel contact point
-   q[6, j] = np.dot(n[0], r[39])
-
 .. math::
    :label: eqFrontY
 
    q_9 = \hat{n}_2 \cdot \mathbf{r}^{m_{40}/n_o}
-
-::
-
-   # y distance to the front wheel contact point
-   q[7, j] = np.dot(n[1], r[39])
 
 The lateral distance of the rider's knees to the bicycle frame are
 
@@ -1393,19 +1415,10 @@ The lateral distance of the rider's knees to the bicycle frame are
 
    q_{10} = \hat{b}_2 \cdot \mathbf{r}^{{m_3}/{n_o}} - \mathbf{r}^{m_{26}/n_o}
 
-::
-
-   q[9, j] = np.dot(b[1], (r[2] - r[25]))
-
 .. math::
    :label: eqLeftKnee
 
    q_{11} = \hat{b}_2 \cdot \mathbf{r}^{{m_7}/{n_o}} - \mathbf{r}^{m_{26}/n_o}
-
-::
-
-   # left lateral knee motion
-   q[10, j] = np.dot(b[1], (r[6] - r[25]))
 
 Simarly, the tail bone's lateral deviation from the bicycle frame is
 
@@ -1414,20 +1427,15 @@ Simarly, the tail bone's lateral deviation from the bicycle frame is
 
    q_{12} = \hat{b}_2 \cdot \mathbf{r}^{{m_9}/{n_o}} - \mathbf{r}^{m_{26}/n_o}
 
-::
-
-   # lateral butt motion
-   q[11, j] = np.dot(b[1], (r[8] - r[25]))
-
 I take the angle between a line running along the rider's back and the frame
-plane to be a measure of rider lean, Figure :ref:`figRiderLean`.
+plane to be a measure of rider lean, :ref:`Figure 17 <figRiderLean>`.
 
 .. _figRiderLean:
 
 .. figure:: figures/motioncapture/rider-lean.*
    :width: 4in
-
-   figRiderLean
+   :align: center
+   :target: _images/rider-lean.png
 
    A depiction of the rider lean angle. It is irrespective of the rider's
    forward lean and notice that point 9 can be out of the plane of the bicycle.
@@ -1460,15 +1468,7 @@ symmetry plane
 
    q_{12} = -(\mathbf{v} \cdot b_2) \operatorname{arccos}\left(-\mathbf{v} \cdot b_3\right)
 
-::
-
-   # lean angle
-   r_m9_m11 = r[10] - r[8]
-   v = uvec(r_m9_m11 - np.dot(r_m9_m11, b[0])*b[0])
-   sign = -np.dot(-v, b[1])
-   q[12, j] = sign*np.arccos(np.dot(-v, b[2]))
-
-The twist is the angle of the rider is calcalted by creating a vector from one
+The twist is the angle of the rider is calculated by creating a vector from one
 shoulder to the other
 
 .. math::
@@ -1496,19 +1496,10 @@ line and perpendicular to the bicycle lateral plane of symmetry
    (\hat{b}_1 \times \mathbf{v})) \operatorname{arccos}(\mathbf{w}
    \cdot (\hat{b}_1 \times \mathbf{v}))
 
-::
-
-   # twist angle
-   r_m19_m15 = r[14] - r[18]
-   tw_proj = uvec(r_m19_m15 - np.dot(r_m19_m15, v)*v)
-   g2 = np.cross(b[0], v)
-   sign = -np.dot(tw_proj, np.cross(r_m9_m11, g2))
-   q[13, j] = sign*np.arccos(np.dot(tw_proj, g2))
-
 Results
 -------
 
-Direct examination of individul times series can be fruitful [Dolye1987]_, but
+Direct examination of individual times series can be fruitful [Dolye1987]_, but
 it is hard to make generalizations that apply to more that one specific case.
 In our case, we have are nearly 3000 different time histories to examine with
 the coordinates we've chosen. Examining the frequency spectrum of each time
@@ -1517,13 +1508,13 @@ which the rider pedals, the pedaling frequency is often the dominant frequency,
 with little indication of other distinct frequencies [Moore2009b]_.
 
 A better way to visualize how the coordinates change with speed, for example,
-is to look at various statistical of the time histories.  We grouped all of the
+is to look at various statistics of the time histories. We grouped all of the
 runs together for combined data sets at each speed of between 48,000 and 72,000
 points, depending on how many repetitions of runs were performed (i.e.  between
 8 and 12). These were then plotted as separate box plots for each speed and for
 each state. The box and whiskers charts plot a center line for the median of
 the data, a box that bounds the 25% and 75% quartiles, whiskers that encompass
-the data that falls within :math:`$1.5\times(Q_{75}-Q_{25})$` and crosses for
+the data that falls within :math:`1.5\times(Q_{75}-Q_{25})` and crosses for
 any outlier data points. Trends can be identified based on the spread and
 median of the data at each speed. An offset median shows that the distribution
 is skewed (e.g. steering more to the left than the right). The box and the
@@ -1549,54 +1540,70 @@ make use of leaning for control in normal bicycling. The rider twist angles
 show a little more spread at low speeds. This could be tied to the fact that
 you twist more when you steer more.
 
+.. _figYawAngleNb:
+
 .. figure:: figures/motioncapture/YawAngleNb.*
    :width: 3in
-
-   figYawAngleNb
+   :align: center
+   :target: _images/YawAngleNb.png
 
    Box and whiskers plots of the yaw angle data from all riders and bicycles
    versus speed.
 
 .. figure:: figures/motioncapture/RollAngleNb.*
    :width: 3in
+   :align: center
+   :target: _images/RollAngleNb.png
 
    Box and whiskers plots of the roll angle data from all riders and bicycles
    versus speed.
 
+.. _figSteerAngleNb:
+
 .. figure:: figures/motioncapture/SteerAngleNb.*
    :width: 3in
-
-   figSteerAngleNb
+   :align: center
+   :target: _images/SteerAngleNb.png
 
    Box and whiskers plots of the steer angle data from all riders and bicycles
    versus speed.
 
 .. figure:: figures/motioncapture/RightKneeLateralDistanceNb.*
    :width: 3in
+   :align: center
+   :target: _images/RightKneeLateralDistanceNb.png
 
    Box and whiskers plots of the right knee lateral distance data from all
    rider and bicycles versus speed.
 
 .. figure:: figures/motioncapture/LeftKneeLateralDistanceNb.*
    :width: 3in
+   :align: center
+   :target: _images/LeftKneeLateralDistanceNb.png
 
    Box and whiskers plots of the left knee lateral distancee data from all
    riders and bicycles versus speed.
 
 .. figure:: figures/motioncapture/ButtLateralDistanceNb.*
    :width: 3in
+   :align: center
+   :target: _images/ButtLateralDistanceNb.png
 
    Box and whiskers plots of the butt lateral distance data from all riders and
    bicycles versus speed.
 
 .. figure:: figures/motioncapture/LeanAngleNb.*
    :width: 3in
+   :align: center
+   :target: _images/LeanAngleNb.png
 
    Box and whiskers plots of the lean angle data from all riders and bicycles
    versus speed.
 
 .. figure:: figures/motioncapture/TwistAngleNb.*
    :width: 3in
+   :align: center
+   :target: _images/TwistAngleNb.png
 
    Box and whiskers plots of the twist angle data from all riders and bicycles
    versus speed.
@@ -1609,12 +1616,10 @@ valid view of the kinematics of the bicycle and rider during stabilization
 tasks. General trends in how states change with speed were shown and can be
 utilized for rider bicycle dynamic and control model design. This is only one
 of the first steps at understanding how particular motions vary with speed,
-manuevers, bicycles, riders and even the correllations among the motions. THe
-source code also computes statistics for the rates, accelerations and frequency
+maneuvers, bicycles, riders, and even the correlations among the motions. The
+source code also computes statistics for the rates, accelerations, and frequency
 content of the coordinates. The numerical values presented also provide a
 framework for design of measurement techniques needed in experimental studies.
-
-.. todo:: provide all of the plots in an image gallery
 
 Conclusions
 ===========
@@ -1632,13 +1637,11 @@ speed, was somewhat flawed due to the difficulty in matching components from
 run to run and became somewhat of a subjective task. It correctly shows the
 increased motions at low speeds, but the information from the principal
 components interested me less and less as we continued to work with it. This is
-what led me to transform the marker data into more concrete cooridinates that
+what led me to transform the marker data into more concrete coordinates that
 have more meaning and connection to the kinematics we typically examine in the
 bicycle-rider system. I think the data set can provide some more concrete
 conclusions about how we balance a bicycle. One other thing that I thought
 about pursuing was making use of scaling with respect to mass in the principal
 component analysis. It is possible to applying weighting such that motions
 associated with points on limbs with more mass. This could in affect reveal
-motions that have more effect on the dynamics.
-
-.. todo:: expand on this last thought
+motions that have more effect on the dynamics than simply the kinematics.

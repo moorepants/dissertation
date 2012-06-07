@@ -235,7 +235,7 @@ brace to the bicycle frame via a stout adjustable arm.
 I fashioned some knee straps with strong magnets taken from computer hard
 drives which would engage with a ferrous attachment plate on the frame so that
 the rider's legs would be rigid with respect to the rear frame, :ref:`Figure 3
-<figKneeRestraint>`. Chapters :ref:`delftbicycle` and :ref:`motioncapture`
+<figKneeRestraints>`. Chapters :ref:`delftbicycle` and :ref:`motioncapture`
 showed the rider tends to use lateral knee motions and we wanted to eliminate
 that as a confounding factor. The magnets were weak enough that the rider
 could remove his legs in an emergency.
@@ -857,7 +857,7 @@ Bicycle Experiments
    information. He does include a nice photo of the apparatus, :ref:`Figure 12
    <figCheng>`.
 
-   .. figCheng:
+   .. _figCheng:
 
    .. figure:: figures/davisbicycle/cheng-steer-torque-design.*
       :width: 3in
@@ -984,7 +984,7 @@ Motorcycle Experiments
    predictions very well. The measure torques from -20 to 20 Nm for a slalom
    maneuver at 40 m/s.
 
-   .. figBiralSteerTorque:
+   .. _figBiralSteerTorque:
 
    .. figure:: figures/davisbicycle/biral-steer-torque-design.*
       :width: 4in
@@ -1120,7 +1120,7 @@ accuracy of full scale (:math:`\pm 0.17` Nm) for static measurements,
 electric hub motor (i.e.  no pedaling) with a crude power based cruise control,
 but speeds remaining fairly constant.
 
-.. figTorqueWrenchMount:
+.. _figTorqueWrenchMount:
 
 .. figure:: figures/davisbicycle/torque-wrench-mount.*
    :width: 3in
@@ -1130,7 +1130,7 @@ but speeds remaining fairly constant.
    The mounting bracket for the torque wrenches. The lower portion clamps to a
    1 1/8" steer tube and the upper portion clamps of a 1/4" socket end.
 
-.. figTorqueWrenchFace:
+.. _figTorqueWrenchFace:
 
 .. figure:: figures/davisbicycle/torque-wrench-face.*
    :width: 4in
@@ -1140,7 +1140,7 @@ but speeds remaining fairly constant.
    The dial indicator face of the torque wrench which reads out in inch pounds
    and newton meters.
 
-.. figTorqueWrenchCamera:
+.. _figTorqueWrenchCamera:
 
 .. figure:: figures/davisbicycle/torque-wrench-camera.*
    :width: 4in
@@ -1175,7 +1175,7 @@ torques for each maneuver. :ref:`Figure 20 <figTwrenchTorqueSpeed>` shows all
 of the recorded torques as a function of speed. There may be an underlying
 dependency on speed, i.e. that the maximum torques decrease as speed decreases.
 
-.. figTwrenchTorqueHistogram:
+.. _figTwrenchTorqueHistogram:
 
 .. figure:: figures/davisbicycle/twrench-torque-histogram.*
    :width: 4in
@@ -1219,7 +1219,7 @@ dependency on speed, i.e. that the maximum torques decrease as speed decreases.
      - 4.5
      - -4.8
 
-.. figTwrenchTorqueSpeed:
+.. _figTwrenchTorqueSpeed:
 
 .. figure:: figures/davisbicycle/twrench-torque-speed.*
    :width: 4in
@@ -1407,7 +1407,7 @@ steer torque, :math:`T_\delta`, and the friction from the upper bearing set,
 :math:`T_U`, which can be described by coulomb, :math:`T_{U_F}`, and viscous
 friction, :math:`T_{U_V}`.
 
-.. figHandlebarFreeBody::
+.. _figHandlebarFreeBody:
 
 .. figure:: figures/davisbicycle/handlebar-free-body.*
    :width: 3in
@@ -1594,7 +1594,7 @@ was rigidly fixed in inertial space. We then attached two springs of stiffness
 a lever arm, :math:`l`, relative to the steer axis, :ref:`Figure 26
 <figSteerExperiment>`.
 
-.. figSteerExperiment::
+.. _figSteerExperiment:
 
 .. figure:: figures/davisbicycle/steer-experiment.*
    :width: 4in
@@ -1700,7 +1700,7 @@ is due to the inertial effects. This extra torque may be negligible in
 motorcycle dynamics, but must be accounted for when studying the much lighter
 bicycle.
 
-.. figSteerTorqueComponents::
+.. _figSteerTorqueComponents:
 
 .. figure:: figures/davisbicycle/steer-torque-components.*
    :width: 5.5in
@@ -1756,7 +1756,7 @@ measuring the voltage of the potentiometer output at a series of distinct
 angles. This calibration was done anytime the timing belt or pulleys were
 disengaged and before each experimentation session.
 
-.. figSteerAngleCalibration::
+.. _figSteerAngleCalibration:
 
 .. figure:: figures/davisbicycle/steer-angle-calibration.*
    :width: 6in
@@ -1776,7 +1776,7 @@ measurements each day of experiments so that the roll angle could be computed
 from the accelerometer's output in case the bias in the roll angle calibration
 was poor.
 
-.. figRollAngleCalibration::
+.. _figRollAngleCalibration:
 
 .. figure:: figures/davisbicycle/roll-calibration.*
    :width: 2.5in
@@ -1908,7 +1908,7 @@ for the no load case.
 
    F = \frac{V_c}{V_s} (m V + b)
 
-.. figLoadCellCalibration::
+.. _figLoadCellCalibration:
 
 .. figure:: figures/davisbicycle/load-cell-calibration.*
    :width: 3in
@@ -2195,12 +2195,12 @@ Data Processing
 
 To handle processing the large amount of data, I developed an object oriented
 program, `BicycleDataProcessor
-<https://github.com/moorepants/BicycleDataProcessor>`_, in Python that interacts
-with an HDF5 database containing the data. The program makes use of `PyTables
-<http://www.pytables.org>`_ for database interaction and the
-`SciPy/NumPy<http://www.scipy.org>`_ `matplotlib<http://matplotlib.sourceforge.net>`_
-stack for computation and plotting. The program is structured around three
-classes:
+<https://github.com/moorepants/BicycleDataProcessor>`_, in Python that
+interacts with an HDF5 database containing the data. The program makes use of
+`PyTables <http://www.pytables.org>`_ for database interaction and the
+`SciPy/NumPy <http://www.scipy.org>`_ `matplotlib
+<http://matplotlib.sourceforge.net>`_ stack for computation and plotting. The
+program is structured around three classes:
 
 Signal
    This is a subclass of the NumPy ndarray. It tracks a 1 dimensional time

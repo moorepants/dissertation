@@ -1,3 +1,11 @@
+#!/usr/bin/env python
+
+"""
+This script generates a rigid body model of the bicycle roll angle trailer and
+generates a graph showing the effect the height of the yoke axis on the yoke
+angle and roll angle.
+"""
+
 import numpy as np
 from scipy.optimize import fsolve
 import matplotlib.pyplot as plt
@@ -65,11 +73,11 @@ plt.rcParams.update(params)
 
 fig = plt.figure()
 ax1 = fig.add_subplot(2, 1, 1)
-ax1.set_ylabel(r'$\alpha$')
-ax1.set_xlabel(r'$\theta$')
+ax1.set_ylabel(r'$\alpha$ [deg]')
+ax1.set_xlabel(r'$\theta$ [deg]')
 ax2 = fig.add_subplot(2, 1, 2)
-ax2.set_ylabel(r'$\beta$')
-ax2.set_xlabel(r'$\theta$')
+ax2.set_ylabel(r'$\beta$ [deg]')
+ax2.set_xlabel(r'$\theta$ [deg]')
 
 for height in [0., 0.05, 0.1, 0.15, 0.2, 0.25, 0.3]:
     for i, th in enumerate(thetaRange):
@@ -85,6 +93,7 @@ for height in [0., 0.05, 0.1, 0.15, 0.2, 0.25, 0.3]:
 ax1.legend()
 ax2.legend()
 
-fig.savefig('../../figures/davisbicycle/trailer-angle.png')
+fig.savefig('../../figures/davisbicycle/trailer-angle.png', dpi=200)
+fig.savefig('../../figures/davisbicycle/trailer-angle.pdf')
 fig.show()
 

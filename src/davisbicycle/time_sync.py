@@ -3,10 +3,10 @@
 # This script plots the results of the time synchronization of the acceleration
 # signals caused by the bump.
 
-import bicycledataprocessor.main as bdp
-os = bdp.os
-np = bdp.np
-plt = bdp.plt
+import bicycledataprocessor as bdp
+import os
+import numpy as np
+import matplotlib.pyplot as plt
 
 pathToBicycleMechanics = '/media/Data/Documents/School/UC Davis/Bicycle Mechanics'
 pathToDatabase = os.path.join(pathToBicycleMechanics, 'BicycleDataProcessor/InstrumentedBicycleData.h5')
@@ -15,7 +15,8 @@ pathToParameterData = os.path.join(pathToBicycleMechanics, 'BicycleParameters/da
 dataset = bdp.DataSet(fileName=pathToDatabase)
 dataset.open()
 
-trial = bdp.Run('00690', dataset.database, pathToParameterData=pathToParameterData)
+trial = bdp.Run('00690', dataset, pathToParameterData=pathToParameterData,
+        forceRecalc=True)
 
 dataset.close()
 
@@ -32,7 +33,7 @@ params = {'backend': 'ps',
           'text.usetex': True,
           'figure.figsize': [fig_width,fig_height],
           'figure.dpi' : 200,
-          'figure.subplot.left' : 0.2,
+          'figure.subplot.left' : 0.25,
           'figure.subplot.bottom' : 0.15}
 plt.rcParams.update(params)
 
@@ -52,6 +53,7 @@ vnLeg = ax.legend_.get_texts()[1]
 vnLeg.set_text('VN-100')
 
 unsync.savefig('../../figures/davisbicycle/unsync.png')
+unsync.savefig('../../figures/davisbicycle/unsync.pdf')
 
 # plot the data after synchronization
 sync = trial.plot('-AccelerometerAccelerationY', 'AccelerationZ',
@@ -69,3 +71,4 @@ vnLeg = ax.legend_.get_texts()[1]
 vnLeg.set_text('VN-100')
 
 sync.savefig('../../figures/davisbicycle/sync.png')
+sync.savefig('../../figures/davisbicycle/sync.pdf')

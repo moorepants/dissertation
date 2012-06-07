@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
-import bicycledataprocessor.main as bdp
-os = bdp.os
-np = bdp.np
-plt = bdp.plt
+import bicycledataprocessor as bdp
+import os
+import numpy as np
+import matplotlib.pyplot as plt
 
 pathToBicycleMechanics = '/media/Data/Documents/School/UC Davis/Bicycle Mechanics'
 pathToDatabase = os.path.join(pathToBicycleMechanics, 'BicycleDataProcessor/InstrumentedBicycleData.h5')
@@ -12,7 +12,7 @@ pathToParameterData = os.path.join(pathToBicycleMechanics, 'BicycleParameters/da
 dataset = bdp.DataSet(fileName=pathToDatabase)
 dataset.open()
 
-trial = bdp.Run('00699', dataset.database,
+trial = bdp.Run('00699', dataset,
         pathToParameterData=pathToParameterData, filterFreq=40.)
 
 dataset.close()
@@ -28,6 +28,7 @@ params = {'backend': 'ps',
           'xtick.labelsize': 8,
           'ytick.labelsize': 8,
           'text.usetex': True,
+          'figure.titlesize': 10,
           'figure.figsize': [fig_width,fig_height],
           'figure.dpi' : 200,
           'figure.subplot.left' : 0.2,

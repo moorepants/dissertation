@@ -117,20 +117,23 @@ fig_width = 5.0
 fig_height = fig_width * golden_mean
 params = {'backend': 'ps',
           'axes.labelsize': 8,
-          'axes.titlesize': 10,
+          'ytick.labelsize': 6,
+          'axes.titlesize': 8,
           'text.fontsize': 8,
           'legend.fontsize': 6,
-          'xtick.labelsize': 8,
-          'ytick.labelsize': 8,
+          'xtick.labelsize': 6,
           'text.usetex': True,
           'figure.figsize': [fig_width,fig_height],
           'figure.dpi' : 200,
-          'figure.subplot.left' : 0.2,
-          'figure.subplot.bottom' : 0.15}
+          'figure.title.fontsize': 8,
+          'figure.subplot.bottom' : 0.1,
+          'figure.subplot.hspace' : 0.05,
+          }
 plt.rcParams.update(params)
-plt.figure(0)
+fig = plt.figure(0)
 
-a=plt.subplot(411)
+a = plt.subplot(411)
+a.set_xticklabels('')
 plt.title(title)
 plt.plot(z, Vx)
 plt.grid(b=True)
@@ -143,6 +146,7 @@ plt.axvline(x = ls + lhd, color='k', linewidth=3)
 plt.ylabel('Vx [N]')
 
 a = plt.subplot(412)
+a.set_xticklabels('')
 plt.plot(z, My)
 plt.grid(b=True)
 cylim = np.array(a.get_ylim())
@@ -155,6 +159,7 @@ plt.ylabel('My [Nm]')
 
 # plot the shear/moment diagrams from the front
 a = plt.subplot(413)
+a.set_xticklabels('')
 plt.plot(z, Vy)
 plt.grid(b=True)
 cylim = np.array(a.get_ylim())
@@ -181,4 +186,5 @@ plt.ylabel('Mx [Nm]')
 plt.xlabel('z [m]')
 
 plt.gcf().savefig('../../figures/davisbicycle/fork-load-diagram.png', dpi=200)
+plt.gcf().savefig('../../figures/davisbicycle/fork-load-diagram.pdf')
 plt.show()

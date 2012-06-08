@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>&lt;no title&gt; &mdash; Human Control of a Bicycle: Jason K. Moore</title>
+    
+    <link rel="stylesheet" href="../../_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/theme_extras.js"></script>
+    <link rel="top" title="Human Control of a Bicycle: Jason K. Moore" href="../../index.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="../../index.html">
+          <span>Human Control of a Bicycle: Jason K. Moore</span></a></h1>
+        <h2 class="heading"><span>&lt;no title&gt;</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+
+  <table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="15%" />
+<col width="23%" />
+<col width="15%" />
+<col width="23%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&nbsp;</th>
+<th class="head" colspan="2">Yellow</th>
+<th class="head" colspan="2">Yellowrev</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Variable</td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(c\)</span></td>
+<td>0.047</td>
+<td>0.002</td>
+<td>0.180</td>
+<td>0.002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(g\)</span></td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Bxx}\)</span></td>
+<td>0.2240</td>
+<td>0.0009</td>
+<td>0.2254</td>
+<td>0.0009</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Bxz}\)</span></td>
+<td>0.0182</td>
+<td>0.0001</td>
+<td>0.0179</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Byy}\)</span></td>
+<td>0.388</td>
+<td>0.005</td>
+<td>0.388</td>
+<td>0.005</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Bzz}\)</span></td>
+<td>0.2160</td>
+<td>0.0009</td>
+<td>0.2147</td>
+<td>0.0009</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Fxx}\)</span></td>
+<td>0.0852</td>
+<td>0.0003</td>
+<td>0.0852</td>
+<td>0.0003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Fyy}\)</span></td>
+<td>0.147</td>
+<td>0.002</td>
+<td>0.147</td>
+<td>0.002</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Hxx}\)</span></td>
+<td>0.1452</td>
+<td>0.0006</td>
+<td>0.1475</td>
+<td>0.0006</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Hxz}\)</span></td>
+<td>-0.0194</td>
+<td>0.0005</td>
+<td>-0.0172</td>
+<td>0.0005</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Hyy}\)</span></td>
+<td>0.120</td>
+<td>0.003</td>
+<td>0.120</td>
+<td>0.002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Hzz}\)</span></td>
+<td>0.0292</td>
+<td>0.0003</td>
+<td>0.0294</td>
+<td>0.0004</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Rxx}\)</span></td>
+<td>0.0877</td>
+<td>0.0004</td>
+<td>0.0877</td>
+<td>0.0004</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Ryy}\)</span></td>
+<td>0.149</td>
+<td>0.001</td>
+<td>0.149</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\lambda\)</span></td>
+<td>0.302</td>
+<td>0.003</td>
+<td>0.339</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_B\)</span></td>
+<td>3.31</td>
+<td>0.02</td>
+<td>3.31</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_F\)</span></td>
+<td>1.90</td>
+<td>0.02</td>
+<td>1.90</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_H\)</span></td>
+<td>2.45</td>
+<td>0.02</td>
+<td>2.45</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_R\)</span></td>
+<td>2.57</td>
+<td>0.02</td>
+<td>2.57</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(r_F\)</span></td>
+<td>0.3419</td>
+<td>0.0001</td>
+<td>0.3419</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(r_R\)</span></td>
+<td>0.3414</td>
+<td>0.0001</td>
+<td>0.3414</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(w\)</span></td>
+<td>1.089</td>
+<td>0.002</td>
+<td>0.985</td>
+<td>0.002</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(x_B\)</span></td>
+<td>0.422</td>
+<td>0.004</td>
+<td>0.412</td>
+<td>0.004</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(x_H\)</span></td>
+<td>0.948</td>
+<td>0.004</td>
+<td>0.919</td>
+<td>0.005</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(z_B\)</span></td>
+<td>-0.603</td>
+<td>0.004</td>
+<td>-0.618</td>
+<td>0.004</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(z_H\)</span></td>
+<td>-0.788</td>
+<td>0.002</td>
+<td>-0.816</td>
+<td>0.002</td>
+</tr>
+</tbody>
+</table>
+
+
+<!--
+<script type="text/javascript">
+	var disqus_developer = 1;
+</script>
+-->
+<h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /**
+    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread]
+    */
+  (function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = 'http://jkm-dissertation.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a
+		href="http://disqus.com/?ref_noscript=jkm-dissertation">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+
+
+    <div class="footer">
+        &copy; Copyright 2011, Jason K. Moore.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+<script type="text/javascript">
+var disqus_shortname = 'jkm-dissertation';
+(function () {
+  var s = document.createElement('script'); s.async = true;
+  s.src = 'http://disqus.com/forums/jkm-dissertation/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+<div align="center">
+<a rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+	<img
+	alt="Creative Commons License" style="border-width:0"
+	src="http://i.creativecommons.org/l/by/3.0/88x31.png" />
+</a>
+<br />
+This work is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+Attribution 3.0 Unported License</a>
+</div>
+
+
+  </body>
+</html>

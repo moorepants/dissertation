@@ -1,0 +1,4634 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Physical Parameters &mdash; Human Control of a Bicycle: Jason K. Moore</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="Human Control of a Bicycle: Jason K. Moore" href="index.html" />
+    <link rel="next" title="Parameter Studies" href="parameterstudy.html" />
+    <link rel="prev" title="Extensions of the Whipple Model" href="extensions.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>Human Control of a Bicycle: Jason K. Moore</span></a></h1>
+        <h2 class="heading"><span>Physical Parameters</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="extensions.html">Extensions of the Whipple Model</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="parameterstudy.html">Parameter Studies</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+
+  <div class="section" id="physical-parameters">
+<span id="physicalparameters"></span><h1>Physical Parameters<a class="headerlink" href="#physical-parameters" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This document is a draft which is updated regularly (Last updated June 08, 2012 at 13:38:52 PDT).
+Once I submit if for my doctoral degree at UC Davis, it will be done. So for
+now use at your own risk. The information may or may not be correct.
+Reviews, comments and suggestions are welcome.</p>
+</div>
+<div class="section" id="preface">
+<h2>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
+<p>I was first concerned with the physical parameters of the bicycle and rider in
+my multi-body dynamics class project [Moore2006]. There I developed a method
+of estimating the parameters from simply the geometry and mass of the bicycle
+and rider. I cleaned that work up and presented it in Biarritz, France
+[Moore2008]. This method served me well until we needed to have more accurate
+estimates of the parameters for the first instrumented bicycle I helped build
+at TU Delft, see Chapter <a class="reference internal" href="delftbicycle.html#delftbicycle"><em>Delft Instrumented Bicycle</em></a>. I signed on to the task of
+measuring the bike&#8217;s physical parameters using the equipment and procedures
+developed in [Kooijman2006] and to combine the reuslt with my basic human
+model from [Moore2008] for the estimation of the complete system parameters of
+the Whipple model.  These first measurements and the details of the human model
+were eventually presented in San Diego [Moore2009a]. During this work, Dr.
+Hubbard encouraged me to think about the accuracy of the measurements in more
+detail, as some of the practices we were using were not as accurate as they
+could be. With that in mind and the fact that there was very little complete
+data available on the physical parameters of real bicycles, I decided to
+measure an assortment of bicycles we had available around the lab in Delft
+[Moore2010]. This was certainly a tedious task, but I believe a rich data set
+was created and the measurement methodology tightened up considerably. Once I
+was back in Davis, we setup almost identical equipment to measure the two new
+bicycles we were constructing, see Chatper <a class="reference internal" href="davisbicycle.html#davisbicycle"><em>Davis Instrumented Bicycle</em></a>. Danique
+Fintelman helped us come up with a more accurate geometry measurement. Steven
+Yen also used the equipment to measure a children&#8217;s bicycle with a gyro wheel.
+Additionally, we improved the human parameter estimates when Chris Dembia
+implemented Yeadon&#8217;s human inertia model and we combined it with the accurate
+bicycle measurements. These final methods for both bicycle and rider are
+implemented in two open source software packages.</p>
+</div>
+<div class="section" id="bicycle-parameters">
+<span id="secbicycleparameters"></span><h2>Bicycle Parameters<a class="headerlink" href="#bicycle-parameters" title="Permalink to this headline">¶</a></h2>
+<p>Accurate measurements of a bicycle&#8217;s physical parameters are required for
+realistic dynamic simulation and analysis. The most basic models require the
+geometry, mass, mass location and mass distributions for the rigid bodies. More
+complex models require estimates of tire characteristics, human
+characteristics, friction, stiffness, damping, etc. In this chapter I present
+the measurement of the minimal bicycle/rider parameters required for the
+benchmark Whipple bicycle model presented in [Meijaard2007]. This model is
+composed of four rigid bodies, has ideal rolling and frictionless joints, and
+is laterally symmetric. A set of 25 parameters describes the geometry, mass,
+mass location and mass distribution of each of the rigid bodies. The
+experimental methods used to estimate the parameters described herein are based
+primarily on the work done in [Kooijman2006], [Kooijman2008] and
+[Moore2009a] but have been refined for improved accuracy and methodology.</p>
+<p>Koojiman&#8217;s work was preceded by several others, I&#8217;ll mention the most notable
+measurements related to bicycles. Roland and Massing [Roland1971] measured the
+physical parameters of a bicycle in much the same way as is presented,
+including calculations of uncertainty from the indirect measurement techniques.
+Patterson [Patterson2004] used a swing to measure the roll inertia of
+recumbent bicycles with a rider. [Connors2009] and [Stevens2009] used a
+computer aided design package to estimate the parameters.  [Escalona2010]
+measured a bicycle for his bicycle dynamics class in Spain. Some notable
+motorcycle and scooter measurements include [Dohring1953], [Dohring1955],
+[Singh1971], [Eaton1973], [Roland1973], [Zytveld1975], and [Sharp1997b].</p>
+<p>Here I document the indirect measurement of ten real bicycles&#8217; physical
+parameters. We improve upon previous methods by both increasing and reporting
+the accuracies of the measurements and by measuring the complete moments of
+inertia of the laterally symmetric frame and fork needed for analysis of the
+nonlinear model. Furthermore, very little data exists on the physical
+parameters of different types of bicycles and this work aims to provide a small
+sample of bicycles.</p>
+<p>We measured the physical characteristics of eleven different bicycles, three of
+which were set up in two different configurations. The first six bicycles,
+chosen for both variety and convenience, are as follows: <em>Batavus Browser</em>, a
+Dutch style city bicycle measured with and without instrumentation as described
+in [Kooijman2009a]; <em>Batavus Stratos Deluxe</em>, a Dutch style sporty city
+bicycle; <em>Batavus Crescendo Deluxe</em> a Dutch style city bicycle with a suspended
+fork; <em>Gary Fisher Mountain Bike</em>, a hard-tail mountain bicycle; <em>Bianchi
+Pista</em>, a modern steel frame track racing bicycle; and <em>Yellow Bicycle</em>, a
+stripped down aluminum frame road bicycle measured in two configurations, the
+second with the fork rotated in the head tube 180 degrees for larger trail. The
+last two bicycles were measured in Davis: the instrumented bicycle presented in
+chapter <a class="reference internal" href="davisbicycle.html#davisbicycle"><em>Davis Instrumented Bicycle</em></a> and a children&#8217;s bicycle with a stabilizing
+flywheel called the GyroBike.</p>
+<p>These eleven different parameter sets can be used with, but are not limited to,
+the benchmark bicycle model. The accuracy of all the measurements are
+presented. The accuracies are based measurement inaccuracies and the proper use
+of error propagation theory with correlations taken into account.</p>
+<div class="section" id="parameters">
+<span id="secparameters"></span><h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
+<p>I was primarily concerned with measuring and estimating the 25 parameters
+associated with the benchmark Whipple bicycle model which is derived and
+described in [Meijaard2007]. The unforced two degree-of-freedom,
+<span class="math">\(\mathbf{q} = [\delta \quad \phi]^T\)</span> model takes the form:</p>
+<div class="math" id="equation-eqCanonical">
+<span class="eqno">(1)</span>\[\mathbf{M\ddot{q}}
++v\mathbf{C}_1\mathbf{\dot{q}}
++\left[g\mathbf{K}_0
++v^2\mathbf{K}_2\right]\mathbf{q}
+=0\]</div>
+<p>where the entries of the <span class="math">\(\mathbf{M}\)</span>, <span class="math">\(\mathbf{C}_1\)</span>,
+<span class="math">\(\mathbf{K}_0\)</span> and <span class="math">\(\mathbf{K}_2\)</span> matrices are combinations of 25
+bicycle physical parameters that include the geometry, mass, mass location and
+mass distribution of the four rigid bodies. The 25 parameters presented in
+[Meijaard2007] are not necessarily a minimum set for the Whipple model, as
+shown in [Sharp2008a], but are useful none-the-less as they represent
+intuitively measurable quantities and have become become standard due to the
+nature of the benchmark. They are also not parameters used in my derivation in
+Chapter <a class="reference internal" href="eom.html#eom"><em>Bicycle Equations Of Motion</em></a> but can easily be converted, as was shown. I did not
+concern myself with measuring many more parameters than are required due to
+the assumptions of the Whipple model such as no-slip tires, lateral symmetry,
+knife edge wheels, etc.</p>
+<p>The 25 parameters can be measured using many techniques. In general, I
+attempted to measure the benchmark parameter as directly as possible to improve
+the accuracy.</p>
+</div>
+<div class="section" id="bicycle-descriptions">
+<h3>Bicycle Descriptions<a class="headerlink" href="#bicycle-descriptions" title="Permalink to this headline">¶</a></h3>
+<p>We measured a total of eight bicycles in eleven configurations, <a class="reference internal" href="#figbicycles"><em>Figure 1</em></a>. The three Batavus bicycles were donated by the manufacturer.
+We asked for a bicycle that they considered stable and one that they did not.
+They offered the Browser as a &#8220;stable&#8221; bicycle and the Stratos as &#8220;nervous&#8221;.
+The Crescendo was considered average handling. We measured an instrumented
+version of the Browser that was used in the experiments described in Chapter
+<a class="reference internal" href="delftbicycle.html#delftbicycle"><em>Delft Instrumented Bicycle</em></a>. The Fisher and the Pista were chosen to provide some
+variety, a mountain and road bike. The yellow bike is used to demonstrate
+bicycle stability and the forked is reversed to provide better stability when
+perturbed with no rider. The Davis instrumented bicycle is an instrumented
+bicycle described in Chapter <a class="reference internal" href="davisbicycle.html#davisbicycle"><em>Davis Instrumented Bicycle</em></a> and we measured the frame in
+configurations for different rider seating positions. The child&#8217;s bicycle has
+the GyroWheel product installed in the front wheel. The first six of these
+bicycles were measured in Delft and will hereafter be referred to as the <em>Delft
+Bicycles</em>. The remaining two bicycles were measure in Davis and will be
+referred to as the <em>Davis Bicycles</em>.</p>
+<div class="figure align-center" id="figbicycles">
+<a class="reference external image-reference" href="_images/bicycles.jpg"><img alt="_images/bicycles.jpg" src="_images/bicycles.jpg" style="width: 3.75in;" /></a>
+<p class="caption">The ten measured bicycles: (a) Batavus Browser, (b) Instrumented Batavus
+Browser, (c) Batavus Crescendo Deluxe, (d) Batavus Stratos Deluxe, (e) Gary
+Fisher, (f) Bianchi Pista, (g) Yellow Bicycle, (h) Yellow Bicycle with
+reversed fork, (i) Davis Instrumented Bicycle, (j) Gyro Bicycle. The Davis
+Instrumented Bicycle was measured twice each with the body cast and seat
+height in different positions. The first &#8220;Rigid&#8221; was set up for Jason and
+the second &#8220;Rigidcl&#8221; was set up for Luke and Charlie.</p>
+</div>
+</div>
+<div class="section" id="accuracy">
+<span id="secaccuracy"></span><h3>Accuracy<a class="headerlink" href="#accuracy" title="Permalink to this headline">¶</a></h3>
+<p>I have attempted to report the accuracy of the measurements of the parameters.
+Following the footsteps of [Roland1971] I used error propagation theory to
+calculate accuracy of the 25 benchmark parameters. I began by estimating the
+standard deviation of the actual measurements taken, see Section
+<a class="reference internal" href="#secbicyclemeasuredparameters"><em>Bicycle Measured Parameters</em></a>. If <span class="math">\(x\)</span> is a parameter and is a function of
+the measurements, <span class="math">\(u,v,\ldots\)</span>, which are Gaussian random variables then
+<span class="math">\(x\)</span> is also a Gaussian random variable defined as
+<span class="math">\(x=f(u,v,\ldots)\)</span>. The sample variance of <span class="math">\(x\)</span> is defined as</p>
+<div class="math" id="equation-sampleVariance">
+<span class="eqno">(2)</span>\[s_x^2 =
+\frac{1}{N-1}\sum^N_{i=1}
+\left[(u_i - \bar{u})^2\left(\frac{\partial x}{\partial u}\right)^2 +
+(v_i - \bar{v})^2\left(\frac{\partial x}{\partial v}\right)^2 +
+2(u_i - \bar{u})(v_i - \bar{v})\left(\frac{\partial x}{\partial u}\right)
+\left(\frac{\partial x}{\partial v}\right)
++ \ldots\right]\]</div>
+<p>Using the definitions for variance and covariance, Equation
+<a href="#equation-sampleVariance">(2)</a> can be simplified to</p>
+<div class="math" id="equation-variance">
+<span class="eqno">(3)</span>\[s_x^2 = s_u^2\left(\frac{\partial x}{\partial u}\right)^2 +
+        s_v^2\left(\frac{\partial x}{\partial v}\right)^2 +
+        2s_{uv}\left(\frac{\partial x}{\partial u}\right)
+        \left(\frac{\partial x}{\partial v}\right)
+        + \ldots\]</div>
+<p>If <span class="math">\(u\)</span> and <span class="math">\(v\)</span> are uncorrelated then <span class="math">\(s_{uv}=0\)</span>. Most of the
+calculations hereafter have uncorrelated variables but a few do not and the
+covariance has to be taken into account. Equation <a href="#equation-variance">(3)</a> can be used to
+calculate the variance of all types of functions. I made use of the Python
+package <a class="reference external" href="http://pypi.python.org/pypi/uncertainties/">uncertainties</a>
+[Lebigot2001] to simplify the book keeping of the correlations and variance
+calculations , thus some of the equations for the error are not shown in the
+following sections.</p>
+</div>
+<div class="section" id="geometry">
+<span id="secgeometry"></span><h3>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h3>
+<p>The geometry measurements of the Delft bicycles focused on measuring the
+benchmark parameters: trail, wheelbase, and steer axis tilt as directly as
+possible. I also present an alternative method for the geometry used with the
+Davis bicycles that attempts to measure the distances in my model derivation,
+Chapter <a class="reference internal" href="eom.html#eom"><em>Bicycle Equations Of Motion</em></a>, which improves the accuracy of the parameters. Keep in mind,
+that I assumed that the frame did not flex and that the wheel radii do not
+change with rider weight when taking geometric measurements.</p>
+<div class="section" id="wheel-radii">
+<span id="secwheelradii"></span><h4>Wheel Radii<a class="headerlink" href="#wheel-radii" title="Permalink to this headline">¶</a></h4>
+<p>The radii of the front <span class="math">\(r_\mathrm{F}\)</span> and rear <span class="math">\(r_\mathrm{R}\)</span>
+wheels were estimated by measuring the linear distance traversed along the
+ground through at least ten rotations of the wheel. Each wheel traversal was
+measured separately and the measurements were taken with rider seated on the
+bicycle, except for the gyro bicycle which had no rider. A 72 kg rider sat on
+the Delft bicycles and an 84 kg rider on the Davis instrumented bicycle
+<a class="footnote-reference" href="#weight" id="id29">[1]</a>. A 30 meter tape measure (resolution: 2mm) was pulled tight and
+taped on a flat level smooth floor for the Delft bicycles and we marked a 68
+foot length on the floor and used a 1/16 inch resolution ruler to measure the 6
+to 15 inch additional distance for the Davis bicycles. The tire was marked and
+aligned with the tape measure <a class="reference internal" href="#figtirechalk"><em>Figure 2</em></a>. The accuracy of the
+distance measurement is approximately <span class="math">\(\pm0.01\)</span> meter. The tires were
+pumped to the recommended inflation pressure before the measurements. The wheel
+radius is calculated by</p>
+<div class="math" id="equation-wheelRadius">
+<span class="eqno">(4)</span>\[r\pm\sigma_r=
+\frac{d}{2\pi n}
+\pm\left(\frac{\sigma_d}{2\pi n}\right)\]</div>
+<p>where <span class="math">\(r\)</span> is the wheel radius, <span class="math">\(d\)</span>, is the traversal distance,
+<span class="math">\(n\)</span>, is the number of rotations and <span class="math">\(\sigma\)</span> is the respective
+standard deviation of the subscripted variable. I use subscripts <span class="math">\(F\)</span> and
+<span class="math">\(R\)</span> from front and rear wheels, respectively, in the measurement tables in
+Section <a class="reference internal" href="#secbicyclemeasuredparameters"><em>Bicycle Measured Parameters</em></a>.</p>
+<div class="figure align-center" id="figtirechalk">
+<a class="reference external image-reference" href="_images/tire-chalk.jpg"><img alt="_images/tire-chalk.jpg" src="_images/tire-chalk.jpg" style="width: 4in;" /></a>
+<p class="caption">Wheel and tire with chalk mark aligned to the tape measure.</p>
+</div>
+</div>
+<div class="section" id="head-tube-angle">
+<span id="secheadtube"></span><h4>Head Tube Angle<a class="headerlink" href="#head-tube-angle" title="Permalink to this headline">¶</a></h4>
+<p>For the Delft Bicycles, the head tube angle was measured directly using an
+electronic level, <a class="reference internal" href="#figheadtube"><em>Figure 3</em></a>. The bicycle frame was fixed
+perpendicular to the ground, the steering angle was set to the nominal
+position, tire pressures were at recommended levels, and the bicycle was
+unloaded. The steer axis tilt <span class="math">\(\lambda\)</span> is the complement to the head
+tube angle, <span class="math">\(\gamma\)</span>.</p>
+<div class="math" id="equation-eqHeadTubeAngle">
+<span class="eqno">(5)</span>\[\lambda\pm\sigma_\lambda
+=\frac{\pi}{180^{\circ}}(90^{\circ}-\gamma)
+\pm\left(\frac{\pi}{180^\circ}\right)\sigma_{\gamma}\]</div>
+<div class="figure align-center" id="figheadtube">
+<a class="reference external image-reference" href="_images/headtube.jpg"><img alt="_images/headtube.jpg" src="_images/headtube.jpg" style="width: 2.5in;" /></a>
+<p class="caption">The digital level set against the Yellow Bicycle&#8217;s head tube.</p>
+</div>
+</div>
+<div class="section" id="trail">
+<span id="sectrail"></span><h4>Trail<a class="headerlink" href="#trail" title="Permalink to this headline">¶</a></h4>
+<p>The idealized trail is difficult to measure directly due to the fact that the
+tire has a contact patch and there is no distinct contact point. I instead
+chose to measure the fork offset, <span class="math">\(f_o\)</span>, and compute the ideal trail. The
+fork offset was measured by clamping the steer tube of the front fork into a
+v-block on a flat table, <a class="reference internal" href="#figforkoffset"><em>Figure 4</em></a>. For the Delft
+bicycles, a ruler was used to measure the height of the center of the head tube
+and the height of the center of the axle axis, and for the Davis bicycles we
+made use of more accurate height gages. The fork blades were aligned such that
+the axle axis was parallel to the table surface.</p>
+<div class="math" id="equation-eqTrail">
+<span class="eqno">(6)</span>\[c=\frac{r_\mathrm{F}\sin{\lambda}-f_o}{\cos{\lambda}}\]</div>
+<div class="math" id="equation-eqTrailVar">
+<span class="eqno">(7)</span>\[\sigma_{c}^{2}=\sigma_{r_{\mathrm{F}}}^{2}\tan^2{\lambda} -
+\sigma_{f_o}^{2}\sec^2{\lambda} +
+\sigma_{\lambda}^{2}\left(r_\mathrm{F}\sec^2{\lambda} -
+f_o\sec{\lambda}\tan{\lambda}\right)^2\]</div>
+<div class="figure align-center" id="figforkoffset">
+<a class="reference external image-reference" href="fork-offset.jpg"><img alt="_images/fork-offset.jpg" src="_images/fork-offset.jpg" style="width: 2.5in;" /></a>
+<p class="caption">The fork of the Davis Bicycle setup for measuring the fork offset.</p>
+</div>
+</div>
+<div class="section" id="wheelbase">
+<span id="secwheelbase"></span><h4>Wheelbase<a class="headerlink" href="#wheelbase" title="Permalink to this headline">¶</a></h4>
+<p>I measured the wheelbase directly with the bicycle in nominal configuration
+described in Section <a class="reference internal" href="#secheadtube"><em>Head Tube Angle</em></a>. We used a tape measure to measure the
+distance from one wheel axle center to the other.</p>
+</div>
+</div>
+<div class="section" id="alternative-geometry-measurement-method">
+<h3>Alternative Geometry Measurement Method<a class="headerlink" href="#alternative-geometry-measurement-method" title="Permalink to this headline">¶</a></h3>
+<p>The geometry for the bicycle model presented in Chapter:<cite>eom</cite> can almost be
+measured directly. I used this method for the Davis Bicycles. The bicycle frame
+is set on a granite measurement table such that the head tube is in a v-block
+and parallel to the table surface and the bicycle frame is situated such that
+the frame is perpendicular to the table surface, <a class="reference internal" href="#figalternativegeometry"><em>Figure 5</em></a>. The is fork rotated in the head tube such that the
+fork blades curve upwards. Two dummy axles are fit into the front and rear
+dropouts and the axles are ensured to be parallel to the table surface. The
+height from the table surface to the top of each axle are recorded with a
+height gage and the diameters of the axles are measured with a micrometer or
+caliper.</p>
+<div class="figure align-center" id="figalternativegeometry">
+<a class="reference external image-reference" href="_images/alternative-geometry.png"><img alt="_images/alternative-geometry.png" src="_images/alternative-geometry.png" style="width: 2.7in;" /></a>
+<p class="caption">The actual measurements taken to compute the basic bicycle geometry.</p>
+</div>
+<p>These measurements can then be converted to the three essential bicycle
+dimensions, <span class="math">\(d_1\)</span>, <span class="math">\(d_2\)</span>, <span class="math">\(d_3\)</span> described in Chapter
+<a class="reference internal" href="eom.html#eom"><em>Bicycle Equations Of Motion</em></a>.</p>
+<div class="math" id="equation-d1">
+<span class="eqno">(8)</span>\[d_1 = h_1 + h_2 - h_3 + \frac{\hat{d}_1 - \hat{d}_2}{2}\]</div>
+<div class="math" id="equation-d3">
+<span class="eqno">(9)</span>\[d_3 = h_4 - h_5 + \frac{\hat{d}_4 - \hat{d}_3}{2}\]</div>
+<div class="math" id="equation-d2">
+<span class="eqno">(10)</span>\[d_2 = \sqrt{\left(d + \frac{\hat{d}_2 + \hat{d}_3}{2}\right)^2 - (d_1 - d_2)^2}\]</div>
+<p>The traditional [Meijaard2007] parameters can then be calculated. If the
+<span class="math">\(r_F\)</span> does not equal <span class="math">\(r_R\)</span> then the steer axis tilt cannot be
+computed analytically as Equation <a href="#equation-eqLambda">(11)</a>  holds.</p>
+<div class="math" id="equation-eqLambda">
+<span class="eqno">(11)</span>\[\operatorname{sin}(\lambda) = \frac{r_F - r_R + d_2 \operatorname{cos}(\lambda)}{d_1 + d_3}\]</div>
+<p>It is trivial to find the solution to Equation <a href="#equation-eqLambda">(11)</a> numerically. If
+<span class="math">\(r_F=r_R\)</span>, the solution for <span class="math">\(\lambda\)</span> is analytic.</p>
+<div class="math" id="equation-lambdaEqualRadii">
+<span class="eqno">(12)</span>\[\lambda = \operatorname{arctan}\left(\frac{d_2}{d_1 + d_3}\right)\]</div>
+<p>The wheelbase is</p>
+<div class="math" id="equation-eqWheelbase">
+<span class="eqno">(13)</span>\[ w = (d_1 + d_3) \operatorname{cos}(\lambda) + d_2 \operatorname{sin}(\lambda)\]</div>
+<p>and trail is then computed with Equation <a href="#equation-eqTrail">(6)</a>, realizing <span class="math">\(f_o = d_3\)</span>:</p>
+<div class="math" id="equation-eqTrailD3">
+<span class="eqno">(14)</span>\[ c = \frac{r_F \operatorname{sin}(\lambda) - d_3}{\operatorname{cos}(\lambda)}\]</div>
+</div>
+<div class="section" id="mass">
+<span id="secmass"></span><h3>Mass<a class="headerlink" href="#mass" title="Permalink to this headline">¶</a></h3>
+<p>For the Delft bicycles, each of the four bicycle parts were measured using a
+Molen 20 kilogram scale with a resolution of 20 grams. The accuracy was
+conservatively assumed to also be <span class="math">\(\pm20\)</span> grams. Also, the total mass was
+measured using a spring scale with a resolution of 100 grams. The total mass
+was only used for comparison purposes, as it was not very accurate. The mass of
+the parts of the Davis bicycles were measured with a digital scale with a
+resolution of 50 grams (A &amp; D FV-150k Industrial Scale).</p>
+<div class="figure align-center" id="figmassscale">
+<a class="reference external image-reference" href="_images/mass-scale.jpg"><img alt="_images/mass-scale.jpg" src="_images/mass-scale.jpg" style="width: 3in;" /></a>
+<p class="caption">figMassScale</p>
+<div class="legend">
+The scale used to measure the mass of each Delft bicycles&#8217; components.</div>
+</div>
+</div>
+<div class="section" id="center-of-mass">
+<span id="seccenterofmass"></span><h3>Center of Mass<a class="headerlink" href="#center-of-mass" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="wheels">
+<span id="secwheelcom"></span><h4>Wheels<a class="headerlink" href="#wheels" title="Permalink to this headline">¶</a></h4>
+<p>The centers of mass of the wheels were assumed to be at their geometrical
+centers to comply with the Whipple model. This was also assumed for the
+flywheel in the gyro bike.</p>
+</div>
+<div class="section" id="rear-frame">
+<span id="secrearframecom"></span><h4>Rear Frame<a class="headerlink" href="#rear-frame" title="Permalink to this headline">¶</a></h4>
+<p>The rear frame bicycle configuration was hung in at least three orientations
+through the assumed lateral plane of symmetry. I assumed that the frame was
+laterally symmetric, complying with the Whipple model, thus reducing the need
+to use a more complex three dimensional measurement setup. The frame could
+rotate about a joint such that gravity aligned the center of mass with the
+support rod axis. The orientation angle of the steer axis,
+<span class="math">\(\alpha_\mathrm{B}\)</span>, see <a class="reference internal" href="#figangles"><em>Figure 7</em></a>, relative to the
+earth was measured using a digital level (<span class="math">\(\pm0.2^{\circ}\)</span> accuracy),
+<a class="reference internal" href="#figpendulumangle"><em>Figure 8</em></a>. A thin string was aligned with the pendulum
+axis which passed by the frame. The horizontal distance <span class="math">\(a_\mathrm{B}\)</span>
+between the rear axle and the string was measured by aligning a 1 mm resolution
+ruler perpendicular to the string <a class="reference internal" href="#figpendulumdistance"><em>Figure 9</em></a>. The
+distance <span class="math">\(a_\mathrm{B}\)</span> was negative if the string fell to the right of
+the rear axle and positive if it fell to the left of the rear axle, when
+viewing the bicycle from the right side. These measurements allow for the
+calculation of the center of mass location in the global reference frame.</p>
+<div class="figure align-center" id="figangles">
+<a class="reference external image-reference" href="_images/angles.png"><img alt="_images/angles.png" src="_images/angles.png" style="width: 3in;" /></a>
+<p class="caption">Pictorial description of the angles and dimensions that related the nominal
+bicycle reference frame <span class="math">\(XYZ_B\)</span> with the pendulum reference frame
+<span class="math">\(XYZ_P\)</span>.</p>
+</div>
+<div class="figure align-center" id="figpendulumangle">
+<a class="reference external image-reference" href="_images/pendulum-angle.jpg"><img alt="_images/pendulum-angle.jpg" src="_images/pendulum-angle.jpg" style="width: 2.75in;" /></a>
+<p class="caption">The digital level was mounted to a straight edge aligned with the head tube
+of the bicycle frame. This was done without allowing the straight edge to
+touch the frame. The frame was not absolutely stationary so this was
+difficult. The light frame oscillations could be damped out by submerging a
+low hanging area of the frame into a bucket of water to decrease the
+oscillation.</p>
+</div>
+<div class="figure align-center" id="figpendulumdistance">
+<a class="reference external image-reference" href="_images/pendulum-distance.jpg"><img alt="_images/pendulum-distance.jpg" src="_images/pendulum-distance.jpg" style="width: 2.75in;" /></a>
+<p class="caption">Measuring the distance from the pendulum axis to the rear wheel axle using
+a level ruler.</p>
+</div>
+<p>The frame rotation angle <span class="math">\(\beta_\mathrm{B}\)</span> is defined as rotation of the
+frame in the nominal benchmark configuration to the hanging orientation,
+rotated about the <span class="math">\(Y\)</span> axis.</p>
+<div class="math" id="equation-eqFrameRotAng">
+<span class="eqno">(15)</span>\[\beta_\mathrm{B} = \lambda - \alpha_\mathrm{B}\]\[\sigma_{\beta}^{2} = \sigma_{\lambda}^{2} + \sigma_{\alpha}^{2}\]</div>
+<p>The center of mass can be found by realizing that the pendulum axis <span class="math">\(X_P\)</span>
+is simply a line in the nominal bicycle reference frame with a slope <span class="math">\(m\)</span>
+and a z-intercept <span class="math">\(b\)</span> where the <span class="math">\(i\)</span> subscript corresponds the
+different frame orientations, see <a class="reference internal" href="#figtriangle"><em>Figure 10</em></a>. The slope can
+be shown to be</p>
+<div class="math" id="equation-eqSlope">
+<span class="eqno">(16)</span>\[m_{\mathrm{B}i} = -\tan{\beta_{\mathrm{B}i}}\]\[\sigma_{m}^{2} = \sigma_{\beta}^{2}\sec^{4}{\beta}\]</div>
+<div class="figure align-center" id="figtriangle">
+<a class="reference external image-reference" href="_images/com-triangle.png"><img alt="_images/com-triangle.png" src="_images/com-triangle.png" style="width: 2.75in;" /></a>
+<p class="caption">Exaggerated intersection of the three pendulum axes and the location of the
+center of mass.</p>
+</div>
+<p>The z-intercept can be shown to be</p>
+<div class="math" id="equation-eqZInt">
+<span class="eqno">(17)</span>\[b_{\mathrm{B}i} = -\left(\frac{a_{\mathrm{B}i}}{\cos{\beta_{\mathrm{B}i}}} +
+r_\mathrm{R}\right)\]\[\sigma_{b}^{2} = \sigma_{a}^{2}\sec^{2}{\beta} +
+\sigma_{r_\mathrm{R}}^{2} +
+\sigma_{\beta}^{2}a^{2}\sec^{2}{\beta}\tan^{2}{\beta}\]</div>
+<p>Theoretically, the center of mass lies on each line but due to experimental
+error, if there are more than two lines, the lines do not cross all at the same
+point. Only two lines are required to calculate the center of mass of the
+laterally symmetric frame, but more orientations increase the center of mass
+measurement accuracy. The three lines are defined as</p>
+<div class="math" id="equation-eqLine">
+<span class="eqno">(18)</span>\[z_{\mathrm{B}i}(x) = m_{\mathrm{B}i} x + b_{\mathrm{B}i}\]</div>
+<p>The mass center location can be calculated by finding the intersection of these
+three lines. Two approaches were used used to calculate the center of mass.
+Intuition leads one to think that the center of mass may be located at the
+centroid of the triangle made by the three intersecting lines. The centroid can
+be found by calculating the intersection point of each pair of lines and then
+averaging the three intersection points <a class="footnote-reference" href="#leastsquares" id="id31">[2]</a>.</p>
+<div class="math" id="equation-eqLinearSystem">
+<span class="eqno">(19)</span>\[\begin{split} \begin{bmatrix}
+     x_a\\
+     z_a
+ \end{bmatrix}
+ =
+ \begin{bmatrix}
+     -m_1 &amp; 1\\
+     -m_2 &amp; 1
+ \end{bmatrix}^{-1}
+ \begin{bmatrix}
+     b_1\\
+     b_2
+ \end{bmatrix}\end{split}\]\[\begin{split} \begin{bmatrix}
+     x_b\\
+     z_b
+ \end{bmatrix}
+ =
+ \begin{bmatrix}
+     -m_1 &amp; 1\\
+     -m_3 &amp; 1
+ \end{bmatrix}^{-1}
+ \begin{bmatrix}
+     b_1\\
+     b_3
+ \end{bmatrix}\end{split}\]\[\begin{split} \begin{bmatrix}
+     x_c\\
+     z_c
+ \end{bmatrix}
+ =
+ \begin{bmatrix}
+     -m_2 &amp; 1\\
+     -m_3 &amp; 1
+ \end{bmatrix}^{-1}
+ \begin{bmatrix}
+     b_2\\
+     b_3
+ \end{bmatrix}\end{split}\]</div>
+<div class="math" id="equation-eqXCenter">
+<span class="eqno">(20)</span>\[x_\mathrm{B} = \frac{x_a + x_b + x_c}{3}\]</div>
+<div class="math" id="equation-eqZCenter">
+<span class="eqno">(21)</span>\[z_\mathrm{B} = \frac{z_a + z_b + z_c}{3}\]</div>
+</div>
+<div class="section" id="fork-and-handlebar">
+<span id="secforkcom"></span><h4>Fork and Handlebar<a class="headerlink" href="#fork-and-handlebar" title="Permalink to this headline">¶</a></h4>
+<p>The fork and handlebars are generally a bit trickier to hang in three different
+orientations, <a class="reference internal" href="#figstratosfork"><em>Figure 11</em></a>. Typically two angles can be
+obtained by clamping to the steer tube at the top and the bottom. The third
+angle can be obtained by clamping to the stem. The center of mass of the fork
+is calculated in the same fashion as the frame. The slope of the line in the
+benchmark reference frame is the same as for the rear frame but the z-intercept
+is different</p>
+<div class="math" id="equation-eqZIntFork">
+<span class="eqno">(22)</span>\[b_{\mathrm{H}i} = w \tan{\beta_{\mathrm{H}i}} - r_\mathrm{F} -
+\frac{a}{\cos{\beta_{\mathrm{H}i}}}\]\[\sigma_{b}^{2} = \sigma_{w}^{2}\tan^{2}\beta +
+\sigma_{\beta}^{2}\left(w\sec^{2}\beta -
+a\sec\beta\tan\beta\right)^{2} + \sigma_{r_\mathrm{F}}^{2} +
+\sigma_{a}^{2}\sec^{2}\beta\]</div>
+<div class="figure align-center" id="figstratosfork">
+<a class="reference external image-reference" href="_images/stratos-fork-pendulum.jpg"><img alt="_images/stratos-fork-pendulum.jpg" src="_images/stratos-fork-pendulum.jpg" style="width: 2.75in;" /></a>
+<p class="caption">The Stratos fork and handlebar assembly hung as a torsional pendulum.</p>
+</div>
+<p>The fork of the Davis instrumented bicycle was connected to the handlebars by a
+steer torque sensor with universal joint. Due to the fact that the sensor and
+joint were not designed to support the weight of the adjacent components and
+the fact that we needed the inertia of the portion above the torque sensor for
+proper estimation of the steer torque applied by the rider <a class="footnote-reference" href="#steertorque" id="id32">[3]</a>, we
+opted to measure the center of mass and inertia of the fork and handlebar
+separately. The fork was measured as previously described, with the universal
+joint locked in its nominal position. The handlebar was measured in a similar
+fashion making use of small clamps to hang it in different orientations,
+<a class="reference internal" href="#fighandlebar"><em>Figure 11</em></a>.</p>
+<div class="figure align-center" id="fighandlebar">
+<img alt="_images/handlebar.jpg" src="_images/handlebar.jpg" style="width: 2.5in;" />
+<p class="caption">The handlebar mounted as a torsional pendulum.</p>
+</div>
+<p>I choose the center of the stem clamp bolt to be the reference point (as was
+the front and rear wheel centers for the front and rear frames). The location
+of this point relative to the front wheel center was measured as shown in
+<a class="reference internal" href="#fighandlebargeometry"><em>Figure 12</em></a>.</p>
+<div class="figure align-center" id="fighandlebargeometry">
+<a class="reference external image-reference" href="_images/handlebar-geometry.png"><img alt="_images/handlebar-geometry.png" src="_images/handlebar-geometry.png" style="width: 2.56in;" /></a>
+<p class="caption">A diagram of how the handlebar reference point was located with respect to
+the front wheel center. These were the raw measurements taken.</p>
+</div>
+<p>The distances along and perpendicular to the steer axis from the front wheel
+center to the handlebar reference point are as follows</p>
+<div class="math" id="equation-l1l2">
+<span class="eqno">(23)</span>\[l_1 = h_7 - h_6 + \frac{\hat{d}_5 - \hat{d}_6}{2}\]\[l_2 = \left(l - \frac{]hat{d}_5 + \hat{d}_6}{2}\right)
+\operatorname{cos}\left[\operatorname{arcsin}\left(\frac{l_1}{l -
+\frac{\hat{d}_5+\hat{d}_6}{2}}\right)\right]\]</div>
+<p>The distance from the front wheel center to the handlebar reference point in
+the global bicycle reference frame are</p>
+<div class="math" id="equation-u1u2">
+<span class="eqno">(24)</span>\[u_1 = l_2 \operatorname{sin}(\lambda) - l_1 \operatorname{cos}(\lambda)\]\[u_2 = \frac{u_1}{\operatorname{tan}(\lambda)} + \frac{l_1}{\operatorname{sin}(\lambda)}\]</div>
+<p>The center of mass in computed with respect to the handlebar reference point
+and <span class="math">\(u_1\)</span> and <cite>u_2</cite> locate the reference point of the handlebar to the
+front wheel center and thus the global origin.</p>
+</div>
+</div>
+<div class="section" id="inertia">
+<span id="secmoi"></span><h3>Inertia<a class="headerlink" href="#inertia" title="Permalink to this headline">¶</a></h3>
+<p>The moments of inertia of the wheels, rear frame, and fork (and handlebar) were
+measured both by taking advantage of the assumed symmetry of the parts and by
+hanging the parts as both compound and torsional pendulums while measuring
+their periods of oscillation when perturbed at small angles. The rate of
+oscillation was measured using a <a class="reference external" href="http://www.siliconsensing.com/CRS03">Silicon Sensing CRS03 100 deg/s rate gyro</a> for the Delft bicycles and a <a class="reference external" href="http://www.siliconsensing.com/CRS04">Silicon
+Sensing CRS04 200 deg/s rate gyro</a> for
+the Davis bicycles. The rate gyros were sampled at 1000 hz with a <a class="reference external" href="http://sine.ni.com/nips/cds/view/p/lang/en/nid/14604">National
+Instruments USB-6008 12 bit data acquisition unit</a> and at 500 hz with a
+<a class="reference external" href="http://sine.ni.com/nips/cds/view/p/lang/en/nid/203092">National Instruments USB-6218 16 bit data acquisition unit</a>, respectively, and
+the Matlab data acquisition toolbox. The measurement durations were between 15
+and 30 secs and each moment of inertia measurement was performed at least three
+times. No extra care was taken to calibrate the rate gyro, maintain a constant
+power source (i.e. the battery drains slowly), or account for drift because I
+was only concerned with the period. The raw voltage signal was used to
+determine the period of oscillation which is needed for the moment of inertia
+calculations, <a class="reference internal" href="#figvoltage"><em>Figure 13</em></a>.</p>
+<div class="figure align-center" id="figvoltage">
+<a class="reference external image-reference" href="_images/BrowserFrameCompoundFirst2.jpg"><img alt="_images/BrowserFrameCompoundFirst2.png" src="_images/BrowserFrameCompoundFirst2.png" style="width: 4in;" /></a>
+<p class="caption">Example portion of the raw voltage data taken during a 30 second measurement
+of the oscillation of the Browser rear frame as a compound pendulum.</p>
+</div>
+<p>The function Equation <a href="#equation-eqDecayOs">(25)</a> was fit to the data using the least
+squares method for each experiment to determine the quantities <span class="math">\(A\)</span>,
+<span class="math">\(B\)</span>, <span class="math">\(C\)</span>, <span class="math">\(\zeta\)</span>, and <span class="math">\(\omega\)</span>.</p>
+<div class="math" id="equation-eqDecayOs">
+<span class="eqno">(25)</span>\[f(t) = A + e^{-\zeta\omega t}\left[B\sin{\sqrt{1-\zeta^2}\omega t} +
+C\cos{\sqrt{1-\zeta^2}\omega t}\right]\]</div>
+<p>Most of the data fit the damped oscillation function well with very light (and
+potentially ignorable) damping. There were several instances in the Delft
+experiments of beating-like phenomena for some of the parts at particular
+orientations. Roland and Massing, [Roland1971], also encountered this problem
+and used a bearing to prevent the torsional pendulum from swinging.
+<a class="reference internal" href="#figbeating"><em>Figure 14</em></a> shows an example of the beating like phenomena. I
+used Roland and Massing&#8217;s solution to prevent this in the Davis measurements.</p>
+<div class="figure align-center" id="figbeating">
+<a class="reference external image-reference" href="_images/CrescendoForkTorsionalFirst2.jpg"><img alt="_images/CrescendoForkTorsionalFirst2.png" src="_images/CrescendoForkTorsionalFirst2.png" style="width: 4in;" /></a>
+<p class="caption">An example of the beating-like phenomena observed during less than 5% of
+the Delft trials.</p>
+</div>
+<p>The physical phenomenon observed corresponding to data sets such as these
+occurred when the bicycle frame or fork was perturbed torsionally. After set
+into motion the torsional motion dampened and a longitudinal swinging motion
+increased. The motions alternated back and forth with neither ever reaching
+zero. The frequencies of these motions were very close to one another and it
+was not apparent how dissect the two. We explored fitting to a function such as</p>
+<div class="math" id="equation-eqnSumSines">
+<span class="eqno">(26)</span>\[y(t) = A\sin{(\omega_1 t)} + B\sin{(\omega_2 t + \phi)} + C\]</div>
+<p>But the fit predicts that <span class="math">\(\omega_1\)</span> and <span class="math">\(\omega_2\)</span> are very
+similar frequencies. There was no easy way to choose which of the two
+<span class="math">\(\omega\)</span>&#8216;s was the one associated with the torsional oscillation. Some
+work was done to model the torsional pendulum as a laterally flexible beam to
+determine this, but we ended up assuming that the accuracy of the period
+calculation would not improve enough for the effort required. The later
+experiments simply prevented the swinging motion of the pendulum without
+damping the torsional motion.</p>
+<p>The period for a damped oscillation is</p>
+<div class="math" id="equation-eqnPeriodDamped">
+<span class="eqno">(27)</span>\[T = \frac{2\pi}{\sqrt{1-\zeta^2}\omega_n}\]</div>
+<p>The uncertainty in the period, <span class="math">\(T\)</span>, can be determined from
+the fit. First, the variance of the fit is calculated</p>
+<div class="math" id="equation-eqnFitVariance">
+<span class="eqno">(28)</span>\[\sigma_y^2 =
+\frac{1}{N-5}\sum_{i=1}^N(y_{mi}-\bar{y}_m)^2-(y_{pi}-\bar{y}_m)^2\]</div>
+<p>The covariance matrix of the fit function can be formed</p>
+<div class="math" id="equation-eqnCovariance">
+<span class="eqno">(29)</span>\[\mathbf{U} = \sigma_y^2\mathbf{H}^{-1}\]</div>
+<p>where <span class="math">\(\mathbf{H}\)</span> is the Hessian [Hubbard1989b] of the fit function,
+<a href="#equation-eqDecayOs">(25)</a>.  <span class="math">\(\mathbf{U}\)</span> is a <span class="math">\(5\times5\)</span> matrix with the
+variances of each of the five fit parameters along the diagonal.  The variance
+of <span class="math">\(T\)</span> can be computed using the variance of <span class="math">\(\zeta\)</span> and
+<span class="math">\(\omega\)</span>. It is important to note that the uncertainties in the period
+are very low (<span class="math">\(&lt;1e-4\)</span>) due to the high sample rate, even for the fits
+with low <span class="math">\(r^2\)</span> values.</p>
+<div class="section" id="torsional-pendulum">
+<span id="sectorsionalpendulum"></span><h4>Torsional Pendulum<a class="headerlink" href="#torsional-pendulum" title="Permalink to this headline">¶</a></h4>
+<p>A torsional pendulum was used to measure all moments of inertia about axes in
+the laterally symmetric plane of each of the wheels, fork and frame. The
+pendulum is made up of a rigid mount, an upper clamp, a torsion rod, and
+various lower clamps, <a class="reference internal" href="#figfixture"><em>Figure 15</em></a> .</p>
+<div class="figure align-center" id="figfixture">
+<a class="reference external image-reference" href="_images/fixture.jpg"><img alt="_images/fixture.jpg" src="_images/fixture.jpg" style="width: 2in;" /></a>
+<p class="caption">The rigid pendulum fixture from the Delft experiments mounted to a concrete
+column.</p>
+</div>
+<p>A mild steel rod was used as the torsion spring. Lightweight, low relative
+moment of inertia clamps were constructed that could clamp the torsional rod to
+the various bicycle parts. The moments of inertia of the clamps were neglected
+<a class="footnote-reference" href="#clamps" id="id34">[4]</a>.</p>
+<p>The torsional pendulum was calibrated using a rod with an easily computed, i.e.
+&#8220;known&#8221;, moment of inertia <a class="reference internal" href="#figrod"><em>Figure 16</em></a> <a class="footnote-reference" href="#rod" id="id35">[5]</a>. A torsional
+pendulum almost identical to the one used in [Kooijman2006] was used to
+measure the average period <span class="math">\(\overline{T}_i\)</span> of oscillation of the rear
+frame at three different orientation angles <span class="math">\(\beta_i\)</span>, where <span class="math">\(i=1\)</span>,
+<span class="math">\(2\)</span>, <span class="math">\(3\)</span>, as shown in <a class="reference internal" href="#figtriangle"><em>Figure 10</em></a>. The parts were
+perturbed lightly, around 1 degree, and allowed to oscillate about the pendulum
+axis through several periods. This was repeated at least three times for each
+frame and the recorded periods were averaged.</p>
+<div class="figure align-center" id="figrod">
+<a class="reference external image-reference" href="_images/rod.jpg"><img alt="_images/rod.jpg" src="_images/rod.jpg" style="width: 2in;" /></a>
+<p class="caption">The steel calibration rod. The moment of inertia of the rod, <span class="math">\(I_P =
+\frac{m_P}{12}(3 r_P^2 + l_P^2)\)</span>, can be used to estimate the stiffness of the
+pendulum, <span class="math">\(k = \frac{4 I_P \pi^2}{\overline{T_P}^2}\)</span>.</p>
+</div>
+</div>
+<div class="section" id="id37">
+<h4>Wheels<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h4>
+<p>Estimating the full inertia tensors of the wheels is less complex because the
+wheels are assumed symmetric about three orthogonal planes making all products
+of inertia to be zero. The <span class="math">\(I_{xx}=I_{zz}\)</span> moments of inertia were
+calculated by measuring the averaged period of oscillation about an axis in the
+<span class="math">\(XZ_B\)</span>-plane using the torsional pendulum setup and Equation
+<a href="#equation-eqTorPend">(32)</a>. The wheels are assumed to be laterally symmetric about any
+radial axis. Thus only two moments of inertia are required for the set of
+benchmark parameters [Meijaard2007]. The moment of inertia about the axle was
+measured by hanging the wheel as a compound pendulum, <a class="reference internal" href="#figwheeliyy"><em>Figure 17</em></a>. The wheel was hung on a horizontal rod and perturbed to
+oscillate about the axis of the rod. The rate gyro was attached to the spokes
+near the hub and oriented mostly along the axle axis. The wheels for the Delft
+bicycles would rotate at the rod contact point about the vertical axis which
+added a very low frequency component of rate along the vertical radial axis,
+but this should have little affect on the period estimation about the compound
+pendulum axis. A fixture was designed for the Davis bicycles that prevented
+non-desired rotation. The pendulum length is the distance from the rod/rim
+contact point to the mass center of the wheel.  The inner diameter of the rim
+was measured and divided by two to get <span class="math">\(l_\mathrm{F,R}\)</span>. The moment of
+inertia about the axle is calculated from</p>
+<div class="math" id="equation-eqCompoundInertia">
+<span class="eqno">(30)</span>\[I_{\mathrm{F,R}yy} = \left(\frac{\bar{T}_\mathrm{F,R}}{2\pi}\right)^2
+m_\mathrm{F,R} g l_\mathrm{F,R} - m_\mathrm{F,R} l_\mathrm{F,R}^2\]</div>
+<div class="figure align-center" id="figwheeliyy">
+<a class="reference external image-reference" href="_images/wheelIyy.jpg"><img alt="_images/wheelIyy.jpg" src="_images/wheelIyy.jpg" style="width: 2.75in;" /></a>
+<p class="caption">A wheel hung as a compound pendulum.</p>
+</div>
+<p>The radial moment of inertia was measured by hanging the wheel as a torsional
+pendulum, <a class="reference internal" href="#figfwheeltor"><em>Figure 18</em></a>. The wheel was first hung freely such
+that the center of mass aligned with the torsional pendulum axis and then the
+clamp secured. The wheel was then perturbed and oscillated about the vertical
+pendulum axis. The radial moment of inertia can be calculated with</p>
+<div class="math" id="equation-eqWheelTorInertia">
+<span class="eqno">(31)</span>\[I_{\mathrm{F,R}xx} = \frac{k\bar{T_\mathrm{F,R}}^2}{4\pi^2}\]</div>
+<div class="figure align-center" id="figfwheeltor">
+<a class="reference external image-reference" href="_images/CrescendoFwheelTorsionalFirst.jpg"><img alt="_images/CrescendoFwheelTorsionalFirst.jpg" src="_images/CrescendoFwheelTorsionalFirst.jpg" style="width: 2.75in;" /></a>
+<p class="caption">The front wheel of the Crescendo hung as a torsional pendulum.</p>
+</div>
+</div>
+<div class="section" id="frame">
+<h4>Frame<a class="headerlink" href="#frame" title="Permalink to this headline">¶</a></h4>
+<p>At least three measurements were made to estimate the globally referenced
+moments and products of inertia (<span class="math">\(I_{\mathrm{B}xx}\)</span>,
+<span class="math">\(I_{\mathrm{B}xz}\)</span> and <span class="math">\(I_{\mathrm{B}zz}\)</span>) of the rear frame. The
+rear frame was typically hung from either the three main tubes (seat tube, down
+tube and top tube), the seat post, or a small fixture mounted to the brake
+mounts <em class="xref std std-ref">Figure 19</em>. The rear fender prevented easy connection
+to the seat tube on some of the bikes and the clamp was attached to the fender.
+The fender was less rigid than the frame tube. For best accuracy with only
+three orientation angles, the frame should be hung at three angles that are
+<span class="math">\(120^\circ\)</span> apart. Attaching by the three tubes on the frame generally
+provide that the orientation angles were spread evenly at about
+<span class="math">\(120^\circ\)</span>. Furthermore, taking data at more orientation angles improved
+the accuracy and was generally possible with standard diamond frame bicycles.</p>
+<p>Three moments of inertia <span class="math">\(J_{\mathrm{B}i}\)</span> about the pendulum axes were
+calculated using</p>
+<div class="math" id="equation-eqTorPend">
+<span class="eqno">(32)</span>\[J_{\mathrm{B}i} = \frac{k \overline{T}_{\mathrm{B}i}^2}{4\pi^2}\]</div>
+<p>The moments and products of inertia of the rear frame and handlebar/fork
+assembly with reference to the benchmark coordinate system were calculated by
+formulating the relationship between inertial frames</p>
+<div class="math" id="equation-eqRotIn">
+<span class="eqno">(33)</span>\[\mathbf{J}_{\mathrm{B}i} = \mathbf{R}_i \mathbf{I}_\mathrm{B} \mathbf{R}_i^T\]</div>
+<p>where <span class="math">\(\mathbf{J}_{\mathrm{B}i}\)</span> is the inertia tensor about the pendulum axes,
+<span class="math">\(\mathbf{I}_\mathrm{B}\)</span>, is the inertia tensor in the global reference frame and
+<span class="math">\(\mathbf{R}_{\mathrm{B}i}\)</span> is the rotation matrix relating the two frames,
+<a class="reference internal" href="#figangles"><em>Figure 7</em></a>. The global planar inertia tensor is defined as</p>
+<div class="math" id="equation-eqMoI">
+<span class="eqno">(34)</span>\[\begin{split}\mathbf{I}_\mathrm{B}=
+\begin{bmatrix}
+  I_{\mathrm{B}xx}  &amp; I_{\mathrm{B}xz}\\
+  I_{\mathrm{B}xz} &amp; I_{\mathrm{B}zz}
+\end{bmatrix}\end{split}\]</div>
+<p>The inertia tensor can be reduced to a <span class="math">\(2 \times 2\)</span> matrix because the
+frame is assumed to be laterally symmetric and the <span class="math">\(Y\)</span> axis of the
+pendulum reference is the same as the <span class="math">\(Y\)</span> axis of the benchmark reference
+frame. The simple rotation matrix about the <span class="math">\(Y\)</span>-axis can similarly be
+reduced to a <span class="math">\(2 \times 2\)</span> matrix where <span class="math">\(s_{\beta i}\)</span> and
+<span class="math">\(c_{\beta i}\)</span> are defined as <span class="math">\(\sin{\beta_i}\)</span> and
+<span class="math">\(\cos{\beta_i}\)</span>, respectively.</p>
+<div class="math" id="equation-eqRotMat">
+<span class="eqno">(35)</span>\[\begin{split}\mathbf{R}=
+\begin{bmatrix}
+  c_{\beta i} &amp; -s_{\beta i}\\
+  s_{\beta i} &amp; c_{\beta i}
+\end{bmatrix}\end{split}\]</div>
+<p>The first entry of <span class="math">\(\mathbf{J}_{\mathrm{B}i}\)</span> in Equation <a href="#equation-eqRotIn">(33)</a>
+is the moment of inertia about the pendulum axis and is written explicitly as</p>
+<div class="math" id="equation-eqInRelComp">
+<span class="eqno">(36)</span>\[J_{\mathrm{B}i} = c^{2}_{\beta i}I_{\mathrm{B}xx} -
+2s_{\beta i}c_{\beta i}I_{\mathrm{B}xz} +
+s^{2}_{\beta i}I_{\mathrm{B}zz}\]</div>
+<p>Similarly, calculating all three, or more, <span class="math">\(J_{\mathrm{B}i}\)</span> allows one to form</p>
+<div class="math" id="equation-eqInRel">
+<span class="eqno">(37)</span>\[\begin{split} \begin{bmatrix}
+     J_{\mathrm{B}1}\\
+     J_{\mathrm{B}2}\\
+     J_{\mathrm{B}3}\\
+     \vdots
+ \end{bmatrix}
+ =
+ \begin{bmatrix}
+     c_{\beta 1}^2 &amp; -2s_{\beta 1}c_{\beta 1} &amp; s_{\beta 1}^2\\
+     c_{\beta 2}^2 &amp; -2s_{\beta 2}c_{\beta 2} &amp; s_{\beta 2}^2\\
+     c_{\beta 3}^2 &amp; -2s_{\beta 3}c_{\beta 3} &amp; s_{\beta 3}^2\\
+     \vdots &amp; \vdots &amp; \vdots
+ \end{bmatrix}
+ \begin{bmatrix}
+     I_{\mathrm{B}xx}\\
+     I_{\mathrm{B}xz}\\
+     I_{\mathrm{B}zz}
+ \end{bmatrix}\end{split}\]</div>
+<p>and the moments of inertia can be solved as a linear system or with least
+squares if it is over determined. The inertia of the frame about an axis normal
+to the plane of symmetry was estimated by hanging the frame as a compound
+pendulum at the wheel axis, <a class="reference internal" href="#figframecompound"><em>Figure 19</em></a>. Equation
+<a href="#equation-eqCompoundInertia">(30)</a> is used but with the mass of the frame and the frame
+pendulum length.</p>
+<div class="math" id="equation-eqFramePendLength">
+<span class="eqno">(38)</span>\[l_B = \sqrt{x_B^2+(z_B + r_R)^2}\]</div>
+<div class="figure align-center" id="figframecompound">
+<a class="reference external image-reference" href="_images/YellowFrameCompoundFirst.jpg"><img alt="_images/YellowFrameCompoundFirst.jpg" src="_images/YellowFrameCompoundFirst.jpg" style="width: 2in;" /></a>
+<p class="caption">The yellow bicycle rear frame hung as a compound pendulum.</p>
+</div>
+</div>
+<div class="section" id="id39">
+<h4>Fork and handlebar<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h4>
+<p>The inertia of the fork and handlebar is calculated in the same way as the
+frame. The fork is hung as both a torsional pendulum, <a class="reference internal" href="#figstratosfork"><em>Figure 11</em></a>, and as a compound pendulum, <a class="reference internal" href="#figforkcompound"><em>Figure 20</em></a>. The fork provides fewer mounting options to obtain at least
+three equally spaced orientation angles, especially if there is no fender. We
+designed a connection to the brake mounts for the Davis bicycles to remedy
+that. The torsional calculations follow equations <a href="#equation-eqTorPend">(32)</a> through
+<a href="#equation-eqInRel">(37)</a> and the compound pendulum calculations is calculated with
+Equation <a href="#equation-eqCompoundInertia">(30)</a>. The fork pendulum length is calculated using</p>
+<div class="math" id="equation-eqForkPendulumLength">
+<span class="eqno">(39)</span>\[l_H=\sqrt{(x_H - w)^2 + (z_H + r_F)^2}\]</div>
+<div class="figure align-center" id="figforkcompound">
+<a class="reference external image-reference" href="_images/BrowserInsForkCompoundFirst.jpg"><img alt="_images/BrowserInsForkCompoundFirst.jpg" src="_images/BrowserInsForkCompoundFirst.jpg" style="width: 2in;" /></a>
+<p class="caption">Browser fork hung as a compound pendulum.</p>
+</div>
+</div>
+</div>
+<div class="section" id="notation">
+<h3>Notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h3>
+<p>The notation used in the bicycle parameter estimation.</p>
+<dl class="docutils">
+<dt><span class="math">\(v\)</span></dt>
+<dd>Forward speed of the linear bicycle model.</dd>
+<dt><span class="math">\(g\)</span></dt>
+<dd>Acceleration due to gravity.</dd>
+<dt><span class="math">\(\mathbf{M},\mathbf{C}_1,\mathbf{K}_0,\mathbf{K}_2\)</span></dt>
+<dd>Velocity and gravity independent mass, damping, and stiffness matrices of
+the linearized Whipple model from [Meijaard2007].</dd>
+<dt><span class="math">\(\mathbf{q}\)</span></dt>
+<dd>Essential coordinates from [Meijaard2007].</dd>
+<dt><span class="math">\(\phi\)</span></dt>
+<dd>Roll angle.</dd>
+<dt><span class="math">\(\delta\)</span></dt>
+<dd>Steer angle.</dd>
+<dt><span class="math">\(\sigma\)</span></dt>
+<dd>Standard deviation. The subscript corresponds to the associated nominal
+variable.</dd>
+<dt><span class="math">\(r_{(F,R)} \pm \sigma_{r(F,R)}\)</span></dt>
+<dd>Front <span class="math">\(F\)</span> and rear wheel <span class="math">\(R\)</span> radii and their respective standard
+deviations.</dd>
+<dt><span class="math">\(d_{(F,R)} \pm \sigma_{d(F,R)}\)</span></dt>
+<dd>The traversed distance of each wheel.</dd>
+<dt><span class="math">\(n_{(F,R)}\)</span></dt>
+<dd>The number of wheel rotations.</dd>
+<dt><span class="math">\(\gamma \pm \sigma_\gamma\)</span></dt>
+<dd>The head tube angle and standard deviation.</dd>
+<dt><span class="math">\(\lambda \pm \sigma_\lambda\)</span></dt>
+<dd>The steer axis tilt and standard deviation.</dd>
+<dt><span class="math">\(f_o\)</span></dt>
+<dd>Fork offset.</dd>
+<dt><span class="math">\(c \pm \sigma_c\)</span></dt>
+<dd>Trail and its standard deviation.</dd>
+<dt><span class="math">\(d_1,d_2,d_3\)</span></dt>
+<dd>Fundamental bicycle geometry from Chapter <a class="reference internal" href="eom.html#eom"><em>Bicycle Equations Of Motion</em></a>.</dd>
+<dt><span class="math">\(d_1,d_2,d_3\)</span></dt>
+<dd>Fundamental bicycle geometry from Chapter <a class="reference internal" href="eom.html#eom"><em>Bicycle Equations Of Motion</em></a>.</dd>
+<dt><span class="math">\(d\)</span></dt>
+<dd>Inner dimension between the axles from the alternative geometry method.</dd>
+<dt><span class="math">\(\hat{d}_1,\hat{d}_2,\hat{d}_3,\hat{d}_4\)</span></dt>
+<dd>Measured diameters from the alternative geometry method.</dd>
+<dt><span class="math">\(h_1,h_2,h_3,h_4,h_5\)</span></dt>
+<dd>Measured heights from the table surface in the alternative geometry method.</dd>
+<dt><span class="math">\(i\)</span></dt>
+<dd>Indices for each orientation of the front and rear frames in the pendulum.</dd>
+<dt><span class="math">\(\alpha_{\mathrm{H,B}i}\)</span></dt>
+<dd>Angle of the steer axis relative to horizontal when the front frame and rear
+frame are hung as a pendulum.</dd>
+<dt><span class="math">\(a_{\mathrm{H,B}i}\)</span></dt>
+<dd>Horizontal distance from the front or rear axle to the pendulum axis when
+the front and rear frames are hung as a pendulum.</dd>
+<dt><span class="math">\(XYZ_P\)</span></dt>
+<dd>Pendulum reference frame.</dd>
+<dt><span class="math">\(XYZ_{B}\)</span></dt>
+<dd>Global bicycle reference frame from [Meijaard2007].</dd>
+<dt><span class="math">\(\beta_{\mathrm{H,B}i}\)</span></dt>
+<dd>Angle of the pendulum axis relative to the bicycle&#8217;s reference frame.</dd>
+<dt><span class="math">\(m_{\mathrm{H,B}i}\)</span></dt>
+<dd>Slope of the pendulum axis in the bicycle reference frame.</dd>
+<dt><span class="math">\(b_{\mathrm{H,B}i}\)</span></dt>
+<dd>Z intercept of the pendulum axis in the bicycle reference frame.</dd>
+<dt><span class="math">\(z_{\mathrm{B}i}(x)\)</span></dt>
+<dd>Function describing the pendulum axis line in the <span class="math">\(XZ_B\)</span> plane.</dd>
+<dt><span class="math">\(\hat{d}_5,\hat{d}_6\)</span></dt>
+<dd>Handlebar and front wheel axle diameters.</dd>
+<dt><span class="math">\(l\)</span></dt>
+<dd>The outer distance from the front wheel axle to the handlebar reference
+point.</dd>
+<dt><span class="math">\(l_1,l_2\)</span></dt>
+<dd>The distances along and perpendicular to the steer axis from the front wheel
+center to the handlebar reference point.</dd>
+<dt><span class="math">\(u_1,u_2\)</span></dt>
+<dd>The distances from the front wheel center to the handlebar reference point
+in the global bicycle reference frame.</dd>
+<dt><span class="math">\(A,B,C\)</span></dt>
+<dd>The offset, sin amplitude, and cosine amplitude in the oscillations.</dd>
+<dt><span class="math">\(\omega,\zeta\)</span></dt>
+<dd>The frequency and damping ratio in the oscillations.</dd>
+<dt><span class="math">\(T\)</span></dt>
+<dd>Period of oscillation.</dd>
+<dt><span class="math">\(\sigma_y\)</span></dt>
+<dd>The standard deviation of the measured voltage about the best fit curve.</dd>
+<dt><span class="math">\(y_{mi}\)</span></dt>
+<dd>The measured voltage at each time.</dd>
+<dt><span class="math">\(\bar{y}_m\)</span></dt>
+<dd>The mean of the measured voltage across all time.</dd>
+<dt><span class="math">\(y_{pi}\)</span></dt>
+<dd>The predicted voltage value at each time.</dd>
+<dt><span class="math">\(\mathbf{U}\)</span></dt>
+<dd>Covariance matrix of the fit function parameters.</dd>
+<dt><span class="math">\(\mathbf{H}\)</span></dt>
+<dd>Hessian of the fit function parameters.</dd>
+<dt><span class="math">\(\overline{T}_i\)</span></dt>
+<dd>Average period at orientation <span class="math">\(i\)</span>.</dd>
+<dt><span class="math">\(I_P\)</span></dt>
+<dd>Inertia of the calibration rod about the pendulum axis.</dd>
+<dt><span class="math">\(k\)</span></dt>
+<dd>Stiffness of the torsional pendulum.</dd>
+<dt><span class="math">\(m_P\)</span></dt>
+<dd>Mass of the calibration rod.</dd>
+<dt><span class="math">\(r_P\)</span></dt>
+<dd>Radius of the calibration rod.</dd>
+<dt><span class="math">\(l_P\)</span></dt>
+<dd>Length of the calibration rod.</dd>
+<dt><span class="math">\(T_P\)</span></dt>
+<dd>Oscillation period of the calibration rod.</dd>
+<dt><span class="math">\(l_\mathrm{F,R}\)</span></dt>
+<dd>Front and rear wheel compound pendulum length.</dd>
+<dt><span class="math">\(I_{Fyy},I_{Ryy}\)</span></dt>
+<dd>Moment of inertia of the front and rear wheels about the axle.</dd>
+<dt><span class="math">\(I_{\mathrm{F,R}xx}\)</span></dt>
+<dd>Moment of inertia of the front and rear wheels about the radii.</dd>
+<dt><span class="math">\(I_{\mathrm{B}xx},I_{\mathrm{B}xz},I_{\mathrm{B}zz}\)</span></dt>
+<dd>Moments and products of inertia of the rear fame with reference to the
+bicycle reference frame and the center of mass.</dd>
+<dt><span class="math">\(\mathbf{I}_\mathrm{H,B}\)</span></dt>
+<dd>The inertia tensor of the front and rear frame with reference to the bicycle
+reference frame and the center of mass.</dd>
+<dt><span class="math">\(\mathbf{J}_{\mathrm{H,B}i}\)</span></dt>
+<dd>The inertia tensor of the front and rear frame with reference to the
+pendulum reference frame and the center of mass for each orientation.</dd>
+<dt><span class="math">\(\mathbf{R}_i\)</span></dt>
+<dd>The rotation matrix relating the pendulum and bicycle reference frames.</dd>
+<dt><span class="math">\(s_{\beta i},c_{\beta i}\)</span></dt>
+<dd>Shorthand for <span class="math">\(\sin{\beta_i}\)</span> and <span class="math">\(\cos{\beta_i}\)</span>.</dd>
+<dt><span class="math">\(x_B,z_B\)</span></dt>
+<dd>The <span class="math">\(X\)</span> and <span class="math">\(Z\)</span> coordinates of the rear frame center of mass.</dd>
+<dt><span class="math">\(l_B\)</span></dt>
+<dd>The rear frame pendulum length.</dd>
+<dt><span class="math">\(x_H,z_H\)</span></dt>
+<dd>The <span class="math">\(X\)</span> and <span class="math">\(Z\)</span> coordinates of the front frame center of mass.</dd>
+<dt><span class="math">\(l_H\)</span></dt>
+<dd>The front frame pendulum length.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="human-parameters">
+<h2>Human Parameters<a class="headerlink" href="#human-parameters" title="Permalink to this headline">¶</a></h2>
+<p>To properly model the bicycle rider system it is necessary to estimate the
+physical parameters of the bicycle rider. The measurement of the physical
+properties of a human is more difficult than for a bicycle because the human
+body parts are not as easily described as rigid bodes with defined joints and
+due to flexible geometry, daily varying mass, wobbly mass, etc.</p>
+<p>Human mass, center of mass, and inertial properties have been measured and
+estimated in a multitude of ways. Each method has its advantages and
+disadvantages. Many methods exist including cadaver measurements
+([Dempster1955], [Clauser1969], [Chandler1975]), photogrammetry, ray
+scanning techniques ([Zatsiorsky1983], [Zatsiorsky1990]), water displacement
+([Park1999]), rotating platforms ([Griffith2005]), and mathematical
+geometrical estimation of the body segments ([Yeadon1990a]). [Dohring1953],
+[Eaton1973], and [Patterson2006] measured the moments of inertia and centers
+of mass of a combined rider and vehicle, but this is not always practical
+especially if the properties of multiple riders is desired.</p>
+<p>I approached the human parameter estimation in a more analytical fashion with
+minimal geometrically centric measurements as compared to some of the popular
+measurement techniques. Both methods that were used were based on estimating
+the inertial parameters from mass and geometry measurement along with a human
+body density estimate. With the first method, I estimated the physical
+properties of the rider in a seated position using a simple mathematical
+geometrical estimation similar in idea to [Yeadon1990a] in combination with
+mass data from [Dempster1955]. The second method substitutes Yeadon&#8217;s more
+robust model with my previous one.</p>
+<div class="section" id="simple-geometry-method">
+<h3>Simple Geometry Method<a class="headerlink" href="#simple-geometry-method" title="Permalink to this headline">¶</a></h3>
+<p>This method calculates the center of mass and inertia of a simplified model of
+the ten major human body parts: head, torso, upper and lower arms, and upper
+and lower legs, in a general configuration for sitting on typical bicycles. The
+mass of the rider was measured along with fourteen anthropomorphic measurements
+of the body. These measurements in combination with the geometrical bicycle
+measurements taken in the previous section (<a class="reference internal" href="#secbicycleparameters"><em>Bicycle Parameters</em></a>) and
+several additional bicycle geometrical measurements are used to define a model
+of the rider made up of simple geometrical shapes (<a class="reference internal" href="#figmooremodel"><em>Figure 21</em></a>). The legs and arms are represented by cylinders, the torso
+by a cuboid and the head by a sphere. The feet are positioned at the center of
+the bottom bracket axis to maintain symmetry about the <span class="math">\(XZ\)</span>-plane.</p>
+<div class="figure align-center" id="figmooremodel">
+<a class="reference external image-reference" href="_images/moore-model.png"><img alt="_images/moore-model.png" src="_images/moore-model.png" style="width: 2.5in;" /></a>
+<p class="caption">Locations of grid points and simple geometric shapes of the simple geometric
+inertia model.</p>
+</div>
+<p>All but one of the anthropomorphic measurements are taken when the rider was
+standing casually on flat ground. The lower leg length <span class="math">\(l_{ll}\)</span> is the
+distance from the floor to the knee joint. The upper leg length <span class="math">\(l_{ul}\)</span>
+is the distance from the knee joint to the hip joint. The length from hip to
+hip <span class="math">\(l_{hh}\)</span> and shoulder to shoulder <span class="math">\(l_{ss}\)</span> are the distances
+between the two hip joints and two shoulder joints, respectively. The torso
+length <span class="math">\(l_{to}\)</span> is the distance between hip joints and shoulder joints.
+The upper arm length <span class="math">\(l_{ua}\)</span> is the distance between the shoulder and
+elbow joints. The lower arm length <span class="math">\(l_{al}\)</span> is the distance from the
+elbow joint to the center of the hand when the arm is outstretched. The
+circumferences are taken at the cross section of maximum circumference (e.g.
+around the bicep, around the brow, over the nipples for the chest). The final
+dimension is taken while the rider is seated on the bicycle in a normal riding
+position. The forward lean angle <span class="math">\(\lambda_{fl}\)</span> is the approximate angle
+made between the floor (<span class="math">\(XY\)</span>-plane) and the line connecting the center of
+the rider&#8217;s head and the top of the seat. This was estimated by taking a side
+profile photograph of the rider on the bicycle and scribing a line from the
+center of the head to the top of the seat. The measurements were made as
+accurately as possible with basic tools but no special attention is given
+further to the accuracy of the calculations due to the fact that modeling the
+human as basic geometric shapes already introduces an unknown error.</p>
+<p>I measured twelve additional geometric values (only five of which are needed
+for this setup <a class="footnote-reference" href="#f1" id="id56">[6]</a>) to assist in configuring the rider to the be seated on
+the bicycle, <a class="reference internal" href="#figbatavusbrowserdim"><em>Figure 22</em></a>.</p>
+<dl class="docutils">
+<dt><span class="math">\(h_{bb}\)</span>, Bottom Bracket Height</dt>
+<dd>The distance from the ground to the bottom bracket when the bicycle is in
+the nominal configuration.</dd>
+<dt><span class="math">\(l_{cs}\)</span>, Chain stay length</dt>
+<dd>Not the true chain stay length, but the distance from the center of the
+bottom bracket to the center of the rear wheel.</dd>
+<dt><span class="math">\(l_{sp}\)</span>, Seat post length</dt>
+<dd>The distance from the intersection of a horizontal top tube and the seat
+tube to the top of the seat. Measured along the center line of the seat
+post.</dd>
+<dt><span class="math">\(l_{st}\)</span>, Seat tube length</dt>
+<dd>The distance from the bottom bracket to the point at which a horizontal top
+tube would intersect the seat tube.</dd>
+<dt><span class="math">\(\lambda_{st}\)</span>, Seat tube angle</dt>
+<dd>The acute angle between the ground and the seat tube.</dd>
+<dt><span class="math">\(l_{f}\)</span>, fork length <a class="footnote-reference" href="#f1" id="id57">[6]</a></dt>
+<dd>The distance from the center of the front wheel to the intersection of the
+head tube and the down tube.</dd>
+<dt><span class="math">\(w_{fh}\)</span>, front hub width <a class="footnote-reference" href="#f1" id="id58">[6]</a></dt>
+<dd>The distance between the front dropouts.</dd>
+<dt><span class="math">\(w_{hb}\)</span>, handlebar width <a class="footnote-reference" href="#f1" id="id59">[6]</a></dt>
+<dd>The distance between the handlebar grips.</dd>
+<dt><span class="math">\(l_{hb}\)</span>, handlebar length <a class="footnote-reference" href="#f1" id="id60">[6]</a></dt>
+<dd>The horizontal distance from the steer axis to the handlebar grips.</dd>
+<dt><span class="math">\(\lambda_{ht}\)</span>, head tube angle <a class="footnote-reference" href="#f1" id="id61">[6]</a></dt>
+<dd>The angle between the ground and the head tube.</dd>
+<dt><span class="math">\(w_{rh}\)</span>, rear hub width <a class="footnote-reference" href="#f1" id="id62">[6]</a></dt>
+<dd>The distance between the rear dropouts.</dd>
+<dt><span class="math">\(l_{s}\)</span>, stem length <a class="footnote-reference" href="#f1" id="id63">[6]</a></dt>
+<dd>The distance from the intersection of the top tube and the head tube to the
+level of the handlebar grips.</dd>
+</dl>
+<div class="figure align-center" id="figbatavusbrowserdim">
+<a class="reference external image-reference" href="_images/batavusBrowserDim.png"><img alt="_images/batavusBrowserDim.png" src="_images/batavusBrowserDim.png" style="width: 3.189in;" /></a>
+<p class="caption">The dimensions need to construct the grid point system in the simple inertia
+method.</p>
+</div>
+<p>The masses of each segment (<a class="reference internal" href="#tabsegmentmass"><em>Table 1</em></a>) were defined as a
+proportion of the total mass of the rider <span class="math">\(m_{\mathrm{B}r}\)</span> using data
+from cadaver studies by [Dempster1955].</p>
+<table border="1" class="docutils">
+<caption>Body mass and segment masses.</caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Segment</td>
+<td>Symbol</td>
+<td>Equation</td>
+</tr>
+<tr class="row-even"><td>body</td>
+<td><span class="math">\(m_{B_r}\)</span></td>
+<td><span class="math">\(m_{B_r}\)</span></td>
+</tr>
+<tr class="row-odd"><td>head</td>
+<td><span class="math">\(m_h\)</span></td>
+<td><span class="math">\(0.068 \cdot m_{B_r}\)</span></td>
+</tr>
+<tr class="row-even"><td>lower arm</td>
+<td><span class="math">\(m_{la}\)</span></td>
+<td><span class="math">\(0.022 \cdot m_{B_r}\)</span></td>
+</tr>
+<tr class="row-odd"><td>lower leg</td>
+<td><span class="math">\(m_{ll}\)</span></td>
+<td><span class="math">\(0.061 \cdot m_{B_r}\)</span></td>
+</tr>
+<tr class="row-even"><td>torso</td>
+<td><span class="math">\(m_{to}\)</span></td>
+<td><span class="math">\(0.510 \cdot m_{B_r}\)</span></td>
+</tr>
+<tr class="row-odd"><td>upper arm</td>
+<td><span class="math">\(m_{ua}\)</span></td>
+<td><span class="math">\(0.028 \cdot m_{B_r}\)</span></td>
+</tr>
+<tr class="row-even"><td>upper leg</td>
+<td><span class="math">\(m_{ul}\)</span></td>
+<td><span class="math">\(0.100 \cdot m_{B_r}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The geometrical and anthropomorphic measurements are converted into a set of
+thirty one grid points in three dimensional space that map the skeleton of the
+rider and bicycle (<a class="reference internal" href="#figmooremodel"><em>Figure 22</em></a>). The position vectors to
+these grid points are listed in <a class="reference internal" href="#tabgridpoints"><em>Table 2</em></a>. Several
+intermediate variables used in the grid point equations are listed in
+<a class="reference internal" href="#tabintvar"><em>Table 3</em></a> where <span class="math">\(f_o\)</span> is the fork offset and the rest
+arise due to multiple solutions to the location of the elbow and knee joints
+and have to be solved numerically. The correct solutions are the ones that
+force the arms and legs to bend in a natural fashion. The grid points mark the
+center of the sphere and the end points of the cylinders and cuboid. The
+segments are aligned along lines connecting the appropriate grid points.</p>
+<table border="1" class="docutils">
+<caption>Skeleton grid points with respect to the global frame.</caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Description</td>
+<td>Equation</td>
+</tr>
+<tr class="row-even"><td>rear contact point</td>
+<td><span class="math">\(\mathbf{r}_1=\left[0 \quad 0 \quad 0\right]\)</span></td>
+</tr>
+<tr class="row-odd"><td>rear wheel center</td>
+<td><span class="math">\(\mathbf{r}_2=\left[0 \quad 0 \quad -r_\mathrm{R}\right]\)</span></td>
+</tr>
+<tr class="row-even"><td>right rear hub center</td>
+<td><span class="math">\(\mathbf{r}_3=\mathbf{r}_2+\left[0 \quad \frac{w_{rh}}{2} \quad 0\right]\)</span></td>
+</tr>
+<tr class="row-odd"><td>left rear hub center</td>
+<td><span class="math">\(\mathbf{r}_4=\mathbf{r}_2+\left[0 \quad -\frac{w_{rh}}{2} \quad 0\right]\)</span></td>
+</tr>
+<tr class="row-even"><td>bottom bracket center</td>
+<td><span class="math">\(\mathbf{r}_5=\left[\sqrt{l_{cs}^2-(r_\mathrm{R}-h_{bb})^2} \quad 0 \quad -h_{bb}\right]\)</span></td>
+</tr>
+<tr class="row-odd"><td>front wheel contact point</td>
+<td><span class="math">\(\mathbf{r}_6=\left[w \quad 0 \quad 0\right]\)</span></td>
+</tr>
+<tr class="row-even"><td>front wheel center</td>
+<td><span class="math">\(\mathbf{r}_7=\mathbf{r}_6+\left[0 \quad 0 \quad -r_\mathrm{F}\right]\)</span></td>
+</tr>
+<tr class="row-odd"><td>right front hub center</td>
+<td><span class="math">\(\mathbf{r}_8=\mathbf{r}_7+\left[0 \quad \frac{w_{fh}}{2} \quad 0\right]\)</span></td>
+</tr>
+<tr class="row-even"><td>left front hub center</td>
+<td><span class="math">\(\mathbf{r}_9=\mathbf{r}_7+\left[0 \quad -\frac{w_{fh}}{2} \quad 0\right]\)</span></td>
+</tr>
+<tr class="row-odd"><td>top of seat tube</td>
+<td><span class="math">\(\mathbf{r}_{10}=\mathbf{r}_5+\left[-l_{st}\cos{\lambda_{st}} \quad 0 \quad -l_{st}\sin{\lambda_{st}}\right]\)</span></td>
+</tr>
+<tr class="row-even"><td>fork crown</td>
+<td><span class="math">\(\mathbf{r}_{11}=\mathbf{r}_7+\left[-f_o\sin{\lambda_{ht}}-\cos{\lambda_{ht}}\sqrt{l_{f}^2-f_o^2} \quad 0 \quad f_o\cos{\lambda_{ht}}-\sin{\lambda_{ht}}\sqrt{l_{f}^2-f_o^2}\right]\)</span></td>
+</tr>
+<tr class="row-odd"><td>top of head tube</td>
+<td><span class="math">\(\mathbf{r}_{12}=\left[r_{X11}-\frac{r_{Z11}-r_{Z10}}{\tan{\lambda_{ht}}} \quad 0 \quad r_{Z10}\right]\)</span></td>
+</tr>
+<tr class="row-even"><td>top of seat</td>
+<td><span class="math">\(\mathbf{r}_{13}=\mathbf{r}_{10}+\left[-l_{sp}\cos{\lambda_{st}} \quad 0 \quad -l_{sp}\sin{\lambda_{st}}\right]\)</span></td>
+</tr>
+<tr class="row-odd"><td>center of knees</td>
+<td><span class="math">\(\mathbf{r}_{14}=\mathbf{r}_5+\left[s \quad 0 \quad -t\right]\)</span></td>
+</tr>
+<tr class="row-even"><td>shoulder midpoint</td>
+<td><span class="math">\(\mathbf{r}_{15}=\mathbf{r}_{13}+\left[l_{to}\cos{\lambda_{fl}} \quad 0 \quad -l_{to}\sin{\lambda_{fl}}\right]\)</span></td>
+</tr>
+<tr class="row-odd"><td>top of stem</td>
+<td><span class="math">\(\mathbf{r}_{16}=\mathbf{r}_{12}+\left[-l_{s}\cos{\lambda_{ht}} \quad 0 \quad -l_{s}\sin{\lambda_{ht}}\right]\)</span></td>
+</tr>
+<tr class="row-even"><td>right handlebar</td>
+<td><span class="math">\(\mathbf{r}_{17}=\mathbf{r}_{16}+\left[0 \quad \frac{l_{ss}}{2} \quad 0\right]\)</span></td>
+</tr>
+<tr class="row-odd"><td>left handlebar</td>
+<td><span class="math">\(\mathbf{r}_{18}=\mathbf{r}_{16}+\left[0 \quad -\frac{l_{ss}}{2} \quad 0\right]\)</span></td>
+</tr>
+<tr class="row-even"><td>right hand</td>
+<td><span class="math">\(\mathbf{r}_{19}=\mathbf{r}_{17}+\left[-l_{hb} \quad 0 \quad 0\right]\)</span></td>
+</tr>
+<tr class="row-odd"><td>left hand</td>
+<td><span class="math">\(\mathbf{r}_{20}=\mathbf{r}_{18}+\left[-l_{hb} \quad 0 \quad 0\right]\)</span></td>
+</tr>
+<tr class="row-even"><td>right shoulder</td>
+<td><span class="math">\(\mathbf{r}_{21}=\mathbf{r}_{15}+\left[0 \quad \frac{l_{ss}}{2} \quad 0\right]\)</span></td>
+</tr>
+<tr class="row-odd"><td>left shoulder</td>
+<td><span class="math">\(\mathbf{r}_{22}=\mathbf{r}_{15}+\left[0 \quad -\frac{l_{ss}}{2} \quad 0\right]\)</span></td>
+</tr>
+<tr class="row-even"><td>right elbow</td>
+<td><span class="math">\(\mathbf{r}_{23}=\mathbf{r}_{19}+\left[-u \quad \frac{l_{ss}}{2} \quad -v\right]\)</span></td>
+</tr>
+<tr class="row-odd"><td>left elbow</td>
+<td><span class="math">\(\mathbf{r}_{24}=\mathbf{r}_{23}+\left[0 \quad -l_{ss} \quad 0\right]\)</span></td>
+</tr>
+<tr class="row-even"><td>center of head</td>
+<td><span class="math">\(\mathbf{r}_{25}=\mathbf{r}_{15}+\left[\frac{c_{h}}{2\pi}\cos{\lambda_{fl}} \quad 0 \quad -\frac{c_{h}}{2\pi}\sin{\lambda_{fl}}\right]\)</span></td>
+</tr>
+<tr class="row-odd"><td>right foot</td>
+<td><span class="math">\(\mathbf{r}_{26}=\mathbf{r}_{5}+\left[0 \quad \frac{l_{hh}}{2} \quad 0\right]\)</span></td>
+</tr>
+<tr class="row-even"><td>left foot</td>
+<td><span class="math">\(\mathbf{r}_{27}=\mathbf{r}_{5}+\left[0 \quad -\frac{l_{hh}}{2} \quad 0\right]\)</span></td>
+</tr>
+<tr class="row-odd"><td>right knee</td>
+<td><span class="math">\(\mathbf{r}_{28}=\mathbf{r}_{14}+\left[0 \quad \frac{l_{hh}}{2} \quad 0\right]\)</span></td>
+</tr>
+<tr class="row-even"><td>left knee</td>
+<td><span class="math">\(\mathbf{r}_{29}=\mathbf{r}_{14}+\left[0 \quad -\frac{l_{hh}}{2} \quad 0\right]\)</span></td>
+</tr>
+<tr class="row-odd"><td>right hip</td>
+<td><span class="math">\(\mathbf{r}_{30}=\mathbf{r}_{13}+\left[0 \quad \frac{l_{hh}}{2} \quad 0\right]\)</span></td>
+</tr>
+<tr class="row-even"><td>left hip</td>
+<td><span class="math">\(\mathbf{r}_{31}=\mathbf{r}_{13}+\left[0 \quad -\frac{l_{hh}}{2} \quad 0\right]\)</span></td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<caption>Grid point intermediate variables.</caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Symbol</td>
+<td>Equation</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(f_o\)</span></td>
+<td><span class="math">\(r_\mathrm{F}\cos{\lambda_{ht}}-c\sin{\lambda_{ht}}\)</span></td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(s\)</span></td>
+<td><span class="math">\(0=l_{ul}^2-l_{ll}^2-(r_{Z13}-r_{Z5})^2-(r_{X5}-r_{X13})^2-2(r_{Z13}-r_{Z5})\sqrt{(l_{ll}^2-s^2)}-2s(r_{X5}-r_{X13})\)</span></td>
+</tr>
+<tr class="row-even"><td><span class="math">\(t\)</span></td>
+<td><span class="math">\(\sqrt{l_{ll}^2-s^2}\)</span></td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(u\)</span></td>
+<td><span class="math">\(0=l_{la}^2-l_{ua}^2+(r_{Z21}-r_{Z19})^2+(r_{X19}-r_{X21})^2+2(r_{Z21}-r_{Z19})\sqrt{(l_{la}^2-u^2)}-2u(r_{X19}-r_{X21})\)</span></td>
+</tr>
+<tr class="row-even"><td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sqrt{l_{la}^2-u^2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The segments are assumed to have uniform density so the centers of mass are
+taken to be at the geometrical centers. The midpoint formula can then be used
+to calculate the local centers of mass for each segment in the global reference
+frame. The total body center of mass can be found from the standard formula</p>
+<div class="math" id="equation-eqCoM">
+<span class="eqno">(40)</span>\[\mathbf{r}_{\mathrm{B}r}=
+\frac{\sum{m_i\mathbf{r}_i}}{m_{\mathrm{B}r}}\]</div>
+<p>where <span class="math">\(\mathbf{r}_i\)</span> is the position vector to the centroid of each
+segment and <span class="math">\(m_i\)</span> is the mass of each segment. The local moments of
+inertia of each segment are determined using the ideal definitions of inertia
+for each segment type (<a class="reference internal" href="#tablocinertia"><em>Table 4</em></a>).</p>
+<table border="1" class="docutils">
+<caption>Segment inertia tensors defined in their local reference frames.</caption>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Segment</td>
+<td>Inertia</td>
+</tr>
+<tr class="row-even"><td>cuboid</td>
+<td><span class="math">\(\frac{1}{12}m\begin{bmatrix}l_y^2+l_z^2 &amp; 0 &amp; 0\\0 &amp; l_x^2+l_z^2 &amp; 0\\0 &amp; 0 &amp; l_x^2+l_y^2\end{bmatrix}\)</span></td>
+</tr>
+<tr class="row-odd"><td>cylinder</td>
+<td><span class="math">\(I_x\)</span>, <span class="math">\(I_y=\frac{1}{12}m\left(\frac{3c^2}{4\pi^2}+l^2\right)\)</span>, <span class="math">\(I_z=\frac{mc^2}{8\pi^2}\)</span></td>
+</tr>
+<tr class="row-even"><td>sphere</td>
+<td><span class="math">\(I_x\)</span>, <span class="math">\(I_y\)</span>, <span class="math">\(I_z=\frac{mc^2}{10\pi^2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The width of the cuboid representing the torso <span class="math">\(l_y\)</span> is defined by the
+shoulder width and upper arm circumference.</p>
+<div class="math" id="equation-eqCuboidWidth">
+<span class="eqno">(41)</span>\[l_y=l_{ss}-\frac{c_{ua}}{\pi}\]</div>
+<p>The cuboid thickness was estimated using the chest circumference measurement
+assuming that the cross section of the chest is similar to a stadium shape.</p>
+<div class="math" id="equation-eqCuboidThick">
+<span class="eqno">(42)</span>\[l_x=\frac{c_{ch}-2l_y}{\pi-2}\]</div>
+<p>The local <span class="math">\(\hat{\mathbf{z}}_i\)</span> unit vector for the segments was defined
+along the line connecting the associated grid points from the lower numbered
+grid point to the higher numbered grid point. The local unit vector in the
+<span class="math">\(y\)</span> direction was set equal to the global <span class="math">\(\hat{\mathbf{Y}}\)</span> unit
+vector with the <span class="math">\(\hat{\mathbf{x}}_i\)</span> unit vector following from the right
+hand rule. The rotation matrix needed to rotate each of the moments of inertia
+to the global reference frame can be calculated by dotting the global unit
+vectors <span class="math">\(\hat{\mathbf{X}}\)</span>, <span class="math">\(\hat{\mathbf{Y}}\)</span>,
+<span class="math">\(\hat{\mathbf{Z}}\)</span> with the local unit vectors
+<span class="math">\(\hat{\mathbf{x}}_i\)</span>, <span class="math">\(\hat{\mathbf{y}}_i\)</span>,
+<span class="math">\(\hat{\mathbf{z}}_i\)</span> for each segment.</p>
+<div class="math" id="equation-eqRotMat2">
+<span class="eqno">(43)</span>\[\begin{split}\mathbf{R}_i=
+\begin{bmatrix}
+  \hat{\mathbf{X}}\cdot\hat{\mathbf{x}}_i &amp;
+  \hat{\mathbf{X}}\cdot\hat{\mathbf{y}}_i &amp;
+  \hat{\mathbf{X}}\cdot\hat{\mathbf{z}}_i\\
+  \hat{\mathbf{Y}}\cdot\hat{\mathbf{x}}_i &amp;
+  \hat{\mathbf{Y}}\cdot\hat{\mathbf{y}}_i &amp;
+  \hat{\mathbf{Y}}\cdot\hat{\mathbf{z}}_i\\
+  \hat{\mathbf{Z}}\cdot\hat{\mathbf{x}}_i &amp;
+  \hat{\mathbf{Z}}\cdot\hat{\mathbf{y}}_i &amp;
+  \hat{\mathbf{Z}}\cdot\hat{\mathbf{z}}_i\\
+\end{bmatrix}\end{split}\]</div>
+<p>The local inertia matrices are then rotated to the global reference frame with</p>
+<div class="math" id="equation-eqRotInertia">
+<span class="eqno">(44)</span>\[\mathbf{I}_i=\mathbf{R}_i\mathbf{J}_i\mathbf{R}^T_i\]</div>
+<p>The local moments of inertia can then be translated to the center of mass of
+the entire body using the parallel axis theorem</p>
+<div class="math" id="equation-eqPAT">
+<span class="eqno">(45)</span>\[\begin{split}\mathbf{I}^*_i=\mathbf{I}_i+m_i
+\begin{bmatrix}
+  d_y^2+d_z^2 &amp; -d_xd_y &amp; -d_xd_z\\
+  -d_xd_y &amp; d_z^2+d_x^2 &amp; -d_yd_z\\
+  -d_xd_z &amp; -d_yd_z &amp; d_x^2+d_y^2
+\end{bmatrix}\end{split}\]</div>
+<p>where <span class="math">\(d_x\)</span>, <span class="math">\(d_y\)</span> and <span class="math">\(d_z\)</span> are the distances along the
+<span class="math">\(X\)</span>, <span class="math">\(Y\)</span> and <span class="math">\(Z\)</span> axes, respectively, from the local center of
+mass to the global center of mass. Finally, the local translated and rotated
+moments of inertia are summed to give the total moment of inertia of the rider.</p>
+<div class="math" id="equation-eqSumInertia">
+<span class="eqno">(46)</span>\[\mathbf{I}_{\mathrm{B}r}=
+\sum{\mathbf{I}^*_i}\]</div>
+<p>The results of measuring the riders are presented in Chapter
+<a class="reference internal" href="delftbicycle.html#delftbicycle"><em>Delft Instrumented Bicycle</em></a>, <a class="reference internal" href="motioncapture.html#motioncapture"><em>Motion Capture</em></a>, and [Moore2009a].</p>
+</div>
+<div class="section" id="yeadon-method">
+<h3>Yeadon method<a class="headerlink" href="#yeadon-method" title="Permalink to this headline">¶</a></h3>
+<p>The [Yeadon1990a] human inertial model was developed for estimating the
+inertial parameters needed to describe a human model for complex gymnastic
+maneuvers. It is essentially a more complete and accurate method than the one
+previously presented. There are 95 geometrical measurements of the human and a
+single mass measurement for scaling the body part densities. Yeadon makes use
+of stadium solids and a single semi-ellipse to more accurately model the human
+geometry. Two apparent deficiencies are the fact that too much detail is taken
+for body parts that have less inertia (i.e. the hands/feet) and at large
+configuration angles for some joints, the inertia is poorly modeled (e.g. the
+butt disappears when the human in a seated position). The model also does not
+have full freedom at each joint. Refer to [Yeadon1990a] for a complete
+description of the model.</p>
+<p>Once the inertia of each segment in the Yeadon model is computed, the joint
+angles must be set. We set the somersault angle to match the forward lean angle
+as described in the previous section. We then measure three additional bicycle
+dimensions to assist in the configuration of the rider. They are as follows:</p>
+<dl class="docutils">
+<dt><span class="math">\(w_{hb}\)</span>, Handlebar width</dt>
+<dd>The lateral distance between the points the hands hold the handlebars.</dd>
+<dt><span class="math">\(l_{hbR}\)</span>, Rear hub to handlebar.</dt>
+<dd>The distance from the center of the rear hub to the point on the handlebar
+where the hand grips.</dd>
+<dt><span class="math">\(l_{hbF}\)</span>, Front hub to handlebar.</dt>
+<dd>The distance from the center of the front hub to the point on the handlebar
+where the hand grips.</dd>
+</dl>
+<p>We locate the hip center (Ls0) at the top of the bicycle seat and the
+somersault joint angle is set such that the torso (P, T, C) aligned by the
+forward lean angle <span class="math">\(\lambda_{fl}\)</span>.</p>
+<p>The basic process for setting the elbow elevation angle is to find the distance
+between the shoulder (La0, Lb0) and the handlebar grip. The handle bar grip
+location is at the point at which the lateral line with length
+<span class="math">\(\frac{w_{hb}}{2}\)</span> intersects the circle formed by the intersection of
+the two spheres which are centered at the front and rear wheel centers with
+radii <span class="math">\(l_{hbF}\)</span> and <span class="math">\(l_{hbR}\)</span>, respectively. The elevation angle of
+the elbow then is defined as the angle at which the distance from the shoulder
+(La0, Lb0) to the knuckle (La6, Lb6) is equal to the distance from the shoulder
+(La0, Lb0) to the handlebar grip. We then assume that the shoulder rotation
+angle is zero and find the shoulder elevation and abduction angles which force
+the vector from the shoulder to the knuckle to equal the vector from the
+shoulder to the handlebar grip.</p>
+<p>The thigh and knee elevation angles are set such that the center of the heel
+level (Lj6, Lk6) is aligned with the bottom bracket axis and that both the
+thigh abduction and rotation angles are zero. We assume that the foot peg is
+located at the bottom bracket center and is the same lateral distance from the
+sagittal plane as the hip centers. The knee and thigh elevation angles are then
+found in the same fashion as the elbow and shoulder angles, which the lesser
+restriction that the thigh abduction angle is zero.</p>
+<p><a class="reference internal" href="#fighuman"><em>Figure 23</em></a> shows a visualization of the Yeadon modle when
+configured to sit on a bicycle. The details of the calculations and all of the
+data is included with the Yeadon [Dembia2011] and BicycleParameters
+[Moore2011a] software packages.</p>
+<div class="figure align-center" id="fighuman">
+<img alt="_images/human.png" src="_images/human.png" style="width: 3in;" />
+<p class="caption">A visualization of the Yeadon inertia model configured to sit on a bicycle.
+Output is from the BicycleParameters software package.</p>
+</div>
+</div>
+</div>
+<div class="section" id="bicycle-rider-parameters">
+<h2>Bicycle-Rider Parameters<a class="headerlink" href="#bicycle-rider-parameters" title="Permalink to this headline">¶</a></h2>
+<p>Once both the bicycle and rider parameters are known, the parameter for various
+systems can be extracted. The simplest being that the rider is rigidly attached
+to the frame. The parallel axis theorem allows one to calculate the combined
+inertia of the bicycle frame and the rigid rider. Both of the rider
+formulations also allow one to segment the body for more complex rider models
+with multiple degrees of freedom. For example, the inertia for a leaning rider&#8217;s
+upper body can be determined separately and the legs can be fixed the bicycle
+frame. We make use of this for the different rider biomechanical models
+presented in Chapter <a class="reference internal" href="extensions.html#extensions"><em>Extensions of the Whipple Model</em></a>.</p>
+</div>
+<div class="section" id="software-implementation">
+<h2>Software Implementation<a class="headerlink" href="#software-implementation" title="Permalink to this headline">¶</a></h2>
+<p>The bicycle parameter calculation and the Yeadon method have been implemented in
+two open source software package written in the python language, called <a class="reference external" href="http://pypi.python.org/pypi/yeadon">yeadon</a> and <a class="reference external" href="http://pypi.python.org/pypi/BicycleParameters">BicycleParameters</a>. The Yeadon package takes
+geometric measurements and joint configuration angles and outputs the total
+inertia inertial properties of the human in an arbitrary reference frame or
+inertial properties of individual segments or combinations of segments. It is
+suitable for a wide variety of human dynamic models. The BicycleParameters
+package accepts either the raw measurements described in Section
+<a class="reference internal" href="#secbicycleparameters"><em>Bicycle Parameters</em></a> or the benchmark parameterization [Meijaard2007]
+and computes the benchmark bicycle parameters. It makes use of the Yeadon
+package to allow one to configure riders to sit on the bicycle models and
+outputs the inertial properties of the bicycle/rider system.  It allows one to
+measure all of the raw measurements as described in both the Bicycle and Yeadon
+parameter sections, provide the values, with uncertainties, and it computes the
+parameters for the Whipple Bicycle model. Details of use of the software can be
+found in the documentation for each of the packages:
+<a class="reference external" href="http://packages.python.org/yeadon">http://packages.python.org/yeadon</a>,
+<a class="reference external" href="http://packages.python.org/BicycleParameters">http://packages.python.org/BicycleParameters</a>.</p>
+</div>
+<div class="section" id="parameter-tables">
+<span id="secpartables"></span><h2>Parameter Tables<a class="headerlink" href="#parameter-tables" title="Permalink to this headline">¶</a></h2>
+<p>The tabulated values for the both the raw measurements and the physical
+parameters of the ten bicycles are given in the following tables.</p>
+<div class="section" id="bicycle-measured-parameters">
+<span id="secbicyclemeasuredparameters"></span><h3>Bicycle Measured Parameters<a class="headerlink" href="#bicycle-measured-parameters" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="12%" />
+<col width="15%" />
+<col width="12%" />
+<col width="15%" />
+<col width="12%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&nbsp;</th>
+<th class="head" colspan="2">Browser</th>
+<th class="head" colspan="2">Browserins</th>
+<th class="head" colspan="2">Stratos</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Variable</td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{B1}\)</span></td>
+<td>0.098</td>
+<td>0.003</td>
+<td>-0.018</td>
+<td>0.003</td>
+<td>0.249</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{B2}\)</span></td>
+<td>0.169</td>
+<td>0.003</td>
+<td>-0.355</td>
+<td>0.003</td>
+<td>-0.267</td>
+<td>0.003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{B3}\)</span></td>
+<td>-0.294</td>
+<td>0.003</td>
+<td>-0.242</td>
+<td>0.003</td>
+<td>-0.071</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{H1}\)</span></td>
+<td>0.474</td>
+<td>0.003</td>
+<td>0.474</td>
+<td>0.003</td>
+<td>0.329</td>
+<td>0.003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{H2}\)</span></td>
+<td>0.383</td>
+<td>0.003</td>
+<td>0.383</td>
+<td>0.003</td>
+<td>-0.038</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{H3}\)</span></td>
+<td>0.215</td>
+<td>0.003</td>
+<td>0.215</td>
+<td>0.003</td>
+<td>0.400</td>
+<td>0.003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{B1}\)</span></td>
+<td>3.4</td>
+<td>0.2</td>
+<td>154.1</td>
+<td>0.2</td>
+<td>128.9</td>
+<td>0.2</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{B2}\)</span></td>
+<td>138.7</td>
+<td>0.2</td>
+<td>230.8</td>
+<td>0.2</td>
+<td>221.6</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{B3}\)</span></td>
+<td>229.8</td>
+<td>0.2</td>
+<td>286.9</td>
+<td>0.2</td>
+<td>184.5</td>
+<td>0.2</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{H1}\)</span></td>
+<td>346.7</td>
+<td>0.2</td>
+<td>346.7</td>
+<td>0.2</td>
+<td>36.0</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{H2}\)</span></td>
+<td>28.1</td>
+<td>0.2</td>
+<td>28.1</td>
+<td>0.2</td>
+<td>94.0</td>
+<td>0.2</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{H3}\)</span></td>
+<td>287.0</td>
+<td>0.2</td>
+<td>287.0</td>
+<td>0.2</td>
+<td>347.3</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_F\)</span></td>
+<td>28.06</td>
+<td>0.01</td>
+<td>27.98</td>
+<td>0.01</td>
+<td>27.77</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(d_P\)</span></td>
+<td>0.0300</td>
+<td>0.0001</td>
+<td>0.0300</td>
+<td>0.0001</td>
+<td>0.0300</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_R\)</span></td>
+<td>27.85</td>
+<td>0.01</td>
+<td>27.84</td>
+<td>0.01</td>
+<td>29.77</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(f\)</span></td>
+<td>0.070</td>
+<td>0.001</td>
+<td>0.070</td>
+<td>0.001</td>
+<td>0.045</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(g\)</span></td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\gamma\)</span></td>
+<td>67.1</td>
+<td>0.2</td>
+<td>67.1</td>
+<td>0.2</td>
+<td>73.1</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(h_{bb}\)</span></td>
+<td>0.295</td>
+<td>NA</td>
+<td>0.295</td>
+<td>NA</td>
+<td>0.29</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\lambda_{st}\)</span></td>
+<td>1.195550538</td>
+<td>NA</td>
+<td>1.195550538</td>
+<td>NA</td>
+<td>1.308996939</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{cs}\)</span></td>
+<td>0.46</td>
+<td>NA</td>
+<td>0.46</td>
+<td>NA</td>
+<td>0.445</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_F\)</span></td>
+<td>0.293</td>
+<td>0.001</td>
+<td>0.293</td>
+<td>0.001</td>
+<td>0.297</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{hbF}\)</span></td>
+<td>0.893</td>
+<td>NA</td>
+<td>0.893</td>
+<td>NA</td>
+<td>0.6552</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_{hbR}\)</span></td>
+<td>0.9213</td>
+<td>NA</td>
+<td>0.9213</td>
+<td>NA</td>
+<td>1.1014</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_P\)</span></td>
+<td>1.050</td>
+<td>0.001</td>
+<td>1.050</td>
+<td>0.001</td>
+<td>1.050</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_R\)</span></td>
+<td>0.293</td>
+<td>0.001</td>
+<td>0.293</td>
+<td>0.001</td>
+<td>0.296</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{sp}\)</span></td>
+<td>0.24</td>
+<td>NA</td>
+<td>0.24</td>
+<td>NA</td>
+<td>0.195</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_{st}\)</span></td>
+<td>0.53</td>
+<td>NA</td>
+<td>0.53</td>
+<td>NA</td>
+<td>0.48</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_B\)</span></td>
+<td>9.86</td>
+<td>0.02</td>
+<td>14.71</td>
+<td>0.02</td>
+<td>7.22</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_F\)</span></td>
+<td>2.02</td>
+<td>0.02</td>
+<td>2.02</td>
+<td>0.02</td>
+<td>3.33</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_H\)</span></td>
+<td>3.22</td>
+<td>0.02</td>
+<td>3.22</td>
+<td>0.02</td>
+<td>3.04</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_P\)</span></td>
+<td>5.56</td>
+<td>0.02</td>
+<td>5.56</td>
+<td>0.02</td>
+<td>5.56</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_R\)</span></td>
+<td>3.11</td>
+<td>0.02</td>
+<td>3.11</td>
+<td>0.02</td>
+<td>3.96</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(n_F\)</span></td>
+<td>13.0</td>
+<td>NA</td>
+<td>13.0</td>
+<td>NA</td>
+<td>13.0</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(n_R\)</span></td>
+<td>13.0</td>
+<td>NA</td>
+<td>13.0</td>
+<td>NA</td>
+<td>14.0</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^c_{B1}\)</span></td>
+<td>1.717307</td>
+<td>0.000005</td>
+<td>1.811022</td>
+<td>0.000007</td>
+<td>1.598802</td>
+<td>0.000006</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^c_{F1}\)</span></td>
+<td>1.481127</td>
+<td>0.000007</td>
+<td>1.481127</td>
+<td>0.000007</td>
+<td>1.353666</td>
+<td>0.000005</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^c_{H1}\)</span></td>
+<td>1.601851</td>
+<td>0.000007</td>
+<td>1.601851</td>
+<td>0.000007</td>
+<td>1.45407</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^c_{R1}\)</span></td>
+<td>1.361090</td>
+<td>0.000004</td>
+<td>1.361090</td>
+<td>0.000004</td>
+<td>1.312177</td>
+<td>0.000007</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{B1}\)</span></td>
+<td>2.09957</td>
+<td>0.00008</td>
+<td>3.36393</td>
+<td>0.00004</td>
+<td>1.81595</td>
+<td>0.00001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{B2}\)</span></td>
+<td>2.37672</td>
+<td>0.00002</td>
+<td>2.81391</td>
+<td>0.00007</td>
+<td>1.585198</td>
+<td>0.000009</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{B3}\)</span></td>
+<td>1.83977</td>
+<td>0.00001</td>
+<td>3.57185</td>
+<td>0.00009</td>
+<td>1.660199</td>
+<td>0.000008</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{F1}\)</span></td>
+<td>0.787577</td>
+<td>0.000001</td>
+<td>0.787577</td>
+<td>0.000001</td>
+<td>0.801625</td>
+<td>0.000001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{H1}\)</span></td>
+<td>1.368796</td>
+<td>0.000006</td>
+<td>1.368796</td>
+<td>0.000006</td>
+<td>1.011494</td>
+<td>0.000004</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{H2}\)</span></td>
+<td>1.295272</td>
+<td>0.000006</td>
+<td>1.295272</td>
+<td>0.000006</td>
+<td>0.525351</td>
+<td>0.000002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{H3}\)</span></td>
+<td>0.760951</td>
+<td>0.000003</td>
+<td>0.760951</td>
+<td>0.000003</td>
+<td>1.086037</td>
+<td>0.000006</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{P1}\)</span></td>
+<td>1.893993</td>
+<td>0.000006</td>
+<td>1.893993</td>
+<td>0.000006</td>
+<td>1.893993</td>
+<td>0.000006</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{R1}\)</span></td>
+<td>0.796565</td>
+<td>0.000001</td>
+<td>0.796565</td>
+<td>0.000001</td>
+<td>0.8116623</td>
+<td>0.0000009</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(w\)</span></td>
+<td>1.121</td>
+<td>0.002</td>
+<td>1.121</td>
+<td>0.002</td>
+<td>1.037</td>
+<td>0.002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(w_{hb}\)</span></td>
+<td>0.58</td>
+<td>NA</td>
+<td>0.58</td>
+<td>NA</td>
+<td>0.58</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="14%" />
+<col width="15%" />
+<col width="10%" />
+<col width="15%" />
+<col width="10%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&nbsp;</th>
+<th class="head" colspan="2">Crescendo</th>
+<th class="head" colspan="2">Fisher</th>
+<th class="head" colspan="2">Pista</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Variable</td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{B1}\)</span></td>
+<td>0.248</td>
+<td>0.003</td>
+<td>0.304</td>
+<td>0.003</td>
+<td>0.329</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{B2}\)</span></td>
+<td>0.075</td>
+<td>0.003</td>
+<td>0.395</td>
+<td>0.003</td>
+<td>0.293</td>
+<td>0.003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{B3}\)</span></td>
+<td>-0.289</td>
+<td>0.003</td>
+<td>-0.107</td>
+<td>0.003</td>
+<td>-0.267</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{H1}\)</span></td>
+<td>0.496</td>
+<td>0.003</td>
+<td>0.341</td>
+<td>0.003</td>
+<td>0.337</td>
+<td>0.003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{H2}\)</span></td>
+<td>0.466</td>
+<td>0.003</td>
+<td>0.277</td>
+<td>0.003</td>
+<td>0.400</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{H3}\)</span></td>
+<td>0.301</td>
+<td>0.003</td>
+<td>-0.008</td>
+<td>0.003</td>
+<td>-0.063</td>
+<td>0.003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{B1}\)</span></td>
+<td>127.6</td>
+<td>0.2</td>
+<td>125.9</td>
+<td>0.2</td>
+<td>120.2</td>
+<td>0.2</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{B2}\)</span></td>
+<td>158.0</td>
+<td>0.2</td>
+<td>75.7</td>
+<td>0.2</td>
+<td>40.7</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{B3}\)</span></td>
+<td>223.9</td>
+<td>0.2</td>
+<td>190.8</td>
+<td>0.2</td>
+<td>215.9</td>
+<td>0.2</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{H1}\)</span></td>
+<td>358.4</td>
+<td>0.2</td>
+<td>35.3</td>
+<td>0.2</td>
+<td>38.8</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{H2}\)</span></td>
+<td>20.6</td>
+<td>0.2</td>
+<td>50.0</td>
+<td>0.2</td>
+<td>12.4</td>
+<td>0.2</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{H3}\)</span></td>
+<td>303.8</td>
+<td>0.2</td>
+<td>93.8</td>
+<td>0.2</td>
+<td>102.2</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_F\)</span></td>
+<td>27.98</td>
+<td>0.01</td>
+<td>29.04</td>
+<td>0.01</td>
+<td>29.37</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(d_P\)</span></td>
+<td>0.0300</td>
+<td>0.0001</td>
+<td>0.0300</td>
+<td>0.0001</td>
+<td>0.0300</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_R\)</span></td>
+<td>27.77</td>
+<td>0.01</td>
+<td>29.79</td>
+<td>0.01</td>
+<td>29.21</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(f\)</span></td>
+<td>0.045</td>
+<td>0.001</td>
+<td>0.038</td>
+<td>0.001</td>
+<td>0.032</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(g\)</span></td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\gamma\)</span></td>
+<td>69.0</td>
+<td>0.2</td>
+<td>71.1</td>
+<td>0.2</td>
+<td>74.2</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(h_{bb}\)</span></td>
+<td>0.29</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\lambda_{st}\)</span></td>
+<td>1.23569311041</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{cs}\)</span></td>
+<td>0.465</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_F\)</span></td>
+<td>0.301</td>
+<td>0.001</td>
+<td>0.264</td>
+<td>0.001</td>
+<td>0.297</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{hbF}\)</span></td>
+<td>0.81</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_{hbR}\)</span></td>
+<td>1.08</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_P\)</span></td>
+<td>1.050</td>
+<td>0.001</td>
+<td>1.050</td>
+<td>0.001</td>
+<td>1.050</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_R\)</span></td>
+<td>0.297</td>
+<td>0.001</td>
+<td>0.265</td>
+<td>0.001</td>
+<td>0.297</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{sp}\)</span></td>
+<td>0.28</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_{st}\)</span></td>
+<td>0.49</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_B\)</span></td>
+<td>9.18</td>
+<td>0.02</td>
+<td>4.48</td>
+<td>0.02</td>
+<td>4.49</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_F\)</span></td>
+<td>3.54</td>
+<td>0.02</td>
+<td>1.50</td>
+<td>0.02</td>
+<td>1.58</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_H\)</span></td>
+<td>4.57</td>
+<td>0.02</td>
+<td>2.52</td>
+<td>0.02</td>
+<td>2.27</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_P\)</span></td>
+<td>5.56</td>
+<td>0.02</td>
+<td>5.56</td>
+<td>0.02</td>
+<td>5.56</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_R\)</span></td>
+<td>3.96</td>
+<td>0.02</td>
+<td>1.94</td>
+<td>0.02</td>
+<td>1.38</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(n_F\)</span></td>
+<td>13.0</td>
+<td>NA</td>
+<td>14.0</td>
+<td>NA</td>
+<td>14.0</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(n_R\)</span></td>
+<td>13.0</td>
+<td>NA</td>
+<td>14.0</td>
+<td>NA</td>
+<td>14.0</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^c_{B1}\)</span></td>
+<td>1.676428</td>
+<td>0.000003</td>
+<td>1.632572</td>
+<td>0.000004</td>
+<td>1.639885</td>
+<td>0.000006</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^c_{F1}\)</span></td>
+<td>1.354974</td>
+<td>0.000004</td>
+<td>1.463519</td>
+<td>0.000004</td>
+<td>1.451154</td>
+<td>0.000005</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^c_{H1}\)</span></td>
+<td>1.628126</td>
+<td>0.000005</td>
+<td>1.422021</td>
+<td>0.000002</td>
+<td>1.392606</td>
+<td>0.000002</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^c_{R1}\)</span></td>
+<td>1.299370</td>
+<td>0.000008</td>
+<td>1.362063</td>
+<td>0.000007</td>
+<td>1.395046</td>
+<td>0.000004</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{B1}\)</span></td>
+<td>2.26011</td>
+<td>0.00001</td>
+<td>1.291694</td>
+<td>0.000003</td>
+<td>1.26420</td>
+<td>0.00001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{B2}\)</span></td>
+<td>2.09595</td>
+<td>0.00002</td>
+<td>1.506534</td>
+<td>0.000005</td>
+<td>1.501279</td>
+<td>0.000007</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{B3}\)</span></td>
+<td>1.92017</td>
+<td>0.00001</td>
+<td>1.367939</td>
+<td>0.000004</td>
+<td>1.492970</td>
+<td>0.000005</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{F1}\)</span></td>
+<td>0.818258</td>
+<td>0.000002</td>
+<td>0.665696</td>
+<td>0.000001</td>
+<td>0.6232453</td>
+<td>0.0000006</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{H1}\)</span></td>
+<td>1.6903</td>
+<td>0.0001</td>
+<td>0.826936</td>
+<td>0.000002</td>
+<td>0.776458</td>
+<td>0.000001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{H2}\)</span></td>
+<td>1.6440</td>
+<td>0.0001</td>
+<td>0.720503</td>
+<td>0.000001</td>
+<td>0.830610</td>
+<td>0.000003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{H3}\)</span></td>
+<td>1.21590</td>
+<td>0.00002</td>
+<td>0.3719856</td>
+<td>0.0000003</td>
+<td>0.5250995</td>
+<td>0.0000005</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{P1}\)</span></td>
+<td>1.893993</td>
+<td>0.000006</td>
+<td>1.893993</td>
+<td>0.000006</td>
+<td>1.893993</td>
+<td>0.000006</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{R1}\)</span></td>
+<td>0.823570</td>
+<td>0.000001</td>
+<td>0.6650523</td>
+<td>0.0000008</td>
+<td>0.622565</td>
+<td>0.000001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(w\)</span></td>
+<td>1.101</td>
+<td>0.002</td>
+<td>1.070</td>
+<td>0.002</td>
+<td>0.989</td>
+<td>0.002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(w_{hb}\)</span></td>
+<td>0.56</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="19%" />
+<col width="19%" />
+<col width="19%" />
+<col width="19%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&nbsp;</th>
+<th class="head" colspan="2">Yellow</th>
+<th class="head" colspan="2">Yellowrev</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Variable</td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{B1}\)</span></td>
+<td>0.220</td>
+<td>0.003</td>
+<td>0.220</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{B2}\)</span></td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{B3}\)</span></td>
+<td>-0.379</td>
+<td>0.003</td>
+<td>-0.379</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{H1}\)</span></td>
+<td>0.468</td>
+<td>0.003</td>
+<td>0.099</td>
+<td>0.003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{H2}\)</span></td>
+<td>0.396</td>
+<td>0.003</td>
+<td>0.445</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{H3}\)</span></td>
+<td>0.015</td>
+<td>0.003</td>
+<td>0.474</td>
+<td>0.003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{B1}\)</span></td>
+<td>139.5</td>
+<td>0.2</td>
+<td>139.5</td>
+<td>0.2</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{B2}\)</span></td>
+<td>345.4</td>
+<td>0.2</td>
+<td>345.4</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{B3}\)</span></td>
+<td>215.9</td>
+<td>0.2</td>
+<td>215.9</td>
+<td>0.2</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{H1}\)</span></td>
+<td>0.3</td>
+<td>0.2</td>
+<td>89.3</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{H2}\)</span></td>
+<td>32.0</td>
+<td>0.2</td>
+<td>33.5</td>
+<td>0.2</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{H3}\)</span></td>
+<td>87.9</td>
+<td>0.2</td>
+<td>4.3</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_F\)</span></td>
+<td>27.93</td>
+<td>0.01</td>
+<td>27.93</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(d_P\)</span></td>
+<td>0.0300</td>
+<td>0.0001</td>
+<td>0.0300</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_R\)</span></td>
+<td>27.88</td>
+<td>0.01</td>
+<td>27.88</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(f\)</span></td>
+<td>0.057</td>
+<td>0.001</td>
+<td>-0.057</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(g\)</span></td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\gamma\)</span></td>
+<td>72.7</td>
+<td>0.2</td>
+<td>70.6</td>
+<td>0.2</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(h_{bb}\)</span></td>
+<td>0.276580359362</td>
+<td>NA</td>
+<td>0.276602031136</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\lambda_{st}\)</span></td>
+<td>1.2653637077</td>
+<td>NA</td>
+<td>1.2653637077</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{cs}\)</span></td>
+<td>0.45</td>
+<td>NA</td>
+<td>0.45</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_F\)</span></td>
+<td>0.304</td>
+<td>0.001</td>
+<td>0.304</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{hbF}\)</span></td>
+<td>0.7</td>
+<td>NA</td>
+<td>0.7</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_{hbR}\)</span></td>
+<td>1.145</td>
+<td>NA</td>
+<td>1.145</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_P\)</span></td>
+<td>1.050</td>
+<td>0.001</td>
+<td>1.050</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_R\)</span></td>
+<td>0.302</td>
+<td>0.001</td>
+<td>0.302</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{sp}\)</span></td>
+<td>0.21</td>
+<td>NA</td>
+<td>0.21</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_{st}\)</span></td>
+<td>0.515</td>
+<td>NA</td>
+<td>0.515</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_B\)</span></td>
+<td>3.31</td>
+<td>0.02</td>
+<td>3.31</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_F\)</span></td>
+<td>1.90</td>
+<td>0.02</td>
+<td>1.90</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_H\)</span></td>
+<td>2.45</td>
+<td>0.02</td>
+<td>2.45</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_P\)</span></td>
+<td>5.56</td>
+<td>0.02</td>
+<td>5.56</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_R\)</span></td>
+<td>2.57</td>
+<td>0.02</td>
+<td>2.57</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(n_F\)</span></td>
+<td>13.0</td>
+<td>NA</td>
+<td>13.0</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(n_R\)</span></td>
+<td>13.0</td>
+<td>NA</td>
+<td>13.0</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^c_{B1}\)</span></td>
+<td>1.71695</td>
+<td>0.00001</td>
+<td>1.71695</td>
+<td>0.00001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^c_{F1}\)</span></td>
+<td>1.49847</td>
+<td>0.00002</td>
+<td>1.49847</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^c_{H1}\)</span></td>
+<td>1.518206</td>
+<td>0.000008</td>
+<td>1.528827</td>
+<td>0.000006</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^c_{R1}\)</span></td>
+<td>1.40931</td>
+<td>0.00002</td>
+<td>1.40931</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{B1}\)</span></td>
+<td>1.19029</td>
+<td>0.00002</td>
+<td>1.19029</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{B2}\)</span></td>
+<td>1.200785</td>
+<td>0.000006</td>
+<td>1.200785</td>
+<td>0.000006</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{B3}\)</span></td>
+<td>1.282136</td>
+<td>0.000008</td>
+<td>1.282136</td>
+<td>0.000008</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{F1}\)</span></td>
+<td>0.773040</td>
+<td>0.000002</td>
+<td>0.773040</td>
+<td>0.000002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{H1}\)</span></td>
+<td>1.012698</td>
+<td>0.000003</td>
+<td>0.4756557</td>
+<td>0.0000009</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{H2}\)</span></td>
+<td>0.948609</td>
+<td>0.000002</td>
+<td>0.963826</td>
+<td>0.000003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{H3}\)</span></td>
+<td>0.4579289</td>
+<td>0.0000006</td>
+<td>1.019585</td>
+<td>0.000003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{P1}\)</span></td>
+<td>1.893993</td>
+<td>0.000006</td>
+<td>1.893993</td>
+<td>0.000006</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{R1}\)</span></td>
+<td>0.784395</td>
+<td>0.000001</td>
+<td>0.784395</td>
+<td>0.000001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(w\)</span></td>
+<td>1.089</td>
+<td>0.002</td>
+<td>0.985</td>
+<td>0.002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(w_{hb}\)</span></td>
+<td>0.24</td>
+<td>NA</td>
+<td>0.24</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="12%" />
+<col width="15%" />
+<col width="12%" />
+<col width="15%" />
+<col width="11%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&nbsp;</th>
+<th class="head" colspan="2">Rigid</th>
+<th class="head" colspan="2">Rigidcl</th>
+<th class="head" colspan="2">Gyro</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Variable</td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{B1}\)</span></td>
+<td>-0.521</td>
+<td>0.001</td>
+<td>-0.507</td>
+<td>0.001</td>
+<td>0.153</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{B2}\)</span></td>
+<td>-0.295</td>
+<td>0.001</td>
+<td>-0.244</td>
+<td>0.001</td>
+<td>-0.195</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{B3}\)</span></td>
+<td>0.518</td>
+<td>0.001</td>
+<td>0.510</td>
+<td>0.001</td>
+<td>-0.105</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{B4}\)</span></td>
+<td>0.140</td>
+<td>0.001</td>
+<td>0.149</td>
+<td>0.001</td>
+<td>0.192</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{B5}\)</span></td>
+<td>0.516</td>
+<td>0.001</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{G1}\)</span></td>
+<td>-0.059</td>
+<td>0.001</td>
+<td>-0.059</td>
+<td>0.001</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{G2}\)</span></td>
+<td>0.075</td>
+<td>0.001</td>
+<td>0.075</td>
+<td>0.001</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{G3}\)</span></td>
+<td>-0.069</td>
+<td>0.001</td>
+<td>-0.069</td>
+<td>0.001</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{H1}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.238</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{H2}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.287</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{H3}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.098</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{H4}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>-0.008</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{B1}\)</span></td>
+<td>233.0</td>
+<td>0.1</td>
+<td>228.2</td>
+<td>0.1</td>
+<td>134.1</td>
+<td>0.1</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{B2}\)</span></td>
+<td>180.2</td>
+<td>0.1</td>
+<td>176.0</td>
+<td>0.1</td>
+<td>219.0</td>
+<td>0.1</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{B3}\)</span></td>
+<td>55.7</td>
+<td>0.1</td>
+<td>54.4</td>
+<td>0.1</td>
+<td>192.8</td>
+<td>0.1</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{B4}\)</span></td>
+<td>342.5</td>
+<td>0.1</td>
+<td>344.1</td>
+<td>0.1</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{B5}\)</span></td>
+<td>51.8</td>
+<td>0.1</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{G1}\)</span></td>
+<td>57.3</td>
+<td>0.1</td>
+<td>57.3</td>
+<td>0.1</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{G2}\)</span></td>
+<td>224.4</td>
+<td>0.1</td>
+<td>224.4</td>
+<td>0.1</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{G3}\)</span></td>
+<td>332.3</td>
+<td>0.1</td>
+<td>332.3</td>
+<td>0.1</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{H1}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>323.5</td>
+<td>0.1</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{H2}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>342.8</td>
+<td>0.1</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{H3}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>292.5</td>
+<td>0.1</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{H4}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>272.1</td>
+<td>0.1</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{S1}\)</span></td>
+<td>252.6</td>
+<td>0.1</td>
+<td>252.6</td>
+<td>0.1</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{S2}\)</span></td>
+<td>156.2</td>
+<td>0.1</td>
+<td>156.2</td>
+<td>0.1</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{S3}\)</span></td>
+<td>127.6</td>
+<td>0.1</td>
+<td>127.6</td>
+<td>0.1</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\alpha_{S4}\)</span></td>
+<td>20.9</td>
+<td>0.1</td>
+<td>20.9</td>
+<td>0.1</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\alpha_{S5}\)</span></td>
+<td>301.0</td>
+<td>0.1</td>
+<td>301.0</td>
+<td>0.1</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{S1}\)</span></td>
+<td>-0.092</td>
+<td>0.001</td>
+<td>-0.092</td>
+<td>0.001</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{S2}\)</span></td>
+<td>-0.407</td>
+<td>0.001</td>
+<td>-0.407</td>
+<td>0.001</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{S3}\)</span></td>
+<td>-0.296</td>
+<td>0.001</td>
+<td>-0.296</td>
+<td>0.001</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(a_{S4}\)</span></td>
+<td>0.386</td>
+<td>0.001</td>
+<td>0.386</td>
+<td>0.001</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(a_{S5}\)</span></td>
+<td>0.255</td>
+<td>0.001</td>
+<td>0.255</td>
+<td>0.001</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d\)</span></td>
+<td>0.96338</td>
+<td>0.00008</td>
+<td>0.96338</td>
+<td>0.00008</td>
+<td>0.54134</td>
+<td>0.00008</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(d_1\)</span></td>
+<td>0.03705</td>
+<td>0.00003</td>
+<td>0.03705</td>
+<td>0.00003</td>
+<td>0.04574</td>
+<td>0.00004</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_2\)</span></td>
+<td>0.00980</td>
+<td>0.00003</td>
+<td>0.00980</td>
+<td>0.00003</td>
+<td>0.00945</td>
+<td>0.00004</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(d_3\)</span></td>
+<td>0.01005</td>
+<td>0.00003</td>
+<td>0.01005</td>
+<td>0.00003</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_4\)</span></td>
+<td>0.02855</td>
+<td>0.00003</td>
+<td>0.02855</td>
+<td>0.00003</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(d_5\)</span></td>
+<td>0.01001</td>
+<td>0.00001</td>
+<td>0.01001</td>
+<td>0.00001</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_6\)</span></td>
+<td>0.02217</td>
+<td>0.00001</td>
+<td>0.02217</td>
+<td>0.00001</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(d_F\)</span></td>
+<td>21.0846</td>
+<td>0.0006</td>
+<td>21.0846</td>
+<td>0.0006</td>
+<td>21.2782</td>
+<td>0.0007</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_P\)</span></td>
+<td>0.030103</td>
+<td>0.000006</td>
+<td>0.030103</td>
+<td>0.000006</td>
+<td>0.030103</td>
+<td>0.000006</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(d_R\)</span></td>
+<td>20.8934</td>
+<td>0.0006</td>
+<td>20.8934</td>
+<td>0.0006</td>
+<td>21.6868</td>
+<td>0.0007</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(d_{s1}\)</span></td>
+<td>0.1349375</td>
+<td>NA</td>
+<td>0.1349375</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(d_{s3}\)</span></td>
+<td>-0.3603625</td>
+<td>NA</td>
+<td>-0.3603625</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(g\)</span></td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(h_1\)</span></td>
+<td>0.91561</td>
+<td>0.00003</td>
+<td>0.91561</td>
+<td>0.00003</td>
+<td>0.56515</td>
+<td>0.00008</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(h_2\)</span></td>
+<td>0.10160</td>
+<td>0.00001</td>
+<td>0.10160</td>
+<td>0.00001</td>
+<td>0.03110</td>
+<td>0.00008</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(h_3\)</span></td>
+<td>0.06708</td>
+<td>0.00004</td>
+<td>0.06708</td>
+<td>0.00004</td>
+<td>0.09246</td>
+<td>0.00008</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(h_4\)</span></td>
+<td>0.12211</td>
+<td>0.00006</td>
+<td>0.12211</td>
+<td>0.00006</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(h_5\)</span></td>
+<td>0.08355</td>
+<td>0.00006</td>
+<td>0.08355</td>
+<td>0.00006</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(h_6\)</span></td>
+<td>0.15369</td>
+<td>0.00001</td>
+<td>0.15369</td>
+<td>0.00001</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(h_7\)</span></td>
+<td>0.14833</td>
+<td>0.00001</td>
+<td>0.14833</td>
+<td>0.00001</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(h_{bb}\)</span></td>
+<td>0.291</td>
+<td>NA</td>
+<td>0.291</td>
+<td>NA</td>
+<td>0.1905</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l\)</span></td>
+<td>0.962</td>
+<td>0.002</td>
+<td>0.962</td>
+<td>0.002</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\lambda_{st}\)</span></td>
+<td>1.267109037</td>
+<td>NA</td>
+<td>1.267109037</td>
+<td>NA</td>
+<td>1.23394778</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_{cs}\)</span></td>
+<td>0.423</td>
+<td>NA</td>
+<td>0.423</td>
+<td>NA</td>
+<td>0.2413</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_F\)</span></td>
+<td>0.29572</td>
+<td>0.00008</td>
+<td>0.29572</td>
+<td>0.00008</td>
+<td>0.10082</td>
+<td>0.00008</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_{hbF}\)</span></td>
+<td>0.90805</td>
+<td>NA</td>
+<td>0.90805</td>
+<td>NA</td>
+<td>0.6096</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{hbR}\)</span></td>
+<td>1.0795</td>
+<td>NA</td>
+<td>1.0795</td>
+<td>NA</td>
+<td>0.67945</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_P\)</span></td>
+<td>0.836</td>
+<td>0.001</td>
+<td>0.836</td>
+<td>0.001</td>
+<td>0.83550</td>
+<td>0.00008</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_R\)</span></td>
+<td>0.28028</td>
+<td>0.00008</td>
+<td>0.28028</td>
+<td>0.00008</td>
+<td>0.093</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(l_{sp}\)</span></td>
+<td>0.2032</td>
+<td>NA</td>
+<td>0.1524</td>
+<td>NA</td>
+<td>0.0381</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(l_{st}\)</span></td>
+<td>0.5476875</td>
+<td>NA</td>
+<td>0.5476875</td>
+<td>NA</td>
+<td>0.238125</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_B\)</span></td>
+<td>22.90</td>
+<td>0.01</td>
+<td>23.00</td>
+<td>0.01</td>
+<td>3.04</td>
+<td>0.01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_D\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>3.86</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_F\)</span></td>
+<td>1.55</td>
+<td>0.01</td>
+<td>1.55</td>
+<td>0.01</td>
+<td>1.41</td>
+<td>0.01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_G\)</span></td>
+<td>3.35</td>
+<td>0.01</td>
+<td>3.35</td>
+<td>0.01</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_H\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>1.36</td>
+<td>0.01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_P\)</span></td>
+<td>4.65</td>
+<td>0.01</td>
+<td>4.65</td>
+<td>0.01</td>
+<td>4.65</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_R\)</span></td>
+<td>4.90</td>
+<td>0.01</td>
+<td>4.90</td>
+<td>0.01</td>
+<td>1.54</td>
+<td>0.01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_S\)</span></td>
+<td>2.05</td>
+<td>0.01</td>
+<td>2.05</td>
+<td>0.01</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(n_F\)</span></td>
+<td>10.0</td>
+<td>NA</td>
+<td>10.0</td>
+<td>NA</td>
+<td>23.0</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(n_R\)</span></td>
+<td>10.0</td>
+<td>NA</td>
+<td>10.0</td>
+<td>NA</td>
+<td>23.0</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^c_{B1}\)</span></td>
+<td>1.88231</td>
+<td>0.00009</td>
+<td>1.86670</td>
+<td>0.00004</td>
+<td>1.1736</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^c_{D1}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.79623</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^c_{F1}\)</span></td>
+<td>1.43309</td>
+<td>0.00002</td>
+<td>1.43309</td>
+<td>0.00002</td>
+<td>0.88747</td>
+<td>0.00001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^c_{G1}\)</span></td>
+<td>0.77267</td>
+<td>0.00002</td>
+<td>0.77267</td>
+<td>0.00002</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^c_{H1}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>1.288842</td>
+<td>0.000006</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^c_{R1}\)</span></td>
+<td>1.22757</td>
+<td>0.00002</td>
+<td>1.22757</td>
+<td>0.00002</td>
+<td>0.812587</td>
+<td>0.000010</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^c_{S1}\)</span></td>
+<td>1.47091</td>
+<td>0.00003</td>
+<td>1.47091</td>
+<td>0.00003</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{B1}\)</span></td>
+<td>3.4229</td>
+<td>0.0002</td>
+<td>3.02521</td>
+<td>0.00005</td>
+<td>0.34685</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{B2}\)</span></td>
+<td>2.70613</td>
+<td>0.00002</td>
+<td>2.55895</td>
+<td>0.00003</td>
+<td>0.382251</td>
+<td>0.000008</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{B3}\)</span></td>
+<td>3.07592</td>
+<td>0.00002</td>
+<td>3.03205</td>
+<td>0.00005</td>
+<td>0.35672</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{B4}\)</span></td>
+<td>2.46588</td>
+<td>0.00005</td>
+<td>2.41714</td>
+<td>0.00004</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{B5}\)</span></td>
+<td>3.0804</td>
+<td>0.0001</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{D1}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.216570</td>
+<td>0.000004</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{F1}\)</span></td>
+<td>0.421157</td>
+<td>0.000007</td>
+<td>0.421157</td>
+<td>0.000007</td>
+<td>0.169795</td>
+<td>0.000004</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{G1}\)</span></td>
+<td>0.448654</td>
+<td>0.000008</td>
+<td>0.448654</td>
+<td>0.000008</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{G2}\)</span></td>
+<td>0.43545</td>
+<td>0.00001</td>
+<td>0.43545</td>
+<td>0.00001</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{G3}\)</span></td>
+<td>0.41619</td>
+<td>0.00001</td>
+<td>0.41619</td>
+<td>0.00001</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{H1}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.36097</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{H2}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.394980</td>
+<td>0.000001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{H3}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.2254071</td>
+<td>0.0000008</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{H4}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.209330</td>
+<td>0.000001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{P1}\)</span></td>
+<td>0.956919</td>
+<td>0.000002</td>
+<td>0.956919</td>
+<td>0.000002</td>
+<td>0.956919</td>
+<td>0.000002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{R1}\)</span></td>
+<td>0.486888</td>
+<td>0.000007</td>
+<td>0.486888</td>
+<td>0.000007</td>
+<td>0.156524</td>
+<td>0.000004</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{S1}\)</span></td>
+<td>0.1519</td>
+<td>0.0002</td>
+<td>0.1519</td>
+<td>0.0002</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{S2}\)</span></td>
+<td>0.535664</td>
+<td>0.000002</td>
+<td>0.535664</td>
+<td>0.000002</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{S3}\)</span></td>
+<td>0.438209</td>
+<td>0.000006</td>
+<td>0.438209</td>
+<td>0.000006</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(T^t_{S4}\)</span></td>
+<td>0.52994</td>
+<td>0.00002</td>
+<td>0.52994</td>
+<td>0.00002</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(T^t_{S5}\)</span></td>
+<td>0.372150</td>
+<td>0.000005</td>
+<td>0.372150</td>
+<td>0.000005</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(w_{hb}\)</span></td>
+<td>0.535</td>
+<td>NA</td>
+<td>0.535</td>
+<td>NA</td>
+<td>0.42275</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(x_{cl}\)</span></td>
+<td>0.1984375</td>
+<td>NA</td>
+<td>0.20955</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(z_{cl}\)</span></td>
+<td>-0.942975</td>
+<td>NA</td>
+<td>-0.9017</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="bicycle-benchmark-parameters">
+<span id="secbicyclebenchmarkparameters"></span><h3>Bicycle Benchmark Parameters<a class="headerlink" href="#bicycle-benchmark-parameters" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="11%" />
+<col width="16%" />
+<col width="11%" />
+<col width="16%" />
+<col width="11%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&nbsp;</th>
+<th class="head" colspan="2">Browser</th>
+<th class="head" colspan="2">Browserins</th>
+<th class="head" colspan="2">Stratos</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Variable</td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(c\)</span></td>
+<td>0.069</td>
+<td>0.002</td>
+<td>0.068</td>
+<td>0.002</td>
+<td>0.056</td>
+<td>0.002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(g\)</span></td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Bxx}\)</span></td>
+<td>0.530</td>
+<td>0.002</td>
+<td>1.045</td>
+<td>0.005</td>
+<td>0.373</td>
+<td>0.002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Bxz}\)</span></td>
+<td>-0.116</td>
+<td>0.001</td>
+<td>-0.113</td>
+<td>0.003</td>
+<td>-0.0383</td>
+<td>0.0004</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Byy}\)</span></td>
+<td>1.316</td>
+<td>0.004</td>
+<td>2.403</td>
+<td>0.007</td>
+<td>0.717</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Bzz}\)</span></td>
+<td>0.757</td>
+<td>0.003</td>
+<td>1.850</td>
+<td>0.008</td>
+<td>0.455</td>
+<td>0.002</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Fxx}\)</span></td>
+<td>0.0884</td>
+<td>0.0004</td>
+<td>0.0884</td>
+<td>0.0004</td>
+<td>0.0916</td>
+<td>0.0004</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Fyy}\)</span></td>
+<td>0.149</td>
+<td>0.002</td>
+<td>0.149</td>
+<td>0.002</td>
+<td>0.157</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Hxx}\)</span></td>
+<td>0.253</td>
+<td>0.001</td>
+<td>0.253</td>
+<td>0.001</td>
+<td>0.1768</td>
+<td>0.0008</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Hxz}\)</span></td>
+<td>-0.0720</td>
+<td>0.0008</td>
+<td>-0.0720</td>
+<td>0.0008</td>
+<td>-0.0273</td>
+<td>0.0006</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Hyy}\)</span></td>
+<td>0.246</td>
+<td>0.003</td>
+<td>0.246</td>
+<td>0.003</td>
+<td>0.144</td>
+<td>0.002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Hzz}\)</span></td>
+<td>0.0956</td>
+<td>0.0007</td>
+<td>0.0956</td>
+<td>0.0007</td>
+<td>0.0446</td>
+<td>0.0003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Rxx}\)</span></td>
+<td>0.0904</td>
+<td>0.0004</td>
+<td>0.0904</td>
+<td>0.0004</td>
+<td>0.0939</td>
+<td>0.0004</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Ryy}\)</span></td>
+<td>0.152</td>
+<td>0.001</td>
+<td>0.152</td>
+<td>0.001</td>
+<td>0.154</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\lambda\)</span></td>
+<td>0.400</td>
+<td>0.003</td>
+<td>0.400</td>
+<td>0.003</td>
+<td>0.295</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_B\)</span></td>
+<td>9.86</td>
+<td>0.02</td>
+<td>14.71</td>
+<td>0.02</td>
+<td>7.22</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_F\)</span></td>
+<td>2.02</td>
+<td>0.02</td>
+<td>2.02</td>
+<td>0.02</td>
+<td>3.33</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_H\)</span></td>
+<td>3.22</td>
+<td>0.02</td>
+<td>3.22</td>
+<td>0.02</td>
+<td>3.04</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_R\)</span></td>
+<td>3.11</td>
+<td>0.02</td>
+<td>3.11</td>
+<td>0.02</td>
+<td>3.96</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(r_F\)</span></td>
+<td>0.3435</td>
+<td>0.0001</td>
+<td>0.3426</td>
+<td>0.0001</td>
+<td>0.3400</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(r_R\)</span></td>
+<td>0.3410</td>
+<td>0.0001</td>
+<td>0.3408</td>
+<td>0.0001</td>
+<td>0.3385</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(w\)</span></td>
+<td>1.121</td>
+<td>0.002</td>
+<td>1.121</td>
+<td>0.002</td>
+<td>1.037</td>
+<td>0.002</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(x_B\)</span></td>
+<td>0.276</td>
+<td>0.003</td>
+<td>0.217</td>
+<td>0.003</td>
+<td>0.326</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(x_H\)</span></td>
+<td>0.867</td>
+<td>0.004</td>
+<td>0.867</td>
+<td>0.004</td>
+<td>0.911</td>
+<td>0.004</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(z_B\)</span></td>
+<td>-0.538</td>
+<td>0.003</td>
+<td>-0.622</td>
+<td>0.003</td>
+<td>-0.483</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(z_H\)</span></td>
+<td>-0.748</td>
+<td>0.003</td>
+<td>-0.747</td>
+<td>0.003</td>
+<td>-0.730</td>
+<td>0.002</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="11%" />
+<col width="16%" />
+<col width="11%" />
+<col width="16%" />
+<col width="11%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&nbsp;</th>
+<th class="head" colspan="2">Crescendo</th>
+<th class="head" colspan="2">Fisher</th>
+<th class="head" colspan="2">Pista</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Variable</td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(c\)</span></td>
+<td>0.083</td>
+<td>0.002</td>
+<td>0.072</td>
+<td>0.002</td>
+<td>0.062</td>
+<td>0.002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(g\)</span></td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Bxx}\)</span></td>
+<td>0.500</td>
+<td>0.002</td>
+<td>0.283</td>
+<td>0.001</td>
+<td>0.290</td>
+<td>0.002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Bxz}\)</span></td>
+<td>-0.015</td>
+<td>0.001</td>
+<td>0.0559</td>
+<td>0.0003</td>
+<td>0.050</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Byy}\)</span></td>
+<td>1.117</td>
+<td>0.004</td>
+<td>0.470</td>
+<td>0.003</td>
+<td>0.476</td>
+<td>0.009</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Bzz}\)</span></td>
+<td>0.739</td>
+<td>0.003</td>
+<td>0.268</td>
+<td>0.001</td>
+<td>0.249</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Fxx}\)</span></td>
+<td>0.0954</td>
+<td>0.0004</td>
+<td>0.0631</td>
+<td>0.0003</td>
+<td>0.0553</td>
+<td>0.0002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Fyy}\)</span></td>
+<td>0.166</td>
+<td>0.001</td>
+<td>0.106</td>
+<td>0.001</td>
+<td>0.106</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Hxx}\)</span></td>
+<td>0.384</td>
+<td>0.002</td>
+<td>0.1147</td>
+<td>0.0010</td>
+<td>0.0980</td>
+<td>0.0004</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Hxz}\)</span></td>
+<td>-0.078</td>
+<td>0.001</td>
+<td>-0.018</td>
+<td>0.001</td>
+<td>-0.0044</td>
+<td>0.0003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Hyy}\)</span></td>
+<td>0.363</td>
+<td>0.004</td>
+<td>0.100</td>
+<td>0.004</td>
+<td>0.069</td>
+<td>0.002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Hzz}\)</span></td>
+<td>0.166</td>
+<td>0.001</td>
+<td>0.0226</td>
+<td>0.0006</td>
+<td>0.0396</td>
+<td>0.0002</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Rxx}\)</span></td>
+<td>0.0966</td>
+<td>0.0004</td>
+<td>0.0630</td>
+<td>0.0003</td>
+<td>0.0552</td>
+<td>0.0002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Ryy}\)</span></td>
+<td>0.144</td>
+<td>0.001</td>
+<td>0.101</td>
+<td>0.001</td>
+<td>0.076</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\lambda\)</span></td>
+<td>0.367</td>
+<td>0.003</td>
+<td>0.330</td>
+<td>0.003</td>
+<td>0.276</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_B\)</span></td>
+<td>9.18</td>
+<td>0.02</td>
+<td>4.48</td>
+<td>0.02</td>
+<td>4.49</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_F\)</span></td>
+<td>3.54</td>
+<td>0.02</td>
+<td>1.50</td>
+<td>0.02</td>
+<td>1.58</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_H\)</span></td>
+<td>4.57</td>
+<td>0.02</td>
+<td>2.52</td>
+<td>0.02</td>
+<td>2.27</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_R\)</span></td>
+<td>3.96</td>
+<td>0.02</td>
+<td>1.94</td>
+<td>0.02</td>
+<td>1.38</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(r_F\)</span></td>
+<td>0.3426</td>
+<td>0.0001</td>
+<td>0.3302</td>
+<td>0.0001</td>
+<td>0.3338</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(r_R\)</span></td>
+<td>0.3400</td>
+<td>0.0001</td>
+<td>0.3386</td>
+<td>0.0001</td>
+<td>0.3321</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(w\)</span></td>
+<td>1.101</td>
+<td>0.002</td>
+<td>1.070</td>
+<td>0.002</td>
+<td>0.989</td>
+<td>0.002</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(x_B\)</span></td>
+<td>0.312</td>
+<td>0.003</td>
+<td>0.367</td>
+<td>0.002</td>
+<td>0.38</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(x_H\)</span></td>
+<td>0.907</td>
+<td>0.005</td>
+<td>0.960</td>
+<td>0.006</td>
+<td>0.906</td>
+<td>0.005</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(z_B\)</span></td>
+<td>-0.526</td>
+<td>0.003</td>
+<td>-0.499</td>
+<td>0.003</td>
+<td>-0.477</td>
+<td>0.007</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(z_H\)</span></td>
+<td>-0.803</td>
+<td>0.003</td>
+<td>-0.719</td>
+<td>0.004</td>
+<td>-0.732</td>
+<td>0.002</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="15%" />
+<col width="23%" />
+<col width="15%" />
+<col width="23%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&nbsp;</th>
+<th class="head" colspan="2">Yellow</th>
+<th class="head" colspan="2">Yellowrev</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Variable</td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(c\)</span></td>
+<td>0.047</td>
+<td>0.002</td>
+<td>0.180</td>
+<td>0.002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(g\)</span></td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Bxx}\)</span></td>
+<td>0.2240</td>
+<td>0.0009</td>
+<td>0.2254</td>
+<td>0.0009</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Bxz}\)</span></td>
+<td>0.0182</td>
+<td>0.0001</td>
+<td>0.0179</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Byy}\)</span></td>
+<td>0.388</td>
+<td>0.005</td>
+<td>0.388</td>
+<td>0.005</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Bzz}\)</span></td>
+<td>0.2160</td>
+<td>0.0009</td>
+<td>0.2147</td>
+<td>0.0009</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Fxx}\)</span></td>
+<td>0.0852</td>
+<td>0.0003</td>
+<td>0.0852</td>
+<td>0.0003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Fyy}\)</span></td>
+<td>0.147</td>
+<td>0.002</td>
+<td>0.147</td>
+<td>0.002</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Hxx}\)</span></td>
+<td>0.1452</td>
+<td>0.0006</td>
+<td>0.1475</td>
+<td>0.0006</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Hxz}\)</span></td>
+<td>-0.0194</td>
+<td>0.0005</td>
+<td>-0.0172</td>
+<td>0.0005</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Hyy}\)</span></td>
+<td>0.120</td>
+<td>0.003</td>
+<td>0.120</td>
+<td>0.002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Hzz}\)</span></td>
+<td>0.0292</td>
+<td>0.0003</td>
+<td>0.0294</td>
+<td>0.0004</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Rxx}\)</span></td>
+<td>0.0877</td>
+<td>0.0004</td>
+<td>0.0877</td>
+<td>0.0004</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Ryy}\)</span></td>
+<td>0.149</td>
+<td>0.001</td>
+<td>0.149</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\lambda\)</span></td>
+<td>0.302</td>
+<td>0.003</td>
+<td>0.339</td>
+<td>0.003</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_B\)</span></td>
+<td>3.31</td>
+<td>0.02</td>
+<td>3.31</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_F\)</span></td>
+<td>1.90</td>
+<td>0.02</td>
+<td>1.90</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_H\)</span></td>
+<td>2.45</td>
+<td>0.02</td>
+<td>2.45</td>
+<td>0.02</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_R\)</span></td>
+<td>2.57</td>
+<td>0.02</td>
+<td>2.57</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(r_F\)</span></td>
+<td>0.3419</td>
+<td>0.0001</td>
+<td>0.3419</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(r_R\)</span></td>
+<td>0.3414</td>
+<td>0.0001</td>
+<td>0.3414</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(w\)</span></td>
+<td>1.089</td>
+<td>0.002</td>
+<td>0.985</td>
+<td>0.002</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(x_B\)</span></td>
+<td>0.422</td>
+<td>0.004</td>
+<td>0.412</td>
+<td>0.004</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(x_H\)</span></td>
+<td>0.948</td>
+<td>0.004</td>
+<td>0.919</td>
+<td>0.005</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(z_B\)</span></td>
+<td>-0.603</td>
+<td>0.004</td>
+<td>-0.618</td>
+<td>0.004</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(z_H\)</span></td>
+<td>-0.788</td>
+<td>0.002</td>
+<td>-0.816</td>
+<td>0.002</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="11%" />
+<col width="16%" />
+<col width="11%" />
+<col width="16%" />
+<col width="11%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&nbsp;</th>
+<th class="head" colspan="2">Rigid</th>
+<th class="head" colspan="2">Rigidcl</th>
+<th class="head" colspan="2">Gyro</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Variable</td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+<td><span class="math">\(v\)</span></td>
+<td><span class="math">\(\sigma\)</span></td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(c\)</span></td>
+<td>0.0599</td>
+<td>0.0001</td>
+<td>0.0599</td>
+<td>0.0001</td>
+<td>0.0445</td>
+<td>0.0002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(g\)</span></td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+<td>9.81</td>
+<td>0.01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Bxx}\)</span></td>
+<td>2.64</td>
+<td>0.01</td>
+<td>2.371</td>
+<td>0.008</td>
+<td>0.03848</td>
+<td>0.00009</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Bxz}\)</span></td>
+<td>0.654</td>
+<td>0.003</td>
+<td>0.531</td>
+<td>0.002</td>
+<td>0.00620</td>
+<td>0.00003</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Byy}\)</span></td>
+<td>4.28</td>
+<td>0.01</td>
+<td>4.17</td>
+<td>0.01</td>
+<td>0.0661</td>
+<td>0.0007</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Bzz}\)</span></td>
+<td>1.94</td>
+<td>0.02</td>
+<td>1.901</td>
+<td>0.010</td>
+<td>0.04120</td>
+<td>0.00010</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Dxx}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.00534</td>
+<td>0.00001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Dyy}\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>0.0086</td>
+<td>0.0001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Fxx}\)</span></td>
+<td>0.0524</td>
+<td>0.0002</td>
+<td>0.0524</td>
+<td>0.0002</td>
+<td>0.00852</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Fyy}\)</span></td>
+<td>0.0984</td>
+<td>0.0007</td>
+<td>0.0984</td>
+<td>0.0007</td>
+<td>0.01345</td>
+<td>0.00010</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Gxx}\)</span></td>
+<td>0.0497</td>
+<td>0.0002</td>
+<td>0.0497</td>
+<td>0.0002</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Gxz}\)</span></td>
+<td>0.00494</td>
+<td>0.00003</td>
+<td>0.00494</td>
+<td>0.00003</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Gyy}\)</span></td>
+<td>0.0174</td>
+<td>0.0002</td>
+<td>0.0174</td>
+<td>0.0002</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Gzz}\)</span></td>
+<td>0.0622</td>
+<td>0.0002</td>
+<td>0.0622</td>
+<td>0.0002</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Hxx}\)</span></td>
+<td>0.344</td>
+<td>0.003</td>
+<td>0.344</td>
+<td>0.003</td>
+<td>0.0484</td>
+<td>0.0002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Hxz}\)</span></td>
+<td>-0.092</td>
+<td>0.001</td>
+<td>-0.092</td>
+<td>0.001</td>
+<td>-0.01014</td>
+<td>0.00008</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Hyy}\)</span></td>
+<td>0.340</td>
+<td>0.004</td>
+<td>0.340</td>
+<td>0.004</td>
+<td>0.0439</td>
+<td>0.0005</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Hzz}\)</span></td>
+<td>0.1031</td>
+<td>0.0007</td>
+<td>0.1031</td>
+<td>0.0007</td>
+<td>0.01469</td>
+<td>0.00005</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Rxx}\)</span></td>
+<td>0.0701</td>
+<td>0.0002</td>
+<td>0.0701</td>
+<td>0.0002</td>
+<td>0.00724</td>
+<td>0.00002</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Ryy}\)</span></td>
+<td>0.1293</td>
+<td>0.0006</td>
+<td>0.1293</td>
+<td>0.0006</td>
+<td>0.01021</td>
+<td>0.00008</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Sxx}\)</span></td>
+<td>0.0827</td>
+<td>0.0003</td>
+<td>0.0827</td>
+<td>0.0003</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Sxz}\)</span></td>
+<td>-0.0351</td>
+<td>0.0001</td>
+<td>-0.0351</td>
+<td>0.0001</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(I_{Syy}\)</span></td>
+<td>0.093</td>
+<td>0.001</td>
+<td>0.093</td>
+<td>0.001</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(I_{Szz}\)</span></td>
+<td>0.0229</td>
+<td>0.0001</td>
+<td>0.0229</td>
+<td>0.0001</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\lambda\)</span></td>
+<td>0.3175</td>
+<td>0.0003</td>
+<td>0.3175</td>
+<td>0.0003</td>
+<td>0.293</td>
+<td>0.001</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_B\)</span></td>
+<td>22.90</td>
+<td>0.01</td>
+<td>23.00</td>
+<td>0.01</td>
+<td>3.04</td>
+<td>0.01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_D\)</span></td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+<td>2.45</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_F\)</span></td>
+<td>1.55</td>
+<td>0.01</td>
+<td>1.55</td>
+<td>0.01</td>
+<td>1.41</td>
+<td>0.01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_G\)</span></td>
+<td>3.35</td>
+<td>0.01</td>
+<td>3.35</td>
+<td>0.01</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_H\)</span></td>
+<td>5.40</td>
+<td>0.01</td>
+<td>5.40</td>
+<td>0.01</td>
+<td>1.36</td>
+<td>0.01</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(m_R\)</span></td>
+<td>4.90</td>
+<td>0.01</td>
+<td>4.90</td>
+<td>0.01</td>
+<td>1.54</td>
+<td>0.01</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(m_S\)</span></td>
+<td>2.05</td>
+<td>0.01</td>
+<td>2.05</td>
+<td>0.01</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(r_F\)</span></td>
+<td>0.335573</td>
+<td>0.000009</td>
+<td>0.335573</td>
+<td>0.000009</td>
+<td>0.147241</td>
+<td>0.000005</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(r_R\)</span></td>
+<td>0.332528</td>
+<td>0.000009</td>
+<td>0.332528</td>
+<td>0.000009</td>
+<td>0.150068</td>
+<td>0.000005</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(w\)</span></td>
+<td>1.0638</td>
+<td>0.0002</td>
+<td>1.0638</td>
+<td>0.0002</td>
+<td>0.54605</td>
+<td>0.00008</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(x_B\)</span></td>
+<td>0.335</td>
+<td>0.007</td>
+<td>0.319</td>
+<td>0.002</td>
+<td>0.229</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(x_{cl}\)</span></td>
+<td>0.1984375</td>
+<td>NA</td>
+<td>0.20955</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(x_G\)</span></td>
+<td>0.773</td>
+<td>0.002</td>
+<td>0.773</td>
+<td>0.002</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(x_H\)</span></td>
+<td>0.818</td>
+<td>0.001</td>
+<td>0.818</td>
+<td>0.001</td>
+<td>0.4757</td>
+<td>0.0009</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(x_S\)</span></td>
+<td>0.8923</td>
+<td>0.0008</td>
+<td>0.8923</td>
+<td>0.0008</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(z_B\)</span></td>
+<td>-0.736</td>
+<td>0.005</td>
+<td>-0.731</td>
+<td>0.002</td>
+<td>-0.2693</td>
+<td>0.0008</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(z_{cl}\)</span></td>
+<td>-0.942975</td>
+<td>NA</td>
+<td>-0.9017</td>
+<td>NA</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(z_G\)</span></td>
+<td>-1.141</td>
+<td>0.002</td>
+<td>-1.141</td>
+<td>0.002</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(z_H\)</span></td>
+<td>-0.986</td>
+<td>0.002</td>
+<td>-0.986</td>
+<td>0.002</td>
+<td>-0.447</td>
+<td>0.001</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(z_S\)</span></td>
+<td>-0.733</td>
+<td>0.002</td>
+<td>-0.733</td>
+<td>0.002</td>
+<td>NA</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="weight" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id29">[1]</a></td><td>I gained some weight after drinking all that good beer in the
+Netherlands!</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="leastsquares" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id31">[2]</a></td><td>Alternatively, the three lines can be treated as an over
+determined linear system and the least squares method is used to find a
+unique solution. This solution is not the same as the triangle centroid
+method. The solution with the higher accuracy would likely be the preferred
+one.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="steertorque" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id32">[3]</a></td><td>See Chapter <a class="reference internal" href="davisbicycle.html#davisbicycle"><em>Davis Instrumented Bicycle</em></a>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="clamps" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id34">[4]</a></td><td>The Davis clamp was a bit larger relative to forks with no
+handlebars. This may have decreased the accuracy of the related measurments.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="rod" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id35">[5]</a></td><td>A different rod was used for the Delft and Davis Bicycles.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[6]</td><td><em>(<a class="fn-backref" href="#id56">1</a>, <a class="fn-backref" href="#id57">2</a>, <a class="fn-backref" href="#id58">3</a>, <a class="fn-backref" href="#id59">4</a>, <a class="fn-backref" href="#id60">5</a>, <a class="fn-backref" href="#id61">6</a>, <a class="fn-backref" href="#id62">7</a>, <a class="fn-backref" href="#id63">8</a>)</em> These dimensions are not necessary for the provided methods, but are
+necessary to build the grid point system. Early on they were used to
+analytically estimate the inertia of the bicycle frame. See [Moore2008]</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+<!--
+<script type="text/javascript">
+	var disqus_developer = 1;
+</script>
+-->
+<h2>Comments</h2>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /**
+    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread]
+    */
+  (function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = 'http://jkm-dissertation.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a
+		href="http://disqus.com/?ref_noscript=jkm-dissertation">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="extensions.html">Extensions of the Whipple Model</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="parameterstudy.html">Parameter Studies</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+
+    <div class="footer">
+        &copy; Copyright 2011, Jason K. Moore.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+<script type="text/javascript">
+var disqus_shortname = 'jkm-dissertation';
+(function () {
+  var s = document.createElement('script'); s.async = true;
+  s.src = 'http://disqus.com/forums/jkm-dissertation/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+<div align="center">
+<a rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+	<img
+	alt="Creative Commons License" style="border-width:0"
+	src="http://i.creativecommons.org/l/by/3.0/88x31.png" />
+</a>
+<br />
+This work is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+Attribution 3.0 Unported License</a>
+</div>
+
+
+  </body>
+</html>

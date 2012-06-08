@@ -4,7 +4,7 @@
 # tranfer functions as a function of the canonical matrix entries given in
 # Meijaard2007.
 
-# Warning! This script does not work if their are complex zeros, as I haven't
+# Warning! This script does not work if there are complex zeros, as I haven't
 # figured out how to change the sympy `I` into a numpy complex number.
 
 import numpy as np
@@ -101,7 +101,7 @@ num = {M[0, 0] : Mn[0, 0],
        g : 9.81}
 
 # Now calculate the zeros as a function of speed and plot them.
-speeds = np.linspace(0, 10)
+speeds = np.linspace(0, 10, num=50)
 
 phiTphiRoots = []
 deltaTphiRoots = []
@@ -117,7 +117,7 @@ for speed in speeds:
     deltaTdeltaRoots.append([x.subs(num) for x in deltaTdeltaZeros])
 
 goldenRatio = (5**0.5 - 1.0) / 2.0
-fig_width = 4.0
+fig_width = 5.0
 fig_height = fig_width * goldenRatio
 fig_size =  [fig_width, fig_height]
 params = {'axes.labelsize': 10,
@@ -125,6 +125,7 @@ params = {'axes.labelsize': 10,
           'legend.fontsize': 10,
           'xtick.labelsize': 6,
           'ytick.labelsize': 6,
+          'figure.titlesize': 10,
           'text.usetex': True,
           'figure.figsize': fig_size,
           'figure.subplot.hspace': 0.1,
@@ -135,31 +136,34 @@ plt.rcParams.update(params)
 fig = plt.figure()
 
 ax1 = fig.add_subplot(4, 1, 1)
-ax1.plot(speeds, phiTphiRoots, '-k')
+ax1.plot(speeds, phiTphiRoots, '.b')
 ax1.set_ylabel(r'$\frac{\phi}{T_\phi}$')
-ax1.set_title('Transfer function zeros.')
+ax1.set_title('Transfer function zeros')
 ax1.set_xticklabels('')
 ax1.grid()
 
 ax2 = fig.add_subplot(4, 1, 2)
-ax2.plot(speeds, deltaTphiRoots, '-k')
+ax2.plot(speeds, deltaTphiRoots, '.b')
 ax2.set_ylabel(r'$\frac{\delta}{T_\phi}$')
 ax2.set_xlabel('Speed [m/s]')
 ax2.set_xticklabels('')
 ax2.grid()
 
 ax3 = fig.add_subplot(4, 1, 3)
-ax3.plot(speeds, phiTdeltaRoots, '-k')
+ax3.plot(speeds, phiTdeltaRoots, '.b')
 ax3.set_ylabel(r'$\frac{\phi}{T_\delta}$')
 ax3.set_xticklabels('')
 ax3.grid()
 
 ax4 = fig.add_subplot(4, 1, 4)
-ax4.plot(speeds, deltaTdeltaRoots, '-k')
+ax4.plot(speeds, deltaTdeltaRoots, '.b')
 ax4.set_ylabel(r'$\frac{\delta}{T_\delta}$')
 ax4.set_xlabel('Speed [m/s]')
 ax4.set_ylim((-3.5, 3.5))
 ax4.grid()
+
+for ax in [ax1, ax2, ax3, ax4]:
+    ax.locator_params(axis='y', nbins=5)
 
 fig.savefig('../../figures/control/zeros-wrt-speed.png', dpi=200)
 fig.savefig('../../figures/control/zeros-wrt-speed.pdf')

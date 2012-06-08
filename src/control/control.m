@@ -85,7 +85,8 @@ grid
 legend('\phi', '\delta')
 xlabel('Time [s]')
 ylabel('Angle [deg]')
-saveas(stableStep, '../../figures/control/stable-step-response.png')
+print(stableStep, '-dpng', '-r200', '../../figures/control/stable-step-response.png')
+saveas(stableStep, '../../figures/control/stable-step-response.pdf')
 
 %% Find suitable gains for roll angle feedback with steer torque control.
 
@@ -117,7 +118,7 @@ kPhiDot.weave = -5;
 kPhiDot.stable = 0;
 kPhiDot.capsize = nan;
 
-%% Negative feedback of rollrate to control steer torque.
+%% Negative feedback of roll rate to control steer torque.
 
 % This sets the system to minimize the error in the commanded torque with
 % respect to a gain times roll rate. Notice the system requires positive
@@ -137,12 +138,18 @@ tDeltaOverTc = feedback(1, -3.74 * bicycleTF(12, 2));
 % plot
 comSteerTorque = figure();
 set(comSteerTorque, figOptions)
-plotyy(t, rad2deg(y), t, yTdelta)
+[ax, h1, h2] = plotyy(t, rad2deg(y), t, yTdelta);
 grid
-xlabel('Time [s]')
+set(ax(2),'YColor', 'k')
+set(get(ax(2),'Ylabel'),'String','Torque [Nm]')
 ylabel('Angle [deg]')
+xlabel('Time [s]')
+pos = get(gca(), 'Position');
+set(gca(), 'Position', pos + [0, 0.1, -0.075, -0.1])
 legend('\phi', '\delta', 'T_\delta')
-saveas(comSteerTorque, '../../figures/control/commanded-steer-torque.png')
+print(comSteerTorque, '-dpng', '-r200', ...
+    '../../figures/control/commanded-steer-torque.png')
+saveas(comSteerTorque, '../../figures/control/commanded-steer-torque.pdf')
 
 %% Roll angle feedback to stablize the capsize mode.
 
@@ -164,10 +171,16 @@ comRollAngle = figure();
 set(comRollAngle, figOptions)
 [ax, h1, h2] = plotyy(time, rad2deg([yPhi, yDelta]), time, yTdelta);
 grid
+set(ax(2),'YColor', 'k')
+set(get(ax(2),'Ylabel'),'String','Torque [Nm]')
 xlabel('Time [s]')
 ylabel('Angle [deg]')
+pos = get(gca(), 'Position');
+set(gca(), 'Position', pos + [0, 0.1, -0.075, -0.1])
 legend('\phi', '\delta', 'T_\delta')
-saveas(comRollAngle, '../../figures/control/commanded-roll-angle.png')
+print(comRollAngle, '-dpng', '-r200', ...
+    '../../figures/control/commanded-roll-angle.png')
+saveas(comRollAngle, '../../figures/control/commanded-roll-angle.pdf')
 
 %%%% this is a commanded roll rate, which doesn't make much sense explicitly
 %%%% now look at phidot feedback

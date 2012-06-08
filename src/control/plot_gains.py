@@ -19,9 +19,8 @@ def load_gains(fileName):
 
 data = load_gains('/media/Data/Documents/School/UC Davis/Bicycle Mechanics/HumanControl/gains/RigidJasonSteerGains.txt')
 
-goldenRatio = (5**0.5 - 1.0) / 2.0
-fig_width = 3.0
-fig_height = fig_width * goldenRatio
+fig_width = 4.0
+fig_height = 5.0
 fig_size =  [fig_width, fig_height]
 params = {'axes.labelsize': 10,
           'text.fontsize': 10,
@@ -30,8 +29,8 @@ params = {'axes.labelsize': 10,
           'ytick.labelsize': 8,
           'text.usetex': True,
           'figure.figsize': fig_size,
-          'figure.subplot.hspace': 0.5,
-          'figure.subplot.bottom': 0.2,
+          'figure.subplot.hspace': 0.15,
+          'figure.subplot.bottom': 0.1,
           'figure.subplot.left': 0.2}
 plt.rcParams.update(params)
 
@@ -45,10 +44,8 @@ for i, (gain, label) in enumerate(zip(gains, labels)):
     ax = (fig.add_subplot(5, 1, i + 1))
     ax.plot(data['speed'], data[gain])
     ax.set_ylabel(label)
-    ticks = ax.get_yticks()
-    ax.set_yticks([ticks[0], ticks[-1]])
-    ax.yaxis.set_label_coords(-0.2, 0.5)
     axes.append(ax)
+    ax.locator_params(axis='y', nbins=5)
 
 for ax in axes[0:-1]:
     ax.set_xticklabels('')

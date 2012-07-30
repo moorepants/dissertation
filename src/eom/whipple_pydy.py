@@ -1,5 +1,8 @@
 #!usr/bin/env python
 
+# This file derives the non-linear equations of motion of the Whipple bicycle
+# model.
+
 import sympy as sym
 import sympy.physics.mechanics as mec
 
@@ -78,8 +81,8 @@ F.orient(E, 'Axis', [q8, E['2']])
 ###########
 
 # geometry
-# rF: radius of front wheel
-# rR: radius of rear wheel
+# rf: radius of front wheel
+# rr: radius of rear wheel
 # d1: the perpendicular distance from the steer axis to the center
 #     of the rear wheel (rear offset)
 # d2: the distance between wheels along the steer axis
@@ -94,7 +97,7 @@ F.orient(E, 'Axis', [q8, E['2']])
 # l4: the distance in the e3> direction from the front wheel center to
 #     the center of mass of the fork
 
-rF, rR = sym.symbols('rF rF')
+rf, rr = sym.symbols('rf rr')
 d1, d2, d3 = sym.symbols('d1 d2 d3')
 l1, l2, l3, l4 = sym.symbols('l1 l2 l3 l4')
 
@@ -115,6 +118,9 @@ if11, if22 = sym.symbols('if11 if22')
 ###########
 
 # control torques
+# T4 : roll torque
+# T6 : rear wheel torque
+# T7 : steer torque
 T4, T6, T7 = mec.dynamicsymbols('T4 T6 T7')
 
 ###################
@@ -126,7 +132,7 @@ no = mec.Point('no')
 
 # newtonian origin to rear wheel center
 do = mec.Point('do')
-do.set_pos(no, q1 * N['1'] + q2 * N['2'] - rR * B['3'])
+do.set_pos(no, q1 * N['1'] + q2 * N['2'] - rr * B['3'])
 
 # rear wheel center to bicycle frame center
 co = mec.Point('co')
@@ -147,10 +153,10 @@ eo.set_pos(fo, l3 * E['1'] + l4 * E['3'])
 # locate the points fixed on the wheel which instaneously touch the ground
 # rear
 dn = mec.Point('dn')
-dn.set_pos(do, rR * B['3'])
+dn.set_pos(do, rr * B['3'])
 # front
 fn = mec.Point('fn')
-fn.set_pos(fo, rF * E['2'].cross(A['3']).cross(E['2']).normalize())
+fn.set_pos(fo, rf * E['2'].cross(A['3']).cross(E['2']).normalize())
 
 ######################
 # Holonomic Constraint
@@ -234,10 +240,10 @@ If = mec.inertia(F, if11, if22, if11, 0.0, 0.0, 0.0)
 # Rigid Bodies
 ##############
 
-rearFrame = mec.RigidBody('Rear Frame', mc, (Ic, co), co, C)
-rearWheel = mec.RigidBody('Rear Wheel', md, (Id, do), do, D)
-frontFrame = mec.RigidBody('Front Frame', me, (Ie, eo), eo, E)
-frontWheel = mec.RigidBody('Front Wheel', mf, (If, fo), fo, F)
+rearFrame = mec.RigidBody('Rear Frame', co, C, mc, (Ic, co))
+rearWheel = mec.RigidBody('Rear Wheel', do, D, md, (Id, do))
+frontFrame = mec.RigidBody('Front Frame', eo, E, me, (Ie, eo))
+frontWheel = mec.RigidBody('Front Wheel', fo, F, mf, (If, fo))
 
 bodyList = [rearFrame, rearWheel, frontFrame, frontWheel]
 
@@ -269,3 +275,20 @@ kane.kindiffeq(kinematical)
 fr, frstar = kane.kanes_equations(forceList, bodyList)
 M = kane.mass_matrix_full
 F = kane.forcing_full
+
+# Linearization
+# this is incomplete
+
+#FA, FB, u = kane.linearize()
+#
+#Mred = M.extract([3, 5, 8, 10], [3, 5, 8, 10])
+#FAred = FA.extract([3, 5, 8, 10], [3, 5, 7, 9])
+#
+#bp = benchmark_parameters()
+#mp = benchmark_to_moore(bp)
+#subs = {eval(k) : v for k, v in mp.items()}
+# # add in the linearization point substitutions
+#v = sym.symbols('v')
+#
+## Not sure of the proper solve method to use here
+#A = sym.solve(Mred.subs(subs), FAred.subs(subs))

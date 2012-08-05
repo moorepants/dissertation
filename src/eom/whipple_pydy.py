@@ -207,15 +207,15 @@ eo.v2pt_theory(fo, N, E)
 dn.v2pt_theory(do, N, D)
 fn.v2pt_theory(fo, N, F)
 
-#######################
-# Linear Accelertations
-#######################
+######################
+# Linear Accelerations
+######################
 
-do.set_acc(N, do.vel(N).dt(N))
-co.a2pt_theory(do, N, C)
-ce.a2pt_theory(do, N, C)
-fo.a2pt_theory(ce, N, E)
-eo.a2pt_theory(fo, N, E)
+#do.set_acc(N, do.vel(N).dt(N))
+#co.a2pt_theory(do, N, C)
+#ce.a2pt_theory(do, N, C)
+#fo.a2pt_theory(ce, N, E)
+#eo.a2pt_theory(fo, N, E)
 
 ####################
 # Motion Constraints
@@ -282,13 +282,30 @@ F = kane.forcing_full
 #FA, FB, u = kane.linearize()
 #
 #Mred = M.extract([3, 5, 8, 10], [3, 5, 8, 10])
+#v = sym.symbols('v')
+#test = Mred.subs({q1: 0.0,
+                  #q2: 0.0,
+                  #q3: 0.0,
+                  #q4: 0.0,
+           #q5: 0.314,
+           #q6: 0.0,
+           #q7: 0.0,
+           #q8: 0.0,
+           #u1: 0.0,
+           #u2: 0.0,
+           #u3: 0.0,
+           #u4: 0.0,
+           #u5: 0.0,
+           #u6: -v / rr,
+           #u7: 0.0,
+           #u8: -v / rf})
+#
 #FAred = FA.extract([3, 5, 8, 10], [3, 5, 7, 9])
 #
 #bp = benchmark_parameters()
 #mp = benchmark_to_moore(bp)
 #subs = {eval(k) : v for k, v in mp.items()}
 # # add in the linearization point substitutions
-#v = sym.symbols('v')
 #
 ## Not sure of the proper solve method to use here
 #A = sym.solve(Mred.subs(subs), FAred.subs(subs))

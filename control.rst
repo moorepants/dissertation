@@ -1214,7 +1214,9 @@ roll angle, :ref:`Figure 13 <figRollStable>`.
    :target: _images/commanded-roll-angle-human.png
 
    The response of the system for a commanded roll angle of 10 degrees. Notice
-   the counter steering and the steady state error in the roll angle.
+   the initial counter steering and the steady state error in the roll angle.
+   This simulation also demonstrates the steady state negative torque needed
+   for a positive turn.
 
 .. math::
    :label: eqPsiLoopNumerical

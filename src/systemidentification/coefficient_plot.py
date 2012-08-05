@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import sys
 sys.path.append('..')
 from load_paths import read
@@ -6,11 +8,13 @@ import os
 import cPickle
 from numpy import linspace, sqrt, zeros
 from scipy.io import loadmat
+import matplotlib.pyplot as plt
 from matplotlib import rcParams
 from bicycleid import data, plot, model
 import dtk.bicycle
 
-params = {'axes.labelsize': 10,
+params = {'axes.labelsize': 8,
+          'axes.titlesize': 10,
           'text.fontsize': 10,
           'legend.fontsize': 10,
           'xtick.labelsize': 8,
@@ -39,7 +43,7 @@ models = {rider: model.Whipple(rider).matrices(speedRange) for rider in ['Charli
 coefPlot.update_graph(subDat, models)
 
 # now add the arm model
-m = loadmat('../extensions/arms/armsAB-Charlie.mat', squeeze_me=True) # this is charlie at 101 speeds
+m = loadmat('../../data/extensions/armsAB-Charlie.mat', squeeze_me=True) # this is charlie at 101 speeds
 
 inputMats = zeros((101, 4, 1))
 for i, B in enumerate(m['inputMatrices']):
@@ -74,9 +78,11 @@ for lab, ax in coefPlot.axes.items():
     elif lab[0] == 'b':
         ax.plot(speeds, Bs[:, row - 1, col - 1], 'orange')
 
+width = 6.0
 coefPlot.title.set_fontsize(10.0)
-coefPlot.figure.set_figwidth(7.5)
-goldenRatio = (sqrt(5)-1.0)/2.0
-coefPlot.figure.set_figheight(7.5 * goldenRatio)
+coefPlot.figure.set_figwidth(width)
+goldenRatio = (sqrt(5) - 1.0) / 2.0
+coefPlot.figure.set_figheight(6.0 * goldenRatio)
 coefPlot.figure.savefig('../../figures/systemidentification/coefficients.pdf')
-os.system('convert ../../figures/systemidentification/coefficients.pdf ../../figures/systemidentification/coefficients.png')
+# this gtk backend failed when I tried to savefig a png, so I do this
+os.system('convert -density 200x200 ../../figures/systemidentification/coefficients.pdf ../../figures/systemidentification/coefficients.png')

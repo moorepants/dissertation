@@ -18,7 +18,7 @@ outputs = {'delta'};
 [data, meta] = build_id_data([runID '.mat'], outputs, inputs, ...
     dataDir, true);
 
-display(sprintf('The speed of the identifciation data is %1.2f', meta.speed))
+display(sprintf('The speed of the identification data is %1.2f', meta.speed))
 
 % Load the initial guess.
 results = load([PATH_TO_BICYCLE_SYSTEM_ID filesep 'data' filesep ...

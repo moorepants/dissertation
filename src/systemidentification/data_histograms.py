@@ -70,7 +70,7 @@ params = {'axes.labelsize': 8,
           'ytick.labelsize': 6,
           'text.usetex': True,
           'figure.figsize': fig_size,
-          'figure.subplot.hspace': 0.3,
+          'figure.subplot.hspace': 0.5,
           'figure.subplot.wspace': 0.2,
           'figure.subplot.bottom': 0.1,
           'figure.subplot.left': 0.1,
@@ -98,7 +98,7 @@ maneuvers = ['Balance', 'Balance\nWith Disturbance',
              'Track\nStraight Line', 'Track Straight\nLine With Disturbance']
 ax.set_xlim((x[0] - 0.5, x[-1] + 1.0))
 ax.set_title('Maneuvers')
-plt.xticks(x + 0.25, maneuvers)
+plt.xticks(x + 0.25, maneuvers, fontsize=4, rotation=20.)
 
 ax = fig.add_subplot(2, 2, 3)
 environments = ['Horse Treadmill', 'Pavillion Floor']
@@ -118,3 +118,4 @@ ax.set_title('Speeds')
 plt.xticks(x + 0.25, speeds, rotation=-20)
 
 fig.savefig('../../figures/systemidentification/raw-data-bar-plot.png')
+fig.savefig('../../figures/systemidentification/raw-data-bar-plot.pdf')

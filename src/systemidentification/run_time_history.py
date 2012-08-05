@@ -8,7 +8,7 @@ import bicycledataprocessor as bdp
 
 dataset = bdp.DataSet()
 
-fig_width = 7.0
+fig_width = 6.0
 goldenRatio = (5**0.5 - 1.0) / 2.0
 fig_height = fig_width * goldenRatio
 fig_size =  [fig_width, fig_height]
@@ -21,7 +21,7 @@ params = {'axes.labelsize': 8,
           'text.usetex': True,
           'figure.figsize': fig_size,
           #'figure.subplot.hspace': 0.3,
-          'figure.subplot.wspace': 0.2,
+          'figure.subplot.wspace': 0.25,
           #'figure.subplot.bottom': 0.1,
           #'figure.subplot.left': 0.1,
           'figure.dpi': 300}
@@ -71,4 +71,7 @@ for r, lims, tag in zip([283, 592], [(8., 24.), (0., 6.)], ['treadmill', 'pavili
     l2 = r'performing {Maneuver} at speed {Speed} m/s'.format(**trial.metadata)
     fig.suptitle(l1 + '\n' + l2, fontsize=10)
 
+    fig.savefig('../../figures/systemidentification/time-history-' + tag + '.png')
+    fig.savefig('../../figures/systemidentification/time-history-' + tag +
+            '.pdf')
     fig.savefig('../../figures/systemidentification/time-history-' + tag + '.png')

@@ -26,12 +26,13 @@ ax.set_xticks(np.linspace(0, 10, 21))
 fig.savefig('../../figures/systemidentification/speed-hist-all.png')
 fig.savefig('../../figures/systemidentification/speed-hist-all.pdf')
 
-fig, ax = plt.subplots(6, 1, sharex=True)
-fig.set_size_inches(4, 6)
+# plot the controller parameters versus speed
 
-parameters = ['kDelta', 'kPhiDot', 'kPhi', 'kPsi', 'kYQ', 'wnm']
+fig, ax = plt.subplots(6, 1, sharex=True)
+fig.set_size_inches(6, 7.5)
 
 speedBins = np.linspace(0.0, 10.0, num=41)
+parameters = ['kDelta', 'kPhiDot', 'kPhi', 'kPsi', 'kYQ', 'wnm']
 plotData = {k : [] for k in parameters}
 nums = []
 meanFits = []
@@ -53,7 +54,7 @@ for i, par in enumerate(parameters):
     weight = np.array([sbin.std() for sbin in plotData[par]])
     if par == 'wnm':
          b, cov = curve_fit(constant, x[~np.isnan(y)], y[~np.isnan(y)],
-                sigma=widths[~np.isnan(y)])
+                sigma=1. / widths[~np.isnan(y)])
          m = 0.0
     else:
         (m, b), cov = curve_fit(line, x[~np.isnan(y)], y[~np.isnan(y)],

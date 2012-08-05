@@ -35,7 +35,7 @@ left = @(qd)left_arm_constraint(qd, qi, p);
 qLeft = fsolve(left, [-q9g, q10g, -q11g, q12g], optimset('Display', 'Off'));
 
 % caluculate eigenvalues for a range of speeds
-speed = 0:0.05:10;
+speed = 0:0.1:10;
 w = zeros(4, length(speed));
 stateMatrices = zeros(length(speed), 4, 4);
 inputMatrices = zeros(length(speed), 4, 3);

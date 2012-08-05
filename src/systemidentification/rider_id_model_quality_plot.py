@@ -32,7 +32,7 @@ for filename, env in zip(files, environments):
     time = np.linspace(0, (numSamp - 1) / 200, num=numSamp)
 
     fig, axes = plt.subplots(8, 1, sharex=True)
-    fig.set_size_inches(4, 8)
+    fig.set_size_inches(6, 8)
 
     for i, ax in enumerate(axes):
         box = ax.get_position()

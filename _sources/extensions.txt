@@ -1227,8 +1227,8 @@ conclusive results.
 
 .. _secFlexibleRider:
 
-Flexible rider (hip rotation, back lean and twist)
-==================================================
+No Hands
+========
 
 I've ended up thinking a great deal about the actual biomechanical motion one
 uses to balance a bicycle when riding no-handed and I've learned much about it

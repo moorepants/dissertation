@@ -30,6 +30,7 @@ document <http://mae.ucdavis.edu/~biosport/jkm/dissertation/HumanControlofaBicyc
    davisbicycle
    control
    systemidentification
+   references
    todo
 
 * :ref:`search`

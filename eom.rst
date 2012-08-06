@@ -37,22 +37,22 @@ Non-linear Equations of Motion
 
 The Whipple Model is the foundation of all the models presented in this
 dissertation. This section details derivation of the non-linear equations of
-motion using Kane's method [Kane1985]_. The non-linear equations of motion
+motion using Kane's method :cite:`Kane1985`. The non-linear equations of motion
 are algebraically unwieldy and no one so far has publicly printed them in a
 form compact enough to print on reasonably sized paper and certainly not in a
 form suitable for any in-depth analytical understanding as pointed out in
-[Meijaard2007]_. My methodology relies heavily on computer aided algebra to do
-the bookkeeping in the derivation, so I will only describe the necessary
+:cite:`Meijaard2007`. My methodology relies heavily on computer aided algebra
+to do the bookkeeping in the derivation, so I will only describe the necessary
 details to correctly derive the equations, leaving the algebra, trigonometry
 and calculus to the computer. The symbolic equations of motion herein were
-originally developed using Autolev [Kane2000]_, a proprietary and now defunct
-software package for symbolically deriving equations of motion for multi-body
-systems. I've since used the open source software `SymPy <http://sympy.org>`_
-to derive the equations with the help of the included ``mechanics`` package
-which was developed in our lab to provide a software package suitable for
-academia with capabilities similar to Autolev [#autolev]_. The input code for
-both software packages are available in the ``src/eom`` directory of the
-dissertation source files.
+originally developed using Autolev :cite:`Kane2000`, a proprietary and now
+defunct software package for symbolically deriving equations of motion for
+multi-body systems. I've since used the open source software `SymPy
+<http://sympy.org>`_ to derive the equations with the help of the included
+``mechanics`` package which was developed in our lab to provide a software
+package suitable for academia with capabilities similar to Autolev [#autolev]_.
+The input code for both software packages are available in the ``src/eom``
+directory of the dissertation source files.
 
 Model Description
 -----------------

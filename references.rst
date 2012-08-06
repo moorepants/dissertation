@@ -10,3 +10,4 @@ References
    Reviews, comments and suggestions are welcome.
 
 .. bibliography:: bicycle.bib
+   :encoding: UTF8

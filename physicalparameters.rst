@@ -44,7 +44,6 @@ implemented Yeadon's human inertia model and we combined it with the accurate
 bicycle measurements. These final methods for both bicycle and rider are
 implemented in two open source software packages.
 
-
 .. _secBicycleParameters:
 
 Bicycle Parameters
@@ -678,7 +677,7 @@ opted to measure the center of mass and inertia of the fork and handlebar
 separately. The fork was measured as previously described, with the universal
 joint locked in its nominal position. The handlebar was measured in a similar
 fashion making use of small clamps to hang it in different orientations,
-:ref:`Figure 11 <figHandlebar>`.
+:ref:`Figure 12 <figHandlebar>`.
 
 .. _figHandlebar:
 
@@ -691,7 +690,7 @@ fashion making use of small clamps to hang it in different orientations,
 I choose the center of the stem clamp bolt to be the reference point (as was
 the front and rear wheel centers for the front and rear frames). The location
 of this point relative to the front wheel center was measured as shown in
-:ref:`Figure 12 <figHandlebarGeometry>`.
+:ref:`Figure 13 <figHandlebarGeometry>`.
 
 .. _figHandlebarGeometry:
 
@@ -752,7 +751,7 @@ times. No extra care was taken to calibrate the rate gyro, maintain a constant
 power source (i.e. the battery drains slowly), or account for drift because I
 was only concerned with the period. The raw voltage signal was used to
 determine the period of oscillation which is needed for the moment of inertia
-calculations, :ref:`Figure 13 <figVoltage>`.
+calculations, :ref:`Figure 14 <figVoltage>`.
 
 .. _figVoltage:
 
@@ -779,7 +778,7 @@ potentially ignorable) damping. There were several instances in the Delft
 experiments of beating-like phenomena for some of the parts at particular
 orientations. Roland and Massing, [Roland1971]_, also encountered this problem
 and used a bearing to prevent the torsional pendulum from swinging.
-:ref:`Figure 14 <figBeating>` shows an example of the beating like phenomena. I
+:ref:`Figure 15 <figBeating>` shows an example of the beating like phenomena. I
 used Roland and Massing's solution to prevent this in the Davis measurements.
 
 .. _figBeating:
@@ -852,7 +851,7 @@ Torsional Pendulum
 A torsional pendulum was used to measure all moments of inertia about axes in
 the laterally symmetric plane of each of the wheels, fork and frame. The
 pendulum is made up of a rigid mount, an upper clamp, a torsion rod, and
-various lower clamps, :ref:`Figure 15 <figFixture>` .
+various lower clamps, :ref:`Figure 16 <figFixture>` .
 
 .. _figFixture:
 
@@ -870,7 +869,7 @@ the various bicycle parts. The moments of inertia of the clamps were neglected
 [#clamps]_.
 
 The torsional pendulum was calibrated using a rod with an easily computed, i.e.
-"known", moment of inertia :ref:`Figure 16 <figRod>` [#rod]_. A torsional
+"known", moment of inertia :ref:`Figure 17 <figRod>` [#rod]_. A torsional
 pendulum almost identical to the one used in [Kooijman2006]_ was used to
 measure the average period :math:`\overline{T}_i` of oscillation of the rear
 frame at three different orientation angles :math:`\beta_i`, where :math:`i=1`,
@@ -901,7 +900,7 @@ calculated by measuring the averaged period of oscillation about an axis in the
 :eq:`eqTorPend`. The wheels are assumed to be laterally symmetric about any
 radial axis. Thus only two moments of inertia are required for the set of
 benchmark parameters [Meijaard2007]_. The moment of inertia about the axle was
-measured by hanging the wheel as a compound pendulum, :ref:`Figure 17
+measured by hanging the wheel as a compound pendulum, :ref:`Figure 18
 <figWheelIyy>`. The wheel was hung on a horizontal rod and perturbed to
 oscillate about the axis of the rod. The rate gyro was attached to the spokes
 near the hub and oriented mostly along the axle axis. The wheels for the Delft
@@ -930,7 +929,7 @@ inertia about the axle is calculated from
    A wheel hung as a compound pendulum.
 
 The radial moment of inertia was measured by hanging the wheel as a torsional
-pendulum, :ref:`Figure 18 <figFwheelTor>`. The wheel was first hung freely such
+pendulum, :ref:`Figure 19 <figFwheelTor>`. The wheel was first hung freely such
 that the center of mass aligned with the torsional pendulum axis and then the
 clamp secured. The wheel was then perturbed and oscillated about the vertical
 pendulum axis. The radial moment of inertia can be calculated with

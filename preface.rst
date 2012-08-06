@@ -9,6 +9,8 @@ Preface
    now use at your own risk. The information may or may not be correct.
    Reviews, comments and suggestions are welcome.
 
+.. todo:: add section explaining the prefaces and the "chatty" parts
+
 Introduction
 ============
 

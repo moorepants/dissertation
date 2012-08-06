@@ -126,7 +126,7 @@ the rider's motion with respect to the bicycle frame.
 .. figure:: figures/delftbicycle/instrumented-bicycle.*
    :width: 3in
    :align: center
-   :target: _images/instrumented-bicycle.*
+   :target: _images/instrumented-bicycle.png
 
    The instrumented bicycle with camera boom and video camera lens (1). On the
    rear rack the measurement computer (2), video camcorder (3) and battery

@@ -83,7 +83,7 @@ riders to the handling differences in real bicycles.
 .. figure:: figures/parameterstudy/bicycle-geometry.*
    :width: 3.797in
    :align: center
-   :target: _images/bicycle-geometry.*
+   :target: _images/bicycle-geometry.png
 
    The essential geometry of a bicycle parameterized with variables typically
    of interest to bicycle designers.
@@ -127,7 +127,7 @@ the weave critical speed as the defining characteristic.
 .. figure:: figures/parameterstudy/head-tube-angle.*
    :width: 3.5in
    :align: center
-   :target: _images/head-tube-angle.*
+   :target: _images/head-tube-angle.png
 
    The change in stable speed range as a function of head tube angle.
 

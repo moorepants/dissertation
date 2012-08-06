@@ -3160,7 +3160,7 @@ detailed enough for reuse.
 .. rubric:: Footnotes
 
 .. [#pavilionfloor] The floor is a product called "pulastic" which is
-   manufactured by `Robbins Sport Surfaces <www.robbinsfloor.com>`_.
+   manufactured by `Robbins Sport Surfaces <http://www.robbinsfloor.com>`_.
 
 .. [#mixedeffects] I spent some time trying to regress models to each of the
    speed dependent coefficients in the state space model by assuming either a

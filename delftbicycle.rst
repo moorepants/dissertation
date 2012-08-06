@@ -277,7 +277,7 @@ ideal hinges and the wheels have idealized pure-rolling contact with level
 ground. [Moore2009a]_ describes the method used to determine the model
 parameters for the instrumented bicycle-rider system [#]_.  These parameters are
 given in :ref:`Table 3 <tabParameters>` and the root locus of the system with
-respect to speed is depicted in :ref:`Figure 4 <figRootLocus>`. At low speed, the
+respect to speed is depicted in :ref:`Figure 4 <figDelftRootLocus>`. At low speed, the
 dominant mode is the unstable oscillatory weave mode. This weave motion becomes
 stable around 18 km/h, the weave critical speed. At higher speeds, the
 non-oscillatory capsize motion becomes unstable but since its time to double so
@@ -344,7 +344,7 @@ stabilizing control below 18 km/h and is stable otherwise.
      - :math:`(I_{\mathrm{F}xx},I_{\mathrm{F}yy})`
      - (0.081, 0.162) :math:`\mathrm{kg\ m}^2`
 
-.. _figRootLocus:
+.. _figDelftRootLocus:
 
 .. figure:: figures/delftbicycle/delft-bike-root-locus.png
    :width: 3in
@@ -446,7 +446,7 @@ decreased from 20 km/h to 5 km/h.  This increase in steer angle magnitude for
 the decreasing speeds is illustrated in Figure :ref:`Figure 8 <figSteerSigma>`.
 This jump in steering amplitude could be indicative of a threshold at which the
 system becomes harder to control, but there is no apparent connection to the
-open loop dynamics. For example the change in both the weave mode time to
+open loop dynamics. For example, the change in both the weave mode time to
 double and natural frequency is approximately the same between 5 and 10 km/h as
 between 10 and 15 km/h.
 
@@ -481,14 +481,14 @@ between 10 and 15 km/h.
    the three different experiments.
 
 The frequency content of the steering signal for the different forward speeds
-is shown in :ref:`Figure 9 <figSteerFreq>`. The grey vertical dashed line
+is shown in :ref:`Figure 9 <figNormalFreq>`. The grey vertical dashed line
 indicates the rigid rider-bicycle weave frequency. We were not able to
 ascertain any connection between the dominate measured frequencies and the
 natural frequency of the weave mode. We had hypothesized that for speeds in the
 stable speed range, the optimal control frequency of the rider would correspond
 to the weave frequency, due to the fact that an uncontrolled bicycle-rider
 system recovers from perturbations at its natural frequency. The black vertical
-dashed line in each of the plots in Figure :ref:`Figure 10 <figNormalFreq>`
+dashed line in each of the plots in Figure :ref:`Figure 9 <figNormalFreq>`
 indicates the measured pedaling frequency. The figure shows that during normal
 pedaling most of steering action takes place at, or around, the pedaling
 frequency, irrespective of the speed that the bicycle is moving. The pedaling
@@ -506,7 +506,7 @@ where practically all of the steering takes place at the pedaling frequency.
    experiment. Solid vertical line indicates the pedaling frequency. Dashed
    vertical grey line indicates the bicycle & rigid rider weave eigenfrequency.
 
-:ref:`Figure 11 <figMaxAmp>` plots the maximum steering amplitude versus speed. This
+:ref:`Figure 10 <figMaxAmp>` plots the maximum steering amplitude versus speed. This
 maximum amplitude reduces with increasing speed and is similar in shape to the
 standard deviation plot in :ref:`Figure 8 <figSteerSigma>`.
 
@@ -539,7 +539,7 @@ above 10km/h indicating that little to no steer action is required at higher
 speeds.
 
 The steer angle frequency spectrum for each of the speeds is shown in
-:ref:`Figure 12 <figTowFreq>`. It was once again expected that the rigid
+:ref:`Figure 11 <figTowFreq>`. It was once again expected that the rigid
 rider/bicycle weave frequency would be a dominant frequency in the frequency
 spectrum, especially with no pedaling. However there appears to be no
 connection with the open loop weave frequency even in the unstable speed range.
@@ -570,7 +570,7 @@ subsequent recovery of the bicycle to the upright, straight ahead position, no
 body lean could be noted other than that as a result of the normal pedaling.
 
 A second phenomenon observable in the video footage, as shown in :ref:`Figure
-13 <figPerturb>`, is that at all speeds we observed a lateral knee motion during
+12 <figPerturb>`, is that at all speeds we observed a lateral knee motion during
 the short transient recovery process of the bicycle to the upright position.
 The lateral knee motion was very large during the 5 km/h measurement and much
 smaller at the higher speeds, but even at 30 km/h it is visible.
@@ -592,11 +592,11 @@ turned during and after a perturbation decreased with increasing speed as can
 also be seen in the measured steer angle data as shown in :ref:`Figure 8
 <figSteerSigma>`.
 
-:ref:`Figure 14 <figPerturbFreq>` shows the frequency spectrum of the measured
+:ref:`Figure 13 <figPerturbFreq>` shows the frequency spectrum of the measured
 steer angle. Once again, for the higher speeds, the steer control action is
 carried out at the pedaling frequency. At the lower speeds (5 - 10 km/h) a
 wider frequency range is again present but the pedaling frequency is dominant.
-:ref:`Figure 11 <figMaxAmp>` shows the steering amplitude for the frequency
+:ref:`Figure 10 <figMaxAmp>` shows the steering amplitude for the frequency
 with the maximum amplitude. Again the values for the highest speeds are
 similar to those of the standard deviation of the steer angle.
 
@@ -702,7 +702,7 @@ Steer sensor design
 -------------------
 
 The steer sensor, a simple rotary potentiometer, was mounted with a design that
-is fairly universal for different bicycle designs, :ref:`Figure 15
+is fairly universal for different bicycle designs, :ref:`Figure 14
 <figSteerSensor>`. It offers axial adjustability and belt tension. The pulley
 diameters were chosen for +/- 45 degrees of steering angle corresponding to
 about +/- 168 degrees of potentiometer angle. I originally designed it with a
@@ -713,7 +713,7 @@ or differentiating the potentiometer steer angle and comparing the results to
 the other sensor is a way to check. I examined one run and did not find belt
 slip.
 
-.. figSteerSensor:
+.. _figSteerSensor:
 
 .. figure:: figures/delftbicycle/steer-angle-sensor-annotated.*
    :width: 3 in
@@ -731,7 +731,7 @@ This requires some way to synchronize the video data with the sensor data. The
 Sony DCR-TV30E Handycam we used had a LANC output port that potentially provided an
 external signal that could be sampled by the data acquisition unit but we never
 quite figured it out. In the meantime though, I designed a graphical user
-interface in Matlab to interact with the data, :ref:`Figure 16 <figCamGUI>`, giving the
+interface in Matlab to interact with the data, :ref:`Figure 15 <figCamGUI>`, giving the
 strip chart capabilities and video playback via the `videoIO
 <http://sourceforge.net/projects/videoio/>`_ package developed by Gerald Dalley.
 All would have worked out well, if we could have synchronized the video and
@@ -741,7 +741,7 @@ source code and data available for download in case it is of use to anyone.
 - Source code: `<https://github.com/moorepants/DelftBicycleDataViewer>`_
 - Data: `<http://mae.ucdavis.edu/~biosport/DelftBicycleDataViewerAndData.zip>`_
 
-.. _ figCamGui:
+.. _figCamGui:
 
 .. figure:: figures/delftbicycle/data-viewer-screenshot.*
    :width: 6in
@@ -761,7 +761,7 @@ second rider, Jason, on the instrumented Batavus Browser. Only the rear frame
 and body parameters are different as the bicycle is identical. We only
 presented data for Arend's runs in the previous sections.
 
-.. _tabParameters:
+.. _tabSecondRiderParameters:
 
 .. tabularcolumns:: p{1.5in}LL
 

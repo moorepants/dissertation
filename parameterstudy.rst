@@ -64,7 +64,7 @@ frame geometry of a recumbent bicycle for my bachelor's senior design project
 and this geometry based outlook seems to be continually the main interest among
 bicycle enthusiasts and designers. Many bicycle designers focus on the geometry
 as the primary design criteria for handling, in particular the head tube angle
-and trail (or rake), :ref:`Figure 1 <figBicycleGeometry>`. But wheelbase, front
+and trail (or rake), :ref:`Figure 1 <figBasicBicycleGeometry>`. But wheelbase, front
 wheel diameter, frame/wheel alignment and even handlebar geometry rider
 position are considered too. A browse through bicycle magazines and frame
 builder literature provide a wide range of opinions what how geometry affects
@@ -78,7 +78,7 @@ handling. Finally, Jan Heine has written extensively in his Vintage Bicycle
 Quarterly about handling with subject and objective measures by experienced
 riders to the handling differences in real bicycles.
 
-.. _figBicycleGeometry:
+.. _figBasicBicycleGeometry:
 
 .. figure:: figures/parameterstudy/bicycle-geometry.*
    :width: 3.797in
@@ -244,7 +244,7 @@ Rider-less bicycles
 
 There are relatively few datasets with where real bicycle parameters were
 measured as described in Chapter :ref:`physicalparameters`.  :ref:`Figure 7
-<silverCompare>` plots one such parameter set, labeled Silver, from
+<figSilverCompare>` plots one such parameter set, labeled Silver, from
 [Kooijman2008]_ and compares it to several of the rider-less bicycles I
 measured using almost identical techniques. Notice that all of the bicycles I
 measured show a bifurcation in the caster and capsize modes at lower speeds

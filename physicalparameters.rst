@@ -11,6 +11,8 @@ Physical Parameters
    now use at your own risk. The information may or may not be correct.
    Reviews, comments and suggestions are welcome.
 
+.. todo:: Check the figure numbering in this Chapter.
+
 Preface
 =======
 
@@ -955,7 +957,7 @@ moments and products of inertia (:math:`I_{\mathrm{B}xx}`,
 :math:`I_{\mathrm{B}xz}` and :math:`I_{\mathrm{B}zz}`) of the rear frame. The
 rear frame was typically hung from either the three main tubes (seat tube, down
 tube and top tube), the seat post, or a small fixture mounted to the brake
-mounts :ref:`Figure 19 <figLevel>`. The rear fender prevented easy connection
+mounts :ref:`Figure 8 <figPendulumAngle>`. The rear fender prevented easy connection
 to the seat tube on some of the bikes and the clamp was attached to the fender.
 The fender was less rigid than the frame tube. For best accuracy with only
 three orientation angles, the frame should be hung at three angles that are
@@ -1745,8 +1747,8 @@ Bicycle Benchmark Parameters
 
 .. rubric:: Footnotes
 
-.. [#weight] I gained some weight after drinking all that good beer in the
-   Netherlands!
+.. [#weight] This is actually the same rider: I gained some weight after
+   drinking all that good beer in the Netherlands!
 
 .. [#leastsquares] Alternatively, the three lines can be treated as an over
    determined linear system and the least squares method is used to find a

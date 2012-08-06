@@ -101,7 +101,7 @@ experiments and the accompanying data.
 The experiments were performed in a controlled environment while the motion of
 the bicycle and rider were measured with an active motion capture system
 [Northern2009]_. The rider rode on a :math:`3 \times 5` meter treadmill,
-(:ref:`Figure 1 <figTreadmill>`) capable of belt speeds up to 35 km/h.  Three
+(:ref:`Figure 1 <figVrijeTreadmill>`) capable of belt speeds up to 35 km/h.  Three
 male riders [Victor, Jason, Jodi] of similar age [23, 26, 31 years] and build
 [height (1.84, 1.83, 1.76 m) and mass (74, 72, 72 kg)] participated as
 subjects. Each rode two different Dutch bicycles. Each rider performed all
@@ -247,7 +247,7 @@ Experiments
 To test our hypotheses, three riders performed a set of stability tasks in a
 controlled environment while the motion of the bicycle and rider were collected
 with a motion capture system. The tasks were performed on a :math:`3 \times 5`
-meter treadmill :ref:`Figure 1 <figTreadmill>` capable of belt speeds up to 35 km/h.
+meter treadmill :ref:`Figure 1 <figVrijeTreadmill>` capable of belt speeds up to 35 km/h.
 The treadmill was chosen because the envelope of space was suitable for the
 motion capture system and it eliminated any disturbances such as wind, rough
 ground, and obstacles. We chose three male riders of similar age [31, 23, 26
@@ -256,7 +256,7 @@ used two different Dutch bicycles: a 2008 Batavus Browser with a 3 speed hub
 and a 2008 Batavus Stratos Deluxe with a 7 speed hub.  The Browser is described
 by the manufacturer as “stable” and the Stratos Deluxe as “nervous.”
 
-.. _figTreadmill:
+.. _figVrijeTreadmill:
 
 .. figure:: figures/motioncapture/treadmill.*
    :width: 4.69in
@@ -735,7 +735,7 @@ frequency spectrum and the frequencies at any distinct spikes.
    pedaling at 10 km/h. The vertical black line represents the open loop weave
    frequency (0.28 Hz) determined from :ref:`Figure 4 <figEigPlot>` at this
    forward speed. The pedaling frequency is about 0.8 Hz at this speed, see
-   :ref:`Figure 10 >figSteerAnglePedal>`.
+   :ref:`Figure 10 <figSteerAnglePedal>`.
 
 Several conclusions can be drawn from examining the coefficient data. First,
 some of the components are linked by the frequencies of the coefficients and
@@ -1289,7 +1289,7 @@ Experimental Design
 The experiments were performed in a controlled environment while the motion of
 the bicycle and rider were measured with an active motion capture system
 [Northern2009]_. The rider rode on a :math:`3\times5` meter treadmill,
-(:ref:`Figure 1 <figTreadmill>`) capable of belt speeds up to 35 km/h.  Three male
+(:ref:`Figure 1 <figVrijeTreadmill>`) capable of belt speeds up to 35 km/h.  Three male
 riders of similar age [23, 26, 31 years] and build [height (1.84, 1.83, 1.76 m)
 and mass (74, 72, 72 kg)] participated as subjects.  Each rode two different
 Dutch bicycles. Each rider performed all runs in one day in the same order (no
@@ -1428,9 +1428,9 @@ Simarly, the tail bone's lateral deviation from the bicycle frame is
    q_{12} = \hat{b}_2 \cdot \mathbf{r}^{{m_9}/{n_o}} - \mathbf{r}^{m_{26}/n_o}
 
 I take the angle between a line running along the rider's back and the frame
-plane to be a measure of rider lean, :ref:`Figure 17 <figRiderLean>`.
+plane to be a measure of rider lean, :ref:`Figure 17 <figRiderLeanAngle>`.
 
-.. _figRiderLean:
+.. _figRiderLeanAngle:
 
 .. figure:: figures/motioncapture/rider-lean.*
    :width: 4in

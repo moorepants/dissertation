@@ -221,8 +221,11 @@ fn.v2pt_theory(fo, N, F)
 # Motion Constraints
 ####################
 
-nonholonomic = [dn.vel(N).dot(A['1']),
-                dn.vel(N).dot(A['2']),
+# this definition is causing problems because it is difficult to solve for the
+# independent u's with 5 equations with 3 being really long, basically
+# Kane.speeds seems to balk on anything that is complicated if Kane.simp=True
+nonholonomic = [dn.vel(N).dot(A['1'].simplify()),
+                dn.vel(N).dot(A['2'].simplify()),
                 fn.vel(N).dot(A['1']),
                 fn.vel(N).dot(A['2']),
                 holonomic.diff(mec.dynamicsymbols._t).subs({q4d:u4, q5d:u5,

@@ -7,7 +7,7 @@ import sympy as sym
 import sympy.physics.mechanics as mec
 
 mec.Vector.simp = False
-mec.Kane.simp = False
+#mec.Kane.simp = False # If True it takes forever to compute, probably more than and hour or even more! wft
 
 ##################
 # Reference Frames
@@ -270,8 +270,16 @@ forceList = [Fco, Fdo, Feo, Ffo, Tc, Td, Te]
 
 kane = mec.Kane(N)
 kane.coords([q1, q2, q3, q4, q6, q7, q8], qdep=[q5], coneqs=[holonomic])
+print('Computing speeds.')
+mec.Kane.simp = False
+# This method takes forever if you have Kane.simp=False. This can't be that
+# hard of a computation...but maybe we are supplying something wrong.
 kane.speeds([u4, u6, u7], udep=[u1, u2, u3, u5, u8], coneqs=nonholonomic)
+print('Done.')
+mec.Kane.simp = True
+print('Computing kindiffeq.')
 kane.kindiffeq(kinematical)
+print('Done.')
 fr, frstar = kane.kanes_equations(forceList, bodyList)
 M = kane.mass_matrix_full
 F = kane.forcing_full

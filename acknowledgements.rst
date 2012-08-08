@@ -84,11 +84,11 @@ them for. In particular, I'd like to thank Bob Heyer-Gray for all his work.
 
 Thanks to my qualifying exam committee:
 
-* Dr. Ron Hess, UC Davis (Chair)
-* Dr. Fidelis Eke, UC Davis
-* Dr. Donald Margolis, UC Davis
-* Dr. Keith Williams, UC Davis
-* Dr. Micheal Hill, UC Davis
+* Dr. Ron A. Hess, UC Davis (Chair)
+* Dr. Fidelis O. Eke, UC Davis
+* Dr. Donald L. Margolis, UC Davis
+* Dr. Keith R. Williams, UC Davis
+* Dr. Michael R. Hill, UC Davis
 
 The NSF grant we received really gave us the freedom to explore this somewhat
 obscure topic and I'm grateful that we have a country that supports the

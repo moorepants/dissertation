@@ -31,7 +31,7 @@ params = {'backend': 'ps',
           'ytick.labelsize': 8,
           'text.usetex': True,
           'figure.figsize': fig_size,
-          'figure.dpi': 200}
+          'figure.dpi': 300}
 plt.rcParams.update(params)
 
 # load the benchmark parameters
@@ -116,7 +116,7 @@ os.system('montage -geometry +0+0 {0}eVecFive-1.png {0}eVecFive-2.png {0}eVecFiv
 #os.system('montage -geometry +0+0 {0}eVecFive-1.pdf {0}eVecFive-2.pdf {0}eVecFive-3.pdf {0}eVecFive.pdf'.format(figPath))
 
 # unstable capsize
-speedNaught = 8.0
+speedNaught = 7.0
 u6Naught = -speedNaught / moorePar['rr']
 equilibrium[whip.stateNames.index('u6')] = u6Naught
 whip.linear(equilibrium)

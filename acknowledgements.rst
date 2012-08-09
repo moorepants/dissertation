@@ -48,7 +48,7 @@ the project. Both Danique Fintelman and Peter de Lange were able to do their TU
 Delft Master's internships with us. Danique helped up sort out our early design
 ideas for data collection and Peter enlightened up about system identification
 eventually using some of the data we took in his excellent Master's thesis
-[Lange2001]_. Chris Dembia worked with us one summer and did some excellent
+:cite:`Lange2011`. Chris Dembia worked with us one summer and did some excellent
 software work. Gilbert Gede helped with the mechanical design of the
 instrumented bicycle and Garry Negroni documented the electrical system.
 

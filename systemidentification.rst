@@ -17,16 +17,16 @@ Preface
 I started to think about system identification when I arrived at Delft and the
 discussions began with Arend and Jodi. I hadn't much clue about the formal
 field and theory of system identification. My first look at it was when Arend
-presented me with a light introduction by Ljung, so I credit Arend and his
-cohorts for the ideas that have been implemented in this chapter. We talked
-about it here and there but never really put together a solid experimental plan
-to do anything about it. Karl Åström visited us in Delft in late 2008 and we
-talked some with him about system identification of the bicycle. I mainly recall
-him focusing on how to excite the system in a very controlled manner with an
-oscillating mass on the bicycle. Some of these ideas propagated through Arend
-to Peter and can be seen in the final sections of his thesis [Lange2011]_. Many
-of these ideas influenced our NSF proposal and ultimately the final portion of
-what I was to do for my dissertation work.
+presented me with a light introduction by Ljung :cite:`Ljung1995`, so I credit
+Arend and his cohorts for the ideas that have been implemented in this chapter.
+We talked about it here and there but never really put together a solid
+experimental plan to do anything about it. Karl Åström visited us in Delft in
+late 2008 and we talked some with him about system identification of the
+bicycle. I mainly recall him focusing on how to excite the system in a very
+controlled manner with an oscillating mass on the bicycle. Some of these ideas
+propagated through Arend to Peter and can be seen in the final sections of his
+thesis :cite:`Lange2011`. Many of these ideas influenced our NSF proposal and
+ultimately the final portion of what I was to do for my dissertation work.
 
 Once I had gotten back to Davis we now had the resources available from NSF
 funding to make something happen. My goal had basically formalized into
@@ -36,7 +36,7 @@ tasks. We also originally had hoped to be able to vary the dynamics of the
 bicycle, but the reduced funding nixed that idea. It took some time into the
 project to really understand what we may be able to accomplish with that but it
 finally materialized into validating Ron's theoretic control model which is
-discussed in [Hess2012]_ and Chapter :ref:`control` with data collected via the
+discussed in :cite:`Hess2012` and Chapter :ref:`control` with data collected via the
 instrumented bicycle. After our first experiments, over a year into the project
 timeline it became apparent that simple tasks with measured lateral
 perturbations would provide the best chance of us validating his model.
@@ -130,16 +130,16 @@ The earliest comprehensive bicycle model validation began at CALSPAN in the
 late 60’s. This included several revolutionary studies, in one of which they
 made use of a rocket to apply know step torques to an uncontrolled riderless
 bicycle. In another, simulations of slalom maneuvers were visually compared
-with video footage [Roland1971]_.
+with video footage :cite:`Roland1971`.
 
 Eaton
 ~~~~~
 
-David Eaton's work ([Eaton1973]_, [Eaton1973a]_, [Eaton1973b]_) may be the
+David Eaton's work (:cite:`Eaton1973`, :cite:`Eaton1973a`, :cite:`Eaton1973b`) may be the
 closest example to the work presented in this chapter. He did his PhD work at
 the University of Michigan under the Highway Safety Research Institute. His
 dissertation focused on the experimental validation of the motorcycle modeling
-work of [Sharp1971]_ and the human controller modeling work of [Weir1972]_. He
+work of :cite:`Sharp1971` and the human controller modeling work of :cite:`Weir1972`. He
 did this with two sets of experiments 1) identification of the uncontrolled
 dynamics of the motorcycle under perturbations and 2) identification of the
 rider controller during roll stabilization tasks, the latter of which will be
@@ -157,7 +157,7 @@ to right the motorcycle in roll after the drop. These experiments were
 impressively dangerous and would be hard pressed for approval by the
 Institutional Review Board if done today, but well designed for the typical
 modeling assumptions. The resulting time histories of the measured system
-outputs were compared to simulations of Sharp's model [Sharp1971]_ augmented
+outputs were compared to simulations of Sharp's model :cite:`Sharp1971` augmented
 with a variety of tire models of Eaton's design. He found good agreement
 between the experiments and the models for higher speeds, but felt that a more
 robust tire model was needed to predict the wobble mode in slower speed runs.
@@ -184,8 +184,8 @@ Weir, Zellner, Teper
 
 Weir, Zellner, and Teper performed an extensive experimental study on
 motorcycle handling qualities for the U.S. National Highway Traffic Safety
-Administration in the late 70's, [Weir1979a]_. This was a follow up to both the
-CALSPAN studies and [Taguchi1975]_ both under or related to the same
+Administration in the late 70's, :cite:`Weir1979a`. This was a follow up to both the
+CALSPAN studies and :cite:`Taguchi1975` both under or related to the same
 administration. There is litte to no explicit system identification in the
 study but some important elements are there. In terms of the passive model
 identification they present steady state comparisons of their experimental data
@@ -201,7 +201,7 @@ data.
 James
 ~~~~~
 
-Stephen James published a study in 2002 [James2002]_ in which he attempted to
+Stephen James published a study in 2002 :cite:`James2002` in which he attempted to
 identify the linear dynamics of an off-road motorcycle. He measured steering
 torque, steer angle, speed, roll rate and yaw rate while his subjects manually
 exciting the vehicle through steer torque during runs at various speeds on a
@@ -215,12 +215,12 @@ comparisons and little validation of his first principles model which assumes a
 rigid rider. The study does show that there is the possibility of
 identification of multiple modes of motion with simple manual excitation of the
 handlebars. He also used these techniques to identify the same motorbike with
-a single wheel trailer in [James2005]_.
+a single wheel trailer in :cite:`James2005`.
 
 Biral et al.
 ~~~~~~~~~~~~
 
-[Biral2003]_ performed a nice study to identify the motorcycle dynamics under
+:cite:`Biral2003` performed a nice study to identify the motorcycle dynamics under
 an oscillatory steer torque input. They measured steer torque, roll rate, steer
 angle, and yaw rate with an instrumented motorcycle. They performed slalom
 maneuvers at speeds from 2 to 30 m/s at three sets of cone spacings in the
@@ -241,8 +241,8 @@ Kooijman
 ~~~~~~~~
 
 Jodi Kooijman has worked on experimental validation of the benchmark bicycle
-[Meijaard2007]_ linear equations of motion for a riderless bicycle
-[Kooijman2006]_, [Kooijman2008]_, [Kooijman2009]_. His instrumented bicycle
+:cite:`Meijaard2007` linear equations of motion for a riderless bicycle
+:cite:`Kooijman2006`, :cite:`Kooijman2008`, :cite:`Kooijman2009`. His instrumented bicycle
 measured the steer angle, forward speed, roll rate, and yaw rate. Due to the
 fact that the bicycle can be stable at certain speeds he was able to launch the
 bicycle in and around the stable speed range and perturb the bicycle with a
@@ -259,13 +259,13 @@ predict the heavily damped caster mode nor the capsize mode. He also
 demonstrated that the measured dynamics were the same when the experiments were
 performed on a treadmill.
 
-In [Kooijman2011]_, Jodi constructed a bicycle with very unusual physical
+In :cite:`Kooijman2011`, Jodi constructed a bicycle with very unusual physical
 characteristics including negative trail and canceled angular momentum of the
 wheels. He performed similar experiments as his Master's thesis work. They show
 the comparison of a single stable experiment in which the yaw and roll rates
 were measured and compared it to the predictions of the benchmark bicycle.
 
-[Stevens2009]_ and [Escolana2011]_ both perform experiments similar to
+:cite:`Stevens2009` and :cite:`Escalona2011` both perform experiments similar to
 Kooijman's with similar results, although Steven's results vary in the ability
 of the model to predict the data for various configurations of his adjustable
 bicycle.
@@ -278,7 +278,7 @@ researchers should be noted.
 Chen and Doa
 ~~~~~~~~~~~~
 
-[Chen2010]_ develop a first principles non-linear bicycle model with a fuzzy
+:cite:`Chen2010` develop a first principles non-linear bicycle model with a fuzzy
 controller and use it to generate stable simulations for various speeds. He
 then does an output error grey box identification on the resulting data with
 respect to the non-zero and non-unity entries of the state, input and output
@@ -291,7 +291,7 @@ The resulting eigenvalues seem to behave like the benchmark bicycle but the
 capsize mode is shown to go unstable briefly at a speed lower than the stable
 speed range. They did not attempt to characterize or identify the process noise
 even though they generated the data with a known model with known input noise.
-Also their non-linear bicycle equations of motion [Chen2006]_ were never
+Also their non-linear bicycle equations of motion :cite:`Chen2006` were never
 validated against any other accepted models. Both of these can potentially
 explain the discrepancies in their identification. Their identification
 procedure does show that it may be possible to get good estimates of a linear
@@ -301,7 +301,7 @@ stabilizes the vehicle.
 Doria
 ~~~~~
 
-In [Doria2012]_ experiments are performed where a motorcycle rider excites the
+In :cite:`Doria2012` experiments are performed where a motorcycle rider excites the
 steering with a pulse and lets the motorcycle oscillate while the rider keeps
 his hands on the handlebars (as opposed to Eaton's hands-free experiments). The
 resulting dynamical measurements are nice decaying sinusoidal-like motions of
@@ -319,17 +319,18 @@ van Lunteren and Stassen
 At Delft University of Technology in the Man-Machines research group, Drs. van
 Lunteren and Stassen began work in 1962 to identify the human controller for a
 normal population of subjects and report on their work into the early 70's
-([Lunteren1967]_, [Lunteren1969]_, [Stassen1969]_, [Lunteren1970]_,
-[Lunteren1970a]_, [Lunteren1970b]_, [Luntern1973]_, [Stassen1973]_). They chose
-a bicycle simulator as the plant because it was a common task that average
-people could do and their studies could focus on a wider population of
-individuals as compared to most previous work based around trained pilots. The
-bicycle simulator did not capture all of the essential dynamics of a real
-bicycle as it's operation was based on only the simplified roll dynamics of
-Whipple's model, but nonetheless offered a similarly complex roll stabilization
-control task as a normal bicycle would. The simulator was controlled by both
-the steering angle and the rider's lean angle, both of which are questionable
-inputs as have been pointed out as early as [Roland1972]_.
+(:cite:`Lunteren1967`, :cite:`Lunteren1969`, :cite:`Stassen1969`,
+:cite:`Lunteren1970`, :cite:`Lunteren1970a`, :cite:`Lunteren1970b`,
+:cite:`Lunteren1973`, :cite:`Stassen1973`). They chose a bicycle simulator as
+the plant because it was a common task that average people could do and their
+studies could focus on a wider population of individuals as compared to most
+previous work based around trained pilots. The bicycle simulator did not
+capture all of the essential dynamics of a real bicycle as it's operation was
+based on only the simplified roll dynamics of Whipple's model, but nonetheless
+offered a similarly complex roll stabilization control task as a normal bicycle
+would. The simulator was controlled by both the steering angle and the rider's
+lean angle, both of which are questionable inputs as have been pointed out as
+early as :cite:`Roland1972`.
 
 They assumed the rider's control actions can be described by a PID controller
 with time delays on each feedback variable and mention that this controller was
@@ -399,13 +400,13 @@ Doyle
 A recently uncovered study on the manual control of a bicycle from a
 psychologist's perspective has some very non-traditional techniques and
 outlooks to the understanding of the control system employed while balancing a
-bicycle [Doyle1987]_. Anthony Dolye's paper [Doyle1988]_ on his thesis topic
-opens with "The old saw says that once learned it is never forgotten, but what
-exactly is learned has been by no means clear." This reflection points to the
-great complexity behind balancing a bicycle, such an easily gained skill. He
-chooses to study the bicycle over a simpler task partially due to the fact that
-the rider has little freedom in effective control strategies and partially
-because it is a skill many people can do.
+bicycle :cite:`Doyle1987`. Anthony Doyle's paper :cite:`Doyle1988` on his
+thesis topic opens with "The old saw says that once learned it is never
+forgotten, but what exactly is learned has been by no means clear." This
+reflection points to the great complexity behind balancing a bicycle, such an
+easily gained skill. He chooses to study the bicycle over a simpler task
+partially due to the fact that the rider has little freedom in effective
+control strategies and partially because it is a skill many people can do.
 
 His goal was to determine how much of the rider's control actions can be
 accounted for without involving higher cerebral functions. He mentions the Weir
@@ -465,7 +466,7 @@ in understanding.
 Lange
 ~~~~~
 
-Peter de Lange's recent Master thesis work [Lange2011]_ focused on identifying
+Peter de Lange's recent Master thesis work :cite:`Lange2011` focused on identifying
 the rider controller from the data that he helped us collect while interning at
 our lab. He used the Whipple bicycle model, a simplified second order
 representation of the human's neuromuscular dynamics (natural frequency 2.17
@@ -540,7 +541,7 @@ Open loop identification
       Frequency sweeps, white noise, and sum of sines are good candidates for a
       broad input spectrum. And it turns out that the remnant associated with
       human control and or deliberate random manual excitation can provide a
-      wide bandwidth input spectrum as shown in [Eaton1973]_ and [James2002]_
+      wide bandwidth input spectrum as shown in :cite:`Eaton1973` and :cite:`James2002`
       for adequate system identification of many modes including the higher
       frequency wobble mode. Modern system identification techniques can be
       used to find models and identify physical parameters.
@@ -554,7 +555,7 @@ Rider Control Identification (closed loop, active)
    limits are put on the rider's ability to sense the system. This is somewhat
    critical so that the system is much more tractable. Similar to the open loop
    excitation techniques, a broad frequency spectrum provides better data to
-   work for identification purposes. [Lange2011]_ has a good overview of
+   work for identification purposes. :cite:`Lange2011` has a good overview of
    excitation ideas.
 
    The open dynamics are in some sense much easier to model with first
@@ -575,7 +576,7 @@ Rider Control Identification (closed loop, active)
    themselves. Techniques that treat the controller as a quasi-linear structure
    where the noise is modeled as white and Gaussian and characterized by the
    portion of the output not linear correlated to the input (i.e. remnant) have
-   been popular in past. [Eaton1973]_ took care to account for this and found
+   been popular in past. :cite:`Eaton1973` took care to account for this and found
    that the crossover model was a good predictor of human control action. A
    proper treatment of the noise by other researchers is typically little to
    none and justly so as it is not necessarily easily dealt with large
@@ -598,7 +599,7 @@ included and measured the lateral perturbation force and the steer torque which
 were critical measurements for a realistic input/output relationships that the
 previous studies lacked. We also attempted single lane change maneuvers because
 we'd been using a lane change as our objective criteria in our simulations
-[Hess2012]_ and they had been used successfully used in the literature. It
+:cite:`Hess2012` and they had been used successfully used in the literature. It
 turned out that we were able to get reasonable results with preliminary system
 identification with the lateral perturbation runs and did not pursue the lane
 change maneuvers beyond the preliminary runs. The lane changes were especially
@@ -612,7 +613,7 @@ mass: 79, 84, 84 kg and bicycling ability although Luke has more technical
 mountain biking skill other two riders. A wide range of skill levels were outside
 the scope of the project and we preferred riders with good proficiency as it
 has been shown that it increases repeatability of results in tasks such as
-these [Weir1979a]_. The seat height and harness were set in the same position
+these :cite:`Weir1979a`. The seat height and harness were set in the same position
 for Charlie and Luke and in different positions for Jason. The inertia of the
 rear frame was measured for both configurations (thus the "Rigidcl" and "Rigid"
 bicycles) in Chapter :ref:`physicalparameters`.
@@ -914,7 +915,7 @@ System Identification
 
 My primary goal in the following analyses of all the collected data is to
 identify the manual control system employed the rider. I will approach this in
-a similar fashion as [Eaton1973]_ and attempt to identify the open loop bicycle
+a similar fashion as :cite:`Eaton1973` and attempt to identify the open loop bicycle
 and rider dynamics first and follow by with identification of the control
 system.
 
@@ -926,7 +927,7 @@ under-predicted the steer torque needed for a given measured trajectory. This
 lead me into the exploration of the validity of the Whipple model.
 
 There is actually very little experimental validation of the open loop dynamics
-of the bicycle with [Kooijman2006]_ being one of the better studies.  But his
+of the bicycle with :cite:`Kooijman2006` being one of the better studies.  But his
 study was limited to a riderless bicycle in a narrow speed range where the
 bicycle was stable. Taking the various first principles models like this for
 granted is potentially lead to inaccurate conclusions. In our case, it resulted
@@ -937,7 +938,7 @@ rider's weight. And secondly, the rider's biomechanics have much more influence
 and coupling to the bicycle than the motorcycle, which must be accounted for.
 
 After a model for the open loop system is derived I identify parameters to the
-control structure described in [Hess2012]_ and in Chapter :ref:`control`. We've
+control structure described in :cite:`Hess2012` and in Chapter :ref:`control`. We've
 shown that this control structure is robust for a range of speeds and lends
 itself to the dictates of the crossover model which is built upon strong
 experimental evidence in human operator modeling. I make use of multi-input
@@ -970,8 +971,8 @@ Bicycle Model Validity
 ======================
 
 The open loop dynamics of the bicycle-rider system can be described with many
-models, see [Astrom2005]_, [Limebeer2006]_, and [Meijaard2007]_ for good
-overviews. The benchmarked Whipple model [Meijaard2007]_ provides a somewhat
+models, see :cite:`Astrom2005`, :cite:`Limebeer2006`, and :cite:`Meijaard2007` for good
+overviews. The benchmarked Whipple model :cite:`Meijaard2007` provides a somewhat
 minimalistic model in a manageable analytic framework which is capable of
 describing the essential dynamics such as speed dependent stability, steer and
 roll coupling, and non-minimal phase behavior. I use this model as the standard
@@ -986,7 +987,7 @@ which adds inertial effects of the rider's arms to the Whipple model, also in
 Chapter :ref:`extensions`. This model was designed to more accurately account
 for the fact that the riders were free to move their arms with the front frame
 of the bicycle. This model is similar in fashion to the upright rider in
-[Schwab2010a]_, but with slightly different joint definitions. Constraints are
+:cite:`Schwab2010a`, but with slightly different joint definitions. Constraints are
 chosen so that no additional degrees of freedom are added, keeping the system
 both tractable and comparable to the benchmarked Whipple model.
 
@@ -994,10 +995,10 @@ I estimated the physical parameters of the first principles models with the
 techniques described in Chapter :ref:`physicalparameters`. The bicycle was
 measured to get accurate estimates of the parameters used in the benchmark
 bicycle. Each rider's inertial properties were estimated using Yeadon's
-[Yeadon1990]_ method which allowed easy extraction of body segment parameters
+:cite:`Yeadon1990a` method which allowed easy extraction of body segment parameters
 for more complicated rider biomechanic models such as the inclusion of moving
 arms as described above. The parameter computation is handled with two custom
-open source software packages [Dembia2011]_ and [Moore2011]_.
+open source software packages :cite:`Dembia2011` and :cite:`Moore2011`.
 
 .. _secStateSpaceID:
 
@@ -1083,7 +1084,7 @@ measurement noise vectors, respectively, which are assumed to be sequences of
 white Gaussian noise with zero mean and some covariance. By making use of the
 Kalman filter this formulation can be transformed such that the optimal
 estimate of the states with respect to the process and measurement noise
-covariance :math:`\hat{x}` are utilized, see [Ljung1999]_.
+covariance :math:`\hat{x}` are utilized, see :cite:`Ljung1998`.
 
 .. math::
    :label: eqInnovations
@@ -1133,7 +1134,7 @@ The one step ahead predictor for the innovations form is
    \left[\mathbf{B}(\theta) u(t) + \mathbf{K}(\theta)y(t) \right]
 
 where :math:`q` is the forward shift operator (:math:`q u(t) = u(t+1)`)
-[Ljung1999]_. The predictor is a vector of length :math:`p` where each entry is
+:cite:`Ljung1998`. The predictor is a vector of length :math:`p` where each entry is
 a ratio of polynomials in :math:`q`. These are transfer functions in :math:`q`
 from the previous inputs and outputs to the current output. In general, the
 coefficients of :math:`q` are non-linear functions of the parameters
@@ -1249,15 +1250,16 @@ not necessarily stabilize the models. This poses an issue when gaging the model
 quality by the percentage variance of the output data explained by the model. A
 model that blows up during the simulation may not necessarily be a bad model,
 but will return a very small percent variance and loose its ability to be
-compared by that criteria. [Biral2003]_ and [Teerhuis2010]_ both are able to
-run feed forward simulations of their motorcycle models with the measured
-steering torque. They both are dealing with high speed motorcycles which
-typically only have a slightly unstable capsize mode. [Teerhuis]_ uses a
-controller to compensate the torque for unbounded errors so that the simulation
-doesn't blow up. The method I use here is to chose short duration portions of
-the runs for simulation and search for the best set of initial conditions to
-keep the model stable during the duration. This generally works but there is
-ultimately some incomparable runs due to this issue.
+compared by that criteria. :cite:`Biral2003` and :cite:`Teerhuis2010` both are
+able to run feed forward simulations of their motorcycle models with the
+measured steering torque. They both are dealing with high speed motorcycles
+which typically only have a slightly unstable capsize mode.
+:cite:`Teerhuis2010` uses a controller to compensate the torque for unbounded
+errors so that the simulation doesn't blow up. The method I use here is to
+chose short duration portions of the runs for simulation and search for the
+best set of initial conditions to keep the model stable during the duration.
+This generally works but there is ultimately some incomparable runs due to this
+issue.
 
 I use this structured state space output error identification procedure for a
 collection of experiments (:math:`n=368`) over a range of speeds between about
@@ -1410,7 +1412,7 @@ Model structure
 ~~~~~~~~~~~~~~~
 
 The identification of the linear dynamics of the bicycle can be formulated with
-respect to the benchmark canonical form realized in [Meijaard2007]_, Equation
+respect to the benchmark canonical form realized in :cite:`Meijaard2007`, Equation
 :eq:`eqCanonical`. If the time varying quantities in the equations are all
 known at each time step, the coefficients of the linear equations can be
 estimated given enough time steps.
@@ -1619,7 +1621,7 @@ estimations can be computed with respect to the error.
 Equations :eq:`eqThetaEstimate`, :eq:`eqFitError`, :eq:`eqVariance`, and
 :eq:`eqCovariance` can be solved for each run individually, a portion of a run,
 or a set of runs. Secondly, all of the parameters in the canonical matrices
-need not be estimated. The analytical benchmark bicycle model [Meijaard2007]_
+need not be estimated. The analytical benchmark bicycle model :cite:`Meijaard2007`
 gives a good idea of which entries in the matrices we may be more certain about
 from our physical parameters measurements in Chapter :ref:`physicalparameters`.
 I went through the benchmark formulation and fixed the parameters based on
@@ -1938,7 +1940,7 @@ that :math:`C_{1 \delta \phi}` deviates quite largely from the Whipple model
 prediction. This term depends on the wheel radii, wheel rotational inertia,
 wheelbase, steer axis tilt and trail. All of these but trail are easily
 measured so it is tempting to solve for trail given :math:`C_{1 \delta \phi}`
-and the other measured parameters described in [Meijaard2007]_.
+and the other measured parameters described in :cite:`Meijaard2007`.
 
 .. math::
    :label: eqTrail
@@ -2415,7 +2417,7 @@ explain the data. If the feedback and input variables are the same for a set of
 control structures they can be mapped to each other and are equivalent. Much of
 the difference in control structures such as PID, sequential loop closure, LQR
 are the physical interpretations of the gains, delays, and other parameters.
-Here, I limit the control structure the one developed in [Hess2012]_ and Chapter
+Here, I limit the control structure the one developed in :cite:`Hess2012` and Chapter
 :ref:`control`. With this structure, I will have the ability to compare the
 results with the theoretical hypothesis we developed.
 
@@ -2757,11 +2759,11 @@ structure and the reduced parameter space to seven, doesn't escape the
 difficulty of finding the true minima. To have a decent chance at finding a
 good solution, I opted to identify only the SISO system with the lateral force
 as the input and the steering angle as the output. The choice of steer angle as
-the sole output is much the same reason as [Lange2011]_, i.e. the steer angle
+the sole output is much the same reason as :cite:`Lange2011`, i.e. the steer angle
 is a very good quality measurement and along with steer torque reflects the
 rider's contribution to the system dynamics as a reaction to the lateral force.
 
-I used the prediction error method [Ljung1999]_ to find the optimal parameters
+I used the prediction error method :cite:`Ljung1998` to find the optimal parameters
 for each run. A good solution required good initial parameter guesses of which
 I used a combination of stable starting guesses from the loop closure technique
 described in Chapter :ref:`control` and recursively used random guesses from
@@ -2890,7 +2892,7 @@ is possible to evaluate the same loops' frequency responses in an effort to
 understand how the rider chooses the gains.
 
 :ref:`Figure 25 <figAllDeltaDeltac>` shows the frequency response of the closed
-the inner most loop a single speed bin. The theory presented in [Hess2012]_ and
+the inner most loop a single speed bin. The theory presented in :cite:`Hess2012` and
 Chapter :ref:`control` postulates that the rider chooses a gain such that the
 damping ratio of the high frequency neuromuscular around 10 rad/s and about
 gives about a 10 db peak (:math:`\zeta=0.15`). :ref:`Figure 25

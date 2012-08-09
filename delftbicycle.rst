@@ -14,10 +14,10 @@ Delft Instrumented Bicycle
 Preface
 =======
 
-I had contacted the authors of [Meijaard2007]_ in the early winter of 2006 to
+I had contacted the authors of :cite:`Meijaard2007` in the early winter of 2006 to
 try to get some tips on where to go with my master's thesis, which I wanted to
 do on the handling qualities of bicycles. I had previously come across Arend,
-Jaap, and Jim's conference paper [Schwab2004]_ on their benchmark Whipple model
+Jaap, and Jim's conference paper :cite:`Schwab2004` on their benchmark Whipple model
 used it to help me build and validate my first model earlier that year. Andy,
 Jim, and Arend all replied, Jim at great length as usual, and the seeds were
 sown for some future collaboration. Jim began flooding my inbox with years of
@@ -40,12 +40,12 @@ PhD for Jodi so there was going to be some momentum and a teammate when I
 arrived.
 
 When I arrived in Delft at the end of August in 2008 Jodi was working on
-several projects: a bicycle handling qualities review paper [Kooijman2011a]_,
-the two mass skate bicycle [Kooijman2011]_, and an instrumented bicycle. I
+several projects: a bicycle handling qualities review paper :cite:`Kooijman2011a`,
+the two mass skate bicycle :cite:`Kooijman2011`, and an instrumented bicycle. I
 helped to some degree with all the projects, but primarily with setting up the
 instrumented bicycle and planning a set of experiments. This chapter details
 the work we did with the first instrumented bicycle. I've taken the text
-directly from our conference paper [Kooijman2009a]_ and gone through it with
+directly from our conference paper :cite:`Kooijman2009a` and gone through it with
 some updates, clarifications, and additions. Jodi and Arend were the primary
 writers of the paper. My contributions were more of the experimental design,
 performing the experiments, analyzing the data, discussing results and working
@@ -73,15 +73,15 @@ Riding a bicycle is an acquired skill. At very low speeds the bicycle is very
 unstable and requires great attention by the rider. However, at moderate speed
 the bicycle is easy to stabilize, often with little conscious thought by the
 rider. These observations are corroborated by a stability analysis on a simple
-dynamical model of an uncontrolled bicycle [Meijaard2007]_ and some experiments
-[Kooijman2008]_ and [Kooijman2009]_. Although there is little established
+dynamical model of an uncontrolled bicycle :cite:`Meijaard2007` and some experiments
+:cite:`Kooijman2008` and :cite:`Kooijman2009`. Although there is little established
 knowledge on how a person stabilizes a bicycle, two basic features are known:
 some uncontrolled riderless bicycles can balance themselves given some initial
 speed, and one can balance a forward moving bicycle by turning the front wheel
 in the direction of the undesired lean. But we all know that a rider on a
 bicycle not only moves the handlebars but also may make use of their upper
 body and other extremities. These rider body motions are even more profound
-when riding a motorcycle in extreme maneuvers [Cossalter2002]_.
+when riding a motorcycle in extreme maneuvers :cite:`Cossalter2002`.
 
 The purpose of this study is to identify the major human control actions in
 normal bicycling focusing on the stabilization task. [#]_ We use the term
@@ -230,7 +230,7 @@ environment was selected to carry out further studies on human rider control
 for stabilization tasks. The experiments were carried out on a large (3 × 5 m)
 treadmill, shown in :ref:`Figure 3 <figTreadmill>`. The dynamics of a riderless
 bicycle on a treadmill have been shown to be the same as for on flat level
-ground [Kooijman2009]_ for speeds between 4-6 m/s, so we make this assumption
+ground :cite:`Kooijman2009` for speeds between 4-6 m/s, so we make this assumption
 for the case with a rider too, albeit with caution.
 
 .. _tabRiders:
@@ -270,11 +270,11 @@ The data and figures presented in this chapter were collected with rider 1.
    Movement Sciences, Vrije Universiteit, Amsterdam.
 
 The uncontrolled dynamics of the bicycle rider system can potentially be
-described by the linearized model of the bicycle [Meijaard2007]_. This model
+described by the linearized model of the bicycle :cite:`Meijaard2007`. This model
 consists of four rigid bodies: the rear frame with rigid rider connected, the
 front handlebar and fork assembly, and the two wheels. These are connected by
 ideal hinges and the wheels have idealized pure-rolling contact with level
-ground. [Moore2009a]_ describes the method used to determine the model
+ground. :cite:`Moore2009a` describes the method used to determine the model
 parameters for the instrumented bicycle-rider system [#]_.  These parameters are
 given in :ref:`Table 3 <tabParameters>` and the root locus of the system with
 respect to speed is depicted in :ref:`Figure 4 <figDelftRootLocus>`. At low speed, the
@@ -629,7 +629,7 @@ Appendix
 ========
 
 The following sections details some extra information that was not conveyed in
-the papers [Kooijman2008a]_, [Kooijman2009]_ and the modified version in the
+the papers :cite:`Kooijman2008a`, :cite:`Kooijman2009` and the modified version in the
 previous sections.
 
 Experiments
@@ -756,7 +756,7 @@ source code and data available for download in case it is of use to anyone.
 Rider 2
 -------
 
-These are the parameters computed with the methods in [Moore2009]_ for the
+These are the parameters computed with the methods in :cite:`Moore2009` for the
 second rider, Jason, on the instrumented Batavus Browser. Only the rear frame
 and body parameters are different as the bicycle is identical. We only
 presented data for Arend's runs in the previous sections.

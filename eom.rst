@@ -328,7 +328,7 @@ the front wheel center to the contact point is defined as
 
 Where the triple cross product divided by its magnitude represents the unit
 vector pointing from the front wheel center to the point on the front wheel
-instantaneously in contact with the ground. :cite:`BasuMandal2007` give a good
+instantaneously in contact with the ground. :cite:`Basu-Mandal2007` give a good
 explanation and diagram. I originally thought of this vector in terms of dot
 products, i.e. subtract the :math:`\hat{n}_3` component of :math:`\hat{e}_2` from
 :math:`\hat{n}_3` to get a vector that points from the front wheel center to
@@ -371,7 +371,7 @@ choice of pitch has to do with the fact that for "normal" bicycle
 configurations, pitch is practically constant. This is not universal and it may
 be smart to choose the dependent coordinate differently for other cases. The
 constraint equation can actually be formulated into a quartic in the sine of
-the pitch (:cite:`Psiaki1979`, :cite:`Peterson2007`) which does have an, albeit lengthy,
+the pitch (:cite:`Psiaki1979`, :cite:`Peterson2008`) which does have an, albeit lengthy,
 analytic solution. I do not opt for the analytical solution, so care is needed
 when simulating and linearizing to properly take care of this dependent
 coordinate.
@@ -830,8 +830,8 @@ resultant forces on the mass center (excluding non-contributing forces),
 respect to :math:`u_r`, and :math:`\bar{T}^X` is the resultant torques on the
 body where :math:`X` is one of the four bodies. The partial velocities are
 simply the partial derivative of the velocities in question with respect to the
-generalized speeds and can be found systematically as usual :cite:`Kane1985`. We
-assume that the only force acting on the system is the gravitational force,
+generalized speeds and can be found systematically as usual :cite:`Kane1985`.
+We assume that the only force acting on the system is the gravitational force,
 :math:`g`. The forces are
 
 .. math::
@@ -846,8 +846,8 @@ assume that the only force acting on the system is the gravitational force,
    \bar{R}^{f_o} = m_Fg\hat{n}_3
 
 We also assume that there are three generalized active torques acting on the
-system which correspond to the three independent generalized speeds found
-in :ref:`nonholonomic`.
+system which correspond to the three independent generalized speeds found in
+:ref:`nonholonomic`.
 
 The roll torque, :math:`T_4`, acts between the rear frame and the Newtonian
 frame about :math:`\hat{a}_1`. The rear wheel torque, :math:`T_6`, acts between
@@ -983,20 +983,20 @@ described in the following sections.
 Model discussion
 ----------------
 
-:cite:`Astrom2005`, :cite:`Meijaard2007`, :cite:`BasuMandal2007`, :cite:`Limebeer2006`, and many
-others do excellent job describing the essential nature of both the non-linear
-Whipple model and various linearized models. Notable concepts include the fact
-that many of the coordinates are ignorable, that is they do not show up in the
-essential dynamical equations of motion. These are the location of the ground
-contact point, :math:`q_1` and :math:`q_2`, the yaw angle, :math:`q_3`, and the
-wheel angles, :math:`q_6` and :math:`q_8`. The model is also energy conserving,
-because the contact points do no work. The model has many equilibrium points
-and when linearized about the nominal configuration at various constant forward
-speeds the open loop model (i.e.  inputs equal zero) can exhibit stability
-within various speed regimes. The system is a non-minimum phase system and this
-is clearly identified in the linear models by the right half plane zeros. I
-recommend reading the previously mentioned references for a more detailed
-picture of the model.
+:cite:`Astrom2005`, :cite:`Meijaard2007`, :cite:`Basu-Mandal2007`,
+:cite:`Limebeer2006`, and many others do excellent job describing the essential
+nature of both the non-linear Whipple model and various linearized models.
+Notable concepts include the fact that many of the coordinates are ignorable,
+that is they do not show up in the essential dynamical equations of motion.
+These are the location of the ground contact point, :math:`q_1` and
+:math:`q_2`, the yaw angle, :math:`q_3`, and the wheel angles, :math:`q_6` and
+:math:`q_8`. The model is also energy conserving, because the contact points do
+no work. The model has many equilibrium points and when linearized about the
+nominal configuration at various constant forward speeds the open loop model
+(i.e.  inputs equal zero) can exhibit stability within various speed regimes.
+The system is a non-minimum phase system and this is clearly identified in the
+linear models by the right half plane zeros. I recommend reading the previously
+mentioned references for a more detailed picture of the model.
 
 Simulation
 ----------
@@ -1034,23 +1034,23 @@ for non-trivial inputs and compare the results to high precision. These type of
 numerical benchmarks are invaluable. They provide a baseline for model
 comparison allowing for scientific reproducibility and error checking.
 
-:cite:`BasuMandall2007` present the non-linear Whipple model derived with both the
-Newton-Euler and Lagrange methods, along with a numerical benchmark. Table 1 in
-their paper gives the derivatives of all the coordinates and speeds to high
-precision for both of their derivations at a single state. They state that if
-one can compute the values to machine precision to ~10 significant figures the
-models can be concluded to be the same. The very first model I developed
-in 2006 would not have held up to this test. I owe the validity of my model to
-my labmate, Luke, as his persistence and interest in minute detail helped me
-bring my model up to par.
+:cite:`Basu-Mandal2007` present the non-linear Whipple model derived with both
+the Newton-Euler and Lagrange methods, along with a numerical benchmark. Table
+1 in their paper gives the derivatives of all the coordinates and speeds to
+high precision for both of their derivations at a single state. They state that
+if one can compute the values to machine precision to ~10 significant figures
+the models can be concluded to be the same. The very first model I developed in
+2006 would not have held up to this test. I owe the validity of my model to my
+labmate, Luke, as his persistence and interest in minute detail helped me bring
+my model up to par.
 
 The Basu-Mandal et al. derivations are based on different coordinates than I
 use, but regardless of the coordinates they provide numerical values which can
 be benchmarked if the correct coordinate transformations are applied
 [#eqconv]_. In :ref:`Table 1 <tabNonLinValidation>` [#nonlincompare]_ I present
 the values computed from my model in comparison to the values presented by
-:cite:`BasuMandall2007`. I've presented the same number of significant digits as
-provided by Basu-Mandall for each variable [#sigfig]_. My model produces the
+:cite:`Basu-Mandal2007`. I've presented the same number of significant digits
+as provided by Basu-Mandal for each variable [#sigfig]_. My model produces the
 same result to at least eleven significant figures, thus I feel confident that
 the derivation is correct.
 
@@ -1063,25 +1063,26 @@ Linearized Equations of Motion
 ==============================
 
 The non-linear equations of motion can be linearized about various equilibrium
-points. The obvious one is about the nominal configuration :cite:`Meijaard2007` but
-there are many others associated mostly with steady turns :cite:`BasuMandal2007`.
-The equations can be linearized by computing the Taylor series expansion of the
-non-linear equations of motion about the equilibrium point of interest and
-disregarding the terms higher than first order. For the nominal configuration
-this amounts to calculating the Jacobian of the system of equations with
-respect to the coordinates, speeds and inputs to obtain the state matrix,
-:math:`\mathbf{A}`, and the input matrix, :math:`\mathbf{B}`. The output,
-:math:`\mathbf{C}`, and feed-forward, :math:`\mathbf{D}`,  matrices are
-computed in the same fashion except with regards to the non-linear equations of
-the outputs. The partial derivatives of each equation were evaluated at the
-following fixed point: :math:`q_i=0` where :math:`i=4,5,7`, :math:`u_i=0` where
-:math:`i=4,7`, and :math:`u_5=-v/r_R` where :math:`v` is the magnitude of the
-component of velocity of the rear wheel center in the direction of travel. Care
-has to be taken when linearizing as :math:`q_5` is a dependent coordinate which
-still appears on the right hand side of the equations. In general, the chain
-rule applies, but for the nominal configuration, the terms due to the implicit
-definition of pitch equal zero. The linearization transforms the system into
-four linear first order differential equations in the form
+points. The obvious one is about the nominal configuration :cite:`Meijaard2007`
+but there are many others associated mostly with steady turns
+:cite:`Basu-Mandal2007`.  The equations can be linearized by computing the
+Taylor series expansion of the non-linear equations of motion about the
+equilibrium point of interest and disregarding the terms higher than first
+order. For the nominal configuration this amounts to calculating the Jacobian
+of the system of equations with respect to the coordinates, speeds and inputs
+to obtain the state matrix, :math:`\mathbf{A}`, and the input matrix,
+:math:`\mathbf{B}`. The output, :math:`\mathbf{C}`, and feed-forward,
+:math:`\mathbf{D}`,  matrices are computed in the same fashion except with
+regards to the non-linear equations of the outputs. The partial derivatives of
+each equation were evaluated at the following fixed point: :math:`q_i=0` where
+:math:`i=4,5,7`, :math:`u_i=0` where :math:`i=4,7`, and :math:`u_5=-v/r_R`
+where :math:`v` is the magnitude of the component of velocity of the rear wheel
+center in the direction of travel. Care has to be taken when linearizing as
+:math:`q_5` is a dependent coordinate which still appears on the right hand
+side of the equations. In general, the chain rule applies, but for the nominal
+configuration, the terms due to the implicit definition of pitch equal zero.
+The linearization transforms the system into four linear first order
+differential equations in the form
 
 .. math::
    :label: eqStateSpace
@@ -1510,10 +1511,10 @@ Notation
 
 .. [#kane] Kane himself has done work on bicycle and motorcycle models and made
    use of his method to derive the equations of motion :cite:`Kane1975`,
-   :cite:`Kane1977`, [Kane1977a]_, :cite:`Kane1978`, :cite:`Man1979`. Furthermore,
-   :cite:`Zytveld1975` derived linear equations of motion of the bicycle and models
-   developed with AutoSim also employ Kane's method :cite:`Sayers1990`,
-   :cite:`Sharp1999`.
+   :cite:`Kane1977`, :cite:`Kane1977a`, :cite:`Kane1978`, :cite:`Man1979`.
+   Furthermore, :cite:`Zytveld1975` derived linear equations of motion of the
+   bicycle and models developed with AutoSim also employ Kane's method
+   :cite:`Sayers1990`, :cite:`Sharp1999`.
 
 .. [#psiaki] The coordinates are also used by :cite:`Franke1990`, among others.
 
@@ -1533,13 +1534,13 @@ Notation
 .. [#holonomic] This constraint can readily be modified to accomodate a
    non-flat ground.
 
-.. [#eqconv] The conversion equations from the :cite:`BasuMandal2007` coordinates to
+.. [#eqconv] The conversion equations from the :cite:`Basu-Mandal2007` coordinates to
    mine and vice versa can be found in the source code for the
    DynamicistToolKit bicycle module.
 
-.. [#sigfig] Basu-Mandall presents varying significant digits from 10 to 14.
+.. [#sigfig] Basu-Mandal presents varying significant digits from 10 to 14.
 
 .. [#nonlincompare] The variable names correspond to the convention provided in
-   :cite:`BasuMandall2007`. This table is generated with ``src/eom/basu_comparison.py``.
+   :cite:`Basu-Mandal2007`. This table is generated with ``src/eom/basu_comparison.py``.
 
 .. [#lincompare] This table is generated with ``src/eom/linear_comparison.py``.

@@ -207,7 +207,7 @@ Rigid rider models are often employed in single track vehicle research but the
 rider has been rigidified very few times in experimental work. This potentially
 problematic as the rigid rider assumption is a large one. :cite:`Stassen1973` made
 use of a rider brace in their bicycle simulator to prevent rider lean.
-:cite:`Eaton1973c` rigidified his motorcyclists' torso and performed several
+:cite:`Eaton1973` rigidified his motorcyclists' torso and performed several
 perturbation tests with the rider's hands off the handlebars! He found it
 difficult to identifying the linear modes of motion. :cite:`Doyle1987` comments on
 the utility of rigidifying the rider which was very in line with his techniques
@@ -372,7 +372,7 @@ accelerometers and rate gyros. He obtained decent measurements but abandoned
 the wheel because it was too large, dangerous and susceptible to vibration.
 :cite:`Roland1971` measured roll angle with a potentiometric free gyro with
 seemingly good results. Their data was captured with direct write recorders in
-a pace car. :cite:`Eaton1973c` used a third wheel and a potentiometer to measure
+a pace car. :cite:`Eaton1973` used a third wheel and a potentiometer to measure
 roll angle on a motorcycle, but also had reliability issues. :cite:`Zytveld1975`
 used a small trailer with two roller skate wheels and potentiometer to measure
 the roll angle on this robotic motorbike.
@@ -383,7 +383,7 @@ frequency drift and only require yaw rate, roll rate and speed measurements to
 get peak roll estimation errors of 5 degrees, which were larger than we could
 accept. But their methods did allow for roll angle estimation on banked curves.
 Distance lasers have been used to directly measure the roll angle with respect
-to the ground but are particularly expensive :cite:`Everste2009`. The roll angle can
+to the ground but are particularly expensive :cite:`Evertse2009`. The roll angle can
 also be estimated with a state estimator such as a Kalman filter
 ([Gustafsson2002]_, :cite:`Teerhuis2010`). The plant in the Kalman filter can be
 general 3D motion of a rigid body or a model of the bicycle. Constraining the
@@ -492,7 +492,7 @@ Steer
 The steer angle is easy to measure with either some form of write recorder,
 potentiometer, or encoder and has been accurately measured on many bicycle and
 motorcycle systems since the early 50's. Of the early methods,
-:cite:`WilsonJones1951` has a particularly interesting mechanical protractor design
+:cite:`Wilson-Jones1951` has a particularly interesting mechanical protractor design
 and :cite:`Dohring1953` makes use of a mechanical write recorder. Because the front
 frame is attached to the rear frame via a revolute joint only an additional
 single orientation and rate measurement is needed to measure the front frame
@@ -676,9 +676,9 @@ impulsive type of perturbations without measuring the applied force assuming
 they could be modeled as impulses. There are also many other past attempts at
 exciting the system. :cite:`Roland1971` on the other hand attached a calibrated
 rocket to the handelbars of a riderless bicycle to give a know step input to
-steer torque. :cite:`Eaton1973c` had the motorcycle rider tap the handlebars to
+steer torque. :cite:`Eaton1973` had the motorcycle rider tap the handlebars to
 applied an impulse and also drop weights from the side of the motorcycle to
-apply a roll torque. :cite:`Doria2011` similarly had the motorcycle rider apply
+apply a roll torque. :cite:`Doria2012` similarly had the motorcycle rider apply
 impulsive forces to the handlebars to excite the weave mode. :cite:`Lange2011`
 discusses several methods of applying a pure roll torque to the bicycle
 including a mass swing, a mass slider, a rope, and lateral accelerating the
@@ -897,8 +897,8 @@ Bicycle Experiments
 Motorcycle Experiments
 ~~~~~~~~~~~~~~~~~~~~~~
 
-[Wilson-Jones1951]_
-   Wilson-Jones beautiful treaty on single track vehicle dynamics may
+:cite:`Wilson-Jones1951`
+   Wilson-Jones' beautiful treaty on single track vehicle dynamics may
    demonstrate the first steer torque measurements ever done. He constructed an
    mechanical analog torsion bar that provided the instantaneous steer torque
    to the motorcycle driver via a head tube mounted protractor. He used this to
@@ -1085,7 +1085,7 @@ measurements are to other handlebar loads. Also, most of these designs measure
 the torque somewhere in between the rider hands and the ground contact point.
 This is a physically ideal way to measure the steer torque, but no one has
 accounted for the dynamic inertial effects of the front frame above or below
-the sensor. :cite:`Everste2010` may be the only design which mitigates this issue.
+the sensor. :cite:`Evertse2010` may be the only design which mitigates this issue.
 I'll show later in this chapter that for maneuvers that require large steer
 angular accelerations, that this is a significant additive effect.
 

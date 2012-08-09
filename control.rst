@@ -40,7 +40,7 @@ controllability is simply a binary test to determine whether or not it is
 possible for a system to be controlled, whereas there must be some measure
 variable measure of controllability that is more relevant to the proposed
 questions. :cite:`Seffen2001` studies how parameter changes affect controllability,
-and comes up with rideability index. :cite:`Schwab2010a` and :cite:`Schwav2012` also
+and comes up with rideability index. :cite:`Schwab2010a` and :cite:`Schwab2012` also
 determines the controllability of several bicycle models and uses the eigenmode
 rate magnitude as an example variable measure of the controllability. The pole
 locations of an open loop system can also give a general sense of how easy it
@@ -152,12 +152,12 @@ Robot Control
    He designed a robot balancing bicycle which controls a gimbaled gyroscope to
    apply a restoring torque with respect to the sensed roll angle, but was not
    successful at balancing the real robot.
-:cite:`Miyagishi2003`, :cite:`Kageyama200`, :cite:`Miyagishi2006`
-   These two papers, among others, detail work on a Honda motorcycle robot, of
-   which they say the controller is modeled after a human. The video
+:cite:`Miyagishi2003`, :cite:`Kageyama2004`, :cite:`Miyagishi2006`
+   These three papers, among others, detail work on a Honda motorcycle robot,
+   of which they say the controller is modeled after a human. The video
    demonstrations of this vehicle indicate that it may be the most manually
    realistically controlled robot there is, not mention that is seems to work
-   really well.  Most of these papers are in Japanese and I've had trouble
+   really well. Most of these papers are in Japanese and I've had trouble
    finding others, so I cannot comment on the details.
 :cite:`Tanaka2004`
    They successfully balances a bicycle on rollers with a PD roll angle to
@@ -180,9 +180,9 @@ Robot Control
    :cite:`Yamakita2005` with an additional :math:`H_\infty` controller. They show
    some successful roll stabilization of a robot scooter in which they only
    implement the roll stabilization control.
-:cite:`Murata2011`
+:cite:`Murata2009`
    The Murata Manufacturing company designed a bicycle robot to demonstrate the
-   utility of their sensors which debuted sometime in 2006 :cite:`Murata2011`.
+   utility of their sensors which debuted sometime in 2006 :cite:`Murata2009`.
    There is little published detail on the control techniques but they seem to
    primarily make use of a roll rate gyro with steering and a gyro actuator.
    They also have other sensors such as ultrasonic sensors for obstacle
@@ -222,9 +222,10 @@ Robot Control
    remote control is employed to control the heading.
 
 Other papers that I either could not find, translate, or find time to read
-include :cite:`Beznos1998`, :cite:`Sooraksa2000`, :cite:`Sooraksa2000a`, :cite:`Muraoka2002`,
-:cite:`Oda2002`, :cite:`Muhich2004`, :cite:`Micchini2006`, :cite:`Suprapto2006`, :cite:`Solveberg2007`,
-:cite:`Tanaka2009`, :cite:`Brekke2010`, :cite:`Cerone2010`, :cite:`Keo2011`.
+include :cite:`Beznos1998`, :cite:`Sooraksa2000`, :cite:`Sooraksa2000a`,
+:cite:`Muraoka2002`, :cite:`Oda2002`, :cite:`Muhich2004`, :cite:`Michini2006`,
+:cite:`Suprapto2006`, :cite:`Solvberg2007`, :cite:`Tanaka2009`,
+:cite:`Brekke2010`, :cite:`Cerone2010`, :cite:`Keo2011`.
 
 The limited success of most of the various bicycle robots demonstrates that the
 actual implementation of single track vehicle control is not trivial. Some of
@@ -273,15 +274,15 @@ implemented. This section details some of the modeling efforts.
    Chidzonga uses the simple point mass bicycle model with a load sharing
    controller to demonstrate a track stand around zero forward speed. Although
    the balancing might have just been due to a miracle from Jesus.
-:cite:`Yamakita2004`
-   They setup a linear trajectory tracking control model and non-linear
-   stabilization control by controlling steer torque, rider lean torque, and
-   rear wheel torque. They demonstrate the control in a simulation of a bicycle
-   jump maneuver.
 :cite:`Karnopp2004`
    Karnopp uses a very simply bicycle model and basic proportional control to
    demonstrate the counter steering require to balance the bicycle. He also
    examines rear steered bicycles.
+:cite:`Yamakita2005`
+   They setup a linear trajectory tracking control model and non-linear
+   stabilization control by controlling steer torque, rider lean torque, and
+   rear wheel torque. They demonstrate the control in a simulation of a bicycle
+   jump maneuver.
 :cite:`Niki2005`
    This follows the :cite:`Tanaka2004` and :cite:`Iuchi2005` work, but adds in velocity
    tracking.
@@ -716,13 +717,13 @@ their mathematical models.
 Eaton
 -----
 
-Eaton's PhD work builds off of Weir's work and is primarily focused on
-validating the Weir models with experiments. He pairs the successful motorcycle
-model develop by Sharp :cite:`Sharp1971` with Weir's McRuer style manual control
-models that were based around the crossover model with time delays. He focus on
-the inner loop roll stabilization tasks. His model feedbacks roll angle and the
-controller compensates for roll angle error. He eliminates body lean control as
-an option to simplify things.
+Eaton's PhD :cite:`Eaton1973` builds off of Weir's work and is primarily
+focused on validating the Weir models with experiments. He pairs the successful
+motorcycle model develop by Sharp :cite:`Sharp1971` with Weir's McRuer style
+manual control models that were based around the crossover model with time
+delays. He focus on the inner loop roll stabilization tasks. His model
+feedbacks roll angle and the controller compensates for roll angle error. He
+eliminates body lean control as an option to simplify things.
 
 Aoki
 ----
@@ -760,7 +761,7 @@ I'll mention briefly some about modeling the human with fuzzy control. I have
 little understanding of fuzzy control but :cite:`Cloud1994` says that fuzzy control
 methodologies fundamentally let one translate linguistic rules from an expert
 in controlling the particular system into a control logic algorithm.
-:cite:`Tagaki1983` discussed developing fuzzy control rules from the human
+:cite:`Takagi1983` discussed developing fuzzy control rules from the human
 operator's actions. This somewhat parallels how the PID controller was
 developed based on a ship helmsman's decision structure
 :cite:`WikipediaPIDController2012`. It seems like it may certainly be valuable for
@@ -768,9 +769,9 @@ conscious control efforts, but may have deficiencies when trying to determine
 the control strategy of unconscious control. But a combination of fuzzy logic
 and crossover type control may prove useful in describing the human control
 system. Liu and Wu have done extensive work applying fuzzy control to single
-track vehicles (:cite:`Liu1994`, :cite:`Wu1994`, :cite:`Wu1995`, :cite:`Wu1996`, :cite:`Wu1996a`,
-:cite:`Wu1996b`, :cite:`Wu1996c`). I have not studied the work in detail, but it is worth
-noting here.
+track vehicles (:cite:`Liu1993`, :cite:`Wu1994`, :cite:`Wu1995`,
+:cite:`Wu1996`, :cite:`Wu1996a`, :cite:`Wu1996b`, :cite:`Wu1996c`). I have not
+studied the work in detail, but it is worth noting here.
 
 Mammar
 ------

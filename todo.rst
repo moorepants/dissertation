@@ -11,3 +11,5 @@ TODO List
 
 .. todo:: The latex build wants the target directive in images to point to
    something different than the html.
+
+.. todo:: Check over the bib output.

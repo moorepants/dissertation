@@ -161,13 +161,15 @@ referred to as the *Davis Bicycles*.
    :align: center
    :target: _images/bicycles.jpg
 
-   The ten\ [#missing]_ measured bicycles: (a) Batavus Browser, (b)
-   Instrumented Batavus Browser, (c) Batavus Crescendo Deluxe, (d) Batavus
-   Stratos Deluxe, (e) Gary Fisher, (f) Bianchi Pista, (g) Yellow Bicycle, (h)
-   Yellow Bicycle with reversed fork, (i) Davis Instrumented Bicycle, (j) Gyro
-   Bicycle. The Davis Instrumented Bicycle was measured twice each with the
-   body cast and seat height in different positions. The first "Rigid" was set
-   up for Jason and the second "Rigidcl" was set up for Luke and Charlie.
+   The ten measured bicycles: (a) Batavus Browser, (b) Instrumented Batavus
+   Browser, (c) Batavus Crescendo Deluxe, (d) Batavus Stratos Deluxe, (e) Gary
+   Fisher, (f) Bianchi Pista, (g) Yellow Bicycle, (h) Yellow Bicycle with
+   reversed fork, (i) Davis Instrumented Bicycle, (j) Gyro Bicycle. The Davis
+   Instrumented Bicycle was measured twice each with the body cast and seat
+   height in different positions. The first "Rigid" was set up for Jason and
+   the second "Rigidcl" was set up for Luke and Charlie. Only one image of the
+   Rigid bicycle is shown, even though it was measured in two slightly
+   different configurations.
 
 .. _secAccuracy:
 
@@ -1743,9 +1745,6 @@ Bicycle Benchmark Parameters
 .. include:: tables/physicalparameters/davisBenchmark.rst
 
 .. rubric:: Footnotes
-
-.. [#missing] Only one image of the Rigid bicycle is shown, even though it was
-   measured in two slightly different configurations.
 
 .. [#weight] This is actually the same rider: I gained some weight after
    drinking all that good beer in the Netherlands!

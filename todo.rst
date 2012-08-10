@@ -20,4 +20,8 @@ TODO List
 
 .. todo:: Write a conclusion.
 
-.. todo:: sphinxcontrib-bibtex is not resovling hyper links in the pdf.
+.. todo:: The footnotes in the latexpdf hyperlink to page i. These don't really
+   need to be hyperlinks at all.
+
+.. todo:: sphinxcontrib-bibtex is not resovling hyper links in the pdf in the
+   same way the footnotes do.

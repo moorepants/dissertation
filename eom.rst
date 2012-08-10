@@ -1615,7 +1615,7 @@ The following benchmark parameters are all defined in [Meijaard2007]_.
    missing apostrophe in my Autolev code, the second was that we had defined
    our rear wheel rotation with respec to the :math:`B` frame instead of the
    :math:`C` frame, the third was incorrect parameter conversions from the
-   :cite:`Meijaard2007' paper to our parameters, and the fourth was a bug in
+   :cite:`Meijaard2007` paper to our parameters, and the fourth was a bug in
    my original code that I never found, with an entire code rewrite finally
    giving me matching eigenvalues.
 

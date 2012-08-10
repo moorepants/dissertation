@@ -56,7 +56,7 @@
 <span id="systemidentification"></span><h1>System Identification<a class="headerlink" href="#system-identification" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated August 05, 2012 at 14:32:49 PDT).
+<p class="last">This document is a draft which is updated regularly (Last updated August 10, 2012 at 16:34:24 PDT).
 Once I submit if for my doctoral degree at UC Davis, it will be done. So for
 now use at your own risk. The information may or may not be correct.
 Reviews, comments and suggestions are welcome.</p>
@@ -2360,7 +2360,7 @@ The ideal goal is to select one or a small set of models that do a good job at
 predicting the measured behavior for each run. The previous section&#8217;s state
 space methods have already shown that the Whipple and arm models may not
 provide adequate predictions.</p>
-<p>Figures <a class="reference internal" href="#figcompbode2p0"><em>17</em></a>, <em class="xref std std-ref">18</em>, and <em class="xref std std-ref">19</em> plot the steer torque to roll angle frequency response for
+<p>Figures <a class="reference internal" href="#figcompbode2p0"><em>17</em></a>, <a class="reference internal" href="#figcompbode5p5"><em>18</em></a>, and <a class="reference internal" href="#figcompbode9p0"><em>19</em></a> plot the steer torque to roll angle frequency response for
 three speeds: 2 m/s, 5.5 m/s and 9.0 m/s for each of the models in Tables
 <a class="reference internal" href="#tabidmckone"><em>3</em></a>, <a class="reference internal" href="#tabidmcktwo"><em>4</em></a>, and <a class="reference internal" href="#tabidmckthree"><em>5</em></a>.
 At the lowest speed, all of the models have a similar frequency response,
@@ -2378,13 +2378,13 @@ bicycle.</p>
 identified models in Tables <a class="reference internal" href="#tabidmckone"><em>3</em></a>, <a class="reference internal" href="#tabidmcktwo"><em>4</em></a>,
 and <a class="reference internal" href="#tabidmckthree"><em>5</em></a>.</p>
 </div>
-<div class="figure align-center">
+<div class="figure align-center" id="figcompbode5p5">
 <a class="reference external image-reference" href="compare-id-bode-5p5.png"><img alt="_images/compare-id-bode-5p5.png" src="_images/compare-id-bode-5p5.png" style="width: 6in;" /></a>
 <p class="caption">Steer torque to roll angle frequency responses at 5.5 m/s for all the
 identified models in Tables <a class="reference internal" href="#tabidmckone"><em>3</em></a>, <a class="reference internal" href="#tabidmcktwo"><em>4</em></a>,
 and <a class="reference internal" href="#tabidmckthree"><em>5</em></a>.</p>
 </div>
-<div class="figure align-center">
+<div class="figure align-center" id="figcompbode9p0">
 <a class="reference external image-reference" href="compare-id-bode-9p0.png"><img alt="_images/compare-id-bode-9p0.png" src="_images/compare-id-bode-9p0.png" style="width: 6in;" /></a>
 <p class="caption">Steer torque to roll angle frequency responses at 9.0 m/s for all the
 identified models in Tables <a class="reference internal" href="#tabidmckone"><em>3</em></a>, <a class="reference internal" href="#tabidmcktwo"><em>4</em></a>,
@@ -2930,7 +2930,7 @@ potential need for tire slip models.</li>
 one environment is the best at predicting the runs on a individual basis, but
 the uncertainty and error in both the data and the model structures don&#8217;t
 dictate that this can&#8217;t be. Keep in mind that all of the frequency response of
-all 12 models shown in Figures <a class="reference internal" href="#figcompbode2p0"><em>17</em></a>, <em class="xref std std-ref">18</em>, and <em class="xref std std-ref">19</em> are probably bounded in the
+all 12 models shown in Figures <a class="reference internal" href="#figcompbode2p0"><em>17</em></a>, <a class="reference internal" href="#figcompbode5p5"><em>18</em></a>, and <a class="reference internal" href="#figcompbode9p0"><em>19</em></a> are probably bounded in the
 uncertainty of the predicted responses and each is can be considered a &#8220;good&#8221;
 model, even including the Whipple model.</p>
 <p>The second method of evaluating the quality of the identified models is to
@@ -3264,7 +3264,7 @@ results with the theoretical hypothesis we developed.</p>
 <p>The block diagram of the control structure described in Chapter <a class="reference internal" href="control.html#control"><em>Control</em></a>
 is shown again in Figures <a class="reference internal" href="#figinnerloopsagain"><em>20</em></a> and <a class="reference internal" href="#figouterloopsagain"><em>21</em></a>. The closed loop system can be written in state space
 form, which will be used with a state space identification procedure as defined
-in Section <em class="xref std std-ref">&lt;secStateSpaceID&gt;</em>. I&#8217;ll develop forms for pure heading
+in Section <a class="reference internal" href="#secstatespaceid"><em>State Space Realization</em></a>. I&#8217;ll develop forms for pure heading
 tracking and lateral deviation tracking.</p>
 <div class="figure align-center" id="figinnerloopsagain">
 <a class="reference external image-reference" href="_images/inner-loops.png"><img alt="_images/inner-loops.png" src="_images/inner-loops.png" style="width: 5in;" /></a>
@@ -3556,7 +3556,7 @@ riders and runs. The model considers the remnant as output error during the non
 perturbed portions of the run. Notice that the steer torque is well predicted
 around the perturbation. Previous identifications with the Whipple model
 predicted much lower torque magnitudes and much different parameters. Including
-the identified bicycle model from Section <em class="xref std std-ref">&lt;secCanonicalId&gt;</em> proved to
+the identified bicycle model from Section <a class="reference internal" href="#seccanonicalid"><em>Canonical Identification</em></a> proved to
 give much better control predictions.</p>
 <div class="figure align-center" id="figrideridtreadmill">
 <a class="reference external image-reference" href="_images/rider-id-treadmill-run.png"><img alt="_images/rider-id-treadmill-run.png" src="_images/rider-id-treadmill-run.png" style="width: 6in;" /></a>
@@ -3587,7 +3587,7 @@ themselves. As I&#8217;ve already mentioned in the previous section, identifying
 parameters accurately is a function of the number of free parameters, which
 parameters are free, and the quality of the noise model. In my case, our noise
 model is an output error structure and may contribute to much more spread in
-the identified parameters. <em class="xref std std-ref">Figure 24</em> gives an
+the identified parameters. <a class="reference internal" href="#figcontrolparvsspeed"><em>Figure 24</em></a> gives an
 idea of how the six identified speeds vary with speed. As shown in Chapter
 <a class="reference internal" href="control.html#control"><em>Control</em></a> the theory predicts that the gains are mostly linear above about
 2 m/s and that the neuromuscular frequency is a constant parameter with respect
@@ -3605,7 +3605,7 @@ each speed bin. The neuromuscular frequency is the best constant that fits
 the data. Generated by
 <cite>src/systemidentification/control_parameters_vs_speed_plots.py</cite>.</p>
 </div>
-<p><em class="xref std std-ref">Figure 24</em> gives these insights:</p>
+<p><a class="reference internal" href="#figcontrolparvsspeed"><em>Figure 24</em></a> gives these insights:</p>
 <ul class="simple">
 <li>The gains increase with speed with <span class="math">\(k_{\phi}\)</span> and <span class="math">\(k_{y_q}\)</span> having
 small slopes.</li>
@@ -3634,7 +3634,7 @@ neuromuscular peak, but the large variability in the lower frequencies
 indicates that the rider&#8217;s choice is not so constant. This may be explained by
 the fact that it is more critical for the roll rate loop to exhibit the
 neuromuscular peaking and the differences in the three rider&#8217;s behavior. I&#8217;ve
-previously shown in Chapter <em class="xref std std-ref">&lt;control&gt;</em> that there are not necessarily
+previously shown in Chapter <a class="reference internal" href="control.html#control"><em>Control</em></a> that there are not necessarily
 unique gains in the first too loops to achieve the correct peaking in the roll
 rate loop.</p>
 <div class="figure align-center" id="figalldeltadeltac">
@@ -3847,7 +3847,7 @@ detailed enough for reuse.</p>
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id44">[1]</a></td><td>The floor is a product called &#8220;pulastic&#8221; which is
-manufactured by <a class="reference external" href="www.robbinsfloor.com">Robbins Sport Surfaces</a>.</td></tr>
+manufactured by <a class="reference external" href="http://www.robbinsfloor.com">Robbins Sport Surfaces</a>.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="mixedeffects" rules="none">

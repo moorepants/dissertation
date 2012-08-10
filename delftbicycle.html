@@ -56,7 +56,7 @@
 <span id="delftbicycle"></span><h1>Delft Instrumented Bicycle<a class="headerlink" href="#delft-instrumented-bicycle" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated August 05, 2012 at 14:32:37 PDT).
+<p class="last">This document is a draft which is updated regularly (Last updated August 10, 2012 at 16:34:12 PDT).
 Once I submit if for my doctoral degree at UC Davis, it will be done. So for
 now use at your own risk. The information may or may not be correct.
 Reviews, comments and suggestions are welcome.</p>
@@ -67,10 +67,10 @@ Reviews, comments and suggestions are welcome.</p>
 try to get some tips on where to go with my master&#8217;s thesis, which I wanted to
 do on the handling qualities of bicycles. I had previously come across Arend,
 Jaap, and Jim&#8217;s conference paper [Schwab2004] on their benchmark Whipple model
-used it to help me build and validate my first model earlier that year. Andy,
-Jim, and Arend all replied, Jim at great length as usual, and the seeds were
-sown for some future collaboration. Jim began flooding my inbox with years of
-thoughts on the handling of bicycles and it turned out that Arend had just
+and used it to help me build and validate my first model earlier that year.
+Andy, Jim, and Arend all replied, Jim at great length as usual, and the seeds
+were sown for some future collaboration. Jim began flooding my inbox with years
+of thoughts on the handling of bicycles and it turned out that Arend had just
 applied for a big grant to fund two PhD students for bicycle handling research
 that was uncannily similar to what I was dreaming up myself. I hadn&#8217;t decided
 to do my PhD at UC Davis quite yet and Arend&#8217;s potential PhD slot was enticing
@@ -98,7 +98,7 @@ some updates, clarifications, and additions. Jodi and Arend were the primary
 writers of the paper. My contributions were more of the experimental design,
 performing the experiments, analyzing the data, discussing results and working
 on a visualization graphical interface that we never really used due to the
-in-ability to synchronize the video data we took with the sensor data.</p>
+inability to synchronize the video data we took with the sensor data.</p>
 </div>
 <div class="section" id="abstract">
 <h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
@@ -129,7 +129,7 @@ bicycle not only moves the handlebars but also may make use of their upper
 body and other extremities. These rider body motions are even more profound
 when riding a motorcycle in extreme maneuvers [Cossalter2002].</p>
 <p>The purpose of this study is to identify the major human control actions in
-normal bicycling focusing on the stabilization task. <a class="footnote-reference" href="#id22" id="id10">[1]</a> We use the term
+normal bicycling focusing on the stabilization task. <a class="footnote-reference" href="#id21" id="id10">[1]</a> We use the term
 &#8220;normal&#8221; to describe casual bicycling that requires minimal conscious control.
 The identification is done by visual observation of the rider and measurement
 of the motions of the instrumented bicycle, see <a class="reference internal" href="#figinstrumentedbicycle"><em>Figure 1</em></a>. In order to observe the human control actions a
@@ -164,7 +164,7 @@ held in place by a carbon-fiber boom connected to the down-tube of the rear
 frame, see <a class="reference internal" href="#figinstrumentedbicycle"><em>Figure 1</em></a>. This allowed us to view
 the rider&#8217;s motion with respect to the bicycle frame.</p>
 <div class="figure align-center" id="figinstrumentedbicycle">
-<a class="reference external image-reference" href="_images/instrumented-bicycle.*"><img alt="_images/instrumented-bicycle.jpg" src="_images/instrumented-bicycle.jpg" style="width: 3in;" /></a>
+<a class="reference external image-reference" href="_images/instrumented-bicycle.png"><img alt="_images/instrumented-bicycle.jpg" src="_images/instrumented-bicycle.jpg" style="width: 3in;" /></a>
 <p class="caption">The instrumented bicycle with camera boom and video camera lens (1). On the
 rear rack the measurement computer (2), video camcorder (3) and battery
 packs (4) are positioned. Measured signals are the steer angle and
@@ -267,7 +267,7 @@ bicycle-rider system to many external disturbances such as side wind, traffic
 and road unevenness. To eliminate these disturbances a more controlled
 environment was selected to carry out further studies on human rider control
 for stabilization tasks. The experiments were carried out on a large (3 × 5 m)
-treadmill, shown in <a class="reference internal" href="motioncapture.html#figtreadmill"><em>Figure 3</em></a>. The dynamics of a riderless
+treadmill, shown in <a class="reference internal" href="#figtreadmill"><em>Figure 3</em></a>. The dynamics of a riderless
 bicycle on a treadmill have been shown to be the same as for on flat level
 ground [Kooijman2009] for speeds between 4-6 m/s, so we make this assumption
 for the case with a rider too, albeit with caution.</p>
@@ -315,13 +315,13 @@ consists of four rigid bodies: the rear frame with rigid rider connected, the
 front handlebar and fork assembly, and the two wheels. These are connected by
 ideal hinges and the wheels have idealized pure-rolling contact with level
 ground. [Moore2009a] describes the method used to determine the model
-parameters for the instrumented bicycle-rider system <a class="footnote-reference" href="#id23" id="id14">[2]</a>.  These parameters are
-given in <em class="xref std std-ref">Table 3</em> and the root locus of the system with
-respect to speed is depicted in <a class="reference internal" href="eom.html#figrootlocus"><em>Figure 4</em></a>. At low speed, the
+parameters for the instrumented bicycle-rider system <a class="footnote-reference" href="#id22" id="id14">[2]</a>.  These parameters are
+given in <a class="reference internal" href="#tabparameters"><em>Table 3</em></a> and the root locus of the system with
+respect to speed is depicted in <a class="reference internal" href="#figdelftrootlocus"><em>Figure 4</em></a>. At low speed, the
 dominant mode is the unstable oscillatory weave mode. This weave motion becomes
 stable around 18 km/h, the weave critical speed. At higher speeds, the
 non-oscillatory capsize motion becomes unstable but since its time to double so
-long it considered to be very easy to control. With those assumptions, we
+long it is considered to be very easy to control. With those assumptions, we
 assert that the instrumented bicycle rider system is in need of human
 stabilizing control below 18 km/h and is stable otherwise.</p>
 <table border="1" class="docutils">
@@ -404,7 +404,7 @@ stabilizing control below 18 km/h and is stable otherwise.</p>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="figrootlocus">
+<div class="figure align-center" id="figdelftrootlocus">
 <a class="reference external image-reference" href="_images/delft-bike-root-locus.png"><img alt="_images/delft-bike-root-locus.png" src="_images/delft-bike-root-locus.png" style="width: 3in;" /></a>
 <p class="caption">Eigenvalues for the linearized stability analysis of an uncontrolled
 bicycle-rider combination for the steady upright motion in the forward speed
@@ -487,7 +487,7 @@ decreased from 20 km/h to 5 km/h.  This increase in steer angle magnitude for
 the decreasing speeds is illustrated in Figure <a class="reference internal" href="#figsteersigma"><em>Figure 8</em></a>.
 This jump in steering amplitude could be indicative of a threshold at which the
 system becomes harder to control, but there is no apparent connection to the
-open loop dynamics. For example the change in both the weave mode time to
+open loop dynamics. For example, the change in both the weave mode time to
 double and natural frequency is approximately the same between 5 and 10 km/h as
 between 10 and 15 km/h.</p>
 <div class="figure align-center" id="figsteernormal20">
@@ -506,14 +506,14 @@ standard deviation of the steer angle is shown in grey.</p>
 the three different experiments.</p>
 </div>
 <p>The frequency content of the steering signal for the different forward speeds
-is shown in <em class="xref std std-ref">Figure 9</em>. The grey vertical dashed line
+is shown in <a class="reference internal" href="#fignormalfreq"><em>Figure 9</em></a>. The grey vertical dashed line
 indicates the rigid rider-bicycle weave frequency. We were not able to
 ascertain any connection between the dominate measured frequencies and the
 natural frequency of the weave mode. We had hypothesized that for speeds in the
 stable speed range, the optimal control frequency of the rider would correspond
 to the weave frequency, due to the fact that an uncontrolled bicycle-rider
 system recovers from perturbations at its natural frequency. The black vertical
-dashed line in each of the plots in Figure <a class="reference internal" href="#fignormalfreq"><em>Figure 10</em></a>
+dashed line in each of the plots in Figure <a class="reference internal" href="#fignormalfreq"><em>Figure 9</em></a>
 indicates the measured pedaling frequency. The figure shows that during normal
 pedaling most of steering action takes place at, or around, the pedaling
 frequency, irrespective of the speed that the bicycle is moving. The pedaling
@@ -525,7 +525,7 @@ where practically all of the steering takes place at the pedaling frequency.</p>
 experiment. Solid vertical line indicates the pedaling frequency. Dashed
 vertical grey line indicates the bicycle &amp; rigid rider weave eigenfrequency.</p>
 </div>
-<p><a class="reference internal" href="#figmaxamp"><em>Figure 11</em></a> plots the maximum steering amplitude versus speed. This
+<p><a class="reference internal" href="#figmaxamp"><em>Figure 10</em></a> plots the maximum steering amplitude versus speed. This
 maximum amplitude reduces with increasing speed and is similar in shape to the
 standard deviation plot in <a class="reference internal" href="#figsteersigma"><em>Figure 8</em></a>.</p>
 <div class="figure align-center" id="figmaxamp">
@@ -551,7 +551,7 @@ the pedaling case. The standard deviation is less than a degree for all speeds
 above 10km/h indicating that little to no steer action is required at higher
 speeds.</p>
 <p>The steer angle frequency spectrum for each of the speeds is shown in
-<a class="reference internal" href="#figtowfreq"><em>Figure 12</em></a>. It was once again expected that the rigid
+<a class="reference internal" href="#figtowfreq"><em>Figure 11</em></a>. It was once again expected that the rigid
 rider/bicycle weave frequency would be a dominant frequency in the frequency
 spectrum, especially with no pedaling. However there appears to be no
 connection with the open loop weave frequency even in the unstable speed range.
@@ -575,7 +575,7 @@ during this destabilizing part of the perturbation maneuver. During the
 subsequent recovery of the bicycle to the upright, straight ahead position, no
 body lean could be noted other than that as a result of the normal pedaling.</p>
 <p>A second phenomenon observable in the video footage, as shown in <a class="reference internal" href="#figperturb"><em>Figure
-13</em></a>, is that at all speeds we observed a lateral knee motion during
+12</em></a>, is that at all speeds we observed a lateral knee motion during
 the short transient recovery process of the bicycle to the upright position.
 The lateral knee motion was very large during the 5 km/h measurement and much
 smaller at the higher speeds, but even at 30 km/h it is visible.</p>
@@ -589,11 +589,11 @@ steering action and the small upper body lean.</p>
 <p>From the video footage we also concluded that the angle that the handlebars are
 turned during and after a perturbation decreased with increasing speed as can
 also be seen in the measured steer angle data as shown in <a class="reference internal" href="#figsteersigma"><em>Figure 8</em></a>.</p>
-<p><a class="reference internal" href="#figperturbfreq"><em>Figure 14</em></a> shows the frequency spectrum of the measured
+<p><a class="reference internal" href="#figperturbfreq"><em>Figure 13</em></a> shows the frequency spectrum of the measured
 steer angle. Once again, for the higher speeds, the steer control action is
 carried out at the pedaling frequency. At the lower speeds (5 - 10 km/h) a
 wider frequency range is again present but the pedaling frequency is dominant.
-<a class="reference internal" href="#figmaxamp"><em>Figure 11</em></a> shows the steering amplitude for the frequency
+<a class="reference internal" href="#figmaxamp"><em>Figure 10</em></a> shows the steering amplitude for the frequency
 with the maximum amplitude. Again the values for the highest speeds are
 similar to those of the standard deviation of the steer angle.</p>
 <div class="figure align-center" id="figperturbfreq">
@@ -623,9 +623,9 @@ previous sections.</p>
 <div class="section" id="experiments">
 <h3>Experiments<a class="headerlink" href="#experiments" title="Permalink to this headline">¶</a></h3>
 <p>As usual with the data deluge, we analyzed very little of the data. We recorded
-at total of 109 one minute runs with two different riders. The previous
-sections only detail some analysis on runs from a single rider and did not
-include results from some other experiments. As a result, the statistical
+a total of 109 one-minute runs with two different riders. The previous
+sections detail only some analysis on runs from a single rider and did not
+include results from all of the experiments. As a result, the statistical
 significance of the presented analysis is somewhat weak. The following list
 details all of the experiments we performed:</p>
 <ul class="simple">
@@ -640,36 +640,36 @@ opposite with both riders. (runs 22-27, 29-34, 115-120, 122-123, 126-131)</li>
 <li>Without pedaling starting at 5 km/h and decreasing speed until the rider could
 no longer balance with both riders. (runs 28, 121, 124, 125)</li>
 <li>Riderless weave stability test in which we increased the speed
-from 12 km/h to 25 km/h to try to detect detect the weave critical speed of
+from 12 km/h to 25 km/h to try to detect the weave critical speed of
 the bicycle. We didn&#8217;t have much luck getting the bicycle to stabilize at all.</li>
 <li>Lateral perturbation at six speeds for each rider. (runs 132-133)</li>
 <li>No hand balancing with pedaling for one rider. (runs 60-71)</li>
 <li>Lane changes for both riders at six speeds. (runs 160-165, 80-85)</li>
-<li>A single attempt at riding with eyes closed. at 30 km/h <a class="footnote-reference" href="#id24" id="id17">[3]</a></li>
+<li>A single attempt at riding with eyes closed. at 30 km/h <a class="footnote-reference" href="#id23" id="id17">[3]</a></li>
 <li>Line tracking at six speeds for one rider. (runs 90-96)</li>
 </ul>
-<p>There is a potentially a considerable amount of findings and better statical
+<p>There is potentially a considerable amount of findings and better statistical
 conclusions that can be made from the data.</p>
 </div>
 <div class="section" id="rate-gyros">
 <h3>Rate Gyros<a class="headerlink" href="#rate-gyros" title="Permalink to this headline">¶</a></h3>
 <p>We mounted three rate sensors to the bicycle to collectively measure the yaw
 rate, <span class="math">\(u_3\)</span>, roll rate, <span class="math">\(u_4\)</span>, and the steer rate, <span class="math">\(u_7\)</span>.
-<a class="footnote-reference" href="#id25" id="id18">[4]</a> We attached a rate gyro to the fork and handlebar assembly which measured
+<a class="footnote-reference" href="#id24" id="id18">[4]</a> We attached a rate gyro to the fork and handlebar assembly which measured
 the body fixed angular rate, <span class="math">\(u_{7s}\)</span>, about the steer axis,
 <span class="math">\(\hat{e}_3\)</span>.  Another rate gyro was attached to the rear frame which
-measured the body fixed angular rate, <span class="math">\(u_{3s}\)</span>, about the axis
+measured the body-fixed angular rate, <span class="math">\(u_{3s}\)</span>, about the axis
 approximately aligned with gravity, <span class="math">\(s_\lambda\hat{c}_1 +
-c_\lambda\hat{c}_3\)</span>. Finally, the third rate gyro was mounted to measure the
+c_\lambda\hat{c}_3\)</span>. Finally, a third rate gyro was mounted to measure the
 body fixed angular rate about a rearward pointing axis,
-<span class="math">\(-c_\lambda\hat{c}_1 - s_\lambda\hat{c}_3\)</span>. <a class="footnote-reference" href="#id26" id="id19">[5]</a> The desired rates are
+<span class="math">\(-c_\lambda\hat{c}_1 - s_\lambda\hat{c}_3\)</span>. <a class="footnote-reference" href="#id25" id="id19">[5]</a> The desired rates are
 found from the measurments with</p>
 <div class="math" id="equation-eqRates">
 <span class="eqno">(1)</span>\[u_3 = u_{3s}\]\[u_4 = -u_{4s}\]\[u_7 = u_{7s} + u_{4s} \operatorname{sin}(\lambda) -
   u_{3s} \operatorname{cos}(\lambda)\]</div>
 <p>We did not analyze any of the data from the rate sensors on the bicycle, but
 some fruitful conclusions could be drawn such as confirming the dependence of
-yaw rate on the steer and roll rates which come from the non-holonomic
+yaw rate on the steer and roll rates which come from the nonholonomic
 constraints. Heading and wheel contact points can be estimated well for these
 tasks, as the rider always tends to &#8220;zero&#8221; heading and the drift from the
 sensor signal integration is quite linear, see Chapter <a class="reference internal" href="davisbicycle.html#davisbicycle"><em>Davis Instrumented Bicycle</em></a> for
@@ -679,16 +679,16 @@ ignoring frame pitch.</p>
 <div class="section" id="steer-sensor-design">
 <h3>Steer sensor design<a class="headerlink" href="#steer-sensor-design" title="Permalink to this headline">¶</a></h3>
 <p>The steer sensor, a simple rotary potentiometer, was mounted with a design that
-is fairly universal for different bicycle designs, <em class="xref std std-ref">Figure 15</em>. It offers axial adjustability and belt tension. The pulley
+is fairly universal for different bicycle designs, <a class="reference internal" href="#figsteersensor"><em>Figure 14</em></a>. It offers axial adjust ability and belt tension. The pulley
 diameters were chosen for +/- 45 degrees of steering angle corresponding to
 about +/- 168 degrees of potentiometer angle. I originally designed it with a
 cord type belt, but it was later switched to a timing belt due to our worry
-about it slipping.  I&#8217;m not 100% that belt slipping did not happen and could
-affect the data we collected.  Integrating the steer rate from the rate gyros
+about it slipping. I&#8217;m not 100% that belt slip did not occur and this could
+affect the data we collected. Integrating the steer rate from the rate gyros
 or differentiating the potentiometer steer angle and comparing the results to
 the other sensor is a way to check. I examined one run and did not find belt
 slip.</p>
-<div class="figure align-center">
+<div class="figure align-center" id="figsteersensor">
 <a class="reference external image-reference" href="_images/steer-angle-sensor-annotated.png"><img alt="_images/steer-angle-sensor-annotated.png" src="_images/steer-angle-sensor-annotated.png" style="width: 3in;" /></a>
 <p class="caption">The original steer angle potentiometer and universal mount.</p>
 </div>
@@ -701,7 +701,7 @@ This requires some way to synchronize the video data with the sensor data. The
 Sony DCR-TV30E Handycam we used had a LANC output port that potentially provided an
 external signal that could be sampled by the data acquisition unit but we never
 quite figured it out. In the meantime though, I designed a graphical user
-interface in Matlab to interact with the data, <em class="xref std std-ref">Figure 16</em>, giving the
+interface in Matlab to interact with the data, <a class="reference internal" href="#figcamgui"><em>Figure 15</em></a>, giving the
 strip chart capabilities and video playback via the <a class="reference external" href="http://sourceforge.net/projects/videoio/">videoIO</a> package developed by Gerald Dalley.
 All would have worked out well, if we could have synchronized the video and
 sensor data, but we abandoned it and moved on to other things. I&#8217;ve made the
@@ -710,7 +710,7 @@ source code and data available for download in case it is of use to anyone.</p>
 <li>Source code: <a class="reference external" href="https://github.com/moorepants/DelftBicycleDataViewer">https://github.com/moorepants/DelftBicycleDataViewer</a></li>
 <li>Data: <a class="reference external" href="http://mae.ucdavis.edu/~biosport/DelftBicycleDataViewerAndData.zip">http://mae.ucdavis.edu/~biosport/DelftBicycleDataViewerAndData.zip</a></li>
 </ul>
-<div class="figure align-center">
+<div class="figure align-center" id="figcamgui">
 <a class="reference external image-reference" href="_images/data-viewer-screenshot.jpg"><img alt="_images/data-viewer-screenshot.jpg" src="_images/data-viewer-screenshot.jpg" style="width: 6in;" /></a>
 <p class="caption">A screenshot of the GUI running on Windows 7. The strip chart advances along
 with the video. The user can scroll through the video and pause at select
@@ -723,7 +723,8 @@ speed and the pedaling cadence are displayed as numerical values.</p>
 <p>These are the parameters computed with the methods in [Moore2009] for the
 second rider, Jason, on the instrumented Batavus Browser. Only the rear frame
 and body parameters are different as the bicycle is identical. We only
-presented data for Arend&#8217;s runs in the previous sections.</p>
+presented data in the previous analysis for runs in which Arend rode the
+bicycle.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="33%" />
@@ -752,30 +753,30 @@ presented data for Arend&#8217;s runs in the previous sections.</p>
 </tbody>
 </table>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="id22" rules="none">
+<table class="docutils footnote" frame="void" id="id21" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id10">[1]</a></td><td>We took data for line tracking tasks also.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id23" rules="none">
+<table class="docutils footnote" frame="void" id="id22" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id14">[2]</a></td><td>The instrumented bicyle was measured less accuratley at this time than
+<tr><td class="label"><a class="fn-backref" href="#id14">[2]</a></td><td>The instrumented bicyle was measured less accurately at this time than
 what is presented in Chapter <a class="reference internal" href="physicalparameters.html#physicalparameters"><em>Physical Parameters</em></a>, so the parameters are
 slightly different.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id24" rules="none">
+<table class="docutils footnote" frame="void" id="id23" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id17">[3]</a></td><td>The closed eye attempt would have been successful if the treadmill was
-infinitely wide, but the run was cut short due to the inevitable lact of
-heading feedback the rider has available causing the rider to drift to the
-edge of the treadmill.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id17">[3]</a></td><td>The closed eye attempt would have been successful if the treadmill had
+been infinitely wide, but the run was cut short due to the inevitable lack
+of heading feedback the rider has available, causing the rider to drift to
+the edge of the treadmill.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id25" rules="none">
+<table class="docutils footnote" frame="void" id="id24" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id18">[4]</a></td><td>The ratiometric sensor voltages were actually measured, but converted to
@@ -784,7 +785,7 @@ the manufacturer&#8217;s specification sheets. Thus, the angular rates are
 reported in the data sets.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id26" rules="none">
+<table class="docutils footnote" frame="void" id="id25" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id19">[5]</a></td><td>See Chapter <a class="reference internal" href="eom.html#eom"><em>Bicycle Equations Of Motion</em></a> for the axes definitions.</td></tr>

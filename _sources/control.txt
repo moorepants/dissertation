@@ -110,7 +110,7 @@ boom in the last decade, with research interests growing. This may coincide
 with the microcontroller advances and potentially some from the growth in
 bicycling.
 
-.. _figPubs::
+.. _figPubs:
 
 .. figure:: figures/control/pub-hist.*
    :width: 4in
@@ -602,7 +602,7 @@ needed to stable simulations. Below the weave critical speed, the bicycle can
 generally be stabilized by a simple gain on roll rate feedback. Note that this
 gain is negative, giving positive feedback. This implies that we apply steer torque
 in the same sense as the rate of fall [#negativegain]_. :ref:`Figure 4
-<figWeaveeStepResponse>` shows the response to a commanded steer torque below
+<figWeaveStepResponse>` shows the response to a commanded steer torque below
 the weave speed and the countersteering in the steer angle.
 
 .. _figWeaveStepResponse:

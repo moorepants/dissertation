@@ -56,67 +56,72 @@
 <span id="physicalparameters"></span><h1>Physical Parameters<a class="headerlink" href="#physical-parameters" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated August 05, 2012 at 14:32:44 PDT).
+<p class="last">This document is a draft which is updated regularly (Last updated August 10, 2012 at 16:34:19 PDT).
 Once I submit if for my doctoral degree at UC Davis, it will be done. So for
 now use at your own risk. The information may or may not be correct.
 Reviews, comments and suggestions are welcome.</p>
 </div>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Check the figure numbering in this Chapter.</p>
+</div>
 <div class="section" id="preface">
 <h2>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
-<p>I was first concerned with the physical parameters of the bicycle and rider in
-my multi-body dynamics class project [Moore2006]. There I developed a method
-of estimating the parameters from simply the geometry and mass of the bicycle
-and rider. I cleaned that work up and presented it in Biarritz, France
-[Moore2008]. This method served me well until we needed to have more accurate
-estimates of the parameters for the first instrumented bicycle I helped build
-at TU Delft, see Chapter <a class="reference internal" href="delftbicycle.html#delftbicycle"><em>Delft Instrumented Bicycle</em></a>. I signed on to the task of
-measuring the bike&#8217;s physical parameters using the equipment and procedures
-developed in [Kooijman2006] and to combine the reuslt with my basic human
-model from [Moore2008] for the estimation of the complete system parameters of
-the Whipple model.  These first measurements and the details of the human model
-were eventually presented in San Diego [Moore2009a]. During this work, Dr.
-Hubbard encouraged me to think about the accuracy of the measurements in more
-detail, as some of the practices we were using were not as accurate as they
-could be. With that in mind and the fact that there was very little complete
-data available on the physical parameters of real bicycles, I decided to
-measure an assortment of bicycles we had available around the lab in Delft
-[Moore2010]. This was certainly a tedious task, but I believe a rich data set
-was created and the measurement methodology tightened up considerably. Once I
-was back in Davis, we setup almost identical equipment to measure the two new
-bicycles we were constructing, see Chatper <a class="reference internal" href="davisbicycle.html#davisbicycle"><em>Davis Instrumented Bicycle</em></a>. Danique
+<p>My first concern with the physical parameters of the bicycle and rider occurred
+in my multi-body dynamics class project [Moore2006]. There I developed a
+method of estimating the parameter values using simply the geometry and mass of
+the bicycle and rider. It was eventually presented as part of a paper at the
+2008 ISEA conference in Biarritz, France [Moore2008]. This method served me
+well until more accurate estimates of the parameters were needed for the first
+instrumented bicycle I helped build at TU Delft, see Chapter
+<a class="reference internal" href="delftbicycle.html#delftbicycle"><em>Delft Instrumented Bicycle</em></a>. I signed on to the task of measuring the bike&#8217;s physical
+parameters using the equipment and procedures developed in [Kooijman2006] and
+to combine the results with my basic human model from [Moore2008] for the
+estimation of the complete system parameters of the Whipple model. These first
+measurements and the details of the human model were eventually presented in
+[Moore2009a]. During this work, Dr.  Hubbard encouraged me to think about the
+accuracy of the measurements in more detail, as some of the practices we were
+using were not as accurate as they could be. With that in mind and the fact
+that there was very little complete data available on the physical parameters
+of real bicycles, I decided to measure an assortment of bicycles we had
+available around the lab in Delft [Moore2010]. From this tedious task a rich
+data set was created and the measurement methodology tightened up considerably.
+Once I was back in Davis, we setup almost identical equipment to measure the
+two new bicycles we were constructing, see Chatper <a class="reference internal" href="davisbicycle.html#davisbicycle"><em>Davis Instrumented Bicycle</em></a>. Danique
 Fintelman helped us come up with a more accurate geometry measurement. Steven
 Yen also used the equipment to measure a children&#8217;s bicycle with a gyro wheel.
-Additionally, we improved the human parameter estimates when Chris Dembia
-implemented Yeadon&#8217;s human inertia model and we combined it with the accurate
-bicycle measurements. These final methods for both bicycle and rider are
-implemented in two open source software packages.</p>
+With one last improvement, we updated the human parameter estimates when Chris
+Dembia implemented Yeadon&#8217;s human inertia model and it was combined with the
+accurate bicycle measurements. These final methods for both bicycle and rider
+are implemented in two open source software packages.</p>
 </div>
 <div class="section" id="bicycle-parameters">
 <span id="secbicycleparameters"></span><h2>Bicycle Parameters<a class="headerlink" href="#bicycle-parameters" title="Permalink to this headline">¶</a></h2>
 <p>Accurate measurements of a bicycle&#8217;s physical parameters are required for
 realistic dynamic simulation and analysis. The most basic models require the
-geometry, mass, mass location and mass distributions for the rigid bodies. More
-complex models require estimates of tire characteristics, human
-characteristics, friction, stiffness, damping, etc. In this chapter I present
-the measurement of the minimal bicycle/rider parameters required for the
-benchmark Whipple bicycle model presented in [Meijaard2007]. This model is
-composed of four rigid bodies, has ideal rolling and frictionless joints, and
-is laterally symmetric. A set of 25 parameters describes the geometry, mass,
-mass location and mass distribution of each of the rigid bodies. The
-experimental methods used to estimate the parameters described herein are based
-primarily on the work done in [Kooijman2006], [Kooijman2008] and
-[Moore2009a] but have been refined for improved accuracy and methodology.</p>
-<p>Koojiman&#8217;s work was preceded by several others, I&#8217;ll mention the most notable
-measurements related to bicycles. Roland and Massing [Roland1971] measured the
-physical parameters of a bicycle in much the same way as is presented,
-including calculations of uncertainty from the indirect measurement techniques.
-Patterson [Patterson2004] used a swing to measure the roll inertia of
-recumbent bicycles with a rider. [Connors2009] and [Stevens2009] used a
-computer aided design package to estimate the parameters.  [Escalona2010]
-measured a bicycle for his bicycle dynamics class in Spain. Some notable
-motorcycle and scooter measurements include [Dohring1953], [Dohring1955],
-[Singh1971], [Eaton1973], [Roland1973], [Zytveld1975], and [Sharp1997b].</p>
-<p>Here I document the indirect measurement of ten real bicycles&#8217; physical
+geometry, mass, mass location, and mass distributions for the rigid bodies.
+More complex models require estimates of tire characteristics, human body
+segment inertial characteristics, friction, stiffness, damping, etc. In this
+chapter I present the measurement of the minimal bicycle/rider parameters
+required for the benchmark Whipple bicycle model presented in [Meijaard2007].
+This model is composed of four rigid bodies, has ideal rolling and frictionless
+joints, and is laterally symmetric. A set of 25 parameters describes the
+geometry, mass, mass location and mass distribution of each of the rigid
+bodies. The experimental methods used to estimate the parameters described
+herein are based primarily on the work done in [Kooijman2006], [Kooijman2008]
+and [Moore2009a] but have been refined for improved accuracy and methodology.</p>
+<p>Koojiman&#8217;s work was preceded by that of several others. Roland and Massing
+[Roland1971] measured the physical parameters of a bicycle in much the same
+way as is presented, including calculations of uncertainty from the indirect
+measurement techniques. [Zytveld1975] measured the inertial parameters of his
+robotic bicycle with a swing pendulum and a stop watch. Patterson
+[Patterson2004] used a swing to measure the roll inertia of recumbent bicycles
+with a rider. [Connors2009] and [Stevens2009] used a computer aided design
+package to estimate the parameters.  [Escalona2010] measured a bicycle for his
+bicycle dynamics class in Spain.  Also, some notable motorcycle and scooter
+measurements include [Dohring1953], [Dohring1955], [Singh1971],
+[Eaton1973], [Roland1973], and [Sharp1997b].</p>
+<p>Here is documented the indirect measurement of ten real bicycles&#8217; physical
 parameters. We improve upon previous methods by both increasing and reporting
 the accuracies of the measurements and by measuring the complete moments of
 inertia of the laterally symmetric frame and fork needed for analysis of the
@@ -142,10 +147,10 @@ presented. The accuracies are based measurement inaccuracies and the proper use
 of error propagation theory with correlations taken into account.</p>
 <div class="section" id="parameters">
 <span id="secparameters"></span><h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
-<p>I was primarily concerned with measuring and estimating the 25 parameters
-associated with the benchmark Whipple bicycle model which is derived and
-described in [Meijaard2007]. The unforced two degree-of-freedom,
-<span class="math">\(\mathbf{q} = [\delta \quad \phi]^T\)</span> model takes the form:</p>
+<p>Of primarily concern was measuring and estimating the 25 parameters associated
+with the benchmark Whipple bicycle model which is derived and described in
+[Meijaard2007]. The unforced two degree-of-freedom, <span class="math">\(\mathbf{q} =
+[\delta \quad \phi]^T\)</span> model takes the form:</p>
 <div class="math" id="equation-eqCanonical">
 <span class="eqno">(1)</span>\[\mathbf{M\ddot{q}}
 +v\mathbf{C}_1\mathbf{\dot{q}}
@@ -159,14 +164,11 @@ mass distribution of the four rigid bodies. The 25 parameters presented in
 [Meijaard2007] are not necessarily a minimum set for the Whipple model, as
 shown in [Sharp2008a], but are useful none-the-less as they represent
 intuitively measurable quantities and have become become standard due to the
-nature of the benchmark. They are also not parameters used in my derivation in
-Chapter <a class="reference internal" href="eom.html#eom"><em>Bicycle Equations Of Motion</em></a> but can easily be converted, as was shown. I did not
-concern myself with measuring many more parameters than are required due to
-the assumptions of the Whipple model such as no-slip tires, lateral symmetry,
-knife edge wheels, etc.</p>
-<p>The 25 parameters can be measured using many techniques. In general, I
-attempted to measure the benchmark parameter as directly as possible to improve
-the accuracy.</p>
+nature of the benchmark. They are also not parameters used in directly in the
+derivation in Chapter <a class="reference internal" href="eom.html#eom"><em>Bicycle Equations Of Motion</em></a> but can easily be converted, as was shown. The
+25 parameters can be measured using many techniques. In general, I attempted to
+measure the benchmark parameter as directly as possible to improve the
+accuracy.</p>
 </div>
 <div class="section" id="bicycle-descriptions">
 <h3>Bicycle Descriptions<a class="headerlink" href="#bicycle-descriptions" title="Permalink to this headline">¶</a></h3>
@@ -187,24 +189,25 @@ Bicycles</em>. The remaining two bicycles were measure in Davis and will be
 referred to as the <em>Davis Bicycles</em>.</p>
 <div class="figure align-center" id="figbicycles">
 <a class="reference external image-reference" href="_images/bicycles.jpg"><img alt="_images/bicycles.jpg" src="_images/bicycles.jpg" style="width: 3.75in;" /></a>
-<p class="caption">The ten measured bicycles: (a) Batavus Browser, (b) Instrumented Batavus
-Browser, (c) Batavus Crescendo Deluxe, (d) Batavus Stratos Deluxe, (e) Gary
-Fisher, (f) Bianchi Pista, (g) Yellow Bicycle, (h) Yellow Bicycle with
-reversed fork, (i) Davis Instrumented Bicycle, (j) Gyro Bicycle. The Davis
-Instrumented Bicycle was measured twice each with the body cast and seat
-height in different positions. The first &#8220;Rigid&#8221; was set up for Jason and
-the second &#8220;Rigidcl&#8221; was set up for Luke and Charlie.</p>
+<p class="caption">The ten<a class="footnote-reference" href="#missing" id="id27">[1]</a> measured bicycles: (a) Batavus Browser, (b)
+Instrumented Batavus Browser, (c) Batavus Crescendo Deluxe, (d) Batavus
+Stratos Deluxe, (e) Gary Fisher, (f) Bianchi Pista, (g) Yellow Bicycle, (h)
+Yellow Bicycle with reversed fork, (i) Davis Instrumented Bicycle, (j) Gyro
+Bicycle. The Davis Instrumented Bicycle was measured twice each with the
+body cast and seat height in different positions. The first &#8220;Rigid&#8221; was set
+up for Jason and the second &#8220;Rigidcl&#8221; was set up for Luke and Charlie.</p>
 </div>
 </div>
 <div class="section" id="accuracy">
 <span id="secaccuracy"></span><h3>Accuracy<a class="headerlink" href="#accuracy" title="Permalink to this headline">¶</a></h3>
-<p>I have attempted to report the accuracy of the measurements of the parameters.
-Following the footsteps of [Roland1971] I used error propagation theory to
-calculate accuracy of the 25 benchmark parameters. I began by estimating the
-standard deviation of the actual measurements taken, see Section
-<a class="reference internal" href="#secbicyclemeasuredparameters"><em>Bicycle Measured Parameters</em></a>. If <span class="math">\(x\)</span> is a parameter and is a function of
-the measurements, <span class="math">\(u,v,\ldots\)</span>, which are Gaussian random variables then
-<span class="math">\(x\)</span> is also a Gaussian random variable defined as
+<p>We here analyze the accuracy of the measurements of the parameters.  Following
+the lead of [Roland1971] error propagation theory was used to calculate
+accuracy of the 25 benchmark parameters. This begins by estimating the standard
+deviation of the actual measurements taken, see Section
+<a class="reference internal" href="#secbicyclemeasuredparameters"><em>Bicycle Measured Parameters</em></a>. The measurement error was chosen based on
+the measuring tool and methods used. If <span class="math">\(x\)</span> is a parameter and is a
+function of the measurements, <span class="math">\(u,v,\ldots\)</span>, which are Gaussian random
+variables then <span class="math">\(x\)</span> is also a Gaussian random variable defined as
 <span class="math">\(x=f(u,v,\ldots)\)</span>. The sample variance of <span class="math">\(x\)</span> is defined as</p>
 <div class="math" id="equation-sampleVariance">
 <span class="eqno">(2)</span>\[s_x^2 =
@@ -228,7 +231,7 @@ covariance has to be taken into account. Equation <a href="#equation-variance">(
 calculate the variance of all types of functions. I made use of the Python
 package <a class="reference external" href="http://pypi.python.org/pypi/uncertainties/">uncertainties</a>
 [Lebigot2001] to simplify the book keeping of the correlations and variance
-calculations , thus some of the equations for the error are not shown in the
+calculations, thus some of the equations for the error are not shown in the
 following sections.</p>
 </div>
 <div class="section" id="geometry">
@@ -248,10 +251,10 @@ ground through at least ten rotations of the wheel. Each wheel traversal was
 measured separately and the measurements were taken with rider seated on the
 bicycle, except for the gyro bicycle which had no rider. A 72 kg rider sat on
 the Delft bicycles and an 84 kg rider on the Davis instrumented bicycle
-<a class="footnote-reference" href="#weight" id="id29">[1]</a>. A 30 meter tape measure (resolution: 2mm) was pulled tight and
-taped on a flat level smooth floor for the Delft bicycles and we marked a 68
+<a class="footnote-reference" href="#weight" id="id30">[2]</a>. A 30 meter tape measure (resolution: 2mm) was pulled tight and
+taped on a flat level smooth floor for the Delft bicycles and for the Davis bicycles we marked a 68
 foot length on the floor and used a 1/16 inch resolution ruler to measure the 6
-to 15 inch additional distance for the Davis bicycles. The tire was marked and
+to 15 inch distance past the 68 foot mark where the rotation stopped. The tire was marked and
 aligned with the tape measure <a class="reference internal" href="#figtirechalk"><em>Figure 2</em></a>. The accuracy of the
 distance measurement is approximately <span class="math">\(\pm0.01\)</span> meter. The tires were
 pumped to the recommended inflation pressure before the measurements. The wheel
@@ -290,7 +293,7 @@ tube angle, <span class="math">\(\gamma\)</span>.</p>
 <div class="section" id="trail">
 <span id="sectrail"></span><h4>Trail<a class="headerlink" href="#trail" title="Permalink to this headline">¶</a></h4>
 <p>The idealized trail is difficult to measure directly due to the fact that the
-tire has a contact patch and there is no distinct contact point. I instead
+tire has a contact patch and there is no distinct contact point. Instead I
 chose to measure the fork offset, <span class="math">\(f_o\)</span>, and compute the ideal trail. The
 fork offset was measured by clamping the steer tube of the front fork into a
 v-block on a flat table, <a class="reference internal" href="#figforkoffset"><em>Figure 4</em></a>. For the Delft
@@ -323,7 +326,7 @@ distance from one wheel axle center to the other.</p>
 measured directly. I used this method for the Davis Bicycles. The bicycle frame
 is set on a granite measurement table such that the head tube is in a v-block
 and parallel to the table surface and the bicycle frame is situated such that
-the frame is perpendicular to the table surface, <a class="reference internal" href="#figalternativegeometry"><em>Figure 5</em></a>. The is fork rotated in the head tube such that the
+the frame is perpendicular to the table surface, <a class="reference internal" href="#figalternativegeometry"><em>Figure 5</em></a>. The fork is rotated in the head tube such that the
 fork blades curve upwards. Two dummy axles are fit into the front and rear
 dropouts and the axles are ensured to be parallel to the table surface. The
 height from the table surface to the top of each axle are recorded with a
@@ -342,7 +345,7 @@ dimensions, <span class="math">\(d_1\)</span>, <span class="math">\(d_2\)</span>
 <span class="eqno">(9)</span>\[d_3 = h_4 - h_5 + \frac{\hat{d}_4 - \hat{d}_3}{2}\]</div>
 <div class="math" id="equation-d2">
 <span class="eqno">(10)</span>\[d_2 = \sqrt{\left(d + \frac{\hat{d}_2 + \hat{d}_3}{2}\right)^2 - (d_1 - d_2)^2}\]</div>
-<p>The traditional [Meijaard2007] parameters can then be calculated. If the
+<p>The traditional [Meijaard2007] parameters can then be calculated. If
 <span class="math">\(r_F\)</span> does not equal <span class="math">\(r_R\)</span> then the steer axis tilt cannot be
 computed analytically as Equation <a href="#equation-eqLambda">(11)</a>  holds.</p>
 <div class="math" id="equation-eqLambda">
@@ -361,17 +364,16 @@ computed analytically as Equation <a href="#equation-eqLambda">(11)</a>  holds.<
 <div class="section" id="mass">
 <span id="secmass"></span><h3>Mass<a class="headerlink" href="#mass" title="Permalink to this headline">¶</a></h3>
 <p>For the Delft bicycles, each of the four bicycle parts were measured using a
-Molen 20 kilogram scale with a resolution of 20 grams. The accuracy was
-conservatively assumed to also be <span class="math">\(\pm20\)</span> grams. Also, the total mass was
-measured using a spring scale with a resolution of 100 grams. The total mass
-was only used for comparison purposes, as it was not very accurate. The mass of
-the parts of the Davis bicycles were measured with a digital scale with a
-resolution of 50 grams (A &amp; D FV-150k Industrial Scale).</p>
+Molen 20 kilogram scale with a resolution of 20 grams, <a class="reference internal" href="#figmassscale"><em>Figure
+6</em></a>. The accuracy was conservatively assumed to also be
+<span class="math">\(\pm20\)</span> grams. Also, the total mass was measured using a spring scale
+with a resolution of 100 grams. The total mass was only used for comparison
+purposes, as it was not very accurate. The mass of the parts of the Davis
+bicycles were measured with a digital scale with a resolution of 50 grams (A &amp;
+D FV-150k Industrial Scale).</p>
 <div class="figure align-center" id="figmassscale">
 <a class="reference external image-reference" href="_images/mass-scale.jpg"><img alt="_images/mass-scale.jpg" src="_images/mass-scale.jpg" style="width: 3in;" /></a>
-<p class="caption">figMassScale</p>
-<div class="legend">
-The scale used to measure the mass of each Delft bicycles&#8217; components.</div>
+<p class="caption">The scale used to measure the mass of each Delft bicycles&#8217; components.</p>
 </div>
 </div>
 <div class="section" id="center-of-mass">
@@ -427,11 +429,11 @@ rotated about the <span class="math">\(Y\)</span> axis.</p>
 <span class="eqno">(15)</span>\[\beta_\mathrm{B} = \lambda - \alpha_\mathrm{B}\]\[\sigma_{\beta}^{2} = \sigma_{\lambda}^{2} + \sigma_{\alpha}^{2}\]</div>
 <p>The center of mass can be found by realizing that the pendulum axis <span class="math">\(X_P\)</span>
 is simply a line in the nominal bicycle reference frame with a slope <span class="math">\(m\)</span>
-and a z-intercept <span class="math">\(b\)</span> where the <span class="math">\(i\)</span> subscript corresponds the
+and a z-intercept <span class="math">\(b\)</span> where the <span class="math">\(i\)</span> subscript corresponds to the
 different frame orientations, see <a class="reference internal" href="#figtriangle"><em>Figure 10</em></a>. The slope can
 be shown to be</p>
 <div class="math" id="equation-eqSlope">
-<span class="eqno">(16)</span>\[m_{\mathrm{B}i} = -\tan{\beta_{\mathrm{B}i}}\]\[\sigma_{m}^{2} = \sigma_{\beta}^{2}\sec^{4}{\beta}\]</div>
+<span class="eqno">(16)</span>\[m_\mathrm{B} = -\tan{\beta_\mathrm{B}}\]\[\sigma_{m}^{2} = \sigma_{\beta}^{2}\sec^{4}{\beta}\]</div>
 <div class="figure align-center" id="figtriangle">
 <a class="reference external image-reference" href="_images/com-triangle.png"><img alt="_images/com-triangle.png" src="_images/com-triangle.png" style="width: 2.75in;" /></a>
 <p class="caption">Exaggerated intersection of the three pendulum axes and the location of the
@@ -450,12 +452,12 @@ laterally symmetric frame, but more orientations increase the center of mass
 measurement accuracy. The three lines are defined as</p>
 <div class="math" id="equation-eqLine">
 <span class="eqno">(18)</span>\[z_{\mathrm{B}i}(x) = m_{\mathrm{B}i} x + b_{\mathrm{B}i}\]</div>
-<p>The mass center location can be calculated by finding the intersection of these
-three lines. Two approaches were used used to calculate the center of mass.
-Intuition leads one to think that the center of mass may be located at the
-centroid of the triangle made by the three intersecting lines. The centroid can
-be found by calculating the intersection point of each pair of lines and then
-averaging the three intersection points <a class="footnote-reference" href="#leastsquares" id="id31">[2]</a>.</p>
+<p>The mass center location can be calculated by finding the intersection of pairs
+of these three lines. Two approaches were used used to calculate the center of
+mass. Intuition leads one to think that the center of mass may be the centroid
+of the triangle made by the three intersecting lines. The centroid can be found
+by calculating the intersection point of each pair of lines and then averaging
+the three intersection points <a class="footnote-reference" href="#leastsquares" id="id32">[3]</a>.</p>
 <div class="math" id="equation-eqLinearSystem">
 <span class="eqno">(19)</span>\[\begin{split} \begin{bmatrix}
      x_a\\
@@ -522,20 +524,20 @@ a\sec\beta\tan\beta\right)^{2} + \sigma_{r_\mathrm{F}}^{2} +
 steer torque sensor with universal joint. Due to the fact that the sensor and
 joint were not designed to support the weight of the adjacent components and
 the fact that we needed the inertia of the portion above the torque sensor for
-proper estimation of the steer torque applied by the rider <a class="footnote-reference" href="#steertorque" id="id32">[3]</a>, we
+proper estimation of the steer torque applied by the rider <a class="footnote-reference" href="#steertorque" id="id33">[4]</a>, we
 opted to measure the center of mass and inertia of the fork and handlebar
 separately. The fork was measured as previously described, with the universal
 joint locked in its nominal position. The handlebar was measured in a similar
 fashion making use of small clamps to hang it in different orientations,
-<a class="reference internal" href="#fighandlebar"><em>Figure 11</em></a>.</p>
+<a class="reference internal" href="#fighandlebar"><em>Figure 12</em></a>.</p>
 <div class="figure align-center" id="fighandlebar">
 <img alt="_images/handlebar.jpg" src="_images/handlebar.jpg" style="width: 2.5in;" />
 <p class="caption">The handlebar mounted as a torsional pendulum.</p>
 </div>
-<p>I choose the center of the stem clamp bolt to be the reference point (as was
+<p>I choose the center of the stem clamp bolt to be the reference point (as were
 the front and rear wheel centers for the front and rear frames). The location
 of this point relative to the front wheel center was measured as shown in
-<a class="reference internal" href="#fighandlebargeometry"><em>Figure 12</em></a>.</p>
+<a class="reference internal" href="#fighandlebargeometry"><em>Figure 13</em></a>.</p>
 <div class="figure align-center" id="fighandlebargeometry">
 <a class="reference external image-reference" href="_images/handlebar-geometry.png"><img alt="_images/handlebar-geometry.png" src="_images/handlebar-geometry.png" style="width: 2.56in;" /></a>
 <p class="caption">A diagram of how the handlebar reference point was located with respect to
@@ -551,7 +553,7 @@ center to the handlebar reference point are as follows</p>
 the global bicycle reference frame are</p>
 <div class="math" id="equation-u1u2">
 <span class="eqno">(24)</span>\[u_1 = l_2 \operatorname{sin}(\lambda) - l_1 \operatorname{cos}(\lambda)\]\[u_2 = \frac{u_1}{\operatorname{tan}(\lambda)} + \frac{l_1}{\operatorname{sin}(\lambda)}\]</div>
-<p>The center of mass in computed with respect to the handlebar reference point
+<p>The center of mass is computed with respect to the handlebar reference point
 and <span class="math">\(u_1\)</span> and <cite>u_2</cite> locate the reference point of the handlebar to the
 front wheel center and thus the global origin.</p>
 </div>
@@ -573,7 +575,7 @@ times. No extra care was taken to calibrate the rate gyro, maintain a constant
 power source (i.e. the battery drains slowly), or account for drift because I
 was only concerned with the period. The raw voltage signal was used to
 determine the period of oscillation which is needed for the moment of inertia
-calculations, <a class="reference internal" href="#figvoltage"><em>Figure 13</em></a>.</p>
+calculations, <a class="reference internal" href="#figvoltage"><em>Figure 14</em></a>.</p>
 <div class="figure align-center" id="figvoltage">
 <a class="reference external image-reference" href="_images/BrowserFrameCompoundFirst2.jpg"><img alt="_images/BrowserFrameCompoundFirst2.png" src="_images/BrowserFrameCompoundFirst2.png" style="width: 4in;" /></a>
 <p class="caption">Example portion of the raw voltage data taken during a 30 second measurement
@@ -590,7 +592,7 @@ potentially ignorable) damping. There were several instances in the Delft
 experiments of beating-like phenomena for some of the parts at particular
 orientations. Roland and Massing, [Roland1971], also encountered this problem
 and used a bearing to prevent the torsional pendulum from swinging.
-<a class="reference internal" href="#figbeating"><em>Figure 14</em></a> shows an example of the beating like phenomena. I
+<a class="reference internal" href="#figbeating"><em>Figure 15</em></a> shows an example of the beating like phenomena. I
 used Roland and Massing&#8217;s solution to prevent this in the Davis measurements.</p>
 <div class="figure align-center" id="figbeating">
 <a class="reference external image-reference" href="_images/CrescendoForkTorsionalFirst2.jpg"><img alt="_images/CrescendoForkTorsionalFirst2.png" src="_images/CrescendoForkTorsionalFirst2.png" style="width: 4in;" /></a>
@@ -598,11 +600,11 @@ used Roland and Massing&#8217;s solution to prevent this in the Davis measuremen
 the Delft trials.</p>
 </div>
 <p>The physical phenomenon observed corresponding to data sets such as these
-occurred when the bicycle frame or fork was perturbed torsionally. After set
-into motion the torsional motion dampened and a longitudinal swinging motion
+occurred when the bicycle frame or fork was perturbed torsionally. After being set
+into motion, the torsional motion damped and a longitudinal swinging motion
 increased. The motions alternated back and forth with neither ever reaching
 zero. The frequencies of these motions were very close to one another and it
-was not apparent how dissect the two. We explored fitting to a function such as</p>
+was not apparent how to dissect the two. We explored fitting to a function such as</p>
 <div class="math" id="equation-eqnSumSines">
 <span class="eqno">(26)</span>\[y(t) = A\sin{(\omega_1 t)} + B\sin{(\omega_2 t + \phi)} + C\]</div>
 <p>But the fit predicts that <span class="math">\(\omega_1\)</span> and <span class="math">\(\omega_2\)</span> are very
@@ -636,53 +638,53 @@ with low <span class="math">\(r^2\)</span> values.</p>
 <p>A torsional pendulum was used to measure all moments of inertia about axes in
 the laterally symmetric plane of each of the wheels, fork and frame. The
 pendulum is made up of a rigid mount, an upper clamp, a torsion rod, and
-various lower clamps, <a class="reference internal" href="#figfixture"><em>Figure 15</em></a> .</p>
+various lower clamps, <a class="reference internal" href="#figfixture"><em>Figure 16</em></a> .</p>
 <div class="figure align-center" id="figfixture">
 <a class="reference external image-reference" href="_images/fixture.jpg"><img alt="_images/fixture.jpg" src="_images/fixture.jpg" style="width: 2in;" /></a>
 <p class="caption">The rigid pendulum fixture from the Delft experiments mounted to a concrete
 column.</p>
 </div>
-<p>A mild steel rod was used as the torsion spring. Lightweight, low relative
-moment of inertia clamps were constructed that could clamp the torsional rod to
+<p>A mild steel rod was used as the torsion spring. Lightweight, relatively low
+moment of inertia clamps were constructed that could fix the torsional rod to
 the various bicycle parts. The moments of inertia of the clamps were neglected
-<a class="footnote-reference" href="#clamps" id="id34">[4]</a>.</p>
+<a class="footnote-reference" href="#clamps" id="id35">[5]</a>.</p>
 <p>The torsional pendulum was calibrated using a rod with an easily computed, i.e.
-&#8220;known&#8221;, moment of inertia <a class="reference internal" href="#figrod"><em>Figure 16</em></a> <a class="footnote-reference" href="#rod" id="id35">[5]</a>. A torsional
+&#8220;known&#8221;, moment of inertia <a class="reference internal" href="#figrod"><em>Figure 17</em></a> <a class="footnote-reference" href="#rod" id="id36">[6]</a>. A torsional
 pendulum almost identical to the one used in [Kooijman2006] was used to
 measure the average period <span class="math">\(\overline{T}_i\)</span> of oscillation of the rear
 frame at three different orientation angles <span class="math">\(\beta_i\)</span>, where <span class="math">\(i=1\)</span>,
 <span class="math">\(2\)</span>, <span class="math">\(3\)</span>, as shown in <a class="reference internal" href="#figtriangle"><em>Figure 10</em></a>. The parts were
-perturbed lightly, around 1 degree, and allowed to oscillate about the pendulum
+perturbed slightly, around 1 degree, and allowed to oscillate about the pendulum
 axis through several periods. This was repeated at least three times for each
 frame and the recorded periods were averaged.</p>
 <div class="figure align-center" id="figrod">
 <a class="reference external image-reference" href="_images/rod.jpg"><img alt="_images/rod.jpg" src="_images/rod.jpg" style="width: 2in;" /></a>
 <p class="caption">The steel calibration rod. The moment of inertia of the rod, <span class="math">\(I_P =
-\frac{m_P}{12}(3 r_P^2 + l_P^2)\)</span>, can be used to estimate the stiffness of the
-pendulum, <span class="math">\(k = \frac{4 I_P \pi^2}{\overline{T_P}^2}\)</span>.</p>
+\frac{m_P}{12}(3 r_P^2 + l_P^2)\)</span>, can be used to estimate the stiffness of
+the torsional pendulum, <span class="math">\(k = \frac{4 I_P \pi^2}{\overline{T_P}^2}\)</span>.</p>
 </div>
 </div>
-<div class="section" id="id37">
-<h4>Wheels<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id38">
+<h4>Wheels<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h4>
 <p>Estimating the full inertia tensors of the wheels is less complex because the
 wheels are assumed symmetric about three orthogonal planes making all products
-of inertia to be zero. The <span class="math">\(I_{xx}=I_{zz}\)</span> moments of inertia were
-calculated by measuring the averaged period of oscillation about an axis in the
+of inertia zero. The <span class="math">\(I_{xx}=I_{zz}\)</span> moments of inertia were calculated
+by measuring the averaged period of oscillation about an axis in the
 <span class="math">\(XZ_B\)</span>-plane using the torsional pendulum setup and Equation
-<a href="#equation-eqTorPend">(32)</a>. The wheels are assumed to be laterally symmetric about any
-radial axis. Thus only two moments of inertia are required for the set of
+<a href="#equation-eqTorPend">(32)</a>. The wheels are also assumed to be laterally symmetric about
+any radial axis. Thus only two moments of inertia are required for the set of
 benchmark parameters [Meijaard2007]. The moment of inertia about the axle was
-measured by hanging the wheel as a compound pendulum, <a class="reference internal" href="#figwheeliyy"><em>Figure 17</em></a>. The wheel was hung on a horizontal rod and perturbed to
+measured by hanging the wheel as a compound pendulum, <a class="reference internal" href="#figwheeliyy"><em>Figure 18</em></a>. The wheel was hung on a horizontal rod and perturbed to
 oscillate about the axis of the rod. The rate gyro was attached to the spokes
-near the hub and oriented mostly along the axle axis. The wheels for the Delft
-bicycles would rotate at the rod contact point about the vertical axis which
-added a very low frequency component of rate along the vertical radial axis,
-but this should have little affect on the period estimation about the compound
-pendulum axis. A fixture was designed for the Davis bicycles that prevented
-non-desired rotation. The pendulum length is the distance from the rod/rim
-contact point to the mass center of the wheel.  The inner diameter of the rim
-was measured and divided by two to get <span class="math">\(l_\mathrm{F,R}\)</span>. The moment of
-inertia about the axle is calculated from</p>
+near the hub<a class="footnote-reference" href="#gyroloc" id="id40">[7]</a> and oriented mostly along the axle axis. The wheels
+for the Delft bicycles would rotate at the rod contact point about the vertical
+axis which added a very low frequency component of rate along the vertical
+radial axis, but this should have little effect on the period estimation about
+the compound pendulum axis. A fixture was designed for the Davis bicycles that
+prevented undesired rotation. The pendulum length is the distance from the
+rod/rim contact point to the mass center of the wheel<a class="footnote-reference" href="#compoundrod" id="id41">[8]</a>. The
+inner diameter of the rim was measured and divided by two to get
+<span class="math">\(l_\mathrm{F,R}\)</span>. The moment of inertia about the axle is calculated from</p>
 <div class="math" id="equation-eqCompoundInertia">
 <span class="eqno">(30)</span>\[I_{\mathrm{F,R}yy} = \left(\frac{\bar{T}_\mathrm{F,R}}{2\pi}\right)^2
 m_\mathrm{F,R} g l_\mathrm{F,R} - m_\mathrm{F,R} l_\mathrm{F,R}^2\]</div>
@@ -691,7 +693,7 @@ m_\mathrm{F,R} g l_\mathrm{F,R} - m_\mathrm{F,R} l_\mathrm{F,R}^2\]</div>
 <p class="caption">A wheel hung as a compound pendulum.</p>
 </div>
 <p>The radial moment of inertia was measured by hanging the wheel as a torsional
-pendulum, <a class="reference internal" href="#figfwheeltor"><em>Figure 18</em></a>. The wheel was first hung freely such
+pendulum, <a class="reference internal" href="#figfwheeltor"><em>Figure 19</em></a>. The wheel was first hung freely such
 that the center of mass aligned with the torsional pendulum axis and then the
 clamp secured. The wheel was then perturbed and oscillated about the vertical
 pendulum axis. The radial moment of inertia can be calculated with</p>
@@ -704,17 +706,17 @@ pendulum axis. The radial moment of inertia can be calculated with</p>
 </div>
 <div class="section" id="frame">
 <h4>Frame<a class="headerlink" href="#frame" title="Permalink to this headline">¶</a></h4>
-<p>At least three measurements were made to estimate the globally referenced
-moments and products of inertia (<span class="math">\(I_{\mathrm{B}xx}\)</span>,
-<span class="math">\(I_{\mathrm{B}xz}\)</span> and <span class="math">\(I_{\mathrm{B}zz}\)</span>) of the rear frame. The
+<p>At least three measurements were made to estimate the locally level moments and
+products of inertia (<span class="math">\(I_{\mathrm{B}xx}\)</span>, <span class="math">\(I_{\mathrm{B}xz}\)</span>, and
+<span class="math">\(I_{\mathrm{B}zz}\)</span>) of the rear frame in the nominal configuration. The
 rear frame was typically hung from either the three main tubes (seat tube, down
-tube and top tube), the seat post, or a small fixture mounted to the brake
-mounts <em class="xref std std-ref">Figure 19</em>. The rear fender prevented easy connection
-to the seat tube on some of the bikes and the clamp was attached to the fender.
-The fender was less rigid than the frame tube. For best accuracy with only
-three orientation angles, the frame should be hung at three angles that are
-<span class="math">\(120^\circ\)</span> apart. Attaching by the three tubes on the frame generally
-provide that the orientation angles were spread evenly at about
+tube, and top tube), the seat post, or a small fixture mounted to the brake
+mounts <a class="reference internal" href="#figpendulumangle"><em>Figure 8</em></a>. The rear fender prevented easy
+connection to the seat tube on some of the bikes and the clamp was attached to
+the fender.  The fender was less rigid than the frame tube. For best accuracy
+with only three orientation angles, the frame should be hung at three angles
+that are <span class="math">\(120^\circ\)</span> apart. Attaching by the three tubes on the frame
+generally provide that the orientation angles were spread evenly at about
 <span class="math">\(120^\circ\)</span>. Furthermore, taking data at more orientation angles improved
 the accuracy and was generally possible with standard diamond frame bicycles.</p>
 <p>Three moments of inertia <span class="math">\(J_{\mathrm{B}i}\)</span> about the pendulum axes were
@@ -723,13 +725,14 @@ calculated using</p>
 <span class="eqno">(32)</span>\[J_{\mathrm{B}i} = \frac{k \overline{T}_{\mathrm{B}i}^2}{4\pi^2}\]</div>
 <p>The moments and products of inertia of the rear frame and handlebar/fork
 assembly with reference to the benchmark coordinate system were calculated by
-formulating the relationship between inertial frames</p>
+formulating the relationship between the rotated inertial frames</p>
 <div class="math" id="equation-eqRotIn">
 <span class="eqno">(33)</span>\[\mathbf{J}_{\mathrm{B}i} = \mathbf{R}_i \mathbf{I}_\mathrm{B} \mathbf{R}_i^T\]</div>
-<p>where <span class="math">\(\mathbf{J}_{\mathrm{B}i}\)</span> is the inertia tensor about the pendulum axes,
-<span class="math">\(\mathbf{I}_\mathrm{B}\)</span>, is the inertia tensor in the global reference frame and
-<span class="math">\(\mathbf{R}_{\mathrm{B}i}\)</span> is the rotation matrix relating the two frames,
-<a class="reference internal" href="#figangles"><em>Figure 7</em></a>. The global planar inertia tensor is defined as</p>
+<p>where <span class="math">\(\mathbf{J}_{\mathrm{B}i}\)</span> is the inertia tensor about the pendulum
+reference frame, <span class="math">\(\mathbf{I}_\mathrm{B}\)</span> is the inertia tensor in the
+locally level reference frame, and <span class="math">\(\mathbf{R}_{\mathrm{B}i}\)</span> is the
+rotation matrix relating the two frames, <a class="reference internal" href="#figangles"><em>Figure 7</em></a>. The
+planar inertia tensor is defined as</p>
 <div class="math" id="equation-eqMoI">
 <span class="eqno">(34)</span>\[\begin{split}\mathbf{I}_\mathrm{B}=
 \begin{bmatrix}
@@ -778,18 +781,19 @@ s^{2}_{\beta i}I_{\mathrm{B}zz}\]</div>
 <p>and the moments of inertia can be solved as a linear system or with least
 squares if it is over determined. The inertia of the frame about an axis normal
 to the plane of symmetry was estimated by hanging the frame as a compound
-pendulum at the wheel axis, <a class="reference internal" href="#figframecompound"><em>Figure 19</em></a>. Equation
+pendulum about the wheel axis, <a class="reference internal" href="#figframecompound"><em>Figure 19</em></a>. Equation
 <a href="#equation-eqCompoundInertia">(30)</a> is used but with the mass of the frame and the frame
 pendulum length.</p>
 <div class="math" id="equation-eqFramePendLength">
 <span class="eqno">(38)</span>\[l_B = \sqrt{x_B^2+(z_B + r_R)^2}\]</div>
 <div class="figure align-center" id="figframecompound">
 <a class="reference external image-reference" href="_images/YellowFrameCompoundFirst.jpg"><img alt="_images/YellowFrameCompoundFirst.jpg" src="_images/YellowFrameCompoundFirst.jpg" style="width: 2in;" /></a>
-<p class="caption">The yellow bicycle rear frame hung as a compound pendulum.</p>
+<p class="caption">The yellow bicycle rear frame hung as a compound pendulum about the wheel
+axis (the wheel is fixed in place).</p>
 </div>
 </div>
-<div class="section" id="id39">
-<h4>Fork and handlebar<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id42">
+<h4>Fork and handlebar<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h4>
 <p>The inertia of the fork and handlebar is calculated in the same way as the
 frame. The fork is hung as both a torsional pendulum, <a class="reference internal" href="#figstratosfork"><em>Figure 11</em></a>, and as a compound pendulum, <a class="reference internal" href="#figforkcompound"><em>Figure 20</em></a>. The fork provides fewer mounting options to obtain at least
 three equally spaced orientation angles, especially if there is no fender. We
@@ -955,26 +959,25 @@ estimated in a multitude of ways. Each method has its advantages and
 disadvantages. Many methods exist including cadaver measurements
 ([Dempster1955], [Clauser1969], [Chandler1975]), photogrammetry, ray
 scanning techniques ([Zatsiorsky1983], [Zatsiorsky1990]), water displacement
-([Park1999]), rotating platforms ([Griffith2005]), and mathematical
-geometrical estimation of the body segments ([Yeadon1990a]). [Dohring1953],
-[Eaton1973], and [Patterson2006] measured the moments of inertia and centers
-of mass of a combined rider and vehicle, but this is not always practical
-especially if the properties of multiple riders is desired.</p>
-<p>I approached the human parameter estimation in a more analytical fashion with
-minimal geometrically centric measurements as compared to some of the popular
-measurement techniques. Both methods that were used were based on estimating
-the inertial parameters from mass and geometry measurement along with a human
-body density estimate. With the first method, I estimated the physical
-properties of the rider in a seated position using a simple mathematical
-geometrical estimation similar in idea to [Yeadon1990a] in combination with
-mass data from [Dempster1955]. The second method substitutes Yeadon&#8217;s more
-robust model with my previous one.</p>
+([Park1999]), rotating platforms ([Griffith2005]), and geometrical estimation
+of the body segments ([Yeadon1990a]). [Dohring1953], [Eaton1973], and
+[Patterson2006] measured the moments of inertia and centers of mass of a
+combined rider and vehicle, but this is not always practical especially if the
+properties of multiple riders are desired.</p>
+<p>I approached the human parameter estimation in a more analytical fashion based
+primarily on geometric measurements much like Yeadon. Both methods that were
+used were based on estimating the inertial parameters from mass and geometry
+measurement along with a human body density estimate. With the first method, I
+estimated the physical properties of the rider in a seated position using a
+simple mathematical geometrical estimation similar in idea to [Yeadon1990a] in
+combination with mass data from [Dempster1955]. The second method substitutes
+Yeadon&#8217;s more robust model with my previous one.</p>
 <div class="section" id="simple-geometry-method">
 <h3>Simple Geometry Method<a class="headerlink" href="#simple-geometry-method" title="Permalink to this headline">¶</a></h3>
 <p>This method calculates the center of mass and inertia of a simplified model of
 the ten major human body parts: head, torso, upper and lower arms, and upper
 and lower legs, in a general configuration for sitting on typical bicycles. The
-mass of the rider was measured along with fourteen anthropomorphic measurements
+mass of the rider was measured along with fourteen anthropometric measurements
 of the body. These measurements in combination with the geometrical bicycle
 measurements taken in the previous section (<a class="reference internal" href="#secbicycleparameters"><em>Bicycle Parameters</em></a>) and
 several additional bicycle geometrical measurements are used to define a model
@@ -1008,7 +1011,7 @@ accurately as possible with basic tools but no special attention is given
 further to the accuracy of the calculations due to the fact that modeling the
 human as basic geometric shapes already introduces an unknown error.</p>
 <p>I measured twelve additional geometric values (only five of which are needed
-for this setup <a class="footnote-reference" href="#f1" id="id56">[6]</a>) to assist in configuring the rider to the be seated on
+for this setup <a class="footnote-reference" href="#f1" id="id59">[9]</a>) to assist in configuring the rider to the be seated on
 the bicycle, <a class="reference internal" href="#figbatavusbrowserdim"><em>Figure 22</em></a>.</p>
 <dl class="docutils">
 <dt><span class="math">\(h_{bb}\)</span>, Bottom Bracket Height</dt>
@@ -1026,20 +1029,20 @@ post.</dd>
 tube would intersect the seat tube.</dd>
 <dt><span class="math">\(\lambda_{st}\)</span>, Seat tube angle</dt>
 <dd>The acute angle between the ground and the seat tube.</dd>
-<dt><span class="math">\(l_{f}\)</span>, fork length <a class="footnote-reference" href="#f1" id="id57">[6]</a></dt>
+<dt><span class="math">\(l_{f}\)</span>, fork length <a class="footnote-reference" href="#f1" id="id60">[9]</a></dt>
 <dd>The distance from the center of the front wheel to the intersection of the
 head tube and the down tube.</dd>
-<dt><span class="math">\(w_{fh}\)</span>, front hub width <a class="footnote-reference" href="#f1" id="id58">[6]</a></dt>
+<dt><span class="math">\(w_{fh}\)</span>, front hub width <a class="footnote-reference" href="#f1" id="id61">[9]</a></dt>
 <dd>The distance between the front dropouts.</dd>
-<dt><span class="math">\(w_{hb}\)</span>, handlebar width <a class="footnote-reference" href="#f1" id="id59">[6]</a></dt>
+<dt><span class="math">\(w_{hb}\)</span>, handlebar width <a class="footnote-reference" href="#f1" id="id62">[9]</a></dt>
 <dd>The distance between the handlebar grips.</dd>
-<dt><span class="math">\(l_{hb}\)</span>, handlebar length <a class="footnote-reference" href="#f1" id="id60">[6]</a></dt>
+<dt><span class="math">\(l_{hb}\)</span>, handlebar length <a class="footnote-reference" href="#f1" id="id63">[9]</a></dt>
 <dd>The horizontal distance from the steer axis to the handlebar grips.</dd>
-<dt><span class="math">\(\lambda_{ht}\)</span>, head tube angle <a class="footnote-reference" href="#f1" id="id61">[6]</a></dt>
+<dt><span class="math">\(\lambda_{ht}\)</span>, head tube angle <a class="footnote-reference" href="#f1" id="id64">[9]</a></dt>
 <dd>The angle between the ground and the head tube.</dd>
-<dt><span class="math">\(w_{rh}\)</span>, rear hub width <a class="footnote-reference" href="#f1" id="id62">[6]</a></dt>
+<dt><span class="math">\(w_{rh}\)</span>, rear hub width <a class="footnote-reference" href="#f1" id="id65">[9]</a></dt>
 <dd>The distance between the rear dropouts.</dd>
-<dt><span class="math">\(l_{s}\)</span>, stem length <a class="footnote-reference" href="#f1" id="id63">[6]</a></dt>
+<dt><span class="math">\(l_{s}\)</span>, stem length <a class="footnote-reference" href="#f1" id="id66">[9]</a></dt>
 <dd>The distance from the intersection of the top tube and the head tube to the
 level of the handlebar grips.</dd>
 </dl>
@@ -1333,7 +1336,7 @@ of stadium solids and a single semi-ellipse to more accurately model the human
 geometry. Two apparent deficiencies are the fact that too much detail is taken
 for body parts that have less inertia (i.e. the hands/feet) and at large
 configuration angles for some joints, the inertia is poorly modeled (e.g. the
-butt disappears when the human in a seated position). The model also does not
+buttocks disappears when the human in a seated position). The model also does not
 have full freedom at each joint. Refer to [Yeadon1990a] for a complete
 description of the model.</p>
 <p>Once the inertia of each segment in the Yeadon model is computed, the joint
@@ -1354,7 +1357,7 @@ where the hand grips.</dd>
 somersault joint angle is set such that the torso (P, T, C) aligned by the
 forward lean angle <span class="math">\(\lambda_{fl}\)</span>.</p>
 <p>The basic process for setting the elbow elevation angle is to find the distance
-between the shoulder (La0, Lb0) and the handlebar grip. The handle bar grip
+between the shoulder (La0, Lb0) and the handlebar grip. The handlebar grip
 location is at the point at which the lateral line with length
 <span class="math">\(\frac{w_{hb}}{2}\)</span> intersects the circle formed by the intersection of
 the two spheres which are centered at the front and rear wheel centers with
@@ -1372,7 +1375,7 @@ located at the bottom bracket center and is the same lateral distance from the
 sagittal plane as the hip centers. The knee and thigh elevation angles are then
 found in the same fashion as the elbow and shoulder angles, which the lesser
 restriction that the thigh abduction angle is zero.</p>
-<p><a class="reference internal" href="#fighuman"><em>Figure 23</em></a> shows a visualization of the Yeadon modle when
+<p><a class="reference internal" href="#fighuman"><em>Figure 23</em></a> shows a visualization of the Yeadon model when
 configured to sit on a bicycle. The details of the calculations and all of the
 data is included with the Yeadon [Dembia2011] and BicycleParameters
 [Moore2011a] software packages.</p>
@@ -1386,33 +1389,35 @@ Output is from the BicycleParameters software package.</p>
 <div class="section" id="bicycle-rider-parameters">
 <h2>Bicycle-Rider Parameters<a class="headerlink" href="#bicycle-rider-parameters" title="Permalink to this headline">¶</a></h2>
 <p>Once both the bicycle and rider parameters are known, the parameter for various
-systems can be extracted. The simplest being that the rider is rigidly attached
-to the frame. The parallel axis theorem allows one to calculate the combined
+systems can be extracted. The simplest is that the rider is rigidly attached to
+the frame. The parallel axis theorem allows one to calculate the combined
 inertia of the bicycle frame and the rigid rider. Both of the rider
 formulations also allow one to segment the body for more complex rider models
-with multiple degrees of freedom. For example, the inertia for a leaning rider&#8217;s
-upper body can be determined separately and the legs can be fixed the bicycle
-frame. We make use of this for the different rider biomechanical models
-presented in Chapter <a class="reference internal" href="extensions.html#extensions"><em>Extensions of the Whipple Model</em></a>.</p>
+with multiple degrees of freedom. For example, the inertia for a leaning
+rider&#8217;s upper body can be determined separately and the legs can be fixed in
+the bicycle frame. We make use of this for the different rider biomechanical
+models presented in Chapter <a class="reference internal" href="extensions.html#extensions"><em>Extensions of the Whipple Model</em></a>.</p>
 </div>
 <div class="section" id="software-implementation">
 <h2>Software Implementation<a class="headerlink" href="#software-implementation" title="Permalink to this headline">¶</a></h2>
-<p>The bicycle parameter calculation and the Yeadon method have been implemented in
-two open source software package written in the python language, called <a class="reference external" href="http://pypi.python.org/pypi/yeadon">yeadon</a> and <a class="reference external" href="http://pypi.python.org/pypi/BicycleParameters">BicycleParameters</a>. The Yeadon package takes
-geometric measurements and joint configuration angles and outputs the total
-inertia inertial properties of the human in an arbitrary reference frame or
-inertial properties of individual segments or combinations of segments. It is
-suitable for a wide variety of human dynamic models. The BicycleParameters
-package accepts either the raw measurements described in Section
-<a class="reference internal" href="#secbicycleparameters"><em>Bicycle Parameters</em></a> or the benchmark parameterization [Meijaard2007]
-and computes the benchmark bicycle parameters. It makes use of the Yeadon
-package to allow one to configure riders to sit on the bicycle models and
-outputs the inertial properties of the bicycle/rider system.  It allows one to
-measure all of the raw measurements as described in both the Bicycle and Yeadon
-parameter sections, provide the values, with uncertainties, and it computes the
-parameters for the Whipple Bicycle model. Details of use of the software can be
-found in the documentation for each of the packages:
-<a class="reference external" href="http://packages.python.org/yeadon">http://packages.python.org/yeadon</a>,
+<p>The bicycle parameter calculation and the Yeadon method have been implemented
+in two open source software packages written in the Python language, called
+<a class="reference external" href="http://pypi.python.org/pypi/yeadon">yeadon</a> [Dembia2011] and
+<a class="reference external" href="http://pypi.python.org/pypi/BicycleParameters">BicycleParameters</a>
+[Moore2011a]. The Yeadon package uses geometric measurements and joint
+configuration angles to output the total inertia properties of the human in an
+arbitrary reference frame. It also can provide inertial properties of
+individual body segments or combinations of body segments. It is suitable for a
+wide variety of human dynamic models. The BicycleParameters package accepts
+either the raw measurements described in Section <a class="reference internal" href="#secbicycleparameters"><em>Bicycle Parameters</em></a> or
+the benchmark parameterization [Meijaard2007] and computes the benchmark
+bicycle parameters. It makes use of the Yeadon package to allow one to
+configure riders in a seated position on the bicycle and outputs the inertial
+properties of the bicycle/rider system. Overall it allows one to provide values
+and uncertainties for all of the raw measurements as described in both the
+Bicycle and Yeadon parameter sections and compute the parameters for the
+Whipple Bicycle model. Details of use of the software can be found in the
+documentation for each of the packages: <a class="reference external" href="http://packages.python.org/yeadon">http://packages.python.org/yeadon</a>,
 <a class="reference external" href="http://packages.python.org/BicycleParameters">http://packages.python.org/BicycleParameters</a>.</p>
 </div>
 <div class="section" id="parameter-tables">
@@ -4519,46 +4524,70 @@ parameters of the ten bicycles are given in the following tables.</p>
 </tbody>
 </table>
 <p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="missing" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id27">[1]</a></td><td>Only one image of the Rigid bicycle is shown, even though it was
+measured in two slightly different configurations.</td></tr>
+</tbody>
+</table>
 <table class="docutils footnote" frame="void" id="weight" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id29">[1]</a></td><td>I gained some weight after drinking all that good beer in the
-Netherlands!</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id30">[2]</a></td><td>This is actually the same rider: I gained some weight after
+drinking all that good beer in the Netherlands!</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="leastsquares" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id31">[2]</a></td><td>Alternatively, the three lines can be treated as an over
-determined linear system and the least squares method is used to find a
+<tr><td class="label"><a class="fn-backref" href="#id32">[3]</a></td><td>Alternatively, the three lines can be treated as an over
+determined linear system and the least squares method used to find a
 unique solution. This solution is not the same as the triangle centroid
-method. The solution with the higher accuracy would likely be the preferred
+method. The solution with the higher accuracy would be the preferred
 one.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="steertorque" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id32">[3]</a></td><td>See Chapter <a class="reference internal" href="davisbicycle.html#davisbicycle"><em>Davis Instrumented Bicycle</em></a>.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id33">[4]</a></td><td>See Chapter <a class="reference internal" href="davisbicycle.html#davisbicycle"><em>Davis Instrumented Bicycle</em></a>.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="clamps" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id34">[4]</a></td><td>The Davis clamp was a bit larger relative to forks with no
-handlebars. This may have decreased the accuracy of the related measurments.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id35">[5]</a></td><td>The Davis clamp was a bit larger relative to forks with no
+handlebars. This may have decreased the accuracy of the related measurements.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="rod" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id35">[5]</a></td><td>A different rod was used for the Delft and Davis Bicycles.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id36">[6]</a></td><td>A different rod was used for the Delft and Davis Bicycles.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="gyroloc" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id40">[7]</a></td><td>The gyro should have been attached as close to the pivot point as
+possible to minimize additional inertia, but the weight of the gyro is still
+quite negligible.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="compoundrod" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id41">[8]</a></td><td>I should have used a edge rather than a rod for the pivot, as
+the period for a pendulum about a point contact edge is different than that
+about a rod of non-negligble diameter. The radius of this rod was about 3 mm
+which is neglible to the pendulum length of about 300 mm.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[6]</td><td><em>(<a class="fn-backref" href="#id56">1</a>, <a class="fn-backref" href="#id57">2</a>, <a class="fn-backref" href="#id58">3</a>, <a class="fn-backref" href="#id59">4</a>, <a class="fn-backref" href="#id60">5</a>, <a class="fn-backref" href="#id61">6</a>, <a class="fn-backref" href="#id62">7</a>, <a class="fn-backref" href="#id63">8</a>)</em> These dimensions are not necessary for the provided methods, but are
+<tr><td class="label">[9]</td><td><em>(<a class="fn-backref" href="#id59">1</a>, <a class="fn-backref" href="#id60">2</a>, <a class="fn-backref" href="#id61">3</a>, <a class="fn-backref" href="#id62">4</a>, <a class="fn-backref" href="#id63">5</a>, <a class="fn-backref" href="#id64">6</a>, <a class="fn-backref" href="#id65">7</a>, <a class="fn-backref" href="#id66">8</a>)</em> These dimensions are not necessary for the provided methods, but are
 necessary to build the grid point system. Early on they were used to
 analytically estimate the inertia of the bicycle frame. See [Moore2008]</td></tr>
 </tbody>

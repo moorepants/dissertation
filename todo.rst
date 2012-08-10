@@ -15,3 +15,9 @@ TODO List
 .. todo:: Check over the bib output.
 
 .. todo:: check all the manually numbered figures
+
+.. todo:: Add the bear picture.
+
+.. todo:: Write a conclusion.
+
+.. todo:: sphinxcontrib-bibtex is not resovling hyper links in the pdf.

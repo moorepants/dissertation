@@ -18,10 +18,10 @@ I had contacted the authors of [Meijaard2007]_ in the early winter of 2006 to
 try to get some tips on where to go with my master's thesis, which I wanted to
 do on the handling qualities of bicycles. I had previously come across Arend,
 Jaap, and Jim's conference paper [Schwab2004]_ on their benchmark Whipple model
-used it to help me build and validate my first model earlier that year. Andy,
-Jim, and Arend all replied, Jim at great length as usual, and the seeds were
-sown for some future collaboration. Jim began flooding my inbox with years of
-thoughts on the handling of bicycles and it turned out that Arend had just
+and used it to help me build and validate my first model earlier that year.
+Andy, Jim, and Arend all replied, Jim at great length as usual, and the seeds
+were sown for some future collaboration. Jim began flooding my inbox with years
+of thoughts on the handling of bicycles and it turned out that Arend had just
 applied for a big grant to fund two PhD students for bicycle handling research
 that was uncannily similar to what I was dreaming up myself. I hadn't decided
 to do my PhD at UC Davis quite yet and Arend's potential PhD slot was enticing
@@ -50,7 +50,7 @@ some updates, clarifications, and additions. Jodi and Arend were the primary
 writers of the paper. My contributions were more of the experimental design,
 performing the experiments, analyzing the data, discussing results and working
 on a visualization graphical interface that we never really used due to the
-in-ability to synchronize the video data we took with the sensor data.
+inability to synchronize the video data we took with the sensor data.
 
 Abstract
 ========
@@ -281,7 +281,7 @@ respect to speed is depicted in :ref:`Figure 4 <figDelftRootLocus>`. At low spee
 dominant mode is the unstable oscillatory weave mode. This weave motion becomes
 stable around 18 km/h, the weave critical speed. At higher speeds, the
 non-oscillatory capsize motion becomes unstable but since its time to double so
-long it considered to be very easy to control. With those assumptions, we
+long it is considered to be very easy to control. With those assumptions, we
 assert that the instrumented bicycle rider system is in need of human
 stabilizing control below 18 km/h and is stable otherwise.
 
@@ -636,9 +636,9 @@ Experiments
 -----------
 
 As usual with the data deluge, we analyzed very little of the data. We recorded
-at total of 109 one minute runs with two different riders. The previous
-sections only detail some analysis on runs from a single rider and did not
-include results from some other experiments. As a result, the statistical
+a total of 109 one-minute runs with two different riders. The previous
+sections detail only some analysis on runs from a single rider and did not
+include results from all of the experiments. As a result, the statistical
 significance of the presented analysis is somewhat weak. The following list
 details all of the experiments we performed:
 
@@ -653,7 +653,7 @@ details all of the experiments we performed:
 - Without pedaling starting at 5 km/h and decreasing speed until the rider could
   no longer balance with both riders. (runs 28, 121, 124, 125)
 - Riderless weave stability test in which we increased the speed
-  from 12 km/h to 25 km/h to try to detect detect the weave critical speed of
+  from 12 km/h to 25 km/h to try to detect the weave critical speed of
   the bicycle. We didn't have much luck getting the bicycle to stabilize at all.
 - Lateral perturbation at six speeds for each rider. (runs 132-133)
 - No hand balancing with pedaling for one rider. (runs 60-71)
@@ -661,7 +661,7 @@ details all of the experiments we performed:
 - A single attempt at riding with eyes closed. at 30 km/h [#]_
 - Line tracking at six speeds for one rider. (runs 90-96)
 
-There is a potentially a considerable amount of findings and better statical
+There is potentially a considerable amount of findings and better statistical
 conclusions that can be made from the data.
 
 Rate Gyros
@@ -672,9 +672,9 @@ rate, :math:`u_3`, roll rate, :math:`u_4`, and the steer rate, :math:`u_7`.
 [#]_ We attached a rate gyro to the fork and handlebar assembly which measured
 the body fixed angular rate, :math:`u_{7s}`, about the steer axis,
 :math:`\hat{e}_3`.  Another rate gyro was attached to the rear frame which
-measured the body fixed angular rate, :math:`u_{3s}`, about the axis
+measured the body-fixed angular rate, :math:`u_{3s}`, about the axis
 approximately aligned with gravity, :math:`s_\lambda\hat{c}_1 +
-c_\lambda\hat{c}_3`. Finally, the third rate gyro was mounted to measure the
+c_\lambda\hat{c}_3`. Finally, a third rate gyro was mounted to measure the
 body fixed angular rate about a rearward pointing axis,
 :math:`-c_\lambda\hat{c}_1 - s_\lambda\hat{c}_3`. [#]_ The desired rates are
 found from the measurments with
@@ -691,7 +691,7 @@ found from the measurments with
 
 We did not analyze any of the data from the rate sensors on the bicycle, but
 some fruitful conclusions could be drawn such as confirming the dependence of
-yaw rate on the steer and roll rates which come from the non-holonomic
+yaw rate on the steer and roll rates which come from the nonholonomic
 constraints. Heading and wheel contact points can be estimated well for these
 tasks, as the rider always tends to "zero" heading and the drift from the
 sensor signal integration is quite linear, see Chapter :ref:`davisbicycle` for
@@ -703,12 +703,12 @@ Steer sensor design
 
 The steer sensor, a simple rotary potentiometer, was mounted with a design that
 is fairly universal for different bicycle designs, :ref:`Figure 14
-<figSteerSensor>`. It offers axial adjustability and belt tension. The pulley
+<figSteerSensor>`. It offers axial adjust ability and belt tension. The pulley
 diameters were chosen for +/- 45 degrees of steering angle corresponding to
 about +/- 168 degrees of potentiometer angle. I originally designed it with a
 cord type belt, but it was later switched to a timing belt due to our worry
-about it slipping.  I'm not 100% that belt slipping did not happen and could
-affect the data we collected.  Integrating the steer rate from the rate gyros
+about it slipping. I'm not 100% that belt slip did not occur and this could
+affect the data we collected. Integrating the steer rate from the rate gyros
 or differentiating the potentiometer steer angle and comparing the results to
 the other sensor is a way to check. I examined one run and did not find belt
 slip.
@@ -759,7 +759,8 @@ Rider 2
 These are the parameters computed with the methods in [Moore2009]_ for the
 second rider, Jason, on the instrumented Batavus Browser. Only the rear frame
 and body parameters are different as the bicycle is identical. We only
-presented data for Arend's runs in the previous sections.
+presented data in the previous analysis for runs in which Arend rode the
+bicycle.
 
 .. _tabSecondRiderParameters:
 
@@ -785,14 +786,14 @@ presented data for Arend's runs in the previous sections.
 
 .. [#] We took data for line tracking tasks also.
 
-.. [#] The instrumented bicyle was measured less accuratley at this time than
+.. [#] The instrumented bicyle was measured less accurately at this time than
    what is presented in Chapter :ref:`physicalparameters`, so the parameters are
    slightly different.
 
-.. [#] The closed eye attempt would have been successful if the treadmill was
-   infinitely wide, but the run was cut short due to the inevitable lact of
-   heading feedback the rider has available causing the rider to drift to the
-   edge of the treadmill.
+.. [#] The closed eye attempt would have been successful if the treadmill had
+   been infinitely wide, but the run was cut short due to the inevitable lack
+   of heading feedback the rider has available, causing the rider to drift to
+   the edge of the treadmill.
 
 .. [#] The ratiometric sensor voltages were actually measured, but converted to
    angular rates in real time by applying the conversion factors provided by

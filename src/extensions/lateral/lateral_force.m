@@ -94,7 +94,6 @@ set(plotAxes(1), 'Position', curPos1 + [0, raise, 0, 0])
 set(plotAxes(2), 'Position', curPos2 + [0, raise, 0, 0])
 xLab = get(plotAxes(1), 'Xlabel');
 set(xLab, 'Units', 'normalized')
-set(xLab, 'Position', get(xLab, 'Position') + [0, raise + 0.1, 0])
 
 legend({'$q_4$ $(T_4)$', '$q_7$ $(T_4)$', '$q_4$ $(F_{cl})$', '$q_7$ $(F_{cl})$'}, 'interpreter', 'latex')
 % find all the lines in the current figure
@@ -103,5 +102,12 @@ for i = 3:length(lines)
     set(lines, 'LineWidth', 2.0)
 end
 
+set(xLab, 'Position', get(xLab, 'Position') + [0, raise + 0.1, 0])
 print(fig2, '-dpng', '-r300', '../../../figures/extensions/lat-force-bode.png')
+
+% matlab sucks, the position is different in the pdf and the png and I can't
+% move it for the pdf in the correct position, the following two lines don't
+% seem to do anything
+xLab = get(plotAxes(1), 'Xlabel');
+set(xLab, 'Position', get(xLab, 'Position') + [0, -0.5, 0])
 saveas(fig2, '../../../figures/extensions/lat-force-bode.pdf')

@@ -13,3 +13,5 @@ TODO List
    something different than the html.
 
 .. todo:: Check over the bib output.
+
+.. todo:: check all the manually numbered figures

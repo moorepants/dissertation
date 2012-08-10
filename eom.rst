@@ -1593,16 +1593,17 @@ The following benchmark parameters are all defined in [Meijaard2007]_.
 .. [#standard] I don't necessarily agree that this is a great standard to follow,
    because it creates much unessary confusion when defining and mapping between
    parameterizations. The three axis pointing upward would be less error prone
-   because all of the bicycle is almost universally above the ground plane.
+   because a bicycle is never below the ground plane, except maybe in an
+   academic.
 
 .. [#wheelcontact] The bicycle wheels points of contact are abstract points in
    dynamics. At any given instance of time there are two coincident points at
-   the contact location: one the wheel and one on the ground. If no-slip
+   the contact location: one on the wheel and one on the ground. If no-slip
    rolling is assumed, both of these points are motionless, i.e. their
-   velocities are equal to zero. These points are distinctly different than for
-   example the points that trace out the path on the ground of the contact
-   wheel contact locations through time. Those points are not motionless and do
-   have a velocity.
+   velocities are equal to zero. These points are distinctly different than the
+   points that trace out the path on the ground of the contact wheel contact
+   locations through time. Those points are not motionless and do have a
+   velocity.
 
 .. [#holonomic] This constraint can readily be modified to accomodate a
    non-flat ground.

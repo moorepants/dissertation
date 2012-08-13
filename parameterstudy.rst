@@ -14,7 +14,7 @@ Parameter Studies
 Introduction
 ============
 
-Investigation of the effects of changes in the model parameters are natural
+Investigation of the effects of changes in the model parameters is a natural
 place to start once the various bicycle models are available. For the bicycle
 designer, understanding how changing parameters affects the dynamic
 characteristics is something of a holy grail. If connections can be drawn from
@@ -268,7 +268,7 @@ similar in that they are oscillatory in roll and steer, with steer being
 dominant in magnitude and the phase shifts are slightly larger for the weave
 mode.  But the new mode is stable as opposed to the weave mode being unstable.
 The bicycles measured in [Stevens2009]_ and [Escalonas2011]_ both exhibit this
-mode, but Steven's [Stevens2009]_ parameters are estimated from a CAD drawing,
+mode, but Stevens' [Stevens2009]_ parameters are estimated from a CAD drawing,
 which may not be as accurate as more direct measurements. Steven's does show
 that this mode disappears with very steep or very slack head tube angles. The
 diagrams for very slack head angles more qualitatively resemble the Silver
@@ -418,7 +418,7 @@ Uncertainty
 
 I had intended to calculate the uncertainty in the eigenvalue predictions based
 on the error propagation from the raw measurements, but I never quite figured
-it out. It would be interesting to draw error bars around the modes in the
+it out. It would be interesting to draw error bars on the modes in the
 eigenvalue plots corresponding to the uncertainty values presented in Chapter
 :ref:`physicalparameters`. It would be revealing with respect to the
 experiments that are done which try to estimate the eigenvalues of a stable
@@ -426,7 +426,7 @@ bicycle [Kooijman2008]_, [Kooijman2009]_, [Stevens2009]_, [Escalona2010]_. All
 of the these experiments, except for [Kooijman2009]_, plot a predicted
 eigenvalue for a speed range because it is difficult to maintain constant speed
 with an uncontrolled bicycle, but beyond that the uncertainty in the eigenvalue
-estimates are not reported. These could also be calculated with respect to the
+estimates is not reported. These could also be calculated with respect to the
 fit data. It would be interesting to account for the uncertainties in both
 methods of predicting the eigenvalues and then compare the model's ability to
 predict the data. Because the eigenvalues seem to be rather sensitive to
@@ -494,7 +494,7 @@ from the open loop dynamics to handling, as has been demonstrated in the
 aircraft control literature, but currently correlations to bicycle handling are
 mostly speculative and anecdotal at this point.
 
-For basic diamond frame bicycle, large changes in parameters seem to be needed
+For a basic diamond frame bicycle, large changes in parameters seem to be needed
 for large changes in the dynamics. Most bicycle design parameter values are
 such that the dynamic behavior is quite similar across designs and their
 differences may not be readily detectable by the human. [Tak2010]_ shows that
@@ -516,14 +516,15 @@ Parameter studies may let us find bicycle designs that don't fit the normal
 mold but may still have good handling, see [Kooijman2011]_ for some examples of
 exploring the extremes of the parameter space.
 
-I've shown some qualitative comparisons for real and realistic bicycles. I
-believe that the open loop weave eigenvalue and the critical speed (if there is
-one) does have correlation to what a rider feels when riding a bicycle.
-Everyone can agree that balance is more difficult when starting up than at
-cruising speed. The dynamics show that the system becomes more stable and more
-controllable (in the control system sense) as the speed increases. The weave
-eigenvalue and critical speed are currently as good indicators of stability one
-can get for normal bicycle designs.
+I've shown some qualitative comparisons for real and realistic bicycles. It is
+highly likely that the open loop weave eigenvalue and the critical speed (if
+there is one) correlate to what a rider feels when riding a bicycle, but this
+has yet to be proven with strong experimental evidence. Everyone can agree that
+balance is more difficult when starting up than at cruising speed. The dynamics
+show that the system becomes more stable and more controllable (in the control
+system sense) as the speed increases. The weave eigenvalue and critical speed
+are currently as good indicators of stability one can get for normal bicycle
+designs.
 
 .. rubric:: Footnotes
 

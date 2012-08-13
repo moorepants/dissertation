@@ -30,7 +30,7 @@ spring and signing on for the PhD at Davis. That summer I started thinking
 about applying for a Fulbright grant to study somewhere. I contacted Arend
 again to see if he was interested in having me and he was excited. I told him I
 was going to do it and then put it off. A week shy of the deadline, I told
-Arend I didn't have time to do it. He encouraged me to apply anyways and I
+Arend I didn't have time to do it. He encouraged me to apply anyway and I
 agreed to push through. I spent the next week putting together the proposal
 full time and after several drafts I sent it off. I didn't think about it much
 after that, but luck was on my side and I received the acceptance letter from
@@ -190,14 +190,14 @@ reed relay placed on the rear frame, and a magnet placed on the left crank-arm.
 Town Ride Experiment
 ====================
 
-Our first basic experiment was a short, 15 minute, ride around town. This
+Our first basic experiment was a short, 15 minute ride around town. This
 experiment took place under normal riding conditions (dry weather, day-light,
-etc.), on roads that the rider was familiar with. The course covered included a
+etc.), on roads familiar to the rider. The course covered included a
 round-a-bout, dedicated cycling paths, speed-bumps, pavement, normal tarmac
 roads, tight bends in a residential area and the rider had to stop at a number
 of traffic lights. There were no special precautions taken and the experiment
-was carried out amongst other traffic. From the recorded video and
-sensor data two main observations were made:
+was carried out amongst other traffic. From the recorded video and sensor data
+two main observations were made:
 
 1. The video data showed that there was very little upper body lean relative to
    the rear frame during the entire ride. The small relative upper body lean
@@ -253,7 +253,7 @@ for the case with a rider too, albeit with caution.
      - 183
      - 26
 
-The experiments were carried out by two, male, average ability, riders of
+The experiments were carried out by two male, average ability riders of
 different age and build on the same bicycle. The saddle height was adjusted for
 each rider to ensure proper seating. The rider characteristics are given in
 :ref:`Table 2 <tabRiders>`.  For both riders very similar results were found.
@@ -661,7 +661,7 @@ details all of the experiments we performed:
 - A single attempt at riding with eyes closed. at 30 km/h [#]_
 - Line tracking at six speeds for one rider. (runs 90-96)
 
-There is potentially a considerable amount of findings and better statistical
+There is potentially considerable amount of findings and better statistical
 conclusions that can be made from the data.
 
 Rate Gyros

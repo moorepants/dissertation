@@ -41,8 +41,8 @@ instrumented bicycle. After our first experiments, over a year into the project
 timeline it became apparent that simple tasks with measured lateral
 perturbations would provide the best chance of us validating his model.
 Unfortunately, I had not thought a great deal about how to provide and measure
-these lateral perturbations but the manually excited perturbations seemed to to
-trick.
+these lateral perturbations but the manually excited perturbations seemed to do
+the trick.
 
 We ran a lot of preliminary system identification analyses on the first set of
 trial data, but it quickly became apparent that we had little understanding in
@@ -57,7 +57,7 @@ the data, not to mention write up a ton of work for my dissertation. We ended
 up extending the NSF grant another year (as seems to be typical with these
 things). I look back to our original proposal and in hindsight the scope was
 way too large (accurately predicted by Arend). We nixed the handling qualities
-parts when the funding was lowered, but I now see that what we hope to do
+parts when the funding was lowered, but I now see that what we hoped to do
 really took another 6-12 months than we had intended.
 
 The final analyses has forced me to figure out what system identification is
@@ -186,7 +186,7 @@ Weir, Zellner, and Teper performed an extensive experimental study on
 motorcycle handling qualities for the U.S. National Highway Traffic Safety
 Administration in the late 70's, [Weir1979a]_. This was a follow up to both the
 CALSPAN studies and [Taguchi1975]_ both under or related to the same
-administration. There is litte to no explicit system identification in the
+administration. There is little to no explicit system identification in the
 study but some important elements are there. In terms of the passive model
 identification they present steady state comparisons of their experimental data
 to their models with varying degrees of qualitative agreement and generally
@@ -346,7 +346,7 @@ estimation routine due to the speed of computations and reasonable agreement
 their correlation method. The results indicated that the subjects used no
 integral control (i.e. only position and rate feedback). They could identify
 within a bandwidth of about 2 Hz and noticed that when the system was
-undisturbed their was a 0.5 Hz dominant frequency in the rider's control
+undisturbed there was a 0.5 Hz dominant frequency in the rider's control
 actions. The rate feedback was more dominant in generating the lean control
 input than it was for the steer control input. Also, they found the time delay
 for lean to be larger than the steer time delay and postulate that the steer
@@ -426,7 +426,7 @@ instrumented bicycle he conducts low speed steady turn and balancing tasks and
 measures speed, roll rate, and steer angle.
 
 Along with the experimental data, he developed a bicycle and rider model with
-accompanying controller. The bicycle derivation of the bicycle model is
+accompanying controller. The derivation of the bicycle model is
 questionable due to the non-traditional methods, but he does end up with a
 model which behaves like a bicycle including speed dependent stability. He is
 aware of the need to roll the bicycle frame in the direction of the desired
@@ -456,7 +456,7 @@ balancing part of the control system is done primarily in the lower cortex.
 To me, Doyle's work emphasizes the need for close collaboration between
 psychologists and control engineers to formalize the theory for human balance.
 His intermittent control theory may be valid, but due to the unusual model
-development, simulation and analyses techniques it is hard to gage whether the
+development, simulation and analyses techniques it is hard to gauge whether the
 need for intermittent control was simply artifact of poor modeling. His insight
 into the human control theory is very enlightening and his ways of wording
 bring the theory outside of the traditional control framework for an expansion
@@ -479,7 +479,7 @@ heading and roll tracking tasks.
 He used a four step process for identifying the rider controller 1) he
 "removed" the human remnant by averaging the time histories over several single
 perturbations, 2) he identified a very high order finite impulse response model
-(only a function previous inputs) for the lateral force to steer angle SISO
+(only a function of previous inputs) for the lateral force to steer angle SISO
 pair (lateral perturbation force input and steer angle as output) 3) low pass
 filtered the resulting responses, and 4) he identified the rider controller
 parameters with a grey box model using the filtered FIR simulation results as
@@ -1245,7 +1245,7 @@ it has a harder time predicting the roll angle than the other two models.
 
 The identified models are almost always unstable due to the high weave critical
 speed and even though the measured inputs stabilize the true system, they will
-not necessarily stabilize the models. This poses an issue when gaging the model
+not necessarily stabilize the models. This poses an issue when gauging the model
 quality by the percentage variance of the output data explained by the model. A
 model that blows up during the simulation may not necessarily be a bad model,
 but will return a very small percent variance and loose its ability to be
@@ -2752,8 +2752,8 @@ the optimal solution.
 Through trial and error with many different approaches to identification, I
 found that the optimal solution was not a trivial problem. The SIMO problem
 with full noise estimation has a minimum of 15 parameters. This problem is
-fraught with local minima. Even with the assumption of an output error
-structure and the reduced parameter space to seven, doesn't escape the
+fraught with local minima. Even the assumption of an output error
+structure and the reduction of the parameter space to seven, doesn't escape the
 difficulty of finding the true minima. To have a decent chance at finding a
 good solution, I opted to identify only the SISO system with the lateral force
 as the input and the steering angle as the output. The choice of steer angle as
@@ -2890,7 +2890,7 @@ is possible to evaluate the same loops' frequency responses in an effort to
 understand how the rider chooses the gains.
 
 :ref:`Figure 25 <figAllDeltaDeltac>` shows the frequency response of the closed
-the inner most loop a single speed bin. The theory presented in [Hess2012]_ and
+inner most loop for particular speed bin. The theory presented in [Hess2012]_ and
 Chapter :ref:`control` postulates that the rider chooses a gain such that the
 damping ratio of the high frequency neuromuscular around 10 rad/s and about
 gives about a 10 db peak (:math:`\zeta=0.15`). :ref:`Figure 25
@@ -3052,6 +3052,27 @@ stable response.
    speed bin while the solid black line give the mean gain and phase bounded by
    the dotted black lines which indicate the one sigma standard deviation.
 
+The reader may note that some of the Bode plots among Figures
+:ref:`25<figAllDeltaDeltac>`-:ref:`29<figAllYqEyq>` indicate instability in
+that amplitude and phase characteristics synonymous with quadratic poles with
+small, positive damping ratios are in evidence. For example, one can see the
+evidence of such poles around 1-2 rad/s in :ref:`Figure 25<figAllDeltaDeltac>`
+and 10 rad/s in :ref:`Figure 26<figAllPhidotPhidotc>`. It should be emphasized
+that these Bode plots represent either (1) open-loop transfer functions, or (2)
+inner, closed-loop transfer functions. Hence, they do not imply final, outer
+closed-loop instabilities. Indeed, the Bode plots of the outer-most,
+closed-loop transfer function of :ref:`Figure 31<figAllYqYqc>` (lateral
+deviation) do not indicate any such quadratic poles with small positive damping
+ratios. The question of why the instabilities appear in the former figures,
+particularly :ref:`Figure 25<figAllDeltaDeltac>` is open to question. The cases
+of the instabilities appearing around 10 rad/s could be attributed to numerical
+issues in calculating the transfer functions from the identified state-space
+models. That is, a small numerical error can easily move lightly-damped stable
+poles into the right-half plane. But this may also be attributed to inadequate
+data screening, i.e. the bode plots with instabilities may be outliers and
+generated from runs that have some data corruption. Further investigation is
+needed to determine the inconsistencies.
+
 Conclusion
 ----------
 
@@ -3174,8 +3195,6 @@ detailed enough for reuse.
    simultaneously and enforce the symmetry, which is probably a better idea.
 
 .. [#neurodamp] The nueromuscaulr damping ratio was fixed to 0.707 as per
-   [XXXX]_. The uniqueness of the identifiablity of the parameters is question
-   if this is not fized, as wildly different solutions for the neuromuscular
-   frequency were often found if the damping ratio was left free.
-
-.. todo:: Get citation for neuro damping from Ron on this number
+   [Magaleno1971]_. The uniqueness of the identifiablity of the parameters is
+   question if this is not fixed, as wildly different solutions for the
+   neuromuscular frequency were often found if the damping ratio was left free.

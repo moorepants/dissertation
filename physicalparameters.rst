@@ -431,7 +431,7 @@ Molen 20 kilogram scale with a resolution of 20 grams, :ref:`Figure
 6<figMassScale>`. The accuracy was conservatively assumed to also be
 :math:`\pm20` grams. Also, the total mass was measured using a spring scale
 with a resolution of 100 grams. The total mass was only used for comparison
-purposes, as it was not very accurate. The mass of the parts of the Davis
+purposes, as it was not very accurate. The masses of the parts of the Davis
 bicycles were measured with a digital scale with a resolution of 50 grams (A &
 D FV-150k Industrial Scale).
 
@@ -562,7 +562,7 @@ The z-intercept can be shown to be
    \sigma_{\beta}^{2}a^{2}\sec^{2}{\beta}\tan^{2}{\beta}
 
 Theoretically, the center of mass lies on each line but due to experimental
-error, if there are more than two lines, the lines do not cross all at the same
+error, if there are more than two lines, the lines do not all cross at the same
 point. Only two lines are required to calculate the center of mass of the
 laterally symmetric frame, but more orientations increase the center of mass
 measurement accuracy. The three lines are defined as

@@ -1199,11 +1199,11 @@ the eigenvalues computed at 5 m/s compared to the values in Table 2 of
 .. include:: tables/eom/linear-compare.rst
 
 The lateral dynamics of this linear model are remarkably similar to the
-non-linear model especially around the regime of typical a typical bicycle's
-operating point. :ref:`Figure 5 <figLinSim>` gives an example simulation with
-the same initial conditions as the  :ref:`Figure 4 <figFigFour>`. Notice that
-the lateral dynamics, steer and roll, are almost identical, but that the
-constant forward speed equilibrium condition destroys the conservative property
+non-linear model especially around the regime of a typical bicycle's operating
+point. :ref:`Figure 5 <figLinSim>` gives an example simulation with the same
+initial conditions as the  :ref:`Figure 4 <figFigFour>`. Notice that the
+lateral dynamics, steer and roll, are almost identical, but that the constant
+forward speed equilibrium condition destroys the conservative property
 demonstrated in the non-linear model.
 
 .. _figLinSim:

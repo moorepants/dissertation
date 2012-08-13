@@ -954,8 +954,8 @@ detected during the experiments.
    100% (left axis), the dotted lines are scaled to 20% (right axis).
 
 It is clear that at all speeds most motion takes place in the Steer-Yaw-Roll
-class. Also interesting is that unlike in the normal pedaling situation, the
-Knee motion percentage does not increase at low speeds. This may mean that the
+class. Also interesting is that unlike the normal pedaling situation, the Knee
+motion percentage does not increase at low speeds. This may mean that the
 lateral knee motion is connected to pedaling in some way. Like for the pedaling
 case, the Bounce and Knees classes may contain different principal components
 and a statistical approach to evaluate the percent variance of the classes
@@ -1220,12 +1220,12 @@ effects models and they seemed appropriate for our data sets and would
 potentially allow us to see how the kinematic motions changed with respect to
 speeds, riders, maneuvers, etc. The first step in building a model like is to
 identify the independent and dependent variables. The dependent variables can
-be broken up into continuous variables and factors. Speeds the continuous
-variable, with riders, bicycles and maneuvers as the factors. The independent
-variables are trickier because we recorded time histories, so various
-statistics need to be chosen. These could be things like the results of the PCA
-analyses, but more concrete the kinematic statistics potentially allow for
-more understanding. The PCA we did assumes nothing about the system being
+be broken up into continuous variables and factors. Speed constitutes the
+continuous variable, with riders, bicycles and maneuvers as the factors. The
+independent variables are trickier because we recorded time histories, so
+various statistics need to be chosen. These could be things like the results of
+the PCA analyses, but more concrete the kinematic statistics potentially allow
+for more understanding. The PCA we did assumes nothing about the system being
 studied. For example, one statistic could be the standard deviation of various
 generalized coordinates. I never managed to get far with this as other things
 came up, but at least started thinking about the relevant statistics. The
@@ -1437,10 +1437,9 @@ plane to be a measure of rider lean, :ref:`Figure 17 <figRiderLeanAngle>`.
    :align: center
    :target: _images/rider-lean.png
 
-   A depiction of the rider lean angle. It is irrespective of the rider's
-   forward lean and notice that point 9 can be out of the plane of the bicycle.
-   It is the angle of the back vector projected into a plane normal to the roll
-   axis.
+   A depiction of the rider lean angle. It is independent of the rider's
+   forward lean and point 9 can be out of the plane of the bicycle. It is the
+   angle of the back vector projected into a plane normal to the roll axis.
 
 The rider's lean angle is then calculated by first finding the vector from the
 butt to the upper back

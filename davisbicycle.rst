@@ -182,7 +182,7 @@ the experiment and then focus their attention to lateral control as opposed to
 throttle control. The Amped Bike cruise control worked well for the experiments
 performed on the floor, but was more difficult to match the cruise control to
 the speed of the treadmill. Some sort of feedback control would alleviate the
-difficulties, but we made due. The exposed wires from the hub motor are also
+difficulties, but we made do. The exposed wires from the hub motor are also
 easily susceptible to damage. The bicycle fell over once, damaged the wires and
 shorted the hall effects sensors in the hub. I spent a couple of weeks
 repairing it [#hubdamage]_. Overall, the motor met our needs for constant speed
@@ -434,7 +434,7 @@ relative rotations to the rear frame, with could cause varying disturbances in
 the magnetic field. The hub motor also negatively affected the sensor readings
 and these may have been too great to tune out. I also realized that going with
 a proprietary generic estimator is a bad idea, especially when one has a good
-models of the dynamics of the rigid body that the sensor is attached to. In our
+model of the dynamics of the rigid body that the sensor is attached to. In our
 case if the Kalman filter was programmable, we could tailor it with the bicycle
 model to improve the orientation estimation significantly. Also if the VN-100
 could accept input signals, the filter could be tuned well too. After countless
@@ -896,7 +896,7 @@ Motorcycle Experiments
 ~~~~~~~~~~~~~~~~~~~~~~
 
 [Wilson-Jones1951]_
-   Wilson-Jones beautiful treaty on single track vehicle dynamics may
+   Wilson-Jones beautiful treatise on single track vehicle dynamics may
    demonstrate the first steer torque measurements ever done. He constructed an
    mechanical analog torsion bar that provided the instantaneous steer torque
    to the motorcycle driver via a head tube mounted protractor. He used this to
@@ -907,7 +907,7 @@ Motorcycle Experiments
    plot of steer torque and steer angle from experimental measurements. The
    units for the steering force are in kilograms and I'm not completely sure
    what was being measured. My poor understanding is limited by the light
-   translations I got help with.
+   translations with which I got help.
 [Fu1965]_
    Measures steering torque in steady turns but the resulting data is not
    published in this paper. He refers to it as future work in the review
@@ -991,7 +991,7 @@ Motorcycle Experiments
       :align: center
       :target: _images/biral-steer-torque-design.jpg
 
-      The cantilever beam design.
+      The cantilever beam design taken from [Biral2003]_.
 [James2002]_, [James2005]_
    James measures steer torque on an off-road motorcycle by attaching a
    lightweight secondary handlebar connected to the primary handlebar via a
@@ -1679,7 +1679,7 @@ the upper bearing and lower bearing friction are inconclusive. So the
 assumption that the upper friction is half of the total friction is used to
 compute the actual steer torque.
 
-It is also worth noting that the bearing are under load when a rider is seated
+It is also worth noting that the bearings are under load when a rider is seated
 on the bicycle and that we didn't measure the friction under that loading of
 the bicycle and rider's weight.
 
@@ -2207,7 +2207,7 @@ Signal
    series along with its units. There are basic methods for typical signal
    processing such as differentiation, filtering and frequency spectrum.
 RawSignal
-   The is a subclass of Signal which for the raw signals. This attributes
+   The is a subclass of Signal which for the raw signals. These attributes
    are populated from the database. In addition to the Signal methods, it has
    the ability to scale the signal based on calibration data.
 Sensor
@@ -2271,8 +2271,8 @@ Some recommendations for improvements are as follows:
   VN-100 offer more capabilities including synchronization signals, so that could
   be looked into, but overall it is still a poor (and expensive) choice for
   this application.
-- Add some gearing to the roll angle measurement for better resolution. And
-  develop a more accurate calibration scheme. Perhaps by making use of the
+- Add some gearing to the roll angle measurement for better resolution and
+  develop a more accurate calibration scheme, perhaps by making use of the
   on-board accelerometers.
 - Do away with the torque limiter. Another solution for safeguarding the sensor
   and rider in case of failure is needed.
@@ -2309,10 +2309,8 @@ Some recommendations for improvements are as follows:
    magnitudes are much larger than other rider body movements.
 
 .. [#idealinput] A sum of sines would be ideal, see [Lange2011]_ for some ideas
-   on other types of inputs. It has been shown that a sum of sines signal is
-   not detectable by humans [McRuer1974]_.
-
-   .. todo:: check the McRuer reference
+   on other types of inputs. It has been shown that a sum of sines can provide
+   a non-predictable signal to the human [McRuer1974]_.
 
 .. [#elastic] The elasticity of the steer column may also be a factor.
 

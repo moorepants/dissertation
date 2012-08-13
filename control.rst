@@ -719,10 +719,10 @@ Eaton
 Eaton's PhD work builds off of Weir's work and is primarily focused on
 validating the Weir models with experiments. He pairs the successful motorcycle
 model develop by Sharp [Sharp1971]_ with Weir's McRuer style manual control
-models that were based around the crossover model with time delays. He focus on
-the inner loop roll stabilization tasks. His model feedbacks roll angle and the
-controller compensates for roll angle error. He eliminates body lean control as
-an option to simplify things.
+models that were based around the crossover model with time delays. He focused
+on the inner loop roll stabilization tasks. His model uses roll angle feedback
+and the controller compensates for roll angle error. He eliminates body lean
+control as an option to simplify things.
 
 Aoki
 ----
@@ -801,8 +801,8 @@ experimental data presented in the next Chapter :ref:`systemidentification`. He
 finds that the critical feedback variables for a stable model were roll angle,
 roll rate, steering rate, and the integral of the steer angle, claiming the
 last one in is proportional to heading and thus the rider controls heading with
-steer. He also finds the time delays to generally destabilize his model and
-removes them.
+steer. He also finds the time delays generally destabilize his model and
+he removes them.
 
 Hess
 ----
@@ -925,8 +925,8 @@ The multi-loop model we use is constructed with a sequential loop closure
 technique that sets the model up to follow the dictates of the crossover model.
 The three inner loops manage the roll stabilization task and the outer two
 loops manage the path following. We include a simple second order model of the
-human's neuromuscular dynamics which produces a steer torque from the steer
-angle error.
+human's open-loop neuromuscular dynamics which produces a steer torque from the
+steer angle error.
 
 .. math::
    :label: eqNeuromuscular
@@ -970,11 +970,11 @@ loops are also visual: heading and lateral path deviation, :ref:`Figure 7
    The outer loop structure of the control system with the inner loops closed.
 
 The control structure is simply a function of five gains, which the human
-"choose" such that the dictates of the crossover model are met to get good
+"chooses" such that the dictates of the crossover model are met to get good
 overall system performance. The two inner most loop gains are chosen such that
 all of the oscillatory roots of the closed roll rate loop have at least a 0.15
 damping ratio. Whereas the three outer loop gains are chosen such that the
-system has a 20db slope around crossover. The crossover frequencies are
+system has a -20db slope around crossover. The crossover frequencies are
 selected sequentially such that the next is half the value of the previous.
 
 Traditionally, sequential loop closure methods are performed on a case by case
@@ -995,7 +995,7 @@ bicycle weave eigenvalue to a higher frequency with about 0.55 damping ratio.
 The choice of this gain is somewhat ambiguous, but it needs to set the weave
 mode pole such that it has a small enough damping ratio to allow the roll rate
 loop to further push it to a damping ratio of 0.15. In [Hess2012]_ we make both
-loops have a 0.15 damping ratio, but that is not necessary and make not be what
+loops have a 0.15 damping ratio, but that is not necessary and may not be what
 the human chooses. The closed loop transfer function for the steer loop is
 
 .. math::
@@ -1017,7 +1017,7 @@ values for the open steer angle loop
    {(s+17.08) (s+2.56) (s^2 - 1.306s + 5.18) (s^2 + 43.02s + 900)}
 
 The characteristic equation is 6th order and the caster, capsize, and
-neuromuscular modes are all stable whereas the weave model is unstable. The
+neuromuscular modes are all stable whereas the weave mode is unstable. The
 first loop closure will drive the unstable weave pole out to a higher frequency
 and mid-range damping ratio.
 
@@ -1050,7 +1050,7 @@ least 0.55 damping ratio. This is very clear when plotting the damping ratio
 versus gain in :ref:`Figure 10 <figDeltaDamp>`. The best choice is typically to
 set the gain such that the pole is at the highest frequency allowable with
 minimum damping, to give typical human operator behavior. This will set up the
-bandwith of the sub sequent loops to be high enough for good system
+bandwith of the subsequent loops to be high enough for good system
 performance.
 
 .. _figDeltaLocus:
@@ -1083,7 +1083,7 @@ With the loop closed at :math:`k_\delta=17.48` the transfer function takes the f
    \frac{87225.7974 (s+2.934) (s-2.934)}
    {(s+3.175) (s-1.767) (s^2 + 10.86s + 97.55) (s^2 + 48.48s + 998.8)}
 
-Notice the single unstable poll at :math:`s=1.767`. The roll rate loop closure
+Notice the single unstable pole at :math:`s=1.767`. The roll rate loop closure
 transfer function takes the form
 
 .. math::
@@ -1139,7 +1139,7 @@ desired 10 db peaking in the bode diagram, :ref:`Figure 12 <figPhiDotBode>`.
    peaks with a 10db magnitude.
 
 Notice that the closed roll rate loop does not have any right half plane zeros
-and there is a single unstable poll.
+and there is a single unstable pole.
 
 .. math::
    :label: eqPhiDotClosedNumerical
@@ -1332,7 +1332,7 @@ Software
 
 I designed a software suite in Matlab to implement the automated gain selected
 for various bicycles, riders, and speeds. The software was constructed around a
-simulink model of the model describe above and offers this functionality:
+simulink version of the model described above and offers this functionality:
 
 #. It generates the state space form of the linear Whipple model for any
    parameter sets and speeds. The outputs include all eight of the configuration
@@ -1425,4 +1425,7 @@ Notation
 
 .. [#blind] [Doyle1988]_ notes that his riders can balance even while blindfolded.
    This is even true for people who've been blind since birth. So the roll
-   angle dectection, must not necessarily be all visual based.
+   angle dectection, must not necessarily be all visually based. Indeed, in
+   aircraft flight control, the so-called vestibular "tilt-cue" (the human's
+   ability to effectively sense roll angle, :math:`\phi`) is a well-known
+   phenonmenon, e.g., [Jex1978]_.

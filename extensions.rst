@@ -348,12 +348,12 @@ downward direction of the roll frame, :math:`B`.
 
    \hat{i}_2 \cdot \hat{b}_3 = 0
 
-This assumption is limited in validity around small pitch angles, as a large
-pitch angles would cause the riders arms to rotate in odd positions. A better
+This assumption is limited in validity to small pitch angles, as a large pitch
+angles would cause the riders arms to rotate in odd positions. A better
 constraint would be to dot with a vector in the :math:`C` frame which is
-aligned with the :math:`\hat{b}_3` when the bicycle is not pitched, but due to
-our choice of geometric parameters, a new parameter would have to be
-introduced, so I choose the former.
+aligned with :math:`\hat{b}_3` when the bicycle is not pitched, but this
+definition would require a new geometric parameter so I chose the former, i.e.
+Equation :eq:`eqArmsDown`.
 
 With these eight holonomic constraints, the model now has three degrees of
 freedom which are the same number as the Whipple model, but with the added
@@ -564,8 +564,8 @@ alumni magazine, subsequently met the woman who created the startup company arou
 the idea in San Francisco, was able to test ride the full scale prototype, and
 eventually purchased a 12" version of the bicycle. The bicycle alone stays very
 stable even to extremely low speeds, but when I, as an experienced rider, tried
-ride and control it the steering felt less responsive than one would generally
-prefer.
+to ride and control it the steering felt less responsive than one would
+generally prefer.
 
 .. todo:: Check size of gyrobike wheel.
 
@@ -1442,8 +1442,8 @@ for hands-free control of the bicycle.
    presented this for us in Taiwan.
 
 .. [#motorcyclelean] A model for leaning on a motorcycle makes more sense as
-   the mass of the motorcycle is comparable or more than the mass of the riders
-   upper body.
+   the mass of the motorcycle is comparable to or more than the mass of the
+   riders upper body.
 
 .. [#weir] [Weir1979a]_ points out this with respect to motorcycles, in
    that the rider's upper body mostly stays still and rider's lean angle is

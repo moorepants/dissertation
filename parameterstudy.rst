@@ -66,7 +66,7 @@ frame geometry of a recumbent bicycle for my undergraduate senior design
 project and this geometric outlook seems to be continually the main interest
 among bicycle enthusiasts and designers. Many bicycle designers focus on
 geometry as the primary design criterion for handling, in particular the head
-tube angle and trail, :ref:`Figure 1 <figBasicBicycleGeometry>`. But wheelbase,
+tube angle and trail, :ref:`Figure 8.1<figBasicBicycleGeometry>`. But wheelbase,
 front wheel diameter, frame/wheel alignment, and the rider position which is
 dictated by handlebar geometry are considered too. A browse through bicycle
 magazines and frame builder literature provide a wide range of opinions about
@@ -139,11 +139,11 @@ the weave critical speed as the defining characteristic.
 
 A slack head tube angle (< 72 degrees) has a higher weave critical speed than a
 larger head tube angle but the capsize critical speed varies very little with
-changing head tube angle, :ref:`Figure 2 <figHeadTubeAngle>`. Slack head tube
+changing head tube angle, :ref:`Figure 8.2<figHeadTubeAngle>`. Slack head tube
 angles are found on many utility bicycles. I've observed from experience that
 these bicycles feel very unresponsive at low speeds and typically do not feel
 stable until moderate speeds are reached. The head tube angle results,
-:ref:`Figure 2<figHeadTubleAngle>` are in agreement with this anecdotal
+:ref:`Figure 8.2<figHeadTubleAngle>` are in agreement with this anecdotal
 evidence insofar as the weave critical speed increases with decreasing head
 tube angle. The head tube angle results are interesting because the weave speed
 can be decreased using a steeper head tube angle without adversely affecting
@@ -164,7 +164,7 @@ is beneficial for cruising with little control input.
 Trail is of particular interest, with many bicycle designers claiming that it
 is the most important parameter affecting handling qualities. As trail
 increases, the stable speed range broadens and the weave critical velocity
-increases, :ref:`Figure 3 <figTrail>`. As trail approaches zero the stable
+increases, :ref:`Figure 8.3<figTrail>`. As trail approaches zero the stable
 speed range diminishes to zero.  It is obvious that increasing trail will
 decrease the caster mode eigenvalue, but un-intuitively it increases the weave
 eigenvalue. The yellow bicycle and the silver bicycle [Kooijman2006]_ both have
@@ -185,7 +185,7 @@ Long bicycles such as tandems and some recumbents are often hard to start and
 have slower response due to the diminished yaw control authority. As wheelbase
 increases, the size of the stable speed range stays roughly constant as both
 weave and capsize critical speeds increase linearly at the same rate,
-:ref:`Figure 4 <figWheelbase>`. The weave critical speed increases as wheelbase
+:ref:`Figure 8.4<figWheelbase>`. The weave critical speed increases as wheelbase
 increases which correlates with the difficulty in starting long wheelbase
 bicycles.
 
@@ -200,7 +200,7 @@ bicycles.
 
 The weave critical speed decreases as front wheel diameter increases but the
 capsize critical speed decreases even faster so the size of the stable speed
-range also decreases, :ref:`Figure 5 <figFrontWheelDiameter>`. The results
+range also decreases, :ref:`Figure 8.5<figFrontWheelDiameter>`. The results
 show that the weave critical speed decreases with a larger front wheel which
 provides stability at low speeds. This correlates with the findings for the
 flywheel bicycle presented in Chapter :ref:`extensions`.
@@ -227,8 +227,8 @@ Benchmark validity
 
 The numerical values of the benchmark bicycle parameters in [Meijaard2007]_ are
 representative of a real bicycle but were chosen so that each parameter was
-guaranteed a detectable role in numerical studies. Figure :ref:`Figure 6
-<figBenchmarkReal>` compares the eigenvalues of the benchmark bicycle with
+guaranteed a detectable role in numerical studies. Figure :ref:`Figure
+8.6<figBenchmarkReal>` compares the eigenvalues of the benchmark bicycle with
 those of two ordinary bicycles, the Batavus Browser and Batavus Stratos
 including the same rider, Jason, seated on both bicycles. The eigenvalues are
 qualitatively similar, but the stable speed range of the benchmark bicycle is
@@ -254,15 +254,15 @@ Rider-less bicycles
 -------------------
 
 There are relatively few bicycles whose parameters have been measured
-exhaustively and accurately. :ref:`Figure 7 <figSilverCompare>` plots the
+exhaustively and accurately. :ref:`Figure 8.7<figSilverCompare>` plots the
 effect of speed on the resulting eigenvalues of one such parameter set, labeled
 Silver, from [Kooijman2008]_ and compares it to several of the rider-less
 bicycles I measured using almost identical techniques to Kooijman. Notice that
 all of the bicycles measured in Chapter :ref:`physicalparameters` show a
 bifurcation in the caster and capsize modes at lower speeds which produces a
 second oscillatory mode. This bifurcation is not necessarily seen in the
-parameter sets with a rigid rider. Figures :ref:`8 <figCresEvecWeave>` and
-:ref:`9 <figCresEvecOsc>` show the eigenvector components for the two
+parameter sets with a rigid rider. Figures :ref:`8.8<figCresEvecWeave>` and
+:ref:`8.9<figCresEvecOsc>` show the eigenvector components for the two
 oscillatory modes for the Crescendo bicycle at 1.5 m/s. They turn out to be
 similar in that they are oscillatory in roll and steer, with steer being
 dominant in magnitude and the phase shifts are slightly larger for the weave
@@ -316,7 +316,7 @@ Bicycles with riders
 
 There are some potentially significant differences in the Whipple model
 dynamics between a riderless bicycle and a bicycle with a rider. :ref:`Figure
-10 <figCompareRiderEig>` gives an example of how the eigenvalues change when a
+8.10<figCompareRiderEig>` gives an example of how the eigenvalues change when a
 rider is added to the Stratos bicycle. The stable speed range broadens and the
 weave critical speed increases by more than 1 m/s. The second oscillatory mode
 disappears and the caster decays more rapidly. The weave bifurcation occurs at
@@ -343,7 +343,7 @@ I measured the parameters of the "Yellow" bicycle at TU Delft, which was a
 replica of the Yellow bike from Cornell that demonstrates stability so well. I
 measured the bicycle in two configurations, one with the fork in the normal
 position and the second with the fork flipped 180 degrees about the steer axis
-which greatly increases trail. :ref:`Figure 11 <figYellowCompare>` plots the
+which greatly increases trail. :ref:`Figure 8.11<figYellowCompare>` plots the
 eigenvalues with respect to speed for the two yellow bicycle configurations and
 the Silver bicycle [Kooijman2008]_ which also has a reversed fork and large
 trail. As was mentioned in the previous section the weave critical speed
@@ -382,11 +382,11 @@ fundamental difference in the two configurations is that the instrumented
 version has a large weight atop the rear rack. Bicycle tourists are some of the
 first to mention the effects on handling due to weight on the front and rear
 racks of a bicycle, so this comparison examines that to some degree.
-:ref:`Figure 12 <figBrowserCompare>` once again shows how the eigenvalues
+:ref:`Figure 8.12<figBrowserCompare>` once again shows how the eigenvalues
 change with respect to speed for the two bicycles. The second bifurcation
 points for the second oscillatory mode are affected and the weave critical
 speed is slightly lower for the factory version. If a rider is added,
-:ref:`Figure 13 <figBrowserRiderCompare>`, shows that the added rear weight
+:ref:`Figure 8.13<figBrowserRiderCompare>`, shows that the added rear weight
 makes little difference in the linear dynamics.
 
 .. _figBrowserCompare:
@@ -441,7 +441,7 @@ response characterizes how the system responds to a sinusoidal input.
 
 The transfer function from steer torque to the roll rate of a bicycle is
 particularly interesting because it captures the essential steering action
-needed to induce a turn. :ref:`Figure 14 <figBodeSpeeds>` shows the transfer
+needed to induce a turn. :ref:`Figure 8.14<figBodeSpeeds>` shows the transfer
 function for Jason seated on the Browser for several different speeds. The
 speeds correspond to before the first weave bifurcation, unstable weave, stable
 speed range and unstable capsize. The roll rate amplitudes increase somewhat
@@ -461,7 +461,7 @@ higher frequencies.
 
    The steer torque to roll rate frequency response for various speeds.
 
-:ref:`Figure 15 <figBodeWeight>` shows the transfer function for the same rider
+:ref:`Figure 8.15<figBodeWeight>` shows the transfer function for the same rider
 (same configuration with respect to the rear wheel contact point) seat on a
 light weight bicycle, the Bianchi Pista, and very heavy bicycle, the Davis
 instrumented bicycle. Notice that the light bicycle has an under-damped weave

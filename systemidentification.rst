@@ -628,7 +628,7 @@ Treadmill
 
 Dr. James Jones at the veterinary school at here at Davis graciously let us use
 their horse treadmill (Graber Ag Kagra Mustang 2200) during their downtime,
-:ref:`Figure 1 <figHorseTreadmill>`. The treadmill is 1 meter wider and 5
+:ref:`Figure 13.1<figHorseTreadmill>`. The treadmill is 1 meter wider and 5
 meters long and has a speed range from 0.5 m/s to 17 m/s. This was only a third
 of the width treadmill at Vrije Universitiet in Amsterdam, but after some
 practice runs we felt that narrow lane changes and the lateral perturbations
@@ -653,7 +653,7 @@ Pavilion
 The bicycle was designed in such a way that all of the data collection
 equipment was on board and was suitable for data collection in a free
 environment. After lengthy bureaucratic negotiations, we were able to make use
-of the UCD pavilion floor for the experiments, :ref:`Figure 2 <figPavilion>`.
+of the UCD pavilion floor for the experiments, :ref:`Figure 13.2<figPavilion>`.
 The floor was made of a stiff rubber [#pavilionfloor]_ and provided a
 rectangular wind free space of about 100' by 180' (30 m by 55 m). We road
 around the perimeter to build up speed and did our maneuvers on a straight
@@ -729,13 +729,14 @@ Lane Change
    The rider attempted to track a line in similar fashion as the "Track
    Straight Line" maneuver except that the line was a single lane change. On
    the pavilion floor, the line was taped on the ground and the rider was
-   instructed to do whatever felt best to stay on the line :ref:`Figure 3
-   <figPavilionLaneChange>`. They could use full preview looking ahead, focus
-   on the front wheel and line, or a combination of both. We also tried some
-   lane changes on the treadmill but the lack of preview of the line made it
-   especially difficult. We were able to manage it by marking a count down on
-   the belt so that the rider new when the lane change would arrive. The rider
-   also new the direction of lane change before hand for all the scenarios.
+   instructed to do whatever felt best to stay on the line :ref:`Figure
+   13.3<figPavilionLaneChange>`. They could use full preview looking ahead,
+   focus on the front wheel and line, or a combination of both. We also tried
+   some lane changes on the treadmill but the lack of preview of the line made
+   it especially difficult. We were able to manage it by marking a count down
+   on the belt so that the rider new when the lane change would arrive. The
+   rider also new the direction of lane change before hand for all the
+   scenarios.
 Blind With Disturbance
    We did a run or two for each rider on the pavilion floor with the rider's
    eyes closed to attempt to completely open the heading loop. In hindsight,
@@ -864,7 +865,7 @@ Trailer
    recorded.
 
 We ultimately collected 600+ runs that were potentially usable for analysis.
-:ref:`Figure 4 <figDataBarPlots>` gives a breakdown of the runs by rider,
+:ref:`Figure 13.4<figDataBarPlots>` gives a breakdown of the runs by rider,
 environment, maneuvers, and speed bins.
 
 .. _figDataBarPlots:
@@ -883,9 +884,9 @@ The processed data provides filtered signals that correspond to the coordinates
 and speeds outlined in our models, Chapters :ref:`eom` and :ref:`extensions`.
 We were even able to estimate the path of the wheel contact points on the
 ground. The quality of the data is high with little to no missing data and
-complete description of the dynamic state through time. Figures :ref:`5
-<figTreadmillTimeHistory>` and :ref:`6 <figPavilionTimeHistory>` give examples
-of the processed data for the two environments.
+complete description of the dynamic state through time. Figures
+:ref:`13.5<figTreadmillTimeHistory>` and :ref:`13.6<figPavilionTimeHistory>`
+give examples of the processed data for the two environments.
 
 .. _figTreadmillTimeHistory:
 
@@ -1217,7 +1218,7 @@ more difficult to find and I was rarely able, if at all, to find the global
 minima for the general problem, even when reducing the number of outputs to
 one.
 
-:ref:`Figure 7 <figExampleFit>` shows a typical example input and output data
+:ref:`Figure 13.7<figExampleFit>` shows a typical example input and output data
 for a single run (#596) with both steer torque and lateral force as inputs. The
 plot compares the simulation response of the input to the measured response.
 Notice that the identified model predicts the trajectory extremely well.
@@ -1261,18 +1262,18 @@ ultimately some incomparable runs due to this issue.
 
 I use this structured state space output error identification procedure for a
 collection of experiments (:math:`n=368`) over a range of speeds between about
-1 and 9 m/s. Figures :ref:`8 <figACoefficients>` and :ref:`9
-<figBCoefficients>` plot the identified coefficients of the dynamical equations
-of motion (i.e. the bottom two rows of the :math:`\mathbf{F}` and
+1 and 9 m/s. Figures :ref:`13.8<figACoefficients>` and
+:ref:`13.9<figBCoefficients>` plot the identified coefficients of the dynamical
+equations of motion (i.e. the bottom two rows of the :math:`\mathbf{F}` and
 :math:`\mathbf{G}` matrices) as a function of speed for all of the experiments
 using box plots. Both the Whipple (green) and arm (red) model predictions are
 superimposed over top for comparison. The first notable thing is that the
 coefficients seem to generally have large variance, especially as the speed
 increases. Secondly, the roll acceleration equation, :math:`\ddot{\phi}`,
 equation seems to be better predicted by the two models and the data has less
-spread at the lower speeds, barring the :math:`\dot{\phi}` coefficient which has
-large spread and no apparent relationship with speed for both equations. The
-roll equation also seems to have less spread in the experimental data. For
+spread at the lower speeds, barring the :math:`\dot{\phi}` coefficient which
+has large spread and no apparent relationship with speed for both equations.
+The roll equation also seems to have less spread in the experimental data. For
 example, the :math:`a_{\ddot{\phi}\delta}` coefficient appears to be very tight
 and the first principles models predict it very well. The constant, linear, and
 quadratic trends in the coefficients are somewhat visible in the data but the
@@ -1334,18 +1335,18 @@ these graphs reveal several important things:
 .. todo:: I'm not sure if I should make the width of the boxes proportional to
    the number of runs in each bin or the duration of the runs in the bin.
 
-:ref:`Figure 10 <figStateSpaceBode>` gives another view of the resulting data.
+:ref:`Figure 13.10<figStateSpaceBode>` gives another view of the resulting data.
 It is a frequency response plot at the mean speed for a set of runs. The blue
 lines give the mean and standard deviation of the magnitude and phase of the
 system transfer function :math:`\frac{\phi}{T_\delta}(s)` for the set of runs.
 Even though the spread in the identified parameters seems high in Figures
-:ref:`8 <figACoefficients>` and :ref:`9 <figACoefficients>`, the Bode plot
+:ref:`13.8<figACoefficients>` and :ref:`13.9<figACoefficients>`, the Bode plot
 shows that the identified system response is not as variable, especially in
 magnitude. It is also apparent that the experimental magnitude mean has a -5 to
 -10 dB offset across the frequency range shown with respect to the Whipple
 model, although the Whipple model does fall within one standard deviation of
 the mean. This correlates with the amplitude differences in the trajectories
-shown in :ref:`Figure 7 <figExampleFit>`. Notice that the arm model has little
+shown in :ref:`Figure 13.7<figExampleFit>`. Notice that the arm model has little
 to no offset between 2 and 10 rad/s, thus the better amplitude matching. The
 frequency response gives a better indication of the overall identified model
 quality.
@@ -1814,14 +1815,14 @@ rubber like material. I calculated the best fit over 374 runs giving about 142
 minutes of data sampled at 200 Hz, :math:`N=1720647`.
 
 The eigenvalues as a function of speed of the identified model can be compared
-to those of the Whipple and arm models. :ref:`Figure 11 <figAARloc>` shows the
+to those of the Whipple and arm models. :ref:`Figure 13.11<figAARloc>` shows the
 root locus of the three models. The weave mode exists in all three models, with
 it always being stable in the arm model and it being unstable at lower speeds
 in the other two models. The identified model is unstable over most of the
 shown speed range. Above 3 m/s or so, the Whipple model's weave mode diverges
 from the identified model to different asymptotes. The arm model weave mode
 diverges somewhere in between. Note that the arm model has an unstable real
-mode for all speeds. :ref:`Figure 12 <figAAEig>` gives a different view of the
+mode for all speeds. :ref:`Figure 13.12<figAAEig>` gives a different view of the
 root locus allowing one to more easily compare the real eigenvalues. The
 imaginary parts of the weave mode have similar curvature with respect to speed
 for all the models, with the identified model having about 1 rad/s larger
@@ -1854,11 +1855,11 @@ predicted by the Whipple model.
 
 The identification process is structured around identifying the input/output
 relationship among measured variables. The frequency response provides a view
-into these relationships. Figures :ref:`13 <figAATphiPhi>` to :ref:`14
-<figAATphiDel>` give a picture of how the first principles models compare to
-the identified model with respect to frequency response from a roll torque
-input. The frequency band from 1 rad/s to 12 rad/s is of most concern as it
-bounds a reasonable range that the human can operate in. The roll torque to
+into these relationships. Figures :ref:`13.13<figAATphiPhi>` to
+:ref:`13.14<figAATphiDel>` give a picture of how the first principles models
+compare to the identified model with respect to frequency response from a roll
+torque input. The frequency band from 1 rad/s to 12 rad/s is of most concern as
+it bounds a reasonable range that the human can operate in. The roll torque to
 roll angle response shows that at 2 m/s the response is predicted well at high
 frequencies by all the models and that the Whipple model predicts the response
 well across all frequencies. At 4 m/s the two models only predict the high
@@ -1886,8 +1887,8 @@ frequency behavior (> 4 rad/s) with the arm model appearing slightly better.
    the model and the line type indicates the speed. Generated by
    `src/systemidentification/canonical_plots.py`.
 
-The steer torque to roll angle transfer function, :ref:`Figure 15
-<figAATdelPhi>` may be the most important to model accurately as it is the
+The steer torque to roll angle transfer function, :ref:`Figure
+13.15<figAATdelPhi>` may be the most important to model accurately as it is the
 primary method of controlling the bicycle's direction, i.e. commanding roll
 allows one to command yaw. At 2 m/s the Whipple model magnitude matches at
 lower frequencies better and the arm model better at higher frequencies. At all
@@ -1925,20 +1926,21 @@ principles models than the identified model.
 Comparison of identified models
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Tables :ref:`3 <tabIdMCKOne>`, :ref:`4 <tabIdMCKTwo>`, and :ref:`5
-<tabIdMCKThree>` present the identified canonical parameters from all twelve of
-the chosen data subsets. The variance of the parameter estimates in the steer
-equation are quite low except for the :math:`H_{\delta F}` parameter. The low
-variance is partially due to the large datasets but also due to the quality of
-the resulting fits. The :math:`H_{\delta F}` is highly dependent on the trail
-which is expected to be difficult to identify. The roll equations parameters
-have higher relative variance, which reflects the fewer degree of freedom the
-regression has available for fitting the data. It is also interesting to note
-that :math:`C_{1 \delta \phi}` deviates quite largely from the Whipple model
-prediction. This term depends on the wheel radii, wheel rotational inertia,
-wheelbase, steer axis tilt and trail. All of these but trail are easily
-measured so it is tempting to solve for trail given :math:`C_{1 \delta \phi}`
-and the other measured parameters described in [Meijaard2007]_.
+Tables :ref:`13.3<tabIdMCKOne>`, :ref:`13.4<tabIdMCKTwo>`, and
+:ref:`13.5<tabIdMCKThree>` present the identified canonical parameters from all
+twelve of the chosen data subsets. The variance of the parameter estimates in
+the steer equation are quite low except for the :math:`H_{\delta F}` parameter.
+The low variance is partially due to the large datasets but also due to the
+quality of the resulting fits. The :math:`H_{\delta F}` is highly dependent on
+the trail which is expected to be difficult to identify. The roll equations
+parameters have higher relative variance, which reflects the fewer degree of
+freedom the regression has available for fitting the data. It is also
+interesting to note that :math:`C_{1 \delta \phi}` deviates quite largely from
+the Whipple model prediction. This term depends on the wheel radii, wheel
+rotational inertia, wheelbase, steer axis tilt and trail. All of these but
+trail are easily measured so it is tempting to solve for trail given
+:math:`C_{1 \delta \phi}` and the other measured parameters described in
+[Meijaard2007]_.
 
 .. math::
    :label: eqTrail
@@ -1946,11 +1948,11 @@ and the other measured parameters described in [Meijaard2007]_.
    c = -\frac{w(C_{1 \delta \phi} + S_F \operatorname{cos}\lambda)}{S_T
    \operatorname{cos}\lambda}
 
-The results for each data subset are given in :ref:`Table 6
-<tabIdentifiedTrail>`. On average the values are very unrealistic when compared
-to the measured geometric trail of :math:`c=0.0599` meters. This may imply that
-that including the effects of pneumatic trail would not be enough to improve
-the predictive capabilities of the Whipple model.
+The results for each data subset are given in :ref:`Table
+13.6<tabIdentifiedTrail>`. On average the values are very unrealistic when
+compared to the measured geometric trail of :math:`c=0.0599` meters. This may
+imply that that including the effects of pneumatic trail would not be enough to
+improve the predictive capabilities of the Whipple model.
 
 .. _tabIdMCKOne:
 
@@ -2028,19 +2030,19 @@ predicting the measured behavior for each run. The previous section's state
 space methods have already shown that the Whipple and arm models may not
 provide adequate predictions.
 
-Figures :ref:`17 <figCompBode2p0>`, :ref:`18 <figCompBode5p5>`, and :ref:`19
-<figCompBode9p0>` plot the steer torque to roll angle frequency response for
-three speeds: 2 m/s, 5.5 m/s and 9.0 m/s for each of the models in Tables
-:ref:`3 <tabIdMCKOne>`, :ref:`4 <tabIdMCKTwo>`, and :ref:`5 <tabIdMCKThree>`.
-At the lowest speed, all of the models have a similar frequency response,
-especially in the frequency band between about 1 an 20 rad/s. At 5.5 m/s the
-models are similar at a higher bandwidth, 4 to 30 rad/s. At 9.0 m/s even higher,
-10 to 50 rad/s. Notice that the frequency band where the models are most
-similar shifts to higher frequencies at higher speeds.The model derived from
-all of the data (all rider and all runs), gives somewhat of a mean model and if
-this model is significantly better at predicting the measured behavior of the
-Whipple and arm models, it may be a good general candidate model for this
-bicycle.
+Figures :ref:`13.17<figCompBode2p0>`, :ref:`13.18<figCompBode5p5>`, and
+:ref:`13.19<figCompBode9p0>` plot the steer torque to roll angle frequency
+response for three speeds: 2 m/s, 5.5 m/s and 9.0 m/s for each of the models in
+Tables :ref:`13.3<tabIdMCKOne>`, :ref:`13.4<tabIdMCKTwo>`, and
+:ref:`13.5<tabIdMCKThree>`. At the lowest speed, all of the models have a
+similar frequency response, especially in the frequency band between about 1 an
+20 rad/s. At 5.5 m/s the models are similar at a higher bandwidth, 4 to 30
+rad/s.  At 9.0 m/s even higher, 10 to 50 rad/s. Notice that the frequency band
+where the models are most similar shifts to higher frequencies at higher
+speeds.The model derived from all of the data (all rider and all runs), gives
+somewhat of a mean model and if this model is significantly better at
+predicting the measured behavior of the Whipple and arm models, it may be a
+good general candidate model for this bicycle.
 
 .. _figCompBode2p0:
 
@@ -2050,8 +2052,8 @@ bicycle.
    :target: compare-id-bode-2p0.png
 
    Steer torque to roll angle frequency responses at 2.0 m/s for all the
-   identified models in Tables :ref:`3 <tabIdMCKOne>`, :ref:`4 <tabIdMCKTwo>`,
-   and :ref:`5 <tabIdMCKThree>`.
+   identified models in Tables :ref:`13.3<tabIdMCKOne>`, :ref:`13.4<tabIdMCKTwo>`,
+   and :ref:`13.5<tabIdMCKThree>`.
 
 .. _figCompBode5p5:
 
@@ -2061,8 +2063,8 @@ bicycle.
    :target: compare-id-bode-5p5.png
 
    Steer torque to roll angle frequency responses at 5.5 m/s for all the
-   identified models in Tables :ref:`3 <tabIdMCKOne>`, :ref:`4 <tabIdMCKTwo>`,
-   and :ref:`5 <tabIdMCKThree>`.
+   identified models in Tables :ref:`13.3<tabIdMCKOne>`, :ref:`13.4<tabIdMCKTwo>`,
+   and :ref:`13.5<tabIdMCKThree>`.
 
 .. _figCompBode9p0:
 
@@ -2072,8 +2074,8 @@ bicycle.
    :target: compare-id-bode-9p0.png
 
    Steer torque to roll angle frequency responses at 9.0 m/s for all the
-   identified models in Tables :ref:`3 <tabIdMCKOne>`, :ref:`4 <tabIdMCKTwo>`,
-   and :ref:`5 <tabIdMCKThree>`.
+   identified models in Tables :ref:`13.3<tabIdMCKOne>`, :ref:`13.4<tabIdMCKTwo>`,
+   and :ref:`13.5<tabIdMCKThree>`.
 
 The predictive capability and quality of a given model can be quantified by by
 an assortment of criteria and methods. I've made use of two criterion to judge
@@ -2116,9 +2118,11 @@ outlined in Equation :eq:`eqVAF` using each of the 12 identified models and
 both the Whipple and Arm models. This percentage can be used as a criterion of
 which to judge the ability of model versus another to predict the measurement.
 I then take the median of the VAF over each of the 12 sets of runs, Tables
-:ref:`7 <tabMeanVAFRoll>` and :ref:`8 <tabMeanVAFSteer>`. The results give an
+:ref:`13.7<tabMeanVAFRoll>` and :ref:`13.8<tabMeanVAFSteer>`. The results give an
 idea of how well the various models are able to predict the data for all of the
 runs in a given set.
+
+.. todo:: These latex footnotesize commands are corrupting the text font size.
 
 .. _tabMeanVAFRoll:
 
@@ -2154,7 +2158,7 @@ runs in a given set.
 
    }
 
-Tables :ref:`7 <tabMeanVAFRoll>` and :ref:`8 <tabMeanVAFSteer>` give the median
+Tables :ref:`13.7<tabMeanVAFRoll>` and :ref:`13.8<tabMeanVAFSteer>` give the median
 for each set of runs in each column for each model in given in the row for roll
 and steer respectively. The maximum VAF in the column gives a measure of the
 best model for predicting each individual run in that set of runs. Intuitively,
@@ -2169,20 +2173,20 @@ The models are able to predict the steer torque much better than the roll
 torque. The roll torque should be zero in all of the runs without disturbances
 but the roll equations do not predict a zero value. This is also reflected in
 the negative median values of all the runs with disturbances in much of
-:ref:`Table 7 <tabMeanVAFRoll>`. We fixed six of the nine parameters in the
+:ref:`Table 13.7<tabMeanVAFRoll>`. We fixed six of the nine parameters in the
 roll equation to those of the Whipple model and fixed three of the nine
 parameters in the steer equation. These extra degrees of freedom can partially
 explain why the steer predictions are better than the roll predictions. The
 model for the roll torque is more susceptible to the noise in the rate and
 angle measurements and has consequences of +/- 50 Nm variation in the predicted
 roll torques. These are unfortunately comparable in magnitude to the measured
-roll torques due to the lateral perturbations. But :ref:`Table 7
-<tabMeanVAFRoll>` can still be used to gage which models are better with
-reference to each other. The values in :ref:`Table 7 <tabMeanVAFRoll>` are only
-generated from the runs with disturbances as a relative measure of quality to
-zero is hard to make.
+roll torques due to the lateral perturbations. But :ref:`Table
+13.7<tabMeanVAFRoll>` can still be used to gage which models are better with
+reference to each other. The values in :ref:`Table 13.7<tabMeanVAFRoll>` are
+only generated from the runs with disturbances as a relative measure of quality
+to zero is hard to make.
 
-Tables :ref:`7 <tabMeanVAFRoll>` and :ref:`8 <tabMeanVAFSteer>` reveal:
+Tables :ref:`13.7<tabMeanVAFRoll>` and :ref:`13.8<tabMeanVAFSteer>` reveal:
 
 - The arm model is poor at predicting the steer torque.
 - The models derived from Charlie's runs are poorer at predicting the inputs.
@@ -2200,10 +2204,10 @@ It may seem odd that a model identified from the subset of runs of one rider in
 one environment is the best at predicting the runs on a individual basis, but
 the uncertainty and error in both the data and the model structures don't
 dictate that this can't be. Keep in mind that all of the frequency response of
-all 12 models shown in Figures :ref:`17 <figCompBode2p0>`, :ref:`18
-<figCompBode5p5>`, and :ref:`19 <figCompBode9p0>` are probably bounded in the
-uncertainty of the predicted responses and each is can be considered a "good"
-model, even including the Whipple model.
+all 12 models shown in Figures :ref:`13.17<figCompBode2p0>`,
+:ref:`13.18<figCompBode5p5>`, and :ref:`13.19<figCompBode9p0>` are probably
+bounded in the uncertainty of the predicted responses and each is can be
+considered a "good" model, even including the Whipple model.
 
 The second method of evaluating the quality of the identified models is to
 simulate the model with the measured inputs and compare the predicted outputs
@@ -2217,7 +2221,7 @@ However, this is not always the case. For long duration runs I select a random
 20 second section of the data to simulate, reducing the likelihood that the
 simulation blows up due to the model's instability. Finally, I ignore any
 outputs VAFs that are less than -100 percent as they are most likely due to
-unstable simulations. :ref:`Table 9 <tabMedianVAFOutputs>` presents the median
+unstable simulations. :ref:`Table 13.9<tabMedianVAFOutputs>` presents the median
 percent variance accounted for across all runs for each model and each output.
 The best model seems to be the one generated from the data with Luke on the
 Pavilion Floor once again, but these results differ from the previous
@@ -2242,7 +2246,7 @@ otherwise.
    .. include:: tables/systemidentification/output-median.rst
 
 The mean percent variance across the outputs can be computed and the models
-ranked by the mean, :ref:`Table 10 <tabMeanVAFOutputs>`. The best model seems
+ranked by the mean, :ref:`Table 13.10<tabMeanVAFOutputs>`. The best model seems
 to be LP and the AA is also a pretty good predictor. Notice that the Whipple
 model is poorer than the arm model.
 
@@ -2251,7 +2255,7 @@ model is poorer than the arm model.
 .. tabularcolumns:: LL
 
 .. table:: The mean of the median  VAF in the simulation output variables
-   presented in :ref:`Table 9 <tabMedianVAFOutputs>`.
+   presented in :ref:`Table 13.9<tabMedianVAFOutputs>`.
 
    +----------+-------+
    | Model    | Mean  |
@@ -2285,13 +2289,14 @@ model is poorer than the arm model.
    | Whipple  | 1.8%  |
    +----------+-------+
 
-The orange lines in Figures :ref:`8 <figACoefficients>` and :ref:`9
-<figBCoefficients>` are that of the L-P model and which allows comparison of
-the results of the canonical identification process with those of the state
-space identified models. The L-P model seems be better at fitting the data,
-especially in the steer acceleration equation, but the large variance in the
-state space coefficients is still a problem. This lends more confidence that
-that the L-P model is a better model choice than the Whipple and arm model.
+The orange lines in Figures :ref:`13.8<figACoefficients>` and
+:ref:`13.9<figBCoefficients>` are that of the L-P model and which allows
+comparison of the results of the canonical identification process with those of
+the state space identified models. The L-P model seems be better at fitting the
+data, especially in the steer acceleration equation, but the large variance in
+the state space coefficients is still a problem. This lends more confidence
+that that the L-P model is a better model choice than the Whipple and arm
+model.
 
 Discussion
 ~~~~~~~~~~
@@ -2423,11 +2428,11 @@ Grey Box Models
 ---------------
 
 The block diagram of the control structure described in Chapter :ref:`control`
-is shown again in Figures :ref:`20 <figInnerLoopsAgain>` and :ref:`21
-<figOuterLoopsAgain>`. The closed loop system can be written in state space
-form, which will be used with a state space identification procedure as defined
-in Section :ref:`secStateSpaceID`. I'll develop forms for pure heading
-tracking and lateral deviation tracking.
+is shown again in Figures :ref:`13.20<figInnerLoopsAgain>` and
+:ref:`13.21<figOuterLoopsAgain>`. The closed loop system can be written in
+state space form, which will be used with a state space identification
+procedure as defined in Section :ref:`secStateSpaceID`. I'll develop forms for
+pure heading tracking and lateral deviation tracking.
 
 .. _figInnerLoopsAgain:
 
@@ -2789,19 +2794,19 @@ identification process followed these steps:
 5. Identify the six parameters as before using the result of the SISO
    identification as the initial parameter guess for the SIMO system.
 
-The results in Figures :ref:`22 <figRiderIdTreadmill>` and :ref:`23
-<figRiderIdPavilion>` give typical examples of the model's ability to predict
-the measured data in two different runs, one the treadmill and the gymnasium
-floor respectively. Notice that the human's remnant is relatively large when
-the input is zero, especially in the treadmill run. The model is able to
-predict the human's initial control response to the external input and lumps
-the remnant into the output error. This response is very repeatable across
-riders and runs. The model considers the remnant as output error during the non
-perturbed portions of the run. Notice that the steer torque is well predicted
-around the perturbation. Previous identifications with the Whipple model
-predicted much lower torque magnitudes and much different parameters. Including
-the identified bicycle model from Section :ref:`secCanonicalId` proved to
-give much better control predictions.
+The results in Figures :ref:`13.22<figRiderIdTreadmill>` and
+:ref:`13.23<figRiderIdPavilion>` give typical examples of the model's ability
+to predict the measured data in two different runs, one the treadmill and the
+gymnasium floor respectively. Notice that the human's remnant is relatively
+large when the input is zero, especially in the treadmill run. The model is
+able to predict the human's initial control response to the external input and
+lumps the remnant into the output error. This response is very repeatable
+across riders and runs. The model considers the remnant as output error during
+the non perturbed portions of the run. Notice that the steer torque is well
+predicted around the perturbation. Previous identifications with the Whipple
+model predicted much lower torque magnitudes and much different parameters.
+Including the identified bicycle model from Section :ref:`secCanonicalId`
+proved to give much better control predictions.
 
 .. _figRiderIdTreadmill:
 
@@ -2843,7 +2848,7 @@ themselves. As I've already mentioned in the previous section, identifying the
 parameters accurately is a function of the number of free parameters, which
 parameters are free, and the quality of the noise model. In my case, our noise
 model is an output error structure and may contribute to much more spread in
-the identified parameters. :ref:`Figure 24 <figControlParVsSpeed>` gives an
+the identified parameters. :ref:`Figure 13.24<figControlParVsSpeed>` gives an
 idea of how the six identified speeds vary with speed. As shown in Chapter
 :ref:`control` the theory predicts that the gains are mostly linear above about
 2 m/s and that the neuromuscular frequency is a constant parameter with respect
@@ -2867,7 +2872,7 @@ to the human operator.
    the data. Generated by
    `src/systemidentification/control_parameters_vs_speed_plots.py`.
 
-:ref:`Figure 24 <figControlParVsSpeed>` gives these insights:
+:ref:`Figure 13.24<figControlParVsSpeed>` gives these insights:
 
 - The gains increase with speed with :math:`k_{\phi}` and :math:`k_{y_q}` having
   small slopes.
@@ -2889,12 +2894,12 @@ some of the educated guesses about the rider's internal control choices. But it
 is possible to evaluate the same loops' frequency responses in an effort to
 understand how the rider chooses the gains.
 
-:ref:`Figure 25 <figAllDeltaDeltac>` shows the frequency response of the closed
-inner most loop for particular speed bin. The theory presented in [Hess2012]_ and
-Chapter :ref:`control` postulates that the rider chooses a gain such that the
-damping ratio of the high frequency neuromuscular around 10 rad/s and about
-gives about a 10 db peak (:math:`\zeta=0.15`). :ref:`Figure 25
-<figAllDeltaDeltac>` shows that there may be a more heavily damped
+:ref:`Figure 13.25<figAllDeltaDeltac>` shows the frequency response of the
+closed inner most loop for particular speed bin. The theory presented in
+[Hess2012]_ and Chapter :ref:`control` postulates that the rider chooses a gain
+such that the damping ratio of the high frequency neuromuscular around 10 rad/s
+and about gives about a 10 db peak (:math:`\zeta=0.15`). :ref:`Figure
+13.25<figAllDeltaDeltac>` shows that there may be a more heavily damped
 neuromuscular peak, but the large variability in the lower frequencies
 indicates that the rider's choice is not so constant. This may be explained by
 the fact that it is more critical for the roll rate loop to exhibit the
@@ -2915,7 +2920,7 @@ rate loop.
    solid black line give the mean gain and phase bounded by the dotted black
    lines which indicate the one sigma standard deviation.
 
-:ref:`Figure 26 <figAllPhidotPhidotc>` shows the frequency response of the
+:ref:`Figure 13.26<figAllPhidotPhidotc>` shows the frequency response of the
 closed roll rate loop :math:`\frac{\dot{\phi}}{\dot{\phi}_c}(s)`. As was just
 pointed out, the theory that this loop which completes the inner control
 loop, must exhibit this typical neuromuscular peaking seen in human-machine
@@ -2940,9 +2945,9 @@ loops follow the dictates of the crossover model (i.e. 20 db slope around
 crossover) and that the crossover frequencies start at 2 and each successive
 loop is closed at half the previous crossover frequency such that the roll
 angle, heading and lateral deviation loops are closed in that order. Figures
-:ref:`27 <figAllPhiEphi>`, :ref:`28 <figAllPsiEpsi>`, and :ref:`29
-<figAllYqEyq>` show the empirically derived frequency responses for the
-remaining loops.
+:ref:`13.27<figAllPhiEphi>`, :ref:`13.28<figAllPsiEpsi>`, and
+:ref:`13.29<figAllYqEyq>` show the empirically derived frequency responses for
+the remaining loops.
 
 .. _figAllPhiEphi:
 
@@ -2992,11 +2997,11 @@ the narrowness of the treadmill which constitutes 80% of the data.
 Our hypothesis is that the crossover frequencies are constant with respect to
 speed, so the distribution of the crossover frequencies for all runs should
 have a tight distribution regardless of speed. Secondly, we postulated that the
-rider crosses the roll angle loop around 2 rad/s. :ref:`Figure 30
-<figCrossover>` shows the distribution of the crossover frequencies for each
-loop where the median values of the crossover frequencies are :math:`w_{\phi
-c}=3.31`, :math:`w_{\psi c}= 1.20`, and :math:`w_{y_q c}=0.98`, all with
-somewhat large standard deviations.
+rider crosses the roll angle loop around 2 rad/s. :ref:`Figure
+13.30<figCrossover>` shows the distribution of the crossover frequencies for
+each loop where the median values of the crossover frequencies are
+:math:`w_{\phi c}=3.31`, :math:`w_{\psi c}= 1.20`, and :math:`w_{y_q c}=0.98`,
+all with somewhat large standard deviations.
 
 .. _figCrossover:
 
@@ -3019,7 +3024,7 @@ Full System Response
 Once the loops are all closed the system output response to the two inputs
 :math:`F_B` and :math:`y_{qc}` can be examined. Given a commanded input
 :math:`y_{qc}`, the tracking performance can be gauged by the closed loop Bode
-plot :math:`\frac{y_q}{y_{qc}}(s)` given in :ref:`Figure 31 <figAllYqYqc>`.
+plot :math:`\frac{y_q}{y_{qc}}(s)` given in :ref:`Figure 13.31<figAllYqYqc>`.
 Notice that in general, the response is well behaved with a 0 dB magnitude out
 to about 10 rad/s, all poles are stable and the phase lag increases gradually
 with frequency.
@@ -3037,7 +3042,7 @@ with frequency.
    the dotted black lines which indicate the one sigma standard deviation.
 
 Similarly, the system's response to the lateral disturbance force is favorable
-for all the identified models. :ref:`Figure 32 <figAllYqFb>` shows a similar
+for all the identified models. :ref:`Figure 13.32<figAllYqFb>` shows a similar
 stable response.
 
 .. _figAllYqFb:
@@ -3053,18 +3058,18 @@ stable response.
    the dotted black lines which indicate the one sigma standard deviation.
 
 The reader may note that some of the Bode plots among Figures
-:ref:`25<figAllDeltaDeltac>`-:ref:`29<figAllYqEyq>` indicate instability in
+:ref:`13.25<figAllDeltaDeltac>`-:ref:`13.29<figAllYqEyq>` indicate instability in
 that amplitude and phase characteristics synonymous with quadratic poles with
 small, positive damping ratios are in evidence. For example, one can see the
-evidence of such poles around 1-2 rad/s in :ref:`Figure 25<figAllDeltaDeltac>`
-and 10 rad/s in :ref:`Figure 26<figAllPhidotPhidotc>`. It should be emphasized
+evidence of such poles around 1-2 rad/s in :ref:`Figure 13.25<figAllDeltaDeltac>`
+and 10 rad/s in :ref:`Figure 13.26<figAllPhidotPhidotc>`. It should be emphasized
 that these Bode plots represent either (1) open-loop transfer functions, or (2)
 inner, closed-loop transfer functions. Hence, they do not imply final, outer
 closed-loop instabilities. Indeed, the Bode plots of the outer-most,
-closed-loop transfer function of :ref:`Figure 31<figAllYqYqc>` (lateral
+closed-loop transfer function of :ref:`Figure 13.31<figAllYqYqc>` (lateral
 deviation) do not indicate any such quadratic poles with small positive damping
 ratios. The question of why the instabilities appear in the former figures,
-particularly :ref:`Figure 25<figAllDeltaDeltac>` is open to question. The cases
+particularly :ref:`Figure 13.25<figAllDeltaDeltac>` is open to question. The cases
 of the instabilities appearing around 10 rad/s could be attributed to numerical
 issues in calculating the transfer functions from the identified state-space
 models. That is, a small numerical error can easily move lightly-damped stable

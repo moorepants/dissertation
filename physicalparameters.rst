@@ -137,8 +137,8 @@ accuracy.
 Bicycle Descriptions
 --------------------
 
-We measured a total of eight bicycles in eleven configurations, :ref:`Figure 1
-<figBicycles>`. The three Batavus bicycles were donated by the manufacturer.
+We measured a total of eight bicycles in eleven configurations, :ref:`Figure
+7.1<figBicycles>`. The three Batavus bicycles were donated by the manufacturer.
 We asked for a bicycle that they considered stable and one that they did not.
 They offered the Browser as a "stable" bicycle and the Stratos as "nervous".
 The Crescendo was considered average handling. We measured an instrumented
@@ -246,7 +246,7 @@ the Delft bicycles and an 84 kg rider on the Davis instrumented bicycle
 taped on a flat level smooth floor for the Delft bicycles and for the Davis bicycles we marked a 68
 foot length on the floor and used a 1/16 inch resolution ruler to measure the 6
 to 15 inch distance past the 68 foot mark where the rotation stopped. The tire was marked and
-aligned with the tape measure :ref:`Figure 2 <figTireChalk>`. The accuracy of the
+aligned with the tape measure :ref:`Figure 7.2<figTireChalk>`. The accuracy of the
 distance measurement is approximately :math:`\pm0.01` meter. The tires were
 pumped to the recommended inflation pressure before the measurements. The wheel
 radius is calculated by
@@ -279,7 +279,7 @@ Head Tube Angle
 ~~~~~~~~~~~~~~~
 
 For the Delft Bicycles, the head tube angle was measured directly using an
-electronic level, :ref:`Figure 3 <figHeadTube>`. The bicycle frame was fixed
+electronic level, :ref:`Figure 7.3<figHeadTube>`. The bicycle frame was fixed
 perpendicular to the ground, the steering angle was set to the nominal
 position, tire pressures were at recommended levels, and the bicycle was
 unloaded. The steer axis tilt :math:`\lambda` is the complement to the head
@@ -310,7 +310,7 @@ The idealized trail is difficult to measure directly due to the fact that the
 tire has a contact patch and there is no distinct contact point. Instead I
 chose to measure the fork offset, :math:`f_o`, and compute the ideal trail. The
 fork offset was measured by clamping the steer tube of the front fork into a
-v-block on a flat table, :ref:`Figure 4 <figForkOffset>`. For the Delft
+v-block on a flat table, :ref:`Figure 7.4<figForkOffset>`. For the Delft
 bicycles, a ruler was used to measure the height of the center of the head tube
 and the height of the center of the axle axis, and for the Davis bicycles we
 made use of more accurate height gages. The fork blades were aligned such that
@@ -428,7 +428,7 @@ Mass
 
 For the Delft bicycles, each of the four bicycle parts were measured using a
 Molen 20 kilogram scale with a resolution of 20 grams, :ref:`Figure
-6<figMassScale>`. The accuracy was conservatively assumed to also be
+7.6<figMassScale>`. The accuracy was conservatively assumed to also be
 :math:`\pm20` grams. Also, the total mass was measured using a spring scale
 with a resolution of 100 grams. The total mass was only used for comparison
 purposes, as it was not very accurate. The masses of the parts of the Davis
@@ -469,12 +469,12 @@ laterally symmetric, complying with the Whipple model, thus reducing the need
 to use a more complex three dimensional measurement setup. The frame could
 rotate about a joint such that gravity aligned the center of mass with the
 support rod axis. The orientation angle of the steer axis,
-:math:`\alpha_\mathrm{B}`, see :ref:`Figure 7 <figAngles>`, relative to the
+:math:`\alpha_\mathrm{B}`, see :ref:`Figure 7.7<figAngles>`, relative to the
 earth was measured using a digital level (:math:`\pm0.2^{\circ}` accuracy),
-:ref:`Figure 8 <figPendulumAngle>`. A thin string was aligned with the pendulum
+:ref:`Figure 7.8<figPendulumAngle>`. A thin string was aligned with the pendulum
 axis which passed by the frame. The horizontal distance :math:`a_\mathrm{B}`
 between the rear axle and the string was measured by aligning a 1 mm resolution
-ruler perpendicular to the string :ref:`Figure 9 <figPendulumDistance>`. The
+ruler perpendicular to the string :ref:`Figure 7.9<figPendulumDistance>`. The
 distance :math:`a_\mathrm{B}` was negative if the string fell to the right of
 the rear axle and positive if it fell to the left of the rear axle, when
 viewing the bicycle from the right side. These measurements allow for the
@@ -529,7 +529,7 @@ rotated about the :math:`Y` axis.
 The center of mass can be found by realizing that the pendulum axis :math:`X_P`
 is simply a line in the nominal bicycle reference frame with a slope :math:`m`
 and a z-intercept :math:`b` where the :math:`i` subscript corresponds to the
-different frame orientations, see :ref:`Figure 10 <figTriangle>`. The slope can
+different frame orientations, see :ref:`Figure 7.10<figTriangle>`. The slope can
 be shown to be
 
 .. math::
@@ -640,7 +640,7 @@ Fork and Handlebar
 ~~~~~~~~~~~~~~~~~~
 
 The fork and handlebars are generally a bit trickier to hang in three different
-orientations, :ref:`Figure 11 <figStratosFork>`. Typically two angles can be
+orientations, :ref:`Figure 7.11<figStratosFork>`. Typically two angles can be
 obtained by clamping to the steer tube at the top and the bottom. The third
 angle can be obtained by clamping to the stem. The center of mass of the fork
 is calculated in the same fashion as the frame. The slope of the line in the
@@ -676,7 +676,7 @@ opted to measure the center of mass and inertia of the fork and handlebar
 separately. The fork was measured as previously described, with the universal
 joint locked in its nominal position. The handlebar was measured in a similar
 fashion making use of small clamps to hang it in different orientations,
-:ref:`Figure 12 <figHandlebar>`.
+:ref:`Figure 7.12<figHandlebar>`.
 
 .. _figHandlebar:
 
@@ -689,7 +689,7 @@ fashion making use of small clamps to hang it in different orientations,
 I choose the center of the stem clamp bolt to be the reference point (as were
 the front and rear wheel centers for the front and rear frames). The location
 of this point relative to the front wheel center was measured as shown in
-:ref:`Figure 13 <figHandlebarGeometry>`.
+:ref:`Figure 7.13<figHandlebarGeometry>`.
 
 .. _figHandlebarGeometry:
 
@@ -750,7 +750,7 @@ times. No extra care was taken to calibrate the rate gyro, maintain a constant
 power source (i.e. the battery drains slowly), or account for drift because I
 was only concerned with the period. The raw voltage signal was used to
 determine the period of oscillation which is needed for the moment of inertia
-calculations, :ref:`Figure 14 <figVoltage>`.
+calculations, :ref:`Figure 7.14<figVoltage>`.
 
 .. _figVoltage:
 
@@ -777,7 +777,7 @@ potentially ignorable) damping. There were several instances in the Delft
 experiments of beating-like phenomena for some of the parts at particular
 orientations. Roland and Massing, [Roland1971]_, also encountered this problem
 and used a bearing to prevent the torsional pendulum from swinging.
-:ref:`Figure 15 <figBeating>` shows an example of the beating like phenomena. I
+:ref:`Figure 7.15<figBeating>` shows an example of the beating like phenomena. I
 used Roland and Massing's solution to prevent this in the Davis measurements.
 
 .. _figBeating:
@@ -850,7 +850,7 @@ Torsional Pendulum
 A torsional pendulum was used to measure all moments of inertia about axes in
 the laterally symmetric plane of each of the wheels, fork and frame. The
 pendulum is made up of a rigid mount, an upper clamp, a torsion rod, and
-various lower clamps, :ref:`Figure 16 <figFixture>` .
+various lower clamps, :ref:`Figure 7.16<figFixture>` .
 
 .. _figFixture:
 
@@ -868,11 +868,11 @@ the various bicycle parts. The moments of inertia of the clamps were neglected
 [#clamps]_.
 
 The torsional pendulum was calibrated using a rod with an easily computed, i.e.
-"known", moment of inertia :ref:`Figure 17 <figRod>` [#rod]_. A torsional
+"known", moment of inertia :ref:`Figure 7.17<figRod>` [#rod]_. A torsional
 pendulum almost identical to the one used in [Kooijman2006]_ was used to
 measure the average period :math:`\overline{T}_i` of oscillation of the rear
 frame at three different orientation angles :math:`\beta_i`, where :math:`i=1`,
-:math:`2`, :math:`3`, as shown in :ref:`Figure 10 <figTriangle>`. The parts were
+:math:`2`, :math:`3`, as shown in :ref:`Figure 7.10<figTriangle>`. The parts were
 perturbed slightly, around 1 degree, and allowed to oscillate about the pendulum
 axis through several periods. This was repeated at least three times for each
 frame and the recorded periods were averaged.
@@ -899,8 +899,8 @@ by measuring the averaged period of oscillation about an axis in the
 :eq:`eqTorPend`. The wheels are also assumed to be laterally symmetric about
 any radial axis. Thus only two moments of inertia are required for the set of
 benchmark parameters [Meijaard2007]_. The moment of inertia about the axle was
-measured by hanging the wheel as a compound pendulum, :ref:`Figure 18
-<figWheelIyy>`. The wheel was hung on a horizontal rod and perturbed to
+measured by hanging the wheel as a compound pendulum, :ref:`Figure
+7.18<figWheelIyy>`. The wheel was hung on a horizontal rod and perturbed to
 oscillate about the axis of the rod. The rate gyro was attached to the spokes
 near the hub\ [#gyroloc]_ and oriented mostly along the axle axis. The wheels
 for the Delft bicycles would rotate at the rod contact point about the vertical
@@ -928,7 +928,7 @@ inner diameter of the rim was measured and divided by two to get
    A wheel hung as a compound pendulum.
 
 The radial moment of inertia was measured by hanging the wheel as a torsional
-pendulum, :ref:`Figure 19 <figFwheelTor>`. The wheel was first hung freely such
+pendulum, :ref:`Figure 7.19<figFwheelTor>`. The wheel was first hung freely such
 that the center of mass aligned with the torsional pendulum axis and then the
 clamp secured. The wheel was then perturbed and oscillated about the vertical
 pendulum axis. The radial moment of inertia can be calculated with
@@ -955,7 +955,7 @@ products of inertia (:math:`I_{\mathrm{B}xx}`, :math:`I_{\mathrm{B}xz}`, and
 :math:`I_{\mathrm{B}zz}`) of the rear frame in the nominal configuration. The
 rear frame was typically hung from either the three main tubes (seat tube, down
 tube, and top tube), the seat post, or a small fixture mounted to the brake
-mounts :ref:`Figure 8 <figPendulumAngle>`. The rear fender prevented easy
+mounts :ref:`Figure 7.8<figPendulumAngle>`. The rear fender prevented easy
 connection to the seat tube on some of the bikes and the clamp was attached to
 the fender.  The fender was less rigid than the frame tube. For best accuracy
 with only three orientation angles, the frame should be hung at three angles
@@ -984,7 +984,7 @@ formulating the relationship between the rotated inertial frames
 where :math:`\mathbf{J}_{\mathrm{B}i}` is the inertia tensor about the pendulum
 reference frame, :math:`\mathbf{I}_\mathrm{B}` is the inertia tensor in the
 locally level reference frame, and :math:`\mathbf{R}_{\mathrm{B}i}` is the
-rotation matrix relating the two frames, :ref:`Figure 7 <figAngles>`. The
+rotation matrix relating the two frames, :ref:`Figure 7.7<figAngles>`. The
 planar inertia tensor is defined as
 
 .. math::
@@ -1050,7 +1050,7 @@ Similarly, calculating all three, or more, :math:`J_{\mathrm{B}i}` allows one to
 and the moments of inertia can be solved as a linear system or with least
 squares if it is over determined. The inertia of the frame about an axis normal
 to the plane of symmetry was estimated by hanging the frame as a compound
-pendulum about the wheel axis, :ref:`Figure 19 <figFrameCompound>`. Equation
+pendulum about the wheel axis, :ref:`Figure 7.19<figFrameCompound>`. Equation
 :eq:`eqCompoundInertia` is used but with the mass of the frame and the frame
 pendulum length.
 
@@ -1073,13 +1073,13 @@ Fork and handlebar
 ~~~~~~~~~~~~~~~~~~
 
 The inertia of the fork and handlebar is calculated in the same way as the
-frame. The fork is hung as both a torsional pendulum, :ref:`Figure 11
-<figStratosFork>`, and as a compound pendulum, :ref:`Figure 20
-<figForkCompound>`. The fork provides fewer mounting options to obtain at least
-three equally spaced orientation angles, especially if there is no fender. We
-designed a connection to the brake mounts for the Davis bicycles to remedy
-that. The torsional calculations follow equations :eq:`eqTorPend` through
-:eq:`eqInRel` and the compound pendulum calculations is calculated with
+frame. The fork is hung as both a torsional pendulum, :ref:`Figure
+7.11<figStratosFork>`, and as a compound pendulum, :ref:`Figure
+7.20<figForkCompound>`. The fork provides fewer mounting options to obtain at
+least three equally spaced orientation angles, especially if there is no
+fender. We designed a connection to the brake mounts for the Davis bicycles to
+remedy that. The torsional calculations follow equations :eq:`eqTorPend`
+through :eq:`eqInRel` and the compound pendulum calculations is calculated with
 Equation :eq:`eqCompoundInertia`. The fork pendulum length is calculated using
 
 .. math::
@@ -1311,7 +1311,7 @@ human as basic geometric shapes already introduces an unknown error.
 
 I measured twelve additional geometric values (only five of which are needed
 for this setup [#f1]_) to assist in configuring the rider to the be seated on
-the bicycle, :ref:`Figure 22 <figBatavusBrowserDim>`.
+the bicycle, :ref:`Figure 7.22<figBatavusBrowserDim>`.
 
 :math:`h_{bb}`, Bottom Bracket Height
    The distance from the ground to the bottom bracket when the bicycle is in
@@ -1355,7 +1355,7 @@ the bicycle, :ref:`Figure 22 <figBatavusBrowserDim>`.
    The dimensions need to construct the grid point system in the simple inertia
    method.
 
-The masses of each segment (:ref:`Table 1 <tabSegmentMass>`) were defined as a
+The masses of each segment (:ref:`Table 7.1<tabSegmentMass>`) were defined as a
 proportion of the total mass of the rider :math:`m_{\mathrm{B}r}` using data
 from cadaver studies by [Dempster1955]_.
 
@@ -1392,10 +1392,10 @@ from cadaver studies by [Dempster1955]_.
 
 The geometrical and anthropomorphic measurements are converted into a set of
 thirty one grid points in three dimensional space that map the skeleton of the
-rider and bicycle (:ref:`Figure 22 <figMooreModel>`). The position vectors to
-these grid points are listed in :ref:`Table 2 <tabGridPoints>`. Several
+rider and bicycle (:ref:`Figure 7.22<figMooreModel>`). The position vectors to
+these grid points are listed in :ref:`Table 7.2<tabGridPoints>`. Several
 intermediate variables used in the grid point equations are listed in
-:ref:`Table 3 <tabIntVar>` where :math:`f_o` is the fork offset and the rest
+:ref:`Table 7.3<tabIntVar>` where :math:`f_o` is the fork offset and the rest
 arise due to multiple solutions to the location of the elbow and knee joints
 and have to be solved numerically. The correct solutions are the ones that
 force the arms and legs to bend in a natural fashion. The grid points mark the
@@ -1506,7 +1506,7 @@ frame. The total body center of mass can be found from the standard formula
 where :math:`\mathbf{r}_i` is the position vector to the centroid of each
 segment and :math:`m_i` is the mass of each segment. The local moments of
 inertia of each segment are determined using the ideal definitions of inertia
-for each segment type (:ref:`Table 4 <tabLocInertia>`).
+for each segment type (:ref:`Table 7.4<tabLocInertia>`).
 
 .. _tabLocInertia:
 
@@ -1656,7 +1656,7 @@ sagittal plane as the hip centers. The knee and thigh elevation angles are then
 found in the same fashion as the elbow and shoulder angles, which the lesser
 restriction that the thigh abduction angle is zero.
 
-:ref:`Figure 23 <figHuman>` shows a visualization of the Yeadon model when
+:ref:`Figure 7.23<figHuman>` shows a visualization of the Yeadon model when
 configured to sit on a bicycle. The details of the calculations and all of the
 data is included with the Yeadon [Dembia2011]_ and BicycleParameters
 [Moore2011a]_ software packages.

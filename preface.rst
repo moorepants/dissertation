@@ -46,12 +46,12 @@ location and seating position of the rider. As a young engineer is taught, I
 went looking for technical guidelines to choose these parameters for our
 bicycle design. But all I came back with were many conflicting ideas from
 various bicycle fabricators and the book Bicycling Science 2nd Ed [Whitt1982]_
-which gave a synopsis of Jones' [Jones1970]_ conclusions from his famous
-study on the stability of bicycles. I studied this in detail and designed my
-bicycle geometry to be exactly what was specified as good handling by Jones.
-[#tubes]_ The bicycle turned out to be rideable (after lots of practice), but
-this was probably the first time I realized in my engineering career that there
-isn't a formula for everything.
+which gave a synopsis of Jones' [Jones1970]_ conclusions from his famous study
+on the stability of bicycles. I studied this in detail and designed my bicycle
+geometry to be exactly what was specified as good handling by Jones.\ [#tubes]_
+The bicycle turned out to be rideable (after lots of practice), but this was
+probably the first time I realized in my engineering career that there isn't a
+formula for everything.
 
 These particulars fell onto the back burner as I finished my work at the
 Langley Full Scale Tunnel and did not re-emerge until a few classes at UC Davis
@@ -105,8 +105,8 @@ papers which have been subsumed into this thesis.
    Some elements of this paper influenced Chapter :ref:`control`.
 [Moore2006]_
    This is the internal report which described my first effort at deriving the
-   equations of motion of the bicycle [#]_, estimating the physical parameters
-   of the bicycle/rider, and running a numerical parameter study.
+   equations of motion of the bicycle\ [#equations]_, estimating the physical
+   parameters of the bicycle/rider, and running a numerical parameter study.
 [Moore2007]_
    Luke Peterson and I wrote this short paper for the 11th International
    Symposium on Computer Simulation in Biomechanics in Tainan, Taiwan. We
@@ -132,7 +132,7 @@ papers which have been subsumed into this thesis.
    This paper presented a combination of the bicycle measurement technique used
    in [Kooijman2006]_ and an improved version of the human inertia estimation
    technique developed in [Moore2006]_. I presented it at the 2009 ASME
-   conference in San Diego, CA. [#]_
+   conference in San Diego, CA.\ [#sandiego]_
 [Kooijman2009a]_
    This is a polished version of [Kooijman2008a]_. Jodi Kooijman presented it
    at the 2009 ASME conference. This work is presented in Chapter
@@ -374,9 +374,9 @@ license.
    realized that I'd cut a tube too long and the geometry was very different
    than I'd planned.
 
-.. [#] The equations derived here are slightly incorrect.
+.. [#equations] The equations derived here are slightly incorrect.
 
-.. [#] I remember this being a poor presentation on my part. I arrived in San
+.. [#sandiego] I remember this being a poor presentation on my part. I arrived in San
    Diego after living for a year in the Netherlands. My mind was lost in
    experiencing everything I missed about my home country and I couldn't focus
    on properly preparing for the presentation.

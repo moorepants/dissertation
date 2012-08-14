@@ -84,7 +84,7 @@ body and other extremities. These rider body motions are even more profound
 when riding a motorcycle in extreme maneuvers [Cossalter2002]_.
 
 The purpose of this study is to identify the major human control actions in
-normal bicycling focusing on the stabilization task. [#]_ We use the term
+normal bicycling focusing on the stabilization task.\ [#]_ We use the term
 "normal" to describe casual bicycling that requires minimal conscious control.
 The identification is done by visual observation of the rider and measurement
 of the motions of the instrumented bicycle, see :ref:`Figure
@@ -275,7 +275,7 @@ consists of four rigid bodies: the rear frame with rigid rider connected, the
 front handlebar and fork assembly, and the two wheels. These are connected by
 ideal hinges and the wheels have idealized pure-rolling contact with level
 ground. [Moore2009a]_ describes the method used to determine the model
-parameters for the instrumented bicycle-rider system [#]_.  These parameters are
+parameters for the instrumented bicycle-rider system\ [#]_.  These parameters are
 given in :ref:`Table 9.3<tabParameters>` and the root locus of the system with
 respect to speed is depicted in :ref:`Figure 9.4<figDelftRootLocus>`. At low speed, the
 dominant mode is the unstable oscillatory weave mode. This weave motion becomes
@@ -658,7 +658,7 @@ details all of the experiments we performed:
 - Lateral perturbation at six speeds for each rider. (runs 132-133)
 - No hand balancing with pedaling for one rider. (runs 60-71)
 - Lane changes for both riders at six speeds. (runs 160-165, 80-85)
-- A single attempt at riding with eyes closed. at 30 km/h [#]_
+- A single attempt at riding with eyes closed. at 30 km/h\ [#]_
 - Line tracking at six speeds for one rider. (runs 90-96)
 
 There is potentially considerable amount of findings and better statistical
@@ -676,7 +676,7 @@ measured the body-fixed angular rate, :math:`u_{3s}`, about the axis
 approximately aligned with gravity, :math:`s_\lambda\hat{c}_1 +
 c_\lambda\hat{c}_3`. Finally, a third rate gyro was mounted to measure the
 body fixed angular rate about a rearward pointing axis,
-:math:`-c_\lambda\hat{c}_1 - s_\lambda\hat{c}_3`. [#]_ The desired rates are
+:math:`-c_\lambda\hat{c}_1 - s_\lambda\hat{c}_3`.\ [#]_ The desired rates are
 found from the measurments with
 
 .. math::

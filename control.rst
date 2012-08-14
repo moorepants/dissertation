@@ -601,7 +601,7 @@ To see this phenomena outside of the stable speed range some form of control is
 needed to stable simulations. Below the weave critical speed, the bicycle can
 generally be stabilized by a simple gain on roll rate feedback. Note that this
 gain is negative, giving positive feedback. This implies that we apply steer
-torque in the same sense as the rate of fall [#negativegain]_. :ref:`Figure
+torque in the same sense as the rate of fall\ [#negativegain]_. :ref:`Figure
 12.4<figWeaveStepResponse>` shows the response to a commanded steer torque
 below the weave speed and the countersteering in the steer angle.
 
@@ -941,7 +941,7 @@ The bicycle is modeled using the Whipple model linearized about the nominal
 configuration with the primary control input being steer torque. The inner
 loops are closed with sequential gains starting with the proprioceptive steer
 angle loop, followed by the vestibular roll rate loop, and the visual roll
-angle loop [#blind]_, :ref:`Figure 12.6<figInnerLoops>`. The steer angle loop
+angle loop\ [#blind]_, :ref:`Figure 12.6<figInnerLoops>`. The steer angle loop
 in essence captures the force/feel or haptic feedback we use while interacting
 with the handlebars. The need for this loop is readily apparent when trying to
 control a bicycle simulation with a joystick or steering wheel with no haptic

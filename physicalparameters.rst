@@ -577,7 +577,7 @@ of these three lines. Two approaches were used used to calculate the center of
 mass. Intuition leads one to think that the center of mass may be the centroid
 of the triangle made by the three intersecting lines. The centroid can be found
 by calculating the intersection point of each pair of lines and then averaging
-the three intersection points [#leastsquares]_.
+the three intersection points\ [#leastsquares]_.
 
 .. math::
    :label: eqLinearSystem
@@ -671,7 +671,7 @@ The fork of the Davis instrumented bicycle was connected to the handlebars by a
 steer torque sensor with universal joint. Due to the fact that the sensor and
 joint were not designed to support the weight of the adjacent components and
 the fact that we needed the inertia of the portion above the torque sensor for
-proper estimation of the steer torque applied by the rider [#steertorque]_, we
+proper estimation of the steer torque applied by the rider\ [#steertorque]_, we
 opted to measure the center of mass and inertia of the fork and handlebar
 separately. The fork was measured as previously described, with the universal
 joint locked in its nominal position. The handlebar was measured in a similar
@@ -868,7 +868,7 @@ the various bicycle parts. The moments of inertia of the clamps were neglected
 [#clamps]_.
 
 The torsional pendulum was calibrated using a rod with an easily computed, i.e.
-"known", moment of inertia :ref:`Figure 7.17<figRod>` [#rod]_. A torsional
+"known", moment of inertia :ref:`Figure 7.17<figRod>`\ [#rod]_. A torsional
 pendulum almost identical to the one used in [Kooijman2006]_ was used to
 measure the average period :math:`\overline{T}_i` of oscillation of the rear
 frame at three different orientation angles :math:`\beta_i`, where :math:`i=1`,
@@ -1310,7 +1310,7 @@ further to the accuracy of the calculations due to the fact that modeling the
 human as basic geometric shapes already introduces an unknown error.
 
 I measured twelve additional geometric values (only five of which are needed
-for this setup [#f1]_) to assist in configuring the rider to the be seated on
+for this setup\ [#f1]_) to assist in configuring the rider to the be seated on
 the bicycle, :ref:`Figure 7.22<figBatavusBrowserDim>`.
 
 :math:`h_{bb}`, Bottom Bracket Height
@@ -1328,20 +1328,20 @@ the bicycle, :ref:`Figure 7.22<figBatavusBrowserDim>`.
    tube would intersect the seat tube.
 :math:`\lambda_{st}`, Seat tube angle
    The acute angle between the ground and the seat tube.
-:math:`l_{f}`, fork length [#f1]_
+:math:`l_{f}`, fork length\ [#f1]_
    The distance from the center of the front wheel to the intersection of the
    head tube and the down tube.
-:math:`w_{fh}`, front hub width [#f1]_
+:math:`w_{fh}`, front hub width\ [#f1]_
    The distance between the front dropouts.
-:math:`w_{hb}`, handlebar width [#f1]_
+:math:`w_{hb}`, handlebar width\ [#f1]_
    The distance between the handlebar grips.
-:math:`l_{hb}`, handlebar length [#f1]_
+:math:`l_{hb}`, handlebar length\ [#f1]_
    The horizontal distance from the steer axis to the handlebar grips.
-:math:`\lambda_{ht}`, head tube angle [#f1]_
+:math:`\lambda_{ht}`, head tube angle\ [#f1]_
    The angle between the ground and the head tube.
-:math:`w_{rh}`, rear hub width [#f1]_
+:math:`w_{rh}`, rear hub width\ [#f1]_
    The distance between the rear dropouts.
-:math:`l_{s}`, stem length [#f1]_
+:math:`l_{s}`, stem length\ [#f1]_
    The distance from the intersection of the top tube and the head tube to the
    level of the handlebar grips.
 

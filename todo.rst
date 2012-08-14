@@ -23,7 +23,5 @@ TODO List
 .. todo:: sphinxcontrib-bibtex is not resovling hyper links in the pdf in the
    same way the footnotes do.
 
-.. todo:: make sure all footnotes are attached to the previous word
-
 .. todo:: font size is screwed up in sysid chapter due to my manually trying to
    resize tables.

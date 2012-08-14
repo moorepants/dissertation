@@ -1147,7 +1147,7 @@ also in parallel. These rider degrees of freedom are detailed in :ref:`Figure
 6.17<figLorenzoConfiguration>` and are similar to the motorcycle rider model
 constructed by Katayama, et al. [Katayama1988]_ with the exception of the rider
 twist. The lateral linear spring and damper represents the connection between
-the rider’s crotch and the seat [#crotch]_. The spring and damper constants are
+the rider’s crotch and the seat\ [#crotch]_. The spring and damper constants are
 influenced by the seat and the properties of the skeletal muscle tissue of the
 inner thighs and/or buttocks. The torsional springs and dampers represent the
 musculoskeletal stiffness and damping at the hips.
@@ -1294,13 +1294,13 @@ direction of the lean. Models are often the chosen with this theory in mind
 [Zytveld1975]_, [Peterson2008a]_, [Schwab2008]_, [Sharp2008a]_, etc. They are
 the most intuitive and simple model but the idea of leaning may in fact be too
 simplistic to describe the actual biomechanical coupling a rider has with a
-bicycle [#motorcyclelean]_.
+bicycle\ [#motorcyclelean]_.
 
 The rider's upper body is typically more than three times the mass of the
 bicycle and it takes proportionally more force to move it. The studies that
 will be presented in Chapters :ref:`delftbicycle` and :ref:`motioncapture` show
 that the rider's upper body both moves little relative to the rear frame and
-leans little with  with respect to inertial space [#weir]_. In contrast the
+leans little with  with respect to inertial space\ [#weir]_. In contrast the
 bicycle can quickly roll relative to the relatively inertially "fixed" rider.
 With that in mind, it is possible to imagine rolling the bicycle frame
 underneath the body using leg and buttock muscles. The fact that during

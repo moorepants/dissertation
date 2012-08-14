@@ -654,7 +654,7 @@ The bicycle was designed in such a way that all of the data collection
 equipment was on board and was suitable for data collection in a free
 environment. After lengthy bureaucratic negotiations, we were able to make use
 of the UCD pavilion floor for the experiments, :ref:`Figure 13.2<figPavilion>`.
-The floor was made of a stiff rubber [#pavilionfloor]_ and provided a
+The floor was made of a stiff rubber\ [#pavilionfloor]_ and provided a
 rectangular wind free space of about 100' by 180' (30 m by 55 m). We road
 around the perimeter to build up speed and did our maneuvers on a straight
 section about 100 feet (30 m) long.  We were not able to travel at speeds
@@ -1281,7 +1281,7 @@ variance in the coefficients clouds it. This variability in the coefficient
 predictions depend on many thing including data quality, the ability to
 identify a process noise model, speed being constant during the run, choice of
 unknown coefficients, and more. With all of these improved detailed regression
-models may be able to reveal the true trends [#mixedeffects]_. Nonetheless,
+models may be able to reveal the true trends\ [#mixedeffects]_. Nonetheless,
 these graphs reveal several important things:
 
 - The identified models predict their data well with most having mean predicted
@@ -1681,7 +1681,7 @@ and :math:`K_{0\phi\delta} = K_{0\delta\phi}` to fix these values in the steer
 equation to the ones identified in the roll equation, leaving less free
 parameters in the steer equation. This matrix symmetry is likely enforced in
 reality due to the simple coupling of the front and rear frames by a revolute
-joint [#symmetry]_. Finally, I identify the remaining steer equation
+joint\ [#symmetry]_. Finally, I identify the remaining steer equation
 coefficients with
 
 .. math::
@@ -2128,35 +2128,19 @@ runs in a given set.
 
 .. tabularcolumns:: LLLLLLLLLLLLL
 
-.. raw:: latex
-
-   \footnotesize{
-
 .. table:: Median VAF for the roll equation of various models (rows) for all
    runs in each data subset (columns).
 
    .. include:: tables/systemidentification/median-roll.rst
 
-.. raw:: latex
-
-   }
-
 .. _tabMeanVAFSteer:
 
 .. tabularcolumns:: LLLLLLLLLLLLL
-
-.. raw:: latex
-
-   \footnotesize{
 
 .. table:: Mean VAF for the steer equation of various models (rows) for all
    runs in each data subset (columns).
 
    .. include:: tables/systemidentification/median-steer.rst
-
-.. raw:: latex
-
-   }
 
 Tables :ref:`13.7<tabMeanVAFRoll>` and :ref:`13.8<tabMeanVAFSteer>` give the median
 for each set of runs in each column for each model in given in the row for roll
@@ -2839,7 +2823,7 @@ proved to give much better control predictions.
 Results
 -------
 
-I computed the optimal five gains and neuromuscular frequency [#neurodamp]_ for
+I computed the optimal five gains and neuromuscular frequency\ [#neurodamp]_ for
 all 262 runs and recorded the VAF of the steer angle output explained by the
 model for each run along with the identified parameters.
 

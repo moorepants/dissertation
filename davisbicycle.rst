@@ -185,7 +185,7 @@ the speed of the treadmill. Some sort of feedback control would alleviate the
 difficulties, but we made do. The exposed wires from the hub motor are also
 easily susceptible to damage. The bicycle fell over once, damaged the wires and
 shorted the hall effects sensors in the hub. I spent a couple of weeks
-repairing it [#hubdamage]_. Overall, the motor met our needs for constant speed
+repairing it\ [#hubdamage]_. Overall, the motor met our needs for constant speed
 propulsion and the single battery would last an entire day of experimentation.
 
 Rider Harnesses
@@ -411,7 +411,7 @@ Attitude Heading Reference System
 
 Many of these systems were within our budget range so we scouted various
 companies (MemSense, Navionex, MotionNode, MicroPilot, Crossbow, VectorNav, Ch
-Robotics, etc.) to see what was offered [#imus]_. We ended up choosing the VN-100
+Robotics, etc.) to see what was offered\ [#imus]_. We ended up choosing the VN-100
 development board from a relatively new company called `VectorNav
 <http://www.vectornav.com>`_ due to price, on board orientation calculations, and
 the potential ease of collecting data via a typical RS-232 serial interface. My
@@ -463,7 +463,7 @@ of the rear wheel.
    annotated. The right photo shows it attached to the instrumented bicycle.
 
 The potentiometer effectively measures the angle between the yoke and the main
-trailer frame [#rolltrailer]_. For a direct measurement of the true roll angle
+trailer frame\ [#rolltrailer]_. For a direct measurement of the true roll angle
 of the bicycle, the trailer roll axis must lie in the ground plane, but this is
 physically impossible so it is preferable for the axis to be as close to the
 ground as possible. :ref:`Figure 11.6<figTrailerAngle>` shows how the yoke pitch
@@ -497,7 +497,7 @@ single orientation and rate measurement is needed to measure the front frame
 motion. I used a similar design and setup as the Delft instrumented bicycle,
 :ref:`Figure 11.7<figSteerSensors>`: a potentiometer for relative steering angle
 measurement and a single axis rate gyro for the body fixed angular rate of the
-front frame about the steer axis [#rategyro]_. I modified the design with some
+front frame about the steer axis\ [#rategyro]_. I modified the design with some
 minor improvements such as better tension adjustability and switching to a
 screw mount potentiometer.
 
@@ -681,7 +681,7 @@ impulsive forces to the handlebars to excite the weave mode. [Lange2011]_
 discusses several methods of applying a pure roll torque to the bicycle
 including a mass swing, a mass slider, a rope, and lateral accelerating the
 ground. His designs are intended to apply an oscillatory roll torque to
-facilitate system identification in the frequency domain [#idealinput]_.
+facilitate system identification in the frequency domain\ [#idealinput]_.
 
 We weren't able to come up with a clever way of perturbing the system with a
 harmonic input and frankly I did not think a great deal about the perturbation
@@ -1391,7 +1391,7 @@ accounted for these effects. There is a relationship from :math:`T_M` to
 :math:`T_\delta` that requires one to know, at a minimum the friction in
 the steer axis bearings above the torque sensor (this is potentially both
 viscous and coulomb) and the inertial characteristics of the front frame above
-the torque sensor [#elastic]_.
+the torque sensor\ [#elastic]_.
 
 In our case, we measured the torque in the steering column, :math:`T_M`, from a
 sensor that is mounted between the handlebars and the fork. The sensor was also
@@ -1631,7 +1631,7 @@ three trials. We found the average spring stiffness to be :math:`904.7 \pm 0.6`
 N/m. The inertia of the handlebar, fork, and front wheel about the steer axis,
 :math:`I_{HF}`, was computed based on the measurements described in Chapter
 :ref:`physicalparameters` and found to be :math:`0.1297+/-0.0005` :math:`kg
-\cdot m^2` [#inertia]_.
+\cdot m^2`\ [#inertia]_.
 
 The friction coefficients are found with a non-linear grey box identification
 based on the measured steer angle over 15 trials (runs 209-223) where the
@@ -1795,7 +1795,7 @@ slope :math:`m`, and intercept of the calibration curve :math:`b` relating
 voltage to the angle. Depending on the calibration, the angle could be the
 rotation angle of the potentiometer as in the case of the roll angle
 measurement or the actual steer angle in the case of the steer angle due to the
-gearing from the steer tube [#pots]_. For example
+gearing from the steer tube\ [#pots]_. For example
 
 .. math::
    :label: eqPotentiometerCalibration

@@ -133,7 +133,7 @@ Cossalter [Cossalter2002]_.
 
 The motorcycle researchers have more experimental data validation of their
 models than in bicycle studies, and their more complicated models in general do
-a very good job of predicting the high speed motorcycle dynamics [#example]_.
+a very good job of predicting the high speed motorcycle dynamics\ [#example]_.
 This is due to the fact that more work has been done to understand and measure
 the phenomena, that the high speed dynamics are easier to predict, and that the
 human's biomechanical motions play a smaller role in the vehicle motion.
@@ -146,7 +146,7 @@ complex, and more violent. It takes a touch of genius - and a lot of courage -
 to move in the opposite direction." With the wide variety of models available,
 I've generally taken the approach of trying to use the simplest models possible
 to predict the measured motion in my experiments rather than adding great
-complexity. In my case, this model is often the Whipple model [#complex]_ with
+complexity. In my case, this model is often the Whipple model\ [#complex]_ with
 or without various rider biomechanical models which attempt to account for the
 large affect the rider's freedom of movement can contribute to the system
 dynamics.

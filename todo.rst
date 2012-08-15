@@ -25,6 +25,8 @@ Major
 
 .. todo:: exclude the stuff on the index page in the pdf document
 
+.. todo:: Get Tustin citation
+
 Minor
 
 .. todo:: The footnotes in the latexpdf hyperlink to page i. These don't really

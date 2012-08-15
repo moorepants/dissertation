@@ -21,7 +21,7 @@ lane freeways of Los Angeles or in a rural African village.
 
 In my life, I have become an ever stronger proponent of the use of the bicycle
 as an appropriate mode of transportation. It is the most energy efficient way
-for a human to travel [Wilson2004]_. It has crept into all parts of my life
+for a human to travel :cite:`Wilson2004`. It has crept into all parts of my life
 with much of my time being spent thinking about different aspects of bicycles
 and bicycling. But this dissertation is concerned with how we actually balance
 on the blasted thing. Balancing, in general, may seem like a trivial task
@@ -51,11 +51,11 @@ ability to balance or be balanced, and certainly to be guided in a desired
 direction, no matter how the rider moves their body.
 
 The bicycle has been studied by many scientists over the years. It is a rich
-dynamic system that is difficult to model accurately. [Meijaard2007]_ did an
+dynamic system that is difficult to model accurately. :cite:`Meijaard2007` did an
 excellent job of sorting through 140 years of bicycle dynamics papers and
 providing a benchmarked bicycle model that finally verified the correct
 linearized equations of motion of the basic model, usually attributed as the
-Whipple Model [Whipple1899]_. The model is able to predict both the non-minimum
+Whipple Model :cite:`Whipple1899`. The model is able to predict both the non-minimum
 phase behavior and speed dependent stability and is now considered the
 foundation to all more detailed models.
 
@@ -71,43 +71,43 @@ Simple Models
 
 Typically a one degree of freedom model that produces a roll equation of motion
 is used to model a bicycle in its most basic form. This model has been derived
-and analyzed by many including, but not limited to, [Timoshenko1948]_,
-[Karnopp2004]_, and [Astrom2005]_. These models do not have great fidelity with
+and analyzed by many including, but not limited to, :cite:`Timoshenko1948`,
+:cite:`Karnopp2004`, and :cite:`Astrom2005`. These models do not have great fidelity with
 regard to predicting the bicycle's open-loop, speed-dependent stability but
 they are able to predict the non-minimum phase behavior. This situates them to
-be good candidates for basic control studies ([Getz1994]_, [Cloyd1996]_,
-[Karnopp2004]_, [Astrom2005]_, [Limebeer2006]_) as they predict the necessity
+be good candidates for basic control studies (:cite:`Getz1994`, :cite:`Cloyd1996`,
+:cite:`Karnopp2004`, :cite:`Astrom2005`, :cite:`Limebeer2006`) as they predict the necessity
 of steering into the roll for stabilization and control. Controllers based on
 these models have also been successfully implemented on actual experimental
-control models [Suryanarayanan2002]_ with some success. Beyond this paragraph,
+control models :cite:`Suryanarayanan2002` with some success. Beyond this paragraph,
 I will not be discussing these low order models any further.
 
 Whipple Model
 -------------
 
 The lowest order model that has had some reasonable experimental validation
-[Kooijman2008]_ is one which is able to predict speed dependent stability, and
+:cite:`Kooijman2008` is one which is able to predict speed dependent stability, and
 includes a complete physical description of the four basic rigid bodies that
 constitute a bicycle. The model is now typically referred to as the "Whipple
 Model". This is in honor of Francis J. W. Whipple, the first author to publish
 a correct derivation of the linear equations of motion of this particular
-bicycle model [Whipple1899]_. This model will be used as the basis for all
+bicycle model :cite:`Whipple1899`. This model will be used as the basis for all
 further studies proposed in this dissertation. Many researchers over the past
 century have attempted to derive and analyze this model but very few have been
-successful. [Meijaard2007]_ give a complete historical review of uncontrolled
+successful. :cite:`Meijaard2007` give a complete historical review of uncontrolled
 bicycle research which made use of the historical comparisons in the thesis by
-[Hand1988]_. [Meijaard2007]_ also benchmarked the Whipple Model by deriving the
+:cite:`Hand1988`. :cite:`Meijaard2007` also benchmarked the Whipple Model by deriving the
 linearized equations of motion by using four independent methods (two
 independent pen and paper calculations and two different dynamic software
-packages). Furthermore, [Basu-Mandal2007]_ benchmarked various torque-free
+packages). Furthermore, :cite:`Basu-Mandal2007` benchmarked various torque-free
 circular motions in the non-linear case with two additional independent
 derivations of the equations of motion. There has been a series of recent
-validation attempts ([Kooijman2006]_, [Kooijman2008]_, [Kooijman2009]_,
-[Stevens2009]_, [Escalona2010]_, [Escalona2011]_) for the Whipple model in
+validation attempts (:cite:`Kooijman2006`, :cite:`Kooijman2008`, :cite:`Kooijman2009`,
+:cite:`Stevens2009`, :cite:`Escalona2010`, :cite:`Escalona2011`) for the Whipple model in
 particular and the evidence for it's ability to describe the motion of the
 bicycle with no rider around the stable speed range is strong. This is
 important because it may be the lowest order model with the ability to predict
-the dynamics. In this dissertation, I make use of both the [Meijaard2007]_
+the dynamics. In this dissertation, I make use of both the :cite:`Meijaard2007`
 model and my own derivation of the Whipple Model.
 
 Complex Models
@@ -120,16 +120,16 @@ motorcycle motion. For example, the typical motorcycle is modeled with more
 realistic empirically derived tire-road interactions and a full suspension.
 
 The most cited models typically have some reference to the model developed by
-Robin S. Sharp [Sharp1971]_. This model extends the Whipple model concepts to
+Robin S. Sharp :cite:`Sharp1971`. This model extends the Whipple model concepts to
 include tire compliance and side slip. The model has been refined over the
 years to improve accuracy by adding frame flexibility, rider models and
-improving the tire models [SharpGani1999]_ , [SharpLimebeer2001]_, [Sharp2004]_
-with Pacejka-style [Pacejka2006]_ tire models being a popular choice. Sharp
+improving the tire models :cite:`Sharp1999` , :cite:`Sharp2001`, :cite:`Sharp2004`
+with Pacejka-style :cite:`Pacejka2006` tire models being a popular choice. Sharp
 was also the first to give names to the eigenmodes of the Whipple Model
-[Sharp1975]_. He and David Limebeer give a review of bicycle and motorcycle
-modeling in [Limebeer2006]_ covering much of their work. Other notable studies
-include ones developed by [Koenen1983]_ and the Italian group lead by Vittore
-Cossalter [Cossalter2002]_.
+:cite:`Sharp1975`. He and David Limebeer give a review of bicycle and motorcycle
+modeling in :cite:`Limebeer2006` covering much of their work. Other notable studies
+include ones developed by :cite:`Koenen1983` and the Italian group lead by Vittore
+Cossalter :cite:`Cossalter2002`.
 
 The motorcycle researchers have more experimental data validation of their
 models than in bicycle studies, and their more complicated models in general do
@@ -153,6 +153,6 @@ dynamics.
 
 .. rubric:: Footnotes
 
-.. [#example] For example, [Biral2003]_ is great example.
+.. [#example] For example, :cite:`Biral2003` is great example.
 
 .. [#complex] Not to say that the Whipple Model is not complex, au contraire.

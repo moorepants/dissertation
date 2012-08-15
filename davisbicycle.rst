@@ -205,11 +205,11 @@ Rigid Rider
 
 Rigid rider models are often employed in single track vehicle research but the
 rider has been rigidified very few times in experimental work. This potentially
-problematic as the rigid rider assumption is a large one. [Stassen1973]_ made
+problematic as the rigid rider assumption is a large one. :cite:`Stassen1973` made
 use of a rider brace in their bicycle simulator to prevent rider lean.
-[Eaton1973c]_ rigidified his motorcyclists' torso and performed several
+:cite:`Eaton1973` rigidified his motorcyclists' torso and performed several
 perturbation tests with the rider's hands off the handlebars! He found it
-difficult to identifying the linear modes of motion. [Doyle1987]_ comments on
+difficult to identifying the linear modes of motion. :cite:`Doyle1987` comments on
 the utility of rigidifying the rider which was very in line with his techniques
 to simplify the system, but he left the rider free to move in his experiments.
 Jim Papadopolous has been a proponent of using recumbent bicycles in studies
@@ -344,7 +344,7 @@ of bicycle kinematic motions from my previously collected data.
 
 The yaw, roll, pitch and steer rates, are typically measured directly with rate
 gyros, which have been available for the later half of the 20th century. The
-direct measurement of angular accelerations has yet to mature [Ovaska1998]_, so
+direct measurement of angular accelerations has yet to mature :cite:`Ovaska1998`, so
 numerical differentiation and filtering of the angular rates is often used. The
 angular accelerations can also be computed if the acceleration and location of
 multiple points are measured with accelerometers. Most all experimental work
@@ -363,29 +363,29 @@ trivial. Past researchers have measured the roll angle with a variety of
 methods from trailers and third wheels to lasers and rate gyros with
 complementary state estimators.
 
-[Dohring1953]_ used a trailer to measure roll angle. [Kageyama1959]_
-and [Fu1965]_ introduced one of the earliest direct roll angle measurements.
+:cite:`Dohring1953` used a trailer to measure roll angle. :cite:`Kageyama1959`
+and :cite:`Fu1965` introduced one of the earliest direct roll angle measurements.
 They made use of a third wheel attached to one side of the motorcycle and
 measured the angle between the wheel mounting arm and the motorcycle frame.
-[Singh1964]_ also used a third wheel after having little luck with
+:cite:`Singh1964` also used a third wheel after having little luck with
 accelerometers and rate gyros. He obtained decent measurements but abandoned
 the wheel because it was too large, dangerous and susceptible to vibration.
-[Roland1971]_ measured roll angle with a potentiometric free gyro with
+:cite:`Roland1971` measured roll angle with a potentiometric free gyro with
 seemingly good results. Their data was captured with direct write recorders in
-a pace car. [Eaton1973c]_ used a third wheel and a potentiometer to measure
-roll angle on a motorcycle, but also had reliability issues. [Zytveld1975]_
+a pace car. :cite:`Eaton1973` used a third wheel and a potentiometer to measure
+roll angle on a motorcycle, but also had reliability issues. :cite:`Zytveld1975`
 used a small trailer with two roller skate wheels and potentiometer to measure
 the roll angle on this robotic motorbike.
 
 More modern techniques often focus around roll angle estimation.
-[Boniolo2008]_, [Boniolo2009]_ develop a simple algorithm to remove the low
+:cite:`Boniolo2008`, :cite:`Boniolo2009` develop a simple algorithm to remove the low
 frequency drift and only require yaw rate, roll rate and speed measurements to
 get peak roll estimation errors of 5 degrees, which were larger than we could
 accept. But their methods did allow for roll angle estimation on banked curves.
 Distance lasers have been used to directly measure the roll angle with respect
-to the ground but are particularly expensive [Everste2009]_. The roll angle can
+to the ground but are particularly expensive :cite:`Evertse2010`. The roll angle can
 also be estimated with a state estimator such as a Kalman filter
-([Gustafsson2002]_, [Teerhuis2010]_). The plant in the Kalman filter can be
+(:cite:`Gustafsson2002`, :cite:`Teerhuis2010`). The plant in the Kalman filter can be
 general 3D motion of a rigid body or a model of the bicycle. Constraining the
 estimation with the use of a bicycle model as the plant could have drawbacks
 when using the resulting angle for model validation but can give potentially
@@ -490,8 +490,8 @@ Steer
 The steer angle is easy to measure with either some form of write recorder,
 potentiometer, or encoder and has been accurately measured on many bicycle and
 motorcycle systems since the early 50's. Of the early methods,
-[WilsonJones1951]_ has a particularly interesting mechanical protractor design
-and [Dohring1953]_ makes use of a mechanical write recorder. Because the front
+:cite:`Wilson-Jones1951` has a particularly interesting mechanical protractor design
+and :cite:`Dohring1953` makes use of a mechanical write recorder. Because the front
 frame is attached to the rear frame via a revolute joint only an additional
 single orientation and rate measurement is needed to measure the front frame
 motion. I used a similar design and setup as the Delft instrumented bicycle,
@@ -669,15 +669,15 @@ Lateral Perturbation Force
 
 I was introduced to the idea of external lateral force perturbations from some
 of my first email exchanges with Arend and when I was in Delft we did several
-experiments with lateral perturbations [Kooijman2009a]_. We applied the
+experiments with lateral perturbations :cite:`Kooijman2009a`. We applied the
 impulsive type of perturbations without measuring the applied force assuming
 they could be modeled as impulses. There are also many other past attempts at
-exciting the system. [Roland1971]_ on the other hand attached a calibrated
+exciting the system. :cite:`Roland1971` on the other hand attached a calibrated
 rocket to the handelbars of a riderless bicycle to give a know step input to
-steer torque. [Eaton1973c]_ had the motorcycle rider tap the handlebars to
+steer torque. :cite:`Eaton1973` had the motorcycle rider tap the handlebars to
 applied an impulse and also drop weights from the side of the motorcycle to
-apply a roll torque. [Doria2011]_ similarly had the motorcycle rider apply
-impulsive forces to the handlebars to excite the weave mode. [Lange2011]_
+apply a roll torque. :cite:`Doria2012` similarly had the motorcycle rider apply
+impulsive forces to the handlebars to excite the weave mode. :cite:`Lange2011`
 discusses several methods of applying a pure roll torque to the bicycle
 including a mass swing, a mass slider, a rope, and lateral accelerating the
 ground. His designs are intended to apply an oscillatory roll torque to
@@ -734,7 +734,7 @@ Seat Post
 ---------
 
 As already mentioned, I had intended to measure the forces at all of the
-rider/bicycle interfaces. Cal Stone [Stone1990]_ developed a seat post which
+rider/bicycle interfaces. Cal Stone :cite:`Stone1990` developed a seat post which
 was capable of measuring five components of force in the seat post with an
 array of strain gauges. I was going to add a strain gage bridge for the
 remaining unmeasured component, torque about the seat axis, to complete the
@@ -777,13 +777,13 @@ Steer Torque
 A rider applies forces to the handlebars that cause the front frame to rotate
 relative to the bicycle frame. These forces can be lumped into an effective
 steer torque. Steer torque is the most effective natural input to controlling a
-bicycle and the input that the human most often utilizes. [Roland1972]_
+bicycle and the input that the human most often utilizes. :cite:`Roland1972`
 explicitly differentiates steer torque based control than steer angle as
-opposed to [Lunteren1969]_ which hypothesized that steer angle was the
-controlled input. [Weir1972]_ demonstrates that steer angle control input has
+opposed to :cite:`Lunteren1969` which hypothesized that steer angle was the
+controlled input. :cite:`Weir1972` demonstrates that steer angle control input has
 poor gain and phase margins as compared to steer torque control input.
-[Weir1979a]_ shows that a no hand lane change is much less "precise and
-efficient" as to one done with steer torque control. [Sharp2008a]_ shows that
+:cite:`Weir1979a` shows that a no hand lane change is much less "precise and
+efficient" as to one done with steer torque control. :cite:`Sharp2008a` shows that
 steer torque is always the optimal control input when the cost function is
 based on control power. Accurately measuring the applied steer torque can
 provide rich data with which to understand the bicycle dynamics and the
@@ -802,7 +802,7 @@ more attempts at measuring the steer torque on motorcycles.
 Bicycle Experiments
 ~~~~~~~~~~~~~~~~~~~
 
-[Lorenzo1997]_
+:cite:`Lorenzo1997`
    David de Lorenzo instrumented a bicycle which could measure pedal,
    handlebar, and hub forces to characterize the in-plane structural loads
    during downhill mountain biking. The handlebar forces were measured with a
@@ -817,13 +817,13 @@ Bicycle Experiments
    that the crosstalk from the all of the forces and moments on the handlebars
    gives a very low accuracy for the reported torques, probably in the
    :math:`\pm 1` to 3 Nm range.
-[Jackson1998]_
+:cite:`Jackson1998`
    They don't measure steer torque explicitly but attempt to predict the
    contributions to the torques acting on the front frame based on orientation,
    rate and acceleration data taken while riding a bicycle with no-hands. They
    show a single graph with torques under :math:`\pm2.5` Nm acting on the front
    frame about the steer axis.
-[Cheng2003]_
+:cite:`Cheng2003`
    This is a report about a design project at UCSB to develop and implement a
    steer torque measurement device on a bicycle. The experiments and
    measurements seem to be one of a kind for bicycles up to that point in time.
@@ -851,7 +851,7 @@ Bicycle Experiments
    counter to what models and other experiments predict. For the sharp turns
    the highest reported torque is about 10 Nm, for the steady turning he
    reports the highest average torque as 1 Nm.
-[Astrom2005]_
+:cite:`Astrom2005`
    Åström et al. talks briefly about the steer torque measurement system
    constructed for the UCSB instrumented bicycle but with little extra
    information. He does include a nice photo of the apparatus, :ref:`Figure
@@ -864,8 +864,8 @@ Bicycle Experiments
       :align: center
       :target: _images/cheng-steer-torque-design.jpg
 
-      Cheng's design, from [Astrom2005]_.
-[Iuchi2006]_
+      Cheng's design, from :cite:`Astrom2005`.
+:cite:`Iuchi2006`
    They construct a bicycle with a steer motor and controller which treats the
    rider's additional input as an additive input instead of a disturbance. The
    rider's steer torque contribution is estimated from the motor torque and the
@@ -873,7 +873,7 @@ Bicycle Experiments
    assess the design, but measuring steer torque by motor current may be
    effective. They are one of the few studies that takes into account some of
    the inertial effects of the handlebar.
-[Cain2010]_
+:cite:`Cain2010`
    He designed a custom torque sensor that fit inside a bicycle steer tube. He
    mostly removed the crosstalk effects due to an axial load on the sensor, but
    the design still seems very likely susceptible to bending moments on the
@@ -883,7 +883,7 @@ Bicycle Experiments
    steady turns never exceeded a magnitude of 2.4 Nm. He wasn't able to predict
    steer torque well with his bicycle model and only points to the fact that
    the sensor was 90% oversized for an explanation to the poor results.
-[Ouden2011]_
+:cite:`Ouden2011`
    Designs a steer torque sensor for a bicycle which has a range of about
    :math:`\pm7.5` Nm. He was acutely aware of crosstalk issues with respect to
    the other forces applied to the handlebars and tried to design accordingly,
@@ -895,25 +895,25 @@ Bicycle Experiments
 Motorcycle Experiments
 ~~~~~~~~~~~~~~~~~~~~~~
 
-[Wilson-Jones1951]_
+:cite:`Wilson-Jones1951`
    Wilson-Jones beautiful treatise on single track vehicle dynamics may
    demonstrate the first steer torque measurements ever done. He constructed an
    mechanical analog torsion bar that provided the instantaneous steer torque
    to the motorcycle driver via a head tube mounted protractor. He used this to
    gage torques in turns.
-[Kondo1955]_
+:cite:`Kondo1955`
    Kondo's work is the first electrical measurement of steer torque that I've
    come across. He does not give great detail of the sensor and shows only one
    plot of steer torque and steer angle from experimental measurements. The
    units for the steering force are in kilograms and I'm not completely sure
    what was being measured. My poor understanding is limited by the light
    translations with which I got help.
-[Fu1965]_
+:cite:`Fu1965`
    Measures steering torque in steady turns but the resulting data is not
    published in this paper. He refers to it as future work in the review
-   section. He claims agreement with [Kageyama1959]_ of which he was a
+   section. He claims agreement with :cite:`Kageyama1959` of which he was a
    co-author, but I wasn't able find this paper.
-[Eaton1973]_
+:cite:`Eaton1973`
    Eaton attached a torque bar with strain gages to the top of the motorcycle
    handlebar, :ref:`Figure 11.13<figEatonSteerTorque>` and had the rider control
    the motorcycle with one hand to get a measure of steering torque. The steer
@@ -934,7 +934,7 @@ Motorcycle Experiments
 
       Eaton's simple bar torque sensor.
 
-[Weir1979a]_
+:cite:`Weir1979a`
    Weir et al. designed a modular torque sensor which could be affixed to
    multiple motorcycles, :ref:`Figure 11.14<figWeirSteerTorque>`. The range was
    +/- 70 Nm with 1% accuracy and >10 Hz dynamic range. The crosstalk due to
@@ -956,27 +956,27 @@ Motorcycle Experiments
       :align: center
       :target: _images/weir-torque-load-cell.jpg
 
-      The steer torque measurement design from [Weir1979a]_. The adaptor plate
+      The steer torque measurement design from :cite:`Weir1979a`. The adaptor plate
       allowed one to attached the main housing to a variety of motorcycle forks.
       The handlebar mounting block "floated" on a set of thrust bearings that
       resisted all forces applied to the handlebars except the moment about
       the steer axis. The Lebow torque sensor resisted the moment about the
       steering axis to give a pure torque measurement.
 
-[Sugizaki1988]_
+:cite:`Sugizaki1988`
    They measure steer torque on four motorcycles during high speed lane
    changes. No detail of the steering torque measurement system is given but
    they show the time traces of steer torque for some of the maneuvers which
    vary between -20 and 20 Nm. The time traces have little visible human remnant
    or noise, which questionable.
-[Taro2000]_
+:cite:`Taro2000`
    He supposedly measures steer torque, but I haven't located the paper.
-[Bortoluzzi2000]_
-   Same description of the transducer as [Biral2003]_.
-[Biral2003]_
+:cite:`Bortoluzzi2000`
+   Same description of the transducer as :cite:`Biral2003`.
+:cite:`Biral2003`
    Biral et al. designed a custom steer torque measurement system for a
    motorcycle using a cantilever beam, :ref:`Figure 11.15<figBiralSteerTorque>`.
-   The handlebars were mounted on a bearing similar in idea to [Weir1979a]_ but
+   The handlebars were mounted on a bearing similar in idea to :cite:`Weir1979a` but
    the steering torque load is transmitted through a thin cantilever beam which
    engages the fork. The design is such that other handlebar forces will not
    influence the torque measurement. It includes stops in case the beam break.
@@ -991,37 +991,37 @@ Motorcycle Experiments
       :align: center
       :target: _images/biral-steer-torque-design.jpg
 
-      The cantilever beam design taken from [Biral2003]_.
-[James2002]_, [James2005]_
+      The cantilever beam design taken from :cite:`Biral2003`.
+:cite:`James2002`, :cite:`James2005`
    James measures steer torque on an off-road motorcycle by attaching a
    lightweight secondary handlebar connected to the primary handlebar via a
    load cell. In the second paper he has a single wheel trailer attached to the
    vehicle.
-[Capitani2006]_
+:cite:`Capitani2006`
    They measure steer torque on a scooter during a lane change and turning to
    compare with their model. No detail is given on how steer torque is
    measured, so I can't comment on the quality of the measurement but they
    report values of -15 to 40 Nm on a couple of graphs. The paper is extremely
    poor and makes false conclusions. I'm really surprised it made it through
    peer review. I wouldn't trust the data or the model.
-[Evertse2010]_
+:cite:`Evertse2010`
    He mounts two axis load cells at the handlebar grips to measure the forces
    on the grip. This puts the sensor right at the human/machine interface thus
    negating the need to worry about the inertial affects of the front frame.
    For his obstacle maneuver tests the maximum steer torques were no greater
    than 40 Nm.
-[Teerhuis2010]_
+:cite:`Teerhuis2010`
    Measured motorcycle steer torque in steady turns and slalom maneuvers. The
    torques in the two time history graphs are less than 20 Nm.
 
 Bicycle Models
 ~~~~~~~~~~~~~~
 
-[Limebeer2006]_
+:cite:`Limebeer2006`
    Limebeer and Sharp show a graph of a steer torque prefilter (i.e. torque
    generated for roll control) output to command a ~40 degree roll angle for
    the benchmark bicycle model. The torques are in the realm of -0.5 to 2.5 Nm.
-[Sharp2007a]_
+:cite:`Sharp2007a`
    Robin Sharp uses the benchmark bicycle model and an LQR controller with
    preview to follow a randomly generated path that has about 2 meter lateral
    deviations. The bicycle is traveling at 10 m/s and the steer torque ranges
@@ -1029,18 +1029,18 @@ Bicycle Models
    :math:`\pm 10` Nm. Straight line to circle path maneuvers show torques
    ranging from -0.5 to 0.5 Nm for loose control and -2.5 to 2.5 for medium
    control.
-[Connors2008]_
+:cite:`Connors2008`
    They model a recumbent bicycle with the Whipple model and additional
    rotating legs. The bicycle is stabilized in roll from 5 to 30 m/s requiring
    up to :math:`\pm 8` Nm of steering torque, which is a function of the leg
    oscillation frequency.
-[Sharp2008a]_
+:cite:`Sharp2008a`
    Robin Sharp used the benchmark bicycle model and an LQR controller with
    preview to make a bicycle track a 4 meter lane change at 6 m/s. During this
    maneuver, the steer toque ranged from about -1 to 1 Nm. He also showed a
    very fine steer torque variation in the range of 0 to 0.0025 Nm about 10
    meters before the start of the lane change.
-[Peterson2009]_
+:cite:`Peterson2009`
    Peterson and Hubbard show the steady turning required steering torques for
    the benchmark bicycle on page 7. The torques for lean angles from 0 to 10
    degrees and steer from 0 to 45 degrees are under 3 Nm.
@@ -1048,28 +1048,28 @@ Bicycle Models
 Motorcycle Models
 ~~~~~~~~~~~~~~~~~
 
-[Sharp1971]_
+:cite:`Sharp1971`
    Reports steady state motorcycle steering torques for 10 degree banking turns
    in the range of -25 Nm to 2.35 Nm for speeds 10 ft/s to 160 ft/s.
-[Cossalter1999]_
+:cite:`Cossalter1999`
    Studies steady turning of a motorcycle model with toroidal tires and tires
    as force generators. For slower speed steady turns, the model predicts
    steering torques up to 10 Nm.
-[Tanelli2006]_
+:cite:`Tanelli2006`
    They stabilize a motorcycle model at roll angle up to 30 degrees with -5 to
    7.5 Nm of steer torque.
-[Sharp2007]_
+:cite:`Sharp2007`
    Robin Sharp uses a multi-degree of freedom motorcycle model and an LQR
    controller with preview to control a motorcycle moving at 30 m/s through a 4
    meter lane change and a 250 meter S-turn. For the lane change he gets torques
    ranging from about -20 Nm to 55 Nm for a more aggressive control and -4 to 6 Nm
    for less aggressive control. The S-turn gives torques from -40 Nm to 70 Nm with
    a sharp peak in torque in the middle of the S-turn.
-[Cossalter2007]_
+:cite:`Cossalter2007`
    They study steady turning of motorcycles and show a plot that predicts steer
    torques in the range of -3 to 10 Nm for lateral accelerations from 0 to
    11 m/s^2 and speeds from 5 to 50 m/s.
-[Marumo2007]_
+:cite:`Marumo2007`
    Their steer controller for Sharps four degree of freedom motorcycle model
    shows a -50 nm maximum steer torque for a commanded roll angle of 20 degrees.
 
@@ -1078,12 +1078,12 @@ experiments and not all that many more for motorcycles. Of these, very few of
 the designs may actually measure a pure rider applied steer torque. This is
 more consequential for bicycles than motorcycles because the small torques used
 in typical bicycle control are certainly less than 10 Nm with the majority less
-than 5 Nm. [Ouden2011]_, in particular, showed how sensitive the torque
+than 5 Nm. :cite:`Ouden2011`, in particular, showed how sensitive the torque
 measurements are to other handlebar loads. Also, most of these designs measure
 the torque somewhere in between the rider hands and the ground contact point.
 This is a physically ideal way to measure the steer torque, but no one has
 accounted for the dynamic inertial effects of the front frame above or below
-the sensor. [Everste2010]_ may be the only design which mitigates this issue.
+the sensor. :cite:`Evertse2010` may be the only design which mitigates this issue.
 I'll show later in this chapter that for maneuvers that require large steer
 angular accelerations, that this is a significant additive effect.
 
@@ -1099,7 +1099,7 @@ This implies that there may be some missing components of torque in the models,
 especially with respect to tire interactions with the ground.
 
 I started by taking some crude steer torque measurements myself, similar to the
-first method presented by [Cheng2003]_, as I hadn't found Cheng's paper or any
+first method presented by :cite:`Cheng2003`, as I hadn't found Cheng's paper or any
 of the post 2008 references yet. Secondly, I address the issue of the potential
 loads acting on the steer tube other than steer torque. And finally, I show the
 calculations to account for the inertial effects of the front frame.
@@ -1250,13 +1250,13 @@ eliminate or minimize the crosstalk and get good, noiseless, accurate readings.
 One of the simplest ways to measure steer torque may be to apply a strain gauge
 bridge primarily sensitive in torque to the steer tube of the fork. This method
 and others would require that the cross sensitivity of the bridge to other loads
-in the steer tube to be negligible. For example, [Lorenzo1997]_ effectively did
+in the steer tube to be negligible. For example, :cite:`Lorenzo1997` effectively did
 this with his handlebar design but used several other bridges to measure
 additional moments and forces in handlebar assembly and calibrated the set of
 bridges together to help eliminate the crosstalk. The measured steer torques
 are less than 10 n-m and the loads due to the applied forces at the wheel
 contact, headset bearings and handlebars can potentially be orders of magnitude
-greater. [Ouden2011]_ clearly experienced the difficultly in removing the cross
+greater. :cite:`Ouden2011` clearly experienced the difficultly in removing the cross
 talk from a steer torque sensor and few studies have explicitly addressed this.
 
 Assuming we may want to measure steer torque somewhere between the handlebars
@@ -1471,7 +1471,7 @@ The location of point :math:`v` is known with respect to :math:`s`
    \bar{r}^{s/v} = d_{s1}\hat{b}_1 + d_{s3}\hat{b}_3
 
 :math:`^N\bar{a}^{g_o}` can now be calculated using the two point theorem for
-acceleration [Kane1985]_ twice staring at the point :math:`v`
+acceleration :cite:`Kane1985` twice staring at the point :math:`v`
 
 .. math::
    :label: AofSinN
@@ -1726,7 +1726,7 @@ required analog amplification of the millivolt bridge signals to bring them up
 to a level measurable by the NI USB-6218 which had a maximum input range of
 :math:`\pm 10` volts at 16 bit. I purchased the Futek CSG-110 strain gage
 amplifier for the torque sensor and had the sensor factory calibrated in tandem
-with the amplifier for a :math:`\pm10` volt output. Cal Stone [Stone1990]_ had
+with the amplifier for a :math:`\pm10` volt output. Cal Stone :cite:`Stone1990` had
 developed a custom amplifier for his seatpost and handlebars which could
 amplify up to fourteen bridge signals. Because I was intending to make use of
 the seat post, the amplifier box was used for all the other strain gages. I did
@@ -2071,7 +2071,7 @@ have been missing the features to do so, or that Matlab didn't have a robust
 enough interaction with the USB-6218 to do so. I struggled quite a bit with
 this unforeseen issue and we started looking at solutions to measure an
 identical event with both the VN-100 and the USB-6218 and to synchronize the signals
-afterwards. [Ouden2011]_ had to use a similar technique. We would need to
+afterwards. :cite:`Ouden2011` had to use a similar technique. We would need to
 select a sensor which was also on the VN-100 and then excite the two sensors
 with the same event. Ideally this event would be a step input to both sensors.
 We tried rate gyros and accelerometers but couldn't come up with an adequate
@@ -2302,16 +2302,16 @@ Some recommendations for improvements are as follows:
    sensor quality as compare to the rate gyros on the VN-100 which can be
    purchased individually for less than $50.
 
-.. [#rollcontrol] [Weir1972]_ shows that large rider lean angles are required
-   to give similar capabilities as steer control. [Sharp2008a]_ shows that the
+.. [#rollcontrol] :cite:`Weir1972` shows that large rider lean angles are required
+   to give similar capabilities as steer control. :cite:`Sharp2008a` shows that the
    use of steer torque control is always the more optimal choice than rider
    lean torque control for optimal control based on path deviation error and
-   control power. [Moore2011]_ experimentally shows that the steering angle
+   control power. :cite:`Moore2011` experimentally shows that the steering angle
    magnitudes are much larger than other rider body movements.
 
-.. [#idealinput] A sum of sines would be ideal, see [Lange2011]_ for some ideas
+.. [#idealinput] A sum of sines would be ideal, see :cite:`Lange2011` for some ideas
    on other types of inputs. It has been shown that a sum of sines can provide
-   a non-predictable signal to the human [McRuer1974]_.
+   a non-predictable signal to the human :cite:`McRuer1974`.
 
 .. [#elastic] The elasticity of the steer column may also be a factor.
 

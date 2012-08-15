@@ -36,15 +36,15 @@ Non-linear Equations of Motion
 
 The Whipple Model is the foundation of all the models presented in this
 dissertation. This section details derivation of the non-linear equations of
-motion using Kane's method [Kane1985]_\ [#kane]_. The non-linear equations of
+motion using Kane's method :cite:`Kane1985`\ [#kane]_. The non-linear equations of
 motion are algebraically unwieldy and no one so far has publicly printed them
 in a form compact enough to print on reasonably sized paper, and certainly not
 in a form suitable for any in-depth analytical understanding as pointed out in
-[Meijaard2007]_. My methodology relies heavily on computer aided algebra to do
+:cite:`Meijaard2007`. My methodology relies heavily on computer aided algebra to do
 the bookkeeping in the derivation, so I will only describe the necessary
 details to correctly derive the equations, leaving the algebra, trigonometry
 and calculus to the computer. The symbolic equations of motion herein were
-originally developed using Autolev [Kane2000]_, a proprietary and now defunct
+originally developed using Autolev :cite:`Kane2000`, a proprietary and now defunct
 software package for symbolically deriving equations of motion for multi-body
 systems. I've since used the open source software `SymPy <http://sympy.org>`_
 to derive the equations with the help of the included ``mechanics`` package
@@ -56,7 +56,7 @@ dissertation source files.
 Model Description
 -----------------
 
-The *Whipple Bicycle Model* [Whipple1899]_ is defined by this set of
+The *Whipple Bicycle Model* :cite:`Whipple1899` is defined by this set of
 assumptions:
 
 * The model is made up of four rigid bodies: the rear frame (the main
@@ -68,7 +68,7 @@ assumptions:
 * The complete bicycle is assumed to be laterally symmetric.
 * The bicycle rolls on flat ground.
 
-[Astrom2005]_, [Limebeer2006]_, and [Meijaard2007]_ all provide excellent
+:cite:`Astrom2005`, :cite:`Limebeer2006`, and :cite:`Meijaard2007` all provide excellent
 overviews of the model, its history, and its features.
 
 Unfortunately the word "model" is often ambiguous. I will attempt to be as
@@ -98,18 +98,18 @@ Front Wheel, :math:`F`
 Parameterization
 ----------------
 
-The benchmark derivation of the linear Whipple model [Meijaard2007]_ about the
+The benchmark derivation of the linear Whipple model :cite:`Meijaard2007` about the
 nominal configuration uses a non-minimal set of parameters based on typical
 geometric parameters and inertia definitions using an inertially fixed
 reference frame in which the :math:`x` axis points forward and the :math:`z`
-axis points down, :ref:`Figure 5.1<figTypcialBicycleGeometry>`. The *nominal
+axis points down, :ref:`Figure 5.1<figTypicalBicycleGeometry>`. The *nominal
 configuration* is defined as the configuration when the steering angle is zero
 and the bicycle is upright with respect to gravity and the ground plane. The
-parameters presented in [Meijaard2007]_ are not necessarily the best choice of
+parameters presented in :cite:`Meijaard2007` are not necessarily the best choice of
 parameters, especially when looking at the model from a non-linear perspective,
 as they are not the simplest set nor a minimal set. For example, the benchmark
 parameters can be reduced in number by making use of gyrostats, see
-[Sharp2008a]_ for an implementation. Choosing a minimum, constant set of
+:cite:`Sharp2008a` for an implementation. Choosing a minimum, constant set of
 parameters can certainly reduce the complexity of the resulting non-linear
 equations. In this derivation, I use a parameterization with different geometry
 and inertial definitions to facilitate a more intuitive non-linear derivation,
@@ -138,12 +138,12 @@ configuration.
    :target: _images/typical-bicycle-geometry.png
 
    The typical parameterization of the fundamental bicycle's geometry given in
-   [Meijaard2007]_. The wheelbase :math:`w`, trail :math:`c`, steer axis tilt
+   :cite:`Meijaard2007`. The wheelbase :math:`w`, trail :math:`c`, steer axis tilt
    :math:`\lambda`, front wheel radius :math:`r_F`, and rear wheel radius
    :math:`r_R` are shown.
 
 With that in mind and after trying various parameterizations, I use geometric
-formulation presented by [Psiaki1979]_\ [#psiaki]_. The wheels are described by
+formulation presented by :cite:`Psiaki1979`\ [#psiaki]_. The wheels are described by
 their radius :math:`\left(r_{F,R}\geq0\right)` and the remaining geometry is
 defined by three distances, all of which are configuration invariant. The
 distance :math:`d_1` is the offset to the center of the rear wheel from the
@@ -173,7 +173,7 @@ space and three additional coordinates are needed for the three revolute joints
 connecting the front frame and wheels to the rear frame. I made use of the SAE
 vehicle dynamics reference frame standard and all rotations are are defined as
 positive right-handed which makes the configuration identical to that in
-[Meijaard2007]_\ [#standard]_. The rotation matrices are defined as
+:cite:`Meijaard2007`\ [#standard]_. The rotation matrices are defined as
 
 .. math::
    :label: eqRotationDefinition
@@ -330,7 +330,7 @@ the front wheel center to the contact point is defined as
 
 Here the triple cross product divided by its magnitude represents the unit
 vector pointing from the front wheel center to the point on the front wheel
-instantaneously in contact with the ground. [BasuMandal2007]_ give a good
+instantaneously in contact with the ground. :cite:`Basu-Mandal2007` give a good
 explanation and diagram. Another description of this vector is in terms of dot
 products, i.e. subtract the :math:`\hat{n}_3` component of :math:`\hat{e}_2`
 from :math:`\hat{n}_3` to get a vector that points from the front wheel center
@@ -373,7 +373,7 @@ The choice of pitch has to do with the fact that for "normal" bicycle
 configurations, pitch is practically constant. This is not universal and it may
 be smart to choose the dependent coordinate differently for other cases. The
 constraint equation can actually be formulated into a quartic in the sine of
-the pitch ([Psiaki1979]_, [Peterson2007]_) which does have an analytic, albeit
+the pitch (:cite:`Psiaki1979`, :cite:`Peterson2008`) which does have an analytic, albeit
 lengthy, solution. I do not opt for the analytical solution, so care is needed
 when simulating and linearizing to properly choose the proper roots associated
 with this dependent coordinate.
@@ -382,7 +382,7 @@ Kinematical Differential Equations
 ----------------------------------
 
 The choice of generalized speeds can significantly reduce the length of the
-equations of motion [Mitiguy1996]_. This is beneficial for both working with
+equations of motion :cite:`Mitiguy1996`. This is beneficial for both working with
 the analytical forms of the equations of motion and the efficiency in
 computation. Even though this is true, little effort was spent in selecting
 optimal generalized speeds, as the analytical form of the equations of motion
@@ -896,7 +896,7 @@ partial angular velocity of the body corresponding to the generalized speed
 :math:`u_r`, and :math:`\bar{T}^X` is the resultant torques on the body where
 :math:`X` is one of the four bodies. The partial velocities are simply the
 partial derivative of the velocities in question with respect to the
-generalized speeds and can be found systematically [Kane1985]_. We assume that
+generalized speeds and can be found systematically :cite:`Kane1985`. We assume that
 the only contributing force acting on the system is the gravitational force,
 :math:`g`. The resultant forces are
 
@@ -1048,7 +1048,7 @@ described in the following sections.
 Model discussion
 ----------------
 
-[Astrom2005]_, [Meijaard2007]_, [BasuMandal2007]_, [Limebeer2006]_, and others
+:cite:`Astrom2005`, :cite:`Meijaard2007`, :cite:`Basu-Mandal2007`, :cite:`Limebeer2006`, and others
 do excellent jobs describing the essential nature of both the non-linear
 Whipple model and various linearized models. Notable concepts include the fact
 that many of the coordinates are *ignorable*, that is they do not show up in
@@ -1081,7 +1081,7 @@ solves the holonomic constraint equation numerically for the pitch angle,
    :align: center
    :target: _images/meijaard2007-figure-four.png
 
-   A reproduction of Figure 4 from [Meijaard2007]_. For these initial
+   A reproduction of Figure 4 from :cite:`Meijaard2007`. For these initial
    conditions the model demonstrates stability. It also shows the energy
    conserving nature of the non-linear model (i.e. the forward speed settles to
    a higher value than the initial speed as the energy associated with lateral
@@ -1099,7 +1099,7 @@ for non-trivial inputs and compare the results to high precision. These type of
 numerical benchmarks are invaluable. They provide a baseline for model
 comparison allowing for scientific reproducibility and error checking.
 
-[BasuMandall2007]_ present the non-linear Whipple model derived with both the
+:cite:`Basu-Mandal2007` present the non-linear Whipple model derived with both the
 Newton-Euler and Lagrange methods, along with a numerical benchmark. Table 1 in
 their paper gives the derivatives of all the coordinates and speeds to high
 precision for both of their derivations at a single state. They claim that if
@@ -1111,7 +1111,7 @@ those used here, but regardless of the coordinates they provide numerical
 values which can be benchmarked if the correct coordinate transformations are
 applied\ [#eqconv]_. In :ref:`Table 5.1<tabNonLinValidation>`\ [#nonlincompare]_
 I present the values computed from the present model in comparison to the
-values presented in [BasuMandall2007]_. I've presented the same number of
+values presented in :cite:`Basu-Mandal2007`. I've presented the same number of
 significant digits as provided by Basu-Mandall for each variable\ [#sigfig]_.
 My model produces the same result to at least eleven significant figures, thus
 verifying the derivation is correct.
@@ -1125,9 +1125,9 @@ Linearized Equations of Motion
 ==============================
 
 The non-linear equations of motion can be linearized about various equilibrium
-points. The obvious one is about the nominal configuration [Meijaard2007]_ but
+points. The obvious one is about the nominal configuration :cite:`Meijaard2007` but
 there are are an infinity of other associated with steady turns
-[BasuMandal2007]_.  The equations can be linearized by computing the Taylor
+:cite:`Basu-Mandal2007`.  The equations can be linearized by computing the Taylor
 series expansion of the non-linear equations of motion about the equilibrium
 point of interest and disregarding the terms higher than first order. For the
 nominal configuration, this amounts to calculating the Jacobian of the system
@@ -1168,22 +1168,22 @@ four linear first order differential equations in the form
    \end{bmatrix}
 
 I calculate the equations symbolically to reach the same results presented in
-[Meijaard2007]_, but my equations are much lengthier because the simplification
+:cite:`Meijaard2007`, but my equations are much lengthier because the simplification
 routines available in Autolev and SymPy where not that effective.
-[Meijaard2007]_ assumes linearity in their derivation from the start of the
+:cite:`Meijaard2007` assumes linearity in their derivation from the start of the
 derivation and avoids many of the simplification issues. The accuracy of the
 linearized model was checked by comparing the numerical results to the
 benchmark bicycle in two ways. First the linearized equations of motion,
 Equation :eq:`eqStateSpace`, were rearranged into two second order differential
 equations in the canonical form (Equation :eq:`eqCanonical`) presented in
-[Meijaard2007]_. They present the values for the coefficient matrices
+:cite:`Meijaard2007`. They present the values for the coefficient matrices
 (:math:`\mathbf{M}`, :math:`\mathbf{C}_1`, :math:`\mathbf{K}_0` and
 :math:`\mathbf{K}_2`) for the benchmark parameter set to at least 13
 significant figures and the linearization presented here matched all of the
-significant figures. [Meijaard2007]_ also provide the eigenvalues of the state
+significant figures. :cite:`Meijaard2007` also provide the eigenvalues of the state
 matrix at various speeds. :ref:`Table 5.2<tabLinCompare>`\ [#lincompare]_ shows
 the eigenvalues computed at 5 m/s compared to the values in Table 2 of
-[Meijaard2007]_. These match to at least 13 significant figures.
+:cite:`Meijaard2007`. These match to at least 13 significant figures.
 
 .. math::
    :label: eqCanonical
@@ -1353,7 +1353,7 @@ Parameter Conversion
 ====================
 
 This section details the conversion from the benchmark parameter set in
-[Meijaard2007]_ to the presented parameter set, :ref:`Figure
+:cite:`Meijaard2007` to the presented parameter set, :ref:`Figure
 5.2<figBicycleGeometry>`. As mentioned earlier, the Meijaard parameters are not a
 good choice when working with the non-linear derivation because most are not
 constant with respect to configuration. So the parameters must be converted to
@@ -1544,7 +1544,7 @@ Notation
 :math:`\mathbf{A},\mathbf{B},\mathbf{C},\mathbf{D}`
    The state, input, output and feed-forward matrices.
 
-The following benchmark parameters are all defined in [Meijaard2007]_.
+The following benchmark parameters are all defined in :cite:`Meijaard2007`.
 
 :math:`\lambda`
    Steer axis tilt.
@@ -1577,18 +1577,18 @@ The following benchmark parameters are all defined in [Meijaard2007]_.
    tools and paradigms found in full-featured programming languages.
 
 .. [#kane] Kane himself has done work on bicycle and motorcycle models and made
-   use of his method to derive the equations of motion [Kane1975]_,
-   [Kane1977]_, [Kane1977a]_, [Kane1978]_, [Man1979]_. Furthermore,
-   [Zytveld1975]_ derived linear equations of motion of the bicycle and models
-   developed with AutoSim also employ Kane's method [Sayers1990]_,
-   [Sharp1999]_.
+   use of his method to derive the equations of motion :cite:`Kane1975`,
+   :cite:`Kane1977`, :cite:`Kane1977a`, :cite:`Kane1978`, :cite:`Man1979`. Furthermore,
+   :cite:`Zytveld1975` derived linear equations of motion of the bicycle and models
+   developed with AutoSim also employ Kane's method :cite:`Sayers1990`,
+   :cite:`Sharp1999`.
 
 .. [#autolev] Luke and I have dreamed of developing an open source version of
    Autolev for years and that has finally culminated through primarily Luke and
    Gilbert Gede's efforts in the creation of `sympy.physics.mechanics
    <http://www.sympy.org>`_.
 
-.. [#psiaki] The coordinates are also used by [Franke1990]_, among others.
+.. [#psiaki] The coordinates are also used by :cite:`Franke1990`, among others.
 
 .. [#standard] I don't necessarily agree that this is a great standard to follow,
    because it creates much unessary confusion when defining and mapping between
@@ -1619,13 +1619,13 @@ The following benchmark parameters are all defined in [Meijaard2007]_.
    my original code that I never found, with an entire code rewrite finally
    giving me matching eigenvalues.
 
-.. [#eqconv] The conversion equations from the [BasuMandal2007]_ coordinates to
+.. [#eqconv] The conversion equations from the :cite:`Basu-Mandal2007` coordinates to
    the present set and vice versa can be found in the source code for the
    DynamicistToolKit bicycle module.
 
 .. [#sigfig] Basu-Mandall presents varying significant digits from 10 to 14.
 
 .. [#nonlincompare] The variable names correspond to the convention provided in
-   [BasuMandall2007]_. This table is generated with ``src/eom/basu_comparison.py``.
+   :cite:`Basu-Mandal2007`. This table is generated with ``src/eom/basu_comparison.py``.
 
 .. [#lincompare] This table is generated with ``src/eom/linear_comparison.py``.

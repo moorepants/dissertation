@@ -32,30 +32,30 @@ The eigenmodes of the Whipple model and the stability regime are prime targets
 for initial parameter studies and there are many papers that deal with various
 aspects. An analytical view of the parameter relationships would provide the
 most encompassing conclusions, but the complicated form of the equations
-typically lead researchers to numerical studies. [Zytveld1975]_ studies the
+typically lead researchers to numerical studies. :cite:`Zytveld1975` studies the
 effects of trail, front wheel moment of inertia, and rider position on the
-dynamics using Routh's criterion and a sensitivity study. [Kooijman2011]_
-refines the work in [Papadopoulos1987a]_ which makes use of a compact
+dynamics using Routh's criterion and a sensitivity study. :cite:`Kooijman2011`
+refines the work in :cite:`Papadopoulos1987a` which makes use of a compact
 analytical form of the linear equations of motion and Routh's stability
-criterion to analytically find instability the capsize mode. [Franke1990]_ and
-[Astrom2005]_ examine the effect on stable speed range of independently varying
+criterion to analytically find instability the capsize mode. :cite:`Franke1990` and
+:cite:`Astrom2005` examine the effect on stable speed range of independently varying
 wheel rotational inertia and find that for their parameter values both the
 weave and capsize critical speeds decrease with increase in spin moment of
-inertia. [Franke1990]_ also shows that as trail increases both the critical
+inertia. :cite:`Franke1990` also shows that as trail increases both the critical
 speeds and the stable speed range increases. This conclusion is counter
-intuitive, as some [Kooijman2006]_ seem to believe that an increase in trail
+intuitive, as some :cite:`Kooijman2006` seem to believe that an increase in trail
 lowers the weave critical speed, thus making the bicycle more stable.
-[Stevens2009]_ examines experimentally and numerically the effects of the front
+:cite:`Stevens2009` examines experimentally and numerically the effects of the front
 end geometry (trail and headtube angle) on eigenvalues, with some similar
-results as [Kooijman2008]_. [Tak2010]_ examines the derivatives of the
+results as :cite:`Kooijman2008`. :cite:`Tak2010` examines the derivatives of the
 critical speeds with respect to the benchmark parameters for a nominal
 parameter set. Tak's method allows one to quickly visualize the independent
 parameter change which affects the stable speed range the most for a given
-bicycle. Other examples of parameter studies include [Sharp1971]_,
-[Sharp1994]_, [Cossalter1999]_, and [Lai2003]_ among many others.
+bicycle. Other examples of parameter studies include :cite:`Sharp1971`,
+:cite:`Sharp1994`, :cite:`Cossalter1999`, and :cite:`Lai2003` among many others.
 
 Numerical parameters studies were the first thing I did once I had a working
-Whipple model [Moore2008]_ and I've explored some other studies over the years.
+Whipple model :cite:`Moore2008` and I've explored some other studies over the years.
 The following sections provide some of the results and various small findings.
 
 Geometric Variation
@@ -72,10 +72,10 @@ dictated by handlebar geometry are considered too. A browse through bicycle
 magazines and frame builder literature provide a wide range of opinions about
 how geometry affects the handling. For example, Tim Paterek, an expert frame
 builder, claims that the comfort zone for trail falls between 0.05 m and 0.065
-m for most bicycles [Paterek2004]_. Craig Calfee is another prominent frame
+m for most bicycles :cite:`Paterek2004`. Craig Calfee is another prominent frame
 builder interested the effects of fork alignment on handling who wrote a small
 piece on bicycle geometry for the 2007 North American Handbuilt Bicycle show
-[Calfee2007]_. He points out that minute misalignments in the fork geometry can
+:cite:`Calfee2007`. He points out that minute misalignments in the fork geometry can
 cause undesirable handling. Finally, Jan Heine has written extensively in his
 Vintage Bicycle Quarterly about handling, with subjective and objective
 measures by experienced riders of the handling differences in real bicycles.
@@ -143,7 +143,7 @@ changing head tube angle, :ref:`Figure 8.2<figHeadTubeAngle>`. Slack head tube
 angles are found on many utility bicycles. I've observed from experience that
 these bicycles feel very unresponsive at low speeds and typically do not feel
 stable until moderate speeds are reached. The head tube angle results,
-:ref:`Figure 8.2<figHeadTubleAngle>` are in agreement with this anecdotal
+:ref:`Figure 8.2<figHeadTubeAngle>` are in agreement with this anecdotal
 evidence insofar as the weave critical speed increases with decreasing head
 tube angle. The head tube angle results are interesting because the weave speed
 can be decreased using a steeper head tube angle without adversely affecting
@@ -167,7 +167,7 @@ increases, the stable speed range broadens and the weave critical velocity
 increases, :ref:`Figure 8.3<figTrail>`. As trail approaches zero the stable
 speed range diminishes to zero.  It is obvious that increasing trail will
 decrease the caster mode eigenvalue, but un-intuitively it increases the weave
-eigenvalue. The yellow bicycle and the silver bicycle [Kooijman2006]_ both have
+eigenvalue. The yellow bicycle and the silver bicycle :cite:`Kooijman2006` both have
 their forks flipped for increase trail with the intent to make the bicycles
 stable at the speeds tested. According to the these results it does not seem
 that that is the case; it may have the opposite effect.
@@ -225,7 +225,7 @@ mass and inertia.
 Benchmark validity
 ------------------
 
-The numerical values of the benchmark bicycle parameters in [Meijaard2007]_ are
+The numerical values of the benchmark bicycle parameters in :cite:`Meijaard2007` are
 representative of a real bicycle but were chosen so that each parameter was
 guaranteed a detectable role in numerical studies. Figure :ref:`Figure
 8.6<figBenchmarkReal>` compares the eigenvalues of the benchmark bicycle with
@@ -245,7 +245,7 @@ bicycle due to the similar dynamic behavior.
    :target: _images/benchmark-real.png
 
    Real and imaginary parts of the eigenvalues as a function of speed for three
-   bicycles including the benchmark bicycle from [Meijaard2007]_ and two
+   bicycles including the benchmark bicycle from :cite:`Meijaard2007` and two
    bicycles (Browser and Stratos) and a rider (Jason) presented in Chapter
    :ref:`physicalparameters`. Generated by
    ``src/parameterstudy/bicycle_eig_compare.py``.
@@ -256,7 +256,7 @@ Rider-less bicycles
 There are relatively few bicycles whose parameters have been measured
 exhaustively and accurately. :ref:`Figure 8.7<figSilverCompare>` plots the
 effect of speed on the resulting eigenvalues of one such parameter set, labeled
-Silver, from [Kooijman2008]_ and compares it to several of the rider-less
+Silver, from :cite:`Kooijman2008` and compares it to several of the rider-less
 bicycles I measured using almost identical techniques to Kooijman. Notice that
 all of the bicycles measured in Chapter :ref:`physicalparameters` show a
 bifurcation in the caster and capsize modes at lower speeds which produces a
@@ -267,12 +267,12 @@ oscillatory modes for the Crescendo bicycle at 1.5 m/s. They turn out to be
 similar in that they are oscillatory in roll and steer, with steer being
 dominant in magnitude and the phase shifts are slightly larger for the weave
 mode.  But the new mode is stable as opposed to the weave mode being unstable.
-The bicycles measured in [Stevens2009]_ and [Escalonas2011]_ both exhibit this
-mode, but Stevens' [Stevens2009]_ parameters are estimated from a CAD drawing,
+The bicycles measured in :cite:`Stevens2009` and :cite:`Escalona2011` both exhibit this
+mode, but Stevens' :cite:`Stevens2009` parameters are estimated from a CAD drawing,
 which may not be as accurate as more direct measurements. Steven's does show
 that this mode disappears with very steep or very slack head tube angles. The
 diagrams for very slack head angles more qualitatively resemble the Silver
-bicycle from [Kooijman2008]_. But it is still odd that the Silver bicycle is
+bicycle from :cite:`Kooijman2008`. But it is still odd that the Silver bicycle is
 that different than all the other bicycles, with the only major difference
 being a flipped fork for more trail and a larger yaw and roll moment of inertia
 due to the outriggers.
@@ -285,7 +285,7 @@ due to the outriggers.
    :target: _images/silver-compare.png
 
    Real and imaginary parts of the eigenvalues as a function of speed for four
-   bicycles including the silver bicycle from [Kooijman2008]_ and three
+   bicycles including the silver bicycle from :cite:`Kooijman2008` and three
    bicycles and riders presented in Chapter :ref:`physicalparameters`.
    Generated by ``src/parameterstudy/bicycle_eig_compare.py``.
 
@@ -345,7 +345,7 @@ measured the bicycle in two configurations, one with the fork in the normal
 position and the second with the fork flipped 180 degrees about the steer axis
 which greatly increases trail. :ref:`Figure 8.11<figYellowCompare>` plots the
 eigenvalues with respect to speed for the two yellow bicycle configurations and
-the Silver bicycle [Kooijman2008]_ which also has a reversed fork and large
+the Silver bicycle :cite:`Kooijman2008` which also has a reversed fork and large
 trail. As was mentioned in the previous section the weave critical speed
 increases as the trail increases and this is clearly shown for the yellow
 bicycle with a reversed fork. But maybe more interestingly, the capsize
@@ -422,8 +422,8 @@ it out. It would be interesting to draw error bars on the modes in the
 eigenvalue plots corresponding to the uncertainty values presented in Chapter
 :ref:`physicalparameters`. It would be revealing with respect to the
 experiments that are done which try to estimate the eigenvalues of a stable
-bicycle [Kooijman2008]_, [Kooijman2009]_, [Stevens2009]_, [Escalona2010]_. All
-of the these experiments, except for [Kooijman2009]_, plot a predicted
+bicycle :cite:`Kooijman2008`, :cite:`Kooijman2009`, :cite:`Stevens2009`, :cite:`Escalona2010`. All
+of the these experiments, except for :cite:`Kooijman2009`, plot a predicted
 eigenvalue for a speed range because it is difficult to maintain constant speed
 with an uncontrolled bicycle, but beyond that the uncertainty in the eigenvalue
 estimates is not reported. These could also be calculated with respect to the
@@ -497,7 +497,7 @@ mostly speculative and anecdotal at this point.
 For a basic diamond frame bicycle, large changes in parameters seem to be needed
 for large changes in the dynamics. Most bicycle design parameter values are
 such that the dynamic behavior is quite similar across designs and their
-differences may not be readily detectable by the human. [Tak2010]_ shows that
+differences may not be readily detectable by the human. :cite:`Tak2010` shows that
 changes in only a few parameters can make a large difference in the stable
 speed range of the benchmark bicycle. Even if these changes are detectable by
 the rider, they are extremely adaptable to minor bicycle design variations in
@@ -506,14 +506,14 @@ comfortable with a different bicycle. This seems evident even with regards to
 changes in the front end geometry such as trail; countless debates have ensued
 over the effect of this parameter. Negative trail recumbents have been designed
 and the rider can learn to ride them, but they require a higher learning curve,
-see the Python Lowracer [Mages2012]_ for an example. These bikes are difficult
+see the Python Lowracer :cite:`Mages2012` for an example. These bikes are difficult
 to learn but with practice they often be easily ridden with no hands. With this
 in mind, the open loop dynamics of most standard diamond frame bicycles don't
 really vary much, but this surely doesn't include tandems, large two wheel
 cargo bicycles, recumbent designs, etc. I've also shown that the differences in
 dynamics between a riderless bicycle one with a rigid rider can be significant.
 Parameter studies may let us find bicycle designs that don't fit the normal
-mold but may still have good handling, see [Kooijman2011]_ for some examples of
+mold but may still have good handling, see :cite:`Kooijman2011` for some examples of
 exploring the extremes of the parameter space.
 
 I've shown some qualitative comparisons for real and realistic bicycles. It is

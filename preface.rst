@@ -45,8 +45,8 @@ process where one needs to choose the wheel sizes, front end geometry and
 location and seating position of the rider. As a young engineer is taught, I
 went looking for technical guidelines to choose these parameters for our
 bicycle design. But all I came back with were many conflicting ideas from
-various bicycle fabricators and the book Bicycling Science 2nd Ed [Whitt1982]_
-which gave a synopsis of Jones' [Jones1970]_ conclusions from his famous study
+various bicycle fabricators and the book Bicycling Science 2nd Ed :cite:`Whitt1982`
+which gave a synopsis of Jones' :cite:`Jones1970` conclusions from his famous study
 on the stability of bicycles. I studied this in detail and designed my bicycle
 geometry to be exactly what was specified as good handling by Jones.\ [#tubes]_
 The bicycle turned out to be rideable (after lots of practice), but this was
@@ -99,62 +99,62 @@ form and partly based on several journal and conference papers that I have
 written or co-authored over the years. I've given an outline below of the
 papers which have been subsumed into this thesis.
 
-[Findlay2006]_
+:cite:`Findlay2006`
    This is an internal report done with two other students in my modern
    controls class. We developed several controllers for a simple bicycle model.
    Some elements of this paper influenced Chapter :ref:`control`.
-[Moore2006]_
+:cite:`Moore2006`
    This is the internal report which described my first effort at deriving the
    equations of motion of the bicycle\ [#equations]_, estimating the physical
    parameters of the bicycle/rider, and running a numerical parameter study.
-[Moore2007]_
+:cite:`Moore2007`
    Luke Peterson and I wrote this short paper for the 11th International
    Symposium on Computer Simulation in Biomechanics in Tainan, Taiwan. We
    presented a basic rider biomechanic extension to the Whipple model which I
-   had developed in [Moore2006]_. This contributes directly to Chapter
+   had developed in :cite:`Moore2006`. This contributes directly to Chapter
    :ref:`extensions`.
-[Moore2008]_
-   This is the polished and corrected version of [Moore2006]_ which was
+:cite:`Moore2008`
+   This is the polished and corrected version of :cite:`Moore2006` which was
    submitted to the 2008 International Sports Engineering Conference in
    Biarritz, France. The model derivation is written out thoroughly in Chapter
    :ref:`eom`, the physical parameter estimation in Chapter
    :ref:`physicalparameters`, and the parameter studies in Chapter
    :ref:`parameterstudy`.
-[Kooijman2008a]_
+:cite:`Kooijman2008a`
    Jodi Kooijman presented this paper at a conference in Hungary not long after
    I had been in the Netherlands. It contained the results from the
    experimental studies we did during my first few months in Delft.
-[Moore2009b]_
+:cite:`Moore2009b`
    I presented this paper at the 2009 Multibody Dynamics conference in Warsaw,
    Poland. This work focused on the motion identification experiments we did
    early in 2009.
-[Moore2009a]_
+:cite:`Moore2009a`
    This paper presented a combination of the bicycle measurement technique used
-   in [Kooijman2006]_ and an improved version of the human inertia estimation
-   technique developed in [Moore2006]_. I presented it at the 2009 ASME
+   in :cite:`Kooijman2006` and an improved version of the human inertia estimation
+   technique developed in :cite:`Moore2006`. I presented it at the 2009 ASME
    conference in San Diego, CA.\ [#sandiego]_
-[Kooijman2009a]_
-   This is a polished version of [Kooijman2008a]_. Jodi Kooijman presented it
+:cite:`Kooijman2009a`
+   This is a polished version of :cite:`Kooijman2008a`. Jodi Kooijman presented it
    at the 2009 ASME conference. This work is presented in Chapter
    :ref:`delftbicycle`.
-[Moore2010]_
+:cite:`Moore2010`
    This is a report on the work I did in the last few months I spent in Delft
-   in which I used a modified technique from [Kooijman2006]_ to more accurately
+   in which I used a modified technique from :cite:`Kooijman2006` to more accurately
    measure the physical parameters of a variety of bicycles. I presented it as
    a poster at the first Bicycle and Motorcycle Dynamics Conference in 2010.
-[Moore2010a]_
+:cite:`Moore2010a`
    Jodi Kooijman presented this paper for me at the International Sports
    Engineering Conference in 2010. It was about simple statistical analyses
-   of the data we collected in [Moore2009a]_. This work can be found in Chapter
+   of the data we collected in :cite:`Moore2009a`. This work can be found in Chapter
    :ref:`motioncapture`.
-[Peterson2010]_
+:cite:`Peterson2010`
    Dr. Hubbard presented this paper for us at the ISEA conference in 2010. It
    gave a preliminary look at the instrumented/robot bicycle we were developing.
-[Moore2011]_
-   The paper written for the conference in Warsaw, [Moore2009b]_, was accepted
+:cite:`Moore2011`
+   The paper written for the conference in Warsaw, :cite:`Moore2009b`, was accepted
    to be published in Multibody System Dynamics. It is a polished version of
-   [Moore2009b]_ and is presented in Chapter :ref:`motioncapture`.
-[Hess2012]_
+   :cite:`Moore2009b` and is presented in Chapter :ref:`motioncapture`.
+:cite:`Hess2012`
    This work was originally presented at the Bicycle and Motorcycle Dynamics
    conference in 2010 and eventually published by IEEE in 2012. The work is
    expanded on and detailed in Chapter :ref:`control`.
@@ -220,7 +220,7 @@ packages we've developed:
    A clearing house for all the generic functions and classes that I write
    that may be useful across all the work I do.
 `HumanControl <https://github.com/moorepants/HumanControl>`_ (Matlab)
-   An implementation of our bicycle human control model from [Hess2012]_ and
+   An implementation of our bicycle human control model from :cite:`Hess2012` and
    Chapter :ref:`control`. It computes the controller parameters for most
    bicycles and most speeds, simulates the model during lane changes, and
    computes a handling quality metric.
@@ -229,7 +229,7 @@ packages we've developed:
    motion capture experiments and python tools for basic statistics.
 `Yeadon <http://pypi.python.org/pypi/yeadon>`_ (Python)
    A program that computes the inertia of a human using the method from
-   [Yeadon1990]_.
+   :cite:`Yeadon1990`.
 
 This software stack is built upon several languages and software packages
 including: Python_, NumPy_, SciPy_, Matplotlib_, PyTables_, Pandas_, Uncertainties_,
@@ -353,7 +353,7 @@ notation being consistent throughout the dissertation. The extensions chapter
 has different notation for each model. The notation for the Chapter is given at
 the end of each Chapter. There are ultimately two notations forms for the
 bicycle: mine which follows a Kane-like syntax and the one adapted from
-[Meijaard2007]_.
+:cite:`Meijaard2007`.
 
 License
 =======

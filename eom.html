@@ -56,7 +56,7 @@
 <span id="eom"></span><h1>Bicycle Equations Of Motion<a class="headerlink" href="#bicycle-equations-of-motion" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated August 10, 2012 at 16:34:13 PDT).
+<p class="last">This document is a draft which is updated regularly (Last updated August 15, 2012 at 15:53:42 PDT).
 Once I submit if for my doctoral degree at UC Davis, it will be done. So for
 now use at your own risk. The information may or may not be correct.
 Reviews, comments and suggestions are welcome.</p>
@@ -84,15 +84,15 @@ non-linear equations may be able to be put into human readable form.</p>
 <h2>Non-linear Equations of Motion<a class="headerlink" href="#non-linear-equations-of-motion" title="Permalink to this headline">¶</a></h2>
 <p>The Whipple Model is the foundation of all the models presented in this
 dissertation. This section details derivation of the non-linear equations of
-motion using Kane&#8217;s method [Kane1985]<a class="footnote-reference" href="#kane" id="id3">[2]</a>. The non-linear equations of
+motion using Kane&#8217;s method <a class="reference internal" href="zreferences.html#kane1985">[KL85]</a><a class="footnote-reference" href="#kane" id="id3">[2]</a>. The non-linear equations of
 motion are algebraically unwieldy and no one so far has publicly printed them
 in a form compact enough to print on reasonably sized paper, and certainly not
 in a form suitable for any in-depth analytical understanding as pointed out in
-[Meijaard2007]. My methodology relies heavily on computer aided algebra to do
+<a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a>. My methodology relies heavily on computer aided algebra to do
 the bookkeeping in the derivation, so I will only describe the necessary
 details to correctly derive the equations, leaving the algebra, trigonometry
 and calculus to the computer. The symbolic equations of motion herein were
-originally developed using Autolev [Kane2000], a proprietary and now defunct
+originally developed using Autolev <a class="reference internal" href="zreferences.html#kane2000">[KL00]</a>, a proprietary and now defunct
 software package for symbolically deriving equations of motion for multi-body
 systems. I&#8217;ve since used the open source software <a class="reference external" href="http://sympy.org">SymPy</a>
 to derive the equations with the help of the included <tt class="docutils literal"><span class="pre">mechanics</span></tt> package
@@ -102,7 +102,7 @@ both software packages are available in the <tt class="docutils literal"><span c
 dissertation source files.</p>
 <div class="section" id="model-description">
 <h3>Model Description<a class="headerlink" href="#model-description" title="Permalink to this headline">¶</a></h3>
-<p>The <em>Whipple Bicycle Model</em> [Whipple1899] is defined by this set of
+<p>The <em>Whipple Bicycle Model</em> <a class="reference internal" href="zreferences.html#whipple1899">[Whi99]</a> is defined by this set of
 assumptions:</p>
 <ul class="simple">
 <li>The model is made up of four rigid bodies: the rear frame (the main
@@ -114,7 +114,7 @@ side-slip.</li>
 <li>The complete bicycle is assumed to be laterally symmetric.</li>
 <li>The bicycle rolls on flat ground.</li>
 </ul>
-<p>[Astrom2005], [Limebeer2006], and [Meijaard2007] all provide excellent
+<p><a class="reference internal" href="zreferences.html#astrom2005">[ASKL05]</a>, <a class="reference internal" href="zreferences.html#limebeer2006">[LS06]</a>, and <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> all provide excellent
 overviews of the model, its history, and its features.</p>
 <p>Unfortunately the word &#8220;model&#8221; is often ambiguous. I will attempt to be as
 precise as possible with my wording. For this chapter, I consider a dynamic
@@ -126,7 +126,7 @@ about the nominal configuration is a different model than the non-linear
 <em>Whipple Bicycle Model</em>. I will try to be explicit when discussing the various
 models.</p>
 <p>I will use the following terminology and labels for the four rigid bodies, see
-<a class="reference internal" href="#figbicyclegeometry"><em>Figure 2</em></a>:</p>
+<a class="reference internal" href="#figbicyclegeometry"><em>Figure 5.2</em></a>:</p>
 <dl class="docutils">
 <dt>Rear Frame, <span class="math">\(C\)</span></dt>
 <dd>The main bicycle frame which may include parts or all of the rider.</dd>
@@ -140,18 +140,18 @@ models.</p>
 </div>
 <div class="section" id="parameterization">
 <span id="id11"></span><h3>Parameterization<a class="headerlink" href="#parameterization" title="Permalink to this headline">¶</a></h3>
-<p>The benchmark derivation of the linear Whipple model [Meijaard2007] about the
+<p>The benchmark derivation of the linear Whipple model <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> about the
 nominal configuration uses a non-minimal set of parameters based on typical
 geometric parameters and inertia definitions using an inertially fixed
 reference frame in which the <span class="math">\(x\)</span> axis points forward and the <span class="math">\(z\)</span>
-axis points down, <em class="xref std std-ref">Figure 1</em>. The <em>nominal
+axis points down, <a class="reference internal" href="#figtypicalbicyclegeometry"><em>Figure 5.1</em></a>. The <em>nominal
 configuration</em> is defined as the configuration when the steering angle is zero
 and the bicycle is upright with respect to gravity and the ground plane. The
-parameters presented in [Meijaard2007] are not necessarily the best choice of
+parameters presented in <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> are not necessarily the best choice of
 parameters, especially when looking at the model from a non-linear perspective,
 as they are not the simplest set nor a minimal set. For example, the benchmark
 parameters can be reduced in number by making use of gyrostats, see
-[Sharp2008a] for an implementation. Choosing a minimum, constant set of
+<a class="reference internal" href="zreferences.html#sharp2008a">[Sha08]</a> for an implementation. Choosing a minimum, constant set of
 parameters can certainly reduce the complexity of the resulting non-linear
 equations. In this derivation, I use a parameterization with different geometry
 and inertial definitions to facilitate a more intuitive non-linear derivation,
@@ -162,7 +162,8 @@ but do not make use of gyrostats to reduce the number of parameters.</p>
 <p>The geometry of the Whipple model can be parameterized in an infinite number of
 ways. It is typical and often natural to define the geometry with respect to
 the descriptions of bicycle geometry used in the bicycle fabrication industry,
-such as wheel diameter, head tube angle, trail and or rake, <a class="reference internal" href="#figtypicalbicyclegeometry"><em>Figure 1</em></a>. Choices of parameterizations like these create
+such as wheel diameter, head tube angle, trail and or rake, <a class="reference internal" href="#figtypicalbicyclegeometry"><em>Figure
+5.1</em></a>. Choices of parameterizations like these create
 unnecessary complications when developing the non-linear equations of motion
 because they are typically defined with respect to only the nominal
 configuration of the bicycle and are not constant with respect to the system
@@ -170,18 +171,18 @@ configuration.</p>
 <div class="figure align-center" id="figtypicalbicyclegeometry">
 <a class="reference external image-reference" href="_images/typical-bicycle-geometry.png"><img alt="_images/typical-bicycle-geometry.png" src="_images/typical-bicycle-geometry.png" style="width: 2.36in;" /></a>
 <p class="caption">The typical parameterization of the fundamental bicycle&#8217;s geometry given in
-[Meijaard2007]. The wheelbase <span class="math">\(w\)</span>, trail <span class="math">\(c\)</span>, steer axis tilt
+<a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a>. The wheelbase <span class="math">\(w\)</span>, trail <span class="math">\(c\)</span>, steer axis tilt
 <span class="math">\(\lambda\)</span>, front wheel radius <span class="math">\(r_F\)</span>, and rear wheel radius
 <span class="math">\(r_R\)</span> are shown.</p>
 </div>
 <p>With that in mind and after trying various parameterizations, I use geometric
-formulation presented by [Psiaki1979]<a class="footnote-reference" href="#psiaki" id="id18">[4]</a>. The wheels are described by
+formulation presented by <a class="reference internal" href="zreferences.html#psiaki1979">[Psi79]</a><a class="footnote-reference" href="#psiaki" id="id18">[4]</a>. The wheels are described by
 their radius <span class="math">\(\left(r_{F,R}\geq0\right)\)</span> and the remaining geometry is
 defined by three distances, all of which are configuration invariant. The
 distance <span class="math">\(d_1\)</span> is the offset to the center of the rear wheel from the
 steer axis and <span class="math">\(d_3\)</span> is the offset of the front wheel from the steering
 axis. <span class="math">\(d_2\)</span> is then the distance between the wheel centers as measured
-along the steer axis. <a class="reference internal" href="#figbicyclegeometry"><em>Figure 2</em></a> gives a complete
+along the steer axis. <a class="reference internal" href="#figbicyclegeometry"><em>Figure 5.2</em></a> gives a complete
 visual description of the bodies and the geometry.</p>
 <div class="figure align-center" id="figbicyclegeometry">
 <a class="reference external image-reference" href="_images/bicycle-geometry.png"><img alt="_images/bicycle-geometry.png" src="_images/bicycle-geometry.png" style="width: 3.75in;" /></a>
@@ -199,7 +200,7 @@ space and three additional coordinates are needed for the three revolute joints
 connecting the front frame and wheels to the rear frame. I made use of the SAE
 vehicle dynamics reference frame standard and all rotations are are defined as
 positive right-handed which makes the configuration identical to that in
-[Meijaard2007]<a class="footnote-reference" href="#standard" id="id20">[5]</a>. The rotation matrices are defined as</p>
+<a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a><a class="footnote-reference" href="#standard" id="id20">[5]</a>. The rotation matrices are defined as</p>
 <div class="math" id="equation-eqRotationDefinition">
 <span class="eqno">(1)</span>\[^a \bar{v} = ^N\mathbf{R}^A\ ^n \bar{v}\]</div>
 <p>where <span class="math">\(^n\bar{v}\)</span> is a vector expressed in the <span class="math">\(N\)</span> frame and
@@ -212,7 +213,7 @@ coordinates.</p>
 <p>To configure the bicycle, begin by locating the point that follows the rear
 wheel contact in the ground plane of the Newtonian reference frame, <span class="math">\(N\)</span>,
 with longitudinal and lateral coordinates <span class="math">\(q_1\)</span> and <span class="math">\(q_2\)</span>,
-respectively, see <a class="reference internal" href="#figbicyclecoordinates"><em>Figure 3</em></a>. Then orient the
+respectively, see <a class="reference internal" href="#figbicyclecoordinates"><em>Figure 5.3</em></a>. Then orient the
 rear frame, <span class="math">\(C\)</span>, with respect to the Newtonian reference frame through a
 body-fixed 3-1-2 rotation defining the yaw angle, <span class="math">\(q_3\)</span>, the roll angle,
 <span class="math">\(q_4\)</span>, and the pitch angle, <span class="math">\(q_5\)</span>. The intermediate frames yaw,
@@ -298,7 +299,7 @@ r_F(s_4s_7-s_5c_4c_7)/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{1/2}\hat{e}_1 +
 r_Fc_4c_5/(c_4^2c_5^2+(s_4s_7-s_5c_4c_7)^2)^{1/2}\hat{e}_3\]</div>
 <p>Here the triple cross product divided by its magnitude represents the unit
 vector pointing from the front wheel center to the point on the front wheel
-instantaneously in contact with the ground. [BasuMandal2007] give a good
+instantaneously in contact with the ground. <a class="reference internal" href="zreferences.html#basu-mandal2007">[BMCP07]</a> give a good
 explanation and diagram. Another description of this vector is in terms of dot
 products, i.e. subtract the <span class="math">\(\hat{n}_3\)</span> component of <span class="math">\(\hat{e}_2\)</span>
 from <span class="math">\(\hat{n}_3\)</span> to get a vector that points from the front wheel center
@@ -332,7 +333,7 @@ The choice of pitch has to do with the fact that for &#8220;normal&#8221; bicycl
 configurations, pitch is practically constant. This is not universal and it may
 be smart to choose the dependent coordinate differently for other cases. The
 constraint equation can actually be formulated into a quartic in the sine of
-the pitch ([Psiaki1979], [Peterson2007]) which does have an analytic, albeit
+the pitch (<a class="reference internal" href="zreferences.html#psiaki1979">[Psi79]</a>, <a class="reference internal" href="zreferences.html#peterson2008">[PH08a]</a>) which does have an analytic, albeit
 lengthy, solution. I do not opt for the analytical solution, so care is needed
 when simulating and linearizing to properly choose the proper roots associated
 with this dependent coordinate.</p>
@@ -340,7 +341,7 @@ with this dependent coordinate.</p>
 <div class="section" id="kinematical-differential-equations">
 <h3>Kinematical Differential Equations<a class="headerlink" href="#kinematical-differential-equations" title="Permalink to this headline">¶</a></h3>
 <p>The choice of generalized speeds can significantly reduce the length of the
-equations of motion [Mitiguy1996]. This is beneficial for both working with
+equations of motion <a class="reference internal" href="zreferences.html#mitiguy1996">[MK96]</a>. This is beneficial for both working with
 the analytical forms of the equations of motion and the efficiency in
 computation. Even though this is true, little effort was spent in selecting
 optimal generalized speeds, as the analytical form of the equations of motion
@@ -393,7 +394,7 @@ mass centers can be computed. Starting with mass center of the rear wheel</p>
 <p>The remaining velocities can be computed by taking advantage of the fact that
 various pairs of points are fixed on the same rigid body. The mass centers of
 the rear wheel, <span class="math">\(d_o\)</span> and the rear frame, <span class="math">\(c_o\)</span>, and the steer axis
-point, <span class="math">\(c_e\)</span>, (<a class="reference internal" href="#figbicyclegeometry"><em>Figure 2</em></a>) all lie on the rear
+point, <span class="math">\(c_e\)</span>, (<a class="reference internal" href="#figbicyclegeometry"><em>Figure 5.2</em></a>) all lie on the rear
 frame.</p>
 <div class="math" id="equation-eqCoInN">
 <span class="eqno">(23)</span>\[^N\bar{v}^{c_o} = ^N\bar{v}^{d_o} + ^N\bar{\omega}^C\times\bar{r}^{c_o/d_o}\]</div>
@@ -677,13 +678,13 @@ partial angular velocity of the body corresponding to the generalized speed
 <span class="math">\(u_r\)</span>, and <span class="math">\(\bar{T}^X\)</span> is the resultant torques on the body where
 <span class="math">\(X\)</span> is one of the four bodies. The partial velocities are simply the
 partial derivative of the velocities in question with respect to the
-generalized speeds and can be found systematically [Kane1985]. We assume that
+generalized speeds and can be found systematically <a class="reference internal" href="zreferences.html#kane1985">[KL85]</a>. We assume that
 the only contributing force acting on the system is the gravitational force,
 <span class="math">\(g\)</span>. The resultant forces are</p>
 <div class="math" id="equation-eqContributingForces">
 <span class="eqno">(46)</span>\[\bar{R}^{c_o} = m_Cg\hat{n}_3\]\[\bar{R}^{d_o} = m_Dg\hat{n}_3\]\[\bar{R}^{e_o} = m_Eg\hat{n}_3\]\[\bar{R}^{f_o} = m_Fg\hat{n}_3\]</div>
 <p>We also assume that three generalized active torques act on the system which
-correspond to the three independent generalized speeds found in
+correspond to the three independent generalized speeds found in Section
 <a class="reference internal" href="#nonholonomic"><em>Motion Constraints</em></a>.</p>
 <p>The roll torque, <span class="math">\(T_4\)</span>, acts between the rear frame and the Newtonian
 frame about <span class="math">\(\hat{a}_1\)</span>. The rear wheel torque, <span class="math">\(T_6\)</span>, acts between
@@ -771,7 +772,7 @@ described in the following sections.</p>
 </div>
 <div class="section" id="model-discussion">
 <h3>Model discussion<a class="headerlink" href="#model-discussion" title="Permalink to this headline">¶</a></h3>
-<p>[Astrom2005], [Meijaard2007], [BasuMandal2007], [Limebeer2006], and others
+<p><a class="reference internal" href="zreferences.html#astrom2005">[ASKL05]</a>, <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a>, <a class="reference internal" href="zreferences.html#basu-mandal2007">[BMCP07]</a>, <a class="reference internal" href="zreferences.html#limebeer2006">[LS06]</a>, and others
 do excellent jobs describing the essential nature of both the non-linear
 Whipple model and various linearized models. Notable concepts include the fact
 that many of the coordinates are <em>ignorable</em>, that is they do not show up in
@@ -793,10 +794,11 @@ presented formulation all initial conditions can be set independently except
 for the roll, steer, and pitch angles. Once two of the three are chosen, the
 third is determined. Typically one chooses a steer and roll angle and then
 solves the holonomic constraint equation numerically for the pitch angle,
-<span class="math">\(q_5\)</span>, to provide the correct initial condition. <a class="reference internal" href="#figfigfour"><em>Figure 4</em></a> is an example open loop simulation of the non-linear model.</p>
+<span class="math">\(q_5\)</span>, to provide the correct initial condition. <a class="reference internal" href="#figfigfour"><em>Figure
+5.4</em></a> is an example open loop simulation of the non-linear model.</p>
 <div class="figure align-center" id="figfigfour">
 <a class="reference external image-reference" href="_images/meijaard2007-figure-four.png"><img alt="_images/meijaard2007-figure-four.png" src="_images/meijaard2007-figure-four.png" style="width: 3in;" /></a>
-<p class="caption">A reproduction of Figure 4 from [Meijaard2007]. For these initial
+<p class="caption">A reproduction of Figure 4 from <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a>. For these initial
 conditions the model demonstrates stability. It also shows the energy
 conserving nature of the non-linear model (i.e. the forward speed settles to
 a higher value than the initial speed as the energy associated with lateral
@@ -813,7 +815,7 @@ common method of validation is to evaluate the symbolic equations numerically
 for non-trivial inputs and compare the results to high precision. These type of
 numerical benchmarks are invaluable. They provide a baseline for model
 comparison allowing for scientific reproducibility and error checking.</p>
-<p>[BasuMandall2007] present the non-linear Whipple model derived with both the
+<p><a class="reference internal" href="zreferences.html#basu-mandal2007">[BMCP07]</a> present the non-linear Whipple model derived with both the
 Newton-Euler and Lagrange methods, along with a numerical benchmark. Table 1 in
 their paper gives the derivatives of all the coordinates and speeds to high
 precision for both of their derivations at a single state. They claim that if
@@ -822,9 +824,9 @@ the models can be concluded to be the same<a class="footnote-reference" href="#v
 <p>The Basu-Mandal et al. derivations are based on different coordinates than
 those used here, but regardless of the coordinates they provide numerical
 values which can be benchmarked if the correct coordinate transformations are
-applied<a class="footnote-reference" href="#eqconv" id="id35">[9]</a>. In <a class="reference internal" href="#tabnonlinvalidation"><em>Table 1</em></a><a class="footnote-reference" href="#nonlincompare" id="id36">[11]</a>
+applied<a class="footnote-reference" href="#eqconv" id="id35">[9]</a>. In <a class="reference internal" href="#tabnonlinvalidation"><em>Table 5.1</em></a><a class="footnote-reference" href="#nonlincompare" id="id36">[11]</a>
 I present the values computed from the present model in comparison to the
-values presented in [BasuMandall2007]. I&#8217;ve presented the same number of
+values presented in <a class="reference internal" href="zreferences.html#basu-mandal2007">[BMCP07]</a>. I&#8217;ve presented the same number of
 significant digits as provided by Basu-Mandall for each variable<a class="footnote-reference" href="#sigfig" id="id38">[10]</a>.
 My model produces the same result to at least eleven significant figures, thus
 verifying the derivation is correct.</p>
@@ -957,9 +959,9 @@ verifying the derivation is correct.</p>
 <div class="section" id="linearized-equations-of-motion">
 <h2>Linearized Equations of Motion<a class="headerlink" href="#linearized-equations-of-motion" title="Permalink to this headline">¶</a></h2>
 <p>The non-linear equations of motion can be linearized about various equilibrium
-points. The obvious one is about the nominal configuration [Meijaard2007] but
+points. The obvious one is about the nominal configuration <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> but
 there are are an infinity of other associated with steady turns
-[BasuMandal2007].  The equations can be linearized by computing the Taylor
+<a class="reference internal" href="zreferences.html#basu-mandal2007">[BMCP07]</a>.  The equations can be linearized by computing the Taylor
 series expansion of the non-linear equations of motion about the equilibrium
 point of interest and disregarding the terms higher than first order. For the
 nominal configuration, this amounts to calculating the Jacobian of the system
@@ -996,22 +998,22 @@ four linear first order differential equations in the form</p>
   T_7
 \end{bmatrix}\end{split}\]</div>
 <p>I calculate the equations symbolically to reach the same results presented in
-[Meijaard2007], but my equations are much lengthier because the simplification
+<a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a>, but my equations are much lengthier because the simplification
 routines available in Autolev and SymPy where not that effective.
-[Meijaard2007] assumes linearity in their derivation from the start of the
+<a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> assumes linearity in their derivation from the start of the
 derivation and avoids many of the simplification issues. The accuracy of the
 linearized model was checked by comparing the numerical results to the
 benchmark bicycle in two ways. First the linearized equations of motion,
 Equation <a href="#equation-eqStateSpace">(55)</a>, were rearranged into two second order differential
 equations in the canonical form (Equation <a href="#equation-eqCanonical">(56)</a>) presented in
-[Meijaard2007]. They present the values for the coefficient matrices
+<a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a>. They present the values for the coefficient matrices
 (<span class="math">\(\mathbf{M}\)</span>, <span class="math">\(\mathbf{C}_1\)</span>, <span class="math">\(\mathbf{K}_0\)</span> and
 <span class="math">\(\mathbf{K}_2\)</span>) for the benchmark parameter set to at least 13
 significant figures and the linearization presented here matched all of the
-significant figures. [Meijaard2007] also provide the eigenvalues of the state
-matrix at various speeds. <a class="reference internal" href="#tablincompare"><em>Table 2</em></a><a class="footnote-reference" href="#lincompare" id="id45">[12]</a> shows
+significant figures. <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> also provide the eigenvalues of the state
+matrix at various speeds. <a class="reference internal" href="#tablincompare"><em>Table 5.2</em></a><a class="footnote-reference" href="#lincompare" id="id45">[12]</a> shows
 the eigenvalues computed at 5 m/s compared to the values in Table 2 of
-[Meijaard2007]. These match to at least 13 significant figures.</p>
+<a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a>. These match to at least 13 significant figures.</p>
 <div class="math" id="equation-eqCanonical">
 <span class="eqno">(56)</span>\[\mathbf{M}\ddot{\bar{q}} + v\mathbf{C}_1\dot{\bar{q}} +
 \left[ g \mathbf{K}_0 + v^2 \mathbf{K}_2 \right] \bar{q} = 0\]\[\bar{q} = [\phi \quad \delta]^T = [q_4 \quad q_7]^T\]</div>
@@ -1048,19 +1050,19 @@ the eigenvalues computed at 5 m/s compared to the values in Table 2 of
 </tbody>
 </table>
 <p>The lateral dynamics of this linear model are remarkably similar to the
-non-linear model especially around the regime of typical a typical bicycle&#8217;s
-operating point. <a class="reference internal" href="#figlinsim"><em>Figure 5</em></a> gives an example simulation with
-the same initial conditions as the  <a class="reference internal" href="#figfigfour"><em>Figure 4</em></a>. Notice that
-the lateral dynamics, steer and roll, are almost identical, but that the
-constant forward speed equilibrium condition destroys the conservative property
+non-linear model especially around the regime of a typical bicycle&#8217;s operating
+point. <a class="reference internal" href="#figlinsim"><em>Figure 5.5</em></a> gives an example simulation with the same
+initial conditions as the  <a class="reference internal" href="#figfigfour"><em>Figure 5.4</em></a>. Notice that the
+lateral dynamics, steer and roll, are almost identical, but that the constant
+forward speed equilibrium condition destroys the conservative property
 demonstrated in the non-linear model.</p>
 <div class="figure align-center" id="figlinsim">
 <a class="reference external image-reference" href="_images/meijaard2007-figure-four-linear.png"><img alt="_images/meijaard2007-figure-four-linear.png" src="_images/meijaard2007-figure-four-linear.png" style="width: 3in;" /></a>
 <p class="caption">Simulation of the linear model given the same initial conditions as
-<a class="reference internal" href="#figfigfour"><em>Figure 4</em></a>. Generated by <tt class="docutils literal"><span class="pre">src/eom/linear_comparison.py</span></tt>.</p>
+<a class="reference internal" href="#figfigfour"><em>Figure 5.4</em></a>. Generated by <tt class="docutils literal"><span class="pre">src/eom/linear_comparison.py</span></tt>.</p>
 </div>
 <p>It turns out that speed has profound effect on the lateral dynamics of the
-bicycle. It is useful to plot the root locus, <a class="reference internal" href="#figrootlocus"><em>Figure 6</em></a>,
+bicycle. It is useful to plot the root locus, <a class="reference internal" href="#figrootlocus"><em>Figure 5.6</em></a>,
 of the characteristic equation with respect to the change in the equilibrium
 forward speed to visualize the time constants, damping, frequency, and
 stability of each of the modes of motion. The modes can be clearly identified
@@ -1077,7 +1079,7 @@ stable, at a higher moderately well damped frequency. Generated by
 </div>
 <p>Another useful and popular way to visualize the root locus is by plotting the
 real and imaginary eigenvalue components separately versus forward speed,
-<a class="reference internal" href="#figeigenvalues"><em>Figure 7</em></a>. This view gives a clearer view of the stable
+<a class="reference internal" href="#figeigenvalues"><em>Figure 5.7</em></a>. This view gives a clearer view of the stable
 speed range.</p>
 <div class="figure align-center" id="figeigenvalues">
 <a class="reference external image-reference" href="_images/root-locus.png"><img alt="_images/root-locus.png" src="_images/root-locus.png" style="width: 5in;" /></a>
@@ -1101,7 +1103,7 @@ shown in the root locus plots, there are four distinct speed ranges of
 interest: below the weave bifurcation, between the weave bifurcation and the
 weave critical speed, the stable speed range, and above the capsize critical
 speed. At a forward speed of 0.5 m/s, all eigenvalues are real, with two
-unstable and two stable. In <a class="reference internal" href="#figevechalf"><em>Figure 8</em></a>, notice that the
+unstable and two stable. In <a class="reference internal" href="#figevechalf"><em>Figure 5.8</em></a>, notice that the
 unstable eigenvalues predict two modes where the roll and steer states
 exponentially increase and with roll and steer 180 degrees out of phase. These
 modes describes a simple unstable inverted pendulum motion.</p>
@@ -1119,7 +1121,7 @@ each mode at 5.0 m/s. Only the roll angle, <span class="math">\(q_4\)</span>, an
 <p>For speeds above the weave bifurcation speed, this linear model exhibits three
 distinct modes of motion, which have been named <em>weave</em>, <em>capsize</em>, and
 <em>caster</em>. As the bicycle is brought up to a speed of 3 m/s the two unstable
-eigenvalues coalesce into a complex pair. In <a class="reference internal" href="#figevechalf"><em>Figure 9</em></a>, the
+eigenvalues coalesce into a complex pair. In <a class="reference internal" href="#figevechalf"><em>Figure 5.9</em></a>, the
 left-most graph depicts the caster mode which simply shows a rapidly decaying
 steer angle. The unstable weave mode eigenvector components show that the steer
 amplitude is about 25% larger than the roll amplitude and roll angle leads the
@@ -1161,8 +1163,8 @@ regards to stability.</p>
 <div class="section" id="parameter-conversion">
 <h2>Parameter Conversion<a class="headerlink" href="#parameter-conversion" title="Permalink to this headline">¶</a></h2>
 <p>This section details the conversion from the benchmark parameter set in
-[Meijaard2007] to the presented parameter set, <a class="reference internal" href="#figbicyclegeometry"><em>Figure
-2</em></a>. As mentioned earlier, the Meijaard parameters are not a
+<a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> to the presented parameter set, <a class="reference internal" href="#figbicyclegeometry"><em>Figure
+5.2</em></a>. As mentioned earlier, the Meijaard parameters are not a
 good choice when working with the non-linear derivation because most are not
 constant with respect to configuration. So the parameters must be converted to
 a configuration independent set. When the bicycle is in the nominal
@@ -1304,7 +1306,7 @@ one of the independent generalized speeds.</dd>
 <dt><span class="math">\(\mathbf{A},\mathbf{B},\mathbf{C},\mathbf{D}\)</span></dt>
 <dd>The state, input, output and feed-forward matrices.</dd>
 </dl>
-<p>The following benchmark parameters are all defined in [Meijaard2007].</p>
+<p>The following benchmark parameters are all defined in <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a>.</p>
 <dl class="docutils">
 <dt><span class="math">\(\lambda\)</span></dt>
 <dd>Steer axis tilt.</dd>
@@ -1343,11 +1345,11 @@ tools and paradigms found in full-featured programming languages.</td></tr>
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>Kane himself has done work on bicycle and motorcycle models and made
-use of his method to derive the equations of motion [Kane1975],
-[Kane1977], [Kane1977a], [Kane1978], [Man1979]. Furthermore,
-[Zytveld1975] derived linear equations of motion of the bicycle and models
-developed with AutoSim also employ Kane&#8217;s method [Sayers1990],
-[Sharp1999].</td></tr>
+use of his method to derive the equations of motion <a class="reference internal" href="zreferences.html#kane1975">[Kan75]</a>,
+<a class="reference internal" href="zreferences.html#kane1977">[Kan77a]</a>, <a class="reference internal" href="zreferences.html#kane1977a">[Kan77b]</a>, <a class="reference internal" href="zreferences.html#kane1978">[Kan78]</a>, <a class="reference internal" href="zreferences.html#man1979">[MK79]</a>. Furthermore,
+<a class="reference internal" href="zreferences.html#zytveld1975">[VZ75]</a> derived linear equations of motion of the bicycle and models
+developed with AutoSim also employ Kane&#8217;s method <a class="reference internal" href="zreferences.html#sayers1990">[Say90]</a>,
+<a class="reference internal" href="zreferences.html#sharp1999">[SLG99]</a>.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="autolev" rules="none">
@@ -1361,7 +1363,7 @@ Gilbert Gede&#8217;s efforts in the creation of <a class="reference external" hr
 <table class="docutils footnote" frame="void" id="psiaki" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id18">[4]</a></td><td>The coordinates are also used by [Franke1990], among others.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id18">[4]</a></td><td>The coordinates are also used by <a class="reference internal" href="zreferences.html#franke1990">[FSR90]</a>, among others.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="standard" rules="none">
@@ -1404,7 +1406,7 @@ par. Several issues plagued both of our derivations. The first was an simple
 missing apostrophe in my Autolev code, the second was that we had defined
 our rear wheel rotation with respec to the <span class="math">\(B\)</span> frame instead of the
 <span class="math">\(C\)</span> frame, the third was incorrect parameter conversions from the
-:cite:<a href="#id58"><span class="problematic" id="id59">`</span></a>Meijaard2007&#8217; paper to our parameters, and the fourth was a bug in
+<a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> paper to our parameters, and the fourth was a bug in
 my original code that I never found, with an entire code rewrite finally
 giving me matching eigenvalues.</td></tr>
 </tbody>
@@ -1412,7 +1414,7 @@ giving me matching eigenvalues.</td></tr>
 <table class="docutils footnote" frame="void" id="eqconv" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id35">[9]</a></td><td>The conversion equations from the [BasuMandal2007] coordinates to
+<tr><td class="label"><a class="fn-backref" href="#id35">[9]</a></td><td>The conversion equations from the <a class="reference internal" href="zreferences.html#basu-mandal2007">[BMCP07]</a> coordinates to
 the present set and vice versa can be found in the source code for the
 DynamicistToolKit bicycle module.</td></tr>
 </tbody>
@@ -1427,7 +1429,7 @@ DynamicistToolKit bicycle module.</td></tr>
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id36">[11]</a></td><td>The variable names correspond to the convention provided in
-[BasuMandall2007]. This table is generated with <tt class="docutils literal"><span class="pre">src/eom/basu_comparison.py</span></tt>.</td></tr>
+<a class="reference internal" href="zreferences.html#basu-mandal2007">[BMCP07]</a>. This table is generated with <tt class="docutils literal"><span class="pre">src/eom/basu_comparison.py</span></tt>.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="lincompare" rules="none">
@@ -1478,6 +1480,7 @@ DynamicistToolKit bicycle module.</td></tr>
 
     <div class="footer">
         &copy; Copyright 2011, Jason K. Moore.
+      Last updated on Aug 15, 2012.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">

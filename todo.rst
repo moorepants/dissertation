@@ -21,7 +21,9 @@ TODO List
    need to be hyperlinks at all.
 
 .. todo:: sphinxcontrib-bibtex is not resovling hyper links in the pdf in the
-   same way the footnotes do.
+   same way the footnotes do. This may only be the todo hyperlinks.
 
 .. todo:: font size is screwed up in sysid chapter due to my manually trying to
    resize tables.
+
+.. todo:: exclude the stuff on the index page in the pdf document

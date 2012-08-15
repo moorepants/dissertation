@@ -40,9 +40,9 @@ controllability is simply a binary test to determine whether or not it is
 possible for a system to be controlled, whereas there must be some measure
 variable measure of controllability that is more relevant to the proposed
 questions. [Seffen2001]_ studies how parameter changes affect controllability,
-and comes up with rideability index. [Schwab2010a]_ and [Schwav2012]_ also
-determines the controllability of several bicycle models and uses the eigenmode
-rate magnitude as an example variable measure of the controllability. The pole
+and comes up with rideability index. [Schwab2010a]_ and [Schwab2012]_ also
+determines the controllability of several bicycle models and uses modal
+controllability as a continuous measure of the controllability. The pole
 locations of an open loop system can also give a general sense of how easy it
 is to control with roots in the far right plane likely being hard to stabilize.
 
@@ -125,6 +125,13 @@ bicycling.
 
 Robot Control
 -------------
+
+.. todo:: add [RuijsPacejka1986]_ Road irregulatiers (cat eyes), is this
+   dangerous. They thought a human in the loop expeirment would be dangerous so
+   they built a robot motorcycle. Simple control scheme belwo weave speed gain
+   scheduling feedback lean rate and above weave speed feedback lean angle and
+   a little bit of steer damping. The machine was stable and worked. And able
+   to test on road irregulaties.
 
 [Zytveld1975]_
    van Zytveld was one of the first to explore the automatic stabilization of

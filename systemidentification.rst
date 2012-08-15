@@ -1061,7 +1061,8 @@ description
    \end{bmatrix}\\
    \eta(t) & = \mathbf{H}x(t)\\
 
-where :math:`\eta(t)` are the outputs and :math:`\mathbf{H}` is the identity matrix.
+where :math:`\eta(t)` are the outputs and :math:`\mathbf{H}` is the identity
+matrix.
 
 Assuming that this model structure can adequately capture the dynamics of
 interest of the bicycle-rider system, our goal is to accurately identify the
@@ -1205,6 +1206,11 @@ my attempts at identifying the Kalman gain matrix were plagued by local minima.
 
 Results
 ~~~~~~~
+
+.. todo:: I assume that the number of degrees of freedom are the correct number
+   and withing that realm I am seaking for the best model. Talk about the
+   missing degrees of freedom and how there may exist a 6th order or higher
+   model. We also are assuming linearity and this is the scope.
 
 It turns out that finding a model than which meets the criterion is not too
 difficult when the output error form is considered (:math:`\mathbf{K}=0`). This
@@ -1629,7 +1635,10 @@ these rules:
 - If the parameter is greatly affected by trail, leave it free.
 - If the parameter is greatly affected by the front assembly moments and
   products of inertia, leave it free.
-- If the parameter is equal or near to zero, fix it.
+- If the parameter is equal to zero, fix it.
+
+.. todo:: sometimes little numbers have big effects, explain the less
+   confidence in the inertia and trail
 
 For the roll equation this leaves :math:`M_{\phi\delta}`,
 :math:`C_{1\phi\delta}`, and :math:`K_{0\phi\delta}` as free parameters. And
@@ -1683,6 +1692,9 @@ parameters in the steer equation. This matrix symmetry is likely enforced in
 reality due to the simple coupling of the front and rear frames by a revolute
 joint\ [#symmetry]_. Finally, I identify the remaining steer equation
 coefficients with
+
+.. todo:: it is only symmetric because of our choice. the theory has this
+   symmtery that we like to enforce
 
 .. math::
    :label: eqSteerEquation
@@ -1831,6 +1843,10 @@ stable speed range with the Whipple model under predicting the weave critical
 speed by almost 2 m/s. The identified caster mode is much faster than the one
 predicted by the Whipple model.
 
+.. todo:: Give refernce to the chapter explaining the arm modes and be careful
+   about calling it the weave mode. The oscillatary weave mode is always
+   stable. Use osciallotary as an adverb. Referecne page 66.
+
 .. _figAARloc:
 
 .. figure:: figures/systemidentification/A-A-rlocus.*
@@ -1864,6 +1880,8 @@ roll angle response shows that at 2 m/s the response is predicted well at high
 frequencies by all the models and that the Whipple model predicts the response
 well across all frequencies. At 4 m/s the two models only predict the high
 frequency behavior (> 4 rad/s) with the arm model appearing slightly better.
+
+.. todo:: Explain the bode plots, talk Arend through the graph.
 
 .. _figAATphiPhi:
 
@@ -1953,6 +1971,16 @@ The results for each data subset are given in :ref:`Table
 compared to the measured geometric trail of :math:`c=0.0599` meters. This may
 imply that that including the effects of pneumatic trail would not be enough to
 improve the predictive capabilities of the Whipple model.
+
+.. todo:: Talk about the huge trail and that the assumptions are probably
+   incorrect. Maybe add potential solution.
+
+.. todo:: Tables 3 4 and 5 need more discussions. Talk about the off diagonal
+   term in the mass matrix. Talk about terms one by one. Check the sign of all
+   of them and the change in the magnitudes. Add some sentences and try to
+   explain the spread. Talk about the noise causing variation and other stuff.
+   What really needed is sensitivity tests on the 25 parameters on these
+   coefficients.
 
 .. _tabIdMCKOne:
 
@@ -2823,6 +2851,10 @@ proved to give much better control predictions.
 Results
 -------
 
+.. todo:: Let's assume that the rider model is all the same. But then explain
+   the problems with it at the end. Put the factor plots in but don't worry
+   about the objective comparisons to others. But say that it can be done.
+
 I computed the optimal five gains and neuromuscular frequency\ [#neurodamp]_ for
 all 262 runs and recorded the VAF of the steer angle output explained by the
 model for each run along with the identified parameters.
@@ -2868,6 +2900,13 @@ to the human operator.
 - The neuromuscular frequency stays relatively constant just below 30 rad/s
   barring the higher variability in the low speed runs.
 - The gains may be predicted with simple linear relationships.
+
+.. todo:: Forumlas for the gains and a plot of eigenvalue of forward speed with
+   repect to those formulas for the closed loop system. Make sure you no where the L-P
+   model numbers are. Maybe make them explicit again in this section.
+
+.. todo:: Plot of gains versus speed (theorectical) for the L-P model instead
+   of the whipple model.
 
 Loop Shaping
 ~~~~~~~~~~~~
@@ -3166,6 +3205,9 @@ in the future, but that may or may not happen. Fortunately the data is
 available if others would like to try out different methods, plant models,
 bicycle models, etc. and my methods, software, and methodologies are hopefully
 detailed enough for reuse.
+
+.. todo:: Describe what the plant and the controller is. Say biomechanics are
+   plant and why that is.
 
 .. rubric:: Footnotes
 

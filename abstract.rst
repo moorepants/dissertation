@@ -65,4 +65,7 @@ bicycle's stability, the inadequacy of the Whipple bicycle model, and the
 ability of a simple multi-output control system formulated around the classical
 crossover model to describe the human's control efforts while being externally
 perturbed. These findings have implications in both single track vehicle design
-and human-machine interaction theory.
+and human-machine interaction theory. Future applications may be able to
+utilize the findings to help objectively design bicycles with improved
+handling, stability, and controllabilty whereas research can build off the
+validated crossover model theory of human operator control.

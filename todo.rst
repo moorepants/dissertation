@@ -5,8 +5,6 @@ TODO List
 Major
 =====
 
-.. todo:: Check over the bib output.
-
 .. todo:: Check order of all the manually numbered figures.
 
 .. todo:: Write a conclusion.
@@ -31,10 +29,9 @@ Minor
 .. todo:: The latex build wants the target directive in images to point to
    something different than the html.
 
-.. todo:: See if it possible to center tables in html.
+.. todo:: Center tables in html.
 
 Collected
 =========
 
 .. todolist::
-

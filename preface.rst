@@ -182,9 +182,6 @@ in my software stack with most of them being open source packages that I or
 some of my collaborators have written. The following gives a list of the
 packages we've developed:
 
-.. todo:: include the git commit hashes for the version that works with the
-   theses data
-
 `AutolevToolKit <https://github.com/moorepants/AutolevToolKit>`_ (Python)
    A collection of tools which parse `Autolev <http://www.autolev.com>`_
    output for extracting the equations of motion and some basic tool to
@@ -202,7 +199,7 @@ packages we've developed:
    with models.
 `BicycleID <https://github.com/moorepants/BicycleID>`_ (Python
    A GTK GUI for visualizing the bicycle model identification data.
-`BicycleParameters <http://pypi.python.org/pypi/BicycleParameters>`_ (Python)
+`BicycleParameters <http://pypi.python.org/pypi/BicycleParameters>`_ (Python) :cite:`Moore2011a`
    A program that generates the physical parameters of a bicycle and rider
    from experimental measurements. It also allows for basic manipulation and
    analysis with some widely used models.
@@ -225,13 +222,15 @@ packages we've developed:
 `MotionCapture <https://github.com/moorepants/DynamicistToolKit>`_ (Python & Matlab)
    A Matlab GUI tool for interactively exploring the data from the bicycle
    motion capture experiments and python tools for basic statistics.
-`Yeadon <http://pypi.python.org/pypi/yeadon>`_ (Python)
+`Yeadon <http://pypi.python.org/pypi/yeadon>`_ (Python) :cite:`Dembia2011`
    A program that computes the inertia of a human using the method from
    :cite:`Yeadon1990`.
 
 This software stack is built upon several languages and software packages
-including: Python_, NumPy_, SciPy_, Matplotlib_, PyTables_, Pandas_, Uncertainties_,
-SymPy_, Autolev_, Matlab_.
+including: Python_, NumPy_, SciPy_, Matplotlib_, PyTables_, Pandas_,
+Uncertainties_, SymPy_, Autolev_, Matlab_. Each software package will have a
+git tag called ``dissertation`` to pin it to the version used to generate all
+the results in the text.
 
 .. _Python: http://www.python.org
 .. _NumPy: http://www.numpy.org
@@ -257,9 +256,6 @@ the software packages above. All of the data described below is accessible
 through the bicycle data page on our lab website:
 `<http://biosport.ucdavis.edu/research-projects/bicycle/data>`_.
 
-.. todo:: Add direct links to the data sets and videos if available before
-   publishing.
-
 Physical Parameters
    The physical parameter data consists of measured values, such as geometry
    and mass, of both the bicycles and the riders.
@@ -272,7 +268,7 @@ Motion Capture
    This data set includes Matlab mat files for each run for several days of
    experimenting with several riders on the treadmill. There is also video data
    for a good portion of the runs.
-`Steer Torque Experiments <http://archive.org/details/BicycleSteerTorqueExperiment01>`_
+Steer Torque Experiments
    There is video data for each run and also the manually derived comma
    separated value text file with the torque values determined from the video.
 Identification Experiments
@@ -283,7 +279,7 @@ Identification Experiments
 Photos
    I've taken extensive photo documentation of the instrumentation construction
    and the experiments. The albums are divided into ones of the work done at
-   `UC Davis <http://picasaweb.google.com/moorepants/BicycleDynamics#>`_ and
+   `UC Davis <http://picasaweb.google.com/moorepants/BicycleDynamics>`_ and
    the work done at `TU Delft
    <http://picasaweb.google.com/moorepants/BicycleDynamicsTUDelft>`_.
 

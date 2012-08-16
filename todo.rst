@@ -16,6 +16,8 @@ Major
 
 .. todo:: The References page doesn't need to show up in the pdf.
 
+.. todo:: Add UCD title page and format for submission.
+
 Minor
 =====
 

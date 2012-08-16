@@ -755,9 +755,9 @@ source code and data available for download in case it is of use to anyone.
 Rider 2
 -------
 
-These are the parameters computed with the methods in :cite:`Moore2009` for the
-second rider, Jason, on the instrumented Batavus Browser. Only the rear frame
-and body parameters are different as the bicycle is identical. We only
+These are the parameters computed with the methods in :cite:`Moore2009a` for
+the second rider, Jason, on the instrumented Batavus Browser. Only the rear
+frame and body parameters are different as the bicycle is identical. We only
 presented data in the previous analysis for runs in which Arend rode the
 bicycle.
 

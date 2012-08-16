@@ -14,7 +14,7 @@ the bicycle's configuration and the proper actuation of his arms to maintain
 vertical equilibrium. It was found that this "simpler" task is well suited for
 manual control theoretic dissection and postulation.
 
-I will herein present the findings of the seventh age of my tenure as a
+I herein present the findings of the seventh age of my tenure as a
 doctoral candidate in the prefecture of Mechanical and Aerospace Engineering at
 the Davis campus of the University of California. These describe our
 experimental procedure which involved strapping the untamed and aggressive
@@ -40,20 +40,29 @@ magical-like auto stability of the bicycle.
 
 *The sensical...*
 
-For those of you who'd rather read a more traditional exit seminar abstract
-here is a quick explanation of the above in plain modern Engineering English:
+For those of you who'd rather read a more traditional abstract here is a quick
+explanation of the above in plain modern Engineering English:
 
 The bicycle, a simple toy to many, turns out to be an excellent platform to
-study the intricacies of human-machine interaction and human operator control
-for both dynamic and economical reasons. The bicycle is inherently unstable at
-low speeds and the human generally actuates the non-minimum phase system, and
-thus balances, only by means of rotating the handlebars. This dissertation
-describes a multi-year multi-person effort to better understand the dynamics of
-the bicycle, the biomechanics of the rider, and the rider's internal control
-system through theory and extensive experimentation. The work has revealed a
-number of interesting facts including the primary actuators used by the human,
-effects of the rider's motion on the bicycle's stability, the inadequacy of the
-canonical bicycle model, and the ability of a simple multi-output control
-system formulated around the classical crossover model to describe the human's
-control efforts. These findings have implications in both single track vehicle
-design theory and human-machine interaction theory.
+study the intricacies of vehicle dynamics, human-machine interaction, and human
+operator control due to both academic and economical reasons. The bicycle is
+inherently unstable at low speeds and the human generally actuates the
+non-minimum phase system, and thus balances, only by means of rotating the
+handlebars. This dissertation describes a multi-year multi-person effort to
+better understand the dynamics of the bicycle, the biomechanics of the rider,
+and the rider's internal control system through theory and extensive
+experimentation. The various chapters herein focus on the development of open
+loop bicycle models, some of which include the rider's biomechanics, along with
+the resulting predicted motion and model characteristics, the accurate
+measurement and estimation of both the bicycle and rider's physical parameters,
+observation of a rider's control motions, the development of experimental
+bicycles capable of measuring kinematics and forces, control theory including
+that of the human operator, and finally the identification of the both the
+plant and controller of a bicycle-rider system. The work has revealed a number
+of interesting facts including the primary biomechanic actuators used by the
+human in control, effects of the rider's motion and constraints on the
+bicycle's stability, the inadequacy of the Whipple bicycle model, and the
+ability of a simple multi-output control system formulated around the classical
+crossover model to describe the human's control efforts while being externally
+perturbed. These findings have implications in both single track vehicle design
+and human-machine interaction theory.

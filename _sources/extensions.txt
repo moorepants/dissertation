@@ -1107,8 +1107,6 @@ and dampers at the biomechanical joints have on the stability of the bicycle,
 in much the same way as in the previous section but with a more complex rider
 model.
 
-.. todo:: post the source code to the Taiwan paper
-
 Introduction
 ------------
 

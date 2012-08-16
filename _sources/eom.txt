@@ -1275,8 +1275,6 @@ unstable eigenvalues predict two modes where the roll and steer states
 exponentially increase and with roll and steer 180 degrees out of phase. These
 modes describes a simple unstable inverted pendulum motion.
 
-.. todo:: These phasor plots are low resolution.
-
 .. _figEVecHalf:
 
 .. figure:: figures/eom/eVecHalf.*

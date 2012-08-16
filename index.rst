@@ -11,8 +11,10 @@ Home
 
 This is the University of California, Davis doctoral dissertation of Jason K. Moore.
 
-`Download the latest pdf version of this
-document <http://mae.ucdavis.edu/~biosport/jkm/dissertation/HumanControlofaBicycle.pdf>`_.
+.. image:: figures/bear-6in.*
+   :align: center
+   :width: 600px
+   :target: _images/bear-6in.png
 
 .. toctree::
    :maxdepth: 2
@@ -34,3 +36,7 @@ document <http://mae.ucdavis.edu/~biosport/jkm/dissertation/HumanControlofaBicyc
    zreferences
 
 * :ref:`search`
+
+`Download the latest pdf version of this
+document <http://mae.ucdavis.edu/~biosport/jkm/dissertation/HumanControlofaBicycle.pdf>`_.
+

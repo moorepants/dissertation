@@ -182,12 +182,12 @@ latex_font_size = '10pt'
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'HumanControlofaBicycle.tex', u'Human Control of a Bicycle',
-   u'Jason K. Moore', 'manual'),
+   u'Jason K. Moore', 'manual', True),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-#latex_logo = None
+latex_logo = 'figures/bear-6in.png'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
@@ -206,6 +206,7 @@ latex_preamble = \
 \doublespacing
 \usepackage[top=1in, bottom=1in, left=1.5in, right=1in]{geometry}
 """
+
 # Documents to append as an appendix to all manuals.
 #latex_appendices = []
 

@@ -68,7 +68,7 @@ that really only talked about what we hoped to do, with the idea that it gives
 us a deadline to get something done. This worked well here, but I can't say
 that it has been successful for me since. We first presented the results of this
 study at the ECCOMAS Multibody Dynamics conference in June of 2009 and I think
-it went pretty well :cite:`Moore2009`.
+it went pretty well :cite:`Moore2009b`.
 
 After the conference, the paper was selected to be published in the Multibody
 System Dynamics journal. I turned it down because Arend was more interested in

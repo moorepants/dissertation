@@ -11,8 +11,6 @@ Major
 
 .. todo:: Write a conclusion.
 
-.. todo:: Git rid of the bogus treadmill paper that I "wrote".
-
 .. todo:: font size is screwed up in sysid chapter due to my manually trying to
    resize tables. Fix the font size of the two big tables and the big A matrix.
 

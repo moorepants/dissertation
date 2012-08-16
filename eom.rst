@@ -1193,6 +1193,8 @@ the eigenvalues computed at 5 m/s compared to the values in Table 2 of
 
    \bar{q} = [\phi \quad \delta]^T = [q_4 \quad q_7]^T
 
+.. todo:: This table is too wide.
+
 .. _tabLinCompare:
 
 .. tabularcolumns:: lllll

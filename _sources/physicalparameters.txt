@@ -11,8 +11,6 @@ Physical Parameters
    now use at your own risk. The information may or may not be correct.
    Reviews, comments and suggestions are welcome.
 
-.. todo:: Check the figure numbering in this Chapter.
-
 Preface
 =======
 
@@ -20,29 +18,30 @@ My first concern with the physical parameters of the bicycle and rider occurred
 in my multi-body dynamics class project :cite:`Moore2006`. There I developed a
 method of estimating the parameter values using simply the geometry and mass of
 the bicycle and rider. It was eventually presented as part of a paper at the
-2008 ISEA conference in Biarritz, France :cite:`Moore2008`. This method served me
-well until more accurate estimates of the parameters were needed for the first
-instrumented bicycle I helped build at TU Delft, see Chapter
+2008 ISEA conference in Biarritz, France :cite:`Moore2008`. This method served
+me well until more accurate estimates of the parameters were needed for the
+first instrumented bicycle I helped build at TU Delft, see Chapter
 :ref:`delftbicycle`. I signed on to the task of measuring the bike's physical
-parameters using the equipment and procedures developed in :cite:`Kooijman2006` and
-to combine the results with my basic human model from :cite:`Moore2008` for the
-estimation of the complete system parameters of the Whipple model. These first
-measurements and the details of the human model were eventually presented in
-:cite:`Moore2009a`. During this work, Dr.  Hubbard encouraged me to think about the
-accuracy of the measurements in more detail, as some of the practices we were
-using were not as accurate as they could be. With that in mind and the fact
-that there was very little complete data available on the physical parameters
-of real bicycles, I decided to measure an assortment of bicycles we had
-available around the lab in Delft :cite:`Moore2010`. From this tedious task a rich
-data set was created and the measurement methodology tightened up considerably.
-Once I was back in Davis, we setup almost identical equipment to measure the
-two new bicycles we were constructing, see Chatper :ref:`davisbicycle`. Danique
-Fintelman helped us come up with a more accurate geometry measurement. Steven
-Yen also used the equipment to measure a children's bicycle with a gyro wheel.
-With one last improvement, we updated the human parameter estimates when Chris
-Dembia implemented Yeadon's human inertia model and it was combined with the
-accurate bicycle measurements. These final methods for both bicycle and rider
-are implemented in two open source software packages.
+parameters using the equipment and procedures developed in :cite:`Kooijman2006`
+and to combine the results with my basic human model from :cite:`Moore2008` for
+the estimation of the complete system parameters of the Whipple model. These
+first measurements and the details of the human model were eventually presented
+in :cite:`Moore2009a`. During this work, Dr.  Hubbard encouraged me to think
+about the accuracy of the measurements in more detail, as some of the practices
+we were using were not as accurate as they could be. With that in mind and the
+fact that there was very little complete data available on the physical
+parameters of real bicycles, I decided to measure an assortment of bicycles we
+had available around the lab in Delft :cite:`Moore2010`. From this tedious task
+a rich data set was created and the measurement methodology tightened up
+considerably.  Once I was back in Davis, we setup almost identical equipment to
+measure the two new bicycles we were constructing, see Chatper
+:ref:`davisbicycle`. Danique Fintelman helped us come up with a more accurate
+geometry measurement. Steven Yen also used the equipment to measure a
+children's bicycle with a gyro wheel.  With one last improvement, we updated
+the human parameter estimates when Chris Dembia implemented Yeadon's human
+inertia model and it was combined with the accurate bicycle measurements. These
+final methods for both bicycle and rider are implemented in two open source
+software packages.
 
 .. _secBicycleParameters:
 
@@ -55,25 +54,27 @@ geometry, mass, mass location, and mass distributions for the rigid bodies.
 More complex models require estimates of tire characteristics, human body
 segment inertial characteristics, friction, stiffness, damping, etc. In this
 chapter I present the measurement of the minimal bicycle/rider parameters
-required for the benchmark Whipple bicycle model presented in :cite:`Meijaard2007`.
-This model is composed of four rigid bodies, has ideal rolling and frictionless
-joints, and is laterally symmetric. A set of 25 parameters describes the
-geometry, mass, mass location and mass distribution of each of the rigid
-bodies. The experimental methods used to estimate the parameters described
-herein are based primarily on the work done in :cite:`Kooijman2006`, :cite:`Kooijman2008`
-and :cite:`Moore2009a` but have been refined for improved accuracy and methodology.
+required for the benchmark Whipple bicycle model presented in
+:cite:`Meijaard2007`.  This model is composed of four rigid bodies, has ideal
+rolling and frictionless joints, and is laterally symmetric. A set of 25
+parameters describes the geometry, mass, mass location and mass distribution of
+each of the rigid bodies. The experimental methods used to estimate the
+parameters described herein are based primarily on the work done in
+:cite:`Kooijman2006`, :cite:`Kooijman2008` and :cite:`Moore2009a` but have been
+refined for improved accuracy and methodology.
 
 Koojiman's work was preceded by that of several others. Roland and Massing
-:cite:`Roland1971` measured the physical parameters of a bicycle in much the same
-way as is presented, including calculations of uncertainty from the indirect
-measurement techniques. :cite:`Zytveld1975` measured the inertial parameters of his
-robotic bicycle with a swing pendulum and a stop watch. Patterson
-:cite:`Patterson2004` used a swing to measure the roll inertia of recumbent bicycles
-with a rider. :cite:`Connors2009` and :cite:`Stevens2009` used a computer aided design
-package to estimate the parameters.  :cite:`Escalona2010` measured a bicycle for his
-bicycle dynamics class in Spain.  Also, some notable motorcycle and scooter
-measurements include :cite:`Dohring1953`, :cite:`Dohring1955`, :cite:`Singh1971`,
-:cite:`Eaton1973`, :cite:`Roland1973`, and :cite:`Sharp1997b`.
+:cite:`Roland1971` measured the physical parameters of a bicycle in much the
+same way as is presented, including calculations of uncertainty from the
+indirect measurement techniques. :cite:`Zytveld1975` measured the inertial
+parameters of his robotic bicycle with a swing pendulum and a stop watch.
+Patterson :cite:`Patterson2004` used a swing to measure the roll inertia of
+recumbent bicycles with a rider. :cite:`Connors2009` and :cite:`Stevens2009`
+used a computer aided design package to estimate the parameters.
+:cite:`Escalona2010` measured a bicycle for his bicycle dynamics class in
+Spain.  Also, some notable motorcycle and scooter measurements include
+:cite:`Dohring1953`, :cite:`Dohring1955`, :cite:`Singh1971`, :cite:`Eaton1973`,
+:cite:`Roland1973`, and :cite:`Sharp1997b`.
 
 Here is documented the indirect measurement of ten real bicycles' physical
 parameters. We improve upon previous methods by both increasing and reporting
@@ -125,8 +126,8 @@ where the entries of the :math:`\mathbf{M}`, :math:`\mathbf{C}_1`,
 :math:`\mathbf{K}_0` and :math:`\mathbf{K}_2` matrices are combinations of 25
 bicycle physical parameters that include the geometry, mass, mass location and
 mass distribution of the four rigid bodies. The 25 parameters presented in
-:cite:`Meijaard2007` are not necessarily a minimum set for the Whipple model, as
-shown in :cite:`Sharp2008a`, but are useful none-the-less as they represent
+:cite:`Meijaard2007` are not necessarily a minimum set for the Whipple model,
+as shown in :cite:`Sharp2008a`, but are useful none-the-less as they represent
 intuitively measurable quantities and have become become standard due to the
 nature of the benchmark. They are also not parameters used in directly in the
 derivation in Chapter :ref:`eom` but can easily be converted, as was shown. The
@@ -214,9 +215,9 @@ calculations hereafter have uncorrelated variables but a few do not and the
 covariance has to be taken into account. Equation :eq:`variance` can be used to
 calculate the variance of all types of functions. I made use of the Python
 package `uncertainties <http://pypi.python.org/pypi/uncertainties/>`_
-:cite:`Lebigot2010` to simplify the book keeping of the correlations and variance
-calculations, thus some of the equations for the error are not shown in the
-following sections.
+:cite:`Lebigot2010` to simplify the book keeping of the correlations and
+variance calculations, thus some of the equations for the error are not shown
+in the following sections.
 
 .. _secGeometry:
 
@@ -227,9 +228,9 @@ The geometry measurements of the Delft bicycles focused on measuring the
 benchmark parameters: trail, wheelbase, and steer axis tilt as directly as
 possible. I also present an alternative method for the geometry used with the
 Davis bicycles that attempts to measure the distances in my model derivation,
-Chapter :ref:`eom`, which improves the accuracy of the parameters. Keep in mind,
-that I assumed that the frame did not flex and that the wheel radii do not
-change with rider weight when taking geometric measurements.
+Chapter :ref:`eom`, which improves the accuracy of the parameters. Keep in
+mind, that I assumed that the frame did not flex and that the wheel radii do
+not change with rider weight when taking geometric measurements.
 
 .. _secWheelRadii:
 
@@ -243,13 +244,14 @@ measured separately and the measurements were taken with rider seated on the
 bicycle, except for the gyro bicycle which had no rider. A 72 kg rider sat on
 the Delft bicycles and an 84 kg rider on the Davis instrumented bicycle
 [#weight]_. A 30 meter tape measure (resolution: 2mm) was pulled tight and
-taped on a flat level smooth floor for the Delft bicycles and for the Davis bicycles we marked a 68
-foot length on the floor and used a 1/16 inch resolution ruler to measure the 6
-to 15 inch distance past the 68 foot mark where the rotation stopped. The tire was marked and
-aligned with the tape measure :ref:`Figure 7.2<figTireChalk>`. The accuracy of the
-distance measurement is approximately :math:`\pm0.01` meter. The tires were
-pumped to the recommended inflation pressure before the measurements. The wheel
-radius is calculated by
+taped on a flat level smooth floor for the Delft bicycles and for the Davis
+bicycles we marked a 68 foot length on the floor and used a 1/16 inch
+resolution ruler to measure the 6 to 15 inch distance past the 68 foot mark
+where the rotation stopped. The tire was marked and aligned with the tape
+measure :ref:`Figure 7.2<figTireChalk>`. The accuracy of the distance
+measurement is approximately :math:`\pm0.01` meter. The tires were pumped to
+the recommended inflation pressure before the measurements. The wheel radius is
+calculated by
 
 .. math::
     :label: wheelRadius
@@ -261,8 +263,8 @@ radius is calculated by
 where :math:`r` is the wheel radius, :math:`d`, is the traversal distance,
 :math:`n`, is the number of rotations and :math:`\sigma` is the respective
 standard deviation of the subscripted variable. I use subscripts :math:`F` and
-:math:`R` from front and rear wheels, respectively, in the measurement tables in
-Section :ref:`secBicycleMeasuredParameters`.
+:math:`R` from front and rear wheels, respectively, in the measurement tables
+in Section :ref:`secBicycleMeasuredParameters`.
 
 .. _figTireChalk:
 

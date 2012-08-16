@@ -56,14 +56,10 @@
 <span id="physicalparameters"></span><h1>Physical Parameters<a class="headerlink" href="#physical-parameters" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated August 15, 2012 at 21:59:47 PDT).
+<p class="last">This document is a draft which is updated regularly (Last updated August 16, 2012 at 01:46:00 PDT).
 Once I submit if for my doctoral degree at UC Davis, it will be done. So for
 now use at your own risk. The information may or may not be correct.
 Reviews, comments and suggestions are welcome.</p>
-</div>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">Check the figure numbering in this Chapter.</p>
 </div>
 <div class="section" id="preface">
 <h2>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
@@ -71,29 +67,30 @@ Reviews, comments and suggestions are welcome.</p>
 in my multi-body dynamics class project <a class="reference internal" href="zreferences.html#moore2006">[Moo06]</a>. There I developed a
 method of estimating the parameter values using simply the geometry and mass of
 the bicycle and rider. It was eventually presented as part of a paper at the
-2008 ISEA conference in Biarritz, France <a class="reference internal" href="zreferences.html#moore2008">[MH08]</a>. This method served me
-well until more accurate estimates of the parameters were needed for the first
-instrumented bicycle I helped build at TU Delft, see Chapter
+2008 ISEA conference in Biarritz, France <a class="reference internal" href="zreferences.html#moore2008">[MH08]</a>. This method served
+me well until more accurate estimates of the parameters were needed for the
+first instrumented bicycle I helped build at TU Delft, see Chapter
 <a class="reference internal" href="delftbicycle.html#delftbicycle"><em>Delft Instrumented Bicycle</em></a>. I signed on to the task of measuring the bike&#8217;s physical
-parameters using the equipment and procedures developed in <a class="reference internal" href="zreferences.html#kooijman2006">[Koo06]</a> and
-to combine the results with my basic human model from <a class="reference internal" href="zreferences.html#moore2008">[MH08]</a> for the
-estimation of the complete system parameters of the Whipple model. These first
-measurements and the details of the human model were eventually presented in
-<a class="reference internal" href="zreferences.html#moore2009a">[MKHS09]</a>. During this work, Dr.  Hubbard encouraged me to think about the
-accuracy of the measurements in more detail, as some of the practices we were
-using were not as accurate as they could be. With that in mind and the fact
-that there was very little complete data available on the physical parameters
-of real bicycles, I decided to measure an assortment of bicycles we had
-available around the lab in Delft <a class="reference internal" href="zreferences.html#moore2010">[MHP+10]</a>. From this tedious task a rich
-data set was created and the measurement methodology tightened up considerably.
-Once I was back in Davis, we setup almost identical equipment to measure the
-two new bicycles we were constructing, see Chatper <a class="reference internal" href="davisbicycle.html#davisbicycle"><em>Davis Instrumented Bicycle</em></a>. Danique
-Fintelman helped us come up with a more accurate geometry measurement. Steven
-Yen also used the equipment to measure a children&#8217;s bicycle with a gyro wheel.
-With one last improvement, we updated the human parameter estimates when Chris
-Dembia implemented Yeadon&#8217;s human inertia model and it was combined with the
-accurate bicycle measurements. These final methods for both bicycle and rider
-are implemented in two open source software packages.</p>
+parameters using the equipment and procedures developed in <a class="reference internal" href="zreferences.html#kooijman2006">[Koo06]</a>
+and to combine the results with my basic human model from <a class="reference internal" href="zreferences.html#moore2008">[MH08]</a> for
+the estimation of the complete system parameters of the Whipple model. These
+first measurements and the details of the human model were eventually presented
+in <a class="reference internal" href="zreferences.html#moore2009a">[MKHS09]</a>. During this work, Dr.  Hubbard encouraged me to think
+about the accuracy of the measurements in more detail, as some of the practices
+we were using were not as accurate as they could be. With that in mind and the
+fact that there was very little complete data available on the physical
+parameters of real bicycles, I decided to measure an assortment of bicycles we
+had available around the lab in Delft <a class="reference internal" href="zreferences.html#moore2010">[MHP+10]</a>. From this tedious task
+a rich data set was created and the measurement methodology tightened up
+considerably.  Once I was back in Davis, we setup almost identical equipment to
+measure the two new bicycles we were constructing, see Chatper
+<a class="reference internal" href="davisbicycle.html#davisbicycle"><em>Davis Instrumented Bicycle</em></a>. Danique Fintelman helped us come up with a more accurate
+geometry measurement. Steven Yen also used the equipment to measure a
+children&#8217;s bicycle with a gyro wheel.  With one last improvement, we updated
+the human parameter estimates when Chris Dembia implemented Yeadon&#8217;s human
+inertia model and it was combined with the accurate bicycle measurements. These
+final methods for both bicycle and rider are implemented in two open source
+software packages.</p>
 </div>
 <div class="section" id="bicycle-parameters">
 <span id="secbicycleparameters"></span><h2>Bicycle Parameters<a class="headerlink" href="#bicycle-parameters" title="Permalink to this headline">¶</a></h2>
@@ -103,24 +100,26 @@ geometry, mass, mass location, and mass distributions for the rigid bodies.
 More complex models require estimates of tire characteristics, human body
 segment inertial characteristics, friction, stiffness, damping, etc. In this
 chapter I present the measurement of the minimal bicycle/rider parameters
-required for the benchmark Whipple bicycle model presented in <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a>.
-This model is composed of four rigid bodies, has ideal rolling and frictionless
-joints, and is laterally symmetric. A set of 25 parameters describes the
-geometry, mass, mass location and mass distribution of each of the rigid
-bodies. The experimental methods used to estimate the parameters described
-herein are based primarily on the work done in <a class="reference internal" href="zreferences.html#kooijman2006">[Koo06]</a>, <a class="reference internal" href="zreferences.html#kooijman2008">[KSM08]</a>
-and <a class="reference internal" href="zreferences.html#moore2009a">[MKHS09]</a> but have been refined for improved accuracy and methodology.</p>
+required for the benchmark Whipple bicycle model presented in
+<a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a>.  This model is composed of four rigid bodies, has ideal
+rolling and frictionless joints, and is laterally symmetric. A set of 25
+parameters describes the geometry, mass, mass location and mass distribution of
+each of the rigid bodies. The experimental methods used to estimate the
+parameters described herein are based primarily on the work done in
+<a class="reference internal" href="zreferences.html#kooijman2006">[Koo06]</a>, <a class="reference internal" href="zreferences.html#kooijman2008">[KSM08]</a> and <a class="reference internal" href="zreferences.html#moore2009a">[MKHS09]</a> but have been
+refined for improved accuracy and methodology.</p>
 <p>Koojiman&#8217;s work was preceded by that of several others. Roland and Massing
-<a class="reference internal" href="zreferences.html#roland1971">[RM71]</a> measured the physical parameters of a bicycle in much the same
-way as is presented, including calculations of uncertainty from the indirect
-measurement techniques. <a class="reference internal" href="zreferences.html#zytveld1975">[VZ75]</a> measured the inertial parameters of his
-robotic bicycle with a swing pendulum and a stop watch. Patterson
-<a class="reference internal" href="zreferences.html#patterson2004">[Pat04b]</a> used a swing to measure the roll inertia of recumbent bicycles
-with a rider. <a class="reference internal" href="zreferences.html#connors2009">[Con09]</a> and <a class="reference internal" href="zreferences.html#stevens2009">[Ste09]</a> used a computer aided design
-package to estimate the parameters.  <a class="reference internal" href="zreferences.html#escalona2010">[ER10]</a> measured a bicycle for his
-bicycle dynamics class in Spain.  Also, some notable motorcycle and scooter
-measurements include <a class="reference internal" href="zreferences.html#dohring1953">[Doh53]</a>, <a class="reference internal" href="zreferences.html#dohring1955">[Doh55]</a>, <a class="reference internal" href="zreferences.html#singh1971">[SG71]</a>,
-<a class="reference internal" href="zreferences.html#eaton1973">[Eat73b]</a>, <a class="reference internal" href="zreferences.html#roland1973">[RR73]</a>, and <a class="reference internal" href="zreferences.html#sharp1997b">[Sha97]</a>.</p>
+<a class="reference internal" href="zreferences.html#roland1971">[RM71]</a> measured the physical parameters of a bicycle in much the
+same way as is presented, including calculations of uncertainty from the
+indirect measurement techniques. <a class="reference internal" href="zreferences.html#zytveld1975">[VZ75]</a> measured the inertial
+parameters of his robotic bicycle with a swing pendulum and a stop watch.
+Patterson <a class="reference internal" href="zreferences.html#patterson2004">[Pat04b]</a> used a swing to measure the roll inertia of
+recumbent bicycles with a rider. <a class="reference internal" href="zreferences.html#connors2009">[Con09]</a> and <a class="reference internal" href="zreferences.html#stevens2009">[Ste09]</a>
+used a computer aided design package to estimate the parameters.
+<a class="reference internal" href="zreferences.html#escalona2010">[ER10]</a> measured a bicycle for his bicycle dynamics class in
+Spain.  Also, some notable motorcycle and scooter measurements include
+<a class="reference internal" href="zreferences.html#dohring1953">[Doh53]</a>, <a class="reference internal" href="zreferences.html#dohring1955">[Doh55]</a>, <a class="reference internal" href="zreferences.html#singh1971">[SG71]</a>, <a class="reference internal" href="zreferences.html#eaton1973">[Eat73b]</a>,
+<a class="reference internal" href="zreferences.html#roland1973">[RR73]</a>, and <a class="reference internal" href="zreferences.html#sharp1997b">[Sha97]</a>.</p>
 <p>Here is documented the indirect measurement of ten real bicycles&#8217; physical
 parameters. We improve upon previous methods by both increasing and reporting
 the accuracies of the measurements and by measuring the complete moments of
@@ -161,8 +160,8 @@ with the benchmark Whipple bicycle model which is derived and described in
 <span class="math">\(\mathbf{K}_0\)</span> and <span class="math">\(\mathbf{K}_2\)</span> matrices are combinations of 25
 bicycle physical parameters that include the geometry, mass, mass location and
 mass distribution of the four rigid bodies. The 25 parameters presented in
-<a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> are not necessarily a minimum set for the Whipple model, as
-shown in <a class="reference internal" href="zreferences.html#sharp2008a">[Sha08]</a>, but are useful none-the-less as they represent
+<a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> are not necessarily a minimum set for the Whipple model,
+as shown in <a class="reference internal" href="zreferences.html#sharp2008a">[Sha08]</a>, but are useful none-the-less as they represent
 intuitively measurable quantities and have become become standard due to the
 nature of the benchmark. They are also not parameters used in directly in the
 derivation in Chapter <a class="reference internal" href="eom.html#eom"><em>Bicycle Equations Of Motion</em></a> but can easily be converted, as was shown. The
@@ -233,9 +232,9 @@ calculations hereafter have uncorrelated variables but a few do not and the
 covariance has to be taken into account. Equation <a href="#equation-variance">(3)</a> can be used to
 calculate the variance of all types of functions. I made use of the Python
 package <a class="reference external" href="http://pypi.python.org/pypi/uncertainties/">uncertainties</a>
-<a class="reference internal" href="zreferences.html#lebigot2010">[Leb10]</a> to simplify the book keeping of the correlations and variance
-calculations, thus some of the equations for the error are not shown in the
-following sections.</p>
+<a class="reference internal" href="zreferences.html#lebigot2010">[Leb10]</a> to simplify the book keeping of the correlations and
+variance calculations, thus some of the equations for the error are not shown
+in the following sections.</p>
 </div>
 <div class="section" id="geometry">
 <span id="secgeometry"></span><h3>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h3>
@@ -243,9 +242,9 @@ following sections.</p>
 benchmark parameters: trail, wheelbase, and steer axis tilt as directly as
 possible. I also present an alternative method for the geometry used with the
 Davis bicycles that attempts to measure the distances in my model derivation,
-Chapter <a class="reference internal" href="eom.html#eom"><em>Bicycle Equations Of Motion</em></a>, which improves the accuracy of the parameters. Keep in mind,
-that I assumed that the frame did not flex and that the wheel radii do not
-change with rider weight when taking geometric measurements.</p>
+Chapter <a class="reference internal" href="eom.html#eom"><em>Bicycle Equations Of Motion</em></a>, which improves the accuracy of the parameters. Keep in
+mind, that I assumed that the frame did not flex and that the wheel radii do
+not change with rider weight when taking geometric measurements.</p>
 <div class="section" id="wheel-radii">
 <span id="secwheelradii"></span><h4>Wheel Radii<a class="headerlink" href="#wheel-radii" title="Permalink to this headline">¶</a></h4>
 <p>The radii of the front <span class="math">\(r_\mathrm{F}\)</span> and rear <span class="math">\(r_\mathrm{R}\)</span>
@@ -255,13 +254,14 @@ measured separately and the measurements were taken with rider seated on the
 bicycle, except for the gyro bicycle which had no rider. A 72 kg rider sat on
 the Delft bicycles and an 84 kg rider on the Davis instrumented bicycle
 <a class="footnote-reference" href="#weight" id="id29">[1]</a>. A 30 meter tape measure (resolution: 2mm) was pulled tight and
-taped on a flat level smooth floor for the Delft bicycles and for the Davis bicycles we marked a 68
-foot length on the floor and used a 1/16 inch resolution ruler to measure the 6
-to 15 inch distance past the 68 foot mark where the rotation stopped. The tire was marked and
-aligned with the tape measure <a class="reference internal" href="#figtirechalk"><em>Figure 7.2</em></a>. The accuracy of the
-distance measurement is approximately <span class="math">\(\pm0.01\)</span> meter. The tires were
-pumped to the recommended inflation pressure before the measurements. The wheel
-radius is calculated by</p>
+taped on a flat level smooth floor for the Delft bicycles and for the Davis
+bicycles we marked a 68 foot length on the floor and used a 1/16 inch
+resolution ruler to measure the 6 to 15 inch distance past the 68 foot mark
+where the rotation stopped. The tire was marked and aligned with the tape
+measure <a class="reference internal" href="#figtirechalk"><em>Figure 7.2</em></a>. The accuracy of the distance
+measurement is approximately <span class="math">\(\pm0.01\)</span> meter. The tires were pumped to
+the recommended inflation pressure before the measurements. The wheel radius is
+calculated by</p>
 <div class="math" id="equation-wheelRadius">
 <span class="eqno">(4)</span>\[r\pm\sigma_r=
 \frac{d}{2\pi n}
@@ -269,8 +269,8 @@ radius is calculated by</p>
 <p>where <span class="math">\(r\)</span> is the wheel radius, <span class="math">\(d\)</span>, is the traversal distance,
 <span class="math">\(n\)</span>, is the number of rotations and <span class="math">\(\sigma\)</span> is the respective
 standard deviation of the subscripted variable. I use subscripts <span class="math">\(F\)</span> and
-<span class="math">\(R\)</span> from front and rear wheels, respectively, in the measurement tables in
-Section <a class="reference internal" href="#secbicyclemeasuredparameters"><em>Bicycle Measured Parameters</em></a>.</p>
+<span class="math">\(R\)</span> from front and rear wheels, respectively, in the measurement tables
+in Section <a class="reference internal" href="#secbicyclemeasuredparameters"><em>Bicycle Measured Parameters</em></a>.</p>
 <div class="figure align-center" id="figtirechalk">
 <a class="reference external image-reference" href="_images/tire-chalk.jpg"><img alt="_images/tire-chalk.jpg" src="_images/tire-chalk.jpg" style="width: 4in;" /></a>
 <p class="caption">Wheel and tire with chalk mark aligned to the tape measure.</p>
@@ -4634,7 +4634,7 @@ analytically estimate the inertia of the bicycle frame. See <a class="reference 
 
     <div class="footer">
         &copy; Copyright 2011, Jason K. Moore.
-      Last updated on Aug 15, 2012.
+      Last updated on Aug 16, 2012.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">

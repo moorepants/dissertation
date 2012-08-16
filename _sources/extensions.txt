@@ -504,8 +504,6 @@ Whipple weave mode.
    and steer angle, :math:`q_7`, components are shown. Generated with
    ``src/extensions/arms/plot_eig.py``.
 
-.. todo:: change this to 7 m/s like the whipple model instead of 8
-
 .. _figArmsPhasorEight:
 
 .. figure:: figures/extensions/arms-phasor-eight.*

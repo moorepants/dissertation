@@ -9,8 +9,6 @@ Preface
    now use at your own risk. The information may or may not be correct.
    Reviews, comments and suggestions are welcome.
 
-.. todo:: add section explaining the prefaces and the "chatty" parts
-
 Introduction
 ============
 
@@ -73,7 +71,7 @@ Over the past few years, I've begun realize how reproducibility is crucial for
 science to improve and grow rapidly, all the while building a deeply intact and
 strong foundation for future researchers and that it may not be as reproducible
 as we may all think. With that in mind, I have put a great deal of effort into
-making my work more accessible, reusable and ultimately reproducible, which is
+making my work more accessible, reusable, and ultimately reproducible, which is
 the cornerstone of all scientific understanding. For the type of work presented
 here, the majority is computational and the computer along with software have
 enabled our generation to make the work reproducible without too much extra
@@ -330,6 +328,28 @@ reStructuredText, is available along with the source code for the figures at
 `<https://github.com/moorepants/dissertation>`_. The HTML version can be viewed
 and the PDF version downloaded at
 `<http://moorepants.github.com/dissertation>`_
+
+Writing Style
+=============
+
+I generally find scientific writing in my field to be extremely dry. We've
+developed a collective style that removes any material that isn't technical
+from the articles and this in turn causes us to gloss over the fact that people
+are behind all of the reported research. These people have ideas, struggles,
+mishaps, revelations, and sometimes even fun. But these things weren't always
+hidden. Early engineering articles ended with lengthy personal conversations
+between the reviewers and the authors (:cite:`Wilson-Jones1951`,
+:cite:`Kondo1955`) and include much more artistic and beautiful illustrations.
+Page limits in journal and conference articles force today's writer to make
+their writing as dry as possible to maximize the amount of technical content.
+I'm no writing ace, but have decided to inject some of the humanism that comes
+along with a project than spans seven years of ones life into this text. I
+mostly corralled these ramblings in the prefaces and footnotes of the chapters,
+but some has sneaked into the drier areas too. I hope that these asides give
+some idea of how all of this work developed and who to attribute the ideas and
+labor to along with breaking up the monotony of the technical parts of the
+text. I figured that a dissertation will be one of the few writings in my
+career that provides a chance to do this.
 
 Attribution
 ===========

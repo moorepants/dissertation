@@ -18,6 +18,8 @@ Major
 
 .. todo:: Add UCD title page and format for submission.
 
+.. todo:: Spell check the thing.
+
 Minor
 =====
 

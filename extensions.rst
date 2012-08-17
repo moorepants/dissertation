@@ -174,6 +174,8 @@ Notation
 :math:`F_{cl}`
    The magnitude of the lateral force.
 
+.. _secRiderArms:
+
 Rider Arms
 ==========
 

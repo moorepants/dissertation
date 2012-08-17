@@ -20,10 +20,10 @@ was there, that could be written up as a major portion of my dissertation and
 he proposed doing a motion study using principal components techniques in much
 the same fashion as :cite:`Troje2002` had done with walking subjects. I think he'd
 formulated the idea in discussion with Andy Ruina, his longtime vacation buddy
-and colleague. I'd never heard of principal components (my statistics was and
-is still weak), so I started reading up on principal components and what Troje
+and colleague. I'd never heard of principal components (my statistics were and
+are still weak), so I started reading up on principal components and what Troje
 had done with walkers. I got a grasp of the technique and formulated a plan
-based around a bicyclist riding on the large treadmill we had access to and
+based on a bicyclist riding on the large treadmill we had access to and
 capturing their kinematics with a motion capture system. We went up for a
 preliminary test day to check out the motion capture system and meet Richard
 Casius who was the lab technician that knew the equipment. I was expecting he'd
@@ -35,61 +35,63 @@ the preliminary tests. It went well and we felt confident that we'd get the
 kind of data we wanted. So we came back and started planning for three days of
 testing with three riders. Jodi and I were going to ride and my fixie friend,
 Victor, agreed to ride for us one day too. We had three successful days of
-testing and then Jodi and I began analyzing the data with him coding a
+testing. Jodi and I then began analyzing the data with him coding a
 visualization GUI that we'd devised and me processing the data using the PCA
 methods. Once we could *see* the data, we went through every run manually and
-tried to build a data set of observations.
+coded each run for specific observations.
 
 I got frustrated at this point, because we'd finally got to the results part
 and it seemed to me that Jodi and Arend were getting to do the majority of the
 analysis. I felt as if I'd put all my 100% effort into the work up to that
 point and because I had this notion of ownership of the final product it seemed
-as if my colleagues were getting to do the grand finale, where as I wanted to
-be in control. We made it through it though, despite my discontent. Arend and
-Jodi didn't really understand my frustrations and deemed it a cultural
-difference. I didn't buy that then, but now reflecting I tend to agree. My
-upbringing and school training left me with little experience with *true*
-teamwork and I've had my eye on the PhD dissertation as some kind of embodiment
-of my personal understanding of *everything* that has to do with the subject
-I've been studying. I had never really seen it as a collection of many people's
-effort and the result being my orchestration of the collective ideas. These
-kinds of realizations reflect on what the heart the Fulbright grant is. I went
-into the grant thinking more about accomplishing the research goals that I
-proposed to do, but after the fact I realize that cultural understanding and
-personal interactions allowed me to grow a person and realize the world in a
-more global sense than any of the research accomplishments did. That kind of
-foresight from the founders of grants like these are invaluable to humanity as
-a whole. I wish every high school student or college student in the U.S. was
-required to study abroad. I think the political climate we see in the world
-would be positively affected in a great way.
+as if my colleagues were getting to do the grand finale, whereas I wanted to be
+in control. We made it through it though, despite my discontent. Arend and Jodi
+didn't really understand my frustrations and deemed it a cultural difference. I
+didn't buy that then, but now reflecting I tend to agree. My upbringing and
+school training left me with little experience with *true* teamwork and I've
+had my eye on the PhD dissertation as some kind of embodiment of my personal
+understanding of *everything* that has to do with the subject I've been
+studying. I had never really seen it as a collection of many people's effort,
+the result being my orchestration of the collective ideas. These kinds of
+realizations reflect on what the heart the Fulbright grant is. I went into the
+grant thinking more about accomplishing the research goals that I proposed to
+do, but after the fact I realize that cultural understanding and personal
+interactions allowed me to grow as a person and realize the world in a more
+global sense than any of the research accomplishments did. That kind of
+foresight from the founders of grants like the Fulbright are invaluable to
+humanity as a whole. I wish every high school student or college student in the
+U.S. were required to study abroad. I think the political climate we see in the
+world would be positively affected in a great way.
 
 Another tactic I that was new to me was sending in an abstract for a conference
 that really only talked about what we hoped to do, with the idea that it gives
-us a deadline to get something done. This worked well here, but I can't say
+us a deadline to get something done. This worked in this case, but I can't say
 that it has been successful for me since. We first presented the results of this
 study at the ECCOMAS Multibody Dynamics conference in June of 2009 and I think
 it went pretty well :cite:`Moore2009b`.
 
 After the conference, the paper was selected to be published in the Multibody
 System Dynamics journal. I turned it down because Arend was more interested in
-publishing to the Journal of Biomechanics. But I had recently been learning a
-lot about the open science movement and knew that our University currently had
-an agreement with Springer that the open access fee would be waived for all
-articles published by UCD affiliates and Multibody System Dynamics is a
-Springer journal. So I decided that would be the better choice, as journal
-titles seem like they are more and more irrelevant for my generation. We search
-for articles on the internet and read them regardless of where they published,
-the filtering of quality content is becoming an entirely different mechanism as
-it was for science in previous generations. I see the journal as a soon to be
-lost relic. And hopefully, the closed peer review system may be consumed by
-collective quality control by the readers.
+publishing in the Journal of Biomechanics. In the meantime, I had been
+learning a lot about the open science movement and knew that our University
+currently had an agreement with Springer that the open access fee would be
+waived for all articles published by UCD affiliates and Multibody System
+Dynamics is a Springer journal. So I decided that would be the better choice,
+as journal titles seem like they are more and more irrelevant for my
+generation. We search for articles on the internet and read them regardless of
+where they are published, and the filtering of content quality is becoming an entirely
+different mechanism than it was for science in previous generations. I see the
+journal as a soon-to-be-lost relic. And hopefully, the closed peer review
+system may be consumed by collective quality control by the readers and
+appointed reviewers.
 
 The work in this Chapter comes from two sources, the first is the peer reviewed
-Mutlibody System Dynamics article, :cite:`Moore2011`, of which I've copied verbatim.
-The second is an addendum to the results which was presented at the ISEA 2010
-conference in Austria :cite:`Moore2010`. It is a lead in to looking at the data with
-some other statistical tools of which I've had a growing interest in, but less
-that adequate understanding.
+Mutlibody System Dynamics article, :cite:`Moore2011`, which I've copied
+verbatim albeit with some fixed errata.  The second is an addendum to the
+results which was presented at the ISEA 2010 conference in Austria
+:cite:`Moore2010`. It is a lead in to looking at the data with some other
+statistical tools which I've had a growing interest in, but less than adequate
+understanding.
 
 Experiment Design
 =================
@@ -114,8 +116,9 @@ Equipment
 ---------
 
 All of the experiments were performed on a 3x5 m treadmilll at the the Vrije
-Unitversetiet over a three day period. The treadmill had a 1% incline. We used
-two bicycle donated by Batavus: the Browser and the Stratos Deluxe.
+Universiteit over a three day period. The treadmill had a 1% incline to counter
+the rolling resistance. We used two bicycle donated by Batavus: the Browser and
+the Stratos Deluxe.
 
 Manuevers
 ---------
@@ -132,17 +135,17 @@ Towed
    attached to the headtube of the bicycle and attached to the front railing of
    the treadmill. This allowed the rider to not have to pedal. The rider kept
    the cranks horizontal and was left to choose which foot he wanted forward.
-   The rope could have potentially applied lateral forces to the frame if the
+   The rope could potentially have applied lateral forces to the frame if the
    rider drifted too much laterally, but we also held the rope taught and moved
    left and right to lessen the effect.
 Line tracking
-   The line tracking manuever was the same at the normal manuever except that
+   The line tracking maneuver was the same at the normal maneuver except that
    the rider was instructed to keep his front wheel on a line we drew on the
    treadmill. This caused the rider to focus on not only stabilization but
    lateral deviation control.
 No-hand
-   We did some experiments with no hand riding (i.e. no steering control). The
-   riders placed their hands on their hips and attempted to stablize roll and
+   We did some experiments with no hands riding (i.e. no steering control). The
+   riders placed their hands on their hips and attempted to stabilize roll and
    yaw. Most of the these runs were with pedaling, but a few were taken with
    towing.
 
@@ -150,14 +153,14 @@ Data
 ----
 
 The primary data was the three dimensional locations of the 31 markers for each
-run. We sampled at 100 hz, giving 31 markers * 3 coordinates * 100 hz * 60
-seconds = 558,000 data points per each one minute run. We collected data for
+run. We sampled at 100 hz, giving (31 markers)(3 coordinates)(100 hz)(60
+seconds) = 558,000 data points per each one minute run. We collected data for
 268 one minute runs and 3 shorter static measurements of the bicycles for a
 total of 271. The data for the first rider ended up somewhat corrupted. There
-are a lot of irractic value changes in the data. The basic motion is there
+are a lot of erratic value changes in the data. The basic motion is there
 though and clever filtering could clean the data for use.
 
-We also collected data on the premilanary day with one rider and slightly
+We also collected data on the preliminary day with one rider and slightly
 different marker locations and we collected some data during a TV show filming
 of our work. We did not follow as strict protocols to the filmed experiments.
 
@@ -195,11 +198,10 @@ motions and the differences in tracking and stabilization.
 
 Principal component analysis was used to transform the data into a manageable
 set organized by the variance associated with the principal components. In this
-paper, these principal components were used to characterize various distinct
-kinematic motions that occur during stabilization with and without pedaling.
-These motions were grouped on the basis of correlation and conclusions were
-drawn about which motions are candidates for stabilization-related control
-actions.
+paper, these principal components were used to characterize distinct kinematic
+motions that occur during stabilization with and without pedaling.  These
+motions were grouped on the basis of correlation and conclusions were drawn
+about which motions are candidates for stabilization-related control actions.
 
 Introduction
 ------------
@@ -208,7 +210,7 @@ Much progress has been made in understanding the rigid body dynamics of an
 uncontrolled bicycle (:cite:`Meijaard2007`, :cite:`Kooijman2008`) and various control
 schemes have been explored for tracking purposes (:cite:`Peterson2008a`,
 :cite:`Schwab2008`, :cite:`Sharp2008a`), but little is understood about how a bicyclist
-actually stabilizes a bicycle during normal riding. A bicycle and rider system
+actually stabilizes a bicycle during normal riding. The bicycle and rider system
 is unique among vehicles in that the rider is from 80 to 90% of the total mass
 of the system, the system is laterally unstable, and the rider is flexibly
 coupled to the bicycle in such a way that many body motions can be used as
@@ -238,7 +240,7 @@ treadmill. Cyclic motions, such as pedaling, are easily identified and
 separated from the other less cyclic control actions. Identifying the patterns
 of movement gives insight into which body movements are primarily used and are
 candidates for control inputs.  This will be valuable for our overall research
-goals that includes the design of a realistic biomechanical-based control
+goals that include the design of a realistic biomechanical-based control
 system of a bicycle rider, among other things.
 
 Experiments
@@ -411,18 +413,19 @@ Data processing
 Missing markers
 ~~~~~~~~~~~~~~~
 
-The Optotrak Certus Motion Capture System :cite:`NorthernDigitalIncorporated2009` is based on the
-cameras’ ability to detect the infrared light from the sensors so there are
-occasional gaps in the coordinate data due to the markers going out of view. We
-attempted to minimize this by careful marker and camera placement but were not
-able to totally eliminate the error. Any missing markers on the bicycle were
-reconstructed using the fact that the bicycle is a rigid body. We had more than
-three markers on both the frame and fork, so if one marker location was not
-detected we used the relative location of the remaining markers to reconstruct
-the missing marker. The gaps in the data of the markers on the human were
-repaired by fitting a cubic spline through the data. The spline estimated the
-marker coordinates during the gaps. We only used the splined data if the gaps
-were less than 10 time steps, or 0.1 sec; otherwise the trials were discarded.
+The Optotrak Certus Motion Capture System
+:cite:`NorthernDigitalIncorporated2009` is based on the cameras’ ability to
+detect the infrared light from the sensors so there are occasional gaps in the
+coordinate data due to the markers going out of view. We attempted to minimize
+this by careful marker and camera placement but were not able to totally
+eliminate the error. Any missing markers on the bicycle were reconstructed
+using the assumption that the bicycle is a rigid body. We had more than three
+markers on both the frame and fork, so if one marker location was not detected
+we used the relative location of the remaining markers to reconstruct the
+missing marker. The gaps in the data of the markers on the human were repaired
+by fitting a cubic spline through the data. The spline estimated the marker
+coordinates during the gaps. We only used the splined data if the gaps were
+less than 10 time steps, or 0.1 sec; otherwise the trials were discarded.
 
 Relative motion
 ~~~~~~~~~~~~~~~
@@ -431,22 +434,23 @@ We were interested in the analysis of three different marker combinations: the
 bicycle alone, the rider alone, and the bicycle and rider together. The motion
 of the bicycle and the bicycle-rider were calculated with reference to the
 :math:`\mathbf{N}` inertial frame[1] {The :math:`\mathbf{N}` frame is used
-instead of the :math:`\mathbf{M}` frame to comply with the vehicle coordinate
-standards used in :cite:`Meijaard2007` . See Section :ref:`secInFrames` for the
-derivation.} and the motion of the rider was calculated with respect to the
-rear frame of the bicycle :math:`\mathbf{B}` :ref:`Figure 10.5<figFrames>`. These
-three marker combinations allowed us to differentiate more easily between rider
-specific and bicycle specific motions. Furthermore, six of the variables that
-describe the configuration of the bicycle in time were calculated to give
-insight into the rigid body dynamics. The configuration variables :math:`q_1`
-and :math:`q_2` locate the contact point of the rear wheel of the bicycle. The
-:math:`\mathbf{B}` frame captures the yaw (:math:`q_3`) and roll (:math:`q_4`)
-motions of the bicycle frame, the :math:`\mathbf{D}` frame is an intermediate
-frame that differs from :math:`\mathbf{B}` only by the bike’s steer axis tilt
-(:math:`\lambda`), and the :math:`\mathbf{E}` frame captures the steering angle
-(:math:`q_7`) of the bicycle fork relative to the bicycle frame. The pitch of
-the bicycle frame (:math:`q_6`) is assumed to be zero. Details of these
-calculations are shown in Section :ref:`secInFrames`.
+instead of the :math:`\mathbf{M}` frame to be consistent with the vehicle
+coordinate standards used in :cite:`Meijaard2007` . See Section
+:ref:`secInFrames` for the derivation.} and the motion of the rider was
+calculated with respect to the rear frame of the bicycle :math:`\mathbf{B}`
+:ref:`Figure 10.5<figFrames>`. These three marker combinations allowed us to
+differentiate more easily between rider specific and bicycle specific motions.
+Furthermore, six of the variables that describe the configuration of the
+bicycle in time were calculated to give insight into the rigid body dynamics.
+The configuration variables :math:`q_1` and :math:`q_2` locate the contact
+point of the rear wheel of the bicycle. The :math:`\mathbf{B}` frame captures
+the yaw (:math:`q_3`) and roll (:math:`q_4`) motions of the bicycle frame, the
+:math:`\mathbf{D}` frame is an intermediate frame that differs from
+:math:`\mathbf{B}` only by the bike’s steer axis tilt (:math:`\lambda`), and
+the :math:`\mathbf{E}` frame captures the steering angle (:math:`q_7`) of the
+bicycle fork relative to the bicycle frame. The pitch of the bicycle frame
+(:math:`q_6`) is assumed to be zero. Details of these calculations are shown in
+Section :ref:`secInFrames`.
 
 .. _figFrames:
 
@@ -468,15 +472,15 @@ We used Principal Component Analysis, PCA, :cite:`Jolliffe2002` to extract and
 characterize the dominant motions of the system. Calculating the principal
 components effectively transforms the space of the data to a space that
 maximizes the variance of the data. The typical advantage of PCA is that the
-dimension of the system can be reduced and still retain enough information to
-adequately describe the system. We are primarily interested in the way that PCA
-is able to extract linear components and rank them in order of variance from
-the mean position. If we assume that the components with the largest kinematic
-variance are motions that are the dominant motions used for control and
-propulsion (which in general is not necessarily true for dynamical systems) the
-comparison of these components for different riding conditions can give insight
-into what motions may be important for developing a biomechanical control model
-of the bicyclist.
+dimension of the system can be reduced while still retaining enough information
+to adequately describe the system. We are primarily interested in the way that
+PCA is able to extract linear components and rank them in order of variance
+from the mean position. If we assume that the components with the largest
+kinematic variance are motions that are the dominant motions used for control
+and propulsion (which in general is not necessarily true for dynamical systems)
+the comparison of these components for different riding conditions can give
+insight into what motions may be important for developing a biomechanical
+control model of the bicyclist.
 
 The repaired data from the motion capture measurements contained the :math:`x`,
 :math:`y`, and :math:`z` coordinates of each marker :math:`1` through :math:`l`
@@ -547,7 +551,7 @@ be calculated with Equation :eq:`eqC`.
 
 Calculating the eigenvectors :math:`\mathbf{v}_i` and eigenvalues
 :math:`\lambda_i` of the covariance matrix effectively transforms the space to
-one where the variances are maximized and the covariances are zero. The
+one in which the variances are maximized and the covariances are zero. The
 eigenvectors are the principal components of the data set and the corresponding
 eigenvalues represent the variance of each principal component. The
 eigenvectors are ordered by decreasing eigenvalue where :math:`\mathbf{v}_1` is
@@ -596,7 +600,7 @@ in time is described by the coefficients :math:`a_{ij}` where the
 discretization in time is indexed by :math:`j`. The order of the system can be
 reduced by eliminating principal components that have little variance. We
 arbitrarily decided to examine the first :math:`k=10` principal components
-knowing that the first five would be based around the larger motions such as
+knowing that the first five would be based on the larger motions such as
 pedaling and that the remaining five may reveal some of the motions associated
 with control. The variance of each component,
 :math:`\textrm{var}(\mathbf{a}_i)=\lambda_i`, is summed to determine the
@@ -609,18 +613,18 @@ cumulative percentage of variance of the principal components, :math:`g_k`.
    \textrm{ where }1\leq k\leq m
 
 Highly correlated data will show that even when :math:`k<<m`, :math:`g_k` is
-close to 100%. Using 10 components :math:`g_{10}` covers 100%
-(:math:`\sigma = 2 \cdot10^{-14}` %) of the variation in the data for the bicycle,
-rider and bicycle-rider. The matrix :math:`\mathbf{A}` can then be reduced to a
-:math:`k \times n` matrix and eigenvectors greater than :math:`\mathbf{v}_k` can
-be eliminated.
+close to 100%. Using 10 components :math:`g_{10}` covers 100% (:math:`\sigma =
+2 \cdot10^{-14}` %) of the variation in the data for the bicycle, rider and
+bicycle-rider. The matrix :math:`\mathbf{A}` can then be reduced to a :math:`k
+\times n` matrix and eigenvectors corresponding to eigenvalues greater than
+:math:`\lambda_k` can be eliminated.
 
 Data Visualization
 ~~~~~~~~~~~~~~~~~~
 
 We developed a graphical user interface, “GUI”, in Matlab that easily allows
-different trials to be compared with one another :ref:`Figure 10.6<figGUI>`. The
-program loads in two different trials along with information on each trial. A
+different trials to be compared with one another :ref:`Figure 10.6<figGUI>`.
+The program loads two different trials along with information on each trial. A
 graphical representation of the rider and bicycle are displayed in two adjacent
 screens and can be viewed from multiple perspectives. The animations of the
 runs can be played at different speeds, rewound and fast forwarded. The
@@ -914,7 +918,7 @@ respectively. It also shows that the amplitude of the steering angle increases
 by 5000% when the speed decreases from 30 km/h to 2 km/h. :ref:`Figure
 10.10<figSteerAnglePedal>` also shows the open loop, rigid rider, weave
 eigenfrequency for each speed obtained from :ref:`Figure 10.4<figEigPlot>`.
-Apparently the open loop eigenfrequency is not a frequency in which the
+Apparently the open loop eigenfrequency is not a frequency at which the
 bicycle-rider operates.
 
 .. _figSteerAnglePedal:
@@ -1006,13 +1010,13 @@ control actions. At low speeds additional lateral knee motions are observed
 which are probably more effective at augmenting steering control for lateral
 balance than upper body motions.
 
-The bicycle model predicts that the weave mode is stable above about 16 km/h.
-Intuition might possibly lead one to believe that if the weave mode is already
-stable, that weave frequency might be relatively undisturbed by rider control
-actions and therefore present in the closed loop dynamics. However, we found no
-evidence of a distinct weave frequency in the steer angle time histories of any
-run. In fact the only distinct frequency that sometimes appeared was the
-pedaling frequency.
+The bicycle model predicts that the weave mode is stable above about 16 km/h
+(4.4 m/s). Intuition might possibly lead one to believe that if the weave mode
+is already stable, that weave frequency might be relatively undisturbed by
+rider control actions and therefore present in the closed loop dynamics.
+However, we found no evidence of a distinct weave frequency in the steer angle
+time histories of any run. In fact the only distinct frequency that sometimes
+appeared was the pedaling frequency.
 
 Principal component analysis provided a unique view into the control actions of
 a rider on a bicycle, but limitations in data reduction and motion grouping
@@ -1212,31 +1216,32 @@ Simple Statistics
 Preface
 -------
 
-Once again, we collected more data than we knew what to do with :cite:`Moore2011`
-and only looked at a subset of it from one rider. I took my first statistics
-class once I was back at Davis in the Fall of 2009 with the intention of
-learning better ways to analyze large data sets and make more over arching
-conclusions with the bicycle data. In the process, I learned about mixed
-effects models and they seemed appropriate for our data sets and would
-potentially allow us to see how the kinematic motions changed with respect to
-speeds, riders, maneuvers, etc. The first step in building a model like is to
-identify the independent and dependent variables. The dependent variables can
-be broken up into continuous variables and factors. Speed constitutes the
-continuous variable, with riders, bicycles and maneuvers as the factors. The
-independent variables are trickier because we recorded time histories, so
-various statistics need to be chosen. These could be things like the results of
-the PCA analyses, but more concrete the kinematic statistics potentially allow
-for more understanding. The PCA we did assumes nothing about the system being
-studied. For example, one statistic could be the standard deviation of various
-generalized coordinates. I never managed to get far with this as other things
-came up, but at least started thinking about the relevant statistics. The
-following is a conference paper I submitted to the 2010 International Sports
-Engineering Association conference where basic statistics of the time histories
-are chosen and some visualization of the statistics with respect to speed are
-shown. I primarily used this data to decide on sensor ranges when building the
-Davis instrumented bicycle presented in Chapter :ref:`davisbicycle`, but I
-think that some better statical models god be derived. I also only present some
-of the graphs here, but the source code can generate a lot more.
+Once again, we collected more data than we knew what to do with
+:cite:`Moore2011` and only looked at a subset of it from one rider. I took my
+first statistics class once I was back at Davis in the Fall of 2009 with the
+intention of learning better ways to analyze large data sets and make more over
+arching conclusions with the bicycle data. In the process, I learned about
+mixed effects models and that they seemed appropriate for our data sets and
+would potentially allow us to see how the kinematic motions changed with
+respect to speeds, riders, maneuvers, etc. The first step in building a model
+like this is to identify the independent and dependent variables. The dependent
+variables can be broken up into continuous variables and factors. Speed
+constitutes the continuous variable, with riders, bicycles and maneuvers as the
+factors. The independent variables are trickier because we recorded time
+histories, so various statistics need to be chosen. These could be things like
+the results of the PCA analyses, but more concrete kinematic statistics
+potentially allow for more understanding. The PCA we did assumes nothing about
+the system being studied. For example, one statistic could be the standard
+deviation of various generalized coordinates. I never managed to get far with
+this as other things came up, but I at least started thinking about the
+relevant statistics. The following is a conference paper I submitted to the
+2010 International Sports Engineering Association conference in which basic
+statistics of the time histories are chosen and some visualization of the
+statistics with respect to speed are shown. I primarily used this data to
+decide on sensor ranges when building the Davis instrumented bicycle presented
+in Chapter :ref:`davisbicycle`, but I think that some better statistical models
+could be derived. I also only present some of the graphs here, but the source
+code can generate many more.
 
 Abstract
 --------
@@ -1244,7 +1249,7 @@ Abstract
 An overview of bicycle and rider kinematic motions from a series of
 experimental treadmill tests is presented. The full kinematics of bicycles and
 riders were measured with an active motion capture system. Motion across speeds
-are compared graphically with box and whiskers plots. Trends and ranges in
+are compared graphically with box and whisker plots. Trends and ranges in
 amplitude are shown to characterize the system motion. This data will be used
 to develop a realistic biomechanical model and control model for the rider and
 for future experimental design.
@@ -1611,37 +1616,39 @@ you twist more when you steer more.
 Conclusions
 -----------
 
-The box and whiskers plots are a method of visualizing a more statistically
+The box and whisker plots are a method of visualizing a more statistically
 valid view of the kinematics of the bicycle and rider during stabilization
 tasks. General trends in how states change with speed were shown and can be
 utilized for rider bicycle dynamic and control model design. This is only one
-of the first steps at understanding how particular motions vary with speed,
+of the first steps toward understanding how particular motions vary with speed,
 maneuvers, bicycles, riders, and even the correlations among the motions. The
-source code also computes statistics for the rates, accelerations, and frequency
-content of the coordinates. The numerical values presented also provide a
-framework for design of measurement techniques needed in experimental studies.
+source code also computes statistics for the rates, accelerations, and
+frequency content of the coordinates. The numerical values presented also
+provide a framework for design of measurement techniques needed in experimental
+studies.
 
 Conclusions
 ===========
 
 The PCA data decomposes the motion into a collection of linear motions, with
 the dominant ones being exposed. We'd hoped that we would be able to apply a
-second PCA in much the same fashion as :cite:`Troje2002` did with the walkers, but
-bicycling doesn't produce clean periodic motion like walking does. :cite:`Troje2002`
-was able to apply the second PCA across second independent variables to
-characterize the change in motion with respect to the variables. We are most
-interested in dynamical changes with respect to speed for the bicycle-rider
-system, but also how different bicycle designs affect the control and dynamics.
-Our attempt at tracking how the principal components changed with respect to
-speed, was somewhat flawed due to the difficulty in matching components from
-run to run and became somewhat of a subjective task. It correctly shows the
-increased motions at low speeds, but the information from the principal
-components interested me less and less as we continued to work with it. This is
-what led me to transform the marker data into more concrete coordinates that
-have more meaning and connection to the kinematics we typically examine in the
-bicycle-rider system. I think the data set can provide some more concrete
-conclusions about how we balance a bicycle. One other thing that I thought
-about pursuing was making use of scaling with respect to mass in the principal
-component analysis. It is possible to applying weighting such that motions
-associated with points on limbs with more mass. This could in affect reveal
-motions that have more effect on the dynamics than simply the kinematics.
+second PCA in much the same fashion as :cite:`Troje2002` did with the walkers,
+but bicycling doesn't produce clean periodic motion like walking does.
+:cite:`Troje2002` was able to apply the second PCA across second independent
+variables to characterize the change in motion with respect to the variables.
+We are most interested in dynamical changes with respect to speed for the
+bicycle-rider system, but also in how different bicycle designs affect the
+control and dynamics. Our attempt at tracking how the principal components
+changed with respect to speed, was somewhat flawed due to the difficulty in
+matching components from run to run. It correctly shows the increased motions
+at low speeds, but the information from the principal components became less
+and less relevant as we continued to work with it. This is what led me to
+transform the marker data into more concrete coordinates that have more meaning
+and connection to the kinematics we typically examine in the bicycle-rider
+system. I think the data set can provide some more concrete conclusions about
+how we balance a bicycle. Another thing that I thought about pursuing was
+making use of scaling with respect to mass in the principal component analysis.
+It is possible to applying weighting to the coordinates such that the principal
+components can be formulated with respect to a momentum-like quantity. This
+could reveal the motions that effect the dynamics rather than simply the
+primary kinematics.

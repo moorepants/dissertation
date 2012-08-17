@@ -915,9 +915,13 @@ System Identification
 
 My primary goal in the following analyses of all the collected data is to
 identify the manual control system employed the rider. I will approach this in
-a similar fashion as :cite:`Eaton1973` and attempt to identify the open loop bicycle
-and rider dynamics first and follow by with identification of the control
-system.
+a similar fashion as :cite:`Eaton1973` and attempt to identify the plant, i.e.
+the open loop bicycle and rider dynamics, first followed by an identification
+of the control system. The question arises as to what the plant and controller
+consist of. In this case, I consider the plant to include the passive or open
+loop model of the bicycle and the rider's passive biomechanics and the
+controller to be the some makeup of the human brain which takes sensory inputs,
+has time delays, and sends outputs for muscular control.
 
 This two part process was not originally thought to be needed and I started
 with the identification of the control system assuming the Whipple model would
@@ -938,9 +942,9 @@ rider's weight. And secondly, the rider's biomechanics have much more influence
 and coupling to the bicycle than the motorcycle, which must be accounted for.
 
 After a model for the open loop system is derived I identify parameters to the
-control structure described in :cite:`Hess2012` and in Chapter :ref:`control`. We've
-shown that this control structure is robust for a range of speeds and lends
-itself to the dictates of the crossover model which is built upon strong
+control structure described in :cite:`Hess2012` and in Chapter :ref:`control`.
+We've shown that this control structure is robust for a range of speeds and
+lends itself to the dictates of the crossover model which is built upon strong
 experimental evidence in human operator modeling. I make use of multi-input
 multi-output grey box state space identification techniques to home in on the
 optimal parameters for the measured data.
@@ -971,25 +975,48 @@ Bicycle Model Validity
 ======================
 
 The open loop dynamics of the bicycle-rider system can be described with many
-models, see :cite:`Astrom2005`, :cite:`Limebeer2006`, and :cite:`Meijaard2007` for good
-overviews. The benchmarked Whipple model :cite:`Meijaard2007` provides a somewhat
-minimalistic model in a manageable analytic framework which is capable of
-describing the essential dynamics such as speed dependent stability, steer and
-roll coupling, and non-minimal phase behavior. I use this model as the standard
-base model to work from, as the fidelity of simpler models are generally not
-adequate. The model is 4th order with roll angle, steer angle, roll rate and
-steer rate typically selected as the independent states and with roll and steer
-torque as inputs. I neglect the roll torque input and in its place extend the
-model to include a lateral force acting at a point on the frame to provide a
-new input, accurately modelling lateral perturbations, see Chapter
-:ref:`extensions` for the details. I also examine a second candidate model
-which adds inertial effects of the rider's arms to the Whipple model, also in
-Chapter :ref:`extensions`. This model was designed to more accurately account
-for the fact that the riders were free to move their arms with the front frame
-of the bicycle. This model is similar in fashion to the upright rider in
-:cite:`Schwab2010a`, but with slightly different joint definitions. Constraints are
-chosen so that no additional degrees of freedom are added, keeping the system
-both tractable and comparable to the benchmarked Whipple model.
+models, see :cite:`Astrom2005`, :cite:`Limebeer2006`, and :cite:`Meijaard2007`
+for good overviews. The benchmarked Whipple model :cite:`Meijaard2007` provides
+a somewhat minimalistic model in a manageable analytic framework which is
+capable of describing the essential dynamics such as speed dependent stability,
+steer and roll coupling, and non-minimal phase behavior. I use this model as
+the standard base model to work from, as the fidelity of simpler models are
+generally not adequate. The model is 4th order with roll angle, steer angle,
+roll rate and steer rate typically selected as the independent states and with
+roll and steer torque as inputs. I neglect the roll torque input and in its
+place extend the model to include a lateral force acting at a point on the
+frame to provide a new input, accurately modelling lateral perturbations, see
+Chapter :ref:`extensions` for the details. I also examine a second candidate
+model which adds inertial effects of the rider's arms to the Whipple model,
+also in Chapter :ref:`extensions`. This model was designed to more accurately
+account for the fact that the riders were free to move their arms with the
+front frame of the bicycle. This model is similar in fashion to the upright
+rider in :cite:`Schwab2010a`, but with slightly different joint definitions.
+Constraints are chosen so that no additional degrees of freedom are added,
+keeping the system both tractable and comparable to the benchmarked Whipple
+model.
+
+.. todo:: Have Mont read this.
+
+I make the assumptions that the model is (1) linear and (2) has four degrees of
+freedom. The best model for a given set of data is constrained by those two
+assumptions. The implications of this is that even if the model predicts the
+outputs from the measured inputs it may not reflect realisitic parameter values
+in a first principles sense because all real systems have infinite order.
+Secondly, the identified model may not map to the assumption we make in first
+principles derivations about things suchs joints, friction, inertia, etc. There
+may exist higher order models which both fit the ouput data well and better map
+parameter values to first principle constructs. For example, a bicycle model
+with side slip at each wheel will be sixth order and if the regression to find
+the best model has extra degrees of freedom in the two additional equations,
+the optimal solution may be such that the numerical values of the equation
+coefficients map more closely to the first principle parameters. For example,
+you may be able to make a fourth order model behave similarly to a sixth order
+model with "correct" first principles parameters by choosing unrealistic
+parameter values. But if the primary goal is the control identification, rather
+than understanding the quality of our first principles derivations, the model
+of lowest order that still fits the data well is completely suited for the
+task.
 
 I estimated the physical parameters of the first principles models with the
 techniques described in Chapter :ref:`physicalparameters`. The bicycle was
@@ -1206,11 +1233,6 @@ my attempts at identifying the Kalman gain matrix were plagued by local minima.
 
 Results
 ~~~~~~~
-
-.. todo:: I assume that the number of degrees of freedom are the correct number
-   and withing that realm I am seaking for the best model. Talk about the
-   missing degrees of freedom and how there may exist a 6th order or higher
-   model. We also are assuming linearity and this is the scope.
 
 It turns out that finding a model than which meets the criterion is not too
 difficult when the output error form is considered (:math:`\mathbf{K}=0`). This
@@ -1637,8 +1659,24 @@ these rules:
   products of inertia, leave it free.
 - If the parameter is equal to zero, fix it.
 
-.. todo:: sometimes little numbers have big effects, explain the less
-   confidence in the inertia and trail
+The reasoning for these assumptions are:
+
+- Trail is difficult to measure and be certain about especially since the
+  bicycle tire deforms and creates a variable shaped tire contact patch which
+  depends on the tires properties, pressure, and the configuration of the
+  bicycle. The true trail is what is typically called pneumatic trail and gives
+  the location in the tire patch at which the resultant contact force acts.
+- The front frame moments and products of inertia play a large role in the
+  steer dynamics and I'm not as confident in the estimation of these due to the
+  fact that our apparatus was more suited to the estimate the rear frame of the
+  bicycle than the front.
+- The zero entries in the velocity dependent stiffness and damping matrices
+  that correspond to the roll angle and rate are assumed to hold from first
+  principles.
+
+.. todo:: Ask Mont to read these, I'm not sure how to explain the last one.
+   Karl Astrom recommended fixing zero entries. Sometimes little numbers have
+   big effects, explain the less confidence in the inertia and trail
 
 For the roll equation this leaves :math:`M_{\phi\delta}`,
 :math:`C_{1\phi\delta}`, and :math:`K_{0\phi\delta}` as free parameters. And
@@ -1685,16 +1723,19 @@ equation estimates from first principles.
      - K_{2\phi\delta} v(N)^2 \delta(N) \\
    \end{bmatrix}
 
-I then enforce the assumptions that :math:`M_{\phi\delta} = M_{\delta\phi}`
-and :math:`K_{0\phi\delta} = K_{0\delta\phi}` to fix these values in the steer
-equation to the ones identified in the roll equation, leaving less free
-parameters in the steer equation. This matrix symmetry is likely enforced in
-reality due to the simple coupling of the front and rear frames by a revolute
-joint\ [#symmetry]_. Finally, I identify the remaining steer equation
-coefficients with
-
-.. todo:: it is only symmetric because of our choice. the theory has this
+.. todo:: Have Mont check this. it is only symmetric because of our choice. the theory has this
    symmtery that we like to enforce
+   This matrix symmetry is likely enforced in
+   reality due to the simple coupling of the front and rear frames by a revolute
+   joint.
+
+I then enforce the assumptions that :math:`M_{\phi\delta} = M_{\delta\phi}` and
+:math:`K_{0\phi\delta} = K_{0\delta\phi}` to fix these values in the steer
+equation to the ones identified in the roll equation, leaving less free
+parameters in the steer equation\ [#symmetry]_. This symmetry is enforced to
+coincide with the theory and choice of coordinates. Finally, I identify the
+remaining steer equation coefficients with
+
 
 .. math::
    :label: eqSteerEquation
@@ -1827,25 +1868,22 @@ rubber like material. I calculated the best fit over 374 runs giving about 142
 minutes of data sampled at 200 Hz, :math:`N=1720647`.
 
 The eigenvalues as a function of speed of the identified model can be compared
-to those of the Whipple and arm models. :ref:`Figure 13.11<figAARloc>` shows the
-root locus of the three models. The weave mode exists in all three models, with
-it always being stable in the arm model and it being unstable at lower speeds
-in the other two models. The identified model is unstable over most of the
-shown speed range. Above 3 m/s or so, the Whipple model's weave mode diverges
-from the identified model to different asymptotes. The arm model weave mode
-diverges somewhere in between. Note that the arm model has an unstable real
-mode for all speeds. :ref:`Figure 13.12<figAAEig>` gives a different view of the
-root locus allowing one to more easily compare the real eigenvalues. The
-imaginary parts of the weave mode have similar curvature with respect to speed
-for all the models, with the identified model having about 1 rad/s larger
-frequency of oscillation for all speeds. The identified model does have a
-stable speed range with the Whipple model under predicting the weave critical
-speed by almost 2 m/s. The identified caster mode is much faster than the one
-predicted by the Whipple model.
-
-.. todo:: Give refernce to the chapter explaining the arm modes and be careful
-   about calling it the weave mode. The oscillatary weave mode is always
-   stable. Use osciallotary as an adverb. Referecne page 66.
+to those of the Whipple and arm models, see Section :ref:`secRiderArms` in
+Chapter :ref:`Extensions`. :ref:`Figure 13.11<figAARloc>` shows the root locus
+of the three models. The oscillatory weave mode exists in all three models,
+with it always being stable in the arm model and it being unstable at lower
+speeds in the other two models. The identified model's oscillatory weave mode
+is unstable over most of the shown speed range. Above 3 m/s or so, the Whipple
+model's oscillatory weave mode diverges from the identified model to different
+asymptotes. The arm model weave mode diverges somewhere in between. Note that
+the arm model has an unstable real mode for all speeds. :ref:`Figure
+13.12<figAAEig>` gives a different view of the root locus allowing one to more
+easily compare the real eigenvalues. The imaginary parts of the weave mode have
+similar curvature with respect to speed for all the models, with the identified
+model having about 1 rad/s larger frequency of oscillation for all speeds. The
+identified model does have a stable speed range where the Whipple model under
+predicts the weave critical speed by almost 2 m/s. The identified caster mode
+is much faster than the one predicted by the Whipple model.
 
 .. _figAARloc:
 
@@ -1872,16 +1910,24 @@ predicted by the Whipple model.
 The identification process is structured around identifying the input/output
 relationship among measured variables. The frequency response provides a view
 into these relationships. Figures :ref:`13.13<figAATphiPhi>` to
-:ref:`13.14<figAATphiDel>` give a picture of how the first principles models
+:ref:`13.16<figAATdelDel>` give a picture of how the first principles models
 compare to the identified model with respect to frequency response from a roll
 torque input. The frequency band from 1 rad/s to 12 rad/s is of most concern as
-it bounds a reasonable range that the human can operate in. The roll torque to
-roll angle response shows that at 2 m/s the response is predicted well at high
-frequencies by all the models and that the Whipple model predicts the response
-well across all frequencies. At 4 m/s the two models only predict the high
-frequency behavior (> 4 rad/s) with the arm model appearing slightly better.
+it bounds a reasonable range that the human may be able to operate within.
 
-.. todo:: Explain the bode plots, talk Arend through the graph.
+The roll torque to roll angle response :ref:`Figure 13.13<figAATphiPhi>` shows
+that at 2 m/s (solid lines) the response of the Whipple model and the
+identified model are practically identical across the frequency range shown. On
+the other hand, the arm model predicts the high frequency (> 4 rad/s) behavior
+really well, but the magnitude is as great as 50 dB larger and the phase off by
+180 degrees at lower frequencies. At 4 m/s the Whipple model still predicts the
+phase well, but the magnitudes do not match below 100 rad/s with 10 dB
+difference at lower frequencies. At this speed the arm model matches the
+identified model as low as 3.5 rad/s but the low frequency phase still being
+180 degrees off. The magnitude of the identified model stays quite constant
+among the 4, 6, and 9 m/s models. As the speed increases the Whipple and arm
+models are less predictive of the identified model at low frequencies, but tend
+to match out past 4 rad/s or so.
 
 .. _figAATphiPhi:
 
@@ -1890,9 +1936,19 @@ frequency behavior (> 4 rad/s) with the arm model appearing slightly better.
    :align: center
    :target: _images/A-A-Tphi-Phi.png
 
-   Frequency response of the three models at four speeds. The color indicates
-   the model and the line type indicates the speed. Generated by
-   `src/systemidentification/canonical_plots.py`.
+   :math:`\frac{\phi}{T_\phi}` frequency response of the three models,
+   (I)dentified, (W)hipple, and (A)rm, at four speeds (2, 4, 6, and 9 m/s). The
+   color indicates the model and the line type indicates the speed. Generated
+   by `src/systemidentification/canonical_plots.py`.
+
+:ref:`Figure 13.14<figAATphiDel` shows the steer angle response with respect to
+the roll torque. Once again the Whipple model is almost identical to the
+identified model at the lowest speed, 2 m/s. The arm model has about a +5 dB
+offset at low frequencies and a -10 dB offset at high frequencies with the
+models only being similar just around 4 rad/s. At 9 m/s the Whipple model has
+similar magnitude and phase above 7 rad/s whereas the low frequency shows that
+the Whipple model has up to +30 dB magnitude difference with respect to the
+identified model. The arm model behaves in much the same way at 9 m/s.
 
 .. _figAATphiDel:
 
@@ -1901,9 +1957,10 @@ frequency behavior (> 4 rad/s) with the arm model appearing slightly better.
    :align: center
    :target: _images/A-A-Tphi-Del.png
 
-   Frequency response of the three models at four speeds. The color indicates
-   the model and the line type indicates the speed. Generated by
-   `src/systemidentification/canonical_plots.py`.
+   :math:`\frac{\delta}{T_\phi}` frequency response of the three models,
+   (I)dentified, (W)hipple, and (A)rm, at four speeds (2, 4, 6, and 9 m/s). The
+   color indicates the model and the line type indicates the speed. Generated
+   by `src/systemidentification/canonical_plots.py`.
 
 The steer torque to roll angle transfer function, :ref:`Figure
 13.15<figAATdelPhi>` may be the most important to model accurately as it is the
@@ -1912,6 +1969,8 @@ allows one to command yaw. At 2 m/s the Whipple model magnitude matches at
 lower frequencies better and the arm model better at higher frequencies. At all
 higher speeds the Whipple and arm models don't match well at low frequencies.
 
+.. todo:: explain these graphs more
+
 .. _figAATdelPhi:
 
 .. figure:: figures/systemidentification/A-A-Tdel-Phi.*
@@ -1919,8 +1978,9 @@ higher speeds the Whipple and arm models don't match well at low frequencies.
    :align: center
    :target: _images/A-A-Tdel-Phi.png
 
-   Frequency response of the three models at four speeds. The color indicates
-   the model and the line type indicates the speed. Generated by
+   Frequency response of the three models, (I)dentified, (W)hipple, and (A)rm,
+   at four speeds (2, 4, 6, and 9 m/s). The color indicates the model and the
+   line type indicates the speed. Generated by
    `src/systemidentification/canonical_plots.py`.
 
 The steer torque to steer angle shows that speeds above 2 m/s the first
@@ -1938,8 +1998,6 @@ principles models than the identified model.
    Frequency response of the three models at four speeds. The color indicates
    the model and the line type indicates the speed. Generated by
    `src/systemidentification/canonical_plots.py`.
-
-.. todo:: The interpretation of the graphs in this section are weak.
 
 Comparison of identified models
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -3205,9 +3263,6 @@ in the future, but that may or may not happen. Fortunately the data is
 available if others would like to try out different methods, plant models,
 bicycle models, etc. and my methods, software, and methodologies are hopefully
 detailed enough for reuse.
-
-.. todo:: Describe what the plant and the controller is. Say biomechanics are
-   plant and why that is.
 
 .. rubric:: Footnotes
 

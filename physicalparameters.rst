@@ -26,18 +26,18 @@ parameters using the equipment and procedures developed in :cite:`Kooijman2006`
 and to combine the results with my basic human model from :cite:`Moore2008` for
 the estimation of the complete system parameters of the Whipple model. These
 first measurements and the details of the human model were eventually presented
-in :cite:`Moore2009a`. During this work, Dr.  Hubbard encouraged me to think
+in :cite:`Moore2009a`. During this work, Dr. Hubbard encouraged me to think
 about the accuracy of the measurements in more detail, as some of the practices
 we were using were not as accurate as they could be. With that in mind and the
 fact that there was very little complete data available on the physical
 parameters of real bicycles, I decided to measure an assortment of bicycles we
 had available around the lab in Delft :cite:`Moore2010`. From this tedious task
 a rich data set was created and the measurement methodology tightened up
-considerably.  Once I was back in Davis, we setup almost identical equipment to
+considerably. Once I was back in Davis, we setup almost identical equipment to
 measure the two new bicycles we were constructing, see Chatper
 :ref:`davisbicycle`. Danique Fintelman helped us come up with a more accurate
 geometry measurement. Steven Yen also used the equipment to measure a
-children's bicycle with a gyro wheel.  With one last improvement, we updated
+children's bicycle with a gyro wheel. With one last improvement, we updated
 the human parameter estimates when Chris Dembia implemented Yeadon's human
 inertia model and it was combined with the accurate bicycle measurements. These
 final methods for both bicycle and rider are implemented in two open source
@@ -55,7 +55,7 @@ More complex models require estimates of tire characteristics, human body
 segment inertial characteristics, friction, stiffness, damping, etc. In this
 chapter I present the measurement of the minimal bicycle/rider parameters
 required for the benchmark Whipple bicycle model presented in
-:cite:`Meijaard2007`.  This model is composed of four rigid bodies, has ideal
+:cite:`Meijaard2007`. This model is composed of four rigid bodies, has ideal
 rolling and frictionless joints, and is laterally symmetric. A set of 25
 parameters describes the geometry, mass, mass location and mass distribution of
 each of the rigid bodies. The experimental methods used to estimate the
@@ -72,7 +72,7 @@ Patterson :cite:`Patterson2004` used a swing to measure the roll inertia of
 recumbent bicycles with a rider. :cite:`Connors2009` and :cite:`Stevens2009`
 used a computer aided design package to estimate the parameters.
 :cite:`Escalona2010` measured a bicycle for his bicycle dynamics class in
-Spain.  Also, some notable motorcycle and scooter measurements include
+Spain. Also, some notable motorcycle and scooter measurements include
 :cite:`Dohring1953`, :cite:`Dohring1955`, :cite:`Singh1971`, :cite:`Eaton1973`,
 :cite:`Roland1973`, and :cite:`Sharp1997b`.
 
@@ -177,7 +177,7 @@ referred to as the *Davis Bicycles*.
 Accuracy
 --------
 
-We here analyze the accuracy of the measurements of the parameters.  Following
+We here analyze the accuracy of the measurements of the parameters. Following
 the lead of :cite:`Roland1971` error propagation theory was used to calculate
 accuracy of the 25 benchmark parameters. This begins by estimating the standard
 deviation of the actual measurements taken, see Section
@@ -837,8 +837,8 @@ The covariance matrix of the fit function can be formed
    \mathbf{U} = \sigma_y^2\mathbf{H}^{-1}
 
 where :math:`\mathbf{H}` is the Hessian [Hubbard1989b] of the fit function,
-:eq:`eqDecayOs`.  :math:`\mathbf{U}` is a :math:`5\times5` matrix with the
-variances of each of the five fit parameters along the diagonal.  The variance
+:eq:`eqDecayOs`. :math:`\mathbf{U}` is a :math:`5\times5` matrix with the
+variances of each of the five fit parameters along the diagonal. The variance
 of :math:`T` can be computed using the variance of :math:`\zeta` and
 :math:`\omega`. It is important to note that the uncertainties in the period
 are very low (:math:`<1e-4`) due to the high sample rate, even for the fits
@@ -959,7 +959,7 @@ rear frame was typically hung from either the three main tubes (seat tube, down
 tube, and top tube), the seat post, or a small fixture mounted to the brake
 mounts :ref:`Figure 7.8<figPendulumAngle>`. The rear fender prevented easy
 connection to the seat tube on some of the bikes and the clamp was attached to
-the fender.  The fender was less rigid than the frame tube. For best accuracy
+the fender. The fender was less rigid than the frame tube. For best accuracy
 with only three orientation angles, the frame should be hung at three angles
 that are :math:`120^\circ` apart. Attaching by the three tubes on the frame
 generally provide that the orientation angles were spread evenly at about

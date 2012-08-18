@@ -1,4 +1,4 @@
-/.. _systemidentification:
+.. _systemidentification:
 
 =====================
 System Identification
@@ -657,7 +657,7 @@ of the UCD pavilion floor for the experiments, :ref:`Figure 13.2<figPavilion>`.
 The floor was made of a stiff rubber\ [#pavilionfloor]_ and provided a
 rectangular wind free space of about 100' by 180' (30 m by 55 m). We road
 around the perimeter to build up speed and did our maneuvers on a straight
-section about 100 feet (30 m) long.  We were not able to travel at speeds
+section about 100 feet (30 m) long. We were not able to travel at speeds
 higher than about 7 m/s as the tires would slip in the final turn into the test
 section (this seemed to be due to the dust on the floor). This in door
 environment provided a wind free area which was more akin to the environment
@@ -931,7 +931,7 @@ under-predicted the steer torque needed for a given measured trajectory. This
 lead me into the exploration of the validity of the Whipple model.
 
 There is actually very little experimental validation of the open loop dynamics
-of the bicycle with :cite:`Kooijman2006` being one of the better studies.  But his
+of the bicycle with :cite:`Kooijman2006` being one of the better studies. But his
 study was limited to a riderless bicycle in a narrow speed range where the
 bicycle was stable. Taking the various first principles models like this for
 granted is potentially lead to inaccurate conclusions. In our case, it resulted
@@ -1336,7 +1336,7 @@ these graphs reveal several important things:
    State coefficients of the linear dynamical equations of motion plotted as a
    function of speed. Each box plot represents the distribution of that
    parameter for a small range of speeds, i.e. speed bin. The width of the box
-   is proportional to the total duration of the runs in that speed bin.  The
+   is proportional to the total duration of the runs in that speed bin. The
    green line is the Whipple model and the red line is the arm model. Only
    experiments with a mean fit percentage greater than zero are shown. The
    orange line is the model identified with the canonical method using runs
@@ -1353,7 +1353,7 @@ these graphs reveal several important things:
    Input coefficients of the linear dynamical equations of motion plotted as a
    function of speed. Each box plot represents the distribution of that
    parameter for a small range of speeds, i.e. speed bin. The width of the box
-   is proportional to the total duration of the runs in that speed bin.  The
+   is proportional to the total duration of the runs in that speed bin. The
    green line is the Whipple model and the red line is the arm model. Only
    experiments with a mean fit percentage greater than zero are shown. The
    orange line is the model identified with the canonical method using runs
@@ -1582,8 +1582,8 @@ The roll and steer equation each can be put into a simple linear form
 
 where :math:`\Theta` is a vector of the unknown coefficients and
 :math:`\mathbf{\Gamma}` and :math:`Y` are made up of the inputs and outputs
-measured during a run.  :math:`\Theta` can be all or a subset of the entries in
-the canonical matrices.  If there are :math:`N` samples in a run and we desire
+measured during a run. :math:`\Theta` can be all or a subset of the entries in
+the canonical matrices. If there are :math:`N` samples in a run and we desire
 to find :math:`M` entries in the equation, then :math:`\mathbf{\Gamma}` is an
 :math:`N \times M` matrix and :math:`Y` is an :math:`N \times 1` vector. The
 Moore-Penrose pseudo inverse can be employed to solve for :math:`\Theta`
@@ -2123,7 +2123,7 @@ Tables :ref:`13.3<tabIdMCKOne>`, :ref:`13.4<tabIdMCKTwo>`, and
 :ref:`13.5<tabIdMCKThree>`. At the lowest speed, all of the models have a
 similar frequency response, especially in the frequency band between about 1 an
 20 rad/s. At 5.5 m/s the models are similar at a higher bandwidth, 4 to 30
-rad/s.  At 9.0 m/s even higher, 10 to 50 rad/s. Notice that the frequency band
+rad/s. At 9.0 m/s even higher, 10 to 50 rad/s. Notice that the frequency band
 where the models are most similar shifts to higher frequencies at higher
 speeds.The model derived from all of the data (all rider and all runs), gives
 somewhat of a mean model and if this model is significantly better at
@@ -2403,7 +2403,7 @@ Input comparison
    dynamics.
 Output comparison
    The output comparison (simulations) give more reasonable results because all
-   four outputs generally fit well across runs given the measured inputs.  It
+   four outputs generally fit well across runs given the measured inputs. It
    is surprising that the ranking of model prediction ability is different for
    the input comparisons than the output comparisons, but the fact that the
    model identified from Luke's pavilion runs is the best from both

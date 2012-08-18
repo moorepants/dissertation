@@ -24,6 +24,8 @@ Major
 
 .. todo:: change all vectors to have bars on top
 
+.. todo:: Thank Matthais for bib help.
+
 Minor
 =====
 

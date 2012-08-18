@@ -111,7 +111,7 @@ the simple geometry method presented in Chapter :ref:`physicalparameters`\ [#]_
 and where based off of a 72 kg, 182 cm tall adult male. The rear frame and fork
 were modelled as a collection of uniform steel tubes and the wheels as simple
 tori. This allowed estimation of the inertial properties of a bicycle as a
-function of geometry.  It assumed a normal diamond frame bicycle and the base
+function of geometry. It assumed a normal diamond frame bicycle and the base
 geometry of the bicycle was measured from a 58 cm 1982 Schwinn LeTour steel
 road bike.
 
@@ -165,7 +165,7 @@ Trail is of particular interest, with many bicycle designers claiming that it
 is the most important parameter affecting handling qualities. As trail
 increases, the stable speed range broadens and the weave critical velocity
 increases, :ref:`Figure 8.3<figTrail>`. As trail approaches zero the stable
-speed range diminishes to zero.  It is obvious that increasing trail will
+speed range diminishes to zero. It is obvious that increasing trail will
 decrease the caster mode eigenvalue, but un-intuitively it increases the weave
 eigenvalue. The yellow bicycle and the silver bicycle :cite:`Kooijman2006` both have
 their forks flipped for increase trail with the intent to make the bicycles
@@ -216,7 +216,7 @@ Bicycle Comparison
 I present the physical parameters of eleven bicycles in Chapter
 :ref:`physicalparameters`. There is a variety of bicycles from commuter
 bicycles to road racing and mountain to a child's bicycle and some instrumented
-bicycles.  Here I will present some comparisons of the linear dynamics of the
+bicycles. Here I will present some comparisons of the linear dynamics of the
 different bicycles and try to make some conclusions about their dynamics. The
 "normal" diamond frame bicycle is very similar from bicycle to bicycle with
 very little variation in the essential geometry. More variation is seen in the
@@ -232,7 +232,7 @@ guaranteed a detectable role in numerical studies. Figure :ref:`Figure
 those of two ordinary bicycles, the Batavus Browser and Batavus Stratos
 including the same rider, Jason, seated on both bicycles. The eigenvalues are
 qualitatively similar, but the stable speed range of the benchmark bicycle is
-both lower and narrower than the other two.  The benchmark weave frequency also
+both lower and narrower than the other two. The benchmark weave frequency also
 diverts from the real bicycles at higher speeds, but other than that the
 benchmark parameters are most likely within realistic bounds for a normal style
 bicycle due to the similar dynamic behavior.
@@ -266,7 +266,7 @@ parameter sets with a rigid rider. Figures :ref:`8.8<figCresEvecWeave>` and
 oscillatory modes for the Crescendo bicycle at 1.5 m/s. They turn out to be
 similar in that they are oscillatory in roll and steer, with steer being
 dominant in magnitude and the phase shifts are slightly larger for the weave
-mode.  But the new mode is stable as opposed to the weave mode being unstable.
+mode. But the new mode is stable as opposed to the weave mode being unstable.
 The bicycles measured in :cite:`Stevens2009` and :cite:`Escalona2011` both exhibit this
 mode, but Stevens' :cite:`Stevens2009` parameters are estimated from a CAD drawing,
 which may not be as accurate as more direct measurements. Steven's does show

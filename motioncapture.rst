@@ -87,7 +87,7 @@ appointed reviewers.
 
 The work in this Chapter comes from two sources, the first is the peer reviewed
 Mutlibody System Dynamics article, :cite:`Moore2011`, which I've copied
-verbatim albeit with some fixed errata.  The second is an addendum to the
+verbatim albeit with some fixed errata. The second is an addendum to the
 results which was presented at the ISEA 2010 conference in Austria
 :cite:`Moore2010`. It is a lead in to looking at the data with some other
 statistical tools which I've had a growing interest in, but less than adequate
@@ -103,7 +103,7 @@ experiments and the accompanying data.
 The experiments were performed in a controlled environment while the motion of
 the bicycle and rider were measured with an active motion capture system
 :cite:`NorthernDigitalIncorporated2009`. The rider rode on a :math:`3 \times 5` meter treadmill,
-(:ref:`Figure 10.1<figVrijeTreadmill>`) capable of belt speeds up to 35 km/h.  Three
+(:ref:`Figure 10.1<figVrijeTreadmill>`) capable of belt speeds up to 35 km/h. Three
 male riders [Victor, Jason, Jodi] of similar age [23, 26, 31 years] and build
 [height (1.84, 1.83, 1.76 m) and mass (74, 72, 72 kg)] participated as
 subjects. Each rode two different Dutch bicycles. Each rider performed all
@@ -199,7 +199,7 @@ motions and the differences in tracking and stabilization.
 Principal component analysis was used to transform the data into a manageable
 set organized by the variance associated with the principal components. In this
 paper, these principal components were used to characterize distinct kinematic
-motions that occur during stabilization with and without pedaling.  These
+motions that occur during stabilization with and without pedaling. These
 motions were grouped on the basis of correlation and conclusions were drawn
 about which motions are candidates for stabilization-related control actions.
 
@@ -214,7 +214,7 @@ actually stabilizes a bicycle during normal riding. The bicycle and rider system
 is unique among vehicles in that the rider is from 80 to 90% of the total mass
 of the system, the system is laterally unstable, and the rider is flexibly
 coupled to the bicycle in such a way that many body motions can be used as
-control inputs.  Previous research into realistic bicycle control has focused
+control inputs. Previous research into realistic bicycle control has focused
 on both steering and rider lean as control inputs, but there has been no
 experimental verification of which motions a rider actually uses for control.
 Recent observations of a bicyclist riding through town and on a treadmill
@@ -235,11 +235,11 @@ use principal component analysis to identify the major motion patterns.
 Principal component analysis has successfully been used with data collected
 from motion capture techniques to identify the dominant modes of motion of a
 person walking on a treadmill :cite:`Troje2002` and to characterize different types
-of walking.  We use similar methods for steady, normal bicycle riding on a
+of walking. We use similar methods for steady, normal bicycle riding on a
 treadmill. Cyclic motions, such as pedaling, are easily identified and
 separated from the other less cyclic control actions. Identifying the patterns
 of movement gives insight into which body movements are primarily used and are
-candidates for control inputs.  This will be valuable for our overall research
+candidates for control inputs. This will be valuable for our overall research
 goals that include the design of a realistic biomechanical-based control
 system of a bicycle rider, among other things.
 
@@ -255,7 +255,7 @@ motion capture system and it eliminated any disturbances such as wind, rough
 ground, and obstacles. We chose three male riders of similar age [31, 23, 26
 years], build [height (1.76, 1.84, 1.83 m) and mass (72, 74, 72 kg)]. We also
 used two different Dutch bicycles: a 2008 Batavus Browser with a 3 speed hub
-and a 2008 Batavus Stratos Deluxe with a 7 speed hub.  The Browser is described
+and a 2008 Batavus Stratos Deluxe with a 7 speed hub. The Browser is described
 by the manufacturer as “stable” and the Stratos Deluxe as “nervous.”
 
 .. _figVrijeTreadmill:
@@ -285,7 +285,7 @@ facilitate easy bicycle and rider exchange :ref:`Figure 10.2<figMarkers>`.
    :align: center
    :target: _images/markers.jpg
 
-   Rider 1 and the Batavus Stratos Deluxe with marker positions.  Body marker
+   Rider 1 and the Batavus Stratos Deluxe with marker positions. Body marker
    positions visible from the rear.
 
 The marker coordinates were measured with respect to an inertial frame,
@@ -768,7 +768,7 @@ Steer
     frequency or may be in one or more components sometimes combined with roll
     and/or yaw at more random frequencies.
 Roll
-    The bicycle and the rider roll with respect to the ground plane.  Roll is
+    The bicycle and the rider roll with respect to the ground plane. Roll is
     typically linked with steer and/or yaw and often at the pedaling frequency.
 Yaw
     The heading angle of the bicycle and rider change together with respect to
@@ -938,7 +938,7 @@ Characterization of motions without pedaling
 
 During normal pedaling, all motions, including the control tasks, are dominated
 by the pedaling motions. Therefore we also looked at the motions of
-bicycle-rider system without the influence of pedaling.  :ref:`Figure
+bicycle-rider system without the influence of pedaling. :ref:`Figure
 10.11<missjellybean>` shows how the percent variance of by Steer-Yaw-Roll,
 Bounce and Knees varies with speed for Rider 3 on the Batavus Browser bicycle
 without pedaling. Since the bicycle is towed and the riders feet remain in the
@@ -1093,10 +1093,10 @@ The heading vector of the rear frame is then
 These unit vectors define a reference frame that leans and yaws with the rear
 frame. We assumed that the rear frame pitch is negligible. The marker locations
 of the rider can now be expressed relative to the bicycle’s inertial frame with
-reference to a point on the bicycle frame :math:`m_{36}`.  Equation
+reference to a point on the bicycle frame :math:`m_{36}`. Equation
 :eq:`eqWrtRear` shows that the vector from any marker on the rider relative to
 :math:`m_{36}` can be expressed in the bicycle reference frame,
-:math:`\mathbf{B}`, rather than the inertial frame, :math:`\mathbf{N}`.  This
+:math:`\mathbf{B}`, rather than the inertial frame, :math:`\mathbf{N}`. This
 formulation was used in the PCA of the rider-only markers to look specifically
 at rider motion relative to the bicycle. The subscripts, :math:`\mathbf{N}` and
 :math:`\mathbf{B}`, in Equation :eq:`eqWrtRear` signify which reference frame
@@ -1264,7 +1264,7 @@ historical research in bicycle dynamics and control. These review a plethora of
 dynamic models but little is known about which models are good at representing
 the actual system. Very little model-validation experimentation has been
 performed in the literature and many of the modeling assumptions, especially
-those regarding tire and rider dynamics, remain questionable.  The most recent
+those regarding tire and rider dynamics, remain questionable. The most recent
 notable model-validation study is the verification of the benchmark model
 :cite:`Kooijman2008`. Only a handful of other good experimental studies on bicycle
 dynamics exist. The work :cite:`Lunteren1970` performed some 40 years ago in the
@@ -1295,9 +1295,9 @@ Experimental Design
 The experiments were performed in a controlled environment while the motion of
 the bicycle and rider were measured with an active motion capture system
 :cite:`NorthernDigitalIncorporated2009`. The rider rode on a :math:`3\times5` meter treadmill,
-(:ref:`Figure 10.1<figVrijeTreadmill>`) capable of belt speeds up to 35 km/h.  Three male
+(:ref:`Figure 10.1<figVrijeTreadmill>`) capable of belt speeds up to 35 km/h. Three male
 riders of similar age [23, 26, 31 years] and build [height (1.84, 1.83, 1.76 m)
-and mass (74, 72, 72 kg)] participated as subjects.  Each rode two different
+and mass (74, 72, 72 kg)] participated as subjects. Each rode two different
 Dutch bicycles. Each rider performed all runs in one day in the same order (no
 randomization) and was instructed to bicycle comfortably at a constant speed in
 the range of 2 to 30 km/h for the duration of the run. There were at least 2
@@ -1515,7 +1515,7 @@ with little indication of other distinct frequencies :cite:`Moore2009b`.
 A better way to visualize how the coordinates change with speed, for example,
 is to look at various statistics of the time histories. We grouped all of the
 runs together for combined data sets at each speed of between 48,000 and 72,000
-points, depending on how many repetitions of runs were performed (i.e.  between
+points, depending on how many repetitions of runs were performed (i.e. between
 8 and 12). These were then plotted as separate box plots for each speed and for
 each state. The box and whiskers charts plot a center line for the median of
 the data, a box that bounds the 25% and 75% quartiles, whiskers that encompass

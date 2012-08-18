@@ -337,7 +337,7 @@ constraints embodied in
    \bar{r}^{h_l/s_l} - \bar{r}^{g_l/s_l} = 0
 
 After forcing the hands to be at the grips this leaves two degrees of freedom,
-one for each arm.  The free motion is such that the arms can rotate about the
+one for each arm. The free motion is such that the arms can rotate about the
 lines connecting the shoulders to the grips. I choose to eliminate these two
 degrees of freedom by forcing the arms to always "hang down" relative to the rear
 frame, i.e. that the vector aligned with the elbow has no component in the
@@ -778,7 +778,7 @@ with minimal or no input via the handlebars is that the rider can lean their
 body relative to the bicycle rear frame. This assumption is more often than not
 drawn from observing no-hands riding during which the rider seems to lean
 relative to the bicycle frame. A simple leaning rider can be modeled by adding
-an additional rider upper body as an inverted pendulum atop the bicycle.  This
+an additional rider upper body as an inverted pendulum atop the bicycle. This
 introduces an additional lean degree of freedom, :math:`q_9`, and can be
 accompanied by a rider lean torque, :math:`T_9` which models the rider's
 ability to apply forces between the upper torso and the rear frame.
@@ -1192,7 +1192,7 @@ eigenvalues of the flexible rider model and :ref:`Figure
 6.19<figLorenzoComplex>`. By comparison to the Whipple model, it can be seen
 that the modes are greatly affected by the additional rider states. The weave
 mode has become unstable for all velocities and no stable speed range is
-present.  Additionally, the rider modes are all complex at all speeds.
+present. Additionally, the rider modes are all complex at all speeds.
 
 .. _figLorenzoEig:
 
@@ -1308,7 +1308,7 @@ interesting thing to note is that it is virtually impossible to control a
 bicycle without both hands *and* both feet placed on the grips and pedals,
 respectively. Removing ones feet from the pedals removes the ability to apply
 forces from the rider's body to the bicycle frame, which can contribute to
-control of the bicycle roll angle.  Secondly, it is also noteworthy that the
+control of the bicycle roll angle. Secondly, it is also noteworthy that the
 roll angle of the bicycle can be commanded much easier when the rider is up off
 the seat (i.e. the rider contacts the bicycle only with hands and feet). This
 leads me to hypothesize that no-hand-control is dependent on the rider's

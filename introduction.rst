@@ -27,7 +27,7 @@ and bicycling. But this dissertation is concerned with how we actually balance
 on the blasted thing. Balancing, in general, may seem like a trivial task
 because we can all do it without consciously thinking about it, but the fact
 that the best engineers in the world are still baffled by the intricacies of
-balancing human-like robots give an idea of the difficulty of the subject.  And
+balancing human-like robots give an idea of the difficulty of the subject. And
 to muddle it even more, humans are capable of much more advanced balancing
 acts like tight rope walking in which we invoke our *very* active control.
 Riding a bicycle falls somewhere between simply standing and these more extreme

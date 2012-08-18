@@ -25,6 +25,8 @@ par = par_text_to_struct([HUMAN_CONTROL_DIR filesep 'parameters/RigidCharliePar.
 v = 5.0;
 bicycle = whipple_pull_force_abcd(par, v);
 
+% Uncomment the following to test the gain selection for the identified
+% plant model instead of the Whipple model.
 % Now change the model to the one identified from Luke's pavilion runs.
 %load('../../../Bicycle Mechanics/CanonicalBicycleID/data/cid-L-P.mat')
 %invM = inv(M);
@@ -95,22 +97,24 @@ hold off
 % this code seems to do absolutley fucking nothing! wtf? I hate matlab
 % sometimes. It is so convafuckingluted to manipulate graphics. Why is the
 % xlabel hanging off the bottom in the first place?
-raise = 0.2;
-plotAxes = findobj(deltaBode, 'type', 'axes');
-for i = 1:length(plotAxes)
-    curPos = get(plotAxes(i), 'Position')
-    set(plotAxes(i), 'Position', curPos + [0, raise, 0, 0])
-    get(plotAxes(i), 'Position')
-end
-xLab = get(plotAxes(1), 'Xlabel');
-set(xLab, 'Units', 'normalized')
-set(xLab, 'Position', get(xLab, 'Position') + [0, raise + 0.05, 0])
+%raise = 0.2;
+%plotAxes = findobj(deltaBode, 'type', 'axes');
+%for i = 1:length(plotAxes)
+    %curPos = get(plotAxes(i), 'Position')
+    %set(plotAxes(i), 'Position', curPos + [0, raise, 0, 0])
+    %get(plotAxes(i), 'Position')
+%end
+%xLab = get(plotAxes(1), 'Xlabel');
+%set(xLab, 'Units', 'normalized')
+%set(xLab, 'Position', get(xLab, 'Position') + [0, raise + 0.05, 0])
 
 legend(bodeLeg)
 
 set(deltaBode, figOptions)
 
 remove_io_label(deltaBode)
+
+grid on
 
 print(deltaBode, '-dpng', '-r200', '../../figures/control/delta-bode.png')
 saveas(deltaBode, '../../figures/control/delta-bode.pdf')
@@ -133,25 +137,27 @@ tDeltaDeltac = feedback(kDelta * neuromuscular, bicycleTF('delta', 'tDelta'));
 %% phiDot / deltac
 gainVec = -4:0.01:2;
 gainVec(find(gainVec == 0)) = [];
-%zetaMat = zeros(6, length(gainVec));
-%polesMat = zeros(6, length(gainVec));
-%for i = 1:length(gainVec)
-    %phiDotOpen = gainVec(i) * tDeltaDeltac * bicycleTF('phiDot', 'tDelta');
-    %phiDotClosed = minreal(feedback(phiDotOpen, 1));
-    %[~, z, p] = damp(phiDotClosed);
-    %zetaMat(:, i) = z;
-    %polesMat(:, i) = p;
-%end
-%
-%phiDotDamp = figure();
-%set(phiDotDamp, figOptions)
-%plot(gainVec, zetaMat', 'k.', ...
-    %[gainVec(1), gainVec(end)], [0.15, 0.15], 'k--')
-%xlabel('k_\dot{\phi}')
-%ylabel('\zeta')
-%title('Roll Rate Closed Loop')
-%print(phiDotDamp, '-dpng', '-r200', '../../figures/control/phiDot-damp.png')
-%saveas(phiDotDamp, '../../figures/control/phiDot-damp.pdf')
+zetaMat = zeros(6, length(gainVec));
+polesMat = zeros(6, length(gainVec));
+for i = 1:length(gainVec)
+    phiDotOpen = gainVec(i) * tDeltaDeltac * bicycleTF('phiDot', 'tDelta');
+    phiDotClosed = minreal(feedback(phiDotOpen, 1));
+    [~, z, p] = damp(phiDotClosed);
+    zetaMat(:, i) = z;
+    polesMat(:, i) = p;
+end
+
+phiDotDamp = figure();
+set(phiDotDamp, figOptions)
+plot(gainVec, zetaMat', 'k.', ...
+    [gainVec(1), gainVec(end)], [0.15, 0.15], 'k--')
+po = get(gca(), 'Position');
+set(gca(), 'Position', po + [0.05, 0.08, 0, -0.1])
+xlabel('$k_{\dot{\phi}}$', 'interpreter', 'latex')
+ylabel('\zeta')
+title('Roll Rate Closed Loop')
+print(phiDotDamp, '-dpng', '-r200', '../../figures/control/phiDot-damp.png')
+saveas(phiDotDamp, '../../figures/control/phiDot-damp.pdf')
 
 phiDotLocus = figure();
 set(phiDotLocus, figOptions)
@@ -176,6 +182,7 @@ phiDotBode = figure();
 bode(phiDotClosed, {1, 20}, bodeOpts)
 set(phiDotBode, figOptions)
 remove_io_label(phiDotBode)
+grid on
 print(phiDotBode, '-dpng', '-r200', '../../figures/control/phiDot-bode.png')
 saveas(phiDotBode, '../../figures/control/phiDot-bode.pdf')
 
@@ -203,6 +210,7 @@ bode(kPhi * phiOpen, {0.1, 20})
 hold off
 set(phiBode, figOptions)
 remove_io_label(phiBode)
+grid on
 print(phiBode, '-dpng', '-r200', '../../figures/control/phi-bode.png')
 saveas(phiBode, '../../figures/control/phi-bode.pdf')
 
@@ -245,6 +253,7 @@ bode(psiOpen, {0.1, 20}, bodeOpts)
 bode(kPsi * psiOpen, {0.1, 20}, bodeOpts);
 hold off
 remove_io_label(psiBode)
+grid on
 set(psiBode, figOptions)
 print(psiBode, '-dpng', '-r200', '../../figures/control/psi-bode.png')
 saveas(psiBode, '../../figures/control/psi-bode.pdf')
@@ -264,6 +273,7 @@ bode(yqOpen, {0.1, 20}, bodeOpts)
 bode(kYq * yqOpen, {0.1, 20})
 hold off
 remove_io_label(yqBode)
+grid on
 set(yqBode, figOptions)
 print(yqBode, '-dpng', '-r200', '../../figures/control/yq-bode.png')
 saveas(yqBode, '../../figures/control/yq-bode.pdf')

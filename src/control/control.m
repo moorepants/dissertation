@@ -60,18 +60,18 @@ zpk(deltaOverTdelta)
 
 % step responses
 time = linspace(0, 5, 200);
-[yPhiTphi, ~] = step(phiOverTphi, time);
-[yDeltaTphi, ~] = step(deltaOverTphi, time);
-[yPhiTdelta, ~] = step(phiOverTdelta, time);
-[yDeltaTdelta, ~] = step(deltaOverTdelta, time);
+[yPhiTphi, ~] = step(0.5 * phiOverTphi, time);
+[yDeltaTphi, ~] = step(0.5 * deltaOverTphi, time);
+[yPhiTdelta, ~] = step(0.1 * phiOverTdelta, time);
+[yDeltaTdelta, ~] = step(0.1 * deltaOverTdelta, time);
 
 % plot
-stableStep = figure();
+stableStep = figure('Visible', 'Off');
 set(stableStep, figOptions)
 
 subplot(2, 1, 1)
 plot(time, rad2deg(yPhiTphi), time, rad2deg(yDeltaTphi))
-ylim([-0.2, 1])
+ylim([-0.1, 0.5])
 grid
 legend('\phi', '\delta')
 xlabel('Time [s]')
@@ -80,7 +80,7 @@ ylabel('Angle [deg]')
 subplot(2, 1, 2)
 set(stableStep, figOptions)
 plot(time, rad2deg(yPhiTdelta), time, rad2deg(yDeltaTdelta))
-ylim([-50, 5])
+ylim([-5, 1])
 grid
 legend('\phi', '\delta')
 xlabel('Time [s]')
@@ -132,11 +132,11 @@ bicycleTF = tf(bicycle);
 % this is a commanded steer torque setup
 rollRateClosed = feedback(bicycleTF, kPhiDot.weave, 2, 12);
 [y, t] = step(rollRateClosed([4, 7], 2), time);
-tDeltaOverTc = feedback(1, -3.74 * bicycleTF(12, 2));
+tDeltaOverTc = feedback(1, kPhiDot.weave * bicycleTF(12, 2));
 [yTdelta, t] = step(tDeltaOverTc, time);
 
 % plot
-comSteerTorque = figure();
+comSteerTorque = figure('Visible', 'Off');
 set(comSteerTorque, figOptions)
 [ax, h1, h2] = plotyy(t, rad2deg(y), t, yTdelta);
 grid
@@ -163,11 +163,11 @@ phiOverPhic = feedback(kPhi.capsize * phiOverTdelta, 1);
 tdeltaOverPhic = feedback(kPhi.capsize, phiOverTdelta);
 deltaOverPhic = tdeltaOverPhic * bicycleTF(7, 2);
 
-[yPhi, ~] = step(phiOverPhic, time);
-[yDelta, ~] = step(deltaOverPhic, time);
-[yTdelta, ~] = step(tdeltaOverPhic, time);
+[yPhi, ~] = step(0.1 * phiOverPhic, time);
+[yDelta, ~] = step(0.1 * deltaOverPhic, time);
+[yTdelta, ~] = step(0.1 * tdeltaOverPhic, time);
 
-comRollAngle = figure();
+comRollAngle = figure('Visible', 'Off');
 set(comRollAngle, figOptions)
 [ax, h1, h2] = plotyy(time, rad2deg([yPhi, yDelta]), time, yTdelta);
 grid

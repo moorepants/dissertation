@@ -51,7 +51,7 @@ Our proposal called for two bicycles, but somehow Luke and I hatched a plan to
 build a single multi-purpose bicycle to "save money and time". Arend sent
 Danique over in January 2010 to do her internship with us. She was an excellent
 intern and made great progress on the custom data acquisition system we had
-envisioned.  We decided to use a low level microprocessor, the Arduino, paired
+envisioned. We decided to use a low level microprocessor, the Arduino, paired
 with with a set of digital sensors for data acquisition and control. During
 this time, Luke and I had our roughest moments working together which was
 mostly rooted in my frustrations with the progress of this bicycle design. I'd
@@ -173,7 +173,7 @@ opted for a bicycle electric hub motor kit. `Amped Bikes
 kits which included the motors, controllers, throttle, and 36 volt lead acid
 batteries. I used the direct drive version on the instrumented bicycle. The
 lead acid batteries were very heavy so we purchased a light, ~2.8 kg, 36 volt
-lithium ion battery as a substitute to help decrease the bicycle weight.  The
+lithium ion battery as a substitute to help decrease the bicycle weight. The
 kit comes with a motor controller with a rudimentary "cruise control". We
 needed some form of cruise control to allow the rider to set the speed during
 the experiment allowing them to focus their attention on lateral control as
@@ -206,12 +206,12 @@ Rigid rider models are often employed in single track vehicle research but the
 rider has been rigidified very few times in experimental work. This is
 potentially problematic as the rigid rider assumption is a large one.
 :cite:`Stassen1973` made use of a rider brace in their bicycle simulator to
-prevent rider lean.  :cite:`Eaton1973` rigidified his motorcyclists' torso and
+prevent rider lean. :cite:`Eaton1973` rigidified his motorcyclists' torso and
 performed several perturbation tests with the rider's hands off the handlebars!
 He found it difficult to identifying the linear modes of motion.
 :cite:`Doyle1987` comments on the utility of rigidifying the rider which was an
 example of his techniques to simplify the system, but he left the rider free to
-move in his experiments.  Jim Papadopolous has been a proponent of using
+move in his experiments. Jim Papadopolous has been a proponent of using
 recumbent bicycles in studies due to the natural rigidification of the rider.
 His thoughts and the difficulties we had in the studies from Chapters
 :ref:`delftbicycle` and :ref:`motioncapture` influenced my decision to restrict
@@ -268,7 +268,7 @@ developed to hold securely to the pelvis, :ref:`Figure
 bicycle seat via a revolute joint in the roll direction which would allow the
 hips to *only* roll about the seat. The back brace would then be attached to
 the hip brace via a joint which would allow torso lean with respect to the
-hips. The feet would be attached to the foot pegs via clip-in pedals.  Forces
+hips. The feet would be attached to the foot pegs via clip-in pedals. Forces
 applied from the feet to the foot pegs would effectively allow the rider's hips
 to roll with respect to the bicycle frame (in reality because the rider is more
 massive and more inert, the bicycle frame would roll with respect to the
@@ -385,7 +385,7 @@ More modern techniques often focus around roll angle estimation.
 the low frequency drift and only require yaw rate, roll rate and speed
 measurements to get peak roll estimation errors of 5 degrees, which were larger
 than we could accept. But their methods did allow for roll angle estimation on
-banked curves.  Distance lasers have been used to directly measure the roll
+banked curves. Distance lasers have been used to directly measure the roll
 angle with respect to the ground but are particularly expensive
 :cite:`Evertse2010`. The roll angle can also be estimated with a state
 estimator such as a Kalman filter (:cite:`Gustafsson2002`,
@@ -925,7 +925,7 @@ Motorcycle Experiments
    the motorcycle with one hand to get a measure of steering torque. The steer
    torque sensor design was very simplistic, but he found good agree with his
    motorcycle model when identifying the motorcycle from the steer torque input
-   and roll angle output.  The motorcycle steer torque measurements are
+   and roll angle output. The motorcycle steer torque measurements are
    probably more forgiving as the steer torques are of a much higher average
    magnitude. For his roll stabilization tasks (i.e. straight riding) he
    measured maximum values of steer torques of 3.4 Nm for speeds of 15 to 30
@@ -1118,13 +1118,13 @@ Following in Cheng's footsteps, we decided to do some experiments with an
 accurate torque wrench to get an idea of the maximum torques we would see in
 our experiments. We designed a simple attachment to the steer tube that allowed
 easy connection of various torque wrenches, :ref:`Figure
-11.16<figTorqueWrenchMount>`.  A helmet camera was mounted to the bicycle such
+11.16<figTorqueWrenchMount>`. A helmet camera was mounted to the bicycle such
 that it could view the torque wrench, handlebars and speedometer relative to
 the bicycle frame, :ref:`Figure 11.17<figTorqueWrenchCamera>`. The torque
 wrench (CDI Torque Products 751LDIN) had a range from 1.7 to 8.5 Nm and a
 :math:`\pm 2\%` accuracy of full scale (:math:`\pm 0.17` Nm) for static
 measurements, :ref:`Figure 11.18<figTorqueWrenchFace>`. The bicycle speed was
-maintained by an electric hub motor (i.e.  no pedaling) with a crude power
+maintained by an electric hub motor (i.e. no pedaling) with a crude power
 based cruise control, but speeds remaining fairly constant.
 
 .. _figTorqueWrenchMount:
@@ -1363,7 +1363,7 @@ torque sensor for accurate torque measurements. The torque sensor overloads at
 sensor from overload and to prevent the rider from losing steer control if the
 sensor were to break. I found a "slip" clutch distributed by `Stock Drive
 Products <http://www.sdp-si.com>`_ (SDP). It turned out that the device was the
-Torq-Tender manufactured by `Zero-Max Inc.  <http://www.zero-max.com>`_, but as
+Torq-Tender manufactured by `Zero-Max Inc. <http://www.zero-max.com>`_, but as
 usual practice SDP doesn't readily provide that information. This particularly
 expensive torque overload protection turned into a major headache. SDP lists
 the rated torques but with no indication of the operating speed the torques are
@@ -2091,7 +2091,7 @@ When we originally chose to use the VectorNav VN-100 and the NI USB-6218 with a
 netbook PC, we had convinced ourselves that they would all work together
 seamlessly. The manufacturers of each device seemed to think so and their
 disconnected knowledge helped convince us too. This turned out to be very
-wrong.  The main issue, which seems to rear its head often in data acquisition,
+wrong. The main issue, which seems to rear its head often in data acquisition,
 is time synchronization of all the hardware involved. A PC running a typical
 operating system is not capable of detailed and strict time management of
 processes. This is certainly true of collecting serial data from two
@@ -2154,8 +2154,8 @@ a 3 g acceleration is
 .. math::
 
    h = \frac{a - g}{2}\left(\frac{L}{\pi v}\right)^2 =
-   \frac{3 * 9.81 \textrm{m/s} - 9.81 \textrm{m/s}}{2}
-   \left(\frac{1 \textrm{m}}{\pi 7 \textrm{m/s}}\right)^2 = 0.020 m
+   \frac{3 (9.81 \textrm{ m/s}) - 9.81 \textrm{ m/s}}{2}
+   \left(\frac{1 \textrm{ m}}{\pi (7 \textrm{ m/s})}\right)^2 = 0.020 \textrm{ m}
 
 I fashioned a very low sinusoidal bump from wood that we laid on the track on
 the floor at the beginning of the track, :ref:`Figure 11.33<figBump>`  and also
@@ -2330,7 +2330,7 @@ Some recommendations for improvements are as follows:
 .. [#rolltrailer] As designed, the potentiometer measures exactly the angle
    between the yoke and the trailer frame. This is somewhat limiting as the
    full range of the potentiometer isn't utilized as was in the steering angle
-   design.  This effectively reduces the measured voltage range from the
+   design. This effectively reduces the measured voltage range from the
    potentiometer, especially since the measured angles are often no more than
    10 degrees. The NI USB-6218 has 16 bit resolution so it still adequatedly
    measures the data, but a step down gearing would improve the resolution of

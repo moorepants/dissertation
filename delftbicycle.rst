@@ -110,7 +110,7 @@ A standard Dutch bicycle, 2008 Batavus Browser, was chosen for the experiments
 and is shown in :ref:`Figure 9.1<figInstrumentedBicycle>`. This is a bicycle of
 conventional design, fitted with a 3-speed SRAM rear hub and coaster brakes.
 Some of the peripheral components were removed in order to be able to install
-measurement equipment and sensors (see :ref:`Table 9.11<tabEquipment>`).  The
+measurement equipment and sensors (see :ref:`Table 9.11<tabEquipment>`). The
 bicycle was equipped with a 1/3” CCD color bullet-camera with 2.9mm (wide
 angle) lens. The camera was located at the front and directed towards the rider
 and rotated 90 degrees clockwise to get portrait aspect ratio. The video signal
@@ -256,7 +256,7 @@ for the case with a rider too, albeit with caution.
 The experiments were carried out by two male, average ability riders of
 different age and build on the same bicycle. The saddle height was adjusted for
 each rider to ensure proper seating. The rider characteristics are given in
-:ref:`Table 9.2<tabRiders>`.  For both riders very similar results were found.
+:ref:`Table 9.2<tabRiders>`. For both riders very similar results were found.
 The data and figures presented in this chapter were collected with rider 1.
 
 .. _figTreadmill:
@@ -275,7 +275,7 @@ consists of four rigid bodies: the rear frame with rigid rider connected, the
 front handlebar and fork assembly, and the two wheels. These are connected by
 ideal hinges and the wheels have idealized pure-rolling contact with level
 ground. :cite:`Moore2009a` describes the method used to determine the model
-parameters for the instrumented bicycle-rider system\ [#]_.  These parameters are
+parameters for the instrumented bicycle-rider system\ [#]_. These parameters are
 given in :ref:`Table 9.3<tabParameters>` and the root locus of the system with
 respect to speed is depicted in :ref:`Figure 9.4<figDelftRootLocus>`. At low speed, the
 dominant mode is the unstable oscillatory weave mode. This weave motion becomes
@@ -416,7 +416,7 @@ Normal Bicycling
 
 Visual inspection of the video footage showed very little rider lean action
 during the experiment other than what resulted directly from the pedaling
-motion.  During the low speed runs at 5 km/h, the rider’s upper body was almost
+motion. During the low speed runs at 5 km/h, the rider’s upper body was almost
 stationary, i.e. it could be considered to be rigidly attached to the rear
 frame. However at this speed the rider’s knees showed significant lateral
 motion. This lateral knee motion can be seen in the video image in Figure
@@ -442,7 +442,7 @@ respectively. The standard deviation of the steer angle during the sixty
 seconds of measurement is also shown in the figures. At speeds above 20 km/h
 the average steer angle remains approximately constant. However the average
 magnitude of the steer angle grows by more than 500% when the speed is
-decreased from 20 km/h to 5 km/h.  This increase in steer angle magnitude for
+decreased from 20 km/h to 5 km/h. This increase in steer angle magnitude for
 the decreasing speeds is illustrated in Figure :ref:`Figure 9.8<figSteerSigma>`.
 This jump in steering amplitude could be indicative of a threshold at which the
 system becomes harder to control, but there is no apparent connection to the
@@ -532,7 +532,7 @@ small remnant motion as a result of slight steering deviations from straight
 ahead. The recorded steer angle data also confirmed that larger steer angles
 were made at decreasing speeds. :ref:`Figure 9.8<figSteerSigma>` shows how the
 standard deviation of the steer angle reduces rapidly with increasing speed up
-to 20 km/h and from then on remains approximately constant.  The figure also
+to 20 km/h and from then on remains approximately constant. The figure also
 shows that the average steering amplitude at all speeds is lower than that for
 the pedaling case. The standard deviation is less than a degree for all speeds
 above 10km/h indicating that little to no steer action is required at higher
@@ -572,7 +572,7 @@ body lean could be noted other than that as a result of the normal pedaling.
 A second phenomenon observable in the video footage, as shown in :ref:`Figure
 9.12<figPerturb>`, is that at all speeds we observed a lateral knee motion
 during the short transient recovery process of the bicycle to the upright
-position.  The lateral knee motion was very large during the 5 km/h measurement
+position. The lateral knee motion was very large during the 5 km/h measurement
 and much smaller at the higher speeds, but even at 30 km/h it is visible.
 
 .. _figPerturb:
@@ -671,7 +671,7 @@ We mounted three rate sensors to the bicycle to collectively measure the yaw
 rate, :math:`u_3`, roll rate, :math:`u_4`, and the steer rate, :math:`u_7`.
 [#]_ We attached a rate gyro to the fork and handlebar assembly which measured
 the body fixed angular rate, :math:`u_{7s}`, about the steer axis,
-:math:`\hat{e}_3`.  Another rate gyro was attached to the rear frame which
+:math:`\hat{e}_3`. Another rate gyro was attached to the rear frame which
 measured the body-fixed angular rate, :math:`u_{3s}`, about the axis
 approximately aligned with gravity, :math:`s_\lambda\hat{c}_1 +
 c_\lambda\hat{c}_3`. Finally, a third rate gyro was mounted to measure the

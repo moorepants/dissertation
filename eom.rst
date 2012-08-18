@@ -863,7 +863,7 @@ the form
    u_8 = f(u_4, u_6, u_7, q_4, \ldots, q_8)
 
 At this point, the equations become analytically long and it is not necessarily
-trivial to reduce the length of the equations.  A smarter choice of generalized
+trivial to reduce the length of the equations. A smarter choice of generalized
 speeds could certainly help, but no effort was spent searching for a good set.
 From this point on in the derivation, the analytical results of the equations
 of motion will not be shown. I will only outline the remainder of the theory,
@@ -1127,7 +1127,7 @@ Linearized Equations of Motion
 The non-linear equations of motion can be linearized about various equilibrium
 points. The obvious one is about the nominal configuration :cite:`Meijaard2007` but
 there are are an infinity of other associated with steady turns
-:cite:`Basu-Mandal2007`.  The equations can be linearized by computing the Taylor
+:cite:`Basu-Mandal2007`. The equations can be linearized by computing the Taylor
 series expansion of the non-linear equations of motion about the equilibrium
 point of interest and disregarding the terms higher than first order. For the
 nominal configuration, this amounts to calculating the Jacobian of the system

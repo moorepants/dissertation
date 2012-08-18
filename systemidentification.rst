@@ -1,4 +1,4 @@
-.. _systemidentification:
+/.. _systemidentification:
 
 =====================
 System Identification
@@ -998,7 +998,7 @@ model.
 
 .. todo:: Have Mont read this.
 
-I make the assumptions that the model is (1) linear and (2) has four degrees of
+I make the assumptions that the model is (1) linear and (2) has two degrees of
 freedom. The best model for a given set of data is constrained by those two
 assumptions. The implications of this is that even if the model predicts the
 outputs from the measured inputs it may not reflect realisitic parameter values
@@ -1011,7 +1011,7 @@ with side slip at each wheel will be sixth order and if the regression to find
 the best model has extra degrees of freedom in the two additional equations,
 the optimal solution may be such that the numerical values of the equation
 coefficients map more closely to the first principle parameters. For example,
-you may be able to make a fourth order model behave similarly to a sixth order
+it may be possible to make a fourth order model behave similarly to a sixth order
 model with "correct" first principles parameters by choosing unrealistic
 parameter values. But if the primary goal is the control identification, rather
 than understanding the quality of our first principles derivations, the model
@@ -1661,15 +1661,15 @@ these rules:
 
 The reasoning for these assumptions are:
 
-- Trail is difficult to measure and be certain about especially since the
+- Trail is difficult to measure and be certain about, especially since the
   bicycle tire deforms and creates a variable shaped tire contact patch which
   depends on the tires properties, pressure, and the configuration of the
   bicycle. The true trail is what is typically called pneumatic trail and gives
   the location in the tire patch at which the resultant contact force acts.
 - The front frame moments and products of inertia play a large role in the
   steer dynamics and I'm not as confident in the estimation of these due to the
-  fact that our apparatus was more suited to the estimate the rear frame of the
-  bicycle than the front.
+  fact that our apparatus was more suited to the estimate the inertial properties of the rear frame
+  than the front.
 - The zero entries in the velocity dependent stiffness and damping matrices
   that correspond to the roll angle and rate are assumed to hold from first
   principles.

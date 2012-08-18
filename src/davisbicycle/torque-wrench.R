@@ -28,7 +28,7 @@ dev.off()
 png(paste(figDir, "twrench-torque-histogram.png", sep=""),
 	width=800, height=800, pointsize=10, res=200)
 hist(abs(c(data$MinTorque, inchlb2nm * data$MaxTorque)), main ="Histogram
-of Torque Values", xlab="Absolute value of max and min torques", breaks=25)
+of Torque Values", xlab="Absolute value of max and min torques [Nm]", breaks=25)
 dev.off()
 
 # torque versus speed for all the runs

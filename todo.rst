@@ -20,6 +20,10 @@ Major
 
 .. todo:: Spell check the thing.
 
+.. todo:: in eom and extensions make the kane notation correct with   {}^N for leading superscripts
+
+.. todo:: change all vectors to have bars on top
+
 Minor
 =====
 

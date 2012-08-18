@@ -691,7 +691,7 @@ found from the measurments with
 
 We did not analyze any of the data from the rate sensors on the bicycle, but
 some fruitful conclusions could be drawn such as confirming the dependence of
-yaw rate on the steer and roll rates which come from the nonholonomic
+yaw rate on the steer and roll rates which come from the non-holonomic
 constraints. Heading and wheel contact points can be estimated well for these
 tasks, as the rider always tends to "zero" heading and the drift from the
 sensor signal integration is quite linear, see Chapter :ref:`davisbicycle` for

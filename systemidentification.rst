@@ -30,23 +30,23 @@ what I was to do for my dissertation work.
 
 Once I had gotten back to Davis we now had the resources available from NSF
 funding to make something happen. My goal had basically formalized into
-creating a instrumented bicycle to be controlled by person that was capable of
-measuring all of the kinematics and kinetics involved seen in regulated control
+creating a instrumented bicycle to be controlled by a person that was capable of
+measuring all of the kinematics and kinetics involved in regulated control
 tasks. We also originally had hoped to be able to vary the dynamics of the
 bicycle, but the reduced funding nixed that idea. It took some time into the
-project to really understand what we may be able to accomplish with that but it
+project to really understand what we might be able to accomplish with that but it
 finally materialized into validating Ron's theoretic control model which is
 discussed in :cite:`Hess2012` and Chapter :ref:`control` with data collected via the
 instrumented bicycle. After our first experiments, over a year into the project
 timeline it became apparent that simple tasks with measured lateral
-perturbations would provide the best chance of us validating his model.
+perturbations would provide the best chance of validating his model.
 Unfortunately, I had not thought a great deal about how to provide and measure
 these lateral perturbations but the manually excited perturbations seemed to do
 the trick.
 
 We ran a lot of preliminary system identification analyses on the first set of
-trial data, but it quickly became apparent that we had little understanding in
-the subject. The early analyses did give confidence that data was of good
+trial data, but it quickly became apparent that we had little understanding of
+the subject. The early analyses did give confidence that the data was of good
 enough quality to do something with, but our goal of identifying the parameters
 of the controller were still far from our reach.
 
@@ -58,13 +58,13 @@ up extending the NSF grant another year (as seems to be typical with these
 things). I look back to our original proposal and in hindsight the scope was
 way too large (accurately predicted by Arend). We nixed the handling qualities
 parts when the funding was lowered, but I now see that what we hoped to do
-really took another 6-12 months than we had intended.
+really took another 6-12 months longer than we had intended.
 
-The final analyses has forced me to figure out what system identification is
+The final analyses have forced me to figure out what system identification is
 all about and I've learned a great deal rapidly and much on my own. At this
 stage we weren't able to find any local experts on the subject to help us along
 but I've gotten some great insight from both the single track vehicle dynamics
-email list and in from personal communication with Karl Åström. I still feel
+email list and from personal communication with Karl Åström. I still feel
 very weak in the subject but it is more clear how difficult identifying complex
 systems is, especially trying to nail down physical parameters.
 
@@ -72,8 +72,8 @@ As many doctoral students probably hope when starting their long trek to the
 PhD, I hoped for some grand findings to arise from this work. But I've been
 humbled a lot in that quest. I present here the work I've done with regards to
 identifying the bicycle and rider system with what I think are good results,
-but I hope that it is more of guide for others to see some of the difficulties
-in executing this kind of analyses with some ideas to better structure it.
+but I hope that it can be a guide for others to see some of the difficulties
+in executing this kind of analysis with some ideas to better structure it.
 
 Introduction
 ============
@@ -84,10 +84,33 @@ evaluates it with a large set of data taken with the instrumented bicycle
 described in Chapter :ref:`davisbicycle`. It is also the overarching
 deliverable I was responsible for under the NSF grant. This chapter details
 system identification of a bicycle and rider system. It is broken in two main
-parts, the first's goal being to identify the passive bicycle rider system and
+parts, the first goal being to identify the passive bicycle rider system and
 the second to identify the active portion, i.e. the rider's control system. The
 literature review gives an introduction to other's efforts in both these
 analyses with respect to single track vehicles.
+
+Two important concepts need to be mentioned briefly before proceeding. The
+first are the terms used to catergorize model structures in the system
+identification field: white box, black box, and grey box. System identification
+is the process of identifying a model that best predicts a particular
+input/ouput relationship. If we develop a model entirely from first principles\
+[#firstprinciples]_, e.g. using Newton's laws to describe the motion of an
+object, such that all of the parameters and states are known then this is
+called a white box model because we know everything about it a priori. The
+second case, the black box model, describes a model in which one only knows the
+structure, i.e. order, of the underlying equations but all coefficients are
+unknown. Finally, the grey box model falls in between the first two in that one
+may have more knowledges to the structure of the coefficients based on first
+principles, e.g. one may know that some model coefficients are zero or the
+model may be parameterized by various known and unknown physical
+characteristics. The second concept regards the notion of process and
+measurement noise in a dynamic system. Dynamic systems have states that evolve
+dynamically through time, but a real system has elements that are not purely
+deterministic which is typically called noise. The noise can be broken up into
+the measurement, the noise due to error in our measurements, and process noise,
+the noise due to errors in our model. The ability to characterize these two
+types of noise play a large role in the accurate identification of dynamic
+systems.
 
 Literature
 ==========
@@ -3265,6 +3288,11 @@ bicycle models, etc. and my methods, software, and methodologies are hopefully
 detailed enough for reuse.
 
 .. rubric:: Footnotes
+
+.. [#firstprinciples] First principles here means any modeling techniques that
+   use fundamental "known" building blocks to create a dynamic model. These
+   buildling blocks can include items such as Newton's laws of motion, the laws
+   of thermodynamics, friction and contact models, electrical components, etc.
 
 .. [#pavilionfloor] The floor is a product called "pulastic" which is
    manufactured by `Robbins Sport Surfaces <http://www.robbinsfloor.com>`_.

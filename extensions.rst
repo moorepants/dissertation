@@ -1163,7 +1163,7 @@ musculoskeletal stiffness and damping at the hips.
 This six-rigid-body model has eleven generalized coordinates. One generalized
 coordinate (frame pitch) is eliminated by the holonomic configuration
 constraints requiring that both wheels touch the ground. This leaves ten
-generalized speeds, of which four are eliminated due to the nonholonomic
+generalized speeds, of which four are eliminated due to the non-holonomic
 constraints for the purely rolling wheels. The nonlinear equations of motion
 were linearized numerically about the nominal upright, constant velocity
 configuration using a central differencing method with an optimum perturbation

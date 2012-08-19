@@ -32,8 +32,10 @@ args = ''
 for bike, name in zip(bicycles, names):
     args += '-label ' + name + ' ' + os.path.join(figPath, bike) + ' '
 
-spacing = 0.0625 * 525.0 / 1.75
+widthSpacing = 0.0625 * 525.0 / 1.75
 
-os.system('montage -density 300x300 -tile 2x5 -geometry +{:1.0f}+{:1.0f}'.format(spacing,
-    spacing) + ' '
+heightSpacing = 10
+
+os.system('montage -density 300x300 -tile 2x5 -geometry +{:1.0f}+{:1.0f}'.format(widthSpacing,
+    heightSpacing) + ' '
         + args + os.path.join(figPath, 'bicycles.jpg'))

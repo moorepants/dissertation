@@ -5,14 +5,19 @@ TODO List
 Major
 =====
 
-- Add UCD title page and format for submission.
 - The References page doesn't need to show up in the pdf.
-- Remove draft warnings.
-- Set release to 1.0 (or remove it).
+- Add UCD title page as the first page
+- Move abstract to \abstract clause in the latex document (that will screw up
+  the Figure and Table chapter numbers)
+- Numbering should start on the title page as "-i-"
+- Numbering should be in the top righ corner
 
 Minor
 =====
 
+- Make a proper front matter instead of a Chapter for everything (will have to
+  manually fix all figure and table numbers).
+- Remove the release number.
 - Add notation list for the system id chapter.
 - Add m/s to all of the km/h and mph numbers.
 - Write a conclusion.
@@ -28,7 +33,7 @@ Minor
 - Citations for all software packages.
 - Add figures in the sys id rider section that compare the factors
 - Add an eigenvalue vs speed plot of the identified closed loop poles of the
-  full system.
+  full rider/bicycle system.
 - src/extensions/arms/plot_eig.py seems to no longer exist anywhere...rewrite?
 - Forumlas for the gains and a plot of eigenvalue of forward speed with repect
   to those formulas for the closed loop system. Make sure you no where the L-P

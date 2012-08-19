@@ -2,13 +2,6 @@
 Home
 ====
 
-.. warning::
-
-   This document is a draft which is updated regularly (Last updated |today|).
-   Once I submit if for my doctoral degree at UC Davis, it will be done. So for
-   now use at your own risk. The information may or may not be correct.
-   Reviews, comments and suggestions are welcome.
-
 This is the University of California, Davis Mechanical and Aerospace
 Engineering doctoral dissertation of Jason K. Moore.
 
@@ -33,7 +26,6 @@ Engineering doctoral dissertation of Jason K. Moore.
    davisbicycle
    control
    systemidentification
-   todo
    zreferences
 
 * :ref:`search`

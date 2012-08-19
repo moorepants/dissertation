@@ -2,13 +2,6 @@
 Acknowledgements
 ================
 
-.. warning::
-
-   This document is a draft which is updated regularly (Last updated |today|).
-   Once I submit if for my doctoral degree at UC Davis, it will be done. So for
-   now use at your own risk. The information may or may not be correct.
-   Reviews, comments and suggestions are welcome and appreciated.
-
 On the road to a higher degree, there are always many people who assist in the
 process, from one's professors to librarians, but there are always some very
 special folks to thank. Jonathan Eisen, a professor at Davis, pointed out once

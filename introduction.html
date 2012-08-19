@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '1.0dev',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -77,7 +77,7 @@ and bicycling. But this dissertation is concerned with how we actually balance
 on the blasted thing. Balancing, in general, may seem like a trivial task
 because we can all do it without consciously thinking about it, but the fact
 that the best engineers in the world are still baffled by the intricacies of
-balancing human-like robots give an idea of the difficulty of the subject.  And
+balancing human-like robots give an idea of the difficulty of the subject. And
 to muddle it even more, humans are capable of much more advanced balancing
 acts like tight rope walking in which we invoke our <em>very</em> active control.
 Riding a bicycle falls somewhere between simply standing and these more extreme
@@ -130,29 +130,30 @@ I will not be discussing these low order models any further.</p>
 <div class="section" id="whipple-model">
 <h3>Whipple Model<a class="headerlink" href="#whipple-model" title="Permalink to this headline">¶</a></h3>
 <p>The lowest order model that has had some reasonable experimental validation
-<a class="reference internal" href="zreferences.html#kooijman2008">[KSM08]</a> is one which is able to predict speed dependent stability, and
-includes a complete physical description of the four basic rigid bodies that
-constitute a bicycle. The model is now typically referred to as the &#8220;Whipple
-Model&#8221;. This is in honor of Francis J. W. Whipple, the first author to publish
-a correct derivation of the linear equations of motion of this particular
-bicycle model <a class="reference internal" href="zreferences.html#whipple1899">[Whi99]</a>. This model will be used as the basis for all
-further studies proposed in this dissertation. Many researchers over the past
-century have attempted to derive and analyze this model but very few have been
-successful. <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> give a complete historical review of uncontrolled
-bicycle research which made use of the historical comparisons in the thesis by
-<a class="reference internal" href="zreferences.html#hand1988">[Han88]</a>. <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> also benchmarked the Whipple Model by deriving the
-linearized equations of motion by using four independent methods (two
-independent pen and paper calculations and two different dynamic software
-packages). Furthermore, <a class="reference internal" href="zreferences.html#basu-mandal2007">[BMCP07]</a> benchmarked various torque-free
-circular motions in the non-linear case with two additional independent
-derivations of the equations of motion. There has been a series of recent
-validation attempts (<a class="reference internal" href="zreferences.html#kooijman2006">[Koo06]</a>, <a class="reference internal" href="zreferences.html#kooijman2008">[KSM08]</a>, <a class="reference internal" href="zreferences.html#kooijman2009">[KS09]</a>,
-<a class="reference internal" href="zreferences.html#stevens2009">[Ste09]</a>, <a class="reference internal" href="zreferences.html#escalona2010">[ER10]</a>, <a class="reference internal" href="zreferences.html#escalona2011">[ER11]</a>) for the Whipple model in
-particular and the evidence for it&#8217;s ability to describe the motion of the
-bicycle with no rider around the stable speed range is strong. This is
-important because it may be the lowest order model with the ability to predict
-the dynamics. In this dissertation, I make use of both the <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a>
-model and my own derivation of the Whipple Model.</p>
+<a class="reference internal" href="zreferences.html#kooijman2008">[KSM08]</a> is one which is able to predict speed dependent stability,
+and includes a complete physical description of the four basic rigid bodies
+that constitute a bicycle. The model is now typically referred to as the
+&#8220;Whipple Model&#8221;. This is in honor of Francis J. W. Whipple, the first author to
+publish a correct derivation of the linear equations of motion of this
+particular bicycle model <a class="reference internal" href="zreferences.html#whipple1899">[Whi99]</a>. This model will be used as the
+basis for all further studies proposed in this dissertation. Many researchers
+over the past century have attempted to derive and analyze this model but very
+few have been successful. <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> give a complete historical
+review of uncontrolled bicycle research which made use of the historical
+comparisons in the thesis by <a class="reference internal" href="zreferences.html#hand1988">[Han88]</a>. <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> also
+benchmarked the Whipple Model by deriving the linearized equations of motion by
+using four independent methods (two independent pen and paper calculations and
+two different dynamic software packages). Furthermore, <a class="reference internal" href="zreferences.html#basu-mandal2007">[BMCP07]</a>
+benchmarked various torque-free circular motions in the non-linear case with
+two additional independent derivations of the equations of motion. There has
+been a series of recent validation attempts (<a class="reference internal" href="zreferences.html#kooijman2006">[Koo06]</a>,
+<a class="reference internal" href="zreferences.html#kooijman2008">[KSM08]</a>, <a class="reference internal" href="zreferences.html#kooijman2009">[KS09]</a>, <a class="reference internal" href="zreferences.html#stevens2009">[Ste09]</a>,
+<a class="reference internal" href="zreferences.html#escalona2010">[ER10]</a>, <a class="reference internal" href="zreferences.html#escalona2011">[ER11]</a>) for the Whipple model in particular
+and the evidence for it&#8217;s ability to describe the motion of the bicycle with no
+rider around the stable speed range is strong. This is important because it may
+be the lowest order model with the ability to predict the dynamics. In this
+dissertation, I make use of both the <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> model and my own
+derivation of the Whipple Model.</p>
 </div>
 <div class="section" id="complex-models">
 <h3>Complex Models<a class="headerlink" href="#complex-models" title="Permalink to this headline">¶</a></h3>
@@ -245,8 +246,8 @@ dynamics.</p>
 
 
     <div class="footer">
-        &copy; Copyright 2011, Jason K. Moore.
-      Last updated on Aug 16, 2012.
+        &copy; Copyright 2012, Jason K. Moore.
+      Last updated on Aug 19, 2012.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">
@@ -269,6 +270,20 @@ This work is licensed under a <a rel="license"
 href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
 Attribution 3.0 Unported License</a>
 </div>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-15966419-5']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 
 
   </body>

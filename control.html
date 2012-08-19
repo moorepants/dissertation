@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '1.0dev',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -54,109 +54,101 @@
 
   <div class="section" id="control">
 <span id="id1"></span><h1>Control<a class="headerlink" href="#control" title="Permalink to this headline">¶</a></h1>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated August 16, 2012 at 01:45:51 PDT).
-Once I submit if for my doctoral degree at UC Davis, it will be done. So for
-now use at your own risk. The information may or may not be correct.
-Reviews, comments and suggestions are welcome.</p>
-</div>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>I have shown that a basic bicycle model can exhibit stability when linearized
 about the nominal configuration for a range of speeds, Chapter <a class="reference internal" href="eom.html#eom"><em>Bicycle Equations Of Motion</em></a>.
 Stability is a strong function of the parameters of the bicycle and it turns
-out that for standard bicycle designs, they typically exhibit a speed dependent
-stability where the bicycle becomes stable at some speed threshold, Chapter
+out that standard bicycle designs, typically exhibit a speed dependent
+stability and the bicycle becomes stable at some speed threshold, Chapter
 <a class="reference internal" href="parameterstudy.html#parameterstudy"><em>Parameter Studies</em></a>. Based on the damping of the weave mode, one may also
 even claim that the bicycle becomes <em>more</em> stable as speed increases,
-neglecting the very slow easily controllable capsize instability. I&#8217;ve also
-shown that stability can be enhanced or defeated by extending the Whipple model
-with a flywheel or rider degrees of freedom, Chapter <a class="reference internal" href="extensions.html#extensions"><em>Extensions of the Whipple Model</em></a>. In
-Chapter <a class="reference internal" href="motioncapture.html#motioncapture"><em>Motion Capture</em></a>, I&#8217;ve examined the kinematics of the rider to see
-if the rider&#8217;s motion during a control task has any correlation to the
+neglecting the very slow, easily controllable capsize instability. I&#8217;ve also
+shown that stability can be enhanced or decreased by extending the Whipple
+model with a flywheel or rider degrees of freedom, Chapter <a class="reference internal" href="extensions.html#extensions"><em>Extensions of the Whipple Model</em></a>.
+In Chapter <a class="reference internal" href="motioncapture.html#motioncapture"><em>Motion Capture</em></a>, I&#8217;ve examined the kinematics of the rider to
+see if the rider&#8217;s motion during a control task has any correlation to the
 kinematics of the Whipple model and identified the dominant rider motions
 during stabilization.</p>
 <p>As far as roll stability is concerned, it is highly probable that a human must
-enact active control at <em>all</em> times while balancing. I reason this, because the
-bicycle&#8217;s roll angle responds to the human&#8217;s postural control. But the
-stability exhibited of the almost always present weave mode may alleviate the
+implement active control at <em>all</em> times while balancing. I conclude this because
+the bicycle&#8217;s roll angle responds to the human&#8217;s postural control. But the
+stability exhibited of the almost-always-present weave mode may alleviate the
 need for primary roll control provided by the rider. And even if the
 bicycle-rider system is open loop unstable at a given speed, the question
 arises of <em>how</em> instable is it or <em>how</em> controllable is it. Classic
 controllability is simply a binary test to determine whether or not it is
 possible for a system to be controlled, whereas there must be some measure
 variable measure of controllability that is more relevant to the proposed
-questions. <a class="reference internal" href="zreferences.html#seffen2001">[SPC01]</a> studies how parameter changes affect controllability,
-and comes up with rideability index. <a class="reference internal" href="zreferences.html#schwab2010a">[SK10a]</a> and <a class="reference internal" href="zreferences.html#schwab2012">[SMK12]</a> also
-determines the controllability of several bicycle models and uses modal
-controllability as a continuous measure of the controllability. The pole
-locations of an open loop system can also give a general sense of how easy it
-is to control with roots in the far right plane likely being hard to stabilize.</p>
+questions. <a class="reference internal" href="zreferences.html#seffen2001">[SPC01]</a> studies how parameter changes affect
+controllability, and comes up with rideability index. <a class="reference internal" href="zreferences.html#schwab2010a">[SK10a]</a> and
+<a class="reference internal" href="zreferences.html#schwab2012">[SMK12]</a> also determine the controllability of several bicycle
+models and uses modal controllability as a continuous measure of the
+controllability. The pole locations of an open loop system can also give a
+general sense of the degree of its controllability, with roots in the far right
+plane likely being difficult to stabilize.</p>
 <p>One can work with different bicycle models (simple/complex [or low/high order]
 and linear/non-linear), different control structures, and different ways to
 identify the optimal numerical values for the controller. For a given order
-model most good controllers can place the closed loop poles in the same place
-regardless of the control structure. Controllers designed for low order or
-linear models are even likely to work with higher order models and non-linear
-models. But the controller structure design provides different views into the
-feedback mechanisms at work. For the human controller, these structures may or
-may not may well to the human&#8217;s physiological and neurological system. The human
-has to choose his control actions to balance our robustness and performance.</p>
+model, most control structures allow one to place the closed loop poles in the
+desired location. Controllers designed for low order or linear models are even
+likely to work with higher order models and non-linear models. But the control
+structure design provides different views into the feedback mechanisms at work.
+For the human controller, these structures may or may not correspond well to
+the human&#8217;s physiological and neurological system. The human has to choose his
+control actions to balance the requirements for robustness and performance.</p>
 <p>The bicycle-rider system presents both a theoretical and experimentally rich
 dynamical system for control studies. It is very tractable in the sense that
 most people are familiar with controlling a bicycle and that it is a <em>simple</em>
-machine which is readily available for experimental use. And thirdly, control
-of the bicycle is not necessarily trivial due to it&#8217;s complex dynamics and
-provides a platform for testing many strategies. Past control studies tend to
-be framed in two different but overlapping frameworks. The first is to simply
-control a bicycle (model or real) with any control algorithms and mechanisms
-available. Both the simple roll stabilization task and more complex path
-tracking tasks have been examined. The results show that bicycles are readily
-controllable by a variety of means, from a simple steer in the direction of the
-rate of fall to full state feedback with preview of future path variations.
-Depending on the sensing and actuation methods chosen these controllers range
-in their resemblance to how a human may actually control a bicycle. This leads
-into a second framework in which the researcher is explicitly trying to
-determine the how a human balances and controls a bicycle. Basic understanding
-of the limited sensory input and actuation available to a human give
-constraints on what control structures are adopted. Both frameworks are
-motivated by many things such as desire for to implement automatic control,
+machine which is readily available for experimental use. Additionally, control
+of the bicycle is not necessarily trivial due to it&#8217;s complex dynamics and thus
+it provides a good platform for testing many control strategies. Past control
+studies tend to be framed in two different but overlapping frameworks. The
+first is to simply control a bicycle (model or real) with any control
+algorithms and mechanisms available. Both the simple roll stabilization task
+and more complex path tracking tasks have been examined. The results show that
+bicycles are readily controllable by a variety of means, from a simple steer in
+the direction of the rate of fall to full state feedback with preview of future
+path variations. Depending on the sensing and actuation methods chosen these
+controllers range in their resemblance to how a human may actually control a
+bicycle. This leads into a second framework in which the researcher is
+explicitly trying to determine the how a human balances and controls a bicycle.
+Basic understanding of the limited sensory input and actuation available to a
+human give constraints on what control structures are adopted. Both frameworks
+are motivated by many things such as a desire to implement automatic control,
 improving simulation for vehicle design, handling qualities inquiries, control
 system testing, etc.</p>
-<p>My intention of the work presented in this dissertation falls in the second
+<p>The intention of the work presented in this dissertation falls in the second
 framework, where we are most concerned with identifying the human controller.
-The first part gives an overview of other non-human based single track vehicle
-control efforts, followed by some simple control examples. I follow this with a
-review on human based control design and finish up with some addendum material
-to our paper <a class="reference internal" href="zreferences.html#hess2012">[HMH12]</a> which details the controller design we developed to
-represent the human.</p>
+The first part of this chapter gives an overview of other non-human based
+single track vehicle control efforts, followed by some simple control examples.
+I follow this with a review on human based control design and finish up with
+some addendum material to our paper <a class="reference internal" href="zreferences.html#hess2012">[HMH12]</a> which details the
+controller design we developed to represent the human.</p>
 </div>
 <div class="section" id="ideal-control-models">
 <h2>Ideal Control Models<a class="headerlink" href="#ideal-control-models" title="Permalink to this headline">¶</a></h2>
-<p>Once you dig around in the literature enough you will find many studies on the
-control of a single track vehicles. The following provides a light review of
-much of the literature which focus on <em>ideal</em> controller for single track
-vehicles. I use the word ideal to simply label control design which is not
-explicitly focused on the human operator control. I&#8217;ve split the review of
-control models into two sections. The first are about controllers which have
-actually be implemented, or attempted implementation, on robotic vehicles. The
-second are theoretic controllers that weren&#8217;t necessarily introduced to
-identify the human control system. The following section section details
-efforts that explicitly work with controllers that mimic or try to understand
-the human controller.</p>
-<p>But one quick aside, <a class="reference internal" href="#figpubs"><em>Figure 12.1</em></a> shows a histogram by year of the
-all the references I&#8217;ve collected in the course of this project. It is
-interesting to note the explosion in the early seventies that probably
-coincides with the bicycle boom and the digital computer age. We&#8217;ve also had a
-boom in the last decade, with research interests growing. This may coincide
-with the microcontroller advances and potentially some from the growth in
-bicycling.</p>
+<p>Many studies exist on the control of a single track vehicles. The following
+provides a light review of much of the literature which focus on <em>ideal</em>
+controllers for single track vehicles. Here I use the word ideal to simply
+label control design which is not explicitly focused on the human operator
+control. I&#8217;ve split the review of control models into two sections. The first
+are about controllers which have actually been implemented, or attempted to be
+implemented, on robotic vehicles. The second are theoretic controllers that
+weren&#8217;t necessarily introduced to identify the human control system. The
+following section details efforts that explicitly concern controllers that
+mimic or try to understand the human controller.</p>
+<p><a class="reference internal" href="#figpubs"><em>Figure 12.1</em></a> shows a histogram by year of the all the references
+I&#8217;ve collected in the course of this project. It is interesting to note the
+explosion in the early seventies that probably coincides with the bicycle boom
+and the digital computer age. We&#8217;ve also had a boom in the last decade, with
+research interests growing. This may coincide with the microcontroller advances
+and potentially some from the growth in bicycling.</p>
 <div class="figure align-center" id="figpubs">
 <a class="reference external image-reference" href="_images/pub-hist.png"><img alt="_images/pub-hist.png" src="_images/pub-hist.png" style="width: 4in;" /></a>
 <p class="caption">Histogram of my reference database on single track vehicle dynamics,
 controls, and handling. There are probably 50 or so titles that don&#8217;t
-technically belong, but baring those this gives a good idea of the growth in
+technically belong, but barring those this gives a good idea of the growth in
 single track vehicle dynamics research. Generated by
 <tt class="docutils literal"><span class="pre">src/control/publication_histogram.py</span></tt>.</p>
 </div>
@@ -171,16 +163,16 @@ rider could sense. He attempted to control a robot bicycle with only a
 leaning rider (inverted pendulum) through proportional and derivative
 feedback of rider lean angle and bicycle roll angle. He made use of a linear
 model with a rider lean degree of freedom which is fundamentally the same as
-the one presented Chapter <a class="reference internal" href="extensions.html#extensions"><em>Extensions of the Whipple Model</em></a>. His controller worked on paper,
-but he wasn&#8217;t able to ever balance the robot bicycle, with the suspected
-problems being the limitations of the hardware he used.</dd>
+the one presented in Chapter <a class="reference internal" href="extensions.html#extensions"><em>Extensions of the Whipple Model</em></a>. His controller worked on
+paper, but he wasn&#8217;t able to ever balance the robot bicycle, with the
+suspected problems being the limitations of the hardware he used.</dd>
 <dt><a class="reference internal" href="zreferences.html#nagai1983">[Nag83]</a></dt>
 <dd>They constructed a robot bicycle which balanced and tracked itself by
 feeding back lateral deviation at a previewed time and the current roll
-angle. He was successful at stabilizing his robot. His bicycle model was
-much simpler than the Whipple model but he found good agreement between
-experiment and the his model predictions, with the exception of
-counter-steer predictions.</dd>
+angle. He was successful at stabilizing his robot. The bicycle model was
+much simpler than the Whipple model but it gave good agreement between
+experiment and the model predictions, with the exception of counter-steer
+predictions.</dd>
 <dt><a class="reference internal" href="zreferences.html#ruijs1985">[RP85]</a>, <a class="reference internal" href="zreferences.html#ruijs1986">[RP86]</a></dt>
 <dd>Ruijs and Pacejka developed a robotic motorcycle to study the effect of road
 irregularities (i.e. cat eyes), is this dangerous. The experiments were
@@ -192,93 +184,96 @@ included. The machine worked as was able to maintain stability during the
 experiments.</dd>
 <dt><a class="reference internal" href="zreferences.html#berriah1999">[BL99]</a></dt>
 <dd>They developed a digital fuzzy controller to stabilize a remote controlled
-bicycle robot. They do not seem to demonstrate the robot actually balancing
+bicycle robot. They do not seem to demonstrate the robot actually balancing,
 but only bench tests of the sensors and actuators.</dd>
 <dt><a class="reference internal" href="zreferences.html#gallaspy2000">[Gal00]</a></dt>
 <dd>He designed a robot balancing bicycle which controls a gimbaled gyroscope to
 apply a restoring torque with respect to the sensed roll angle, but was not
 successful at balancing the real robot.</dd>
-<dt><a class="reference internal" href="zreferences.html#miyagishi2001">[MKT+01]</a>, <a class="reference internal" href="zreferences.html#miyagishi2003">[MKT+03]</a>, <a class="reference internal" href="zreferences.html#kageyama2004">[KMBU04]</a>, <a class="reference internal" href="zreferences.html#kuriyama2005">[KKBM05]</a>, <a class="reference internal" href="zreferences.html#miyagishi2006">[MBU+06]</a>, cite:<cite>Suzuki2007</cite></dt>
-<dd>These papers, among others, detail work on a Honda motorcycle robot, of
-which they say the controller is modeled after a human. The video
-demonstrations of this vehicle indicate that it may be the most manually
-realistically controlled robot there is, not mention that is seems to work
-really well. Most of these papers are in Japanese and I&#8217;ve had trouble
-finding others, so I cannot comment on the details.</dd>
+<dt><a class="reference internal" href="zreferences.html#miyagishi2001">[MKT+01]</a>, <a class="reference internal" href="zreferences.html#miyagishi2003">[MKT+03]</a>, <a class="reference internal" href="zreferences.html#kageyama2004">[KMBU04]</a>, <a class="reference internal" href="zreferences.html#kuriyama2005">[KKBM05]</a>, <a class="reference internal" href="zreferences.html#miyagishi2006">[MBU+06]</a>, <a class="reference internal" href="zreferences.html#suzuki2007">[SKK+07]</a></dt>
+<dd>These papers, among others, detail work on a Honda motorcycle robot, with
+the controller modeled after a human. The video demonstrations of this
+vehicle indicate that it may be the most manually realistically controlled
+robot there is, not to mention that it seems to work really well. Most of
+these papers are in Japanese and I&#8217;ve had trouble finding others, so I
+cannot comment on all the details.</dd>
 <dt><a class="reference internal" href="zreferences.html#tanaka2004">[TM04]</a></dt>
 <dd>They successfully balances a bicycle on rollers with a PD roll angle to
 steer angle controller with a disturbance observer.</dd>
 <dt><a class="reference internal" href="zreferences.html#iuchi2005">[INM05]</a></dt>
 <dd>They use PD control on the bicycle roll angle to control steer angle and
-rider lean angle. The controller is implemented on a bicycle robot, of which
-they are able to balance on rollers.</dd>
+rider lean angle. The controller is implemented on a bicycle robot, which is
+able to balance on rollers.</dd>
 <dt><a class="reference internal" href="zreferences.html#iuchi2006">[IM06]</a></dt>
-<dd>They use the same model base as <a class="reference internal" href="zreferences.html#iuchi2005">[INM05]</a> except they now add in a human
+<dd>They use the same model base as <a class="reference internal" href="zreferences.html#iuchi2005">[INM05]</a> except they now add a human
 torque estimator, so that the controller will not treat the human&#8217;s applied
 steer torque as a disturbance if the controller is activated while a rider
 is also trying to control the bicycle. They show some crude experimental
-results, of which I assume are of a rider controlling the bicycle with and
+results, which I assume are of a rider controlling the bicycle with and
 without the automatic controller activated. Their human torque accounting is
-based off of a estimation of the human torque from the steer motor torque,
+based on an estimation of the human torque from the steer motor torque,
 rather than explicitly measuring the human&#8217;s torque input.</dd>
 <dt><a class="reference internal" href="zreferences.html#yamakita2006">[YUS06]</a></dt>
-<dd>They implement a modified controller from the one presented in
-<a class="reference internal" href="zreferences.html#yamakita2005">[YU05]</a> with an additional <span class="math">\(H_\infty\)</span> controller. They show
-some successful roll stabilization of a robot scooter in which they only
+<dd>They implement a controller modified from the one presented in
+<a class="reference internal" href="zreferences.html#yamakita2005">[YU05]</a> with an additional <span class="math">\(H_\infty\)</span> controller. They
+show successful roll stabilization of a robot scooter in which they only
 implement the roll stabilization control.</dd>
 <dt><a class="reference internal" href="zreferences.html#murata2009">[Mur09]</a></dt>
 <dd>The Murata Manufacturing company designed a bicycle robot to demonstrate the
-utility of their sensors which debuted sometime in 2006 <a class="reference internal" href="zreferences.html#murata2009">[Mur09]</a>.
-There is little published detail on the control techniques but they seem to
-primarily make use of a roll rate gyro with steering and a gyro actuator.
-They also have other sensors such as ultrasonic sensors for obstacle
-detection. They demonstrate stability at zero speed, reverse and forward speeds,
-stopping for obstacles, and tracking a narrow s-curve in their video
-material. There are no public papers detailing the control system.</dd>
+utility of their sensors which debuted in 2006 <a class="reference internal" href="zreferences.html#murata2009">[Mur09]</a>. There is
+little published detail on the control techniques but they seem to primarily
+make use of a roll rate gyro with steering and a gyro actuator. They also
+have other sensors such as ultrasonic sensors for obstacle detection. They
+demonstrate stability at zero speed, reverse and forward speeds, stopping
+for obstacles, and tracking a narrow s-curve in their video material. There
+are no published papers detailing the control system.</dd>
 <dt><a class="reference internal" href="zreferences.html#taura2007">[Tau07]</a></dt>
-<dd>This is Japanese Master&#8217;s thesis on acrobatic bike robot that may be able to
-do a wheely. I was not able to find this paper.</dd>
+<dd>This is a Japanese Master&#8217;s thesis on acrobatic bike robot that may be able to
+do a wheelie. I was not able to find this paper but have included it for
+completeness.</dd>
 <dt><a class="reference internal" href="zreferences.html#murayama2007">[MY07]</a></dt>
 <dd>They use the same vehicle and control model as in <a class="reference internal" href="zreferences.html#yamakita2006">[YUS06]</a> and a new
 two degree of freedom &#8220;rider&#8221; pendulum. They demonstrate roll stability of
-the robot at both zero forward speed up to 2 m/s.</dd>
+the robot at exactly zero forward and speeds up to 2 m/s.</dd>
 <dt><a class="reference internal" href="zreferences.html#thanh2008">[TP08]</a></dt>
-<dd>Thanh designs a controller with <span class="math">\(H_2/H_\infty\)</span> techniques and applies it
-to a bicycle robot which uses a flywheel for stabilization. He compares it
-to a PD controller and a genetic algorithm and shows that it is more robust.</dd>
+<dd>Thanh designs a controller with <span class="math">\(H_2/H_\infty\)</span> techniques and applies
+it successfully to a bicycle robot which uses a flywheel for stabilization.
+He compares it to a PD controller and a genetic algorithm and shows that it
+is more robust.</dd>
 <dt><a class="reference internal" href="zreferences.html#mutsaerts2010">[Mut10]</a></dt>
-<dd>designed a Lego NXT bicycle robot with a simple proportional steer into the
-direction of roll rate controller and <a class="reference external" href="http://youtu.be/VxiOy4QzD7I">demonstrates</a> the bicycle roll stability in crude turns
-and straight ahead running.</dd>
+<dd>Mutsaerts designed a Lego NXT bicycle robot with a simple proportional steer
+into the direction of roll rate controller and <a class="reference external" href="http://youtu.be/VxiOy4QzD7I">demonstrated</a> bicycle roll stability in crude turns and
+straight ahead running.</dd>
 <dt><a class="reference internal" href="zreferences.html#bicyrobo2011">[Bic11]</a></dt>
 <dd>In 2011 the first <a class="reference external" href="http://bicyrobo.ait.ac.th/">BicyRobo Thailand student competition</a> occurred and many videos on the internet
-demonstrate the successful design of some teams. The full size bicycle
+demonstrate the successful design of some teams. The full-size bicycle
 robots have roll stability and even path following. One video demonstrates
 students riding the robot bicycle and simultaneously applying manual steer
 torques.</dd>
 <dt><a class="reference internal" href="zreferences.html#yamaguchi2011">[Yam11]</a></dt>
 <dd>The videos <a class="reference external" href="http://www.youtube.com/watch?v=mT3vfSQePcs">http://www.youtube.com/watch?v=mT3vfSQePcs</a> and
 <a class="reference external" href="http://ai2001.ifdef.jp/">http://ai2001.ifdef.jp/</a> demonstrate an impressive remote controlled
-mini robot bicycle that is similar in nature to the <a class="reference internal" href="zreferences.html#berriah1999">[BL99]</a> design
-with remote control. He uses a commercially available bipedal robot seated
-on a small bicycle. A gyro detects the systems roll rate and he uses a PID
-controller to applied the correct steering for roll stabilization. The
-remote control is employed to control the heading.</dd>
+mini robot bicycle that is similar in nature to the <a class="reference internal" href="zreferences.html#berriah1999">[BL99]</a>
+design with remote control. He uses a commercially available bipedal robot
+seated on a small bicycle. A gyro detects the roll rate and he uses a PID
+controller to apply the correct steering for roll stabilization. Remote
+control is employed to control the heading.</dd>
 </dl>
-<p>Other papers that I either could not find, translate, or find time to read
-include <a class="reference internal" href="zreferences.html#beznos1998">[BFG+98]</a>, <a class="reference internal" href="zreferences.html#sooraksa2000">[SS00]</a>, <a class="reference internal" href="zreferences.html#sooraksa2000a">[SUK+00]</a>,
+<p>Other relevant papers that I either could not find, translate, or find time to
+read include <a class="reference internal" href="zreferences.html#beznos1998">[BFG+98]</a>, <a class="reference internal" href="zreferences.html#sooraksa2000">[SS00]</a>, <a class="reference internal" href="zreferences.html#sooraksa2000a">[SUK+00]</a>,
 <a class="reference internal" href="zreferences.html#muraoka2002">[Mur02]</a>, <a class="reference internal" href="zreferences.html#oda2002">[OMUS02]</a>, <a class="reference internal" href="zreferences.html#muhich2004">[MW04]</a>, <a class="reference internal" href="zreferences.html#michini2006">[MT06]</a>,
 <a class="reference internal" href="zreferences.html#suprapto2006">[Sup06]</a>, <a class="reference internal" href="zreferences.html#solvberg2007">[SL07]</a>, <a class="reference internal" href="zreferences.html#tanaka2009">[TM09]</a>,
-<a class="reference internal" href="zreferences.html#brekke2010">[Bre10]</a>, <a class="reference internal" href="zreferences.html#cerone2010">[CALR10]</a>, <a class="reference internal" href="zreferences.html#keo2011">[KY11]</a>.</p>
-<p>The limited success of most of the various bicycle robots demonstrates that the
-actual implementation of single track vehicle control is not trivial. Some of
-the robots could demonstrate basic roll stability and some even capable of path
-tracking ability but many didn&#8217;t quite work either. The Murata Boy robot is
-quite impressive in its abilities but it uses control outside of what humans
-are capable of. The motorcycle robot by Kageyama is probably the most
-successful demonstration of a full sized vehicle with control of only steering.
-The vehicle dynamic models and control methodologies are varied, implying that
-many techniques may be applicable.</p>
+<a class="reference internal" href="zreferences.html#brekke2010">[Bre10]</a>, <a class="reference internal" href="zreferences.html#cerone2010">[CALR10]</a>, <a class="reference internal" href="zreferences.html#keo2011">[KY11]</a>. I have included them
+here for completeness.</p>
+<p>The limited success of most of the bicycle robots demonstrates that the actual
+implementation of single track vehicle control is not trivial. Some robots
+could demonstrate basic roll stability and some are even capable of path
+tracking but many didn&#8217;t quite work either. The Murata Boy robot is impressive
+in its abilities but it uses control outside of what humans are capable of. The
+motorcycle robot by Kageyama et al. is probably the most successful
+demonstration of a full sized vehicle with control of only steering. The
+vehicle dynamic models and control methodologies are varied, implying that many
+techniques may be applicable.</p>
 </div>
 <div class="section" id="theoretic-control-models">
 <h3>Theoretic Control Models<a class="headerlink" href="#theoretic-control-models" title="Permalink to this headline">¶</a></h3>
@@ -290,7 +285,7 @@ implemented. This section details some of the modeling efforts.</p>
 <dd>He studied the robust stabilization of the wobble mode in motorcycles.</dd>
 <dt><a class="reference internal" href="zreferences.html#getz1994">[Get94]</a>, <a class="reference internal" href="zreferences.html#getz1995">[GM95]</a>, <a class="reference internal" href="zreferences.html#getz1995a">[Get95]</a></dt>
 <dd>He uses a simple bicycle model that exhibits non-minimum phase behavior and
-are able to track roll angle and forward velocity using proportional and
+is able to track roll angle and forward velocity using proportional and
 derivative control. One year later, Getz adds path tracking to his model.</dd>
 <dt><a class="reference internal" href="zreferences.html#kageyama1996">[KO96]</a></dt>
 <dd>He uses a neural network model to balance a two wheeled vehicle.</dd>
@@ -304,7 +299,7 @@ control structure, with a bicycle model similar to <a class="reference internal"
 <dd>They stabilize the roll angle of a motorcycle with a PID controller which
 operates on the error in roll angle to provide a steer torque. The gains for
 the controller are chosen by trial and error. The gains are difficult to
-find for low speed high roll angle scenarios.</dd>
+find for low-speed, high-roll-angle scenarios.</dd>
 <dt><a class="reference internal" href="zreferences.html#suryanarayanan2002">[STW02]</a></dt>
 <dd>They use a simple bicycle model to build a roll rate feedback controller for a
 high speed recumbent bicycle. They use proportional feedback of the roll
@@ -314,23 +309,23 @@ rate to control the steer angle.</dd>
 stabilize the bicycle and track a path.</dd>
 <dt><a class="reference internal" href="zreferences.html#chidzonga2003">[CE03]</a></dt>
 <dd>Chidzonga uses the simple point mass bicycle model with a load sharing
-controller to demonstrate a track stand around zero forward speed. Although
-the balancing might have just been due to a miracle from Jesus.</dd>
+controller to demonstrate a track stand around zero forward speed. (Although
+the balancing might have just been due to a miracle from Jesus.)</dd>
 <dt><a class="reference internal" href="zreferences.html#karnopp2004">[Kar04]</a></dt>
-<dd>Karnopp uses a very simply bicycle model and basic proportional control to
+<dd>Karnopp uses a very simple bicycle model and basic proportional control to
 demonstrate the counter steering require to balance the bicycle. He also
 examines rear steered bicycles.</dd>
 <dt><a class="reference internal" href="zreferences.html#yamakita2005">[YU05]</a></dt>
-<dd>They setup a linear trajectory tracking control model and non-linear
+<dd>They set up a linear trajectory tracking control model and non-linear
 stabilization control by controlling steer torque, rider lean torque, and
 rear wheel torque. They demonstrate the control in a simulation of a bicycle
 jump maneuver.</dd>
 <dt><a class="reference internal" href="zreferences.html#niki2005">[NM05b]</a></dt>
-<dd>This follows the <a class="reference internal" href="zreferences.html#tanaka2004">[TM04]</a> and <a class="reference internal" href="zreferences.html#iuchi2005">[INM05]</a> work, but adds in velocity
+<dd>This follows the <a class="reference internal" href="zreferences.html#tanaka2004">[TM04]</a> and <a class="reference internal" href="zreferences.html#iuchi2005">[INM05]</a> work, but adds velocity
 tracking.</dd>
 <dt><a class="reference internal" href="zreferences.html#huyge2005">[HAP05]</a></dt>
 <dd>He makes use of the <a class="reference internal" href="zreferences.html#cossalter2002">[CL02]</a> motorcycle model with a eight body
-rider bio-mechanical model. He stabilizes the bodies and tracks a path using
+rider biomechanical model. He stabilizes the bodies and tracks a path using
 LQR control.</dd>
 <dt><a class="reference internal" href="zreferences.html#astrom2005">[ASKL05]</a></dt>
 <dd>They apply simple proportional control of a point mass type bicycle model to
@@ -338,14 +333,14 @@ stabilize the roll angle with a steer angle input.</dd>
 <dt><a class="reference internal" href="zreferences.html#sharma2006">[SN06]</a></dt>
 <dd>They stabilize a simple bicycle model using fuzzy control rules to provide a
 desired roll correction based on the current steer and roll angles. The
-simulations show stability but with very erratic control that seem like it
+simulations show stability but with very erratic control that seems like it
 would be poor for a real controller.</dd>
 <dt><a class="reference internal" href="zreferences.html#limebeer2006">[LS06]</a></dt>
 <dd>They implement a PD controller on roll rate to stabilize the Whipple bicycle
 model outside the stable speed range.</dd>
 <dt><a class="reference internal" href="zreferences.html#findlay2006">[FMPM06]</a></dt>
-<dd>A simple point mass bicycle is stabilized by steer angle using three
-methods: a classical lead/lag compensator design, Ackerman pole placement
+<dd>A simple point mass bicycle is stabilized with steer angle using three
+methods: a classical lead/lag compensator design, Ackerman pole placement,
 and LQR optimal control.</dd>
 <dt><a class="reference internal" href="zreferences.html#sharp2007a">[Sha07b]</a></dt>
 <dd>He develops a path tracking controller for the benchmark bicycle
@@ -361,12 +356,12 @@ randomly generated paths.</dd>
 <dd>Here Sharp extends his LQR control method with preview from <a class="reference internal" href="zreferences.html#sharp2007a">[Sha07b]</a> to
 the motorcycle with the addition of rider lean torque control. He says that
 the objective was to develop a control scheme that <em>somewhat</em> represents a
-rider which is simple and effective. His controller inputs are the rider&#8217;s
+rider and which is simple and effective. His controller inputs are the rider&#8217;s
 upper-body absolute and relative lean angles and the path tracking error. He
 claims that riders control the motorcycle at the weave frequency at high
-speeds. He is able successfully stabilize and track a path and determines
+speeds. He is able to successfully stabilize and track a path and determine
 optimal preview gains. He also finds that the rider lean torque control is
-relatively ineffective and even with high weighting in the LQR formulation,
+relatively ineffective and, even with high weighting in the LQR formulation,
 the steer torque input dominates the optimal solution.</dd>
 <dt><a class="reference internal" href="zreferences.html#sharp2008a">[Sha08]</a></dt>
 <dd>Sharp applies his LQR based preview model control model from <a class="reference internal" href="zreferences.html#sharp2007">[Sha07a]</a> to
@@ -399,8 +394,8 @@ model with rider lean torque as the only control input. His simulation
 required 30 Nm of rider lean torque for a 0.3 rad/sec and 1 rad/sec step in
 yaw rate and rear wheel rate respectively.</dd>
 <dt><a class="reference internal" href="zreferences.html#keo2008">[KM08]</a></dt>
-<dd>They stabilize a bicycle model with a leaning &#8220;rider&#8221; pendulum and track a
-path.</dd>
+<dd>They stabilize a bicycle model with only a leaning &#8220;rider&#8221; pendulum actuator
+and track a path.</dd>
 <dt><a class="reference internal" href="zreferences.html#connors2009">[Con09]</a></dt>
 <dd>Connors adds moving legs to the Whipple bicycle model and uses parameters to
 simulate a low slung recumbent bicycle. He designs an LQR full state
@@ -412,7 +407,7 @@ them, but they all have single track vehicle control: <a class="reference intern
 <a class="reference internal" href="zreferences.html#saccon2006">[Sac06]</a>, <a class="reference internal" href="zreferences.html#bjermeland2006">[Bje06]</a>, <a class="reference internal" href="zreferences.html#chen2006">[CD06]</a>.</p>
 <p>Variations on PID control of steer angle or steer torque with feedback of the
 roll angle are the most popular controller designs, many them being successful.
-LQR type follow close behind. <span class="math">\(H_\infty\)</span> and other more modern control
+LQR types follow close behind. <span class="math">\(H_\infty\)</span> and other more modern control
 designs make up the rest. It is clear that roll stabilization and command is
 the critical task and must be conquered before path tracking can be employed.
 The steer torque is generally chosen as the primary input with just cause and
@@ -446,20 +441,20 @@ the steer torque to steer angle and the roll torque to steer angle transfer
 functions both have a single right half plane zero. This single right half
 plane zero means that the steer angle response from either input will exhibit
 an initial undershoot for a given steer torque input <a class="reference internal" href="zreferences.html#hoagg2007">[HB07]</a>. This
-phenomena can be demonstrated by examining the step response of the two
+phenomenon can be demonstrated by examining the step response of the two
 transfer functions with right half plane zeros <a class="reference internal" href="#figstablestepresponse"><em>Figure
 12.2</em></a>.</p>
 <div class="figure align-center" id="figstablestepresponse">
 <a class="reference external image-reference" href="_images/stable-step-response.png"><img alt="_images/stable-step-response.png" src="_images/stable-step-response.png" style="width: 4in;" /></a>
 <p class="caption">The upper graph shows the roll and steer angle time histories for a step
-response roll torque to the Whipple model linearized about the nominal
+response to roll torque to the Whipple model linearized about the nominal
 configuration. The lower graph input is for a step input to steer torque.
-The parameters are taken from the rider Charlie on the Rigicl bicycle and
-the speed is 7 m/s which is within the stable speed range. Generated by
+The parameter values are taken from the rider Charlie on the Rigicl bicycle
+and the speed is 7 m/s which is within the stable speed range. Generated by
 <tt class="docutils literal"><span class="pre">src/control/control.m</span></tt>.</p>
 </div>
 <p>As expected we see initial undershoot in the steer angle for both cases. In
-this case, the initial undershoot is initially departs in the asymptotic
+this case, the initial undershoot initially departs in the asymptotic
 direction, but reverses and settles to a negative steer angle. This is easily
 demonstrated on a real bicycle by placing one&#8217;s flat open palms on the
 handlebar grips. By applying a torque intending to turn the handlebars in the
@@ -467,16 +462,15 @@ positive direction, the handlebars initially go in the correct direction, but
 once the frame rolls in the negative direction, the steering angle reverses and
 puts the bicycle into a steady turn in the negative direction.</p>
 <p>If we examine the change in the transfer function zeros as a function of
-forward speed, we see that both the steer angle transfer functions always have
-a right half plane zero. And for <span class="math">\(\frac{\delta}{T_\delta}(s)\)</span>, the zeros
-do not change with respect to speed. It is also interesting to note that below
-about 2 m/s the roll torque to roll angle transfer function has a right half plane
-zero. For roll torque, this would mean that at low speeds a positive roll
-torque step input (i.e from a gust of wind) would cause a positive roll angle
-initial overshoot with the roll angle settling to a negative value at steady
-state. I&#8217;ve often felt like I fall into the wind on my bicycle and this could
-confirm it at least for low speeds, but it may be tied more to phenomena
-associated with the rider&#8217;s biomechanical degrees of freedom.</p>
+forward speed <a class="reference internal" href="#figzerowrtspeed"><em>Figure 12.3</em></a>, we see that both the steer
+angle transfer functions in Equation <a href="#equation-eqExampleBicycleTransferFunctions">(1)</a>
+always have a right half plane zero. And for
+<span class="math">\(\frac{\delta}{T_\delta}(s)\)</span>, the zeros do not change with respect to
+speed. It is also interesting to note that below about 2 m/s the roll torque to
+roll angle transfer function has a right half plane zero. For roll torque, this
+would mean that at low speeds a positive roll torque step input (e.g. a gust of
+wind<a class="footnote-reference" href="#wind" id="id95">[1]</a>) would cause a positive roll angle initial overshoot with the
+roll angle settling to a negative value at steady state<a class="footnote-reference" href="#wind2" id="id96">[2]</a>.</p>
 <div class="figure align-center" id="figzerowrtspeed">
 <a class="reference external image-reference" href="_images/zeros-wrt-speed.png"><img alt="_images/zeros-wrt-speed.png" src="_images/zeros-wrt-speed.png" style="width: 5in;" /></a>
 <p class="caption">The zeros of the steer torque to roll and steer angle transfer functions.
@@ -491,16 +485,16 @@ presented in <a class="reference internal" href="zreferences.html#meijaard2007">
   m_{\delta\phi} &amp; m_{\delta\delta}
 \end{bmatrix}\end{split}\]\[\begin{split}\mathbf{C}_1 =
 \begin{bmatrix}
-  0 &amp; {c_1\phi\delta} \\
-  {c_1\delta\phi} &amp; {c_1\delta\delta}
+  0 &amp; c_{1\phi\delta} \\
+  c_{1\delta\phi} &amp; c_{1\delta\delta}
 \end{bmatrix}\end{split}\]\[\begin{split}\mathbf{K}_0 =
 \begin{bmatrix}
-  {k_0\phi\phi} &amp; {k_0\phi\delta} \\
-  {k_0\delta\phi} &amp; {k_0\delta\delta}
+  k_{0\phi\phi} &amp; k_{0\phi\delta} \\
+  k_{0\delta\phi} &amp; k_{0\delta\delta}
 \end{bmatrix}\end{split}\]\[\begin{split}\mathbf{K}_2 =
 \begin{bmatrix}
-  0 &amp; {k_2\phi\delta} \\
-  0 &amp; {k_2\delta\delta}
+  0 &amp; k_{2\phi\delta} \\
+  0 &amp; k_{2\delta\delta}
 \end{bmatrix}\end{split}\]</div>
 <p>The state, input and output matrices follow</p>
 <div class="math">
@@ -518,58 +512,57 @@ presented in <a class="reference internal" href="zreferences.html#meijaard2007">
   1 &amp; 0 &amp; 0 &amp; 0 \\
   0 &amp; 1 &amp; 0 &amp; 0
 \end{bmatrix}\end{split}\]</div>
-<p>The numerators the transfer functions from the inputs to the outputs are
+<p>The numerators of the transfer functions from the inputs to the outputs are
 computed with</p>
 <div class="math" id="equation-eqNumerators">
 <span class="eqno">(3)</span>\[\mathbf{C} \operatorname{adj}(s \mathbf{I}_4 - \mathbf{A}) \mathbf{B} =
 \mathbf{0}_{4 \times 4}\]</div>
 <p>Limiting the solution to  only the steer torque input and solving for the roots
 of the polynomials, the zeros are found</p>
-<div class="math" id="equation-eqRoots">
+<div class="math" id="equation-eqPhiRoots">
 <span class="eqno">(4)</span>\[s_{\phi} =
--\frac{{c_1}_{\phi\delta} v}{2 m_{\phi\delta}}
--\frac{\sqrt{{c_1}_{\phi\delta}^{2} v^{2}
--4 g {k_0}_{\phi\delta} m_{\phi\delta}
--4 {k_2}_{\phi\delta} m_{\phi\delta} v^{2}}}{2 m_{\phi\delta}}\]\[s_{\delta} = \pm\sqrt{-\frac{g {k_0}_{\phi\phi}}{m_{\phi\phi}}}\]</div>
-<p>The zeros of <span class="math">\(\left( \frac{\delta}{T_\delta} \right)_b(s)\)</span> are simply a
-function of the total potential energy of the system divided by the roll moment
-of inertia with respect to the center of mass.</p>
+-\frac{c_{1\phi\delta} v}{2 m_{\phi\delta}}
+-\frac{\sqrt{c_{1\phi\delta}^{2} v^{2}
+-4 g k_{0\phi\delta} m_{\phi\delta}
+-4 k_{2\phi\delta} m_{\phi\delta} v^{2}}}{2 m_{\phi\delta}}\]</div>
+<div class="math" id="equation-eqDeltaRoots">
+<span class="eqno">(5)</span>\[s_{\delta} = \pm\sqrt{-\frac{g k_{0\phi\phi}}{m_{\phi\phi}}}\]</div>
+<p>Substituting the benchmark parameters in for the coefficients in Equation
+<a href="#equation-eqDeltaRoots">(5)</a> which are the zeros of <span class="math">\(\left( \frac{\delta}{T_\delta}
+\right)_b(s)\)</span> show that they are simply a function of the total potential
+energy of the system divided by the roll moment of inertia with respect to the
+center of mass.</p>
 <div class="math">
 \[s_{\delta} = \pm\sqrt{-\frac{g m_T z_T}{{I_T}_{xx}}}\]</div>
 <p>This right half plane zero is important for understanding how to control a
 bicycle. Controlling by steer torque leads to unintuitive behavior of the
-bicycle, which must be learned.</p>
-<p>Notice too that the roll torque transfer function zeros are both functions of
-speed. The steer angle zero varies little and has a right half plane zero for
-all speeds of interest. But more interestingly, one roll angle zero is positive
-below about 2 m/s and negative above. This means that for very slow speeds, we
-will see an initial undershoot response in roll angle but not at higher speeds.</p>
+bicycle, which the rider must learn.</p>
 <div class="section" id="counter-steering">
 <h3>Counter Steering<a class="headerlink" href="#counter-steering" title="Permalink to this headline">¶</a></h3>
-<p>Countersteering is the colloquial term used to describe this non-minimum phase
+<p>Countersteering is the colloquial term used to describe the non-minimum phase
 behavior demonstrated in the previous section. Motorcycle driving instructors
 are keenly aware of this and teach their students to steer into the obstacle
 that they want to go around.</p>
-<p><a class="reference internal" href="zreferences.html#limebeer2006">[LS06]</a> and <a class="reference internal" href="zreferences.html#sharp2008a">[Sha08]</a> duly note that the term countersteering is
-used for potentially two conflicting ideas. They examine the effects of the
-right half plane zero of a simplified point mass model in much the same way as
-<a class="reference internal" href="zreferences.html#astrom2005">[ASKL05]</a>. Sharp and Limebeer show that both the steer torque to steer
-angle and steer torque to lateral deviation have right half plane zeros and
-Åström develops a <em>steer angle</em> to roll angle transfer function that has a
-right half plane zero. The Whipple model matches the <a class="reference internal" href="zreferences.html#limebeer2006">[LS06]</a>
-interpretation, i.e. that the right half plane zero is the steer torque to
-steer angle transfer function.</p>
-<p>The first and most common definition of countersteer is</p>
+<p><a class="reference internal" href="zreferences.html#limebeer2006">[LS06]</a> and <a class="reference internal" href="zreferences.html#sharp2008a">[Sha08]</a> explain that the term
+countersteering is used for two potentially conflicting ideas. They examine the
+effects of the right half plane zero of a simplified point mass model in much
+the same way as <a class="reference internal" href="zreferences.html#astrom2005">[ASKL05]</a>. Sharp and Limebeer show that both the steer
+torque to steer angle and steer torque to lateral deviation have right half
+plane zeros and Åström develops a <em>steer angle</em> to roll angle transfer function
+that has a right half plane zero. The Whipple model matches the
+<a class="reference internal" href="zreferences.html#limebeer2006">[LS06]</a> interpretation, i.e. that the right half plane zero is in
+the steer torque to steer angle transfer function.</p>
+<p>The first and most common definition of countersteer is:</p>
 <blockquote>
 <div>To initiate a turn, steer torque is applied in the opposite direction you
-want to turn which in turn causes the steer angle to initially depart in the
+want to turn which then causes the steer angle to initially depart in the
 opposite direction of the turn, but after the vehicle rolls the steer angle
 reverses into the direction of the turn.</div></blockquote>
 <p>The second definition, also clarified by <a class="reference internal" href="zreferences.html#cossalter2007">[CLP07]</a>, regards the sign of
-the steer torque in steady turns</p>
+the steer torque in steady turns:</p>
 <blockquote>
-<div>The applied steer torque may reverse sign to maintain steady turn. This is
-generally true at high speeds.</div></blockquote>
+<div>The applied steer torque may reverse sign with respect to the steer angle to
+maintain steady turn. This is generally true at high speeds.</div></blockquote>
 <p>The step response to steer torque at a stable speed shows that for a given roll
 angle departure the natural stability enforces that steer angle must initially
 depart in the opposite direction, <a class="reference internal" href="#figstablestepresponse"><em>Figure 12.2</em></a>. In
@@ -578,21 +571,21 @@ angle but an initially negative steer angle. Afterwards the bicycle settles
 into a positive steady turn with respect to yaw. For the steer torque input, a
 positive steer torque causes an initially positive steer angle which in turn
 cause a negative roll angle. The bicycle settles into a negative steady turn.</p>
-<p>To see this phenomena outside of the stable speed range some form of control is
-needed to stable simulations. Below the weave critical speed, the bicycle can
-generally be stabilized by a simple gain on roll rate feedback. Note that this
-gain is negative, giving positive feedback. This implies that we apply steer
-torque in the same sense as the rate of fall<a class="footnote-reference" href="#negativegain" id="id100">[1]</a>. <a class="reference internal" href="#figweavestepresponse"><em>Figure
-12.4</em></a> shows the response to a commanded steer torque
-below the weave speed and the countersteering in the steer angle.</p>
+<p>To see this phenomenon outside of the stable speed range some form of control
+is needed to make simulations stable. Below the weave critical speed, the
+bicycle can generally be stabilized by a simple feedback gain on roll rate.
+Note that this gain must be negative, giving positive feedback. This implies
+that we apply steer torque in the same sense as the rate of fall<a class="footnote-reference" href="#negativegain" id="id103">[3]</a>. <a class="reference internal" href="#figweavestepresponse"><em>Figure 12.4</em></a> shows the response
+to a commanded steer torque below the weave speed under simple control. The
+countersteering in the steer angle is evident.</p>
 <div class="figure align-center" id="figweavestepresponse">
 <a class="reference external image-reference" href="_images/commanded-steer-torque.png"><img alt="_images/commanded-steer-torque.png" src="_images/commanded-steer-torque.png" style="width: 4in;" /></a>
 <p class="caption">The step response to a commanded steer torque at 5.0 m/s which is below the
 weave speed. The gain is set to -5. Generated by <tt class="docutils literal"><span class="pre">src/control/control.m</span></tt>.</p>
 </div>
 <p>And above the capsize critical speed, the bicycle can be stabilized by a simple
-gain on roll angle feedback which is also negative. <a class="reference internal" href="#figcapsizeresponse"><em>Figure
-12.5</em></a> shows the countering steering require above the
+feedback gain on roll angle which also must be negative. <a class="reference internal" href="#figcapsizeresponse"><em>Figure
+12.5</em></a> shows the countering steering required above the
 stable speed range.</p>
 <div class="figure align-center" id="figcapsizeresponse">
 <a class="reference external image-reference" href="_images/commanded-roll-angle.png"><img alt="_images/commanded-roll-angle.png" src="_images/commanded-roll-angle.png" style="width: 4in;" /></a>
@@ -611,7 +604,7 @@ function has a right half plane zero.</p>
 </div>
 <div class="section" id="human-operator-control">
 <h2>Human Operator Control<a class="headerlink" href="#human-operator-control" title="Permalink to this headline">¶</a></h2>
-<p>There are very few studies focusing explicitly on human control of a bicycle
+<p>There are few studies focusing explicitly on human control of a bicycle
 or motorcycle with the intent of identifying the human controller or
 controlling the vehicle with a human-like controller. The majority of the
 studies of this nature happened in the early seventies when manual control
@@ -619,149 +612,152 @@ theories were relatively new. The following details the efforts that I&#8217;ve
 come across in my research.</p>
 <div class="section" id="van-lunteren-and-stassen">
 <h3>van Lunteren and Stassen<a class="headerlink" href="#van-lunteren-and-stassen" title="Permalink to this headline">¶</a></h3>
-<p>van Lunteren and Stassen did some the earliest work on the subject. They were
-primarily interested in identifying the human control system in the bicycle
-riding task. Their studies spanned several years in the late 60&#8217;s and early
-70&#8217;s. <a class="reference internal" href="zreferences.html#lunteren1967">[VLS67]</a>, <a class="reference internal" href="zreferences.html#lunteren1969">[VLS69]</a>, <a class="reference internal" href="zreferences.html#lunteren1970">[VLS70a]</a>, <a class="reference internal" href="zreferences.html#lunteren1970a">[VLS70b]</a>,
-<a class="reference internal" href="zreferences.html#stassen1973">[SVLB+73]</a>, <a class="reference internal" href="zreferences.html#lunteren1973">[VLS73]</a> uses a bicycle roll angle feedback with PID
-control that drives the rider&#8217;s lean angle and steer angle. The bicycle model
-they employ is quite simple (it models their simulator more than a real
-bicycle) and does not exhibit proper coupling in steer and roll. The model also
-utilizes angle inputs as opposed to input torques.  Their control structure was
-chosen in part because of equipment limitations and cite recent manual control
-models <a class="reference internal" href="zreferences.html#mcruer1967">[MGK67]</a> as being preferable. Nonetheless the research was ground
-breaking at the time and quite impressive, with real time system identification
-in manually controlled electromechanical system. They concluded that roll angle
-control was more reflexive and that the steer angle control was more cerebral
-based on identified time delays. They further developed their system to include
-a visual tracking outer loop. <a class="reference internal" href="zreferences.html#lange2011">[DL11]</a> develops a more up-to-date model
-with the same type of structure as van Lunteren and Stassen, where he feeds
-back roll angle and steer angle, and drives steer torque with PID controllers.
-He also points out a sign error in van Lunteren and Stassen&#8217;s work.</p>
+<p>van Lunteren and Stassen did some the earliest work on the subject at Delft
+University of Technology. They were primarily interested in identifying the
+human control system in the bicycle riding task. Their studies spanned several
+years in the late 60&#8217;s and early 70&#8217;s. <a class="reference internal" href="zreferences.html#lunteren1967">[VLS67]</a>,
+<a class="reference internal" href="zreferences.html#lunteren1969">[VLS69]</a>, <a class="reference internal" href="zreferences.html#lunteren1970">[VLS70a]</a>, <a class="reference internal" href="zreferences.html#lunteren1970a">[VLS70b]</a>,
+<a class="reference internal" href="zreferences.html#stassen1973">[SVLB+73]</a>, <a class="reference internal" href="zreferences.html#lunteren1973">[VLS73]</a> uses a bicycle roll angle feedback
+with PID control that drives the rider&#8217;s lean angle and steer angle. The
+bicycle model they employ is quite simple (it models their simulator more than
+a real bicycle) and does not exhibit proper coupling in steer and roll. The
+model also utilizes angle inputs as opposed to input torques. Their control
+structure was chosen in part because of equipment limitations but they cite
+recent manual control models <a class="reference internal" href="zreferences.html#mcruer1967">[MGK67a]</a> as being preferable.
+Nonetheless the research was ground breaking at the time and quite impressive,
+with real time system identification in a manually controlled electromechanical
+system. They concluded using roll angle input was more reflexive and that the
+control using steer angle was more cerebral based on identified time delays.
+They further developed their system to include a visual tracking outer loop.
+<a class="reference internal" href="zreferences.html#lange2011">[DL11]</a> develops a more up-to-date model with the same type of
+structure as van Lunteren and Stassen, in which he feeds back roll angle and steer
+angle, and drives steer torque with PID controllers. He also points out a sign
+error in van Lunteren and Stassen&#8217;s work.</p>
 </div>
 <div class="section" id="calspan">
-<h3>Calspan<a class="headerlink" href="#calspan" title="Permalink to this headline">¶</a></h3>
-<p>The Calspan group developed a controller for their bicycle and motorcycle
-research that parallels the Delft work except they make use of the latest
+<h3>CALSPAN<a class="headerlink" href="#calspan" title="Permalink to this headline">¶</a></h3>
+<p>The CALSPAN group developed a controller for their bicycle and motorcycle
+research that parallels the Delft work except they made use of the latest
 bicycle and motorcycle models with steer torque and learn torques as plant
-inputs <a class="reference internal" href="zreferences.html#roland1972">[RL72]</a>. The specifically point the advantages of describing the
-inputs as torques and cite the Delft group&#8217;s misguided assumptions. They design
-a PID controller with time delays for both steer torque and rider lean torque
-control to stabilize the inner roll loop. The outer loops consist of the
-previewed error in the desired path in several future time steps. This error is
-weighted to calculate a cumulative error which is then multiplied by a gain to
-compute an adjustment to the commanded roll angle. They show simulations of
-both good roll stabilization and slalom path tracking which they compare to
-video footage of an actual bicycle rider.</p>
+inputs <a class="reference internal" href="zreferences.html#roland1972">[RL72]</a>. The specifically point out the advantages of
+choosing the inputs to be torques and cite the Delft group&#8217;s misguided
+assumptions. They design a PID controller with time delays for both steer
+torque and rider lean torque control to stabilize the inner roll loop. The
+outer loops consist of the previewed error in the desired path at several
+future time steps. This error is weighted to calculate a cumulative error which
+is then multiplied by a gain to compute an adjustment to the commanded roll
+angle. They show simulations of both good roll stabilization and slalom path
+tracking which they compare to video footage of an actual bicycle rider.</p>
 </div>
 <div class="section" id="weir-and-zellner">
 <h3>Weir and Zellner<a class="headerlink" href="#weir-and-zellner" title="Permalink to this headline">¶</a></h3>
 <p>Weir worked with McRuer on some manual control papers prior to his PhD thesis
-<a class="reference internal" href="zreferences.html#weir1972">[Wei72]</a>, where he employed the crossover model along side a motorcycle model
-which is based on Sharp&#8217;s early motorcycle model <a class="reference internal" href="zreferences.html#sharp1971">[Sha71]</a> to evaluate the
-controller used by humans. This is the most likely the first complete attempt
-at analyzing the rider-motorcycle control system. Weir determined that roll
-angle feedback combined with a basic human model and a simple gain controlling
-steer torque was the most effective control mechanism. In particular, he showed
-how steer angle control was poor and he even examined rider lean angle control
-using a pseudo rider lean model similar to <a class="reference internal" href="zreferences.html#hess2012">[HMH12]</a>. Rider lean could
-successfully control the system, but required large lean angles. He also worked
-with multiple loop closures and found that roll angle fed back to control steer
-torque with heading and lateral deviation fed back to control rider lean angle
-presented the best control strategy for the human rider. He only did his
-studies at a single high speed with a motorcycle model which only required
-stabilization of the capsize mode. It is highly likely that these control
-strategies could vary with speed, especially at low speed where the weave mode
-is the dominant instability. Weir and Zellner went on to complete several more
-important studies involving manual control of the motorcycle <a class="reference internal" href="zreferences.html#weir1978">[WZ78]</a>,
-<a class="reference internal" href="zreferences.html#weir1979">[WZ79]</a>, including a detailed technical report for the U.S. Department of
-Transportation <a class="reference internal" href="zreferences.html#weir1979a">[WZT79]</a> in which much experimental work was done verifying
-their mathematical models.</p>
+<a class="reference internal" href="zreferences.html#weir1972">[Wei72]</a>, where he employed the crossover model together with a
+motorcycle model which is based on Sharp&#8217;s early motorcycle model
+<a class="reference internal" href="zreferences.html#sharp1971">[Sha71]</a> to evaluate the controller used by humans. This is the first
+complete attempt at analyzing the rider-motorcycle control system. Weir
+determined that roll angle feedback combined with a basic human model and a
+simple gain controlling steer torque was the most descriptive control
+mechanism. In particular, he showed how steer angle control was poor and he
+even examined rider lean angle control using a pseudo rider lean model similar
+to <a class="reference internal" href="zreferences.html#hess2012">[HMH12]</a>. Rider lean could successfully control the system, but
+required large lean angles. He also worked with multiple loop closures and
+found that roll angle fed back to control steer torque, with heading and
+lateral deviation fed back to control rider lean angle presented the best
+control strategy for the human rider. He only did his studies at a single high
+speed with a motorcycle model which only required stabilization of the capsize
+mode. It is highly likely that these control strategies could vary with speed,
+especially at low speed where the weave mode is the dominant instability. Weir
+and Zellner went on to complete several more important studies involving manual
+control of the motorcycle <a class="reference internal" href="zreferences.html#weir1978">[WZ78]</a>, <a class="reference internal" href="zreferences.html#weir1979">[WZ79]</a>, including a
+detailed technical report for the U.S. Department of Transportation
+<a class="reference internal" href="zreferences.html#weir1979a">[WZT79]</a> in which much experimental work was done verifying their
+mathematical models.</p>
 </div>
 <div class="section" id="eaton">
 <h3>Eaton<a class="headerlink" href="#eaton" title="Permalink to this headline">¶</a></h3>
-<p>Eaton&#8217;s PhD work builds off of Weir&#8217;s work and is primarily focused on
-validating the Weir models with experiments. He pairs the successful motorcycle
-model develop by Sharp <a class="reference internal" href="zreferences.html#sharp1971">[Sha71]</a> with Weir&#8217;s McRuer style manual control
-models that were based around the crossover model with time delays. He focused
-on the inner loop roll stabilization tasks. His model uses roll angle feedback
-and the controller compensates for roll angle error. He eliminates body lean
-control as an option to simplify things.</p>
+<p>Eaton&#8217;s PhD thesis builds off of Weir&#8217;s work and is primarily focused on
+validating the Weir models with experiments <a class="reference internal" href="zreferences.html#eaton1973">[Eat73b]</a>. He pairs the
+successful motorcycle model develop by Sharp <a class="reference internal" href="zreferences.html#sharp1971">[Sha71]</a> with Weir&#8217;s
+McRuer-style manual control models that were based on the crossover model
+with time delays. He focused on the inner loop roll stabilization tasks. His
+model uses roll angle feedback and the controller compensates for roll angle
+error. He eliminates body lean control as an option to simplify things.</p>
 </div>
 <div class="section" id="aoki">
 <h3>Aoki<a class="headerlink" href="#aoki" title="Permalink to this headline">¶</a></h3>
-<p>For completeness, <a class="reference internal" href="zreferences.html#aoki1979">[Aok79]</a> should be included, although I have had time to
-study his work. It looks promising with both a human control model and
+<p>For completeness, <a class="reference internal" href="zreferences.html#aoki1979">[Aok79]</a> should be included, although I have not had
+time to study his work. It looks promising with both a human control model and
 experimental validation.</p>
 </div>
 <div class="section" id="doyle">
 <h3>Doyle<a class="headerlink" href="#doyle" title="Permalink to this headline">¶</a></h3>
-<p>A recently uncovered study by Doyle (<a class="reference internal" href="zreferences.html#doyle1987">[Doy87]</a>, <a class="reference internal" href="zreferences.html#doyle1988">[Doy88]</a>), thanks to
-Google&#8217;s book scanning endeavors and Jim Papadopoulos&#8217;s persistence in
-searching, presents a slow speed view for bicycle control in much contrast to
-the Weir studies, not only because of the speed and vehicle differences, but
-because it is from the view of a psychologist. We engineers are quick to model
-the human sensory and actuation system, with little understanding of the
-intricacies of the human brain. Doyle&#8217;s treatise gives a refreshing look from
-outside the engineering box. Doyle&#8217;s control model is fundamentally a
+<p>A recently uncovered study by Doyle (<a class="reference internal" href="zreferences.html#doyle1987">[Doy87]</a>, <a class="reference internal" href="zreferences.html#doyle1988">[Doy88]</a>),
+thanks to Google&#8217;s book scanning endeavors and Jim Papadopoulos&#8217;s persistence
+in searching, presents a slow speed view for bicycle control in much contrast
+to the Weir studies, not only because of the speed and vehicle differences, but
+because it is examined from the view of a psychologist. We engineers are quick
+to model the human sensory and actuation system, with little understanding of
+the intricacies of the human brain. Doyle&#8217;s treatise gives a refreshing look
+from outside the engineering box. Doyle&#8217;s control model is fundamentally a
 sequential loop closure with the inner most loop being roll control and the
 outer two being heading and path deviation. He says that the outer loops are
 highly dependent on the inner loop. For the inner loop he determines that
-continuously feeding back both roll acceleration with integral and proportional
-gains adjusted by the human as the crossover model dictates will stabilize the
-bicycle at non-intended roll angles. To control roll angle, he claims that we
-do not do this in a continuous but that we apply discrete pulses when the roll
-angle meets a threshold. This continuous portion of this model has similar form
-to the one developed by Weir and which in turn resembles our model which is
-detailed in the next section.</p>
+continuously feeding back both roll acceleration, with integral and
+proportional gains adjusted by the human as the crossover model dictates, will
+stabilize the bicycle at non-intended roll angles. To control roll angle, he
+claims that we do not do this in a continuous way but rather that we apply
+discrete pulses when the roll angle meets a threshold. The continuous portion
+of this model has similar form to the one developed by Weir which in turn
+resembles our model detailed in the next section.</p>
 </div>
 <div class="section" id="wu-and-liu">
 <h3>Wu and Liu<a class="headerlink" href="#wu-and-liu" title="Permalink to this headline">¶</a></h3>
-<p>I&#8217;ll mention briefly some about modeling the human with fuzzy control. I have
+<p>I&#8217;ll mention briefly some efforts modeling the human with fuzzy control. I have
 little understanding of fuzzy control but <a class="reference internal" href="zreferences.html#cloud1994">[Clo94]</a> says that fuzzy
 control methodologies fundamentally let one translate linguistic rules from an
 expert in controlling the particular system into a control logic algorithm.
 <a class="reference internal" href="zreferences.html#takagi1983">[TS83]</a> discussed developing fuzzy control rules from the human
 operator&#8217;s actions. This somewhat parallels how the PID controller was
 developed based on a ship helmsman&#8217;s decision structure
-<a class="reference internal" href="zreferences.html#wikipediapidcontroller2012">[Wik12c]</a>. It seems like it may certainly be valuable
-for conscious control efforts, but may have deficiencies when trying to
-determine the control strategy of unconscious control. But a combination of
-fuzzy logic and crossover type control may prove useful in describing the human
-control system. Liu and Wu have done extensive work applying fuzzy control to
-single track vehicles (<a class="reference internal" href="zreferences.html#liu1993">[LW93]</a>, <a class="reference internal" href="zreferences.html#wu1994">[WL94]</a>, <a class="reference internal" href="zreferences.html#wu1995">[WL95]</a>,
-<a class="reference internal" href="zreferences.html#wu1996">[WL96a]</a>, <a class="reference internal" href="zreferences.html#wu1996a">[WL96d]</a>, <a class="reference internal" href="zreferences.html#wu1996b">[WL96b]</a>, <a class="reference internal" href="zreferences.html#wu1996c">[WL96c]</a>). I have not
-studied the work in detail, but it is worth noting here.</p>
+<a class="reference internal" href="zreferences.html#wikipediapidcontroller2012">[Wik12c]</a>. It seems to certainly be valuable for
+conscious control efforts, but may have deficiencies when trying to determine
+the control strategy of unconscious control. But a combination of fuzzy logic
+and crossover type control may prove useful in describing the human control
+system. Liu and Wu have done extensive work applying fuzzy control to single
+track vehicles (<a class="reference internal" href="zreferences.html#liu1993">[LW93]</a>, <a class="reference internal" href="zreferences.html#wu1994">[WL94]</a>, <a class="reference internal" href="zreferences.html#wu1995">[WL95]</a>,
+<a class="reference internal" href="zreferences.html#wu1996">[WL96a]</a>, <a class="reference internal" href="zreferences.html#wu1996a">[WL96d]</a>, <a class="reference internal" href="zreferences.html#wu1996b">[WL96b]</a>, <a class="reference internal" href="zreferences.html#wu1996c">[WL96c]</a>).</p>
 </div>
 <div class="section" id="mammar">
 <h3>Mammar<a class="headerlink" href="#mammar" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference internal" href="zreferences.html#mammar2005">[MEH05]</a> developed a motorcycle control scheme based on a motorcycle
-dynamics model similar to Robin Sharp&#8217;s work with steer torque and rider lean
-angle as the model inputs. He includes human model with four elements: a simple
-second order neuromuscular model similar to <a class="reference internal" href="zreferences.html#hess2012">[HMH12]</a>, a time delay, gain,
-and a first order lead filter representing a mental workload model. His control
-elements include a roll angle feedback gain, a reference signal prefilter, and
-a compensator with proportional, integral, and lead control terms. The
-proportional term in the compensator is the only speed dependent term. They
-select the numerical values for the control elements using <span class="math">\(H_\infty\)</span>
-loop shaping for robustness. They finally show simulation results with good
-performance with regards to disturbance rejection and roll tracking.</p>
+dynamics model similar to Sharp&#8217;s work with steer torque and rider lean angle
+as the model inputs. He includes a human model with four elements: a simple
+second order neuromuscular model similar to that of <a class="reference internal" href="zreferences.html#hess2012">[HMH12]</a>, a time
+delay, gain, and a first order lead filter representing a mental workload
+model. His control elements include a roll angle feedback gain, a reference
+signal pre-filter, and a compensator with proportional, integral, and lead
+control terms. The proportional term in the compensator is the only speed
+dependent term. They select the numerical values for the control elements using
+<span class="math">\(H_\infty\)</span> loop shaping for robustness. They finally show simulation
+results with good performance with regard to disturbance rejection and roll
+tracking.</p>
 </div>
 <div class="section" id="de-lange">
 <h3>de Lange<a class="headerlink" href="#de-lange" title="Permalink to this headline">¶</a></h3>
-<p>More recently, <a class="reference internal" href="zreferences.html#lange2011">[DL11]</a> wrote his master&#8217;s thesis on identifying the human
-controller in the bicycle-rider system. He employed a controller which fed back
-roll angle and steer angle with PID plus second derivative control and time
-delays to command steer torque through a neuromuscular model filter to the
+<p>More recently, <a class="reference internal" href="zreferences.html#lange2011">[DL11]</a> wrote his master&#8217;s thesis on identifying the
+human controller in the bicycle-rider system. He employed a controller which
+fed back roll angle and steer angle with PID plus second derivative control and
+time delays to command steer torque through a neuromuscular model filter to the
 Whipple model. The model is similar in flavor to van Lunteren and Stassen&#8217;s,
 but more up-to-date and uses more feedback loops. He chose eight gains plus
 time delays and attempted to identify which loops were not important from the
 experimental data presented in the next Chapter <a class="reference internal" href="systemidentification.html#systemidentification"><em>System Identification</em></a>. He
 finds that the critical feedback variables for a stable model were roll angle,
 roll rate, steering rate, and the integral of the steer angle, claiming the
-last one in is proportional to heading and thus the rider controls heading with
-steer. He also finds the time delays generally destabilize his model and
-he removes them.</p>
+last one is proportional to heading and thus the rider controls heading with
+steer. He also finds the time delays generally destabilize his model and he
+removes them.</p>
 </div>
 <div class="section" id="hess">
 <h3>Hess<a class="headerlink" href="#hess" title="Permalink to this headline">¶</a></h3>
@@ -775,7 +771,7 @@ more detail.</p>
 <p>A single track vehicle can be stabilized and controlled by a variety of means.
 Controllers based on simplified dynamical models can potentially control more
 advanced linear and nonlinear models and/or real systems (i.e. steer into the
-fall). The roll stabilization is the critical tasks, as path following can&#8217;t
+fall). The roll stabilization is the critical task, as path following can&#8217;t
 occur without roll control authority. Few people have demonstrated robust
 control of a <em>real</em> system which stabilizes in roll at a variety of speeds. Even
 fewer have added path tracking abilities. It doesn&#8217;t seem like anyone has
@@ -795,46 +791,47 @@ provides a good overview. Some of the controllers are essentially equivalent
 placing the closed loop poles in the same place, but make use of different
 techniques to get to the end result. <a class="reference internal" href="zreferences.html#lange2011">[DL11]</a> notes that all feedback
 controllers can be mapped to a common structure. The models may also be
-different in complexity. But in general finding the simplest mathematical model
-capable of capturing the dynamics one is interested in is a good goal. With
-this in mind, my advisor Ron Hess developed a controller based on the Whipple
-bicycle model and his previous successful multi-loop human operator models. We
-present the control model and the loop closure procedure for selecting the five
-model gains in <a class="reference internal" href="zreferences.html#hess2012">[HMH12]</a>. This model is fundamentally similar in nature to
-Weir&#8217;s work and is built on the same foundations such as that of McRuer et. al.
-We similarly found steer angle based control to be troublesome and had success
-across a broad range of speeds and selection of bicycles with steer torque
-control. We also employed a similar method of evaluating rider lean control
-without introducing an extra degree of freedom. It also has semblance to the work
-of <a class="reference internal" href="zreferences.html#doyle1987">[Doy87]</a> with the inner loop structure dedicated to roll stabilization
-and the outer loops to high cognitive control in heading and path tracking.</p>
+different in complexity. But in general, finding the simplest mathematical
+model capable of capturing the desired dynamics is a good goal. With this in
+mind, my advisor Ron Hess developed a controller based on the Whipple bicycle
+model and his previous successful multi-loop human operator models. We present
+the control model and the loop closure procedure for selecting the five model
+gains in <a class="reference internal" href="zreferences.html#hess2012">[HMH12]</a>. This model is fundamentally similar in nature to
+Weir&#8217;s work and is built on the same foundations such as that of McRuer et al.
+(<a class="reference internal" href="zreferences.html#mcruer1967">[MGK67a]</a> <a class="reference internal" href="zreferences.html#mcruer1967a">[MGK67b]</a>). We similarly found steer angle based
+control to be troublesome and had success across a broad range of speeds and
+selection of bicycles with steer torque control. We also employed a similar
+method of evaluating rider lean control without introducing an extra degree of
+freedom. It also resembles the work of <a class="reference internal" href="zreferences.html#doyle1987">[Doy87]</a> with the inner loop
+structure dedicated to roll stabilization and the outer loops to high cognitive
+control in heading and path tracking.</p>
 <div class="section" id="basics-of-manual-control-theory">
 <h3>Basics of manual control theory<a class="headerlink" href="#basics-of-manual-control-theory" title="Permalink to this headline">¶</a></h3>
 <p>Manual control, or human operator control, was primarily birthed from control
 engineers after World War II. The requirements for machine designs in which
 humans were the principal control element, such as artillery guns and aircraft,
-led to human control modeling. Theoretical work by [Tustin1947] theorized
-early on that a human control systems could be modeled similarly to automatic
-feedback systems. Tustin&#8217;s work was followed by years of theoretical and
-experimental work by McRuer and group to understand the control system of
-aircraft pilots.</p>
-<p>McRuer&#8217;s found out that it turns out that humans adjust their control such that
-the combined human and plant dynamics behave with desirable closed loop
-dynamics in many types of tracking tasks. This phenomena can be captured by a
-variety of theoretical control structures from simple dynamics to complex
-neuromuscular models <a class="reference internal" href="zreferences.html#hess1997">[Hes97]</a>. Fortunately, the simpler models can often
-capture much of the essential dynamics in human-machine systems such our
-bicycle-rider system. In particular, we make use of the crossover model
-<a class="reference internal" href="zreferences.html#mcruer1974">[MK74]</a> to structure our controller design. The reason for this is
-multi-fold. It allows us to stick with a simple system which has been applied
-to numerous man-machine systems with good results.</p>
-<p>The basic idea of the crossover model is that the when the human is paired
-with the plant which she is trying to control that the combined open loop
-transfer function conforms to the dictates of a sound control system design
-around the crossover frequency <a class="reference internal" href="zreferences.html#hess1997">[Hes97]</a>. The form of this transfer function
-for many control tasks remarkably takes the form</p>
+led to human control modeling. Work by <a class="reference internal" href="zreferences.html#tustin1947">[Tus47]</a> theorized early on
+that human control systems could be modeled similarly to automatic feedback
+systems. Tustin&#8217;s work was followed by years of theoretical and experimental
+work by McRuer and his group to understand the control system of aircraft
+pilots.</p>
+<p>McRuer&#8217;s group found out that humans adjust their control such that the
+combined human and plant dynamics behave with desirable closed loop dynamics in
+many types of tracking tasks. This phenomenon can be captured by a variety of
+theoretical control structures from simple dynamics to complex neuromuscular
+models <a class="reference internal" href="zreferences.html#hess1997">[Hes97]</a>. Fortunately, the simpler models can often capture much
+of the essential dynamics in human-machine systems such as our bicycle-rider
+system. In particular, we make use of the crossover model <a class="reference internal" href="zreferences.html#mcruer1974">[MK74]</a> to
+structure our controller design. The reason for this is multi-fold. It allows
+us to use a simple system which has been applied to numerous man-machine
+systems with good results.</p>
+<p>The basic idea of the crossover model is that, when the human is paired with
+the plant which she is trying to control, the combined open loop transfer
+function conforms to the dictates of a sound control system design around the
+crossover frequency <a class="reference internal" href="zreferences.html#hess1997">[Hes97]</a>. The form of this transfer function for
+many control tasks remarkably takes the form</p>
 <div class="math" id="equation-crossover">
-<span class="eqno">(5)</span>\[G_{human}G_{plant}(s) = \frac{\omega_c e^{-\tau_e s}}{s}\]</div>
+<span class="eqno">(6)</span>\[G_{human}G_{plant}(s) = \frac{\omega_c e^{-\tau_e s}}{s}\]</div>
 <p>The model is governed by only two parameters: the cross over frequency,
 <span class="math">\(\omega_c\)</span> and the effective time delay, <span class="math">\(\tau_e\)</span>. The simplicity
 of this model and its ability to describe many human in the loop systems is
@@ -844,15 +841,9 @@ crossover frequencies and various performance levels. The majority of the
 model&#8217;s experimental validation efforts have been based around laboratory and
 vehicle control tasks where good performance was required (i.e. skilled
 subjects).</p>
-<p>We also focus only on compensatory control structure where the human closes
-loops based on output error. This is a simplification as human&#8217;s are able to
-to take advantage of pursuit and preview based control.</p>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">Cerebellum is the lower brain (learned control). High cortical
-regions and outer cortex is the higher brain. Under-conscious control or sub
-conscious.</p>
-</div>
+<p>We also focus only on compensatory control structures where the human closes
+loops based on output error. This is a simplification as humans are also able
+to to take advantage of pursuit and preview based control.</p>
 </div>
 <div class="section" id="model-description">
 <h3>Model Description<a class="headerlink" href="#model-description" title="Permalink to this headline">¶</a></h3>
@@ -863,10 +854,10 @@ loops. The system should be stable in roll before closing the path following loo
 <li>The input to the bicycle and rider biomechanic model is steer torque.</li>
 <li>The neuromuscular mode of the closed system should have a natural frequency
 around 10 rad/s to match laboratory tracking tasks of a human operator.</li>
-<li>The system should be simple. In our case such that only simple gains are
-needed to stabilized the system and close all the loops.</li>
-<li>We should see evidence of the crossover model in the open roll, heading, and
-lateral deviation loops.</li>
+<li>The system should be simple. In our case only simple gains are needed to
+stabilize the system and close all the loops.</li>
+<li>We should see evidence of the crossover model in the open loop roll,
+heading, and lateral deviation loops.</li>
 </ol>
 <p>The multi-loop model we use is constructed with a sequential loop closure
 technique that sets the model up to follow the dictates of the crossover model.
@@ -875,7 +866,7 @@ loops manage the path following. We include a simple second order model of the
 human&#8217;s open-loop neuromuscular dynamics which produces a steer torque from the
 steer angle error.</p>
 <div class="math" id="equation-eqNeuromuscular">
-<span class="eqno">(6)</span>\[G_{nm}(s) = \frac{\omega_{nm}^2}{s^2 + 2\zeta_{nm}\omega_{nm}s + \omega_{nm}}\]</div>
+<span class="eqno">(7)</span>\[G_{nm}(s) = \frac{\omega_{nm}^2}{s^2 + 2\zeta_{nm}\omega_{nm}s + \omega_{nm}}\]</div>
 <p>The neuromuscular parameters, <span class="math">\(\zeta_{nm}\)</span> and <span class="math">\(\omega_{nm}\)</span>, were
 chosen as 0.707 and 30 rad/s, respectively, such that the innermost loops gave
 a typical response for a human operator.</p>
@@ -883,7 +874,7 @@ a typical response for a human operator.</p>
 configuration with the primary control input being steer torque. The inner
 loops are closed with sequential gains starting with the proprioceptive steer
 angle loop, followed by the vestibular roll rate loop, and the visual roll
-angle loop<a class="footnote-reference" href="#blind" id="id142">[2]</a>, <a class="reference internal" href="#figinnerloops"><em>Figure 12.6</em></a>. The steer angle loop
+angle loop<a class="footnote-reference" href="#blind" id="id148">[4]</a>, <a class="reference internal" href="#figinnerloops"><em>Figure 12.6</em></a>. The steer angle loop
 in essence captures the force/feel or haptic feedback we use while interacting
 with the handlebars. The need for this loop is readily apparent when trying to
 control a bicycle simulation with a joystick or steering wheel with no haptic
@@ -894,18 +885,22 @@ loops are also visual: heading and lateral path deviation, <a class="reference i
 12.7</em></a>.</p>
 <div class="figure align-center" id="figinnerloops">
 <a class="reference external image-reference" href="_images/inner-loops.png"><img alt="_images/inner-loops.png" src="_images/inner-loops.png" style="width: 5in;" /></a>
-<p class="caption">The inner loop structure of the control system.</p>
+<p class="caption">The inner loop structure of the control system with steer angle
+<span class="math">\(\delta\)</span>, roll rate <span class="math">\(\dot{\phi}\)</span>, and roll angle <span class="math">\(\phi\)</span>
+feedback loops.</p>
 </div>
 <div class="figure align-center" id="figouterloops">
 <a class="reference external image-reference" href="_images/outer-loops.png"><img alt="_images/outer-loops.png" src="_images/outer-loops.png" style="width: 4in;" /></a>
-<p class="caption">The outer loop structure of the control system with the inner loops closed.</p>
+<p class="caption">The outer loop structure of the control system with the inner loops closed.
+The heading <span class="math">\(\psi\)</span> and front wheel lateral deviation <span class="math">\(y_q\)</span> are
+fed back.</p>
 </div>
 <p>The control structure is simply a function of five gains, which the human
 &#8220;chooses&#8221; such that the dictates of the crossover model are met to get good
-overall system performance. The two inner most loop gains are chosen such that
-all of the oscillatory roots of the closed roll rate loop have at least a 0.15
-damping ratio. Whereas the three outer loop gains are chosen such that the
-system has a -20db slope around crossover. The crossover frequencies are
+overall system performance. The two inner-most loop gains are chosen such that
+all of the oscillatory roots of the roll rate closed loop have at least a 0.15
+damping ratio. The three outer loop gains are chosen such that the
+system has a -20 dB slope around crossover. The crossover frequencies are
 selected sequentially such that the next is half the value of the previous.</p>
 <p>Traditionally, sequential loop closure methods are performed on a case by case
 basis and involve some subjectiveness in applying the design rules of thumb.
@@ -913,135 +908,148 @@ This is time consuming and error prone when you have to find the gains for many
 systems such as our bicycles and riders at various speeds. The technique
 described in <a class="reference internal" href="zreferences.html#hess2012">[HMH12]</a> can be automated to alleviate this. The following
 gives the details for developing the gain selection routine.</p>
-<p>The closed roll angle loop should be stable, as stability in roll is critical
+<p>The roll angle closed loop should be stable, as stability in roll is critical
 for the path tracking in the outer two loops. To get there, the closure of the
 proprioceptive and vestibular loops must push the poles to a favorable spot for
 application of the crossover model on the roll angle loop. To do this, the
-first two loop closure require that all of the oscillatory modes have a minimum
-damping ratio of 0.15 and natural frequency out around 10 rad/s. We first use
+first two loop closures require that all of the oscillatory modes have a minimum
+damping ratio of 0.15 and natural frequency around 10 rad/s. We first use
 the proprioceptive gain, <span class="math">\(k_\delta\)</span> to push the poles originating at the
 bicycle weave eigenvalue to a higher frequency with about 0.55 damping ratio.
-The choice of this gain is somewhat ambiguous, but it needs to set the weave
+The choice of this gain is somewhat arbitrary, but it needs to set the weave
 mode pole such that it has a small enough damping ratio to allow the roll rate
 loop to further push it to a damping ratio of 0.15. In <a class="reference internal" href="zreferences.html#hess2012">[HMH12]</a> we make both
 loops have a 0.15 damping ratio, but that is not necessary and may not be what
-the human chooses. The closed loop transfer function for the steer loop is</p>
+the human does. The closed loop transfer function for the steer loop is</p>
 <div class="math" id="equation-eqDeltaLoop">
-<span class="eqno">(7)</span>\[G_{\delta c}(s) = \frac{\delta}{\delta_c}(s) =
-\frac{G_{\delta o}(s)}{1 + G_{\delta o}(s)}\]\[G_{\delta o}(s) = k_\delta G_{nm} \left(\frac{\delta}{T_\delta}\right)_b(s)\]</div>
-<p>A numerical example of Charlie on the Rigidcl bicycle at 5 m/s give numerical
+<span class="eqno">(8)</span>\[G_{\delta c}(s) = \frac{\delta}{\delta_c}(s) =
+\frac{G_{\delta o}(s)}{1 + G_{\delta o}(s)}\]</div>
+<p>where</p>
+<div class="math" id="equation-eqDeltaLoop2">
+<span class="eqno">(9)</span>\[G_{\delta o}(s) = k_\delta G_{nm} \left(\frac{\delta}{T_\delta}\right)_b(s)\]</div>
+<p>A numerical example of Charlie on the Rigidcl bicycle at 5 m/s gives numerical
 values for the open steer angle loop</p>
 <div class="math" id="equation-eqDeltaLoopNumerical">
-<span class="eqno">(8)</span>\[G_{\delta o}(s)|_{k_\delta = 1} =
+<span class="eqno">(10)</span>\[G_{\delta o}(s)|_{k_\delta = 1} =
 \frac{4990.0342 (s+2.934) (s-2.934)}
 {(s+17.08) (s+2.56) (s^2 - 1.306s + 5.18) (s^2 + 43.02s + 900)}\]</div>
 <p>The characteristic equation is 6th order and the caster, capsize, and
 neuromuscular modes are all stable whereas the weave mode is unstable. The
 first loop closure will drive the unstable weave pole out to a higher frequency
 and mid-range damping ratio.</p>
-<p>To set the damping ratio multiple approaches can be taken, here I&#8217;ll show a
+<p>To set the damping ratio multiple approaches can be taken. Here I&#8217;ll show a
 Bode design approach and a root locus based design. For the Bode design we
-select a gain that creates a damped neuromuscular peak out around 10 rad/s,
+select a gain that creates a damped neuromuscular peak near 10 rad/s,
 <a class="reference internal" href="#figdeltabode"><em>Figure 12.8</em></a>. For this bicycle and speed, a gain of ~17.5
 will set the inner loop as desired.</p>
 <div class="figure align-center" id="figdeltabode">
 <a class="reference external image-reference" href="_images/delta-bode.png"><img alt="_images/delta-bode.png" src="_images/delta-bode.png" style="width: 4in;" /></a>
 <p class="caption">The Bode plots of the closed steer loop with various gains. Notice how the
-higher gains start to push the neuromuscular peak closer to a frequency
-typical of human operator and plant dynamics <a class="reference internal" href="zreferences.html#hess2012">[HMH12]</a>.</p>
+higher gains start to increase the bandwidth by pushing the neuromuscular
+pole closer to a frequency typical of human operator and plant dynamics
+<a class="reference internal" href="zreferences.html#hess2012">[HMH12]</a>. Generated by <tt class="docutils literal"><span class="pre">src/control/choose_gains.m</span></tt>.</p>
 </div>
 <p>By plotting the root locus of the closed loop poles as a function of
 <span class="math">\(k_\delta\)</span> the desired gain can also easily be picked off on a root locus
-diagram, <a class="reference internal" href="#figdeltalocus"><em>Figure 12.9</em></a>.  The root locus of the closed delta
+diagram, <a class="reference internal" href="#figdeltalocus"><em>Figure 12.9</em></a>. The root locus of the steer closed
 loop poles as a function of <span class="math">\(k_\delta\)</span> gives an idea where we can push
 the poles for the next loop closure. Notice that the poles associated with the
-weave mode at <span class="math">\(k_\delta=0\)</span> are pushed into the stable regime and back
-out, crossing the 0.55 damping ratio line twice. There is a range of gains
+weave mode at <span class="math">\(k_\delta=0\)</span> are pushed into the stable regime and back out
+again, crossing the 0.55 damping ratio line twice. There is a range of gains
 between about 4.0 and 17.5 which cause all of the oscillatory modes to have at
 least 0.55 damping ratio. This is very clear when plotting the damping ratio
-versus gain in <a class="reference internal" href="#figdeltadamp"><em>Figure 12.10</em></a>. The best choice is typically to
-set the gain such that the pole is at the highest frequency allowable with
-minimum damping, to give typical human operator behavior. This will set up the
-bandwith of the subsequent loops to be high enough for good system
+versus gain in <a class="reference internal" href="#figdeltadamp"><em>Figure 12.10</em></a>. The best choice typically is
+to set the gain such that the pole is at the highest frequency allowable with
+minimum damping, to give typically observed human operator behavior. This will
+set up the bandwidth of the subsequent loops to be high enough for good system
 performance.</p>
 <div class="figure align-center" id="figdeltalocus">
 <a class="reference external image-reference" href="_images/delta-locus.png"><img alt="_images/delta-locus.png" src="_images/delta-locus.png" style="width: 4in;" /></a>
-<p class="caption">The root locus of the closed delta loop poles plotted 0 to <span class="math">\(\infty\)</span>.</p>
+<p class="caption">The root locus of the steer closed loop poles versus <span class="math">\(k_\delta\)</span>
+plotted from 0 to <span class="math">\(\infty\)</span>. Generated by
+<tt class="docutils literal"><span class="pre">src/control/choose_gains.m</span></tt>.</p>
 </div>
 <div class="figure align-center" id="figdeltadamp">
 <a class="reference external image-reference" href="_images/delta-damp.png"><img alt="_images/delta-damp.png" src="_images/delta-damp.png" style="width: 4in;" /></a>
-<p class="caption">The damping ratio of the poles as a function of gain. Note that there are
-gains such that all the roots are stable and the damping ratio is at least
-0.55, although inner loop stability is not a requirement for total system
-stability.</p>
+<p class="caption">The damping ratio of all the poles as a function of gain. Note that there
+are gains such that all the roots are stable and the damping ratio is at
+least 0.55, although inner loop stability is not a requirement for total
+system stability. Generated by <tt class="docutils literal"><span class="pre">src/control/choose_gains.m</span></tt>.</p>
 </div>
 <p>With the loop closed at <span class="math">\(k_\delta=17.48\)</span> the transfer function takes the form</p>
 <div class="math" id="equation-eqDeltaClosed">
-<span class="eqno">(9)</span>\[G_{\delta c}(s) =
+<span class="eqno">(11)</span>\[G_{\delta c}(s) =
 \frac{87225.7974 (s+2.934) (s-2.934)}
 {(s+3.175) (s-1.767) (s^2 + 10.86s + 97.55) (s^2 + 48.48s + 998.8)}\]</div>
 <p>Notice the single unstable pole at <span class="math">\(s=1.767\)</span>. The roll rate loop closure
-transfer function takes the form</p>
+transfer function now takes the form</p>
 <div class="math" id="equation-eqPhiDotLoop">
-<span class="eqno">(10)</span>\[G_{\dot{\phi} c}(s) =
+<span class="eqno">(12)</span>\[G_{\dot{\phi} c}(s) =
 \frac{\dot{\phi}}{\dot{\phi}_c}(s) =
-\frac{G_{\dot{\phi} o}(s)}{1 + G_{\dot{\phi} o}(s)}\]\[G_{\dot{\phi} o}(s) =
+\frac{G_{\dot{\phi} o}(s)}{1 + G_{\dot{\phi} o}(s)}\]</div>
+<p>where</p>
+<div class="math" id="equation-eqPhiDotLoop2">
+<span class="eqno">(13)</span>\[G_{\dot{\phi} o}(s) =
 k_{\dot{\phi}}
 k_{\delta}
 G_{nm}(s)
 \left( \frac{\dot{\phi}}{T_\delta} \right)_b(s)
 [1 - G_{\delta c}(s)]\]</div>
-<p>The roll rate loop gain is now chosen such that the neuromuscular mode has a
-minimum damping ratio of 0.15 and is around 10 rad/s. From <a class="reference internal" href="#figphidotdamp"><em>Figure
-12.11</em></a> we see that we need to set the roll rate gain to a
+<p>The roll rate loop gain, <span class="math">\(k_{\dot{\phi}}\)</span>, is now chosen such that the
+neuromuscular mode has a minimum damping ratio of 0.15 and frequency is around
+10 rad/s. From Figures <a class="reference internal" href="#figphidotlocus"><em>12.11</em></a> and
+<a class="reference internal" href="#figphidotdamp"><em>12.12</em></a> we see that we need to set the roll rate gain to a
 negative values, about -0.44. Since the bicycle with steer control exhibits
-non-minimum behavior, we need to introduce a positive feedback on roll rate. So
-it turns out that with a small negative gain we can maintain the neuromuscular
-mode behavior but introduce the required sign change for stability. This gives
-the desired 10 db peaking in the bode diagram, <a class="reference internal" href="#figphidotbode"><em>Figure
-12.12</em></a>.</p>
+non-minimum phase behavior, we need to introduce a positive feedback on roll
+rate. So it turns out that with a small negative gain we can maintain the
+neuromuscular mode behavior but introduce the required sign change for
+stability. This gives the desired 10 dB peaking in the Bode diagram,
+<a class="reference internal" href="#figphidotbode"><em>Figure 12.13</em></a>.</p>
 <div class="figure align-center" id="figphidotlocus">
 <a class="reference external image-reference" href="_images/phiDot-locus.png"><img alt="_images/phiDot-locus.png" src="_images/phiDot-locus.png" style="width: 4in;" /></a>
-<p class="caption">The root locus of the closed roll rate loop for gains from -4 to 2.</p>
+<p class="caption">The root locus of the roll rate closed loop for gains <span class="math">\(k_{\dot{\phi}}\)</span>
+from -4 to 2. Generated by <tt class="docutils literal"><span class="pre">src/control/choose_gains.m</span></tt>.</p>
 </div>
 <div class="figure align-center" id="figphidotdamp">
 <a class="reference external image-reference" href="_images/phiDot-damp.png"><img alt="_images/phiDot-damp.png" src="_images/phiDot-damp.png" style="width: 4in;" /></a>
-<p class="caption">The damping ratio of all roots to the closed loop roll rate loop as a
-function of gain.</p>
+<p class="caption">The damping ratio of all roots of the roll rate closed loop as a function of
+gain <span class="math">\(k_{\dot{\phi}}\)</span>. Generated by <tt class="docutils literal"><span class="pre">src/control/choose_gains.m</span></tt>.</p>
 </div>
 <div class="figure align-center" id="figphidotbode">
 <a class="reference external image-reference" href="_images/phiDot-bode.png"><img alt="_images/phiDot-bode.png" src="_images/phiDot-bode.png" style="width: 4in;" /></a>
-<p class="caption">The closed loop Bode plot of the roll rate loop. The neuromuscular mode
-peaks with a 10db magnitude.</p>
+<p class="caption">The Bode plot of the roll rate closed loop. The neuromuscular mode
+peaks with a 10 dB magnitude. Generated by <tt class="docutils literal"><span class="pre">src/control/choose_gains.m</span></tt>.</p>
 </div>
 <p>Notice that the closed roll rate loop does not have any right half plane zeros
 and there is a single unstable pole.</p>
 <div class="math" id="equation-eqPhiDotClosedNumerical">
-<span class="eqno">(11)</span>\[G_{\dot{\phi} c} =
+<span class="eqno">(14)</span>\[G_{\dot{\phi} c} =
 \frac{657.1919 s (s+77.09) (s+14.79)}
 {(s+8.106) (s-0.6015) (s^2 + 3.121s + 107.6) (s^2 + 50.13s + 1042)}\]</div>
 <p>The bicycle-rider system is similar enough in nature for speeds above 2 m/s
 that this loop closure seems to always work. We&#8217;ve had some trouble stabilizing
-the model at speeds below 2 m/s with the choice of <span class="math">\(k_\delta\)</span> an
+the model at speeds below 2 m/s, with the choice of <span class="math">\(k_\delta\)</span> an
 important factor in the ability to stabilize at low speeds. <a class="reference internal" href="zreferences.html#lange2011">[DL11]</a>
 reported difficulties stabilizing his system below about 2 m/s too. We&#8217;ve found
-that relaxing the 10 db peak requirement on the inner most loop such that the
+that relaxing the 10 dB peak requirement on the inner most loop such that the
 neuromuscular mode is more damped, will allow for successive closure and a
 stable system for lower speeds. But as we all know, the bicycle is very
 difficult for a human to balance at extremely low speeds. The fast time
 constants compounded with human neuro processing delays makes this true. There
-are such things as slow bicycle competitions that take advantage of this fact
+are slow bicycle riding competitions that take advantage of this fact
 to test the balancing skill of the rider.</p>
 <p>With the roll rate loop closed, the final three loops can be closed by setting
-the gain such that the crossover frequency of the roll most loop is 2 rad/s
-and the outer loops crossover at half the previous frequency. This is easily
-set by measuring the gain of transfer function at the desired crossover
-frequency and realizing that a unit change in gain will raise or lower the gain
-curve.</p>
+the gain such that the crossover frequency of the roll loop is 2 rad/s and the
+outer loops crossover at half the previous frequency. This is easily set by
+measuring the gain of transfer function at the desired crossover frequency and
+realizing that a change in gain will raise or lower the gain curve.</p>
 <div class="math" id="equation-eqPhiLoop">
-<span class="eqno">(12)</span>\[G_{\phi c}(s) =
+<span class="eqno">(15)</span>\[G_{\phi c}(s) =
 \frac{\phi}{\phi_c}(s) =
-\frac{G_{\phi o}(s)}{1 + G_{\phi o}(s)}\]\[G_{\phi o}(s) =
+\frac{G_{\phi o}(s)}{1 + G_{\phi o}(s)}\]</div>
+<p>where</p>
+<div class="math" id="equation-eqPhiLoop2">
+<span class="eqno">(16)</span>\[G_{\phi o}(s) =
 k_{\phi}
 k_{\dot{\phi}}
 k_{\delta}
@@ -1052,95 +1060,107 @@ G_{nm}(s)
 [1 - G_{\dot{\phi} c}(s)]
 [1 - G_{\delta c}(s)]\]</div>
 <div class="math" id="equation-eqKPhi">
-<span class="eqno">(13)</span>\[k_{\phi} = \frac{1}{|G_{\phi o}(2j)|}\]</div>
+<span class="eqno">(17)</span>\[k_{\phi} = \frac{1}{|G_{\phi o}(2j)|}\]</div>
 <div class="figure align-center" id="figphibode">
 <a class="reference external image-reference" href="_images/phi-bode.png"><img alt="_images/phi-bode.png" src="_images/phi-bode.png" style="width: 4in;" /></a>
 <p class="caption">The open loop frequency response for the roll angle loop. Blue is gain of
-unity and the green line is uses the gain to give desired crossover.</p>
+unity and the green line uses the gain to give desired crossover. Generated
+by <tt class="docutils literal"><span class="pre">src/control/choose_gains.m</span></tt>.</p>
 </div>
-<p>As can be surmised from the Bode diagram, <a class="reference internal" href="#figphibode"><em>Figure 12.12</em></a> we&#8217;ve
+<p>As can be surmised from the Bode diagram, <a class="reference internal" href="#figphibode"><em>Figure 12.14</em></a> we&#8217;ve
 now stabilized the system in roll by forcing the system to behave like the
 crossover model around the crossover frequency, 2 rad/s. We can now command the
-roll angle, <a class="reference internal" href="#figrollstable"><em>Figure 12.13</em></a>.</p>
+roll angle, <a class="reference internal" href="#figrollstable"><em>Figure 12.15</em></a>.</p>
 <div class="figure align-center" id="figrollstable">
 <a class="reference external image-reference" href="_images/commanded-roll-angle-human.png"><img alt="_images/commanded-roll-angle-human.png" src="_images/commanded-roll-angle-human.png" style="width: 4in;" /></a>
 <p class="caption">The response of the system for a commanded roll angle of 10 degrees. Notice
 the initial counter steering and the steady state error in the roll angle.
 This simulation also demonstrates the steady state negative torque needed
-for a positive turn.</p>
+for a positive turn. Generated by <tt class="docutils literal"><span class="pre">src/control/choose_gains.m</span></tt>.</p>
 </div>
 <div class="math" id="equation-eqPsiLoopNumerical">
-<span class="eqno">(14)</span>\[G_{\phi c}(s) =
+<span class="eqno">(18)</span>\[G_{\phi c}(s) =
 \frac{1639.4234 (s+77.09) (s+14.79)}
 {(s+6.881) (s+1.982) (s^2 + 1.864s + 93.21) (s^2 + 50.03s + 1041)}\]</div>
-<p>It is important to note that this system is a Type 0 system and exhibits steady
-error as seen in <a class="reference internal" href="#figrollstable"><em>Figure 12.13</em></a>. If we were only concerned
-with roll stabilization a low frequency integrator would be needed to remove
-the steady state error. This was not included in the model design, because the
-integrator is not needed if the heading loop is closed around the system. The
-remaining loops are closed using the rule of thumb <a class="reference internal" href="zreferences.html#hess1997">[Hes97]</a> of crossing over
-at half the previous loop&#8217;s crossover frequency.</p>
+<p>It is important to note that this system is a Type 0 system and thus exhibits
+steady error as seen in <a class="reference internal" href="#figrollstable"><em>Figure 12.15</em></a>. If we were only
+concerned with roll stabilization, a low frequency integrator would be needed
+to remove the steady state error. This was not included in the model design,
+because the integrator is not needed if the heading loop is closed around the
+system. The remaining loops are closed using the rule of thumb <a class="reference internal" href="zreferences.html#hess1997">[Hes97]</a>
+of crossing over at half the previous inner loop&#8217;s crossover frequency.</p>
 <div class="math" id="equation-eqPsiLoop">
-<span class="eqno">(15)</span>\[G_{\psi c}(s) =
+<span class="eqno">(19)</span>\[G_{\psi c}(s) =
 \frac{\psi}{\psi_c}(s) =
-\frac{G_{\psi o}(s)}{1 + G_{\psi o}(s)}\]\[G_{\psi o}(s) = k_{\psi} k_{\phi} k_{\dot{\phi}} k_{\delta} G_{nm}(s)
+\frac{G_{\psi o}(s)}{1 + G_{\psi o}(s)}\]</div>
+<p>where</p>
+<div class="math" id="equation-eqPsiLoop2">
+<span class="eqno">(20)</span>\[G_{\psi o}(s) = k_{\psi} k_{\phi} k_{\dot{\phi}} k_{\delta} G_{nm}(s)
 \left(\frac{\psi}{T_\delta}\right)_b(s)
 [1 - G_{\phi c}(s)] [1 - G_{\dot{\phi} c}(s)] [1 - G_{\delta c}(s)]\]</div>
 <div class="math" id="equation-eqKPsi">
-<span class="eqno">(16)</span>\[k_{\psi} = \frac{1}{|G_{\psi o}(1j)|}\]</div>
+<span class="eqno">(21)</span>\[k_{\psi} = \frac{1}{|G_{\psi o}(1j)|}\]</div>
 <div class="figure align-center" id="figpsibode">
 <a class="reference external image-reference" href="_images/psi-bode.png"><img alt="_images/psi-bode.png" src="_images/psi-bode.png" style="width: 4in;" /></a>
 <p class="caption">The open loop frequency response for the yaw angle loop. Blue is gain of
-unity and the green line is uses the gain to give desired crossover.</p>
+unity and the green line uses the gain to give desired crossover. Generated
+by <tt class="docutils literal"><span class="pre">src/control/choose_gains.m</span></tt>.</p>
 </div>
 <div class="math" id="equation-eqYqLoop">
-<span class="eqno">(17)</span>\[G_{y_q c}(s) =
+<span class="eqno">(22)</span>\[G_{y_q c}(s) =
 \frac{y_q}{{y_q}_c}(s) =
-\frac{G_{y_q o}(s)}{1 + G_{y_q o}(s)}\]\[G_{y_q o}(s) = k_{y_q} k_{\psi} k_{\phi} k_{\dot{\phi}} k_{\delta} G_{nm}(s)
+\frac{G_{y_q o}(s)}{1 + G_{y_q o}(s)}\]</div>
+<p>where</p>
+<div class="math" id="equation-eqYqLoop2">
+<span class="eqno">(23)</span>\[G_{y_q o}(s) = k_{y_q} k_{\psi} k_{\phi} k_{\dot{\phi}} k_{\delta} G_{nm}(s)
 \left(\frac{y_q}{T_\delta}\right)_b(s)
 [1 - G_{\psi c}(s)] [1 - G_{\phi c}(s)] [1 - G_{\dot{\phi} c}(s)] [1 - G_{\delta c}(s)]\]</div>
 <div class="math" id="equation-eqKYq">
-<span class="eqno">(18)</span>\[k_{y_q} = \frac{1}{|G_{y_q o}(0.5j)|}\]</div>
+<span class="eqno">(24)</span>\[k_{y_q} = \frac{1}{|G_{y_q o}(0.5j)|}\]</div>
 <div class="figure align-center" id="figyqbode">
 <a class="reference external image-reference" href="_images/yq-bode.png"><img alt="_images/yq-bode.png" src="_images/yq-bode.png" style="width: 4in;" /></a>
 <p class="caption">The open loop frequency response for the front wheel lateral deviation loop.
-Blue is gain of unity and the green line is uses the gain to give desired
-crossover.</p>
+Blue is gain of unity and the green line uses the gain to give desired
+crossover. Generated by <tt class="docutils literal"><span class="pre">src/control/choose_gains.m</span></tt>.</p>
 </div>
 <p>At this point all the loops are closed and the bicycle can track a given path
-with good performance. The closed loop system bandwith is approximately equal
+with good performance. The closed loop system bandwidth is approximately equal
 to the open loop crossover frequency of the lateral deviation loop.
-<a class="reference internal" href="#figtrackpath"><em>Figure 12.14</em></a> shows the system response to a step commanded
+<a class="reference internal" href="#figtrackpath"><em>Figure 12.18</em></a> shows the system response to a step commanded
 input to lateral deviation.</p>
 <div class="figure align-center" id="figtrackpath">
 <a class="reference external image-reference" href="_images/commanded-lateral-human.png"><img alt="_images/commanded-lateral-human.png" src="_images/commanded-lateral-human.png" style="width: 5in;" /></a>
 <p class="caption">The step response to a commanded lateral path deviation. Notice that for the
 positive rightward turn, the steer torque and steer angle are negative to
-initiate the positive turn.</p>
+initiate the positive turn. Generated by <tt class="docutils literal"><span class="pre">src/control/choose_gains.m</span></tt>.</p>
 </div>
-<p>The gains can be computed across a relevant speed range for the bicycle.
-<a class="reference internal" href="#figgains"><em>Figure 12.15</em></a> shows how the gains vary with respect to speed for
-a particular bicycle and rider. Notice that at higher speeds the gains change
+<p>The gains can be computed across a relevant speed range for the bicycle. We
+developed an algorithm for automatically selecting the appropriate gains for
+difference physical parameter values and at different speeds. <a class="reference internal" href="#figgains"><em>Figure
+12.19</em></a> shows how the gains vary with respect to speed for a
+particular bicycle and rider. Notice that at higher speeds the gains change
 somewhat linearly, but at speeds below 3 m/s there is non-linear variation.
-These gains give a stable system which is capable of the lane change manuever,
-but due to the difficulties in selecting the gains with rules above the
-algorthm may be making poor choices, especially for <span class="math">\(k_{\dot{\phi}}\)</span>.</p>
+These gains give stable systems which are capable of the lane change maneuver
+but, due to the difficulties in selecting the gains with the rules above, the
+algorithm may be making poor choices, especially for <span class="math">\(k_{\dot{\phi}}\)</span>, at
+very low speeds.</p>
 <div class="figure align-center" id="figgains">
 <a class="reference external image-reference" href="_images/gains.png"><img alt="_images/gains.png" src="_images/gains.png" style="width: 4in;" /></a>
-<p class="caption">The auto computed gains as a function of speed for the Davis instrumented
-biycle with Jason as the rider. These gains were computed with the method in
-<a class="reference internal" href="zreferences.html#hess2012">[HMH12]</a>. Generated by <tt class="docutils literal"><span class="pre">src/davisbicycle/plot_gains.py</span></tt>.</p>
+<p class="caption">The auto computed gains as a function of speed for the Whipple model with
+the parameter values from the Davis instrumented bicycle with Jason as the
+rider. These gains were computed with the method in <a class="reference internal" href="zreferences.html#hess2012">[HMH12]</a>.
+Generated by <tt class="docutils literal"><span class="pre">src/davisbicycle/plot_gains.py</span></tt>.</p>
 </div>
 <p>We automated this method based on the Bode design guidelines. The gain choices
 for proper neuromuscular peaks in the inner most loops require good initial
-guesses, as there is often multiple solutions. The correct solution puts the
-neuromusclar natural frequency at a typical value for human operators.</p>
+guesses, as there are often multiple solutions. The correct solution puts the
+neuromuscular natural frequency at a typical value for human operators.</p>
 </div>
 <div class="section" id="software">
 <h3>Software<a class="headerlink" href="#software" title="Permalink to this headline">¶</a></h3>
-<p>I designed a software suite in Matlab to implement the automated gain selected
+<p>We designed a software suite in Matlab to implement the automated gain selected
 for various bicycles, riders, and speeds. The software was constructed around a
-simulink version of the model described above and offers this functionality:</p>
+Simulink version of the model described above and offers this functionality:</p>
 <ol class="arabic simple">
 <li>It generates the state space form of the linear Whipple model for any
 parameter sets and speeds. The outputs include all eight of the configuration
@@ -1222,19 +1242,36 @@ axis.</dd>
 <dd>The closed loop transfer function of loop <span class="math">\(x\)</span>.</dd>
 </dl>
 <p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="wind" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id95">[1]</a></td><td>A gust of wind does not impart a pure roll torque. The wind acts on
+both the front and rear frames and the rider. Pure roll torques that map to
+the input described in Chapter <a class="reference internal" href="eom.html#eom"><em>Bicycle Equations Of Motion</em></a> are not necessarily observable in
+nature.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="wind2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id96">[2]</a></td><td>I&#8217;ve often felt like I fall into the wind on my bicycle and this
+could confirm it at least for low speeds, but it may be tied more to
+phenomena associated with the rider&#8217;s biomechanical degrees of freedom.</td></tr>
+</tbody>
+</table>
 <table class="docutils footnote" frame="void" id="negativegain" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id100">[1]</a></td><td>The system can be stabilized by negative roll angle feedback at speeds
+<tr><td class="label"><a class="fn-backref" href="#id103">[3]</a></td><td>The system can be stabilized by negative roll angle feedback at speeds
 close to the weave critical speed.</td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="blind" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id142">[2]</a></td><td><a class="reference internal" href="zreferences.html#doyle1988">[Doy88]</a> notes that his riders can balance even while blindfolded.
+<tr><td class="label"><a class="fn-backref" href="#id148">[4]</a></td><td><a class="reference internal" href="zreferences.html#doyle1988">[Doy88]</a> notes that his riders can balance even while blindfolded.
 This is even true for people who&#8217;ve been blind since birth. So the roll
-angle dectection, must not necessarily be all visually based. Indeed, in
+angle dectection, must necessarily not be all visually based. Indeed, in
 aircraft flight control, the so-called vestibular &#8220;tilt-cue&#8221; (the human&#8217;s
 ability to effectively sense roll angle, <span class="math">\(\phi\)</span>) is a well-known
 phenonmenon, e.g., <a class="reference internal" href="zreferences.html#jex1978">[JMJ78]</a>.</td></tr>
@@ -1281,8 +1318,8 @@ phenonmenon, e.g., <a class="reference internal" href="zreferences.html#jex1978"
 
 
     <div class="footer">
-        &copy; Copyright 2011, Jason K. Moore.
-      Last updated on Aug 16, 2012.
+        &copy; Copyright 2012, Jason K. Moore.
+      Last updated on Aug 19, 2012.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">
@@ -1305,6 +1342,20 @@ This work is licensed under a <a rel="license"
 href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
 Attribution 3.0 Unported License</a>
 </div>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-15966419-5']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 
 
   </body>

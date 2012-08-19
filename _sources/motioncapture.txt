@@ -4,13 +4,6 @@
 Motion Capture
 ==============
 
-.. warning::
-
-   This document is a draft which is updated regularly (Last updated |today|).
-   Once I submit if for my doctoral degree at UC Davis, it will be done. So for
-   now use at your own risk. The information may or may not be correct.
-   Reviews, comments and suggestions are welcome.
-
 Preface
 =======
 
@@ -20,10 +13,10 @@ was there, that could be written up as a major portion of my dissertation and
 he proposed doing a motion study using principal components techniques in much
 the same fashion as :cite:`Troje2002` had done with walking subjects. I think he'd
 formulated the idea in discussion with Andy Ruina, his longtime vacation buddy
-and colleague. I'd never heard of principal components (my statistics was and
-is still weak), so I started reading up on principal components and what Troje
+and colleague. I'd never heard of principal components (my statistics were and
+are still weak), so I started reading up on principal components and what Troje
 had done with walkers. I got a grasp of the technique and formulated a plan
-based around a bicyclist riding on the large treadmill we had access to and
+based on a bicyclist riding on the large treadmill we had access to and
 capturing their kinematics with a motion capture system. We went up for a
 preliminary test day to check out the motion capture system and meet Richard
 Casius who was the lab technician that knew the equipment. I was expecting he'd
@@ -35,61 +28,63 @@ the preliminary tests. It went well and we felt confident that we'd get the
 kind of data we wanted. So we came back and started planning for three days of
 testing with three riders. Jodi and I were going to ride and my fixie friend,
 Victor, agreed to ride for us one day too. We had three successful days of
-testing and then Jodi and I began analyzing the data with him coding a
+testing. Jodi and I then began analyzing the data with him coding a
 visualization GUI that we'd devised and me processing the data using the PCA
 methods. Once we could *see* the data, we went through every run manually and
-tried to build a data set of observations.
+coded each run for specific observations.
 
 I got frustrated at this point, because we'd finally got to the results part
 and it seemed to me that Jodi and Arend were getting to do the majority of the
 analysis. I felt as if I'd put all my 100% effort into the work up to that
 point and because I had this notion of ownership of the final product it seemed
-as if my colleagues were getting to do the grand finale, where as I wanted to
-be in control. We made it through it though, despite my discontent. Arend and
-Jodi didn't really understand my frustrations and deemed it a cultural
-difference. I didn't buy that then, but now reflecting I tend to agree. My
-upbringing and school training left me with little experience with *true*
-teamwork and I've had my eye on the PhD dissertation as some kind of embodiment
-of my personal understanding of *everything* that has to do with the subject
-I've been studying. I had never really seen it as a collection of many people's
-effort and the result being my orchestration of the collective ideas. These
-kinds of realizations reflect on what the heart the Fulbright grant is. I went
-into the grant thinking more about accomplishing the research goals that I
-proposed to do, but after the fact I realize that cultural understanding and
-personal interactions allowed me to grow a person and realize the world in a
-more global sense than any of the research accomplishments did. That kind of
-foresight from the founders of grants like these are invaluable to humanity as
-a whole. I wish every high school student or college student in the U.S. was
-required to study abroad. I think the political climate we see in the world
-would be positively affected in a great way.
+as if my colleagues were getting to do the grand finale, whereas I wanted to be
+in control. We made it through it though, despite my discontent. Arend and Jodi
+didn't really understand my frustrations and deemed it a cultural difference. I
+didn't buy that then, but now reflecting I tend to agree. My upbringing and
+school training left me with little experience with *true* teamwork and I've
+had my eye on the PhD dissertation as some kind of embodiment of my personal
+understanding of *everything* that has to do with the subject I've been
+studying. I had never really seen it as a collection of many people's effort,
+the result being my orchestration of the collective ideas. These kinds of
+realizations reflect on what the heart the Fulbright grant is. I went into the
+grant thinking more about accomplishing the research goals that I proposed to
+do, but after the fact I realize that cultural understanding and personal
+interactions allowed me to grow as a person and realize the world in a more
+global sense than any of the research accomplishments did. That kind of
+foresight from the founders of grants like the Fulbright are invaluable to
+humanity as a whole. I wish every high school student or college student in the
+U.S. were required to study abroad. I think the political climate we see in the
+world would be positively affected in a great way.
 
 Another tactic I that was new to me was sending in an abstract for a conference
 that really only talked about what we hoped to do, with the idea that it gives
-us a deadline to get something done. This worked well here, but I can't say
+us a deadline to get something done. This worked in this case, but I can't say
 that it has been successful for me since. We first presented the results of this
 study at the ECCOMAS Multibody Dynamics conference in June of 2009 and I think
 it went pretty well :cite:`Moore2009b`.
 
 After the conference, the paper was selected to be published in the Multibody
 System Dynamics journal. I turned it down because Arend was more interested in
-publishing to the Journal of Biomechanics. But I had recently been learning a
-lot about the open science movement and knew that our University currently had
-an agreement with Springer that the open access fee would be waived for all
-articles published by UCD affiliates and Multibody System Dynamics is a
-Springer journal. So I decided that would be the better choice, as journal
-titles seem like they are more and more irrelevant for my generation. We search
-for articles on the internet and read them regardless of where they published,
-the filtering of quality content is becoming an entirely different mechanism as
-it was for science in previous generations. I see the journal as a soon to be
-lost relic. And hopefully, the closed peer review system may be consumed by
-collective quality control by the readers.
+publishing in the Journal of Biomechanics. In the meantime, I had been
+learning a lot about the open science movement and knew that our University
+currently had an agreement with Springer that the open access fee would be
+waived for all articles published by UCD affiliates and Multibody System
+Dynamics is a Springer journal. So I decided that would be the better choice,
+as journal titles seem like they are more and more irrelevant for my
+generation. We search for articles on the internet and read them regardless of
+where they are published, and the filtering of content quality is becoming an entirely
+different mechanism than it was for science in previous generations. I see the
+journal as a soon-to-be-lost relic. And hopefully, the closed peer review
+system may be consumed by collective quality control by the readers and
+appointed reviewers.
 
 The work in this Chapter comes from two sources, the first is the peer reviewed
-Mutlibody System Dynamics article, :cite:`Moore2011`, of which I've copied verbatim.
-The second is an addendum to the results which was presented at the ISEA 2010
-conference in Austria :cite:`Moore2010`. It is a lead in to looking at the data with
-some other statistical tools of which I've had a growing interest in, but less
-that adequate understanding.
+Multibody System Dynamics article, :cite:`Moore2011`, which I've copied
+verbatim albeit with some fixed errata. The second is an addendum to the
+results which was presented at the ISEA 2010 conference in Austria
+:cite:`Moore2010`. It is a lead in to looking at the data with some other
+statistical tools which I've had a growing interest in, but less than adequate
+understanding.
 
 Experiment Design
 =================
@@ -100,22 +95,24 @@ experiments and the accompanying data.
 
 The experiments were performed in a controlled environment while the motion of
 the bicycle and rider were measured with an active motion capture system
-:cite:`NorthernDigitalIncorporated2009`. The rider rode on a :math:`3 \times 5` meter treadmill,
-(:ref:`Figure 10.1<figVrijeTreadmill>`) capable of belt speeds up to 35 km/h.  Three
-male riders [Victor, Jason, Jodi] of similar age [23, 26, 31 years] and build
-[height (1.84, 1.83, 1.76 m) and mass (74, 72, 72 kg)] participated as
-subjects. Each rode two different Dutch bicycles. Each rider performed all
-runs in one day in the same order (no randomization) and was instructed to
-bicycle comfortably at a constant speed in the range of 2 to 30 km/h for the
-duration of the run. There were at least 2 repetitions of each speed with each
-bicycle. A run was sampled at a frequency of 100 Hz for 60 seconds.
+:cite:`NorthernDigitalIncorporated2009`. The rider rode on a :math:`3 \times 5`
+meter treadmill, (:ref:`Figure 10.1<figVrijeTreadmill>`) capable of belt speeds
+up to 35 km/h. Three male riders [Victor, Jason, Jodi] of similar age [23, 26,
+31 years] and build [height (1.84, 1.83, 1.76 m) and mass (74, 72, 72 kg)]
+participated as subjects. Each rode two different Dutch bicycles. Each rider
+performed all runs in one day in the same order (no randomization) and was
+instructed to bicycle comfortably at a constant speed in the range of 2 to 30
+km/h for the duration of the run. There were at least 2 repetitions of each
+speed with each bicycle. A run was sampled at a frequency of 100 Hz for 60
+seconds.
 
 Equipment
 ---------
 
 All of the experiments were performed on a 3x5 m treadmilll at the the Vrije
-Unitversetiet over a three day period. The treadmill had a 1% incline. We used
-two bicycle donated by Batavus: the Browser and the Stratos Deluxe.
+Universiteit over a three day period. The treadmill had a 1% incline to counter
+the rolling resistance. We used two bicycle donated by Batavus: the Browser and
+the Stratos Deluxe.
 
 Manuevers
 ---------
@@ -129,20 +126,20 @@ Normal
    you were traveling down a straight empty road.
 Towed
    The towed experiments were the same as the normal except that a rope was
-   attached to the headtube of the bicycle and attached to the front railing of
+   attached to the head tube of the bicycle and attached to the front railing of
    the treadmill. This allowed the rider to not have to pedal. The rider kept
    the cranks horizontal and was left to choose which foot he wanted forward.
-   The rope could have potentially applied lateral forces to the frame if the
+   The rope could potentially have applied lateral forces to the frame if the
    rider drifted too much laterally, but we also held the rope taught and moved
    left and right to lessen the effect.
 Line tracking
-   The line tracking manuever was the same at the normal manuever except that
+   The line tracking maneuver was the same at the normal maneuver except that
    the rider was instructed to keep his front wheel on a line we drew on the
    treadmill. This caused the rider to focus on not only stabilization but
    lateral deviation control.
 No-hand
-   We did some experiments with no hand riding (i.e. no steering control). The
-   riders placed their hands on their hips and attempted to stablize roll and
+   We did some experiments with no hands riding (i.e. no steering control). The
+   riders placed their hands on their hips and attempted to stabilize roll and
    yaw. Most of the these runs were with pedaling, but a few were taken with
    towing.
 
@@ -150,14 +147,14 @@ Data
 ----
 
 The primary data was the three dimensional locations of the 31 markers for each
-run. We sampled at 100 hz, giving 31 markers * 3 coordinates * 100 hz * 60
-seconds = 558,000 data points per each one minute run. We collected data for
+run. We sampled at 100 hz, giving (31 markers)(3 coordinates)(100 hz)(60
+seconds) = 558,000 data points per each one minute run. We collected data for
 268 one minute runs and 3 shorter static measurements of the bicycles for a
 total of 271. The data for the first rider ended up somewhat corrupted. There
-are a lot of irractic value changes in the data. The basic motion is there
+are a lot of erratic value changes in the data. The basic motion is there
 though and clever filtering could clean the data for use.
 
-We also collected data on the premilanary day with one rider and slightly
+We also collected data on the preliminary day with one rider and slightly
 different marker locations and we collected some data during a TV show filming
 of our work. We did not follow as strict protocols to the filmed experiments.
 
@@ -195,51 +192,51 @@ motions and the differences in tracking and stabilization.
 
 Principal component analysis was used to transform the data into a manageable
 set organized by the variance associated with the principal components. In this
-paper, these principal components were used to characterize various distinct
-kinematic motions that occur during stabilization with and without pedaling.
-These motions were grouped on the basis of correlation and conclusions were
-drawn about which motions are candidates for stabilization-related control
-actions.
+paper, these principal components were used to characterize distinct kinematic
+motions that occur during stabilization with and without pedaling. These
+motions were grouped on the basis of correlation and conclusions were drawn
+about which motions are candidates for stabilization-related control actions.
 
 Introduction
 ------------
 
 Much progress has been made in understanding the rigid body dynamics of an
-uncontrolled bicycle (:cite:`Meijaard2007`, :cite:`Kooijman2008`) and various control
-schemes have been explored for tracking purposes (:cite:`Peterson2008a`,
-:cite:`Schwab2008`, :cite:`Sharp2008a`), but little is understood about how a bicyclist
-actually stabilizes a bicycle during normal riding. A bicycle and rider system
-is unique among vehicles in that the rider is from 80 to 90% of the total mass
-of the system, the system is laterally unstable, and the rider is flexibly
-coupled to the bicycle in such a way that many body motions can be used as
-control inputs.  Previous research into realistic bicycle control has focused
-on both steering and rider lean as control inputs, but there has been no
-experimental verification of which motions a rider actually uses for control.
-Recent observations of a bicyclist riding through town and on a treadmill
-:cite:`Kooijman2009a` show that the rider moves the upper body very little when
-performing normal maneuvers and that the bicyclist may, in fact, primarily use
-steering input for control. This corresponds well with the fact that control by
-leaning requires high gains compared to the gains required for steering when
-employing an optimal control strategy on a model (:cite:`Peterson2008a`,
-:cite:`Schwab2008`, :cite:`Sharp2008a`). The observations also revealed that the rider
-may use other control inputs such as drastic knee movements at low speeds.
-These conclusions were drawn by visually reviewing video data, so a more
-rigorous objective method of characterizing the dominant movements of the
-bicyclist while stabilizing a bicycle was needed. In order to validate the
-hypothesis that there is little upper body motion during normal cycling, motion
-capture techniques were used on the bicycle and rider system with the intent to
-use principal component analysis to identify the major motion patterns.
+uncontrolled bicycle (:cite:`Meijaard2007`, :cite:`Kooijman2008`) and various
+control schemes have been explored for tracking purposes
+(:cite:`Peterson2008a`, :cite:`Schwab2008`, :cite:`Sharp2008a`), but little is
+understood about how a bicyclist actually stabilizes a bicycle during normal
+riding. The bicycle and rider system is unique among vehicles in that the rider
+is from 80 to 90% of the total mass of the system, the system is laterally
+unstable, and the rider is flexibly coupled to the bicycle in such a way that
+many body motions can be used as control inputs. Previous research into
+realistic bicycle control has focused on both steering and rider lean as
+control inputs, but there has been no experimental verification of which
+motions a rider actually uses for control. Recent observations of a bicyclist
+riding through town and on a treadmill :cite:`Kooijman2009a` show that the
+rider moves the upper body very little when performing normal maneuvers and
+that the bicyclist may, in fact, primarily use steering input for control. This
+corresponds well with the fact that control by leaning requires high gains
+compared to the gains required for steering when employing an optimal control
+strategy on a model (:cite:`Peterson2008a`, :cite:`Schwab2008`,
+:cite:`Sharp2008a`). The observations also revealed that the rider may use
+other control inputs such as drastic knee movements at low speeds. These
+conclusions were drawn by visually reviewing video data, so a more rigorous
+objective method of characterizing the dominant movements of the bicyclist
+while stabilizing a bicycle was needed. In order to validate the hypothesis
+that there is little upper body motion during normal cycling, motion capture
+techniques were used on the bicycle and rider system with the intent to use
+principal component analysis to identify the major motion patterns.
 
 Principal component analysis has successfully been used with data collected
 from motion capture techniques to identify the dominant modes of motion of a
-person walking on a treadmill :cite:`Troje2002` and to characterize different types
-of walking.  We use similar methods for steady, normal bicycle riding on a
+person walking on a treadmill :cite:`Troje2002` and to characterize different
+types of walking. We use similar methods for steady, normal bicycle riding on a
 treadmill. Cyclic motions, such as pedaling, are easily identified and
 separated from the other less cyclic control actions. Identifying the patterns
 of movement gives insight into which body movements are primarily used and are
-candidates for control inputs.  This will be valuable for our overall research
-goals that includes the design of a realistic biomechanical-based control
-system of a bicycle rider, among other things.
+candidates for control inputs. This will be valuable for our overall research
+goals that include the design of a realistic biomechanical-based control system
+of a bicycle rider, among other things.
 
 Experiments
 -----------
@@ -247,14 +244,15 @@ Experiments
 To test our hypotheses, three riders performed a set of stability tasks in a
 controlled environment while the motion of the bicycle and rider were collected
 with a motion capture system. The tasks were performed on a :math:`3 \times 5`
-meter treadmill :ref:`Figure 10.1<figVrijeTreadmill>` capable of belt speeds up to 35 km/h.
-The treadmill was chosen because the envelope of space was suitable for the
-motion capture system and it eliminated any disturbances such as wind, rough
-ground, and obstacles. We chose three male riders of similar age [31, 23, 26
-years], build [height (1.76, 1.84, 1.83 m) and mass (72, 74, 72 kg)]. We also
-used two different Dutch bicycles: a 2008 Batavus Browser with a 3 speed hub
-and a 2008 Batavus Stratos Deluxe with a 7 speed hub.  The Browser is described
-by the manufacturer as “stable” and the Stratos Deluxe as “nervous.”
+meter treadmill :ref:`Figure 10.1<figVrijeTreadmill>` capable of belt speeds up
+to 35 km/h. The treadmill was chosen because the envelope of space was
+suitable for the motion capture system and it eliminated any disturbances such
+as wind, rough ground, and obstacles. We chose three male riders of similar age
+[31, 23, 26 years], build [height (1.76, 1.84, 1.83 m) and mass (72, 74, 72
+kg)]. We also used two different Dutch bicycles: a 2008 Batavus Browser with a
+3 speed hub and a 2008 Batavus Stratos Deluxe with a 7 speed hub. The Browser
+is described by the manufacturer as “stable” and the Stratos Deluxe as
+“nervous.”
 
 .. _figVrijeTreadmill:
 
@@ -283,7 +281,7 @@ facilitate easy bicycle and rider exchange :ref:`Figure 10.2<figMarkers>`.
    :align: center
    :target: _images/markers.jpg
 
-   Rider 1 and the Batavus Stratos Deluxe with marker positions.  Body marker
+   Rider 1 and the Batavus Stratos Deluxe with marker positions. Body marker
    positions visible from the rear.
 
 The marker coordinates were measured with respect to an inertial frame,
@@ -390,9 +388,9 @@ eigenvalues of the rigid rider system, the basic geometry, mass, center of
 gravity locations, and moments of inertia of the bicycle were measured. Also,
 the riders were measured and weighed such that the body segment geometry, mass,
 center of gravity locations, and moments of inertia could be estimated. The
-physical parameter estimation methods are described in :cite:`Moore2009a`. This data was used
-to calculate eigenvalues and eigenvectors of the uncontrolled open loop system
-:ref:`Figure 10.4<figEigPlot>`.
+physical parameter estimation methods are described in :cite:`Moore2009a`. This
+data was used to calculate eigenvalues and eigenvectors of the uncontrolled
+open loop system :ref:`Figure 10.4<figEigPlot>`.
 
 .. _figEigPlot:
 
@@ -411,18 +409,19 @@ Data processing
 Missing markers
 ~~~~~~~~~~~~~~~
 
-The Optotrak Certus Motion Capture System :cite:`NorthernDigitalIncorporated2009` is based on the
-cameras’ ability to detect the infrared light from the sensors so there are
-occasional gaps in the coordinate data due to the markers going out of view. We
-attempted to minimize this by careful marker and camera placement but were not
-able to totally eliminate the error. Any missing markers on the bicycle were
-reconstructed using the fact that the bicycle is a rigid body. We had more than
-three markers on both the frame and fork, so if one marker location was not
-detected we used the relative location of the remaining markers to reconstruct
-the missing marker. The gaps in the data of the markers on the human were
-repaired by fitting a cubic spline through the data. The spline estimated the
-marker coordinates during the gaps. We only used the splined data if the gaps
-were less than 10 time steps, or 0.1 sec; otherwise the trials were discarded.
+The Optotrak Certus Motion Capture System
+:cite:`NorthernDigitalIncorporated2009` is based on the cameras’ ability to
+detect the infrared light from the sensors so there are occasional gaps in the
+coordinate data due to the markers going out of view. We attempted to minimize
+this by careful marker and camera placement but were not able to totally
+eliminate the error. Any missing markers on the bicycle were reconstructed
+using the assumption that the bicycle is a rigid body. We had more than three
+markers on both the frame and fork, so if one marker location was not detected
+we used the relative location of the remaining markers to reconstruct the
+missing marker. The gaps in the data of the markers on the human were repaired
+by fitting a cubic spline through the data. The spline estimated the marker
+coordinates during the gaps. We only used the splined data if the gaps were
+less than 10 time steps, or 0.1 sec; otherwise the trials were discarded.
 
 Relative motion
 ~~~~~~~~~~~~~~~
@@ -431,22 +430,23 @@ We were interested in the analysis of three different marker combinations: the
 bicycle alone, the rider alone, and the bicycle and rider together. The motion
 of the bicycle and the bicycle-rider were calculated with reference to the
 :math:`\mathbf{N}` inertial frame[1] {The :math:`\mathbf{N}` frame is used
-instead of the :math:`\mathbf{M}` frame to comply with the vehicle coordinate
-standards used in :cite:`Meijaard2007` . See Section :ref:`secInFrames` for the
-derivation.} and the motion of the rider was calculated with respect to the
-rear frame of the bicycle :math:`\mathbf{B}` :ref:`Figure 10.5<figFrames>`. These
-three marker combinations allowed us to differentiate more easily between rider
-specific and bicycle specific motions. Furthermore, six of the variables that
-describe the configuration of the bicycle in time were calculated to give
-insight into the rigid body dynamics. The configuration variables :math:`q_1`
-and :math:`q_2` locate the contact point of the rear wheel of the bicycle. The
-:math:`\mathbf{B}` frame captures the yaw (:math:`q_3`) and roll (:math:`q_4`)
-motions of the bicycle frame, the :math:`\mathbf{D}` frame is an intermediate
-frame that differs from :math:`\mathbf{B}` only by the bike’s steer axis tilt
-(:math:`\lambda`), and the :math:`\mathbf{E}` frame captures the steering angle
-(:math:`q_7`) of the bicycle fork relative to the bicycle frame. The pitch of
-the bicycle frame (:math:`q_6`) is assumed to be zero. Details of these
-calculations are shown in Section :ref:`secInFrames`.
+instead of the :math:`\mathbf{M}` frame to be consistent with the vehicle
+coordinate standards used in :cite:`Meijaard2007` . See Section
+:ref:`secInFrames` for the derivation.} and the motion of the rider was
+calculated with respect to the rear frame of the bicycle :math:`\mathbf{B}`
+:ref:`Figure 10.5<figFrames>`. These three marker combinations allowed us to
+differentiate more easily between rider specific and bicycle specific motions.
+Furthermore, six of the variables that describe the configuration of the
+bicycle in time were calculated to give insight into the rigid body dynamics.
+The configuration variables :math:`q_1` and :math:`q_2` locate the contact
+point of the rear wheel of the bicycle. The :math:`\mathbf{B}` frame captures
+the yaw (:math:`q_3`) and roll (:math:`q_4`) motions of the bicycle frame, the
+:math:`\mathbf{D}` frame is an intermediate frame that differs from
+:math:`\mathbf{B}` only by the bike’s steer axis tilt (:math:`\lambda`), and
+the :math:`\mathbf{E}` frame captures the steering angle (:math:`q_7`) of the
+bicycle fork relative to the bicycle frame. The pitch of the bicycle frame
+(:math:`q_6`) is assumed to be zero. Details of these calculations are shown in
+Section :ref:`secInFrames`.
 
 .. _figFrames:
 
@@ -468,15 +468,15 @@ We used Principal Component Analysis, PCA, :cite:`Jolliffe2002` to extract and
 characterize the dominant motions of the system. Calculating the principal
 components effectively transforms the space of the data to a space that
 maximizes the variance of the data. The typical advantage of PCA is that the
-dimension of the system can be reduced and still retain enough information to
-adequately describe the system. We are primarily interested in the way that PCA
-is able to extract linear components and rank them in order of variance from
-the mean position. If we assume that the components with the largest kinematic
-variance are motions that are the dominant motions used for control and
-propulsion (which in general is not necessarily true for dynamical systems) the
-comparison of these components for different riding conditions can give insight
-into what motions may be important for developing a biomechanical control model
-of the bicyclist.
+dimension of the system can be reduced while still retaining enough information
+to adequately describe the system. We are primarily interested in the way that
+PCA is able to extract linear components and rank them in order of variance
+from the mean position. If we assume that the components with the largest
+kinematic variance are motions that are the dominant motions used for control
+and propulsion (which in general is not necessarily true for dynamical systems)
+the comparison of these components for different riding conditions can give
+insight into what motions may be important for developing a biomechanical
+control model of the bicyclist.
 
 The repaired data from the motion capture measurements contained the :math:`x`,
 :math:`y`, and :math:`z` coordinates of each marker :math:`1` through :math:`l`
@@ -547,7 +547,7 @@ be calculated with Equation :eq:`eqC`.
 
 Calculating the eigenvectors :math:`\mathbf{v}_i` and eigenvalues
 :math:`\lambda_i` of the covariance matrix effectively transforms the space to
-one where the variances are maximized and the covariances are zero. The
+one in which the variances are maximized and the covariances are zero. The
 eigenvectors are the principal components of the data set and the corresponding
 eigenvalues represent the variance of each principal component. The
 eigenvectors are ordered by decreasing eigenvalue where :math:`\mathbf{v}_1` is
@@ -596,7 +596,7 @@ in time is described by the coefficients :math:`a_{ij}` where the
 discretization in time is indexed by :math:`j`. The order of the system can be
 reduced by eliminating principal components that have little variance. We
 arbitrarily decided to examine the first :math:`k=10` principal components
-knowing that the first five would be based around the larger motions such as
+knowing that the first five would be based on the larger motions such as
 pedaling and that the remaining five may reveal some of the motions associated
 with control. The variance of each component,
 :math:`\textrm{var}(\mathbf{a}_i)=\lambda_i`, is summed to determine the
@@ -609,18 +609,18 @@ cumulative percentage of variance of the principal components, :math:`g_k`.
    \textrm{ where }1\leq k\leq m
 
 Highly correlated data will show that even when :math:`k<<m`, :math:`g_k` is
-close to 100%. Using 10 components :math:`g_{10}` covers 100%
-(:math:`\sigma = 2 \cdot10^{-14}` %) of the variation in the data for the bicycle,
-rider and bicycle-rider. The matrix :math:`\mathbf{A}` can then be reduced to a
-:math:`k \times n` matrix and eigenvectors greater than :math:`\mathbf{v}_k` can
-be eliminated.
+close to 100%. Using 10 components :math:`g_{10}` covers 100% (:math:`\sigma =
+2 \cdot10^{-14}` %) of the variation in the data for the bicycle, rider and
+bicycle-rider. The matrix :math:`\mathbf{A}` can then be reduced to a :math:`k
+\times n` matrix and eigenvectors corresponding to eigenvalues greater than
+:math:`\lambda_k` can be eliminated.
 
 Data Visualization
 ~~~~~~~~~~~~~~~~~~
 
 We developed a graphical user interface, “GUI”, in Matlab that easily allows
-different trials to be compared with one another :ref:`Figure 10.6<figGUI>`. The
-program loads in two different trials along with information on each trial. A
+different trials to be compared with one another :ref:`Figure 10.6<figGUI>`.
+The program loads two different trials along with information on each trial. A
 graphical representation of the rider and bicycle are displayed in two adjacent
 screens and can be viewed from multiple perspectives. The animations of the
 runs can be played at different speeds, rewound and fast forwarded. The
@@ -663,6 +663,8 @@ content of the associated coefficients :math:`a_{ij}` as shown in Figures
 frequency spectrum and the frequencies at any distinct spikes.
 
 .. _tabTrialDesc:
+
+.. tabularcolumns:: LLLL
 
 .. list-table:: Example raw trial description for the bicycle and rider during
    normal pedaling at 10 km/h.
@@ -751,7 +753,7 @@ motions of the bicycle that are not dominated by the pedaling frequency and may
 be candidate control motions. The percentage variance of each component gives
 an idea of the relative amplitude of the components. The descriptions of each
 trial were used to compile a list of motions that contribute to the principal
-components. These motions, illustrated in :ref:`Figure 10.8<figMotions>`, are:
+components. These motions, illustrated in :ref:`Figure 10.9<figMotions>`, are:
 
 Drift
     The bicycle and rider drift longitudinally and laterally on the surface of
@@ -764,7 +766,7 @@ Steer
     frequency or may be in one or more components sometimes combined with roll
     and/or yaw at more random frequencies.
 Roll
-    The bicycle and the rider roll with respect to the ground plane.  Roll is
+    The bicycle and the rider roll with respect to the ground plane. Roll is
     typically linked with steer and/or yaw and often at the pedaling frequency.
 Yaw
     The heading angle of the bicycle and rider change together with respect to
@@ -834,8 +836,8 @@ coefficients were viewed simultaneously in the GUI enabling the determination
 of the motion class.
 
 The correlated coefficients were used to form six different classes of motions,
-Table :ref:`Table 10.3<tabMotionClasses>`, each made up of combinations of the
-previously described motions in :ref:`Figure 10.8<figMotions>`.
+Table :ref:`Table 10.2<tabMotionClasses>`, each made up of combinations of the
+previously described motions in :ref:`Figure 10.9<figMotions>`.
 
 .. _tabMotionClasses:
 
@@ -879,7 +881,7 @@ explicitly.
 Characterization of motions during normal pedaling
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-:ref:`Figure 10.9<jellybean>` shows how the relative percent variance of the four
+:ref:`Figure 10.10<jellybean>` shows how the relative percent variance of the four
 classes: Pedaling, Steer-Yaw-Roll, Bounce and Knees varies with speed for Rider
 3 on the Batavus Browser bicycle. The percentage is the average of two runs at
 speeds 5 km/h and above. From the graph, it is clear that at 10 km/h and higher
@@ -908,13 +910,13 @@ runs. The Bounce roughly remains constant at all speeds.
 
 The steer angle amplitude-frequency plot for each of the speeds calculated from
 the bicycle rigid body motions is given in :ref:`Figure
-10.10<figSteerAnglePedal>`. It clearly shows that the steering actions take
+10.11<figSteerAnglePedal>`. It clearly shows that the steering actions take
 place at or around the pedaling frequency for high and low speeds,
 respectively. It also shows that the amplitude of the steering angle increases
 by 5000% when the speed decreases from 30 km/h to 2 km/h. :ref:`Figure
-10.10<figSteerAnglePedal>` also shows the open loop, rigid rider, weave
+10.11<figSteerAnglePedal>` also shows the open loop, rigid rider, weave
 eigenfrequency for each speed obtained from :ref:`Figure 10.4<figEigPlot>`.
-Apparently the open loop eigenfrequency is not a frequency in which the
+Apparently the open loop eigenfrequency is not a frequency at which the
 bicycle-rider operates.
 
 .. _figSteerAnglePedal:
@@ -934,8 +936,8 @@ Characterization of motions without pedaling
 
 During normal pedaling, all motions, including the control tasks, are dominated
 by the pedaling motions. Therefore we also looked at the motions of
-bicycle-rider system without the influence of pedaling.  :ref:`Figure
-10.11<missjellybean>` shows how the percent variance of by Steer-Yaw-Roll,
+bicycle-rider system without the influence of pedaling. :ref:`Figure
+10.12<missjellybean>` shows how the percent variance of by Steer-Yaw-Roll,
 Bounce and Knees varies with speed for Rider 3 on the Batavus Browser bicycle
 without pedaling. Since the bicycle is towed and the riders feet remain in the
 same, constant, position relative to bicycle, there is no pedaling class
@@ -964,15 +966,16 @@ would provide clearer results. Also note that as the bicycle becomes self
 stable above 16 km/h the total variance is tiny and thus any sort of random
 knee motion can be a relatively large motion.
 
-:ref:`Figure 10.12<figSteerAngleTowing>` shows the bicycle rigid body steer angle
-frequency-amplitude plot for different speeds. Compared to normal pedaling, the
-amplitudes are about half the size at the low speeds and one tenth the size at
-high speeds, indicating that smaller steering angles were made. The frequency
-content now also shows a much wider, flatter spectrum compared to normal
-pedaling. At 10 and 15 km/h, the frequency with the largest amplitude is near
-the open loop weave eigenfrequency. However, at the other speeds, this is not
-the case, once again indicating that the rigid body open loop weave
-eigenfrequency is not the frequency at which the bicycle is controlled.
+:ref:`Figure 10.13<figSteerAngleTowing>` shows the bicycle rigid body steer
+angle frequency-amplitude plot for different speeds. Compared to normal
+pedaling, the amplitudes are about half the size at the low speeds and one
+tenth the size at high speeds, indicating that smaller steering angles were
+made. The frequency content now also shows a much wider, flatter spectrum
+compared to normal pedaling. At 10 and 15 km/h, the frequency with the largest
+amplitude is near the open loop weave eigenfrequency. However, at the other
+speeds, this is not the case, once again indicating that the rigid body open
+loop weave eigenfrequency is not the frequency at which the bicycle is
+controlled.
 
 .. _figSteerAngleTowing:
 
@@ -1006,13 +1009,13 @@ control actions. At low speeds additional lateral knee motions are observed
 which are probably more effective at augmenting steering control for lateral
 balance than upper body motions.
 
-The bicycle model predicts that the weave mode is stable above about 16 km/h.
-Intuition might possibly lead one to believe that if the weave mode is already
-stable, that weave frequency might be relatively undisturbed by rider control
-actions and therefore present in the closed loop dynamics. However, we found no
-evidence of a distinct weave frequency in the steer angle time histories of any
-run. In fact the only distinct frequency that sometimes appeared was the
-pedaling frequency.
+The bicycle model predicts that the weave mode is stable above about 16 km/h
+(4.4 m/s). Intuition might possibly lead one to believe that if the weave mode
+is already stable, that weave frequency might be relatively undisturbed by
+rider control actions and therefore present in the closed loop dynamics.
+However, we found no evidence of a distinct weave frequency in the steer angle
+time histories of any run. In fact the only distinct frequency that sometimes
+appeared was the pedaling frequency.
 
 Principal component analysis provided a unique view into the control actions of
 a rider on a bicycle, but limitations in data reduction and motion grouping
@@ -1025,10 +1028,10 @@ Inertial frames and configuration variables
 ===========================================
 
 The transformation from marker coordinates to rigid body inertial frames and
-configuration variables shown in :ref:`Figure 10.5<figFrames>` is described here.
-A reference frame, :math:`\mathbf{N}`, with origin :math:`n_o` corresponding
-with the benchmark bicycle is defined with respect to the Optotrak reference
-frame, :math:`\mathbf{M}`, Equation :eq:`eqNtoM`.
+configuration variables shown in :ref:`Figure 10.5<figFrames>` is described
+here. A reference frame, :math:`\mathbf{N}`, with origin :math:`n_o`
+corresponding with the benchmark bicycle is defined with respect to the
+Optotrak reference frame, :math:`\mathbf{M}`, Equation :eq:`eqNtoM`.
 
 .. math::
    :label: eqNtoM
@@ -1071,7 +1074,8 @@ left and right rear wheel markers.
 .. math::
    :label: eqRearCenter
 
-   \mathbf{r}^{{m_{36}}/{n_o}}=(\mathbf{r}^{{m_{25}}/{n_o}}+\mathbf{r}^{{m_{31}}/{n_o}})/2
+   \mathbf{r}^{{m_{36}}/{n_o}} = (\mathbf{r}^{{m_{25}}/{n_o}} +
+   \mathbf{r}^{{m_{31}}/{n_o}})/2
 
 The normal vector to the plane through the rear wheel center, seat post and the
 head tube center is
@@ -1089,10 +1093,10 @@ The heading vector of the rear frame is then
 These unit vectors define a reference frame that leans and yaws with the rear
 frame. We assumed that the rear frame pitch is negligible. The marker locations
 of the rider can now be expressed relative to the bicycle’s inertial frame with
-reference to a point on the bicycle frame :math:`m_{36}`.  Equation
+reference to a point on the bicycle frame :math:`m_{36}`. Equation
 :eq:`eqWrtRear` shows that the vector from any marker on the rider relative to
 :math:`m_{36}` can be expressed in the bicycle reference frame,
-:math:`\mathbf{B}`, rather than the inertial frame, :math:`\mathbf{N}`.  This
+:math:`\mathbf{B}`, rather than the inertial frame, :math:`\mathbf{N}`. This
 formulation was used in the PCA of the rider-only markers to look specifically
 at rider motion relative to the bicycle. The subscripts, :math:`\mathbf{N}` and
 :math:`\mathbf{B}`, in Equation :eq:`eqWrtRear` signify which reference frame
@@ -1212,31 +1216,32 @@ Simple Statistics
 Preface
 -------
 
-Once again, we collected more data than we knew what to do with :cite:`Moore2011`
-and only looked at a subset of it from one rider. I took my first statistics
-class once I was back at Davis in the Fall of 2009 with the intention of
-learning better ways to analyze large data sets and make more over arching
-conclusions with the bicycle data. In the process, I learned about mixed
-effects models and they seemed appropriate for our data sets and would
-potentially allow us to see how the kinematic motions changed with respect to
-speeds, riders, maneuvers, etc. The first step in building a model like is to
-identify the independent and dependent variables. The dependent variables can
-be broken up into continuous variables and factors. Speed constitutes the
-continuous variable, with riders, bicycles and maneuvers as the factors. The
-independent variables are trickier because we recorded time histories, so
-various statistics need to be chosen. These could be things like the results of
-the PCA analyses, but more concrete the kinematic statistics potentially allow
-for more understanding. The PCA we did assumes nothing about the system being
-studied. For example, one statistic could be the standard deviation of various
-generalized coordinates. I never managed to get far with this as other things
-came up, but at least started thinking about the relevant statistics. The
-following is a conference paper I submitted to the 2010 International Sports
-Engineering Association conference where basic statistics of the time histories
-are chosen and some visualization of the statistics with respect to speed are
-shown. I primarily used this data to decide on sensor ranges when building the
-Davis instrumented bicycle presented in Chapter :ref:`davisbicycle`, but I
-think that some better statical models god be derived. I also only present some
-of the graphs here, but the source code can generate a lot more.
+Once again, we collected more data than we knew what to do with
+:cite:`Moore2011` and only looked at a subset of it from one rider. I took my
+first statistics class once I was back at Davis in the Fall of 2009 with the
+intention of learning better ways to analyze large data sets and make more over
+arching conclusions with the bicycle data. In the process, I learned about
+mixed effects models and that they seemed appropriate for our data sets and
+would potentially allow us to see how the kinematic motions changed with
+respect to speeds, riders, maneuvers, etc. The first step in building a model
+like this is to identify the independent and dependent variables. The dependent
+variables can be broken up into continuous variables and factors. Speed
+constitutes the continuous variable, with riders, bicycles and maneuvers as the
+factors. The independent variables are trickier because we recorded time
+histories, so various statistics need to be chosen. These could be things like
+the results of the PCA analyses, but more concrete kinematic statistics
+potentially allow for more understanding. The PCA we did assumes nothing about
+the system being studied. For example, one statistic could be the standard
+deviation of various generalized coordinates. I never managed to get far with
+this as other things came up, but I at least started thinking about the
+relevant statistics. The following is a conference paper I submitted to the
+2010 International Sports Engineering Association conference in which basic
+statistics of the time histories are chosen and some visualization of the
+statistics with respect to speed are shown. I primarily used this data to
+decide on sensor ranges when building the Davis instrumented bicycle presented
+in Chapter :ref:`davisbicycle`, but I think that some better statistical models
+could be derived. I also only present some of the graphs here, but the source
+code can generate many more.
 
 Abstract
 --------
@@ -1244,7 +1249,7 @@ Abstract
 An overview of bicycle and rider kinematic motions from a series of
 experimental treadmill tests is presented. The full kinematics of bicycles and
 riders were measured with an active motion capture system. Motion across speeds
-are compared graphically with box and whiskers plots. Trends and ranges in
+are compared graphically with box and whisker plots. Trends and ranges in
 amplitude are shown to characterize the system motion. This data will be used
 to develop a realistic biomechanical model and control model for the rider and
 for future experimental design.
@@ -1253,18 +1258,19 @@ Introduction
 ------------
 
 In the past decade, research has grown on single track vehicles culminating in
-the recently benchmarked bicycle model :cite:`Meijaard2007`. Two other recent papers
-(:cite:`Astrom2005`, :cite:`Limebeer2006`) have also presented overviews of current and
-historical research in bicycle dynamics and control. These review a plethora of
-dynamic models but little is known about which models are good at representing
-the actual system. Very little model-validation experimentation has been
-performed in the literature and many of the modeling assumptions, especially
-those regarding tire and rider dynamics, remain questionable.  The most recent
-notable model-validation study is the verification of the benchmark model
-:cite:`Kooijman2008`. Only a handful of other good experimental studies on bicycle
-dynamics exist. The work :cite:`Lunteren1970` performed some 40 years ago in the
-same halls as the Kooijman experiments :cite:`Kooijman2008` included extensive
-efforts to validate a human control model using a bicycle simulator paired with
+the recently benchmarked bicycle model :cite:`Meijaard2007`. Two other recent
+papers (:cite:`Astrom2005`, :cite:`Limebeer2006`) have also presented overviews
+of current and historical research in bicycle dynamics and control. These
+review a plethora of dynamic models but little is known about which models are
+good at representing the actual system. Very little model-validation
+experimentation has been performed in the literature and many of the modeling
+assumptions, especially those regarding tire and rider dynamics, remain
+questionable. The most recent notable model-validation study is the
+verification of the benchmark model :cite:`Kooijman2008`. Only a handful of
+other good experimental studies on bicycle dynamics exist. The work
+:cite:`Lunteren1970` performed some 40 years ago in the same halls as the
+Kooijman experiments :cite:`Kooijman2008` included extensive efforts to
+validate a human control model using a bicycle simulator paired with
 statistical analysis. Also, around the same time as the first Delft experiments
 :cite:`Lunteren1970`, a substantial study was done at Calspan and Schwinn
 :cite:`Roland1971`.
@@ -1289,28 +1295,28 @@ Experimental Design
 
 The experiments were performed in a controlled environment while the motion of
 the bicycle and rider were measured with an active motion capture system
-:cite:`NorthernDigitalIncorporated2009`. The rider rode on a :math:`3\times5` meter treadmill,
-(:ref:`Figure 10.1<figVrijeTreadmill>`) capable of belt speeds up to 35 km/h.  Three male
-riders of similar age [23, 26, 31 years] and build [height (1.84, 1.83, 1.76 m)
-and mass (74, 72, 72 kg)] participated as subjects.  Each rode two different
-Dutch bicycles. Each rider performed all runs in one day in the same order (no
-randomization) and was instructed to bicycle comfortably at a constant speed in
-the range of 2 to 30 km/h for the duration of the run. There were at least 2
-repetitions of each speed with each bicycle. A run was sampled at a frequency
-of 100 Hz for 60 seconds.
+:cite:`NorthernDigitalIncorporated2009`. The rider rode on a :math:`3\times5`
+meter treadmill, (:ref:`Figure 10.1<figVrijeTreadmill>`) capable of belt speeds
+up to 35 km/h. Three male riders of similar age [23, 26, 31 years] and build
+[height (1.84, 1.83, 1.76 m) and mass (74, 72, 72 kg)] participated as
+subjects. Each rode two different Dutch bicycles. Each rider performed all runs
+in one day in the same order (no randomization) and was instructed to bicycle
+comfortably at a constant speed in the range of 2 to 30 km/h for the duration
+of the run. There were at least 2 repetitions of each speed with each bicycle.
+A run was sampled at a frequency of 100 Hz for 60 seconds.
 
 Bicycle markers were placed to easily extract the rigid body motion (i.e. body
-orientations and locations) of the frame and fork (:ref:`Figure 10.2<figMarkers>`).
-Four markers were attached to the fork and seven to the rear frame. A marker
-was attached on the right and left sides of the center of each wheel, the seat
-stays, the ends of the handlebars, and the head tube. A single marker was also
-attached to the back of the seat post.
+orientations and locations) of the frame and fork (:ref:`Figure
+10.2<figMarkers>`). Four markers were attached to the fork and seven to the
+rear frame. A marker was attached on the right and left sides of the center of
+each wheel, the seat stays, the ends of the handlebars, and the head tube. A
+single marker was also attached to the back of the seat post.
 
 We recorded the locations of 20 points on the rider (:ref:`Figure
-10.2<figMarkers>`): left and right sides of the helmet near the temple, back of
-the helmet, shoulders (greater tuberosity of the humerus), elbows (lateral
-epicondyle of the humerus), wrists (pisiform of the carpus), between the
-shoulder blades on the spine (T6 of the thoracic vertebrae), the tail bone
+10.3<figMarkerLocation>`): left and right sides of the helmet near the temple,
+back of the helmet, shoulders (greater tuberosity of the humerus), elbows
+(lateral epicondyle of the humerus), wrists (pisiform of the carpus), between
+the shoulder blades on the spine (T6 of the thoracic vertebrae), the tail bone
 (coccyx), midpoint on the spine between the coccyx and shoulder blades (L1 on
 the lumbar vertebrae), hips (greater trochanter of the femur), knees (lateral
 epicondyle of the femur), ankles (lateral malleolus of the fibula) and feet
@@ -1334,8 +1340,8 @@ frame plane of symmetry for each marker. These are shown because we observed
 large lateral knee movement in video footage at low speeds :cite:`Kooijman2009a`
 that may be used for additional control. The butt motion is plotted to give an
 idea of how the seat can potentially be shifted under the torso to control roll
-angle. Figures :ref:`10.13<fig3017wheel>`, :ref:`10.14<fig3017bAng>`,
-:ref:`10.15<fig3017rLat>`, and :ref:`10.16<fig3017rAng>` show examples of the
+angle. Figures :ref:`10.14<fig3017wheel>`, :ref:`10.15<fig3017bAng>`,
+:ref:`10.16<fig3017rLat>`, and :ref:`10.17<fig3017rAng>` show examples of the
 time histories of these coordinates.
 
 .. _fig3017wheel:
@@ -1429,7 +1435,7 @@ Simarly, the tail bone's lateral deviation from the bicycle frame is
    q_{12} = \hat{b}_2 \cdot \mathbf{r}^{{m_9}/{n_o}} - \mathbf{r}^{m_{26}/n_o}
 
 I take the angle between a line running along the rider's back and the frame
-plane to be a measure of rider lean, :ref:`Figure 10.17<figRiderLeanAngle>`.
+plane to be a measure of rider lean, :ref:`Figure 10.18<figRiderLeanAngle>`.
 
 .. _figRiderLeanAngle:
 
@@ -1499,18 +1505,19 @@ line and perpendicular to the bicycle lateral plane of symmetry
 Results
 -------
 
-Direct examination of individual times series can be fruitful :cite:`Doyle1987`, but
-it is hard to make generalizations that apply to more that one specific case.
-In our case, we have are nearly 3000 different time histories to examine with
-the coordinates we've chosen. Examining the frequency spectrum of each time
-history gives a different and sometimes more revealing view. For the runs in
-which the rider pedals, the pedaling frequency is often the dominant frequency,
-with little indication of other distinct frequencies :cite:`Moore2009b`.
+Direct examination of individual times series can be fruitful
+:cite:`Doyle1987`, but it is hard to make generalizations that apply to more
+that one specific case. In our case, we have are nearly 3000 different time
+histories to examine with the coordinates we've chosen. Examining the frequency
+spectrum of each time history gives a different and sometimes more revealing
+view. For the runs in which the rider pedals, the pedaling frequency is often
+the dominant frequency, with little indication of other distinct frequencies
+:cite:`Moore2009b`.
 
 A better way to visualize how the coordinates change with speed, for example,
 is to look at various statistics of the time histories. We grouped all of the
 runs together for combined data sets at each speed of between 48,000 and 72,000
-points, depending on how many repetitions of runs were performed (i.e.  between
+points, depending on how many repetitions of runs were performed (i.e. between
 8 and 12). These were then plotted as separate box plots for each speed and for
 each state. The box and whiskers charts plot a center line for the median of
 the data, a box that bounds the 25% and 75% quartiles, whiskers that encompass
@@ -1611,37 +1618,39 @@ you twist more when you steer more.
 Conclusions
 -----------
 
-The box and whiskers plots are a method of visualizing a more statistically
+The box and whisker plots are a method of visualizing a more statistically
 valid view of the kinematics of the bicycle and rider during stabilization
 tasks. General trends in how states change with speed were shown and can be
 utilized for rider bicycle dynamic and control model design. This is only one
-of the first steps at understanding how particular motions vary with speed,
+of the first steps toward understanding how particular motions vary with speed,
 maneuvers, bicycles, riders, and even the correlations among the motions. The
-source code also computes statistics for the rates, accelerations, and frequency
-content of the coordinates. The numerical values presented also provide a
-framework for design of measurement techniques needed in experimental studies.
+source code also computes statistics for the rates, accelerations, and
+frequency content of the coordinates. The numerical values presented also
+provide a framework for design of measurement techniques needed in experimental
+studies.
 
 Conclusions
 ===========
 
 The PCA data decomposes the motion into a collection of linear motions, with
 the dominant ones being exposed. We'd hoped that we would be able to apply a
-second PCA in much the same fashion as :cite:`Troje2002` did with the walkers, but
-bicycling doesn't produce clean periodic motion like walking does. :cite:`Troje2002`
-was able to apply the second PCA across second independent variables to
-characterize the change in motion with respect to the variables. We are most
-interested in dynamical changes with respect to speed for the bicycle-rider
-system, but also how different bicycle designs affect the control and dynamics.
-Our attempt at tracking how the principal components changed with respect to
-speed, was somewhat flawed due to the difficulty in matching components from
-run to run and became somewhat of a subjective task. It correctly shows the
-increased motions at low speeds, but the information from the principal
-components interested me less and less as we continued to work with it. This is
-what led me to transform the marker data into more concrete coordinates that
-have more meaning and connection to the kinematics we typically examine in the
-bicycle-rider system. I think the data set can provide some more concrete
-conclusions about how we balance a bicycle. One other thing that I thought
-about pursuing was making use of scaling with respect to mass in the principal
-component analysis. It is possible to applying weighting such that motions
-associated with points on limbs with more mass. This could in affect reveal
-motions that have more effect on the dynamics than simply the kinematics.
+second PCA in much the same fashion as :cite:`Troje2002` did with the walkers,
+but bicycling doesn't produce clean periodic motion like walking does.
+:cite:`Troje2002` was able to apply the second PCA across second independent
+variables to characterize the change in motion with respect to the variables.
+We are most interested in dynamical changes with respect to speed for the
+bicycle-rider system, but also in how different bicycle designs affect the
+control and dynamics. Our attempt at tracking how the principal components
+changed with respect to speed, was somewhat flawed due to the difficulty in
+matching components from run to run. It correctly shows the increased motions
+at low speeds, but the information from the principal components became less
+and less relevant as we continued to work with it. This is what led me to
+transform the marker data into more concrete coordinates that have more meaning
+and connection to the kinematics we typically examine in the bicycle-rider
+system. I think the data set can provide some more concrete conclusions about
+how we balance a bicycle. Another thing that I thought about pursuing was
+making use of scaling with respect to mass in the principal component analysis.
+It is possible to applying weighting to the coordinates such that the principal
+components can be formulated with respect to a momentum-like quantity. This
+could reveal the motions that effect the dynamics rather than simply the
+primary kinematics.

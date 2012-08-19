@@ -4,13 +4,6 @@
 Bicycle Equations Of Motion
 ===========================
 
-.. warning::
-
-   This document is a draft which is updated regularly (Last updated |today|).
-   Once I submit if for my doctoral degree at UC Davis, it will be done. So for
-   now use at your own risk. The information may or may not be correct.
-   Reviews, comments and suggestions are welcome.
-
 Preface
 =======
 
@@ -178,7 +171,7 @@ positive right-handed which makes the configuration identical to that in
 .. math::
    :label: eqRotationDefinition
 
-   ^a \bar{v} = ^N\mathbf{R}^A\ ^n \bar{v}
+   ^a \bar{v} = {}^N\mathbf{R}^A\ {}^n \bar{v}
 
 where :math:`^n\bar{v}` is a vector expressed in the :math:`N` frame and
 :math:`^a\bar{v}` is the same vector expressed in the :math:`A` frame.
@@ -265,8 +258,6 @@ to the Newtonian reference frame. There are six primary points of interest: the
 four mass centers, :math:`d_o,c_o,e_o,f_o`, and the two points fixed on the
 wheels which are instantaneously in contact with the ground, :math:`d_n,f_n`\
 [#wheelcontact]_.
-
-.. todo:: Have Mont read this footnote once again.
 
 The mass center of the rear wheel, :math:`d_o`, is assumed to be at the center
 of the wheel and is located by
@@ -441,7 +432,7 @@ the Newtonian reference frame. For example,
 .. math::
    :label: eqOmegaFinN
 
-   ^N\bar{\omega}^F = ^N\bar{\omega}^C + ^C\bar{\omega}^E + ^E\bar{\omega}^F
+   ^N\bar{\omega}^F = {}^N\bar{\omega}^C + {}^C\bar{\omega}^E + {}^E\bar{\omega}^F
 
 which expands to
 
@@ -473,7 +464,7 @@ frame.
 .. math::
    :label: eqCoInN
 
-   ^N\bar{v}^{c_o} = ^N\bar{v}^{d_o} + ^N\bar{\omega}^C\times\bar{r}^{c_o/d_o}
+   ^N\bar{v}^{c_o} = {}^N\bar{v}^{d_o} + {}^N\bar{\omega}^C\times\bar{r}^{c_o/d_o}
 
 where
 
@@ -489,7 +480,7 @@ and
 .. math::
    :label: eqCeInN
 
-   ^N\bar{v}^{c_e} = ^N\bar{v}^{d_o} + ^N\bar{\omega}^C\times\bar{r}^{c_e/d_o}
+   ^N\bar{v}^{c_e} = {}^N\bar{v}^{d_o} + {}^N\bar{\omega}^C\times\bar{r}^{c_e/d_o}
 
 where
 
@@ -504,7 +495,7 @@ steer axis point as they both lie on the front frame
 .. math::
    :label: eqFoInN
 
-   ^N\bar{v}^{f_o} = ^N\bar{v}^{c_e} + ^N\bar{\omega}^E\times\bar{r}^{f_o/c_e}
+   ^N\bar{v}^{f_o} = {}^N\bar{v}^{c_e} + {}^N\bar{\omega}^E\times\bar{r}^{f_o/c_e}
 
 where
 
@@ -521,7 +512,7 @@ Then the velocity of the front frame mass center is similarly
 .. math::
    :label: eqEoInN
 
-   ^N\bar{v}^{e_o} = ^N\bar{v}^{f_o} + ^N\bar{\omega}^E\times\bar{r}^{e_o/f_o}
+   ^N\bar{v}^{e_o} = {}^N\bar{v}^{f_o} + {}^N\bar{\omega}^E\times\bar{r}^{e_o/f_o}
 
 where
 
@@ -539,7 +530,7 @@ centers. The rear contact point is
 .. math::
    :label: eqDnInN
 
-   ^N\bar{v}^{d_n} = ^N\bar{v}^{d_o} + ^N\bar{\omega}^D\times\bar{r}^{d_n/d_o}
+   ^N\bar{v}^{d_n} = {}^N\bar{v}^{d_o} + {}^N\bar{\omega}^D\times\bar{r}^{d_n/d_o}
 
 where
 
@@ -559,7 +550,7 @@ The front wheel contact velocity is
 .. math::
    :label: eqFnInN
 
-   ^N\bar{v}^{f_n} = ^N\bar{v}^{f_o} + ^N\bar{\omega}^F\times\bar{r}^{f_n/f_o}
+   ^N\bar{v}^{f_n} = {}^N\bar{v}^{f_o} + {}^N\bar{\omega}^F\times\bar{r}^{f_n/f_o}
 
 where
 
@@ -623,9 +614,9 @@ center of mass is
 .. math::
    :label: aCoinN
 
-   ^N\bar{a}^{c_o} = ^N\bar{a}^{d_o} +
-   ^N\bar{\omega}^C\times(^N\bar{\omega}^C\times\bar{r}^{c_o/d_o}) +
-   ^N\bar{\alpha}^C\times\bar{r}^{c_o/d_o}
+   ^N\bar{a}^{c_o} = {}^N\bar{a}^{d_o} +
+   {}^N\bar{\omega}^C\times(^N\bar{\omega}^C\times\bar{r}^{c_o/d_o}) +
+   {}^N\bar{\alpha}^C\times\bar{r}^{c_o/d_o}
 
 where
 
@@ -653,9 +644,9 @@ The acceleration of the steer axis point is
 .. math::
    :label: aCeInN
 
-   ^N\bar{a}^{c_e} = ^N\bar{a}^{d_o} +
-   ^N\bar{\omega}^C\times(^N\bar{\omega}^C\times\bar{r}^{c_e/d_o}) +
-   ^N\bar{\alpha}^C\times\bar{r}^{c_e/d_o}
+   ^N\bar{a}^{c_e} = {}^N\bar{a}^{d_o} +
+   {}^N\bar{\omega}^C\times(^N\bar{\omega}^C\times\bar{r}^{c_e/d_o}) +
+   {}^N\bar{\alpha}^C\times\bar{r}^{c_e/d_o}
 
 where
 
@@ -680,9 +671,9 @@ The acceleration of the front wheel center of mass is
 .. math::
    :label: aFoInN
 
-   ^N\bar{a}^{f_o} = ^N\bar{a}^{c_e} +
-   ^N\bar{\omega}^E\times(^N\bar{\omega}^E\times\bar{r}^{f_o/c_e}) +
-   ^N\bar{\alpha}^E\times\bar{r}^{f_o/c_e}
+   ^N\bar{a}^{f_o} = {}^N\bar{a}^{c_e} +
+   {}^N\bar{\omega}^E\times(^N\bar{\omega}^E\times\bar{r}^{f_o/c_e}) +
+   {}^N\bar{\alpha}^E\times\bar{r}^{f_o/c_e}
 
 where
 
@@ -723,9 +714,9 @@ The acceleration of the front frame center of mass is
 .. math::
    :label: aEoInN
 
-   ^N\bar{a}^{e_o} = ^N\bar{a}^{f_o} +
-   ^N\bar{\omega}^E\times(^N\bar{\omega}^E\times\bar{r}^{e_o/f_o}) +
-   ^N\bar{\alpha}^E\times\bar{r}^{e_o/f_o}
+   ^N\bar{a}^{e_o} = {}^N\bar{a}^{f_o} +
+   {}^N\bar{\omega}^E\times(^N\bar{\omega}^E\times\bar{r}^{e_o/f_o}) +
+   {}^N\bar{\alpha}^E\times\bar{r}^{e_o/f_o}
 
 where
 
@@ -777,7 +768,7 @@ Motion Constraints
 Motion constraints reduce the dimensions of the locally achievable
 configuration space from nine to three. The first four constraints are
 introduced to enforce the pure rolling, no side-slip, contact of the knife-edge
-wheels with the ground plane and are non-holonomic. This sets the components of
+wheels with the ground plane and are nonholonomic. This sets the components of
 velocity of the contact points on the wheels in the :math:`\hat{a}_1` and
 :math:`\hat{a}_2` directions equal to zero, producing the following
 relationships
@@ -863,7 +854,7 @@ the form
    u_8 = f(u_4, u_6, u_7, q_4, \ldots, q_8)
 
 At this point, the equations become analytically long and it is not necessarily
-trivial to reduce the length of the equations.  A smarter choice of generalized
+trivial to reduce the length of the equations. A smarter choice of generalized
 speeds could certainly help, but no effort was spent searching for a good set.
 From this point on in the derivation, the analytical results of the equations
 of motion will not be shown. I will only outline the remainder of the theory,
@@ -875,7 +866,7 @@ them by hand.
 Generalized Active Forces
 -------------------------
 
-The three expressions for the non-holomonic generalized active forces,
+The three expressions for the nonholomonic generalized active forces,
 :math:`\tilde{F}_r` can now be formed. For the four body system with three
 degrees of freedom :math:`(r=4,6,7)` they take the form
 
@@ -885,8 +876,8 @@ degrees of freedom :math:`(r=4,6,7)` they take the form
    \tilde{F}_r = (\tilde{F}_r)_C + (\tilde{F}_r)_D + (\tilde{F}_r)_E +
    (\tilde{F}_r)_F
 
-   (\bar{F}_r)_X= ^N\bar{V}^{x_o}_r\cdot\bar{R}^{x_o} +
-   ^N\bar{\omega}^X_r\cdot\bar{T}^X
+   (\bar{F}_r)_X= {}^N\bar{V}^{x_o}_r\cdot\bar{R}^{x_o} +
+   {}^N\bar{\omega}^X_r\cdot\bar{T}^X
 
 where :math:`^N\bar{V}_r^{x_o}` is the r\ :sup:`th` partial velocity of the
 mass center corresponding to the generalized speed :math:`u_r`,
@@ -935,7 +926,7 @@ the rear frame and the rear wheel about :math:`\hat{c}_2` and the steer torque,
 Generalized Inertia Forces
 --------------------------
 
-The non-holonomic generalized inertia forces, :math:`\tilde{F}^*_r`, are formed
+The nonholonomic generalized inertia forces, :math:`\tilde{F}^*_r`, are formed
 using the accelerations and the inertial properties of the bodies.
 
 .. math::
@@ -944,8 +935,8 @@ using the accelerations and the inertial properties of the bodies.
    \tilde{F}^*_r = (\tilde{F}^*_r)_C + (\tilde{F}^*_r)_D + (\tilde{F}^*_r)_E +
    (\tilde{F}^*_r)_F
 
-   (\bar{F}^*_r)_X= ^N\bar{V}^{X_o}_r\cdot\bar{R}^*_{X_o} +
-   ^N\bar{\omega}^X_r\cdot\bar{T}^*_X
+   (\bar{F}^*_r)_X= {}^N\bar{V}^{X_o}_r\cdot\bar{R}^*_{X_o} +
+   {}^N\bar{\omega}^X_r\cdot\bar{T}^*_X
 
 where :math:`^N\bar{V}_r^{x_o}` is once again the r\ :sup:`th` partial velocity
 of the mass center with corresponding to the generalized speed :math:`u_r`,
@@ -967,7 +958,7 @@ the inertia torque on the body and is defined as
    :label: eqTStar
 
    \bar{T}^*_X =
-   -(^N\bar{\alpha}^X\cdot I_X+^N\bar{\omega}^X\times I_X\cdot\bar{\omega}^X)
+   -(^N\bar{\alpha}^X\cdot I_X+{}^N\bar{\omega}^X\times I_X\cdot\bar{\omega}^X)
 
 where :math:`I_X` is the central inertia dyadic for the body in question which
 corresponds to the following tensor definitions for the inertia of each rigid
@@ -1048,20 +1039,21 @@ described in the following sections.
 Model discussion
 ----------------
 
-:cite:`Astrom2005`, :cite:`Meijaard2007`, :cite:`Basu-Mandal2007`, :cite:`Limebeer2006`, and others
-do excellent jobs describing the essential nature of both the non-linear
-Whipple model and various linearized models. Notable concepts include the fact
-that many of the coordinates are *ignorable*, that is they do not show up in
-the essential dynamical equations of motion. These are typically the location
-of the ground contact point, :math:`q_1` and :math:`q_2`, the yaw angle,
-:math:`q_3`, and the wheel angles, :math:`q_6` and :math:`q_8`. The model is
-also energy conserving, because the contact points do no work. The model has
-many equilibrium points and when linearized about the nominal configuration at
-constant forward speed the open loop model (i.e. with no inputs) can exhibit
-stability within various speed regimes. The system exhibits non-minimum phase
-behavior and this is clearly identified in the linear models by the right half
-plane zeros in various transfer functions. The previously mentioned references
-are recommended for a more detailed description of the model.
+:cite:`Astrom2005`, :cite:`Meijaard2007`, :cite:`Basu-Mandal2007`,
+:cite:`Limebeer2006`, and others do excellent jobs describing the essential
+nature of both the non-linear Whipple model and various linearized models.
+Notable concepts include the fact that many of the coordinates are *ignorable*,
+that is they do not show up in the essential dynamical equations of motion.
+These are typically the location of the ground contact point, :math:`q_1` and
+:math:`q_2`, the yaw angle, :math:`q_3`, and the wheel angles, :math:`q_6` and
+:math:`q_8`. The model is also energy conserving, because the contact points do
+no work. The model has many equilibrium points and when linearized about the
+nominal configuration at constant forward speed the open loop model (i.e. with
+no inputs) can exhibit stability within various speed regimes. The system
+exhibits non-minimum phase behavior and this is clearly identified in the
+linear models by the right half plane zeros in various transfer functions. The
+previously mentioned references are recommended for a more detailed description
+of the model.
 
 Simulation
 ----------
@@ -1127,7 +1119,7 @@ Linearized Equations of Motion
 The non-linear equations of motion can be linearized about various equilibrium
 points. The obvious one is about the nominal configuration :cite:`Meijaard2007` but
 there are are an infinity of other associated with steady turns
-:cite:`Basu-Mandal2007`.  The equations can be linearized by computing the Taylor
+:cite:`Basu-Mandal2007`. The equations can be linearized by computing the Taylor
 series expansion of the non-linear equations of motion about the equilibrium
 point of interest and disregarding the terms higher than first order. For the
 nominal configuration, this amounts to calculating the Jacobian of the system
@@ -1195,8 +1187,17 @@ the eigenvalues computed at 5 m/s compared to the values in Table 2 of
 
 .. _tabLinCompare:
 
+.. raw:: latex
+
+   \begin{footnotesize}
+
 .. tabularcolumns:: lllll
+
 .. include:: tables/eom/linear-compare.rst
+
+.. raw:: latex
+
+   \end{footnotesize}
 
 The lateral dynamics of this linear model are remarkably similar to the
 non-linear model especially around the regime of a typical bicycle's operating
@@ -1517,7 +1518,7 @@ Notation
    Shorthand notation for :math:`\operatorname{sin}\lambda` and
    :math:`\operatorname{cos}\lambda`.
 :math:`\tilde{F}_r`
-   Non-holonomic generalized active forces. The subscript :math:`r` denotes
+   Nonholonomic generalized active forces. The subscript :math:`r` denotes
    one of the independent generalized speeds.
 :math:`^N\bar{V}_r^{x_o}`
    r\ :sup:`th` partial velocity of point :math:`x_o` in reference frame
@@ -1531,7 +1532,7 @@ Notation
 :math:`\bar{T}^C`
    Resultant torques acting on body :math:`C`.
 :math:`\tilde{F}^*_r`
-   Non-holonomic generalized inertia forces. The subscript :math:`r` denotes
+   Nonholonomic generalized inertia forces. The subscript :math:`r` denotes
    one of the independent generalized speeds.
 :math:`\bar{R}^*_{x_o}`
    Generalized inertia force of point :math:`x_o`.
@@ -1594,13 +1595,13 @@ The following benchmark parameters are all defined in :cite:`Meijaard2007`.
    because a bicycle is never below the ground plane, except maybe in an
    academic.
 
-.. [#wheelcontact] The bicycle wheels points of contact are abstract points in
-   dynamics. At any given instance of time there are two coincident points at
+.. [#wheelcontact] The bicycle wheels' points of contact are abstract points in
+   dynamics. At any instant there are two coincident points at
    the contact location: one on the wheel and one on the ground. If no-slip
    rolling is assumed, both of these points are motionless, i.e. their
-   velocities are equal to zero. These points are distinctly different than the
-   points that trace out the path on the ground of the contact wheel contact
-   locations through time. Those points are not motionless and do have a
+   velocities are zero. These points are distinctly different from the
+   points that trace out the path on the ground of the wheel contact
+   locations through time. Those points are not motionless and therefore do have a
    velocity.
 
 .. [#holonomic] This constraint can readily be modified to accomodate a

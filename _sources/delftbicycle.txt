@@ -4,33 +4,26 @@
 Delft Instrumented Bicycle
 ==========================
 
-.. warning::
-
-   This document is a draft which is updated regularly (Last updated |today|).
-   Once I submit if for my doctoral degree at UC Davis, it will be done. So for
-   now use at your own risk. The information may or may not be correct.
-   Reviews, comments and suggestions are welcome.
-
 Preface
 =======
 
-I had contacted the authors of :cite:`Meijaard2007` in the early winter of 2006 to
-try to get some tips on where to go with my master's thesis, which I wanted to
-do on the handling qualities of bicycles. I had previously come across Arend,
-Jaap, and Jim's conference paper :cite:`Schwab2004` on their benchmark Whipple model
-and used it to help me build and validate my first model earlier that year.
-Andy, Jim, and Arend all replied, Jim at great length as usual, and the seeds
-were sown for some future collaboration. Jim began flooding my inbox with years
-of thoughts on the handling of bicycles and it turned out that Arend had just
-applied for a big grant to fund two PhD students for bicycle handling research
-that was uncannily similar to what I was dreaming up myself. I hadn't decided
-to do my PhD at UC Davis quite yet and Arend's potential PhD slot was enticing
-(Jodi was slated for one). But I ended up finishing my masters the following
-spring and signing on for the PhD at Davis. That summer I started thinking
-about applying for a Fulbright grant to study somewhere. I contacted Arend
-again to see if he was interested in having me and he was excited. I told him I
-was going to do it and then put it off. A week shy of the deadline, I told
-Arend I didn't have time to do it. He encouraged me to apply anyway and I
+I had contacted the authors of :cite:`Meijaard2007` in the early winter of 2006
+to try to get some tips on where to go with my master's thesis, which I wanted
+to do on the handling qualities of bicycles. I had previously come across
+Arend, Jaap, and Jim's conference paper :cite:`Schwab2004` on their benchmark
+Whipple model and used it to help me build and validate my first model earlier
+that year. Andy, Jim, and Arend all replied, Jim at great length as usual, and
+the seeds were sown for some future collaboration. Jim began flooding my inbox
+with years of thoughts on the handling of bicycles and it turned out that Arend
+had just applied for a big grant to fund two PhD students for bicycle handling
+research that was uncannily similar to what I was dreaming up myself. I hadn't
+decided to do my PhD at UC Davis quite yet and Arend's potential PhD slot was
+enticing (Jodi was slated for one). But I ended up finishing my masters the
+following spring and signing on for the PhD at Davis. That summer I started
+thinking about applying for a Fulbright grant to study somewhere. I contacted
+Arend again to see if he was interested in having me and he was excited. I told
+him I was going to do it and then put it off. A week shy of the deadline, I
+told Arend I didn't have time to do it. He encouraged me to apply anyway and I
 agreed to push through. I spent the next week putting together the proposal
 full time and after several drafts I sent it off. I didn't think about it much
 after that, but luck was on my side and I received the acceptance letter from
@@ -40,17 +33,18 @@ PhD for Jodi so there was going to be some momentum and a teammate when I
 arrived.
 
 When I arrived in Delft at the end of August in 2008 Jodi was working on
-several projects: a bicycle handling qualities review paper :cite:`Kooijman2011a`,
-the two mass skate bicycle :cite:`Kooijman2011`, and an instrumented bicycle. I
-helped to some degree with all the projects, but primarily with setting up the
-instrumented bicycle and planning a set of experiments. This chapter details
-the work we did with the first instrumented bicycle. I've taken the text
-directly from our conference paper :cite:`Kooijman2009a` and gone through it with
-some updates, clarifications, and additions. Jodi and Arend were the primary
-writers of the paper. My contributions were more of the experimental design,
-performing the experiments, analyzing the data, discussing results and working
-on a visualization graphical interface that we never really used due to the
-inability to synchronize the video data we took with the sensor data.
+several projects: a bicycle handling qualities review paper
+:cite:`Kooijman2011a`, the two mass skate bicycle :cite:`Kooijman2011`, and an
+instrumented bicycle. I helped to some degree with all the projects, but
+primarily with setting up the instrumented bicycle and planning a set of
+experiments. This chapter details the work we did with the first instrumented
+bicycle. I've taken the text directly from our conference paper
+:cite:`Kooijman2009a` and gone through it with some updates, clarifications,
+and additions. Jodi and Arend were the primary writers of the paper. My
+contributions were more of the experimental design, performing the experiments,
+analyzing the data, discussing results and working on a visualization graphical
+interface that we never really used due to the inability to synchronize the
+video data we took with the sensor data.
 
 Abstract
 ========
@@ -73,15 +67,16 @@ Riding a bicycle is an acquired skill. At very low speeds the bicycle is very
 unstable and requires great attention by the rider. However, at moderate speed
 the bicycle is easy to stabilize, often with little conscious thought by the
 rider. These observations are corroborated by a stability analysis on a simple
-dynamical model of an uncontrolled bicycle :cite:`Meijaard2007` and some experiments
-:cite:`Kooijman2008` and :cite:`Kooijman2009`. Although there is little established
-knowledge on how a person stabilizes a bicycle, two basic features are known:
-some uncontrolled riderless bicycles can balance themselves given some initial
-speed, and one can balance a forward moving bicycle by turning the front wheel
-in the direction of the undesired lean. But we all know that a rider on a
-bicycle not only moves the handlebars but also may make use of their upper
-body and other extremities. These rider body motions are even more profound
-when riding a motorcycle in extreme maneuvers :cite:`Cossalter2002`.
+dynamical model of an uncontrolled bicycle :cite:`Meijaard2007` and some
+experiments :cite:`Kooijman2008` and :cite:`Kooijman2009`. Although there is
+little established knowledge on how a person stabilizes a bicycle, two basic
+features are known: some uncontrolled riderless bicycles can balance themselves
+given some initial speed, and one can balance a forward moving bicycle by
+turning the front wheel in the direction of the undesired lean. But we all know
+that a rider on a bicycle not only moves the handlebars but also may make use
+of their upper body and other extremities. These rider body motions are even
+more profound when riding a motorcycle in extreme maneuvers
+:cite:`Cossalter2002`.
 
 The purpose of this study is to identify the major human control actions in
 normal bicycling focusing on the stabilization task.\ [#]_ We use the term
@@ -110,7 +105,7 @@ A standard Dutch bicycle, 2008 Batavus Browser, was chosen for the experiments
 and is shown in :ref:`Figure 9.1<figInstrumentedBicycle>`. This is a bicycle of
 conventional design, fitted with a 3-speed SRAM rear hub and coaster brakes.
 Some of the peripheral components were removed in order to be able to install
-measurement equipment and sensors (see :ref:`Table 9.11<tabEquipment>`).  The
+measurement equipment and sensors (see :ref:`Table 9.1<tabEquipment>`). The
 bicycle was equipped with a 1/3” CCD color bullet-camera with 2.9mm (wide
 angle) lens. The camera was located at the front and directed towards the rider
 and rotated 90 degrees clockwise to get portrait aspect ratio. The video signal
@@ -137,7 +132,7 @@ the rider's motion with respect to the bicycle frame.
 
 .. tabularcolumns:: p{1in}p{1in}p{1in}p{1in}p{1in}
 
-.. list-table::
+.. list-table:: Sensors.
    :header-rows: 1
 
    * - Measurement
@@ -256,7 +251,7 @@ for the case with a rider too, albeit with caution.
 The experiments were carried out by two male, average ability riders of
 different age and build on the same bicycle. The saddle height was adjusted for
 each rider to ensure proper seating. The rider characteristics are given in
-:ref:`Table 9.2<tabRiders>`.  For both riders very similar results were found.
+:ref:`Table 9.2<tabRiders>`. For both riders very similar results were found.
 The data and figures presented in this chapter were collected with rider 1.
 
 .. _figTreadmill:
@@ -275,7 +270,7 @@ consists of four rigid bodies: the rear frame with rigid rider connected, the
 front handlebar and fork assembly, and the two wheels. These are connected by
 ideal hinges and the wheels have idealized pure-rolling contact with level
 ground. :cite:`Moore2009a` describes the method used to determine the model
-parameters for the instrumented bicycle-rider system\ [#]_.  These parameters are
+parameters for the instrumented bicycle-rider system\ [#]_. These parameters are
 given in :ref:`Table 9.3<tabParameters>` and the root locus of the system with
 respect to speed is depicted in :ref:`Figure 9.4<figDelftRootLocus>`. At low speed, the
 dominant mode is the unstable oscillatory weave mode. This weave motion becomes
@@ -416,7 +411,7 @@ Normal Bicycling
 
 Visual inspection of the video footage showed very little rider lean action
 during the experiment other than what resulted directly from the pedaling
-motion.  During the low speed runs at 5 km/h, the rider’s upper body was almost
+motion. During the low speed runs at 5 km/h, the rider’s upper body was almost
 stationary, i.e. it could be considered to be rigidly attached to the rear
 frame. However at this speed the rider’s knees showed significant lateral
 motion. This lateral knee motion can be seen in the video image in Figure
@@ -442,7 +437,7 @@ respectively. The standard deviation of the steer angle during the sixty
 seconds of measurement is also shown in the figures. At speeds above 20 km/h
 the average steer angle remains approximately constant. However the average
 magnitude of the steer angle grows by more than 500% when the speed is
-decreased from 20 km/h to 5 km/h.  This increase in steer angle magnitude for
+decreased from 20 km/h to 5 km/h. This increase in steer angle magnitude for
 the decreasing speeds is illustrated in Figure :ref:`Figure 9.8<figSteerSigma>`.
 This jump in steering amplitude could be indicative of a threshold at which the
 system becomes harder to control, but there is no apparent connection to the
@@ -532,7 +527,7 @@ small remnant motion as a result of slight steering deviations from straight
 ahead. The recorded steer angle data also confirmed that larger steer angles
 were made at decreasing speeds. :ref:`Figure 9.8<figSteerSigma>` shows how the
 standard deviation of the steer angle reduces rapidly with increasing speed up
-to 20 km/h and from then on remains approximately constant.  The figure also
+to 20 km/h and from then on remains approximately constant. The figure also
 shows that the average steering amplitude at all speeds is lower than that for
 the pedaling case. The standard deviation is less than a degree for all speeds
 above 10km/h indicating that little to no steer action is required at higher
@@ -572,7 +567,7 @@ body lean could be noted other than that as a result of the normal pedaling.
 A second phenomenon observable in the video footage, as shown in :ref:`Figure
 9.12<figPerturb>`, is that at all speeds we observed a lateral knee motion
 during the short transient recovery process of the bicycle to the upright
-position.  The lateral knee motion was very large during the 5 km/h measurement
+position. The lateral knee motion was very large during the 5 km/h measurement
 and much smaller at the higher speeds, but even at 30 km/h it is visible.
 
 .. _figPerturb:
@@ -584,7 +579,7 @@ and much smaller at the higher speeds, but even at 30 km/h it is visible.
 
    Video still directly after a perturbation (lateral force applied from the
    rider’s right by a rope at the saddle tube) at 5 km/h. Vertical grey line
-   indicates the bicycle midplane. Note the lateral right knee motion and
+   indicates the bicycle mid-plane. Note the lateral right knee motion and
    steering action and the small upper body lean.
 
 From the video footage we also concluded that the angle that the handlebars are
@@ -658,7 +653,7 @@ details all of the experiments we performed:
 - Lateral perturbation at six speeds for each rider. (runs 132-133)
 - No hand balancing with pedaling for one rider. (runs 60-71)
 - Lane changes for both riders at six speeds. (runs 160-165, 80-85)
-- A single attempt at riding with eyes closed. at 30 km/h\ [#]_
+- A single attempt at riding with eyes closed at 30 km/h\ [#]_
 - Line tracking at six speeds for one rider. (runs 90-96)
 
 There is potentially considerable amount of findings and better statistical
@@ -671,7 +666,7 @@ We mounted three rate sensors to the bicycle to collectively measure the yaw
 rate, :math:`u_3`, roll rate, :math:`u_4`, and the steer rate, :math:`u_7`.
 [#]_ We attached a rate gyro to the fork and handlebar assembly which measured
 the body fixed angular rate, :math:`u_{7s}`, about the steer axis,
-:math:`\hat{e}_3`.  Another rate gyro was attached to the rear frame which
+:math:`\hat{e}_3`. Another rate gyro was attached to the rear frame which
 measured the body-fixed angular rate, :math:`u_{3s}`, about the axis
 approximately aligned with gravity, :math:`s_\lambda\hat{c}_1 +
 c_\lambda\hat{c}_3`. Finally, a third rate gyro was mounted to measure the
@@ -755,17 +750,17 @@ source code and data available for download in case it is of use to anyone.
 Rider 2
 -------
 
-These are the parameters computed with the methods in :cite:`Moore2009a` for
-the second rider, Jason, on the instrumented Batavus Browser. Only the rear
-frame and body parameters are different as the bicycle is identical. We only
-presented data in the previous analysis for runs in which Arend rode the
-bicycle.
+:ref:`Table 9.4<tabSecondRiderParameters>` presents the parameters computed
+with the methods in :cite:`Moore2009a` for the second rider, Jason, on the
+instrumented Batavus Browser. Only the rear frame and body parameters are
+different as the bicycle is identical. We only presented data in the previous
+analysis from runs in which Arend rode the bicycle.
 
 .. _tabSecondRiderParameters:
 
 .. tabularcolumns:: p{1.5in}LL
 
-.. list-table::
+.. list-table:: Parameters of the second rider, Jason.
    :header-rows: 1
 
    * - parameter

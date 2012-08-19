@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '1.0dev',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -54,13 +54,6 @@
 
   <div class="section" id="physical-parameters">
 <span id="physicalparameters"></span><h1>Physical Parameters<a class="headerlink" href="#physical-parameters" title="Permalink to this headline">¶</a></h1>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated August 16, 2012 at 01:46:00 PDT).
-Once I submit if for my doctoral degree at UC Davis, it will be done. So for
-now use at your own risk. The information may or may not be correct.
-Reviews, comments and suggestions are welcome.</p>
-</div>
 <div class="section" id="preface">
 <h2>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
 <p>My first concern with the physical parameters of the bicycle and rider occurred
@@ -75,18 +68,18 @@ parameters using the equipment and procedures developed in <a class="reference i
 and to combine the results with my basic human model from <a class="reference internal" href="zreferences.html#moore2008">[MH08]</a> for
 the estimation of the complete system parameters of the Whipple model. These
 first measurements and the details of the human model were eventually presented
-in <a class="reference internal" href="zreferences.html#moore2009a">[MKHS09]</a>. During this work, Dr.  Hubbard encouraged me to think
+in <a class="reference internal" href="zreferences.html#moore2009a">[MKHS09]</a>. During this work, Dr. Hubbard encouraged me to think
 about the accuracy of the measurements in more detail, as some of the practices
 we were using were not as accurate as they could be. With that in mind and the
 fact that there was very little complete data available on the physical
 parameters of real bicycles, I decided to measure an assortment of bicycles we
 had available around the lab in Delft <a class="reference internal" href="zreferences.html#moore2010">[MHP+10]</a>. From this tedious task
 a rich data set was created and the measurement methodology tightened up
-considerably.  Once I was back in Davis, we setup almost identical equipment to
+considerably. Once I was back in Davis, we setup almost identical equipment to
 measure the two new bicycles we were constructing, see Chatper
 <a class="reference internal" href="davisbicycle.html#davisbicycle"><em>Davis Instrumented Bicycle</em></a>. Danique Fintelman helped us come up with a more accurate
 geometry measurement. Steven Yen also used the equipment to measure a
-children&#8217;s bicycle with a gyro wheel.  With one last improvement, we updated
+children&#8217;s bicycle with a gyro wheel. With one last improvement, we updated
 the human parameter estimates when Chris Dembia implemented Yeadon&#8217;s human
 inertia model and it was combined with the accurate bicycle measurements. These
 final methods for both bicycle and rider are implemented in two open source
@@ -101,7 +94,7 @@ More complex models require estimates of tire characteristics, human body
 segment inertial characteristics, friction, stiffness, damping, etc. In this
 chapter I present the measurement of the minimal bicycle/rider parameters
 required for the benchmark Whipple bicycle model presented in
-<a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a>.  This model is composed of four rigid bodies, has ideal
+<a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a>. This model is composed of four rigid bodies, has ideal
 rolling and frictionless joints, and is laterally symmetric. A set of 25
 parameters describes the geometry, mass, mass location and mass distribution of
 each of the rigid bodies. The experimental methods used to estimate the
@@ -117,7 +110,7 @@ Patterson <a class="reference internal" href="zreferences.html#patterson2004">[P
 recumbent bicycles with a rider. <a class="reference internal" href="zreferences.html#connors2009">[Con09]</a> and <a class="reference internal" href="zreferences.html#stevens2009">[Ste09]</a>
 used a computer aided design package to estimate the parameters.
 <a class="reference internal" href="zreferences.html#escalona2010">[ER10]</a> measured a bicycle for his bicycle dynamics class in
-Spain.  Also, some notable motorcycle and scooter measurements include
+Spain. Also, some notable motorcycle and scooter measurements include
 <a class="reference internal" href="zreferences.html#dohring1953">[Doh53]</a>, <a class="reference internal" href="zreferences.html#dohring1955">[Doh55]</a>, <a class="reference internal" href="zreferences.html#singh1971">[SG71]</a>, <a class="reference internal" href="zreferences.html#eaton1973">[Eat73b]</a>,
 <a class="reference internal" href="zreferences.html#roland1973">[RR73]</a>, and <a class="reference internal" href="zreferences.html#sharp1997b">[Sha97]</a>.</p>
 <p>Here is documented the indirect measurement of ten real bicycles&#8217; physical
@@ -202,7 +195,7 @@ different configurations.</p>
 </div>
 <div class="section" id="accuracy">
 <span id="secaccuracy"></span><h3>Accuracy<a class="headerlink" href="#accuracy" title="Permalink to this headline">¶</a></h3>
-<p>We here analyze the accuracy of the measurements of the parameters.  Following
+<p>We here analyze the accuracy of the measurements of the parameters. Following
 the lead of <a class="reference internal" href="zreferences.html#roland1971">[RM71]</a> error propagation theory was used to calculate
 accuracy of the 25 benchmark parameters. This begins by estimating the standard
 deviation of the actual measurements taken, see Section
@@ -630,8 +623,8 @@ the fit. First, the variance of the fit is calculated</p>
 <div class="math" id="equation-eqnCovariance">
 <span class="eqno">(29)</span>\[\mathbf{U} = \sigma_y^2\mathbf{H}^{-1}\]</div>
 <p>where <span class="math">\(\mathbf{H}\)</span> is the Hessian [Hubbard1989b] of the fit function,
-<a href="#equation-eqDecayOs">(25)</a>.  <span class="math">\(\mathbf{U}\)</span> is a <span class="math">\(5\times5\)</span> matrix with the
-variances of each of the five fit parameters along the diagonal.  The variance
+<a href="#equation-eqDecayOs">(25)</a>. <span class="math">\(\mathbf{U}\)</span> is a <span class="math">\(5\times5\)</span> matrix with the
+variances of each of the five fit parameters along the diagonal. The variance
 of <span class="math">\(T\)</span> can be computed using the variance of <span class="math">\(\zeta\)</span> and
 <span class="math">\(\omega\)</span>. It is important to note that the uncertainties in the period
 are very low (<span class="math">\(&lt;1e-4\)</span>) due to the high sample rate, even for the fits
@@ -717,7 +710,7 @@ rear frame was typically hung from either the three main tubes (seat tube, down
 tube, and top tube), the seat post, or a small fixture mounted to the brake
 mounts <a class="reference internal" href="#figpendulumangle"><em>Figure 7.8</em></a>. The rear fender prevented easy
 connection to the seat tube on some of the bikes and the clamp was attached to
-the fender.  The fender was less rigid than the frame tube. For best accuracy
+the fender. The fender was less rigid than the frame tube. For best accuracy
 with only three orientation angles, the frame should be hung at three angles
 that are <span class="math">\(120^\circ\)</span> apart. Attaching by the three tubes on the frame
 generally provide that the orientation angles were spread evenly at about
@@ -762,7 +755,8 @@ is the moment of inertia about the pendulum axis and is written explicitly as</p
 <span class="eqno">(36)</span>\[J_{\mathrm{B}i} = c^{2}_{\beta i}I_{\mathrm{B}xx} -
 2s_{\beta i}c_{\beta i}I_{\mathrm{B}xz} +
 s^{2}_{\beta i}I_{\mathrm{B}zz}\]</div>
-<p>Similarly, calculating all three, or more, <span class="math">\(J_{\mathrm{B}i}\)</span> allows one to form</p>
+<p>Similarly, calculating all three, or more, <span class="math">\(J_{\mathrm{B}i}\)</span> allows one
+to form</p>
 <div class="math" id="equation-eqInRel">
 <span class="eqno">(37)</span>\[\begin{split} \begin{bmatrix}
      J_{\mathrm{B}1}\\
@@ -785,7 +779,7 @@ s^{2}_{\beta i}I_{\mathrm{B}zz}\]</div>
 <p>and the moments of inertia can be solved as a linear system or with least
 squares if it is over determined. The inertia of the frame about an axis normal
 to the plane of symmetry was estimated by hanging the frame as a compound
-pendulum about the wheel axis, <a class="reference internal" href="#figframecompound"><em>Figure 7.19</em></a>. Equation
+pendulum about the wheel axis, <a class="reference internal" href="#figframecompound"><em>Figure 7.20</em></a>. Equation
 <a href="#equation-eqCompoundInertia">(30)</a> is used but with the mass of the frame and the frame
 pendulum length.</p>
 <div class="math" id="equation-eqFramePendLength">
@@ -801,7 +795,7 @@ axis (the wheel is fixed in place).</p>
 <p>The inertia of the fork and handlebar is calculated in the same way as the
 frame. The fork is hung as both a torsional pendulum, <a class="reference internal" href="#figstratosfork"><em>Figure
 7.11</em></a>, and as a compound pendulum, <a class="reference internal" href="#figforkcompound"><em>Figure
-7.20</em></a>. The fork provides fewer mounting options to obtain at
+7.21</em></a>. The fork provides fewer mounting options to obtain at
 least three equally spaced orientation angles, especially if there is no
 fender. We designed a connection to the brake mounts for the Davis bicycles to
 remedy that. The torsional calculations follow equations <a href="#equation-eqTorPend">(32)</a>
@@ -963,10 +957,11 @@ due to flexible geometry, daily varying mass, wobbly mass, etc.</p>
 <p>Human mass, center of mass, and inertial properties have been measured and
 estimated in a multitude of ways. Each method has its advantages and
 disadvantages. Many methods exist including cadaver measurements
-(<a class="reference internal" href="zreferences.html#dempster1955">[Dem55]</a>, <a class="reference internal" href="zreferences.html#clauser1969">[CMY69]</a>, <a class="reference internal" href="zreferences.html#chandler1975">[CCM+75]</a>), photogrammetry, ray
-scanning techniques (<a class="reference internal" href="zreferences.html#zatsiorsky1983">[ZS83]</a>, <a class="reference internal" href="zreferences.html#zatsiorsky1990">[ZSC90]</a>), water displacement
-(<a class="reference internal" href="zreferences.html#park1999">[PKP99]</a>), rotating platforms (<a class="reference internal" href="zreferences.html#griffiths2005">[GWS05]</a>), and geometrical estimation
-of the body segments (<a class="reference internal" href="zreferences.html#yeadon1990a">[Yea90a]</a>). <a class="reference internal" href="zreferences.html#dohring1953">[Doh53]</a>, <a class="reference internal" href="zreferences.html#eaton1973">[Eat73b]</a>, and
+(<a class="reference internal" href="zreferences.html#dempster1955">[Dem55]</a>, <a class="reference internal" href="zreferences.html#clauser1969">[CMY69]</a>, <a class="reference internal" href="zreferences.html#chandler1975">[CCM+75]</a>),
+photogrammetry, ray scanning techniques (<a class="reference internal" href="zreferences.html#zatsiorsky1983">[ZS83]</a>,
+<a class="reference internal" href="zreferences.html#zatsiorsky1990">[ZSC90]</a>), water displacement (<a class="reference internal" href="zreferences.html#park1999">[PKP99]</a>), rotating
+platforms (<a class="reference internal" href="zreferences.html#griffiths2005">[GWS05]</a>), and geometrical estimation of the body
+segments (<a class="reference internal" href="zreferences.html#yeadon1990a">[Yea90a]</a>). <a class="reference internal" href="zreferences.html#dohring1953">[Doh53]</a>, <a class="reference internal" href="zreferences.html#eaton1973">[Eat73b]</a>, and
 <a class="reference internal" href="zreferences.html#patterson2004">[Pat04b]</a> measured the moments of inertia and centers of mass of a
 combined rider and vehicle, but this is not always practical especially if the
 properties of multiple riders are desired.</p>
@@ -975,9 +970,9 @@ primarily on geometric measurements much like Yeadon. Both methods that were
 used were based on estimating the inertial parameters from mass and geometry
 measurement along with a human body density estimate. With the first method, I
 estimated the physical properties of the rider in a seated position using a
-simple mathematical geometrical estimation similar in idea to <a class="reference internal" href="zreferences.html#yeadon1990a">[Yea90a]</a> in
-combination with mass data from <a class="reference internal" href="zreferences.html#dempster1955">[Dem55]</a>. The second method substitutes
-Yeadon&#8217;s more robust model with my previous one.</p>
+simple mathematical geometrical estimation similar in idea to
+<a class="reference internal" href="zreferences.html#yeadon1990a">[Yea90a]</a> in combination with mass data from <a class="reference internal" href="zreferences.html#dempster1955">[Dem55]</a>.
+The second method substitutes Yeadon&#8217;s more robust model with my previous one.</p>
 <div class="section" id="simple-geometry-method">
 <h3>Simple Geometry Method<a class="headerlink" href="#simple-geometry-method" title="Permalink to this headline">¶</a></h3>
 <p>This method calculates the center of mass and inertia of a simplified model of
@@ -987,9 +982,11 @@ mass of the rider was measured along with fourteen anthropometric measurements
 of the body. These measurements in combination with the geometrical bicycle
 measurements taken in the previous section (<a class="reference internal" href="#secbicycleparameters"><em>Bicycle Parameters</em></a>) and
 several additional bicycle geometrical measurements are used to define a model
-of the rider made up of simple geometrical shapes (<a class="reference internal" href="#figmooremodel"><em>Figure 21</em></a>). The legs and arms are represented by cylinders, the torso
-by a cuboid and the head by a sphere. The feet are positioned at the center of
-the bottom bracket axis to maintain symmetry about the <span class="math">\(XZ\)</span>-plane.</p>
+of the rider made up of simple geometrical shapes (<a class="reference internal" href="#figmooremodel"><em>Figure
+7.22</em></a>). The legs and arms are represented by cylinders, the
+torso by a cuboid and the head by a sphere. The feet are positioned at the
+center of the bottom bracket axis to maintain symmetry about the
+<span class="math">\(XZ\)</span>-plane.</p>
 <div class="figure align-center" id="figmooremodel">
 <a class="reference external image-reference" href="_images/moore-model.png"><img alt="_images/moore-model.png" src="_images/moore-model.png" style="width: 2.5in;" /></a>
 <p class="caption">Locations of grid points and simple geometric shapes of the simple geometric
@@ -1018,7 +1015,7 @@ further to the accuracy of the calculations due to the fact that modeling the
 human as basic geometric shapes already introduces an unknown error.</p>
 <p>I measured twelve additional geometric values (only five of which are needed
 for this setup<a class="footnote-reference" href="#f1" id="id58">[8]</a>) to assist in configuring the rider to the be seated on
-the bicycle, <a class="reference internal" href="#figbatavusbrowserdim"><em>Figure 7.22</em></a>.</p>
+the bicycle, <a class="reference internal" href="#figbatavusbrowserdim"><em>Figure 7.23</em></a>.</p>
 <dl class="docutils">
 <dt><span class="math">\(h_{bb}\)</span>, Bottom Bracket Height</dt>
 <dd>The distance from the ground to the bottom bracket when the bicycle is in
@@ -1381,7 +1378,7 @@ located at the bottom bracket center and is the same lateral distance from the
 sagittal plane as the hip centers. The knee and thigh elevation angles are then
 found in the same fashion as the elbow and shoulder angles, which the lesser
 restriction that the thigh abduction angle is zero.</p>
-<p><a class="reference internal" href="#fighuman"><em>Figure 7.23</em></a> shows a visualization of the Yeadon model when
+<p><a class="reference internal" href="#fighuman"><em>Figure 7.24</em></a> shows a visualization of the Yeadon model when
 configured to sit on a bicycle. The details of the calculations and all of the
 data is included with the Yeadon <a class="reference internal" href="zreferences.html#dembia2011">[Dem11]</a> and BicycleParameters
 <a class="reference internal" href="zreferences.html#moore2011a">[Moo11]</a> software packages.</p>
@@ -1428,11 +1425,15 @@ documentation for each of the packages: <a class="reference external" href="http
 </div>
 <div class="section" id="parameter-tables">
 <span id="secpartables"></span><h2>Parameter Tables<a class="headerlink" href="#parameter-tables" title="Permalink to this headline">¶</a></h2>
-<p>The tabulated values for the both the raw measurements and the physical
-parameters of the ten bicycles are given in the following tables.</p>
+<p>The tabulated values for the both the raw measurements (Tables
+<a class="reference internal" href="#tabbatavusmeasured"><em>7.5</em></a> to <a class="reference internal" href="#tabdavismeasured"><em>7.8</em></a>) and the computed
+physical parameters (Tables <a class="reference internal" href="#tabbatavusbenchmark"><em>7.9</em></a> to
+<a class="reference internal" href="#tabdavisbenchmark"><em>7.12</em></a>) of the ten bicycles are given in the following
+tables.</p>
 <div class="section" id="bicycle-measured-parameters">
 <span id="secbicyclemeasuredparameters"></span><h3>Bicycle Measured Parameters<a class="headerlink" href="#bicycle-measured-parameters" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="docutils">
+<table border="1" class="docutils" id="tabbatavusmeasured">
+<caption>Raw measurements and their estimated uncertainty.</caption>
 <colgroup>
 <col width="20%" />
 <col width="12%" />
@@ -1860,7 +1861,8 @@ parameters of the ten bicycles are given in the following tables.</p>
 </tr>
 </tbody>
 </table>
-<table border="1" class="docutils">
+<table border="1" class="docutils" id="tabdelftmeasured">
+<caption>Raw measurements and their estimated uncertainty.</caption>
 <colgroup>
 <col width="21%" />
 <col width="14%" />
@@ -2288,7 +2290,8 @@ parameters of the ten bicycles are given in the following tables.</p>
 </tr>
 </tbody>
 </table>
-<table border="1" class="docutils">
+<table border="1" class="docutils" id="tabyellowmeasured">
+<caption>Raw measurements and their estimated uncertainty.</caption>
 <colgroup>
 <col width="26%" />
 <col width="19%" />
@@ -2611,7 +2614,8 @@ parameters of the ten bicycles are given in the following tables.</p>
 </tr>
 </tbody>
 </table>
-<table border="1" class="docutils">
+<table border="1" class="docutils" id="tabdavismeasured">
+<caption>Raw measurements and their estimated uncertainty.</caption>
 <colgroup>
 <col width="20%" />
 <col width="12%" />
@@ -3490,7 +3494,8 @@ parameters of the ten bicycles are given in the following tables.</p>
 </div>
 <div class="section" id="bicycle-benchmark-parameters">
 <span id="secbicyclebenchmarkparameters"></span><h3>Bicycle Benchmark Parameters<a class="headerlink" href="#bicycle-benchmark-parameters" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="docutils">
+<table border="1" class="docutils" id="tabbatavusbenchmark">
+<caption>Computed physical parameters and their estimated uncertainties.</caption>
 <colgroup>
 <col width="17%" />
 <col width="11%" />
@@ -3726,7 +3731,8 @@ parameters of the ten bicycles are given in the following tables.</p>
 </tr>
 </tbody>
 </table>
-<table border="1" class="docutils">
+<table border="1" class="docutils" id="tabdelftbenchmark">
+<caption>Computed physical parameters and their estimated uncertainties.</caption>
 <colgroup>
 <col width="17%" />
 <col width="11%" />
@@ -3962,7 +3968,8 @@ parameters of the ten bicycles are given in the following tables.</p>
 </tr>
 </tbody>
 </table>
-<table border="1" class="docutils">
+<table border="1" class="docutils" id="tabyellowbenchmark">
+<caption>Computed physical parameters and their estimated uncertainties.</caption>
 <colgroup>
 <col width="24%" />
 <col width="15%" />
@@ -4141,7 +4148,8 @@ parameters of the ten bicycles are given in the following tables.</p>
 </tr>
 </tbody>
 </table>
-<table border="1" class="docutils">
+<table border="1" class="docutils" id="tabdavisbenchmark">
+<caption>Computed physical parameters and their estimated uncertainties.</caption>
 <colgroup>
 <col width="17%" />
 <col width="11%" />
@@ -4633,8 +4641,8 @@ analytically estimate the inertia of the bicycle frame. See <a class="reference 
 
 
     <div class="footer">
-        &copy; Copyright 2011, Jason K. Moore.
-      Last updated on Aug 16, 2012.
+        &copy; Copyright 2012, Jason K. Moore.
+      Last updated on Aug 19, 2012.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">
@@ -4657,6 +4665,20 @@ This work is licensed under a <a rel="license"
 href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
 Attribution 3.0 Unported License</a>
 </div>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-15966419-5']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 
 
   </body>

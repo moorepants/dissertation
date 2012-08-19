@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '1.0dev',
+        VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -54,32 +54,25 @@
 
   <div class="section" id="delft-instrumented-bicycle">
 <span id="delftbicycle"></span><h1>Delft Instrumented Bicycle<a class="headerlink" href="#delft-instrumented-bicycle" title="Permalink to this headline">¶</a></h1>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">This document is a draft which is updated regularly (Last updated August 16, 2012 at 01:45:53 PDT).
-Once I submit if for my doctoral degree at UC Davis, it will be done. So for
-now use at your own risk. The information may or may not be correct.
-Reviews, comments and suggestions are welcome.</p>
-</div>
 <div class="section" id="preface">
 <h2>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
-<p>I had contacted the authors of <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> in the early winter of 2006 to
-try to get some tips on where to go with my master&#8217;s thesis, which I wanted to
-do on the handling qualities of bicycles. I had previously come across Arend,
-Jaap, and Jim&#8217;s conference paper <a class="reference internal" href="zreferences.html#schwab2004">[SMP04]</a> on their benchmark Whipple model
-and used it to help me build and validate my first model earlier that year.
-Andy, Jim, and Arend all replied, Jim at great length as usual, and the seeds
-were sown for some future collaboration. Jim began flooding my inbox with years
-of thoughts on the handling of bicycles and it turned out that Arend had just
-applied for a big grant to fund two PhD students for bicycle handling research
-that was uncannily similar to what I was dreaming up myself. I hadn&#8217;t decided
-to do my PhD at UC Davis quite yet and Arend&#8217;s potential PhD slot was enticing
-(Jodi was slated for one). But I ended up finishing my masters the following
-spring and signing on for the PhD at Davis. That summer I started thinking
-about applying for a Fulbright grant to study somewhere. I contacted Arend
-again to see if he was interested in having me and he was excited. I told him I
-was going to do it and then put it off. A week shy of the deadline, I told
-Arend I didn&#8217;t have time to do it. He encouraged me to apply anyway and I
+<p>I had contacted the authors of <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> in the early winter of 2006
+to try to get some tips on where to go with my master&#8217;s thesis, which I wanted
+to do on the handling qualities of bicycles. I had previously come across
+Arend, Jaap, and Jim&#8217;s conference paper <a class="reference internal" href="zreferences.html#schwab2004">[SMP04]</a> on their benchmark
+Whipple model and used it to help me build and validate my first model earlier
+that year. Andy, Jim, and Arend all replied, Jim at great length as usual, and
+the seeds were sown for some future collaboration. Jim began flooding my inbox
+with years of thoughts on the handling of bicycles and it turned out that Arend
+had just applied for a big grant to fund two PhD students for bicycle handling
+research that was uncannily similar to what I was dreaming up myself. I hadn&#8217;t
+decided to do my PhD at UC Davis quite yet and Arend&#8217;s potential PhD slot was
+enticing (Jodi was slated for one). But I ended up finishing my masters the
+following spring and signing on for the PhD at Davis. That summer I started
+thinking about applying for a Fulbright grant to study somewhere. I contacted
+Arend again to see if he was interested in having me and he was excited. I told
+him I was going to do it and then put it off. A week shy of the deadline, I
+told Arend I didn&#8217;t have time to do it. He encouraged me to apply anyway and I
 agreed to push through. I spent the next week putting together the proposal
 full time and after several drafts I sent it off. I didn&#8217;t think about it much
 after that, but luck was on my side and I received the acceptance letter from
@@ -88,17 +81,18 @@ for my first time living abroad. In the meantime Arend found a way to fund a
 PhD for Jodi so there was going to be some momentum and a teammate when I
 arrived.</p>
 <p>When I arrived in Delft at the end of August in 2008 Jodi was working on
-several projects: a bicycle handling qualities review paper <a class="reference internal" href="zreferences.html#kooijman2011a">[KS11]</a>,
-the two mass skate bicycle <a class="reference internal" href="zreferences.html#kooijman2011">[KMP+11]</a>, and an instrumented bicycle. I
-helped to some degree with all the projects, but primarily with setting up the
-instrumented bicycle and planning a set of experiments. This chapter details
-the work we did with the first instrumented bicycle. I&#8217;ve taken the text
-directly from our conference paper <a class="reference internal" href="zreferences.html#kooijman2009a">[KSM09]</a> and gone through it with
-some updates, clarifications, and additions. Jodi and Arend were the primary
-writers of the paper. My contributions were more of the experimental design,
-performing the experiments, analyzing the data, discussing results and working
-on a visualization graphical interface that we never really used due to the
-inability to synchronize the video data we took with the sensor data.</p>
+several projects: a bicycle handling qualities review paper
+<a class="reference internal" href="zreferences.html#kooijman2011a">[KS11]</a>, the two mass skate bicycle <a class="reference internal" href="zreferences.html#kooijman2011">[KMP+11]</a>, and an
+instrumented bicycle. I helped to some degree with all the projects, but
+primarily with setting up the instrumented bicycle and planning a set of
+experiments. This chapter details the work we did with the first instrumented
+bicycle. I&#8217;ve taken the text directly from our conference paper
+<a class="reference internal" href="zreferences.html#kooijman2009a">[KSM09]</a> and gone through it with some updates, clarifications,
+and additions. Jodi and Arend were the primary writers of the paper. My
+contributions were more of the experimental design, performing the experiments,
+analyzing the data, discussing results and working on a visualization graphical
+interface that we never really used due to the inability to synchronize the
+video data we took with the sensor data.</p>
 </div>
 <div class="section" id="abstract">
 <h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
@@ -119,15 +113,16 @@ rapidly with decreasing forward speed.</p>
 unstable and requires great attention by the rider. However, at moderate speed
 the bicycle is easy to stabilize, often with little conscious thought by the
 rider. These observations are corroborated by a stability analysis on a simple
-dynamical model of an uncontrolled bicycle <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> and some experiments
-<a class="reference internal" href="zreferences.html#kooijman2008">[KSM08]</a> and <a class="reference internal" href="zreferences.html#kooijman2009">[KS09]</a>. Although there is little established
-knowledge on how a person stabilizes a bicycle, two basic features are known:
-some uncontrolled riderless bicycles can balance themselves given some initial
-speed, and one can balance a forward moving bicycle by turning the front wheel
-in the direction of the undesired lean. But we all know that a rider on a
-bicycle not only moves the handlebars but also may make use of their upper
-body and other extremities. These rider body motions are even more profound
-when riding a motorcycle in extreme maneuvers <a class="reference internal" href="zreferences.html#cossalter2002">[CL02]</a>.</p>
+dynamical model of an uncontrolled bicycle <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> and some
+experiments <a class="reference internal" href="zreferences.html#kooijman2008">[KSM08]</a> and <a class="reference internal" href="zreferences.html#kooijman2009">[KS09]</a>. Although there is
+little established knowledge on how a person stabilizes a bicycle, two basic
+features are known: some uncontrolled riderless bicycles can balance themselves
+given some initial speed, and one can balance a forward moving bicycle by
+turning the front wheel in the direction of the undesired lean. But we all know
+that a rider on a bicycle not only moves the handlebars but also may make use
+of their upper body and other extremities. These rider body motions are even
+more profound when riding a motorcycle in extreme maneuvers
+<a class="reference internal" href="zreferences.html#cossalter2002">[CL02]</a>.</p>
 <p>The purpose of this study is to identify the major human control actions in
 normal bicycling focusing on the stabilization task.<a class="footnote-reference" href="#id21" id="id10">[1]</a> We use the term
 &#8220;normal&#8221; to describe casual bicycling that requires minimal conscious control.
@@ -154,7 +149,7 @@ rider motion relative to the rear frame was recorded via video.</p>
 and is shown in <a class="reference internal" href="#figinstrumentedbicycle"><em>Figure 9.1</em></a>. This is a bicycle of
 conventional design, fitted with a 3-speed SRAM rear hub and coaster brakes.
 Some of the peripheral components were removed in order to be able to install
-measurement equipment and sensors (see <a class="reference internal" href="#tabequipment"><em>Table 9.11</em></a>).  The
+measurement equipment and sensors (see <a class="reference internal" href="#tabequipment"><em>Table 9.1</em></a>). The
 bicycle was equipped with a 1/3” CCD color bullet-camera with 2.9mm (wide
 angle) lens. The camera was located at the front and directed towards the rider
 and rotated 90 degrees clockwise to get portrait aspect ratio. The video signal
@@ -172,6 +167,7 @@ packs (4) are positioned. Measured signals are the steer angle and
 steer-rate (5), rear frame lean- and yaw-rate (6) and forward speed (7).</p>
 </div>
 <table border="1" class="docutils">
+<caption>Sensors.</caption>
 <colgroup>
 <col width="20%" />
 <col width="20%" />
@@ -303,7 +299,7 @@ for the case with a rider too, albeit with caution.</p>
 <p>The experiments were carried out by two male, average ability riders of
 different age and build on the same bicycle. The saddle height was adjusted for
 each rider to ensure proper seating. The rider characteristics are given in
-<a class="reference internal" href="#tabriders"><em>Table 9.2</em></a>.  For both riders very similar results were found.
+<a class="reference internal" href="#tabriders"><em>Table 9.2</em></a>. For both riders very similar results were found.
 The data and figures presented in this chapter were collected with rider 1.</p>
 <div class="figure align-center" id="figtreadmill">
 <a class="reference external image-reference" href="_images/treadmill.jpg"><img alt="_images/treadmill.jpg" src="_images/treadmill.jpg" style="width: 3in;" /></a>
@@ -316,7 +312,7 @@ consists of four rigid bodies: the rear frame with rigid rider connected, the
 front handlebar and fork assembly, and the two wheels. These are connected by
 ideal hinges and the wheels have idealized pure-rolling contact with level
 ground. <a class="reference internal" href="zreferences.html#moore2009a">[MKHS09]</a> describes the method used to determine the model
-parameters for the instrumented bicycle-rider system<a class="footnote-reference" href="#id22" id="id14">[2]</a>.  These parameters are
+parameters for the instrumented bicycle-rider system<a class="footnote-reference" href="#id22" id="id14">[2]</a>. These parameters are
 given in <a class="reference internal" href="#tabparameters"><em>Table 9.3</em></a> and the root locus of the system with
 respect to speed is depicted in <a class="reference internal" href="#figdelftrootlocus"><em>Figure 9.4</em></a>. At low speed, the
 dominant mode is the unstable oscillatory weave mode. This weave motion becomes
@@ -464,7 +460,7 @@ allowfullscreen></iframe>
 <h2>Normal Bicycling<a class="headerlink" href="#normal-bicycling" title="Permalink to this headline">¶</a></h2>
 <p>Visual inspection of the video footage showed very little rider lean action
 during the experiment other than what resulted directly from the pedaling
-motion.  During the low speed runs at 5 km/h, the rider’s upper body was almost
+motion. During the low speed runs at 5 km/h, the rider’s upper body was almost
 stationary, i.e. it could be considered to be rigidly attached to the rear
 frame. However at this speed the rider’s knees showed significant lateral
 motion. This lateral knee motion can be seen in the video image in Figure
@@ -484,7 +480,7 @@ respectively. The standard deviation of the steer angle during the sixty
 seconds of measurement is also shown in the figures. At speeds above 20 km/h
 the average steer angle remains approximately constant. However the average
 magnitude of the steer angle grows by more than 500% when the speed is
-decreased from 20 km/h to 5 km/h.  This increase in steer angle magnitude for
+decreased from 20 km/h to 5 km/h. This increase in steer angle magnitude for
 the decreasing speeds is illustrated in Figure <a class="reference internal" href="#figsteersigma"><em>Figure 9.8</em></a>.
 This jump in steering amplitude could be indicative of a threshold at which the
 system becomes harder to control, but there is no apparent connection to the
@@ -546,7 +542,7 @@ small remnant motion as a result of slight steering deviations from straight
 ahead. The recorded steer angle data also confirmed that larger steer angles
 were made at decreasing speeds. <a class="reference internal" href="#figsteersigma"><em>Figure 9.8</em></a> shows how the
 standard deviation of the steer angle reduces rapidly with increasing speed up
-to 20 km/h and from then on remains approximately constant.  The figure also
+to 20 km/h and from then on remains approximately constant. The figure also
 shows that the average steering amplitude at all speeds is lower than that for
 the pedaling case. The standard deviation is less than a degree for all speeds
 above 10km/h indicating that little to no steer action is required at higher
@@ -578,13 +574,13 @@ body lean could be noted other than that as a result of the normal pedaling.</p>
 <p>A second phenomenon observable in the video footage, as shown in <a class="reference internal" href="#figperturb"><em>Figure
 9.12</em></a>, is that at all speeds we observed a lateral knee motion
 during the short transient recovery process of the bicycle to the upright
-position.  The lateral knee motion was very large during the 5 km/h measurement
+position. The lateral knee motion was very large during the 5 km/h measurement
 and much smaller at the higher speeds, but even at 30 km/h it is visible.</p>
 <div class="figure align-center" id="figperturb">
 <a class="reference external image-reference" href="_images/perturb.png"><img alt="_images/perturb.jpg" src="_images/perturb.jpg" style="width: 2.479in;" /></a>
 <p class="caption">Video still directly after a perturbation (lateral force applied from the
 rider’s right by a rope at the saddle tube) at 5 km/h. Vertical grey line
-indicates the bicycle midplane. Note the lateral right knee motion and
+indicates the bicycle mid-plane. Note the lateral right knee motion and
 steering action and the small upper body lean.</p>
 </div>
 <p>From the video footage we also concluded that the angle that the handlebars are
@@ -647,7 +643,7 @@ the bicycle. We didn&#8217;t have much luck getting the bicycle to stabilize at 
 <li>Lateral perturbation at six speeds for each rider. (runs 132-133)</li>
 <li>No hand balancing with pedaling for one rider. (runs 60-71)</li>
 <li>Lane changes for both riders at six speeds. (runs 160-165, 80-85)</li>
-<li>A single attempt at riding with eyes closed. at 30 km/h<a class="footnote-reference" href="#id23" id="id17">[3]</a></li>
+<li>A single attempt at riding with eyes closed at 30 km/h<a class="footnote-reference" href="#id23" id="id17">[3]</a></li>
 <li>Line tracking at six speeds for one rider. (runs 90-96)</li>
 </ul>
 <p>There is potentially considerable amount of findings and better statistical
@@ -659,7 +655,7 @@ conclusions that can be made from the data.</p>
 rate, <span class="math">\(u_3\)</span>, roll rate, <span class="math">\(u_4\)</span>, and the steer rate, <span class="math">\(u_7\)</span>.
 <a class="footnote-reference" href="#id24" id="id18">[4]</a> We attached a rate gyro to the fork and handlebar assembly which measured
 the body fixed angular rate, <span class="math">\(u_{7s}\)</span>, about the steer axis,
-<span class="math">\(\hat{e}_3\)</span>.  Another rate gyro was attached to the rear frame which
+<span class="math">\(\hat{e}_3\)</span>. Another rate gyro was attached to the rear frame which
 measured the body-fixed angular rate, <span class="math">\(u_{3s}\)</span>, about the axis
 approximately aligned with gravity, <span class="math">\(s_\lambda\hat{c}_1 +
 c_\lambda\hat{c}_3\)</span>. Finally, a third rate gyro was mounted to measure the
@@ -722,12 +718,13 @@ speed and the pedaling cadence are displayed as numerical values.</p>
 </div>
 <div class="section" id="rider-2">
 <h3>Rider 2<a class="headerlink" href="#rider-2" title="Permalink to this headline">¶</a></h3>
-<p>These are the parameters computed with the methods in <a class="reference internal" href="zreferences.html#moore2009a">[MKHS09]</a> for
-the second rider, Jason, on the instrumented Batavus Browser. Only the rear
-frame and body parameters are different as the bicycle is identical. We only
-presented data in the previous analysis for runs in which Arend rode the
-bicycle.</p>
+<p><a class="reference internal" href="#tabsecondriderparameters"><em>Table 9.4</em></a> presents the parameters computed
+with the methods in <a class="reference internal" href="zreferences.html#moore2009a">[MKHS09]</a> for the second rider, Jason, on the
+instrumented Batavus Browser. Only the rear frame and body parameters are
+different as the bicycle is identical. We only presented data in the previous
+analysis from runs in which Arend rode the bicycle.</p>
 <table border="1" class="docutils">
+<caption>Parameters of the second rider, Jason.</caption>
 <colgroup>
 <col width="33%" />
 <col width="33%" />
@@ -835,8 +832,8 @@ reported in the data sets.</td></tr>
 
 
     <div class="footer">
-        &copy; Copyright 2011, Jason K. Moore.
-      Last updated on Aug 16, 2012.
+        &copy; Copyright 2012, Jason K. Moore.
+      Last updated on Aug 19, 2012.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">
@@ -859,6 +856,20 @@ This work is licensed under a <a rel="license"
 href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
 Attribution 3.0 Unported License</a>
 </div>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-15966419-5']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 
 
   </body>

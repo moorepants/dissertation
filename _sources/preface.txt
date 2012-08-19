@@ -2,13 +2,6 @@
 Preface
 =======
 
-.. warning::
-
-   This document is a draft which is updated regularly (Last updated |today|).
-   Once I submit if for my doctoral degree at UC Davis, it will be done. So for
-   now use at your own risk. The information may or may not be correct.
-   Reviews, comments and suggestions are welcome.
-
 Introduction
 ============
 
@@ -242,9 +235,6 @@ the results in the text.
 .. _SymPy: http://www.sympy.org
 .. _Autolev: http://www.autolev.com
 .. _Matlab: http://www.mathworks.com/products/matlab/
-
-.. todo:: Make proper citations to all of these pieces of software and put them
-   in the bibiliography.
 
 Data
 ----

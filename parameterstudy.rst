@@ -462,7 +462,7 @@ higher frequencies.
    The steer torque to roll rate frequency response for various speeds.
 
 :ref:`Figure 8.15<figBodeWeight>` shows the transfer function for the same rider
-(same configuration with respect to the rear wheel contact point) seat on a
+(same configuration with respect to the rear wheel contact point) seated on a
 light weight bicycle, the Bianchi Pista, and very heavy bicycle, the Davis
 instrumented bicycle. Notice that the light bicycle has an under-damped weave
 mode which is stable, while the heavy bikes weave mode is well damped and

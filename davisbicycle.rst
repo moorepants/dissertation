@@ -839,7 +839,7 @@ Bicycle Experiments
    which read about 20 Nm. They designed a pretty nice compact torque
    measurement setup by mounting the handlebars on bearings and using a linear
    force transducer to connect the handlebars to the steer tube, :ref:`Figure
-   11.11<figCheng>`, which reduced the effects of other moments and forces
+   11.12<figCheng>`, which reduced the effects of other moments and forces
    acting on the steer tube. It seems that downward forces applied to the
    handlebars could possibly still be transmitted to the load cell. The design
    does allow one to choose the lever arm for the load cell, thus giving some
@@ -1836,8 +1836,8 @@ of a DC motor has a linear relationship with the rotational speed of the motor.
 To generate a calibration curve, we used an AMETEK 1726 Digital Tachometer to
 measure the rotational speed in rpm and digital multimeter to measure the
 voltage for a sweep of motor rotational speeds. :ref:`Table 11.4<tabTachData>`
-gives the calibration data and :ref:`Figure 11.X<figSpeedRegression>` shows the
-results of a linear regression through the data.
+gives the calibration data and :ref:`Figure 11.30<figSpeedRegression>` shows
+the results of a linear regression through the data.
 
 .. _tabTachData:
 
@@ -1923,7 +1923,7 @@ Lateral Force
 
 The lateral force was calibrated by applying a series of compressive and
 tensile loads to the load cell and measuring the amplified voltage output,
-:ref:`Figure 11.30<figLoadCellCalibration>`.
+:ref:`Figure 11.31<figLoadCellCalibration>`.
 Before calibrations, the amplifier offset voltage potentiometer was set to
 about 2.5 v and the nulling potentiometer adjusted so that the voltage was zero
 for the no load case.
@@ -1952,7 +1952,7 @@ strain gauge bridge. I did not measure this voltage because the maximum voltage
 for the NI USB-6218 is 10 V, so no ratiometric scaling was used. As long as the
 battery supplied 12+ V to the CSG-110, this would not be an issue. Tables
 :ref:`11.5<tabClockwise>` and :ref:`11.6<tabCounterClockwise>` give the factory
-reported data and :ref:`Figure 11.<figTorqueRegression>` shows the regression
+reported data and :ref:`Figure 11.32<figTorqueRegression>` shows the regression
 results.
 
 .. math::
@@ -2040,12 +2040,12 @@ Data Acquisition
 
 Both the VectorNav VN-100 and the NI USB-6218 were connected to a small ASUS
 EEEPC netbook which was mounted on the rear rack of the bicycle, :ref:`Figure
-11.31<figLaptop>`. The devices were controlled and the data logged using Matlab.
+11.33<figLaptop>`. The devices were controlled and the data logged using Matlab.
 I interacted with the VN-100 with Matlab's Serial I/O toolbox and the NI
 USB-6218 with the Data Acquisition Toolbox. A custom program written within
 Matlab's Graphical User Interface framework was designed to allow the user to
 set meta data before each run, arm the system, and view the raw data signals
-after the run, :ref:`Figure 11.32<figDAQGUI>`. The general features are as
+after the run, :ref:`Figure 11.34<figDAQGUI>`. The general features are as
 follows:
 
 - Automatically increments run numbers
@@ -2158,11 +2158,11 @@ a 3 g acceleration is
    \left(\frac{1 \textrm{ m}}{\pi (7 \textrm{ m/s})}\right)^2 = 0.020 \textrm{ m}
 
 I fashioned a very low sinusoidal bump from wood that we laid on the track on
-the floor at the beginning of the track, :ref:`Figure 11.33<figBump>`  and also
+the floor at the beginning of the track, :ref:`Figure 11.35<figBump>`  and also
 launched under the bicycle on the treadmill. The bump launching is somewhat
 amusing and we had to construct a "bump catcher" so that the bump didn't fly
 off the back of the treadmill and hurt anyone or anything, :ref:`Figure
-11.34<figBumpCatcher>`.
+11.36<figBumpCatcher>`.
 
 .. _figBump:
 
@@ -2189,7 +2189,7 @@ The bump provides the event and the acceleration output of the tandem
 accelerometers logs the event. The time shift between the two signals can be
 computed by minimizing the least squares error of one signal minus the other
 signal which has been interpolated at the sample times of the first signal.
-:ref:`Figure 11.35<figUnsync>` shows the two independent recorded events.
+:ref:`Figure 11.37<figUnsync>` shows the two independent recorded events.
 
 .. _figUnsync:
 
@@ -2218,7 +2218,7 @@ signals and finding the minimal value of the error as a function of a fixed
 number of :math:`\tau` values to get good guesses. See the
 ``BicycleDataProcessor`` source code for the details. The computed time
 shift is used to shift and truncate all of the signals as in :ref:`Figure
-11.36<figSync>`.
+11.38<figSync>`.
 
 .. _figSync:
 
@@ -2273,7 +2273,7 @@ This approach works well and allows for easy querying of the 700+ runs for
 further data analysis. The processed data can be exported to generic file
 formats or as ones compatible with Matlab. This example gives the basics of
 loading a run and plotting the processed data in :ref:`Figure
-11.37<figProcessedData>`::
+11.39<figProcessedData>`::
 
    import bicycledataprocessor as bdp
    dataset = bdp.DataSet()

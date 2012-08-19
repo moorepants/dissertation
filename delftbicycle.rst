@@ -14,23 +14,23 @@ Delft Instrumented Bicycle
 Preface
 =======
 
-I had contacted the authors of :cite:`Meijaard2007` in the early winter of 2006 to
-try to get some tips on where to go with my master's thesis, which I wanted to
-do on the handling qualities of bicycles. I had previously come across Arend,
-Jaap, and Jim's conference paper :cite:`Schwab2004` on their benchmark Whipple model
-and used it to help me build and validate my first model earlier that year.
-Andy, Jim, and Arend all replied, Jim at great length as usual, and the seeds
-were sown for some future collaboration. Jim began flooding my inbox with years
-of thoughts on the handling of bicycles and it turned out that Arend had just
-applied for a big grant to fund two PhD students for bicycle handling research
-that was uncannily similar to what I was dreaming up myself. I hadn't decided
-to do my PhD at UC Davis quite yet and Arend's potential PhD slot was enticing
-(Jodi was slated for one). But I ended up finishing my masters the following
-spring and signing on for the PhD at Davis. That summer I started thinking
-about applying for a Fulbright grant to study somewhere. I contacted Arend
-again to see if he was interested in having me and he was excited. I told him I
-was going to do it and then put it off. A week shy of the deadline, I told
-Arend I didn't have time to do it. He encouraged me to apply anyway and I
+I had contacted the authors of :cite:`Meijaard2007` in the early winter of 2006
+to try to get some tips on where to go with my master's thesis, which I wanted
+to do on the handling qualities of bicycles. I had previously come across
+Arend, Jaap, and Jim's conference paper :cite:`Schwab2004` on their benchmark
+Whipple model and used it to help me build and validate my first model earlier
+that year. Andy, Jim, and Arend all replied, Jim at great length as usual, and
+the seeds were sown for some future collaboration. Jim began flooding my inbox
+with years of thoughts on the handling of bicycles and it turned out that Arend
+had just applied for a big grant to fund two PhD students for bicycle handling
+research that was uncannily similar to what I was dreaming up myself. I hadn't
+decided to do my PhD at UC Davis quite yet and Arend's potential PhD slot was
+enticing (Jodi was slated for one). But I ended up finishing my masters the
+following spring and signing on for the PhD at Davis. That summer I started
+thinking about applying for a Fulbright grant to study somewhere. I contacted
+Arend again to see if he was interested in having me and he was excited. I told
+him I was going to do it and then put it off. A week shy of the deadline, I
+told Arend I didn't have time to do it. He encouraged me to apply anyway and I
 agreed to push through. I spent the next week putting together the proposal
 full time and after several drafts I sent it off. I didn't think about it much
 after that, but luck was on my side and I received the acceptance letter from
@@ -40,17 +40,18 @@ PhD for Jodi so there was going to be some momentum and a teammate when I
 arrived.
 
 When I arrived in Delft at the end of August in 2008 Jodi was working on
-several projects: a bicycle handling qualities review paper :cite:`Kooijman2011a`,
-the two mass skate bicycle :cite:`Kooijman2011`, and an instrumented bicycle. I
-helped to some degree with all the projects, but primarily with setting up the
-instrumented bicycle and planning a set of experiments. This chapter details
-the work we did with the first instrumented bicycle. I've taken the text
-directly from our conference paper :cite:`Kooijman2009a` and gone through it with
-some updates, clarifications, and additions. Jodi and Arend were the primary
-writers of the paper. My contributions were more of the experimental design,
-performing the experiments, analyzing the data, discussing results and working
-on a visualization graphical interface that we never really used due to the
-inability to synchronize the video data we took with the sensor data.
+several projects: a bicycle handling qualities review paper
+:cite:`Kooijman2011a`, the two mass skate bicycle :cite:`Kooijman2011`, and an
+instrumented bicycle. I helped to some degree with all the projects, but
+primarily with setting up the instrumented bicycle and planning a set of
+experiments. This chapter details the work we did with the first instrumented
+bicycle. I've taken the text directly from our conference paper
+:cite:`Kooijman2009a` and gone through it with some updates, clarifications,
+and additions. Jodi and Arend were the primary writers of the paper. My
+contributions were more of the experimental design, performing the experiments,
+analyzing the data, discussing results and working on a visualization graphical
+interface that we never really used due to the inability to synchronize the
+video data we took with the sensor data.
 
 Abstract
 ========
@@ -73,15 +74,16 @@ Riding a bicycle is an acquired skill. At very low speeds the bicycle is very
 unstable and requires great attention by the rider. However, at moderate speed
 the bicycle is easy to stabilize, often with little conscious thought by the
 rider. These observations are corroborated by a stability analysis on a simple
-dynamical model of an uncontrolled bicycle :cite:`Meijaard2007` and some experiments
-:cite:`Kooijman2008` and :cite:`Kooijman2009`. Although there is little established
-knowledge on how a person stabilizes a bicycle, two basic features are known:
-some uncontrolled riderless bicycles can balance themselves given some initial
-speed, and one can balance a forward moving bicycle by turning the front wheel
-in the direction of the undesired lean. But we all know that a rider on a
-bicycle not only moves the handlebars but also may make use of their upper
-body and other extremities. These rider body motions are even more profound
-when riding a motorcycle in extreme maneuvers :cite:`Cossalter2002`.
+dynamical model of an uncontrolled bicycle :cite:`Meijaard2007` and some
+experiments :cite:`Kooijman2008` and :cite:`Kooijman2009`. Although there is
+little established knowledge on how a person stabilizes a bicycle, two basic
+features are known: some uncontrolled riderless bicycles can balance themselves
+given some initial speed, and one can balance a forward moving bicycle by
+turning the front wheel in the direction of the undesired lean. But we all know
+that a rider on a bicycle not only moves the handlebars but also may make use
+of their upper body and other extremities. These rider body motions are even
+more profound when riding a motorcycle in extreme maneuvers
+:cite:`Cossalter2002`.
 
 The purpose of this study is to identify the major human control actions in
 normal bicycling focusing on the stabilization task.\ [#]_ We use the term
@@ -110,7 +112,7 @@ A standard Dutch bicycle, 2008 Batavus Browser, was chosen for the experiments
 and is shown in :ref:`Figure 9.1<figInstrumentedBicycle>`. This is a bicycle of
 conventional design, fitted with a 3-speed SRAM rear hub and coaster brakes.
 Some of the peripheral components were removed in order to be able to install
-measurement equipment and sensors (see :ref:`Table 9.11<tabEquipment>`). The
+measurement equipment and sensors (see :ref:`Table 9.1<tabEquipment>`). The
 bicycle was equipped with a 1/3” CCD color bullet-camera with 2.9mm (wide
 angle) lens. The camera was located at the front and directed towards the rider
 and rotated 90 degrees clockwise to get portrait aspect ratio. The video signal
@@ -137,7 +139,7 @@ the rider's motion with respect to the bicycle frame.
 
 .. tabularcolumns:: p{1in}p{1in}p{1in}p{1in}p{1in}
 
-.. list-table::
+.. list-table:: Sensors.
    :header-rows: 1
 
    * - Measurement
@@ -755,17 +757,17 @@ source code and data available for download in case it is of use to anyone.
 Rider 2
 -------
 
-These are the parameters computed with the methods in :cite:`Moore2009a` for
-the second rider, Jason, on the instrumented Batavus Browser. Only the rear
-frame and body parameters are different as the bicycle is identical. We only
-presented data in the previous analysis for runs in which Arend rode the
-bicycle.
+:ref:`Table 9.4<tabSecondRiderParameters>` presents the parameters computed
+with the methods in :cite:`Moore2009a` for the second rider, Jason, on the
+instrumented Batavus Browser. Only the rear frame and body parameters are
+different as the bicycle is identical. We only presented data in the previous
+analysis from runs in which Arend rode the bicycle.
 
 .. _tabSecondRiderParameters:
 
 .. tabularcolumns:: p{1.5in}LL
 
-.. list-table::
+.. list-table:: Parameters of the second rider, Jason.
    :header-rows: 1
 
    * - parameter

@@ -25,8 +25,9 @@ plt.rcParams.update(params)
 speedFig = plt.figure()
 
 browser.compare_bode_speeds([0.5, 2.0, 6.0, 10.0], 1, 0, fig=speedFig)
-sixLine = speedFig.ax2.lines[2]
-sixLine.set_ydata(sixLine.get_ydata() + 360.)
+#sixLine = speedFig.ax2.lines[2]
+#sixLine.set_ydata(sixLine.get_ydata() + 360.)
+speedFig.savefig('../../figures/parameterstudy/bode-speeds.pdf')
 speedFig.savefig('../../figures/parameterstudy/bode-speeds.png', dpi=200)
 
 # compare heavy bicycle to light bicycle
@@ -41,4 +42,5 @@ pista.parameters['Benchmark'] = bp.rider.combine_bike_rider(pista.parameters['Be
 
 weightFig = plt.figure()
 bp.compare_bode_bicycles([rigid, pista], 5.0, 1, 0, fig=weightFig)
+weightFig.savefig('../../figures/parameterstudy/bode-weight.pdf')
 weightFig.savefig('../../figures/parameterstudy/bode-weight.png', dpi=200)

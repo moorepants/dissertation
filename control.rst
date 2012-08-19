@@ -454,15 +454,15 @@ once the frame rolls in the negative direction, the steering angle reverses and
 puts the bicycle into a steady turn in the negative direction.
 
 If we examine the change in the transfer function zeros as a function of
-forward speed, we see that both the steer angle transfer functions in Equation
-:eq:`eqExampleBicycleTransferFunctions` always have a right half plane zero.
-And for :math:`\frac{\delta}{T_\delta}(s)`, the zeros do not change with
-respect to speed. It is also interesting to note that below about 2 m/s the
-roll torque to roll angle transfer function has a right half plane zero. For
-roll torque, this would mean that at low speeds a positive roll torque step
-input (e.g. a gust of wind\ [#wind]_) would cause a positive roll angle initial
-overshoot with the roll angle settling to a negative value at steady state\
-[#wind2]_.
+forward speed :ref:`Figure 12.3<figZeroWrtSpeed>`, we see that both the steer
+angle transfer functions in Equation :eq:`eqExampleBicycleTransferFunctions`
+always have a right half plane zero.  And for
+:math:`\frac{\delta}{T_\delta}(s)`, the zeros do not change with respect to
+speed. It is also interesting to note that below about 2 m/s the roll torque to
+roll angle transfer function has a right half plane zero. For roll torque, this
+would mean that at low speeds a positive roll torque step input (e.g. a gust of
+wind\ [#wind]_) would cause a positive roll angle initial overshoot with the
+roll angle settling to a negative value at steady state\ [#wind2]_.
 
 .. _figZeroWrtSpeed:
 
@@ -1129,13 +1129,14 @@ where
 
 The roll rate loop gain, :math:`k_{\dot{\phi}}`, is now chosen such that the
 neuromuscular mode has a minimum damping ratio of 0.15 and frequency is around
-10 rad/s. From :ref:`Figure 12.11<figPhiDotDamp>` we see that we need to set
-the roll rate gain to a negative values, about -0.44. Since the bicycle with
-steer control exhibits non-minimum phase behavior, we need to introduce a
-positive feedback on roll rate. So it turns out that with a small negative gain
-we can maintain the neuromuscular mode behavior but introduce the required sign
-change for stability. This gives the desired 10 dB peaking in the Bode diagram,
-:ref:`Figure 12.12<figPhiDotBode>`.
+10 rad/s. From Figures :ref:`12.11<figPhiDotLocus>` and
+:ref:`12.12<figPhiDotDamp>` we see that we need to set the roll rate gain to a
+negative values, about -0.44. Since the bicycle with steer control exhibits
+non-minimum phase behavior, we need to introduce a positive feedback on roll
+rate. So it turns out that with a small negative gain we can maintain the
+neuromuscular mode behavior but introduce the required sign change for
+stability. This gives the desired 10 dB peaking in the Bode diagram,
+:ref:`Figure 12.13<figPhiDotBode>`.
 
 .. _figPhiDotLocus:
 
@@ -1235,10 +1236,10 @@ where
    unity and the green line uses the gain to give desired crossover. Generated
    by ``src/control/choose_gains.m``.
 
-As can be surmised from the Bode diagram, :ref:`Figure 12.12<figPhiBode>` we've
+As can be surmised from the Bode diagram, :ref:`Figure 12.14<figPhiBode>` we've
 now stabilized the system in roll by forcing the system to behave like the
 crossover model around the crossover frequency, 2 rad/s. We can now command the
-roll angle, :ref:`Figure 12.13<figRollStable>`.
+roll angle, :ref:`Figure 12.15<figRollStable>`.
 
 .. _figRollStable:
 
@@ -1260,7 +1261,7 @@ roll angle, :ref:`Figure 12.13<figRollStable>`.
    {(s+6.881) (s+1.982) (s^2 + 1.864s + 93.21) (s^2 + 50.03s + 1041)}
 
 It is important to note that this system is a Type 0 system and thus exhibits
-steady error as seen in :ref:`Figure 12.13<figRollStable>`. If we were only
+steady error as seen in :ref:`Figure 12.15<figRollStable>`. If we were only
 concerned with roll stabilization, a low frequency integrator would be needed
 to remove the steady state error. This was not included in the model design,
 because the integrator is not needed if the heading loop is closed around the
@@ -1334,7 +1335,7 @@ where
 At this point all the loops are closed and the bicycle can track a given path
 with good performance. The closed loop system bandwidth is approximately equal
 to the open loop crossover frequency of the lateral deviation loop.
-:ref:`Figure 12.14<figTrackPath>` shows the system response to a step commanded
+:ref:`Figure 12.18<figTrackPath>` shows the system response to a step commanded
 input to lateral deviation.
 
 .. _figTrackPath:
@@ -1351,7 +1352,7 @@ input to lateral deviation.
 The gains can be computed across a relevant speed range for the bicycle. We
 developed an algorithm for automatically selecting the appropriate gains for
 difference physical parameter values and at different speeds. :ref:`Figure
-12.15<figGains>` shows how the gains vary with respect to speed for a
+12.19<figGains>` shows how the gains vary with respect to speed for a
 particular bicycle and rider. Notice that at higher speeds the gains change
 somewhat linearly, but at speeds below 3 m/s there is non-linear variation.
 These gains give stable systems which are capable of the lane change maneuver

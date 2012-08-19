@@ -2362,10 +2362,6 @@ ranked by the mean, :ref:`Table 13.10<tabMeanVAFOutputs>`. The best model seems
 to be LP and the AA is also a pretty good predictor. Notice that the Whipple
 model is poorer than the arm model.
 
-.. raw:: latex
-
-   \begin{small}
-
 .. _tabMeanVAFOutputs:
 
 .. tabularcolumns:: LLLLLLLLLLLLLLL
@@ -2373,15 +2369,12 @@ model is poorer than the arm model.
 .. table:: The mean of the median  VAF in the simulation output variables
    presented in :ref:`Table 13.9<tabMedianVAFOutputs>`.
 
-   =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =======
-   Model  L-P    A-P    L-A    A-A    J-A    L-H    C-H    A-H    J-H    C-A    C-P    J-P    Arm    Whipple
-   =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =======
-   Mean   57.6%  53.1%  52.5%  51.8%  51.1%  48.5%  47.7%  47.2%  45.3%  45.2%  38.5%  31.9%  12.3%  1.8%
-   =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =======
-
-.. raw:: latex
-
-   \end{small}
+   =====  =====  =====  =====  =====  =====  =====  =======
+   Model  L-P    A-P    L-A    A-A    J-A    L-H    C-H
+   Mean   57.6%  53.1%  52.5%  51.8%  51.1%  48.5%  47.7%
+   Model  A-H    J-H    C-A    C-P    J-P    Arm    Whipple
+   Mean   47.2%  45.3%  45.2%  38.5%  31.9%  12.3%  1.8%
+   =====  =====  =====  =====  =====  =====  =====  =======
 
 The orange lines in Figures :ref:`13.8<figACoefficients>` and
 :ref:`13.9<figBCoefficients>` correspond to the L-P model which allows

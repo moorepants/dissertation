@@ -9,7 +9,8 @@ Home
    now use at your own risk. The information may or may not be correct.
    Reviews, comments and suggestions are welcome.
 
-This is the University of California, Davis doctoral dissertation of Jason K. Moore.
+This is the University of California, Davis Mechanical and Aerospace
+Engineering doctoral dissertation of Jason K. Moore.
 
 .. image:: figures/bear-6in.*
    :align: center
@@ -37,6 +38,5 @@ This is the University of California, Davis doctoral dissertation of Jason K. Mo
 
 * :ref:`search`
 
-`Download the latest pdf version of this
-document <http://mae.ucdavis.edu/~biosport/jkm/dissertation/HumanControlofaBicycle.pdf>`_.
-
+.. note:: `Download the latest pdf version of this
+   document <http://mae.ucdavis.edu/~biosport/jkm/dissertation/HumanControlofaBicycle.pdf>`_.

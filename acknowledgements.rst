@@ -80,9 +80,8 @@ I made use of many software packages to analyze data, make plots, and build
 this dissertation, most of which are open source. I'd like to thank all the
 thousands of people involved in developing all the open source software tools
 that I use. And in particular, I'd like to thank Matthias Troffaes for helping
-me get his `sphinx bibtex
-extension<https://github.com/mcmtroffaes/sphinxcontrib-bibtex>`_ working with my
-bibliographic data in the final weeks.
+me get his `sphinx bibtex extension <https://github.com/mcmtroffaes/sphinxcontrib-bibtex>`_
+working with my bibliographic data in the final weeks.
 
 On that note, I'd also like to thank the thousands of researchers that I've
 based my work on. If it weren't for the available reports\ [#openaccess]_ of
@@ -121,7 +120,7 @@ also drew the wonderful studying bear drawing for my cover page.
 
 .. rubric:: Footnotes
 
-.. [#openacces] Actually all papers aren't always available and are often
+.. [#openaccess] Actually all papers aren't always available and are often
    extremely difficult or not possible to obtain. Open access has to become the
    de facto norm in science if we expect to make greater strides than in the
    past.

@@ -8,6 +8,7 @@ Major
 - Add UCD title page and format for submission.
 - The References page doesn't need to show up in the pdf.
 - Remove draft warnings.
+- Set release to 1.0 (or remove it).
 
 Minor
 =====

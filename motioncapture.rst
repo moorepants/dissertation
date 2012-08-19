@@ -218,7 +218,7 @@ unstable, and the rider is flexibly coupled to the bicycle in such a way that
 many body motions can be used as control inputs. Previous research into
 realistic bicycle control has focused on both steering and rider lean as
 control inputs, but there has been no experimental verification of which
-motions a rider actually uses for control.  Recent observations of a bicyclist
+motions a rider actually uses for control. Recent observations of a bicyclist
 riding through town and on a treadmill :cite:`Kooijman2009a` show that the
 rider moves the upper body very little when performing normal maneuvers and
 that the bicyclist may, in fact, primarily use steering input for control. This
@@ -226,7 +226,7 @@ corresponds well with the fact that control by leaning requires high gains
 compared to the gains required for steering when employing an optimal control
 strategy on a model (:cite:`Peterson2008a`, :cite:`Schwab2008`,
 :cite:`Sharp2008a`). The observations also revealed that the rider may use
-other control inputs such as drastic knee movements at low speeds.  These
+other control inputs such as drastic knee movements at low speeds. These
 conclusions were drawn by visually reviewing video data, so a more rigorous
 objective method of characterizing the dominant movements of the bicyclist
 while stabilizing a bicycle was needed. In order to validate the hypothesis
@@ -252,7 +252,7 @@ To test our hypotheses, three riders performed a set of stability tasks in a
 controlled environment while the motion of the bicycle and rider were collected
 with a motion capture system. The tasks were performed on a :math:`3 \times 5`
 meter treadmill :ref:`Figure 10.1<figVrijeTreadmill>` capable of belt speeds up
-to 35 km/h.  The treadmill was chosen because the envelope of space was
+to 35 km/h. The treadmill was chosen because the envelope of space was
 suitable for the motion capture system and it eliminated any disturbances such
 as wind, rough ground, and obstacles. We chose three male riders of similar age
 [31, 23, 26 years], build [height (1.76, 1.84, 1.83 m) and mass (72, 74, 72
@@ -1314,7 +1314,7 @@ A run was sampled at a frequency of 100 Hz for 60 seconds.
 
 Bicycle markers were placed to easily extract the rigid body motion (i.e. body
 orientations and locations) of the frame and fork (:ref:`Figure
-10.2<figMarkers>`).  Four markers were attached to the fork and seven to the
+10.2<figMarkers>`). Four markers were attached to the fork and seven to the
 rear frame. A marker was attached on the right and left sides of the center of
 each wheel, the seat stays, the ends of the handlebars, and the head tube. A
 single marker was also attached to the back of the seat post.
@@ -1514,7 +1514,7 @@ Results
 
 Direct examination of individual times series can be fruitful
 :cite:`Doyle1987`, but it is hard to make generalizations that apply to more
-that one specific case.  In our case, we have are nearly 3000 different time
+that one specific case. In our case, we have are nearly 3000 different time
 histories to examine with the coordinates we've chosen. Examining the frequency
 spectrum of each time history gives a different and sometimes more revealing
 view. For the runs in which the rider pedals, the pedaling frequency is often

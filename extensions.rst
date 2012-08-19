@@ -781,9 +781,9 @@ ability to apply forces between the upper torso and the rear frame.
 
 Many have created variations of this model in the past including
 :cite:`Lunteren1967`, :cite:`Roland1972`, :cite:`Weir1972`,
-:cite:`Zytveld1975`, :cite:`Nagai1983`, etc.  but, as :cite:`Roland1972` points
+:cite:`Zytveld1975`, :cite:`Nagai1983`, etc. but, as :cite:`Roland1972` points
 out, the roll torque is the more realistic control input as opposed to roll
-angle as many of the other authors tend to prefer.  Weir et al. notes the fact
+angle as many of the other authors tend to prefer. Weir et al. notes the fact
 that lean control has much less authority than steer control, and that the
 rider more or less leans equal and opposite to the vehicles roll angle
 :cite:`Weir1979a`. The inverted pendulum with a roll torque has now been widely

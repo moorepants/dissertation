@@ -5,7 +5,6 @@ TODO List
 Major
 =====
 
-- Spell check the thing.
 - Add UCD title page and format for submission.
 - The References page doesn't need to show up in the pdf.
 - Remove draft warnings.

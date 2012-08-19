@@ -456,7 +456,7 @@ puts the bicycle into a steady turn in the negative direction.
 If we examine the change in the transfer function zeros as a function of
 forward speed :ref:`Figure 12.3<figZeroWrtSpeed>`, we see that both the steer
 angle transfer functions in Equation :eq:`eqExampleBicycleTransferFunctions`
-always have a right half plane zero.  And for
+always have a right half plane zero. And for
 :math:`\frac{\delta}{T_\delta}(s)`, the zeros do not change with respect to
 speed. It is also interesting to note that below about 2 m/s the roll torque to
 roll angle transfer function has a right half plane zero. For roll torque, this
@@ -859,7 +859,7 @@ model and his previous successful multi-loop human operator models. We present
 the control model and the loop closure procedure for selecting the five model
 gains in :cite:`Hess2012`. This model is fundamentally similar in nature to
 Weir's work and is built on the same foundations such as that of McRuer et al.
-(:cite:`McRuer1967` :cite:`McRuer1967a`).  We similarly found steer angle based
+(:cite:`McRuer1967` :cite:`McRuer1967a`). We similarly found steer angle based
 control to be troublesome and had success across a broad range of speeds and
 selection of bicycles with steer torque control. We also employed a similar
 method of evaluating rider lean control without introducing an extra degree of

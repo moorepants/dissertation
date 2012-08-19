@@ -5,16 +5,15 @@ TODO List
 Major
 =====
 
-- The References page doesn't need to show up in the pdf.
 - Add UCD title page as the first page
-- Move abstract to \abstract clause in the latex document (that will screw up
-  the Figure and Table chapter numbers)
 - Numbering should start on the title page as "-i-"
 - Numbering should be in the top righ corner
+- Make seperate official abstract for submission
 
 Minor
 =====
 
+- The References page doesn't need to show up in the pdf.
 - Make a proper front matter instead of a Chapter for everything (will have to
   manually fix all figure and table numbers).
 - Remove the release number.

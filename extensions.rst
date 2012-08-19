@@ -36,21 +36,21 @@ The Whipple model is an ideal basic model and platform from which to explore
 more realistic models of both the bicycle and the rider. It has been
 demonstrated that the linear Whipple model can reliably predict the motion of a
 riderless uncontrolled bicycle :cite:`Kooijman2006`, :cite:`Kooijman2008`,
-:cite:`Kooijman2009`, :cite:`Stevens2009`, :cite:`Escalona2011` for speeds in and around the
-stable speed range. But the Whipple model may certainly be limited in it's
-ability to predict the motion of the bicycle and rider as an integrated system.
-A person's body keeps its shape through passive joint forces, unconscious
-active control and conscious active control. Assuming no active control and
-lumping the unconscious control with the passive control one can potentially
-model the rider as flexible assembly of many bodies. Secondly, the rider's
-weight is typically 80 to 90 percent of the entire system, which potentially
-invalidates the knife edge wheel assumptions employed in the Whipple model.
-Here I present several bicycle models that attempt to explain some of the
-rider's passive dynamics and also a model with a passive stability augmentation
-device. The models are all based on the basic formulation of the Whipple model
-in Chapter :ref:`eom` and make use of the variables defined therein. Various
-combinations of these model extensions are used in the later Chapters for
-analysis of more complicated systems.
+:cite:`Kooijman2009`, :cite:`Stevens2009`, :cite:`Escalona2011` for speeds in
+and around the stable speed range. But the Whipple model may certainly be
+limited in it's ability to predict the motion of the bicycle and rider as an
+integrated system. A person's body keeps its shape through passive joint
+forces, unconscious active control and conscious active control. Assuming no
+active control and lumping the unconscious control with the passive control one
+can potentially model the rider as flexible assembly of many bodies. Secondly,
+the rider's weight is typically 80 to 90 percent of the entire system, which
+potentially invalidates the knife edge wheel assumptions employed in the
+Whipple model. Here I present several bicycle models that attempt to explain
+some of the rider's passive dynamics and also a model with a passive stability
+augmentation device. The models are all based on the basic formulation of the
+Whipple model in Chapter :ref:`eom` and make use of the variables defined
+therein. Various combinations of these model extensions are used in the later
+Chapters for analysis of more complicated systems.
 
 Notation
 ========
@@ -179,18 +179,19 @@ Notation
 Rider Arms
 ==========
 
-:cite:`Schwab2010` and :cite:`Schwab2012` has shown that the addition of the inertial
-effects of the arms can significantly alter the open loop dynamics of the
-bicycle-rider system, and most importantly, that a typical bicycle and rider may
-not have a stable speed range. As will be described in Chapter
+:cite:`Schwab2010` and :cite:`Schwab2012` has shown that the addition of the
+inertial effects of the arms can significantly alter the open loop dynamics of
+the bicycle-rider system, and most importantly, that a typical bicycle and
+rider may not have a stable speed range. As will be described in Chapter
 :ref:`davisbicycle`, we rigidified the rider's torso and legs with respect to
 the rear frame of the bicycle. The rider was then only able to make use of
 their arms to control the bicycle. The Whipple model does not take into account
 the dynamic motion of the arms and certainly not the fact that steer torques
-are actually generated from the muscle contraction and flexion in the
-riders arms. Being that our riders were able to move their arms and the motion
-can have significant effect on the open loop dynamics, we developed a similar
-model as the upright flexed arm model found in :cite:`Schwab2010` and :cite:`Schwab2012`.
+are actually generated from the muscle contraction and flexion in the riders
+arms. Being that our riders were able to move their arms and the motion can
+have significant effect on the open loop dynamics, we developed a similar model
+as the upright flexed arm model found in :cite:`Schwab2010` and
+:cite:`Schwab2012`.
 
 .. _figArmModel:
 
@@ -534,35 +535,35 @@ Notation
 Front wheel flywheel
 ====================
 
-Another model extension of interest involves addition of an extra
-rotating wheel coincident with the front wheel. It is well known that that
-increasing the angular momentum of the front wheel via change in inertia
-(:cite:`Astrom2005`, :cite:`Franke1990`) or rotational speed, has a strong effect on the
-stability of the Whipple model. For the benchmark bicycle :cite:`Meijaard2007`,
-independently increasing the moment of inertia of the front wheel, decreases
-both the weave and capsize speeds. A low weave speed may provide open loop
-stability advantages to riders at low speed, with the reasoning that a stable
-bicycle may require less rider control. Conversely, it has also been shown both that
-a bicycle without gyroscopic effects can be stable :cite:`Kooijman2011` and
-that humans can ride them :cite:`Jones1970` with little difficulty. The idea that
-gyroscopic action can stabilize a moving two wheeled vehicle has been
-demonstrated as early as the dawn of the 20th century, with the invention of
-the gyro monorail and the gyro car (:cite:`WikipediaGyromonorail2012`,
-:cite:`WikipediaGyroCar2012`) which made use of control servos to gyros to applied
-roll righting torques to the single track vehicles. Of more recent interest,
-several engineering students at Dartmouth University applied this theory to a
-compact flywheel mounted within the spokes of a children's bicycle wheel
-:cite:`Ward2006` taking advantage of the fact that the flywheel imparts torques such
-that the bicycle steers into the fall. This has since been developed into a
-commercially available product, the GyroBike, that claims to allow children to
-learn to ride more easily, due to the bicycle's increased stability at low
-speeds. I was given an article about the bicycle from the Dartmouth alumni
-magazine, subsequently met the woman who created the startup company around the
-idea in San Francisco, was able to test ride the full scale prototype, and
-eventually purchased a 12" version of the bicycle. The bicycle alone stays very
-stable even to extremely low speeds, but when I, as an experienced rider, tried
-to ride and control it the steering felt less responsive than one would
-generally prefer.
+Another model extension of interest involves addition of an extra rotating
+wheel coincident with the front wheel. It is well known that that increasing
+the angular momentum of the front wheel via change in inertia
+(:cite:`Astrom2005`, :cite:`Franke1990`) or rotational speed, has a strong
+effect on the stability of the Whipple model. For the benchmark bicycle
+:cite:`Meijaard2007`, independently increasing the moment of inertia of the
+front wheel, decreases both the weave and capsize speeds. A low weave speed may
+provide open loop stability advantages to riders at low speed, with the
+reasoning that a stable bicycle may require less rider control. Conversely, it
+has also been shown both that a bicycle without gyroscopic effects can be
+stable :cite:`Kooijman2011` and that humans can ride them :cite:`Jones1970`
+with little difficulty. The idea that gyroscopic action can stabilize a moving
+two wheeled vehicle has been demonstrated as early as the dawn of the 20th
+century, with the invention of the gyro monorail and the gyro car
+(:cite:`WikipediaGyromonorail2012`, :cite:`WikipediaGyroCar2012`) which made
+use of control servos to gyros to applied roll righting torques to the single
+track vehicles. Of more recent interest, several engineering students at
+Dartmouth University applied this theory to a compact flywheel mounted within
+the spokes of a children's bicycle wheel :cite:`Ward2006` taking advantage of
+the fact that the flywheel imparts torques such that the bicycle steers into
+the fall. This has since been developed into a commercially available product,
+the GyroBike, that claims to allow children to learn to ride more easily, due
+to the bicycle's increased stability at low speeds. I was given an article
+about the bicycle from the Dartmouth alumni magazine, subsequently met the
+woman who created the startup company around the idea in San Francisco, was
+able to test ride the full scale prototype, and eventually purchased a 12"
+version of the bicycle. The bicycle alone stays very stable even to extremely
+low speeds, but when I, as an experienced rider, tried to ride and control it
+the steering felt less responsive than one would generally prefer.
 
 .. raw:: html
 
@@ -714,7 +715,7 @@ rider is only about 1 m/s greater than without a rider. :ref:`Figure
 the rear frame that the flywheel must spin up to 3500 rpm for the system to be
 stable and the time constant of the unstable eigenvalue does not decrease
 significantly until the flywheel spins at 2000 rpm. Also as with the riderless
-case, the system can be de-stablized if the wheel spins at a high enough rate;
+case, the system can be destabilized if the wheel spins at a high enough rate;
 in this case about 7000 rpm.
 
 .. _figGyroNonLin:
@@ -779,16 +780,17 @@ accompanied by a rider lean torque, :math:`T_9` which models the rider's
 ability to apply forces between the upper torso and the rear frame.
 
 Many have created variations of this model in the past including
-:cite:`Lunteren1967`, :cite:`Roland1972`, :cite:`Weir1972`, :cite:`Zytveld1975`, :cite:`Nagai1983`, etc.
-but, as :cite:`Roland1972` points out, the roll torque is the more realistic control
-input as opposed to roll angle as many of the other authors tend to prefer.
-Weir et al. notes the fact that lean control has much less authority than steer
-control, and that the rider more or less leans equal and opposite to the
-vehicles roll angle :cite:`Weir1979a`. The inverted pendulum with a roll torque has
-now been widely adopted and more recent works focus on understanding these
-types of models (:cite:`Sharp2007`, :cite:`Sharp2008a`, :cite:`Schwab2008`, :cite:`Peterson2008a`,
-etc.), with the hypothesis that control by roll torque is much less effective
-than steer torque being confirmed in all these studies.
+:cite:`Lunteren1967`, :cite:`Roland1972`, :cite:`Weir1972`,
+:cite:`Zytveld1975`, :cite:`Nagai1983`, etc.  but, as :cite:`Roland1972` points
+out, the roll torque is the more realistic control input as opposed to roll
+angle as many of the other authors tend to prefer.  Weir et al. notes the fact
+that lean control has much less authority than steer control, and that the
+rider more or less leans equal and opposite to the vehicles roll angle
+:cite:`Weir1979a`. The inverted pendulum with a roll torque has now been widely
+adopted and more recent works focus on understanding these types of models
+(:cite:`Sharp2007`, :cite:`Sharp2008a`, :cite:`Schwab2008`,
+:cite:`Peterson2008a`, etc.), with the hypothesis that control by roll torque
+is much less effective than steer torque being confirmed in all these studies.
 
 To build the same model, we define the upper body hinge as a horizontal line at
 a distance :math:`d_4` below the rear wheel center when the bicycle is in the
@@ -1005,17 +1007,17 @@ symmetric about its sagittal plane
 
 The equations of motion are again formed using Kane's method and linearized as
 described in Chapter :ref:`eom`. This linear model has been explicitly explored
-by both :cite:`Schwab2008` and :cite:`Peterson2008a` with parameter values estimated by
-proportioning the benchmark parameter set from :cite:`Meijaard2007`. The following
-plot, :ref:`Figure 6.15<figRiderLean>`, uses more realistic rider parameters
-which are generated with methods described in Chapter :ref:`physicalparameters`
-and the passive lean torque coefficients are set to zero to demonstrate the
-nature of the system with no passive stiffness and damping. Notice that the
-largest eigenvalue is much larger than those reported in Schwab and Peterson
-with a time to double of about a tenth of a second. We found that root
-difficult to stabilize when employing a manual control model based on the one
-presented in Chapter :ref:`control`, which suggests the need and existence for
-some additional passive stabilization.
+by both :cite:`Schwab2008` and :cite:`Peterson2008a` with parameter values
+estimated by proportioning the benchmark parameter set from
+:cite:`Meijaard2007`. The following plot, :ref:`Figure 6.15<figRiderLean>`,
+uses more realistic rider parameters which are generated with methods described
+in Chapter :ref:`physicalparameters` and the passive lean torque coefficients
+are set to zero to demonstrate the nature of the system with no passive
+stiffness and damping. Notice that the largest eigenvalue is much larger than
+those reported in Schwab and Peterson with a time to double of about a tenth of
+a second. We found that root difficult to stabilize when employing a manual
+control model based on the one presented in Chapter :ref:`control`, which
+suggests the need and existence for some additional passive stabilization.
 
 .. _figRiderLean:
 
@@ -1158,7 +1160,7 @@ musculoskeletal stiffness and damping at the hips.
 This six-rigid-body model has eleven generalized coordinates. One generalized
 coordinate (frame pitch) is eliminated by the holonomic configuration
 constraints requiring that both wheels touch the ground. This leaves ten
-generalized speeds, of which four are eliminated due to the non-holonomic
+generalized speeds, of which four are eliminated due to the nonholonomic
 constraints for the purely rolling wheels. The nonlinear equations of motion
 were linearized numerically about the nominal upright, constant velocity
 configuration using a central differencing method with an optimum perturbation
@@ -1266,7 +1268,7 @@ No Hands
 
 I've ended up thinking a great deal about the actual biomechanical motion one
 uses to balance a bicycle when riding no handed and I've learned much about it
-by talking with colleagues such as Jim Papadopolous, Jodi Kooijman, Arend
+by talking with colleagues such as Jim Papadopoulos, Jodi Kooijman, Arend
 Schwab, and others. For the final studies in this dissertation I had intended
 to do a thorough study of the dynamics of balancing with no hands by more
 carefully modeling the actual biomechanics we employ during the task.
@@ -1284,10 +1286,10 @@ which points the bicycle in the desired direction. In the purely mechanical
 sense one can imagine that a rider could "lean" relative to the rear frame,
 thus inducing the counter reaction causing the frame to roll the opposite
 direction of the lean. Models are often the chosen with this theory in mind
-:cite:`Zytveld1975`, :cite:`Peterson2008a`, :cite:`Schwab2008`, :cite:`Sharp2008a`, etc. They are
-the most intuitive and simple model but the idea of leaning may in fact be too
-simplistic to describe the actual biomechanical coupling a rider has with a
-bicycle\ [#motorcyclelean]_.
+:cite:`Zytveld1975`, :cite:`Peterson2008a`, :cite:`Schwab2008`,
+:cite:`Sharp2008a`, etc. They are the most intuitive and simple model but the
+idea of leaning may in fact be too simplistic to describe the actual
+biomechanical coupling a rider has with a bicycle\ [#motorcyclelean]_.
 
 The rider's upper body is typically more than three times the mass of the
 bicycle and it takes proportionally more force to move it. The studies that

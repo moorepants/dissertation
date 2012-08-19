@@ -222,7 +222,7 @@ Robot Control
    robots have roll stability and even path following. One video demonstrates
    students riding the robot bicycle and simultaneously applying manual steer
    torques.
-:cite:`Yamaguchi2011` 
+:cite:`Yamaguchi2011`
    The videos `<http://www.youtube.com/watch?v=mT3vfSQePcs>`_ and
    `<http://ai2001.ifdef.jp/>`_ demonstrate an impressive remote controlled
    mini robot bicycle that is similar in nature to the :cite:`Berriah1999`
@@ -299,7 +299,7 @@ implemented. This section details some of the modeling efforts.
    tracking.
 :cite:`Huyge2005`
    He makes use of the :cite:`Cossalter2002` motorcycle model with a eight body
-   rider bio-mechanical model. He stabilizes the bodies and tracks a path using
+   rider biomechanical model. He stabilizes the bodies and tracks a path using
    LQR control.
 :cite:`Astrom2005`
    They apply simple proportional control of a point mass type bicycle model to
@@ -685,10 +685,10 @@ structure as van Lunteren and Stassen, in which he feeds back roll angle and ste
 angle, and drives steer torque with PID controllers. He also points out a sign
 error in van Lunteren and Stassen's work.
 
-Calspan
+CALSPAN
 -------
 
-The Calspan group developed a controller for their bicycle and motorcycle
+The CALSPAN group developed a controller for their bicycle and motorcycle
 research that parallels the Delft work except they made use of the latest
 bicycle and motorcycle models with steer torque and learn torques as plant
 inputs :cite:`Roland1972`. The specifically point out the advantages of
@@ -794,7 +794,7 @@ as the model inputs. He includes a human model with four elements: a simple
 second order neuromuscular model similar to that of :cite:`Hess2012`, a time
 delay, gain, and a first order lead filter representing a mental workload
 model. His control elements include a roll angle feedback gain, a reference
-signal prefilter, and a compensator with proportional, integral, and lead
+signal pre-filter, and a compensator with proportional, integral, and lead
 control terms. The proportional term in the compensator is the only speed
 dependent term. They select the numerical values for the control elements using
 :math:`H_\infty` loop shaping for robustness. They finally show simulation
@@ -858,7 +858,7 @@ mind, my advisor Ron Hess developed a controller based on the Whipple bicycle
 model and his previous successful multi-loop human operator models. We present
 the control model and the loop closure procedure for selecting the five model
 gains in :cite:`Hess2012`. This model is fundamentally similar in nature to
-Weir's work and is built on the same foundations such as that of McRuer et. al.
+Weir's work and is built on the same foundations such as that of McRuer et al.
 (:cite:`McRuer1967` :cite:`McRuer1967a`).  We similarly found steer angle based
 control to be troublesome and had success across a broad range of speeds and
 selection of bicycles with steer torque control. We also employed a similar
@@ -1070,7 +1070,7 @@ least 0.55 damping ratio. This is very clear when plotting the damping ratio
 versus gain in :ref:`Figure 12.10<figDeltaDamp>`. The best choice typically is
 to set the gain such that the pole is at the highest frequency allowable with
 minimum damping, to give typically observed human operator behavior. This will
-set up the bandwith of the subsequent loops to be high enough for good system
+set up the bandwidth of the subsequent loops to be high enough for good system
 performance.
 
 .. _figDeltaLocus:

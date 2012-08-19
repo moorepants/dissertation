@@ -1025,7 +1025,8 @@ is the moment of inertia about the pendulum axis and is written explicitly as
    2s_{\beta i}c_{\beta i}I_{\mathrm{B}xz} +
    s^{2}_{\beta i}I_{\mathrm{B}zz}
 
-Similarly, calculating all three, or more, :math:`J_{\mathrm{B}i}` allows one to form
+Similarly, calculating all three, or more, :math:`J_{\mathrm{B}i}` allows one
+to form
 
 .. math::
    :label: eqInRel

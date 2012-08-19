@@ -143,7 +143,7 @@ human employs while controlling the system. The bicycle and motorcycle are
 excellent choices for manual control experiment design due to the fact that
 they are relatively economical systems that require a broad range of human
 control skills to stabilize and direct the vehicle, but they have the
-disadvantage that first principles models are somehware more difficult to
+disadvantage that first principles models are somewhat more difficult to
 develop and have smaller pool of prior research as say cars or aircraft. The
 approaches to identifying the passive model include mode excitation techniques
 to system identification under more general inputs.
@@ -657,7 +657,7 @@ Dr. James Jones at the veterinary school at here at Davis graciously let us use
 their horse treadmill (Graber Ag Kagra Mustang 2200) during their downtime,
 :ref:`Figure 13.1<figHorseTreadmill>`. The treadmill is 1 meter wider and 5
 meters long and has a speed range from 0.5 m/s to 17 m/s. This was only a third
-of the width treadmill at Vrije Universitiet in Amsterdam, but after some
+of the width treadmill at Vrije Universiteit in Amsterdam, but after some
 practice runs we felt that narrow lane changes and the lateral perturbations
 could be successfully performed. We used the treadmill because the environment
 was very controllable, in particular with regard to fixed constant speeds, and
@@ -1026,7 +1026,7 @@ Whipple model, also in Chapter :ref:`extensions`. This model was designed to
 more accurately account for the fact that the riders were free to move their
 arms with the front frame of the bicycle. This model is similar in fashion to
 the upright rider in :cite:`Schwab2010a`, but with slightly different joint
-definitions.  Constraints are chosen so that no additional degrees of freedom
+definitions. Constraints are chosen so that no additional degrees of freedom
 are added, keeping the system both tractable and comparable to the benchmarked
 Whipple model.
 
@@ -1996,7 +1996,7 @@ primary method of controlling the bicycle's direction, i.e. commanding roll
 allows one to command yaw. At 2 m/s the Whipple model magnitude matches at
 lower frequencies (< 4 rad/s) better and the arm model better at higher
 frequencies (> 4 rad/s). A 4 m/s and above the magnitude of identified varies
-little with speed, which constrasts the stronger speed dependence of the first
+little with speed, which contrasts the stronger speed dependence of the first
 principles models. The low frequency behavior of the identified model is not
 well predicted by the Whipple and arm models at the three highest speeds but
 about about 3 rad/s the arm model shows better magnitude matches than the

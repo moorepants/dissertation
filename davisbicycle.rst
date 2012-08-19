@@ -125,7 +125,7 @@ implemented, but I'll discuss them for completeness. They are as follows:
   kinematics: hip roll, torso relative to hip lean, torso relative to hip
   twist, and lateral knee motions.
 - Measure the additional reaction forces between the rider and bicycle: forces
-  and moments in the seatpost and forces at the foot pegs.
+  and moments in the seat post and forces at the foot pegs.
 
 These criteria framed the subsequent design choices described herein.
 
@@ -139,7 +139,7 @@ for a bicycle were as follows:
 - Steel frame for easy modification and welding.
 - Disc brake brackets for mounting the wheel speed encoders.
 - 100mm front dropout spacing and 135mm rear dropout spacing.
-- 1-1/8" threadless headset to allow for easy modification.
+- 1-1/8" thread-less headset to allow for easy modification.
 - Cylindrical tubes for head, down, top, and seat tube (i.e. nothing non standard)
 - Horizontal top tube for equipment mounting purposes.
 - Threaded rack mount for instrumentation mounting.
@@ -211,7 +211,7 @@ performed several perturbation tests with the rider's hands off the handlebars!
 He found it difficult to identifying the linear modes of motion.
 :cite:`Doyle1987` comments on the utility of rigidifying the rider which was an
 example of his techniques to simplify the system, but he left the rider free to
-move in his experiments. Jim Papadopolous has been a proponent of using
+move in his experiments. Jim Papadopoulos has been a proponent of using
 recumbent bicycles in studies due to the natural rigidification of the rider.
 His thoughts and the difficulties we had in the studies from Chapters
 :ref:`delftbicycle` and :ref:`motioncapture` influenced my decision to restrict
@@ -677,7 +677,7 @@ experiments with lateral perturbations :cite:`Kooijman2009a`. We applied the
 impulsive type of perturbations without measuring the applied force assuming
 they could be modeled as impulses. There are also many other past attempts at
 exciting the system. :cite:`Roland1971` on the other hand attached a calibrated
-rocket to the handelbars of a riderless bicycle to give a known step input to
+rocket to the handlebars of a riderless bicycle to give a known step input to
 steer torque. :cite:`Eaton1973` had the motorcycle rider tap the handlebars to
 apply an impulse and also drop weights from the side of the motorcycle to
 apply a roll torque. :cite:`Doria2012` similarly had the motorcycle rider apply
@@ -748,10 +748,10 @@ harness. The seat post was originally instrumented by simply gluing strain gage
 bridges onto a stock seat post and carefully calibrating the sensor for a
 variety of loading combinations. The accuracy of the seat post force
 measurements was not all that high due to the small strains seen along the
-outer wall of the seat post. In a way, the use of the seatpost was more because
+outer wall of the seat post. In a way, the use of the seat post was more because
 of the convenience of having access to it than obtaining the actual kinetics
 involved when using the flexible rider harness. Gilbert and I spent a
-lot of time figuring out how to use and calibrate the seatpost and associated
+lot of time figuring out how to use and calibrate the seat post and associated
 equipment. Fortunately, a copy of Cal's research notes were found that helped
 decipher most of the work. We even got in touch with Cal and he provided
 additional information. But as time constraints weighed in, we had to abandon
@@ -760,7 +760,7 @@ the effort.
 Foot Pegs
 ---------
 
-Gilbert designed a set of foot pegs such that clipless bicycle pedals could be
+Gilbert designed a set of foot pegs such that clip-less bicycle pedals could be
 screwed into the ends providing secure attachment of the feet but allowing
 easier detachment, :ref:`Figure 11.11<figFootPeg>`. Each foot peg was fit with
 two strain gage bridges to measure the downward force applied by the rider's
@@ -1025,7 +1025,7 @@ Bicycle Models
 ~~~~~~~~~~~~~~
 
 :cite:`Limebeer2006`
-   Limebeer and Sharp show a graph of a steer torque prefilter (i.e. torque
+   Limebeer and Sharp show a graph of a steer torque pre-filter (i.e. torque
    generated for roll control) output to command a ~40 degree roll angle for
    the benchmark bicycle model. The torques are in the realm of -0.5 to 2.5 Nm.
 :cite:`Sharp2007a`
@@ -1261,7 +1261,7 @@ in the steer tube to be negligible. For example, :cite:`Lorenzo1997` effectively
 this with his handlebar design but used several other bridges to measure
 additional moments and forces in handlebar assembly and calibrated the set of
 bridges together to help eliminate the crosstalk. The measured steer torques
-are less than 10 n-m and the loads due to the applied forces at the wheel
+are less than 10 Nm and the loads due to the applied forces at the wheel
 contact, headset bearings and handlebars can potentially be orders of magnitude
 greater. :cite:`Ouden2011` clearly experienced the difficultly in removing the cross
 talk from a steer torque sensor and few studies have explicitly addressed this.
@@ -1778,7 +1778,7 @@ disengaged and before each experimentation session.
    place with a roll pin for precise alignment with the front brake mounting
    hole. The right image shows the underside of the protractor with the
    engraved angles at every five degrees and the scribe line on the center of
-   the downtube.
+   the down tube.
 
 The roll angle potentiometer was calibrated by measuring the bicycle frame's
 absolute roll angle with a digital level and recording the voltage output for a
@@ -1798,7 +1798,7 @@ was poor.
    the side of the steer column and the bicycle is set at various roll angles
    while the roll angle potentiometer is sampled.
 
-For both cases the potentiometer's output voltage is ratiometric (i.e. scale
+For both cases the potentiometer's output voltage is ratiometric (i.e. scales
 with respect to the supply voltage :math:`V_s`) with respect to the supply
 voltage :math:`V_s` and the potentiometer angle :math:`\delta` can be computed
 given the average calibration supply voltage :math:`V_c`, the slope :math:`m`,
@@ -1925,7 +1925,7 @@ The lateral force was calibrated by applying a series of compressive and
 tensile loads to the load cell and measuring the amplified voltage output,
 :ref:`Figure 11.31<figLoadCellCalibration>`.
 Before calibrations, the amplifier offset voltage potentiometer was set to
-about 2.5 v and the nulling potentiometer adjusted so that the voltage was zero
+about 2.5 V and the nulling potentiometer adjusted so that the voltage was zero
 for the no load case.
 
 .. math::
@@ -1947,7 +1947,7 @@ Steer Torque
 
 The steer torque sensor was calibrated at the factory in tandem with the
 amplifier and Futek supplies a certified calibration document with the
-calibration data. The CSG-110 amplifier supplies constant 10 vdc to excite the
+calibration data. The CSG-110 amplifier supplies constant 10 Vdc to excite the
 strain gauge bridge. I did not measure this voltage because the maximum voltage
 for the NI USB-6218 is 10 V, so no ratiometric scaling was used. As long as the
 battery supplied 12+ V to the CSG-110, this would not be an issue. Tables
@@ -2052,7 +2052,7 @@ follows:
 - Sets meta data: rider, environment, speed, maneuver, notes
 - Initializes the system
 - Views raw data time history traces
-- Loads previous runs, view the time traces, edit the meta data and resave
+- Loads previous runs, view the time traces, edit the meta data and re-save
 - Saves output as a Matlab mat file
 - Converts the run and calibration mat files to HDF5 format
 - Collects calibration data

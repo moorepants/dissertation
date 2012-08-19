@@ -86,7 +86,7 @@ system may be consumed by collective quality control by the readers and
 appointed reviewers.
 
 The work in this Chapter comes from two sources, the first is the peer reviewed
-Mutlibody System Dynamics article, :cite:`Moore2011`, which I've copied
+Multibody System Dynamics article, :cite:`Moore2011`, which I've copied
 verbatim albeit with some fixed errata. The second is an addendum to the
 results which was presented at the ISEA 2010 conference in Austria
 :cite:`Moore2010`. It is a lead in to looking at the data with some other
@@ -102,15 +102,16 @@ experiments and the accompanying data.
 
 The experiments were performed in a controlled environment while the motion of
 the bicycle and rider were measured with an active motion capture system
-:cite:`NorthernDigitalIncorporated2009`. The rider rode on a :math:`3 \times 5` meter treadmill,
-(:ref:`Figure 10.1<figVrijeTreadmill>`) capable of belt speeds up to 35 km/h. Three
-male riders [Victor, Jason, Jodi] of similar age [23, 26, 31 years] and build
-[height (1.84, 1.83, 1.76 m) and mass (74, 72, 72 kg)] participated as
-subjects. Each rode two different Dutch bicycles. Each rider performed all
-runs in one day in the same order (no randomization) and was instructed to
-bicycle comfortably at a constant speed in the range of 2 to 30 km/h for the
-duration of the run. There were at least 2 repetitions of each speed with each
-bicycle. A run was sampled at a frequency of 100 Hz for 60 seconds.
+:cite:`NorthernDigitalIncorporated2009`. The rider rode on a :math:`3 \times 5`
+meter treadmill, (:ref:`Figure 10.1<figVrijeTreadmill>`) capable of belt speeds
+up to 35 km/h. Three male riders [Victor, Jason, Jodi] of similar age [23, 26,
+31 years] and build [height (1.84, 1.83, 1.76 m) and mass (74, 72, 72 kg)]
+participated as subjects. Each rode two different Dutch bicycles. Each rider
+performed all runs in one day in the same order (no randomization) and was
+instructed to bicycle comfortably at a constant speed in the range of 2 to 30
+km/h for the duration of the run. There were at least 2 repetitions of each
+speed with each bicycle. A run was sampled at a frequency of 100 Hz for 60
+seconds.
 
 Equipment
 ---------
@@ -132,7 +133,7 @@ Normal
    you were traveling down a straight empty road.
 Towed
    The towed experiments were the same as the normal except that a rope was
-   attached to the headtube of the bicycle and attached to the front railing of
+   attached to the head tube of the bicycle and attached to the front railing of
    the treadmill. This allowed the rider to not have to pedal. The rider kept
    the cranks horizontal and was left to choose which foot he wanted forward.
    The rope could potentially have applied lateral forces to the frame if the
@@ -207,41 +208,42 @@ Introduction
 ------------
 
 Much progress has been made in understanding the rigid body dynamics of an
-uncontrolled bicycle (:cite:`Meijaard2007`, :cite:`Kooijman2008`) and various control
-schemes have been explored for tracking purposes (:cite:`Peterson2008a`,
-:cite:`Schwab2008`, :cite:`Sharp2008a`), but little is understood about how a bicyclist
-actually stabilizes a bicycle during normal riding. The bicycle and rider system
-is unique among vehicles in that the rider is from 80 to 90% of the total mass
-of the system, the system is laterally unstable, and the rider is flexibly
-coupled to the bicycle in such a way that many body motions can be used as
-control inputs. Previous research into realistic bicycle control has focused
-on both steering and rider lean as control inputs, but there has been no
-experimental verification of which motions a rider actually uses for control.
-Recent observations of a bicyclist riding through town and on a treadmill
-:cite:`Kooijman2009a` show that the rider moves the upper body very little when
-performing normal maneuvers and that the bicyclist may, in fact, primarily use
-steering input for control. This corresponds well with the fact that control by
-leaning requires high gains compared to the gains required for steering when
-employing an optimal control strategy on a model (:cite:`Peterson2008a`,
-:cite:`Schwab2008`, :cite:`Sharp2008a`). The observations also revealed that the rider
-may use other control inputs such as drastic knee movements at low speeds.
-These conclusions were drawn by visually reviewing video data, so a more
-rigorous objective method of characterizing the dominant movements of the
-bicyclist while stabilizing a bicycle was needed. In order to validate the
-hypothesis that there is little upper body motion during normal cycling, motion
-capture techniques were used on the bicycle and rider system with the intent to
-use principal component analysis to identify the major motion patterns.
+uncontrolled bicycle (:cite:`Meijaard2007`, :cite:`Kooijman2008`) and various
+control schemes have been explored for tracking purposes
+(:cite:`Peterson2008a`, :cite:`Schwab2008`, :cite:`Sharp2008a`), but little is
+understood about how a bicyclist actually stabilizes a bicycle during normal
+riding. The bicycle and rider system is unique among vehicles in that the rider
+is from 80 to 90% of the total mass of the system, the system is laterally
+unstable, and the rider is flexibly coupled to the bicycle in such a way that
+many body motions can be used as control inputs. Previous research into
+realistic bicycle control has focused on both steering and rider lean as
+control inputs, but there has been no experimental verification of which
+motions a rider actually uses for control.  Recent observations of a bicyclist
+riding through town and on a treadmill :cite:`Kooijman2009a` show that the
+rider moves the upper body very little when performing normal maneuvers and
+that the bicyclist may, in fact, primarily use steering input for control. This
+corresponds well with the fact that control by leaning requires high gains
+compared to the gains required for steering when employing an optimal control
+strategy on a model (:cite:`Peterson2008a`, :cite:`Schwab2008`,
+:cite:`Sharp2008a`). The observations also revealed that the rider may use
+other control inputs such as drastic knee movements at low speeds.  These
+conclusions were drawn by visually reviewing video data, so a more rigorous
+objective method of characterizing the dominant movements of the bicyclist
+while stabilizing a bicycle was needed. In order to validate the hypothesis
+that there is little upper body motion during normal cycling, motion capture
+techniques were used on the bicycle and rider system with the intent to use
+principal component analysis to identify the major motion patterns.
 
 Principal component analysis has successfully been used with data collected
 from motion capture techniques to identify the dominant modes of motion of a
-person walking on a treadmill :cite:`Troje2002` and to characterize different types
-of walking. We use similar methods for steady, normal bicycle riding on a
+person walking on a treadmill :cite:`Troje2002` and to characterize different
+types of walking. We use similar methods for steady, normal bicycle riding on a
 treadmill. Cyclic motions, such as pedaling, are easily identified and
 separated from the other less cyclic control actions. Identifying the patterns
 of movement gives insight into which body movements are primarily used and are
 candidates for control inputs. This will be valuable for our overall research
-goals that include the design of a realistic biomechanical-based control
-system of a bicycle rider, among other things.
+goals that include the design of a realistic biomechanical-based control system
+of a bicycle rider, among other things.
 
 Experiments
 -----------
@@ -249,14 +251,15 @@ Experiments
 To test our hypotheses, three riders performed a set of stability tasks in a
 controlled environment while the motion of the bicycle and rider were collected
 with a motion capture system. The tasks were performed on a :math:`3 \times 5`
-meter treadmill :ref:`Figure 10.1<figVrijeTreadmill>` capable of belt speeds up to 35 km/h.
-The treadmill was chosen because the envelope of space was suitable for the
-motion capture system and it eliminated any disturbances such as wind, rough
-ground, and obstacles. We chose three male riders of similar age [31, 23, 26
-years], build [height (1.76, 1.84, 1.83 m) and mass (72, 74, 72 kg)]. We also
-used two different Dutch bicycles: a 2008 Batavus Browser with a 3 speed hub
-and a 2008 Batavus Stratos Deluxe with a 7 speed hub. The Browser is described
-by the manufacturer as “stable” and the Stratos Deluxe as “nervous.”
+meter treadmill :ref:`Figure 10.1<figVrijeTreadmill>` capable of belt speeds up
+to 35 km/h.  The treadmill was chosen because the envelope of space was
+suitable for the motion capture system and it eliminated any disturbances such
+as wind, rough ground, and obstacles. We chose three male riders of similar age
+[31, 23, 26 years], build [height (1.76, 1.84, 1.83 m) and mass (72, 74, 72
+kg)]. We also used two different Dutch bicycles: a 2008 Batavus Browser with a
+3 speed hub and a 2008 Batavus Stratos Deluxe with a 7 speed hub. The Browser
+is described by the manufacturer as “stable” and the Stratos Deluxe as
+“nervous.”
 
 .. _figVrijeTreadmill:
 
@@ -392,9 +395,9 @@ eigenvalues of the rigid rider system, the basic geometry, mass, center of
 gravity locations, and moments of inertia of the bicycle were measured. Also,
 the riders were measured and weighed such that the body segment geometry, mass,
 center of gravity locations, and moments of inertia could be estimated. The
-physical parameter estimation methods are described in :cite:`Moore2009a`. This data was used
-to calculate eigenvalues and eigenvectors of the uncontrolled open loop system
-:ref:`Figure 10.4<figEigPlot>`.
+physical parameter estimation methods are described in :cite:`Moore2009a`. This
+data was used to calculate eigenvalues and eigenvectors of the uncontrolled
+open loop system :ref:`Figure 10.4<figEigPlot>`.
 
 .. _figEigPlot:
 
@@ -1262,18 +1265,19 @@ Introduction
 ------------
 
 In the past decade, research has grown on single track vehicles culminating in
-the recently benchmarked bicycle model :cite:`Meijaard2007`. Two other recent papers
-(:cite:`Astrom2005`, :cite:`Limebeer2006`) have also presented overviews of current and
-historical research in bicycle dynamics and control. These review a plethora of
-dynamic models but little is known about which models are good at representing
-the actual system. Very little model-validation experimentation has been
-performed in the literature and many of the modeling assumptions, especially
-those regarding tire and rider dynamics, remain questionable. The most recent
-notable model-validation study is the verification of the benchmark model
-:cite:`Kooijman2008`. Only a handful of other good experimental studies on bicycle
-dynamics exist. The work :cite:`Lunteren1970` performed some 40 years ago in the
-same halls as the Kooijman experiments :cite:`Kooijman2008` included extensive
-efforts to validate a human control model using a bicycle simulator paired with
+the recently benchmarked bicycle model :cite:`Meijaard2007`. Two other recent
+papers (:cite:`Astrom2005`, :cite:`Limebeer2006`) have also presented overviews
+of current and historical research in bicycle dynamics and control. These
+review a plethora of dynamic models but little is known about which models are
+good at representing the actual system. Very little model-validation
+experimentation has been performed in the literature and many of the modeling
+assumptions, especially those regarding tire and rider dynamics, remain
+questionable. The most recent notable model-validation study is the
+verification of the benchmark model :cite:`Kooijman2008`. Only a handful of
+other good experimental studies on bicycle dynamics exist. The work
+:cite:`Lunteren1970` performed some 40 years ago in the same halls as the
+Kooijman experiments :cite:`Kooijman2008` included extensive efforts to
+validate a human control model using a bicycle simulator paired with
 statistical analysis. Also, around the same time as the first Delft experiments
 :cite:`Lunteren1970`, a substantial study was done at Calspan and Schwinn
 :cite:`Roland1971`.
@@ -1508,13 +1512,14 @@ line and perpendicular to the bicycle lateral plane of symmetry
 Results
 -------
 
-Direct examination of individual times series can be fruitful :cite:`Doyle1987`, but
-it is hard to make generalizations that apply to more that one specific case.
-In our case, we have are nearly 3000 different time histories to examine with
-the coordinates we've chosen. Examining the frequency spectrum of each time
-history gives a different and sometimes more revealing view. For the runs in
-which the rider pedals, the pedaling frequency is often the dominant frequency,
-with little indication of other distinct frequencies :cite:`Moore2009b`.
+Direct examination of individual times series can be fruitful
+:cite:`Doyle1987`, but it is hard to make generalizations that apply to more
+that one specific case.  In our case, we have are nearly 3000 different time
+histories to examine with the coordinates we've chosen. Examining the frequency
+spectrum of each time history gives a different and sometimes more revealing
+view. For the runs in which the rider pedals, the pedaling frequency is often
+the dominant frequency, with little indication of other distinct frequencies
+:cite:`Moore2009b`.
 
 A better way to visualize how the coordinates change with speed, for example,
 is to look at various statistics of the time histories. We grouped all of the

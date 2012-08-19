@@ -67,5 +67,5 @@ crossover model to describe the human's control efforts while being externally
 perturbed. These findings have implications in both single track vehicle design
 and human-machine interaction theory. Future applications may be able to
 utilize the findings to help objectively design bicycles with improved
-handling, stability, and controllabilty wheras human operator research may be
+handling, stability, and controllability whereas human operator research may be
 able to build on the validated crossover model theory of human control.

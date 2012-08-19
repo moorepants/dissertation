@@ -775,7 +775,7 @@ Motion Constraints
 Motion constraints reduce the dimensions of the locally achievable
 configuration space from nine to three. The first four constraints are
 introduced to enforce the pure rolling, no side-slip, contact of the knife-edge
-wheels with the ground plane and are non-holonomic. This sets the components of
+wheels with the ground plane and are nonholonomic. This sets the components of
 velocity of the contact points on the wheels in the :math:`\hat{a}_1` and
 :math:`\hat{a}_2` directions equal to zero, producing the following
 relationships
@@ -873,7 +873,7 @@ them by hand.
 Generalized Active Forces
 -------------------------
 
-The three expressions for the non-holomonic generalized active forces,
+The three expressions for the nonholomonic generalized active forces,
 :math:`\tilde{F}_r` can now be formed. For the four body system with three
 degrees of freedom :math:`(r=4,6,7)` they take the form
 
@@ -933,7 +933,7 @@ the rear frame and the rear wheel about :math:`\hat{c}_2` and the steer torque,
 Generalized Inertia Forces
 --------------------------
 
-The non-holonomic generalized inertia forces, :math:`\tilde{F}^*_r`, are formed
+The nonholonomic generalized inertia forces, :math:`\tilde{F}^*_r`, are formed
 using the accelerations and the inertial properties of the bodies.
 
 .. math::
@@ -1046,20 +1046,21 @@ described in the following sections.
 Model discussion
 ----------------
 
-:cite:`Astrom2005`, :cite:`Meijaard2007`, :cite:`Basu-Mandal2007`, :cite:`Limebeer2006`, and others
-do excellent jobs describing the essential nature of both the non-linear
-Whipple model and various linearized models. Notable concepts include the fact
-that many of the coordinates are *ignorable*, that is they do not show up in
-the essential dynamical equations of motion. These are typically the location
-of the ground contact point, :math:`q_1` and :math:`q_2`, the yaw angle,
-:math:`q_3`, and the wheel angles, :math:`q_6` and :math:`q_8`. The model is
-also energy conserving, because the contact points do no work. The model has
-many equilibrium points and when linearized about the nominal configuration at
-constant forward speed the open loop model (i.e. with no inputs) can exhibit
-stability within various speed regimes. The system exhibits non-minimum phase
-behavior and this is clearly identified in the linear models by the right half
-plane zeros in various transfer functions. The previously mentioned references
-are recommended for a more detailed description of the model.
+:cite:`Astrom2005`, :cite:`Meijaard2007`, :cite:`Basu-Mandal2007`,
+:cite:`Limebeer2006`, and others do excellent jobs describing the essential
+nature of both the non-linear Whipple model and various linearized models.
+Notable concepts include the fact that many of the coordinates are *ignorable*,
+that is they do not show up in the essential dynamical equations of motion.
+These are typically the location of the ground contact point, :math:`q_1` and
+:math:`q_2`, the yaw angle, :math:`q_3`, and the wheel angles, :math:`q_6` and
+:math:`q_8`. The model is also energy conserving, because the contact points do
+no work. The model has many equilibrium points and when linearized about the
+nominal configuration at constant forward speed the open loop model (i.e. with
+no inputs) can exhibit stability within various speed regimes. The system
+exhibits non-minimum phase behavior and this is clearly identified in the
+linear models by the right half plane zeros in various transfer functions. The
+previously mentioned references are recommended for a more detailed description
+of the model.
 
 Simulation
 ----------
@@ -1524,7 +1525,7 @@ Notation
    Shorthand notation for :math:`\operatorname{sin}\lambda` and
    :math:`\operatorname{cos}\lambda`.
 :math:`\tilde{F}_r`
-   Non-holonomic generalized active forces. The subscript :math:`r` denotes
+   Nonholonomic generalized active forces. The subscript :math:`r` denotes
    one of the independent generalized speeds.
 :math:`^N\bar{V}_r^{x_o}`
    r\ :sup:`th` partial velocity of point :math:`x_o` in reference frame
@@ -1538,7 +1539,7 @@ Notation
 :math:`\bar{T}^C`
    Resultant torques acting on body :math:`C`.
 :math:`\tilde{F}^*_r`
-   Non-holonomic generalized inertia forces. The subscript :math:`r` denotes
+   Nonholonomic generalized inertia forces. The subscript :math:`r` denotes
    one of the independent generalized speeds.
 :math:`\bar{R}^*_{x_o}`
    Generalized inertia force of point :math:`x_o`.

@@ -86,29 +86,30 @@ Whipple Model
 -------------
 
 The lowest order model that has had some reasonable experimental validation
-:cite:`Kooijman2008` is one which is able to predict speed dependent stability, and
-includes a complete physical description of the four basic rigid bodies that
-constitute a bicycle. The model is now typically referred to as the "Whipple
-Model". This is in honor of Francis J. W. Whipple, the first author to publish
-a correct derivation of the linear equations of motion of this particular
-bicycle model :cite:`Whipple1899`. This model will be used as the basis for all
-further studies proposed in this dissertation. Many researchers over the past
-century have attempted to derive and analyze this model but very few have been
-successful. :cite:`Meijaard2007` give a complete historical review of uncontrolled
-bicycle research which made use of the historical comparisons in the thesis by
-:cite:`Hand1988`. :cite:`Meijaard2007` also benchmarked the Whipple Model by deriving the
-linearized equations of motion by using four independent methods (two
-independent pen and paper calculations and two different dynamic software
-packages). Furthermore, :cite:`Basu-Mandal2007` benchmarked various torque-free
-circular motions in the non-linear case with two additional independent
-derivations of the equations of motion. There has been a series of recent
-validation attempts (:cite:`Kooijman2006`, :cite:`Kooijman2008`, :cite:`Kooijman2009`,
-:cite:`Stevens2009`, :cite:`Escalona2010`, :cite:`Escalona2011`) for the Whipple model in
-particular and the evidence for it's ability to describe the motion of the
-bicycle with no rider around the stable speed range is strong. This is
-important because it may be the lowest order model with the ability to predict
-the dynamics. In this dissertation, I make use of both the :cite:`Meijaard2007`
-model and my own derivation of the Whipple Model.
+:cite:`Kooijman2008` is one which is able to predict speed dependent stability,
+and includes a complete physical description of the four basic rigid bodies
+that constitute a bicycle. The model is now typically referred to as the
+"Whipple Model". This is in honor of Francis J. W. Whipple, the first author to
+publish a correct derivation of the linear equations of motion of this
+particular bicycle model :cite:`Whipple1899`. This model will be used as the
+basis for all further studies proposed in this dissertation. Many researchers
+over the past century have attempted to derive and analyze this model but very
+few have been successful. :cite:`Meijaard2007` give a complete historical
+review of uncontrolled bicycle research which made use of the historical
+comparisons in the thesis by :cite:`Hand1988`. :cite:`Meijaard2007` also
+benchmarked the Whipple Model by deriving the linearized equations of motion by
+using four independent methods (two independent pen and paper calculations and
+two different dynamic software packages). Furthermore, :cite:`Basu-Mandal2007`
+benchmarked various torque-free circular motions in the non-linear case with
+two additional independent derivations of the equations of motion. There has
+been a series of recent validation attempts (:cite:`Kooijman2006`,
+:cite:`Kooijman2008`, :cite:`Kooijman2009`, :cite:`Stevens2009`,
+:cite:`Escalona2010`, :cite:`Escalona2011`) for the Whipple model in particular
+and the evidence for it's ability to describe the motion of the bicycle with no
+rider around the stable speed range is strong. This is important because it may
+be the lowest order model with the ability to predict the dynamics. In this
+dissertation, I make use of both the :cite:`Meijaard2007` model and my own
+derivation of the Whipple Model.
 
 Complex Models
 --------------

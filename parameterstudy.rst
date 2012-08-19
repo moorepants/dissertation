@@ -167,10 +167,10 @@ increases, the stable speed range broadens and the weave critical velocity
 increases, :ref:`Figure 8.3<figTrail>`. As trail approaches zero the stable
 speed range diminishes to zero. It is obvious that increasing trail will
 decrease the caster mode eigenvalue, but un-intuitively it increases the weave
-eigenvalue. The yellow bicycle and the silver bicycle :cite:`Kooijman2006` both have
-their forks flipped for increase trail with the intent to make the bicycles
-stable at the speeds tested. According to the these results it does not seem
-that that is the case; it may have the opposite effect.
+eigenvalue. The yellow bicycle and the silver bicycle :cite:`Kooijman2006` both
+have their forks flipped for increase trail with the intent to make the
+bicycles stable at the speeds tested. According to the these results it does
+not seem that that is the case; it may have the opposite effect.
 
 .. _figWheelbase:
 
@@ -267,15 +267,15 @@ oscillatory modes for the Crescendo bicycle at 1.5 m/s. They turn out to be
 similar in that they are oscillatory in roll and steer, with steer being
 dominant in magnitude and the phase shifts are slightly larger for the weave
 mode. But the new mode is stable as opposed to the weave mode being unstable.
-The bicycles measured in :cite:`Stevens2009` and :cite:`Escalona2011` both exhibit this
-mode, but Stevens' :cite:`Stevens2009` parameters are estimated from a CAD drawing,
-which may not be as accurate as more direct measurements. Steven's does show
-that this mode disappears with very steep or very slack head tube angles. The
-diagrams for very slack head angles more qualitatively resemble the Silver
-bicycle from :cite:`Kooijman2008`. But it is still odd that the Silver bicycle is
-that different than all the other bicycles, with the only major difference
-being a flipped fork for more trail and a larger yaw and roll moment of inertia
-due to the outriggers.
+The bicycles measured in :cite:`Stevens2009` and :cite:`Escalona2011` both
+exhibit this mode, but Stevens' :cite:`Stevens2009` parameters are estimated
+from a CAD drawing, which may not be as accurate as more direct measurements.
+Steven's does show that this mode disappears with very steep or very slack head
+tube angles. The diagrams for very slack head angles more qualitatively
+resemble the Silver bicycle from :cite:`Kooijman2008`. But it is still odd that
+the Silver bicycle is that different than all the other bicycles, with the only
+major difference being a flipped fork for more trail and a larger yaw and roll
+moment of inertia due to the outriggers.
 
 .. _figSilverCompare:
 
@@ -422,15 +422,16 @@ it out. It would be interesting to draw error bars on the modes in the
 eigenvalue plots corresponding to the uncertainty values presented in Chapter
 :ref:`physicalparameters`. It would be revealing with respect to the
 experiments that are done which try to estimate the eigenvalues of a stable
-bicycle :cite:`Kooijman2008`, :cite:`Kooijman2009`, :cite:`Stevens2009`, :cite:`Escalona2010`. All
-of the these experiments, except for :cite:`Kooijman2009`, plot a predicted
-eigenvalue for a speed range because it is difficult to maintain constant speed
-with an uncontrolled bicycle, but beyond that the uncertainty in the eigenvalue
-estimates is not reported. These could also be calculated with respect to the
-fit data. It would be interesting to account for the uncertainties in both
-methods of predicting the eigenvalues and then compare the model's ability to
-predict the data. Because the eigenvalues seem to be rather sensitive to
-changes in some parameters, this may be an important issue to address.
+bicycle :cite:`Kooijman2008`, :cite:`Kooijman2009`, :cite:`Stevens2009`,
+:cite:`Escalona2010`. All of the these experiments, except for
+:cite:`Kooijman2009`, plot a predicted eigenvalue for a speed range because it
+is difficult to maintain constant speed with an uncontrolled bicycle, but
+beyond that the uncertainty in the eigenvalue estimates is not reported. These
+could also be calculated with respect to the fit data. It would be interesting
+to account for the uncertainties in both methods of predicting the eigenvalues
+and then compare the model's ability to predict the data. Because the
+eigenvalues seem to be rather sensitive to changes in some parameters, this may
+be an important issue to address.
 
 Frequency Response
 ==================

@@ -586,7 +586,7 @@ and much smaller at the higher speeds, but even at 30 km/h it is visible.
 
    Video still directly after a perturbation (lateral force applied from the
    rider’s right by a rope at the saddle tube) at 5 km/h. Vertical grey line
-   indicates the bicycle midplane. Note the lateral right knee motion and
+   indicates the bicycle mid-plane. Note the lateral right knee motion and
    steering action and the small upper body lean.
 
 From the video footage we also concluded that the angle that the handlebars are
@@ -660,7 +660,7 @@ details all of the experiments we performed:
 - Lateral perturbation at six speeds for each rider. (runs 132-133)
 - No hand balancing with pedaling for one rider. (runs 60-71)
 - Lane changes for both riders at six speeds. (runs 160-165, 80-85)
-- A single attempt at riding with eyes closed. at 30 km/h\ [#]_
+- A single attempt at riding with eyes closed at 30 km/h\ [#]_
 - Line tracking at six speeds for one rider. (runs 90-96)
 
 There is potentially considerable amount of findings and better statistical
@@ -693,7 +693,7 @@ found from the measurments with
 
 We did not analyze any of the data from the rate sensors on the bicycle, but
 some fruitful conclusions could be drawn such as confirming the dependence of
-yaw rate on the steer and roll rates which come from the non-holonomic
+yaw rate on the steer and roll rates which come from the nonholonomic
 constraints. Heading and wheel contact points can be estimated well for these
 tasks, as the rider always tends to "zero" heading and the drift from the
 sensor signal integration is quite linear, see Chapter :ref:`davisbicycle` for

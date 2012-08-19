@@ -12,8 +12,6 @@ Major
 .. todo:: font size is screwed up in sysid chapter due to my manually trying to
    resize tables. Fix the font size of the two big tables and the big A matrix.
 
-.. todo:: Get Tustin citation
-
 .. todo:: The References page doesn't need to show up in the pdf.
 
 .. todo:: Add UCD title page and format for submission.
@@ -26,8 +24,11 @@ Major
 
 .. todo:: Thank Matthais for bib help.
 
+
 Minor
 =====
+
+.. todo:: Try to say more about tables 13.4 5 and 6
 
 .. todo:: sphinxcontrib-bibtex is not resovling hyper links in the pdf in the
    same way the footnotes do. I think this only affects the citations,
@@ -40,6 +41,8 @@ Minor
    something different than the html.
 
 .. todo:: Center tables in html.
+
+.. todo:: Citations for all software packages.
 
 Collected
 =========

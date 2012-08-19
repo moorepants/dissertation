@@ -90,9 +90,9 @@ null, wAs, wBs = bicycle.benchmark_state_space_vs_speed(wM, wC1, wK0, wK2,
         speeds)
 figs = cbi.plot_bode(speeds, iAs, iBs, wAs, wBs, aAs, aBs)
 for fig in figs:
-    fig.set_size_inches(5., 5. / goldenRatio)
+    fig.set_size_inches(5., 5.)
     leg = fig.phaseAx.legend(loc=4)
-    plt.setp(leg.get_texts(), fontsize='4.0') #'xx-small')
+    plt.setp(leg.get_texts(), fontsize='5.0') #'xx-small')
 
 figs[0].savefig('../../figures/systemidentification/A-A-Tphi-Phi.png')
 figs[0].savefig('../../figures/systemidentification/A-A-Tphi-Phi.pdf')

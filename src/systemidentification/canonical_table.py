@@ -2,6 +2,7 @@
 import os
 import cPickle
 from canonicalbicycleid import canonical_bicycle_id as cbi
+import pandas
 
 # Specify the data files
 dataDir = '/media/Data/Documents/School/UC Davis/Bicycle Mechanics/CanonicalBicycleID/data'
@@ -20,6 +21,16 @@ steer = [[], ['Mdd', 'C1dp', 'C1dd'], ['K0dd', 'K2dd', 'HdF']]
 
 for n, r, s in zip(fNames, roll, steer):
     tableData = cbi.table_data(r, s, idMat, covMat)
+    df = pandas.DataFrame(tableData)
+    del df[0], df[1]
+    for col in df.columns:
+        if '%' in  df[col][0]:
+            del df[col]
+    df = df.astype(float)
+    print r, s
+    print(df.mean())
+    print(df.std())
+    print(df.std() / abs(df.mean()) * 100)
     cbi.create_rst_table(tableData, r, s,
             fileName='../../tables/systemidentification/canonical-id-table-' +
             n + '.rst')

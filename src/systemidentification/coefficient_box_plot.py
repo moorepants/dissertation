@@ -150,8 +150,8 @@ for i in [3, 4]:
         if ax.is_last_row():
             ax.set_xlabel('$v$ [m/s]')
 
-fig.suptitle('{} runs with at least {:1.0f}\% mean fit and max {} per bin'.format(len(subDat),
-    subDef['MeanFit'], max([len(d) for d in plotData['a31']])))
+fig.suptitle('{} runs with max {} per bin'.format(len(subDat),
+    max([len(d) for d in plotData['a31']])))
 
 fig.savefig('../../figures/systemidentification/a-matrix-box-plot.png')
 fig.savefig('../../figures/systemidentification/a-matrix-box-plot.pdf')
@@ -187,8 +187,8 @@ for i in [3, 4]:
         if ax.is_last_row():
             ax.set_xlabel('$v$ [m/s]')
 
-bfig.suptitle('{} runs with at least {:1.0f}\% mean fit and max {} per bin'.format(len(subDat),
-    subDef['MeanFit'], max([len(d) for d in plotData['b31']])))
+bfig.suptitle('{} runs with max {} per bin'.format(len(subDat),
+    max([len(d) for d in plotData['b31']])))
 
 bfig.savefig('../../figures/systemidentification/b-matrix-box-plot.png')
 bfig.savefig('../../figures/systemidentification/b-matrix-box-plot.pdf')

@@ -178,7 +178,7 @@ positive right-handed which makes the configuration identical to that in
 .. math::
    :label: eqRotationDefinition
 
-   ^a \bar{v} = ^N\mathbf{R}^A\ ^n \bar{v}
+   ^a \bar{v} = {}^N\mathbf{R}^A\ {}^n \bar{v}
 
 where :math:`^n\bar{v}` is a vector expressed in the :math:`N` frame and
 :math:`^a\bar{v}` is the same vector expressed in the :math:`A` frame.
@@ -265,8 +265,6 @@ to the Newtonian reference frame. There are six primary points of interest: the
 four mass centers, :math:`d_o,c_o,e_o,f_o`, and the two points fixed on the
 wheels which are instantaneously in contact with the ground, :math:`d_n,f_n`\
 [#wheelcontact]_.
-
-.. todo:: Have Mont read this footnote once again.
 
 The mass center of the rear wheel, :math:`d_o`, is assumed to be at the center
 of the wheel and is located by
@@ -441,7 +439,7 @@ the Newtonian reference frame. For example,
 .. math::
    :label: eqOmegaFinN
 
-   ^N\bar{\omega}^F = ^N\bar{\omega}^C + ^C\bar{\omega}^E + ^E\bar{\omega}^F
+   ^N\bar{\omega}^F = {}^N\bar{\omega}^C + {}^C\bar{\omega}^E + {}^E\bar{\omega}^F
 
 which expands to
 
@@ -473,7 +471,7 @@ frame.
 .. math::
    :label: eqCoInN
 
-   ^N\bar{v}^{c_o} = ^N\bar{v}^{d_o} + ^N\bar{\omega}^C\times\bar{r}^{c_o/d_o}
+   ^N\bar{v}^{c_o} = {}^N\bar{v}^{d_o} + {}^N\bar{\omega}^C\times\bar{r}^{c_o/d_o}
 
 where
 
@@ -489,7 +487,7 @@ and
 .. math::
    :label: eqCeInN
 
-   ^N\bar{v}^{c_e} = ^N\bar{v}^{d_o} + ^N\bar{\omega}^C\times\bar{r}^{c_e/d_o}
+   ^N\bar{v}^{c_e} = {}^N\bar{v}^{d_o} + {}^N\bar{\omega}^C\times\bar{r}^{c_e/d_o}
 
 where
 
@@ -504,7 +502,7 @@ steer axis point as they both lie on the front frame
 .. math::
    :label: eqFoInN
 
-   ^N\bar{v}^{f_o} = ^N\bar{v}^{c_e} + ^N\bar{\omega}^E\times\bar{r}^{f_o/c_e}
+   ^N\bar{v}^{f_o} = {}^N\bar{v}^{c_e} + {}^N\bar{\omega}^E\times\bar{r}^{f_o/c_e}
 
 where
 
@@ -521,7 +519,7 @@ Then the velocity of the front frame mass center is similarly
 .. math::
    :label: eqEoInN
 
-   ^N\bar{v}^{e_o} = ^N\bar{v}^{f_o} + ^N\bar{\omega}^E\times\bar{r}^{e_o/f_o}
+   ^N\bar{v}^{e_o} = {}^N\bar{v}^{f_o} + {}^N\bar{\omega}^E\times\bar{r}^{e_o/f_o}
 
 where
 
@@ -539,7 +537,7 @@ centers. The rear contact point is
 .. math::
    :label: eqDnInN
 
-   ^N\bar{v}^{d_n} = ^N\bar{v}^{d_o} + ^N\bar{\omega}^D\times\bar{r}^{d_n/d_o}
+   ^N\bar{v}^{d_n} = {}^N\bar{v}^{d_o} + {}^N\bar{\omega}^D\times\bar{r}^{d_n/d_o}
 
 where
 
@@ -559,7 +557,7 @@ The front wheel contact velocity is
 .. math::
    :label: eqFnInN
 
-   ^N\bar{v}^{f_n} = ^N\bar{v}^{f_o} + ^N\bar{\omega}^F\times\bar{r}^{f_n/f_o}
+   ^N\bar{v}^{f_n} = {}^N\bar{v}^{f_o} + {}^N\bar{\omega}^F\times\bar{r}^{f_n/f_o}
 
 where
 
@@ -623,9 +621,9 @@ center of mass is
 .. math::
    :label: aCoinN
 
-   ^N\bar{a}^{c_o} = ^N\bar{a}^{d_o} +
-   ^N\bar{\omega}^C\times(^N\bar{\omega}^C\times\bar{r}^{c_o/d_o}) +
-   ^N\bar{\alpha}^C\times\bar{r}^{c_o/d_o}
+   ^N\bar{a}^{c_o} = {}^N\bar{a}^{d_o} +
+   {}^N\bar{\omega}^C\times(^N\bar{\omega}^C\times\bar{r}^{c_o/d_o}) +
+   {}^N\bar{\alpha}^C\times\bar{r}^{c_o/d_o}
 
 where
 
@@ -653,9 +651,9 @@ The acceleration of the steer axis point is
 .. math::
    :label: aCeInN
 
-   ^N\bar{a}^{c_e} = ^N\bar{a}^{d_o} +
-   ^N\bar{\omega}^C\times(^N\bar{\omega}^C\times\bar{r}^{c_e/d_o}) +
-   ^N\bar{\alpha}^C\times\bar{r}^{c_e/d_o}
+   ^N\bar{a}^{c_e} = {}^N\bar{a}^{d_o} +
+   {}^N\bar{\omega}^C\times(^N\bar{\omega}^C\times\bar{r}^{c_e/d_o}) +
+   {}^N\bar{\alpha}^C\times\bar{r}^{c_e/d_o}
 
 where
 
@@ -680,9 +678,9 @@ The acceleration of the front wheel center of mass is
 .. math::
    :label: aFoInN
 
-   ^N\bar{a}^{f_o} = ^N\bar{a}^{c_e} +
-   ^N\bar{\omega}^E\times(^N\bar{\omega}^E\times\bar{r}^{f_o/c_e}) +
-   ^N\bar{\alpha}^E\times\bar{r}^{f_o/c_e}
+   ^N\bar{a}^{f_o} = {}^N\bar{a}^{c_e} +
+   {}^N\bar{\omega}^E\times(^N\bar{\omega}^E\times\bar{r}^{f_o/c_e}) +
+   {}^N\bar{\alpha}^E\times\bar{r}^{f_o/c_e}
 
 where
 
@@ -723,9 +721,9 @@ The acceleration of the front frame center of mass is
 .. math::
    :label: aEoInN
 
-   ^N\bar{a}^{e_o} = ^N\bar{a}^{f_o} +
-   ^N\bar{\omega}^E\times(^N\bar{\omega}^E\times\bar{r}^{e_o/f_o}) +
-   ^N\bar{\alpha}^E\times\bar{r}^{e_o/f_o}
+   ^N\bar{a}^{e_o} = {}^N\bar{a}^{f_o} +
+   {}^N\bar{\omega}^E\times(^N\bar{\omega}^E\times\bar{r}^{e_o/f_o}) +
+   {}^N\bar{\alpha}^E\times\bar{r}^{e_o/f_o}
 
 where
 
@@ -885,8 +883,8 @@ degrees of freedom :math:`(r=4,6,7)` they take the form
    \tilde{F}_r = (\tilde{F}_r)_C + (\tilde{F}_r)_D + (\tilde{F}_r)_E +
    (\tilde{F}_r)_F
 
-   (\bar{F}_r)_X= ^N\bar{V}^{x_o}_r\cdot\bar{R}^{x_o} +
-   ^N\bar{\omega}^X_r\cdot\bar{T}^X
+   (\bar{F}_r)_X= {}^N\bar{V}^{x_o}_r\cdot\bar{R}^{x_o} +
+   {}^N\bar{\omega}^X_r\cdot\bar{T}^X
 
 where :math:`^N\bar{V}_r^{x_o}` is the r\ :sup:`th` partial velocity of the
 mass center corresponding to the generalized speed :math:`u_r`,
@@ -944,8 +942,8 @@ using the accelerations and the inertial properties of the bodies.
    \tilde{F}^*_r = (\tilde{F}^*_r)_C + (\tilde{F}^*_r)_D + (\tilde{F}^*_r)_E +
    (\tilde{F}^*_r)_F
 
-   (\bar{F}^*_r)_X= ^N\bar{V}^{X_o}_r\cdot\bar{R}^*_{X_o} +
-   ^N\bar{\omega}^X_r\cdot\bar{T}^*_X
+   (\bar{F}^*_r)_X= {}^N\bar{V}^{X_o}_r\cdot\bar{R}^*_{X_o} +
+   {}^N\bar{\omega}^X_r\cdot\bar{T}^*_X
 
 where :math:`^N\bar{V}_r^{x_o}` is once again the r\ :sup:`th` partial velocity
 of the mass center with corresponding to the generalized speed :math:`u_r`,
@@ -967,7 +965,7 @@ the inertia torque on the body and is defined as
    :label: eqTStar
 
    \bar{T}^*_X =
-   -(^N\bar{\alpha}^X\cdot I_X+^N\bar{\omega}^X\times I_X\cdot\bar{\omega}^X)
+   -(^N\bar{\alpha}^X\cdot I_X+{}^N\bar{\omega}^X\times I_X\cdot\bar{\omega}^X)
 
 where :math:`I_X` is the central inertia dyadic for the body in question which
 corresponds to the following tensor definitions for the inertia of each rigid
@@ -1193,12 +1191,19 @@ the eigenvalues computed at 5 m/s compared to the values in Table 2 of
 
    \bar{q} = [\phi \quad \delta]^T = [q_4 \quad q_7]^T
 
-.. todo:: This table is too wide.
-
 .. _tabLinCompare:
 
+.. raw:: latex
+
+   \begin{footnotesize}
+
 .. tabularcolumns:: lllll
+
 .. include:: tables/eom/linear-compare.rst
+
+.. raw:: latex
+
+   \end{footnotesize}
 
 The lateral dynamics of this linear model are remarkably similar to the
 non-linear model especially around the regime of a typical bicycle's operating

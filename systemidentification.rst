@@ -2055,6 +2055,8 @@ this. A sensitivity study for each coefficient with respect to the various
 physical parameters could help reveal which parameters less likely fit into the
 Whipple model mold.
 
+.. _tabIdMCKOne:
+
 .. tabularcolumns:: LLLLLLLLLLL
 
 .. table:: Identified coefficients of the benchmark bicycle model for various
@@ -2366,15 +2368,16 @@ model is poorer than the arm model.
 
 .. _tabMeanVAFOutputs:
 
-.. tabularcolumns:: LL
+.. tabularcolumns:: LLLLLLLLLLLLLLL
 
 .. table:: The mean of the median  VAF in the simulation output variables
    presented in :ref:`Table 13.9<tabMedianVAFOutputs>`.
 
-   =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  ===== =====  =====  =======
-   Model  L-P    A-P    L-A    A-A    J-A    L-H    C-H    A-H    J-H    C-A    C-P   J-P    Arm    Whipple
-   =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  ===== =====  =====  =====  =======
-   Mean   57.6%  53.1%  52.5%  51.8%  51.1%  48.5%  47.7%  47.2%  45.3%  45.2%  38.5% 31.9%  12.3%  1.8%
+   =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =======
+   Model  L-P    A-P    L-A    A-A    J-A    L-H    C-H    A-H    J-H    C-A    C-P    J-P    Arm    Whipple
+   =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =======
+   Mean   57.6%  53.1%  52.5%  51.8%  51.1%  48.5%  47.7%  47.2%  45.3%  45.2%  38.5%  31.9%  12.3%  1.8%
+   =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =====  =======
 
 .. raw:: latex
 
@@ -2650,7 +2653,7 @@ input, and output matrices of the plant are
    \mathbf{B}_p
    =
    \begin{bmatrix}
-     B_{bF} & \mathbf{0}_{6 \times 2} \\
+     B_{bF} & 0_{6 \times 1} \\
      0_{2 \times 1} & B_{nm}
    \end{bmatrix}
 
@@ -2980,13 +2983,6 @@ to the human operator.
 - The neuromuscular frequency stays relatively constant just below 30 rad/s,
   barring the higher variability in the low speed runs.
 - The gains may be reasonably characterized with simple linear relationships.
-
-.. todo:: Forumlas for the gains and a plot of eigenvalue of forward speed with
-   repect to those formulas for the closed loop system. Make sure you no where the L-P
-   model numbers are. Maybe make them explicit again in this section.
-
-.. todo:: Plot of gains versus speed (theorectical) for the L-P model instead
-   of the whipple model.
 
 Loop Shaping
 ~~~~~~~~~~~~

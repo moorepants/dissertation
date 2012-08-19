@@ -93,7 +93,7 @@ The velocity of the point is
 .. math::
    :label: eqClInN
 
-   ^N\bar{v}^{c_l} = ^N\bar{v}^{d_o} + ^N\bar\omega^C\times\bar{r}^{c_l/d_o}
+   ^N\bar{v}^{c_l} = {}^N\bar{v}^{d_o} + {}^N\bar\omega^C\times\bar{r}^{c_l/d_o}
 
 where
 
@@ -423,9 +423,6 @@ unstable and the other is always stable. The addition of the arms' inertial
 effects causes the system to not have a stable speed range unlike the
 prediction of the Whipple model.
 
-.. todo:: src/extensions/arms/plot_eig.py seems to no longer exist
-   anywhere...rewrite?
-
 .. _figArmsRootLocus:
 
 .. figure:: figures/extensions/arms-root-locus.*
@@ -567,8 +564,6 @@ stable even to extremely low speeds, but when I, as an experienced rider, tried
 to ride and control it the steering felt less responsive than one would
 generally prefer.
 
-.. todo:: Check size of gyrobike wheel.
-
 .. raw:: html
 
    <p>The following video demonstrates that the gyrobike without a rider is
@@ -607,12 +602,12 @@ same as the front wheel
 .. math::
    :label: eqVGo
 
-   ^N\bar{v}^{g_o} = ^N\bar{v}^{f_o}
+   ^N\bar{v}^{g_o} = {}^N\bar{v}^{f_o}
 
 .. math::
    :label: eqAGo
 
-   ^N\bar{a}^{g_o} = ^N\bar{a}^{f_o}
+   ^N\bar{a}^{g_o} = {}^N\bar{a}^{f_o}
 
 An additional torque, :math:`T_9`, is required to drive the flywheel relative
 to the front wheel
@@ -846,7 +841,7 @@ upper body center of mass are
 .. math::
    :label: eqVCgInN
 
-   ^N\bar{v}^{c_g} = ^N\bar{v}^{d_o} + ^N\bar\omega^C\times\bar{r}^{c_g/d_o}
+   ^N\bar{v}^{c_g} = {}^N\bar{v}^{d_o} + {}^N\bar\omega^C\times\bar{r}^{c_g/d_o}
 
 where
 
@@ -862,7 +857,7 @@ and
 .. math::
    :label: eqVGoInN
 
-   ^N\bar{v}^{g_o} = ^N\bar{v}^{c_g} + ^N\bar\omega^G\times\bar{r}^{g_o/c_g}
+   ^N\bar{v}^{g_o} = {}^N\bar{v}^{c_g} + {}^N\bar\omega^G\times\bar{r}^{g_o/c_g}
 
 where
 
@@ -880,9 +875,9 @@ are as follows
 .. math::
    :label: eqACginN
 
-   ^N\bar{a}^{c_g} = ^N\bar{a}^{d_o} +
-   ^N\omega^C\times(^N\omega^C\times\bar{r}^{c_g/d_o}) +
-   ^N\bar{\alpha}^C\times\bar{r}^{c_g/d_o}
+   ^N\bar{a}^{c_g} = {}^N\bar{a}^{d_o} +
+   {}^N\omega^C\times(^N\omega^C\times\bar{r}^{c_g/d_o}) +
+   {}^N\bar{\alpha}^C\times\bar{r}^{c_g/d_o}
 
 where
 
@@ -915,9 +910,9 @@ and
 .. math::
    :label: eqAGoinN
 
-   ^N\bar{a}^{g_o} = ^N\bar{a}^{c_g} +
-   ^N\omega^G\times(^N\omega^G\times\bar{r}^{g_o/c_g}) +
-   ^N\bar{\alpha}^G\times\bar{r}^{g_o/c_g}
+   ^N\bar{a}^{g_o} = {}^N\bar{a}^{c_g} +
+   {}^N\omega^G\times(^N\omega^G\times\bar{r}^{g_o/c_g}) +
+   {}^N\bar{\alpha}^G\times\bar{r}^{g_o/c_g}
 
 where
 

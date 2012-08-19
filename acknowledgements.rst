@@ -74,6 +74,14 @@ Scurti at Pacific Medical Prosthetics and Orthotics and Renee Vondelft at
 Anchor Orthotics and Prosthetics helped out and donated materials for the body
 harnesses.
 
+I made use of many software packages to analyze data, make plots, and build
+this dissertation, most of which are open source. I'd like to thank all the
+thousands of people involved in developing all the open source software tools
+that I use. And in particular, I'd like to thank Matthias Troffaes for helping
+me get his `sphinx bibtex
+extension<https://github.com/mcmtroffaes/sphinxcontrib-bibtex>`_ working with my
+bibliographic data in the final weeks.
+
 I'd like to thank the Fulbright program. The experiences I gained through it
 are invaluable and have affected my life in so many ways. Programs like these
 are essential for promoting understanding among cultures and building bonds

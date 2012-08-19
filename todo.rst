@@ -7,26 +7,18 @@ Major
 
 .. todo:: Check order of all the manually numbered figures.
 
-.. todo:: Write a conclusion.
-
-.. todo:: font size is screwed up in sysid chapter due to my manually trying to
-   resize tables. Fix the font size of the two big tables and the big A matrix.
-
-.. todo:: The References page doesn't need to show up in the pdf.
+.. todo:: Spell check the thing.
 
 .. todo:: Add UCD title page and format for submission.
 
-.. todo:: Spell check the thing.
+.. todo:: The References page doesn't need to show up in the pdf.
 
-.. todo:: in eom and extensions make the kane notation correct with   {}^N for leading superscripts
-
-.. todo:: change all vectors to have bars on top
-
-.. todo:: Thank Matthais for bib help.
-
+.. todo:: Remove draft warnings.
 
 Minor
 =====
+
+.. todo:: Write a conclusion.
 
 .. todo:: Try to say more about tables 13.4 5 and 6
 
@@ -43,6 +35,23 @@ Minor
 .. todo:: Center tables in html.
 
 .. todo:: Citations for all software packages.
+
+.. todo:: Add figures in the sys id rider section that compare the factors
+
+.. todo:: Add an eigenvalue vs speed plot of the identified closed loop poles
+   of the full system.
+
+.. todo:: src/extensions/arms/plot_eig.py seems to no longer exist
+   anywhere...rewrite?
+
+.. todo:: Forumlas for the gains and a plot of eigenvalue of forward speed with
+   repect to those formulas for the closed loop system. Make sure you no where the L-P
+   model numbers are. Maybe make them explicit again in this section.
+
+.. todo:: Plot of gains versus speed (theorectical) for the L-P model instead
+   of the whipple model.
+
+.. todo:: Add BSD license to source code.
 
 Collected
 =========

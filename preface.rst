@@ -243,9 +243,6 @@ the results in the text.
 .. _Autolev: http://www.autolev.com
 .. _Matlab: http://www.mathworks.com/products/matlab/
 
-.. todo:: Make proper citations to all of these pieces of software and put them
-   in the bibiliography.
-
 Data
 ----
 

@@ -13,7 +13,6 @@ Major
 Minor
 =====
 
-- The References page doesn't need to show up in the pdf.
 - Make a proper front matter instead of a Chapter for everything (will have to
   manually fix all figure and table numbers).
 - Remove the release number.

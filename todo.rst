@@ -7,8 +7,8 @@ Major
 
 - Add UCD title page as the first page
 - Numbering should start on the title page as "-i-"
-- Numbering should be in the top righ corner
-- Make seperate official abstract for submission
+- Numbering should be in the top right corner
+- Make separate official abstract for submission
 
 Minor
 =====
@@ -21,9 +21,9 @@ Minor
 - Add m/s to all of the km/h and mph numbers.
 - Write a conclusion.
 - Try to say more about tables 13.4 5 and 6
-- sphinxcontrib-bibtex is not resovling hyper links in the pdf in the same way
+- sphinxcontrib-bibtex is not resolving hyper links in the pdf in the same way
   the footnotes do. I think this only affects the citations, footnotes, and
-  todo items in the autobuilt area.
+  todo items in the auto-built area.
 - The footnotes in the latexpdf hyperlink to page i. These don't really need to
   be hyperlinks at all.
 - The latex build wants the target directive in images to point to something
@@ -34,11 +34,11 @@ Minor
 - Add an eigenvalue vs speed plot of the identified closed loop poles of the
   full rider/bicycle system.
 - src/extensions/arms/plot_eig.py seems to no longer exist anywhere...rewrite?
-- Forumlas for the gains and a plot of eigenvalue of forward speed with repect
+- Formulas for the gains and a plot of eigenvalue of forward speed with respect
   to those formulas for the closed loop system. Make sure you no where the L-P
   model numbers are. Maybe make them explicit again in this section.
-- Plot of gains versus speed (theorectical) for the L-P model instead of the
-  whipple model.
+- Plot of gains versus speed (theoretical) for the L-P model instead of the
+  Whipple model.
 - Add BSD license to source code.
 
 Collected

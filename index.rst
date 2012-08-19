@@ -1,6 +1,6 @@
-====
-Home
-====
+========
+Contents
+========
 
 This is the University of California, Davis Mechanical and Aerospace
 Engineering doctoral dissertation of Jason K. Moore.

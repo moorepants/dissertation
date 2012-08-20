@@ -199,13 +199,46 @@ latex_logo = 'figures/bear-6in.png'
 # If true, show URL addresses after external links.
 latex_show_urls = 'no'
 
-# Additional stuff for the LaTeX preamble.
-latex_preamble = \
+# Additional stuff for the LaTeX build.
+preamble = \
 """
-\usepackage{setspace}
-\doublespacing
-\usepackage[top=1in, bottom=1in, left=1.5in, right=1in]{geometry}
+\\usepackage{setspace}
+\\doublespacing
+\\usepackage[top=1in, bottom=1in, left=1.5in, right=1in]{geometry}
+\\newcommand{\\headfoot}{\\sffamily\\bfseries}
+\\fancypagestyle{normal}{
+  \\fancyhf{}
+  \\fancyfoot[L]{{\\headfoot\\nouppercase{\\rightmark}}}
+  \\fancyfoot[R]{{\\headfoot\\nouppercase{\\leftmark}}}
+  \\fancyhead[L]{{\\headfoot %s, Release %s}}
+  \\fancyhead[R]{{\\headfoot\\thepage}}
+  \\renewcommand{\\headrulewidth}{0.4pt}
+  \\renewcommand{\\footrulewidth}{0.4pt}
+}
+\\fancypagestyle{plain}{
+  \\fancyhf{}
+  \\fancyhead[R]{{\\headfoot\\thepage}}
+  \\renewcommand{\\headrulewidth}{0.0pt}
+  \\renewcommand{\\footrulewidth}{0.4pt}
+}
+\\fancypagestyle{frontmatter}{
+  \\fancyhf{}
+  \\cfoot{\\headfoot --\\thepage--}
+  \\renewcommand{\\headrulewidth}{0.0pt}
+  \\renewcommand{\\footrulewidth}{0.4pt}
+}
+""" % (project, release)
+
+toc = \
 """
+\\tableofcontents
+\\addtocontents{toc}{\\protect\\thispagestyle{frontmatter}}
+"""
+
+latex_elements = {'classoptions': ',openany,oneside',
+                  'babel' : '\\usepackage[english]{babel}',
+                  'preamble': preamble,
+                  'tableofcontents': toc}
 
 # Documents to append as an appendix to all manuals.
 #latex_appendices = []

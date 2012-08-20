@@ -2163,7 +2163,7 @@ good general candidate model for this bicycle.
 .. figure:: figures/systemidentification/compare-id-bode-2p0.*
    :align: center
    :width: 6in
-   :target: compare-id-bode-2p0.png
+   :target: _images/compare-id-bode-2p0.png
 
    Steer torque to roll angle frequency responses at 2.0 m/s for all the
    identified models in Tables :ref:`13.3<tabIdMCKOne>`, :ref:`13.4<tabIdMCKTwo>`,
@@ -2174,7 +2174,7 @@ good general candidate model for this bicycle.
 .. figure:: figures/systemidentification/compare-id-bode-5p5.*
    :align: center
    :width: 6in
-   :target: compare-id-bode-5p5.png
+   :target: _images/compare-id-bode-5p5.png
 
    Steer torque to roll angle frequency responses at 5.5 m/s for all the
    identified models in Tables :ref:`13.3<tabIdMCKOne>`, :ref:`13.4<tabIdMCKTwo>`,
@@ -2185,7 +2185,7 @@ good general candidate model for this bicycle.
 .. figure:: figures/systemidentification/compare-id-bode-9p0.*
    :align: center
    :width: 6in
-   :target: compare-id-bode-9p0.png
+   :target: _images/compare-id-bode-9p0.png
 
    Steer torque to roll angle frequency responses at 9.0 m/s for all the
    identified models in Tables :ref:`13.3<tabIdMCKOne>`, :ref:`13.4<tabIdMCKTwo>`,

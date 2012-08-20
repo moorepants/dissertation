@@ -157,3 +157,6 @@ commit-gh-pages:
 pushpdf:
 	scp _build/latex/HumanControlofaBicycle.pdf biosport@mae.ucdavis.edu:/home/grads/biosport/public_html/jkm/dissertation/
 	@echo "The pdf has been pushed to the mae server."
+
+replace-title-page:
+	pdftk A=../ucdthesis/skeleton-thesis.pdf B=_build/latex/HumanControlofaBicycle.pdf cat A3 B2-end output _build/latex/Moore2012.pdf

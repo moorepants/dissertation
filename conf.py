@@ -225,7 +225,7 @@ preamble = \
   \\fancyhf{}
   \\cfoot{\\headfoot --\\thepage--}
   \\renewcommand{\\headrulewidth}{0.0pt}
-  \\renewcommand{\\footrulewidth}{0.4pt}
+  \\renewcommand{\\footrulewidth}{0.0pt}
 }
 """ % (project, release)
 

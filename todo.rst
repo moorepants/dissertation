@@ -5,11 +5,6 @@ TODO List
 Major
 =====
 
-- Add UCD title page as the first page
-- Numbering should start on the title page as "-i-"
-- Numbering should be in the top right corner
-- Make separate official abstract for submission
-
 Minor
 =====
 

@@ -51,21 +51,25 @@ non-minimum phase system, and thus balances, only by means of rotating the
 handlebars. This dissertation describes a multi-year multi-person effort to
 better understand the dynamics of the bicycle, the biomechanics of the rider,
 and the rider's internal control system through theory and extensive
-experimentation. The chapters herein focus on the development of open
-loop bicycle models, some of which include the rider's biomechanics,
-the resulting predicted motion and model characteristics, the accurate
-measurement and estimation of both the bicycle and rider's physical parameters,
-observation of a rider's control motions, the development of experimental
-bicycles capable of measuring kinematics and forces, control theory including
-that of the human operator, and finally the identification of the both the
-plant and controller of the bicycle-rider system. The work has revealed a number
-of interesting facts including the primary biomechanic actuators used by the
-human in control, effects of the rider's motion and constraints on
-bicycle stability, the inadequacy of the Whipple bicycle model, and the
-ability of a simple multi-output control system based on the classical
-crossover model to describe the human's control efforts while being externally
-perturbed. These findings have implications in both single track vehicle design
-and human-machine interaction theory. Future applications may be able to
-utilize the findings to help objectively design bicycles with improved
-handling, stability, and controllability whereas human operator research may be
-able to build on the validated crossover model theory of human control.
+experimentation.
+
+The chapters herein focus on the development of open loop bicycle models, some
+of which include the rider's biomechanics, the resulting predicted motion and
+model characteristics, the accurate measurement and estimation of both the
+bicycle and rider's physical parameters, observation of a rider's control
+motions, the development of experimental bicycles capable of measuring
+kinematics and forces, control theory including that of the human operator, and
+finally the identification of the both the plant and controller of the
+bicycle-rider system.
+
+The work has revealed a number of interesting facts including the primary
+biomechanic actuators used by the human in control, effects of the rider's
+motion and constraints on bicycle stability, the inadequacy of the Whipple
+bicycle model, and the ability of a simple multi-output control system based on
+the classical crossover model to describe the human's control efforts while
+being externally perturbed. These findings have implications in both single
+track vehicle design and human-machine interaction theory. Future applications
+may be able to utilize the findings to help objectively design bicycles with
+improved handling, stability, and controllability whereas human operator
+research may be able to build on the validated crossover model theory of human
+control.

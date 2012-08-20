@@ -62,14 +62,14 @@ kinematics and forces, control theory including that of the human operator, and
 finally the identification of the both the plant and controller of the
 bicycle-rider system.
 
-The work has revealed a number of interesting facts including the primary
+The work has revealed a number of interesting conclusions including the primary
 biomechanic actuators used by the human in control, effects of the rider's
 motion and constraints on bicycle stability, the inadequacy of the Whipple
 bicycle model, and the ability of a simple multi-output control system based on
 the classical crossover model to describe the human's control efforts while
 being externally perturbed. These findings have implications in both single
 track vehicle design and human-machine interaction theory. Future applications
-may be able to utilize the findings to help objectively design bicycles with
-improved handling, stability, and controllability whereas human operator
-research may be able to build on the validated crossover model theory of human
-control.
+may be able to utilize the methods and results to help objectively design
+bicycles with improved handling, stability, and controllability whereas human
+operator research may be able to build on the validated crossover model theory
+of manual control.

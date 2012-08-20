@@ -90,9 +90,9 @@ among the countries of the world.
 The UCD librarians have found virtually every obscure article that I've asked
 them for. In particular, I'd like to thank Bob Heyer-Gray for all his work.
 
-Thanks to my qualifying exam committee: Dr. Ron A. Hess, UC Davis (Chair), Dr.
-Fidelis O. Eke, UC Davis, Dr. Donald L. Margolis, UC Davis, Dr. Keith R.
-Williams, UC Davis, and Dr. Michael R. Hill, UC Davis.
+Thanks to my UC Davis qualifying exam committee: Dr. Ron A. Hess (Chair), Dr.
+Fidelis O. Eke, Dr. Donald L. Margolis, Dr. Keith R.  Williams, and Dr. Michael
+R. Hill.
 
 The NSF grant we received really gave us the freedom to explore this somewhat
 obscure topic and I'm grateful that we have a country that supports the

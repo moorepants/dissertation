@@ -207,6 +207,7 @@ preamble = \
 \\doublespacing
 \\usepackage[top=1in, bottom=1in, left=1.5in, right=1in]{geometry}
 \\newcommand{\\headfoot}{\\sffamily\\bfseries}
+\\setcounter{tocdepth}{2}
 \\fancypagestyle{normal}{
   \\fancyhf{}
   \\fancyfoot[L]{{\\headfoot\\nouppercase{\\rightmark}}}
@@ -230,11 +231,55 @@ preamble = \
 }
 """ % (project, release)
 
+# This creates thw raw latex for the abstract
+with open('abstract.rst') as f:
+    abstractFull = f.read()
+abstract = abstractFull.replace('========\nAbstract\n========\n\n', '')
+with open('abstract-temp.rst', 'w') as f:
+    f.write(abstract)
+os.system('pandoc -o abstract.tex abstract-temp.rst')
+os.remove('abstract-temp.rst')
+with open('abstract.tex') as f:
+    abstract = f.read()
+os.remove('abstract.tex')
+
+# This creates thw raw latex for the acknowledgements
+with open('acknowledgements.rst') as f:
+    acknowledgements = f.read().replace('=' * 16 + '\nAcknowledgements\n'
+        + '=' * 16 + '\n\n', '').replace(':cite:`Lange2011`',
+                '[DL11]')
+with open('acknowledgements-temp.rst', 'w') as f:
+    f.write(acknowledgements)
+del acknowledgements
+os.system('pandoc -o acknowledgements.tex acknowledgements-temp.rst')
+os.remove('acknowledgements-temp.rst')
+import codecs
+with codecs.open('acknowledgements.tex', encoding='utf-8') as f:
+    acknowledgements = f.read()
+os.remove('acknowledgements.tex')
+
 toc = \
 """
+\\begin{abstract}
+\\thispagestyle{frontmatter}
+\\pagestyle{frontmatter}
+\\setcounter{page}{2}
+%s
+\\end{abstract}
 \\tableofcontents
 \\addtocontents{toc}{\\protect\\thispagestyle{frontmatter}}
-"""
+\\pagestyle{frontmatter}
+\\listoffigures
+\\addtocontents{lof}{\\protect\\thispagestyle{frontmatter}}
+\\listoftables
+\\addtocontents{lot}{\\protect\\thispagestyle{frontmatter}}
+\\chapter*{Acknowledgements}
+\\thispagestyle{frontmatter}
+%s
+\\clearpage
+\\pagestyle{normal}
+\\pagenumbering{arabic}
+""" % (abstract, acknowledgements)
 
 latex_elements = {'classoptions': ',openany,oneside',
                   'babel' : '\\usepackage[english]{babel}',

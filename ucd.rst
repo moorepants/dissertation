@@ -6,8 +6,6 @@ Contents
    :maxdepth: 2
 
    preface
-   acknowledgements
-   abstract
    introduction
    eom
    extensions

@@ -210,12 +210,10 @@ preamble = \
 \\setcounter{tocdepth}{2}
 \\fancypagestyle{normal}{
   \\fancyhf{}
-  \\fancyfoot[L]{{\\headfoot\\nouppercase{\\rightmark}}}
-  \\fancyfoot[R]{{\\headfoot\\nouppercase{\\leftmark}}}
-  \\fancyhead[L]{{\\headfoot %s, Release %s}}
+  \\fancyhead[L]{{\\headfoot %s}}
   \\fancyhead[R]{{\\headfoot\\thepage}}
   \\renewcommand{\\headrulewidth}{0.4pt}
-  \\renewcommand{\\footrulewidth}{0.4pt}
+  \\renewcommand{\\footrulewidth}{0.0pt}
 }
 \\fancypagestyle{plain}{
   \\fancyhf{}
@@ -229,7 +227,15 @@ preamble = \
   \\renewcommand{\\headrulewidth}{0.0pt}
   \\renewcommand{\\footrulewidth}{0.0pt}
 }
-""" % (project, release)
+""" % project
+
+# These are no longer updating properly since I moved the abstract and
+# acknowledgements to the front matter. Would need to go back and remove things
+# piece by piece to see what breaks it. As is they both (\rightmark, \leftmark)
+# stay as "List of Tables", "List of Figure" or "Contents" depending which
+# contents sections you include. It stays the last one that appeared.
+#\\fancyfoot[L]{{\\headfoot\\nouppercase{\\rightmark}}}
+#\\fancyfoot[R]{{\\headfoot\\nouppercase{\\leftmark}}}
 
 # This creates thw raw latex for the abstract
 with open('abstract.rst') as f:
@@ -277,6 +283,7 @@ toc = \
 \\thispagestyle{frontmatter}
 %s
 \\clearpage
+\\thispagestyle{normal}
 \\pagestyle{normal}
 \\pagenumbering{arabic}
 """ % (abstract, acknowledgements)

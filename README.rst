@@ -2,7 +2,11 @@ The is a dissertation.
 
 The output can be found here: http://moorepants.github.com/dissertation
 
-Copyright Jason K. Moore 2012
+Copyright (c) Jason K. Moore 2012
+
+The text and figures are licensed under the Creative Commons Attribution 3.0
+Unported License and the source code is licensed under the BSD license (see
+LICENSE.txt).
 
 Dependencies
 ============

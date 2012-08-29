@@ -1,4 +1,4 @@
-The is a dissertation.
+This is a dissertation.
 
 The output can be found here: http://moorepants.github.com/dissertation
 
@@ -69,9 +69,9 @@ Build Dependencies
   [`src <https://github.com/mcmtroffaes/sphinxcontrib-bibtex>`_]
   [`docs <http://sphinxcontrib-bibtex.readthedocs.org/en/latest/index.html>`_]
 - pybtex dev
-  [`web <http://pybtex.sourceforge.net>`]
-  [`src <https://code.launchpad.net/pybtex>`]
-  [`docs <http://pybtex.sourceforge.net/manual.html>`]
+  [`web <http://pybtex.sourceforge.net>`_]
+  [`src <https://code.launchpad.net/pybtex>`_]
+  [`docs <http://pybtex.sourceforge.net/manual.html>`_]
 
 Generating Figures and Tables From Source
 =========================================
@@ -275,8 +275,7 @@ Clone the two repositories into the ``bicycle-dissertation`` directory.
 Data
 ----
 
-The hard way is to run all of the scripts in the ``src`` directory. These
-scripts access several sets of data:
+The scripts access several sets of data:
 
 - Physical Parameters: The ``data`` directory in the ``BicycleParameters``
   repository has the necessary data to load in the bicycles and riders.

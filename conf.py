@@ -200,12 +200,7 @@ latex_logo = 'figures/bear-6in.png'
 latex_show_urls = 'no'
 
 # Additional stuff for the LaTeX preamble.
-latex_preamble = \
-"""
-\usepackage{setspace}
-\doublespacing
-\usepackage[top=1in, bottom=1in, left=1.5in, right=1in]{geometry}
-"""
+#latex_preamble = ""
 
 # Documents to append as an appendix to all manuals.
 #latex_appendices = []

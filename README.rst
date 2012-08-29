@@ -76,11 +76,17 @@ Main Matlab Dependencies
 .. note:: Older and newer versions of Matlab and the toolboxes may work, I've
    only tested the code with these versions.
 
+Main R Dependencies
+-------------------
+
+- R 2.14.1
+
 Python Development Dependencies
 -------------------------------
 
 These are all of the Python packages we've developed for the analysis in the
-dissertation.
+dissertation. They are required to run many of the Python scripts in the
+``src`` directory.
 
 - AutolevToolKit
   [`src <https://github.com/moorepants/AutolevToolKit>`_]
@@ -100,7 +106,8 @@ dissertation.
 Matlab Development Dependencies
 -------------------------------
 
-These are the Matlab packages we've developed.
+These are the Matlab packages we've developed. They are required to run many of
+the m-files in the ``src`` directory.
 
 - HumanControl
   [`src <https://github.com/moorepants/HumanControl>`_]
@@ -110,36 +117,31 @@ These are the Matlab packages we've developed.
 Optional Dependencies
 ---------------------
 
-My workflow also includes these tools but they are not neccessary to build the
-dissertation.
+My workflow also includes these helpful tools but they are not necessary to
+build the dissertation.
 
 - git (http://git-scm.com/)
 - pip (http://pypi.python.org/pypi/pip): Useful for pulling releases from PyPi.
 - virtualenv (http://pypi.python.org/pypi/virtualenv)
 - Autolev 4.1 (http://www.autolev.com/): This software is no longer available,
-  but can be used to process the ``.al`` scritps.
+  but can be used to process the ``.al`` scripts.
 
 Installation
 ============
 
 Install main Python dependencies to the system. It is easiest to simply use
-your system's package manager (e.g. apt-get) to install all of the dependcies.
-
-::
+your system's package manager (e.g. apt-get) to install all of the
+dependencies. For example::
 
    apt-get install git python-setuptools python-virtualenv python-numpy python-scipy ipython python-matplotlib python-pandas python-sphinx python-tables python-uncertainties
 
-.. warning:: The package manager may not have the lastest software versions, so
+.. warning:: The package manager may not have the latest software versions, so
    you may have to build from source or locate the correct binaries.
 
 To install packages from source use ``pip`` or ``easy_install`` or  download
-the tar balls and use ``python setup.py install``.
+the source and use ``python setup.py install``.
 
-::
-
-   $ apt-get install python-pip
-
-Create a directory to house all of the software.
+Now create a directory to house all of the development software.
 
 ::
 
@@ -161,16 +163,17 @@ requests).
    $ git clone git://github.com/moorepants/BicycleID.git
    $ git clone git://github.com/fitze/yeadon.git
 
-I typcially set up a virtual environment for the Python development workflow.
-I usaually install the  main Python dependencies to the system files as they
-are typically used by other environments, but it is possible to install them in
-the virtual environment which is a good idea if you need to pin the versions.
-The virtual enviroment is not required but is recommended if you are hacking on
-the development dependencies.
+I typically set up a virtual environment for the Python development workflow.
+I usually install the main Python dependencies to the system files as they are
+typically used by other virtual environments and outside virtual environments,
+but it is also possible to install them in the virtual environment which is a
+good idea if you need to pin the versions. The virtual environment is not
+required but is recommended if you are hacking on the development dependencies.
 
 ::
 
    $ # --system-site-packages allows use of packages installed to the system
+   $ # (i.e. access to NumPy, SciPy, IPython, etc
    $ virtualenv --system-site-packages bicycle
 
 Activate the virtual environment.
@@ -179,9 +182,10 @@ Activate the virtual environment.
 
    $ source bicycle/bin/activate
 
-Checkout the dissertation tag in each of the repos. The dissertation tag pins
-the software used when version 1.0 of the disseration was built, but future
-versions of each may work too (if I keep things backward compatible).
+Checkout the dissertation tag in each of the repositories. The dissertation tag
+pins the software used when version 1.0 of the dissertation was built, but
+future versions of each software package may work too (as long as I keep things
+backward compatible).
 
 For example::
 
@@ -205,7 +209,7 @@ Repeat for all six Python repositories.
 Matlab Install
 ==============
 
-Clone the two repositories in the ``bicycle-dissertation`` directory.
+Clone the two repositories into the ``bicycle-dissertation`` directory.
 
 ::
 
@@ -215,41 +219,54 @@ Clone the two repositories in the ``bicycle-dissertation`` directory.
 Data
 ====
 
-The scripts access several sets of data.
+The easy method to obtain **all** of the figures and tables is to download this
+file with the pre-generated figures and tables:
+
+http://mae.ucdavis.edu/~biosport/jkm/dissertation/dissertation-data.tar.bz2
+
+This should be extracted into the ``dissertation`` directory.
+
+The hard way is to run all of the scripts in the ``src`` directory. These
+scripts access several sets of data:
 
 - Physical Parameters: The ``data`` directory in the ``BicycleParameters``
   repository has the necessary data to load in the bicycles and riders.
 - The Davis bicycle run database can be downloaded here
-  http://mae.ucdavis.edu/~biosport/InstrumentedBicycleData/InstrumentedBicycleData.h5.bz2 [310mb].
-  To build from raw data files see the ``BicycleDataProcessor`` readme.
-- The dissertation data and pre-generated figures can be downloaded here:
-  http://mae.ucdavis.edu/~biosport/jkm/dissertation/dissertation-data.tar.bz2
-  The folders should be extracted into the ``dissertation`` directory.
+  http://mae.ucdavis.edu/~biosport/InstrumentedBicycleData/InstrumentedBicycleData.h5.bz2
+  [310mb].  To build from raw data files see the ``BicycleDataProcessor``
+  README.
+
+.. warning:: The scripts in the ``src`` directory do not create all of the
+   figures in the dissertation. Some figures were generated during older
+   studies before I had strict coding practices and reproducibility on my mind.
+   But all of these figures can be produced from other source code. They just
+   aren't that user friendly. Contact me if you want to build those figures.
 
 Paths
 =====
 
 This is an absolute mess so far. A lot of the scripts have explicit paths to
 the data files which are referenced to my file system. They will have to be
-manually changed to reflect the locations on the system.
+manually changed to reflect the locations on the system you install to.
 
 Generate Figures and Tables
 ===========================
 
 At this point the figures and tables can be generated by running all of the
 scripts in the ``src`` directory. The figures and tables are all stored in the
-``figures`` and ``tables`` directory and most are autogenerated with the source
-code in the ``src`` directory and data stored in the ``data`` directory.
+``figures`` and ``tables`` directory and most are auto-generated with the
+source code in the ``src`` directory and data stored in the ``data`` directory.
 
 Sphinx Build Details
 ====================
 
-This document was built with Sphinx 1.1.3. It makes use of three extensions two
-of which are part of Sphinx (sphinx.ext.todo, sphinx.ext.mathjax) and one which
-is a custom extension for incorporating bibliographic data from a bibtex
+This document was built with Sphinx 1.1.3. It makes use of three extensions:
+two of which are part of Sphinx (sphinx.ext.todo, sphinx.ext.mathjax) and one
+which is a custom extension for incorporating bibliographic data from a bibtex
 database (sphinxcontrib.bibtex). The latest development version of
-``sphinxcontrib.bibtex`` should be used along with the latest development
-version of ``pybtex`` and these two un-merged branches:
+``sphinxcontrib.bibtex`` should be used and you must download the latest
+development version of ``pybtex`` and then merge in the following two branches
+from https://code.launchpad.net/~ero-sennin/pybtex/trunk/+activereviews:
 
 - lp:~matthias-troffaes/pybtex/label-alpha
 - lp:~matthias-troffaes/pybtex/sorting-bugfix

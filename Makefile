@@ -154,3 +154,10 @@ commit-gh-pages:
 pushpdf:
 	scp _build/latex/HumanControlofaBicycle.pdf biosport@mae.ucdavis.edu:/home/grads/biosport/public_html/jkm/dissertation/
 	@echo "The pdf has been pushed to the mae server."
+
+# this should run all of the scripts before creating the archive to generate
+# all figures
+pushdata:
+	tar -cvjf dissertation-data.tar.bz2 figures/ data/ tables/
+	scp dissertation-data.tar.bz2 biosport@mae.ucdavis.edu:/home/grads/biosport/public_html/jkm/dissertation/
+	@echo "The dissertation data has been pushed to the mae server."

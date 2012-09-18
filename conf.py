@@ -198,56 +198,41 @@ latex_logo = 'figures/bear-6in.png'
 #latex_show_pagerefs = False
 
 # If true, show URL addresses after external links.
-latex_show_urls = 'no'
+latex_show_urls = 'inline'
 
 # Additional stuff for the LaTeX build.
 preamble = \
 """
-\\usepackage{setspace}
-\\doublespacing
-\\usepackage[top=1in, bottom=1in, left=1.5in, right=1in]{geometry}
-\\newcommand{\\headfoot}{\\sffamily\\bfseries}
 \\setcounter{tocdepth}{2}
-\\fancypagestyle{normal}{
-  \\fancyhf{}
-  \\fancyhead[L]{{\\headfoot %s}}
-  \\fancyhead[R]{{\\headfoot\\thepage}}
-  \\renewcommand{\\headrulewidth}{0.4pt}
-  \\renewcommand{\\footrulewidth}{0.0pt}
+\\makeatletter
+\\def\\cleardoublepage{
+\\clearpage\\if@twoside \\ifodd\\c@page\\else
+\\hbox{}
+\\vspace*{\\fill}
+\\vspace{\\fill}
+\\thispagestyle{empty}
+\\newpage
+\\if@twocolumn\\hbox{}\\newpage\\fi\\fi\\fi
 }
-\\fancypagestyle{plain}{
-  \\fancyhf{}
-  \\fancyhead[R]{{\\headfoot\\thepage}}
-  \\renewcommand{\\headrulewidth}{0.0pt}
-  \\renewcommand{\\footrulewidth}{0.4pt}
-}
-\\fancypagestyle{frontmatter}{
-  \\fancyhf{}
-  \\cfoot{\\headfoot --\\thepage--}
-  \\renewcommand{\\headrulewidth}{0.0pt}
-  \\renewcommand{\\footrulewidth}{0.0pt}
-}
-""" % project
+\\makeatother
+"""
 
-# These are no longer updating properly since I moved the abstract and
-# acknowledgements to the front matter. Would need to go back and remove things
-# piece by piece to see what breaks it. As is they both (\rightmark, \leftmark)
-# stay as "List of Tables", "List of Figure" or "Contents" depending which
-# contents sections you include. It stays the last one that appeared.
-#\\fancyfoot[L]{{\\headfoot\\nouppercase{\\rightmark}}}
-#\\fancyfoot[R]{{\\headfoot\\nouppercase{\\leftmark}}}
-
-# This creates thw raw latex for the abstract
-with open('abstract.rst') as f:
-    abstractFull = f.read()
-abstract = abstractFull.replace('========\nAbstract\n========\n\n', '')
-with open('abstract-temp.rst', 'w') as f:
-    f.write(abstract)
-os.system('pandoc -o abstract.tex abstract-temp.rst')
-os.remove('abstract-temp.rst')
-with open('abstract.tex') as f:
-    abstract = f.read()
-os.remove('abstract.tex')
+texts = ['abstract', 'foreword']
+tex = []
+for text in texts:
+    with open(text + '.rst') as f:
+        full = f.read()
+    if text == 'abstract':
+        rst = full.replace('========\nAbstract\n========\n\n', '')
+    else:
+        rst = full
+    with open(text + '-temp.rst', 'w') as f:
+        f.write(rst)
+    os.system('pandoc -o ' + text + '.tex ' + text + '-temp.rst')
+    os.remove(text + '-temp.rst')
+    with open(text + '.tex') as f:
+        tex.append(f.read())
+    os.remove(text + '.tex')
 
 # This creates thw raw latex for the acknowledgements
 with open('acknowledgements.rst') as f:
@@ -266,31 +251,31 @@ os.remove('acknowledgements.tex')
 
 toc = \
 """
-\\begin{abstract}
+\\setcounter{page}{5}
+\\pagestyle{frontmatter}
+\\chapter*{Abstract}
 \\thispagestyle{frontmatter}
-\\pagestyle{frontmatter}
-\\setcounter{page}{2}
 %s
-\\end{abstract}
+\\chapter*{Foreword}
+\\thispagestyle{frontmatter}
+%s
+\\chapter*{Acknowledgements}
+\\thispagestyle{frontmatter}
+%s
 \\tableofcontents
-\\addtocontents{toc}{\\protect\\thispagestyle{frontmatter}}
+\\cleardoublepage
 \\pagestyle{frontmatter}
+\\addtocontents{toc}{\\protect\\thispagestyle{frontmatter}}
 \\listoffigures
 \\addtocontents{lof}{\\protect\\thispagestyle{frontmatter}}
 \\listoftables
 \\addtocontents{lot}{\\protect\\thispagestyle{frontmatter}}
-\\chapter*{Acknowledgements}
-\\thispagestyle{frontmatter}
-%s
-\\clearpage
-\\thispagestyle{normal}
+\\cleardoublepage
 \\pagestyle{normal}
 \\pagenumbering{arabic}
-""" % (abstract, acknowledgements)
+""" % (tex[0], tex[1], acknowledgements)
 
-latex_elements = {'classoptions': ',openany,oneside',
-                  'babel' : '\\usepackage[english]{babel}',
-                  'preamble': preamble,
+latex_elements = {'preamble': preamble,
                   'tableofcontents': toc}
 
 # Documents to append as an appendix to all manuals.

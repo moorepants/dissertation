@@ -203,6 +203,7 @@ latex_show_urls = 'inline'
 # Additional stuff for the LaTeX build.
 preamble = \
 """
+\\usepackage{pdfpages}
 \\setcounter{tocdepth}{2}
 \\makeatletter
 \\def\\cleardoublepage{
@@ -215,6 +216,9 @@ preamble = \
 \\if@twocolumn\\hbox{}\\newpage\\fi\\fi\\fi
 }
 \\makeatother
+\\definecolor{TitleColor}{rgb}{0,0,0}
+\\definecolor{InnerLinkColor}{rgb}{0,0,0}
+\\definecolor{OuterLinkColor}{rgb}{0,0,0.}
 """
 
 texts = ['abstract', 'foreword']
@@ -251,7 +255,6 @@ os.remove('acknowledgements.tex')
 
 toc = \
 """
-\\setcounter{page}{5}
 \\pagestyle{frontmatter}
 \\chapter*{Abstract}
 \\thispagestyle{frontmatter}

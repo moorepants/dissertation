@@ -1185,7 +1185,7 @@ The one step ahead predictor for the innovations form is
    :label: eqOneStepInnovations
 
    \hat{y}(t|\theta) = \mathbf{C}(\theta) \left[q \mathbf{I} -
-   \mathbf{A}(\theta) + \mathbf{K}(\theta) \right]^{-1}
+   \mathbf{A}(\theta) + \mathbf{K}(\theta)\mathbf{C}(\theta) \right]^{-1}
    \left[\mathbf{B}(\theta) u(t) + \mathbf{K}(\theta)y(t) \right]
 
 where :math:`q` is the forward shift operator (:math:`q u(t) = u(t+1)`)

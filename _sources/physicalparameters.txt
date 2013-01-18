@@ -704,7 +704,7 @@ center to the handlebar reference point are as follows
 
    l_1 = h_7 - h_6 + \frac{\hat{d}_5 - \hat{d}_6}{2}
 
-   l_2 = \left(l - \frac{]hat{d}_5 + \hat{d}_6}{2}\right)
+   l_2 = \left(l - \frac{\hat{d}_5 + \hat{d}_6}{2}\right)
    \operatorname{cos}\left[\operatorname{arcsin}\left(\frac{l_1}{l -
    \frac{\hat{d}_5+\hat{d}_6}{2}}\right)\right]
 

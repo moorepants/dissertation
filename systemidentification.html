@@ -1129,7 +1129,7 @@ discrete form by</p>
 <p>The one step ahead predictor for the innovations form is</p>
 <div class="math" id="equation-eqOneStepInnovations">
 <span class="eqno">(6)</span>\[\hat{y}(t|\theta) = \mathbf{C}(\theta) \left[q \mathbf{I} -
-\mathbf{A}(\theta) + \mathbf{K}(\theta) \right]^{-1}
+\mathbf{A}(\theta) + \mathbf{K}(\theta)\mathbf{C}(\theta) \right]^{-1}
 \left[\mathbf{B}(\theta) u(t) + \mathbf{K}(\theta)y(t) \right]\]</div>
 <p>where <span class="math">\(q\)</span> is the forward shift operator (<span class="math">\(q u(t) = u(t+1)\)</span>)
 <a class="reference internal" href="zreferences.html#ljung1998">[Lju98]</a>. The predictor is a vector of length <span class="math">\(p\)</span> where each
@@ -3459,7 +3459,7 @@ deviation <span class="math">\(y_q\)</span>.</p>
 \end{bmatrix}\end{split}\]</div>
 <p>The neuromuscular block is described by the transfer function</p>
 <div class="math" id="equation-eqNeuromuscular">
-<span class="eqno">(31)</span>\[G_{nm}(s) = \frac{\omega_{nm}^2}{s^2 + 2 \zeta_{nm} \omega_{nm}s + \omega_{nm}}\]</div>
+<span class="eqno">(31)</span>\[G_{nm}(s) = \frac{\omega_{nm}^2}{s^2 + 2 \zeta_{nm} \omega_{nm}s + \omega_{nm}^2}\]</div>
 <p>which can be written in state space form with the states <span class="math">\(x_{nm} = \left[
 T_\delta \quad \dot{T}_\delta \right]^T\)</span>, input <span class="math">\(u_{nm} = U_{nm}\)</span> and
 output <span class="math">\(y_{nm} = T_\delta\)</span>.</p>
@@ -4099,7 +4099,7 @@ neuromuscular frequency were often found if the damping ratio was left free.</td
 
     <div class="footer">
         &copy; Copyright 2012, Jason K. Moore.
-      Last updated on Dec 02, 2012.
+      Last updated on Jan 18, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">

@@ -1185,7 +1185,7 @@ The one step ahead predictor for the innovations form is
    :label: eqOneStepInnovations
 
    \hat{y}(t|\theta) = \mathbf{C}(\theta) \left[q \mathbf{I} -
-   \mathbf{A}(\theta) + \mathbf{K}(\theta) \right]^{-1}
+   \mathbf{A}(\theta) + \mathbf{K}(\theta)\mathbf{C}(\theta) \right]^{-1}
    \left[\mathbf{B}(\theta) u(t) + \mathbf{K}(\theta)y(t) \right]
 
 where :math:`q` is the forward shift operator (:math:`q u(t) = u(t+1)`)
@@ -2590,7 +2590,7 @@ The neuromuscular block is described by the transfer function
 .. math::
    :label: eqNeuromuscular
 
-   G_{nm}(s) = \frac{\omega_{nm}^2}{s^2 + 2 \zeta_{nm} \omega_{nm}s + \omega_{nm}}
+   G_{nm}(s) = \frac{\omega_{nm}^2}{s^2 + 2 \zeta_{nm} \omega_{nm}s + \omega_{nm}^2}
 
 which can be written in state space form with the states :math:`x_{nm} = \left[
 T_\delta \quad \dot{T}_\delta \right]^T`, input :math:`u_{nm} = U_{nm}` and

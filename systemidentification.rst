@@ -2590,7 +2590,7 @@ The neuromuscular block is described by the transfer function
 .. math::
    :label: eqNeuromuscular
 
-   G_{nm}(s) = \frac{\omega_{nm}^2}{s^2 + 2 \zeta_{nm} \omega_{nm}s + \omega_{nm}}
+   G_{nm}(s) = \frac{\omega_{nm}^2}{s^2 + 2 \zeta_{nm} \omega_{nm}s + \omega_{nm}^2}
 
 which can be written in state space form with the states :math:`x_{nm} = \left[
 T_\delta \quad \dot{T}_\delta \right]^T`, input :math:`u_{nm} = U_{nm}` and

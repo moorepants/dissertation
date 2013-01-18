@@ -934,7 +934,7 @@ steer angle error.
 .. math::
    :label: eqNeuromuscular
 
-   G_{nm}(s) = \frac{\omega_{nm}^2}{s^2 + 2\zeta_{nm}\omega_{nm}s + \omega_{nm}}
+   G_{nm}(s) = \frac{\omega_{nm}^2}{s^2 + 2\zeta_{nm}\omega_{nm}s + \omega_{nm}^2}
 
 The neuromuscular parameters, :math:`\zeta_{nm}` and :math:`\omega_{nm}`, were
 chosen as 0.707 and 30 rad/s, respectively, such that the innermost loops gave

@@ -13,9 +13,10 @@ Engineering doctoral dissertation of Jason K. Moore.
 .. toctree::
    :maxdepth: 2
 
-   preface
-   acknowledgements
    abstract
+   foreword
+   acknowledgements
+   preface
    introduction
    eom
    extensions

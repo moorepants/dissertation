@@ -66,9 +66,7 @@ today_fmt =  '%B %d, %Y at %X %Z'
 # directories to ignore when looking for source files.
 exclude_patterns = ['_build', 'tables', 'data', 'figures', 'src', 'todo.rst',
     'README.rst', 'index-latex.rst']
-print tags.tags
 if tags.has('latex'):
-    print 'got it'
     exclude_patterns.remove('index-latex.rst')
     exclude_patterns.append('index.rst')
     exclude_patterns.append('zreferences.rst')

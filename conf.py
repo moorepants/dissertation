@@ -65,7 +65,13 @@ today_fmt =  '%B %d, %Y at %X %Z'
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 exclude_patterns = ['_build', 'tables', 'data', 'figures', 'src', 'todo.rst',
-    'README.rst']
+    'README.rst', 'index-latex.rst']
+print tags.tags
+if tags.has('latex'):
+    print 'got it'
+    exclude_patterns.remove('index-latex.rst')
+    exclude_patterns.append('index.rst')
+    exclude_patterns.append('zreferences.rst')
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 #default_role = None
@@ -182,8 +188,8 @@ latex_font_size = '10pt'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'HumanControlofaBicycle.tex', u'Human Control of a Bicycle',
-   u'Jason K. Moore', 'manual', True),
+  ('index-latex', 'HumanControlofaBicycle.tex', u'Human Control of a Bicycle',
+   u'Jason K. Moore', 'manual', False),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of

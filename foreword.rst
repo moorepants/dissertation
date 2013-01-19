@@ -1,3 +1,7 @@
+========
+Foreword
+========
+
 On rare occasion in life one must halt everything in order to focus on one
 monumental task of great importance. Few really comprehend the inordinate
 amount of time, effort and sacrifice that goes into a dissertation. This paper

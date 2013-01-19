@@ -225,6 +225,7 @@ preamble = \
 \\definecolor{OuterLinkColor}{rgb}{0,0,0.}
 """
 
+import codecs
 texts = ['abstract', 'foreword']
 tex = []
 for text in texts:
@@ -232,6 +233,8 @@ for text in texts:
         full = f.read()
     if text == 'abstract':
         rst = full.replace('========\nAbstract\n========\n\n', '')
+    elif text == 'foreword':
+        rst = full.replace('========\nForeword\n========\n\n', '')
     else:
         rst = full
     with open(text + '-temp.rst', 'w') as f:
@@ -252,7 +255,6 @@ with open('acknowledgements-temp.rst', 'w') as f:
 del acknowledgements
 os.system('pandoc -o acknowledgements.tex acknowledgements-temp.rst')
 os.remove('acknowledgements-temp.rst')
-import codecs
 with codecs.open('acknowledgements.tex', encoding='utf-8') as f:
     acknowledgements = f.read()
 os.remove('acknowledgements.tex')

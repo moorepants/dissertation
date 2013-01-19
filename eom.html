@@ -143,7 +143,7 @@ about the nominal configuration is a different model than the non-linear
 <em>Whipple Bicycle Model</em>. I will try to be explicit when discussing the various
 models.</p>
 <p>I will use the following terminology and labels for the four rigid bodies, see
-<a class="reference internal" href="#figbicyclegeometry"><em>Figure 5.2</em></a>:</p>
+<a class="reference internal" href="#figbicyclegeometry"><em>Figure 3.2</em></a>:</p>
 <dl class="docutils">
 <dt>Rear Frame, <span class="math">\(C\)</span></dt>
 <dd>The main bicycle frame which may include parts or all of the rider.</dd>
@@ -161,7 +161,7 @@ models.</p>
 nominal configuration uses a non-minimal set of parameters based on typical
 geometric parameters and inertia definitions using an inertially fixed
 reference frame in which the <span class="math">\(x\)</span> axis points forward and the <span class="math">\(z\)</span>
-axis points down, <a class="reference internal" href="#figtypicalbicyclegeometry"><em>Figure 5.1</em></a>. The <em>nominal
+axis points down, <a class="reference internal" href="#figtypicalbicyclegeometry"><em>Figure 3.1</em></a>. The <em>nominal
 configuration</em> is defined as the configuration when the steering angle is zero
 and the bicycle is upright with respect to gravity and the ground plane. The
 parameters presented in <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> are not necessarily the best choice of
@@ -180,7 +180,7 @@ but do not make use of gyrostats to reduce the number of parameters.</p>
 ways. It is typical and often natural to define the geometry with respect to
 the descriptions of bicycle geometry used in the bicycle fabrication industry,
 such as wheel diameter, head tube angle, trail and or rake, <a class="reference internal" href="#figtypicalbicyclegeometry"><em>Figure
-5.1</em></a>. Choices of parameterizations like these create
+3.1</em></a>. Choices of parameterizations like these create
 unnecessary complications when developing the non-linear equations of motion
 because they are typically defined with respect to only the nominal
 configuration of the bicycle and are not constant with respect to the system
@@ -199,7 +199,7 @@ defined by three distances, all of which are configuration invariant. The
 distance <span class="math">\(d_1\)</span> is the offset to the center of the rear wheel from the
 steer axis and <span class="math">\(d_3\)</span> is the offset of the front wheel from the steering
 axis. <span class="math">\(d_2\)</span> is then the distance between the wheel centers as measured
-along the steer axis. <a class="reference internal" href="#figbicyclegeometry"><em>Figure 5.2</em></a> gives a complete
+along the steer axis. <a class="reference internal" href="#figbicyclegeometry"><em>Figure 3.2</em></a> gives a complete
 visual description of the bodies and the geometry.</p>
 <div class="figure align-center" id="figbicyclegeometry">
 <a class="reference external image-reference" href="_images/bicycle-geometry.png"><img alt="_images/bicycle-geometry.png" src="_images/bicycle-geometry.png" style="width: 3.75in;" /></a>
@@ -230,7 +230,7 @@ coordinates.</p>
 <p>To configure the bicycle, begin by locating the point that follows the rear
 wheel contact in the ground plane of the Newtonian reference frame, <span class="math">\(N\)</span>,
 with longitudinal and lateral coordinates <span class="math">\(q_1\)</span> and <span class="math">\(q_2\)</span>,
-respectively, see <a class="reference internal" href="#figbicyclecoordinates"><em>Figure 5.3</em></a>. Then orient the
+respectively, see <a class="reference internal" href="#figbicyclecoordinates"><em>Figure 3.3</em></a>. Then orient the
 rear frame, <span class="math">\(C\)</span>, with respect to the Newtonian reference frame through a
 body-fixed 3-1-2 rotation defining the yaw angle, <span class="math">\(q_3\)</span>, the roll angle,
 <span class="math">\(q_4\)</span>, and the pitch angle, <span class="math">\(q_5\)</span>. The intermediate frames yaw,
@@ -407,7 +407,7 @@ mass centers can be computed. Starting with mass center of the rear wheel</p>
 <p>The remaining velocities can be computed by taking advantage of the fact that
 various pairs of points are fixed on the same rigid body. The mass centers of
 the rear wheel, <span class="math">\(d_o\)</span> and the rear frame, <span class="math">\(c_o\)</span>, and the steer axis
-point, <span class="math">\(c_e\)</span>, (<a class="reference internal" href="#figbicyclegeometry"><em>Figure 5.2</em></a>) all lie on the rear
+point, <span class="math">\(c_e\)</span>, (<a class="reference internal" href="#figbicyclegeometry"><em>Figure 3.2</em></a>) all lie on the rear
 frame.</p>
 <div class="math" id="equation-eqCoInN">
 <span class="eqno">(23)</span>\[^N\bar{v}^{c_o} = {}^N\bar{v}^{d_o} + {}^N\bar{\omega}^C\times\bar{r}^{c_o/d_o}\]</div>
@@ -809,7 +809,7 @@ for the roll, steer, and pitch angles. Once two of the three are chosen, the
 third is determined. Typically one chooses a steer and roll angle and then
 solves the holonomic constraint equation numerically for the pitch angle,
 <span class="math">\(q_5\)</span>, to provide the correct initial condition. <a class="reference internal" href="#figfigfour"><em>Figure
-5.4</em></a> is an example open loop simulation of the non-linear model.</p>
+3.4</em></a> is an example open loop simulation of the non-linear model.</p>
 <div class="figure align-center" id="figfigfour">
 <a class="reference external image-reference" href="_images/meijaard2007-figure-four.png"><img alt="_images/meijaard2007-figure-four.png" src="_images/meijaard2007-figure-four.png" style="width: 3in;" /></a>
 <p class="caption">A reproduction of Figure 4 from <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a>. For these initial
@@ -838,7 +838,7 @@ the models can be concluded to be the same<a class="footnote-reference" href="#v
 <p>The Basu-Mandal et al. derivations are based on different coordinates than
 those used here, but regardless of the coordinates they provide numerical
 values which can be benchmarked if the correct coordinate transformations are
-applied<a class="footnote-reference" href="#eqconv" id="id35">[9]</a>. In <a class="reference internal" href="#tabnonlinvalidation"><em>Table 5.1</em></a><a class="footnote-reference" href="#nonlincompare" id="id36">[11]</a>
+applied<a class="footnote-reference" href="#eqconv" id="id35">[9]</a>. In <a class="reference internal" href="#tabnonlinvalidation"><em>Table 3.1</em></a><a class="footnote-reference" href="#nonlincompare" id="id36">[11]</a>
 I present the values computed from the present model in comparison to the
 values presented in <a class="reference internal" href="zreferences.html#basu-mandal2007">[BMCP07]</a>. I&#8217;ve presented the same number of
 significant digits as provided by Basu-Mandall for each variable<a class="footnote-reference" href="#sigfig" id="id38">[10]</a>.
@@ -1025,7 +1025,7 @@ equations in the canonical form (Equation <a href="#equation-eqCanonical">(56)</
 <span class="math">\(\mathbf{K}_2\)</span>) for the benchmark parameter set to at least 13
 significant figures and the linearization presented here matched all of the
 significant figures. <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> also provide the eigenvalues of the state
-matrix at various speeds. <a class="reference internal" href="#tablincompare"><em>Table 5.2</em></a><a class="footnote-reference" href="#lincompare" id="id45">[12]</a> shows
+matrix at various speeds. <a class="reference internal" href="#tablincompare"><em>Table 3.2</em></a><a class="footnote-reference" href="#lincompare" id="id45">[12]</a> shows
 the eigenvalues computed at 5 m/s compared to the values in Table 2 of
 <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a>. These match to at least 13 significant figures.</p>
 <div class="math" id="equation-eqCanonical">
@@ -1065,18 +1065,18 @@ the eigenvalues computed at 5 m/s compared to the values in Table 2 of
 </table>
 <p>The lateral dynamics of this linear model are remarkably similar to the
 non-linear model especially around the regime of a typical bicycle&#8217;s operating
-point. <a class="reference internal" href="#figlinsim"><em>Figure 5.5</em></a> gives an example simulation with the same
-initial conditions as the  <a class="reference internal" href="#figfigfour"><em>Figure 5.4</em></a>. Notice that the
+point. <a class="reference internal" href="#figlinsim"><em>Figure 3.5</em></a> gives an example simulation with the same
+initial conditions as the  <a class="reference internal" href="#figfigfour"><em>Figure 3.4</em></a>. Notice that the
 lateral dynamics, steer and roll, are almost identical, but that the constant
 forward speed equilibrium condition destroys the conservative property
 demonstrated in the non-linear model.</p>
 <div class="figure align-center" id="figlinsim">
 <a class="reference external image-reference" href="_images/meijaard2007-figure-four-linear.png"><img alt="_images/meijaard2007-figure-four-linear.png" src="_images/meijaard2007-figure-four-linear.png" style="width: 3in;" /></a>
 <p class="caption">Simulation of the linear model given the same initial conditions as
-<a class="reference internal" href="#figfigfour"><em>Figure 5.4</em></a>. Generated by <tt class="docutils literal"><span class="pre">src/eom/linear_comparison.py</span></tt>.</p>
+<a class="reference internal" href="#figfigfour"><em>Figure 3.4</em></a>. Generated by <tt class="docutils literal"><span class="pre">src/eom/linear_comparison.py</span></tt>.</p>
 </div>
 <p>It turns out that speed has profound effect on the lateral dynamics of the
-bicycle. It is useful to plot the root locus, <a class="reference internal" href="#figrootlocus"><em>Figure 5.6</em></a>,
+bicycle. It is useful to plot the root locus, <a class="reference internal" href="#figrootlocus"><em>Figure 3.6</em></a>,
 of the characteristic equation with respect to the change in the equilibrium
 forward speed to visualize the time constants, damping, frequency, and
 stability of each of the modes of motion. The modes can be clearly identified
@@ -1093,7 +1093,7 @@ stable, at a higher moderately well damped frequency. Generated by
 </div>
 <p>Another useful and popular way to visualize the root locus is by plotting the
 real and imaginary eigenvalue components separately versus forward speed,
-<a class="reference internal" href="#figeigenvalues"><em>Figure 5.7</em></a>. This view gives a clearer view of the stable
+<a class="reference internal" href="#figeigenvalues"><em>Figure 3.7</em></a>. This view gives a clearer view of the stable
 speed range.</p>
 <div class="figure align-center" id="figeigenvalues">
 <a class="reference external image-reference" href="_images/root-locus.png"><img alt="_images/root-locus.png" src="_images/root-locus.png" style="width: 5in;" /></a>
@@ -1117,7 +1117,7 @@ shown in the root locus plots, there are four distinct speed ranges of
 interest: below the weave bifurcation, between the weave bifurcation and the
 weave critical speed, the stable speed range, and above the capsize critical
 speed. At a forward speed of 0.5 m/s, all eigenvalues are real, with two
-unstable and two stable. In <a class="reference internal" href="#figevechalf"><em>Figure 5.8</em></a>, notice that the
+unstable and two stable. In <a class="reference internal" href="#figevechalf"><em>Figure 3.8</em></a>, notice that the
 unstable eigenvalues predict two modes where the roll and steer states
 exponentially increase and with roll and steer 180 degrees out of phase. These
 modes describes a simple unstable inverted pendulum motion.</p>
@@ -1131,7 +1131,7 @@ each mode at 5.0 m/s. Only the roll angle, <span class="math">\(q_4\)</span>, an
 <p>For speeds above the weave bifurcation speed, this linear model exhibits three
 distinct modes of motion, which have been named <em>weave</em>, <em>capsize</em>, and
 <em>caster</em>. As the bicycle is brought up to a speed of 3 m/s the two unstable
-eigenvalues coalesce into a complex pair. In <a class="reference internal" href="#figevechalf"><em>Figure 5.9</em></a>, the
+eigenvalues coalesce into a complex pair. In <a class="reference internal" href="#figevechalf"><em>Figure 3.9</em></a>, the
 left-most graph depicts the caster mode which simply shows a rapidly decaying
 steer angle. The unstable weave mode eigenvector components show that the steer
 amplitude is about 25% larger than the roll amplitude and roll angle leads the
@@ -1174,7 +1174,7 @@ regards to stability.</p>
 <h2>Parameter Conversion<a class="headerlink" href="#parameter-conversion" title="Permalink to this headline">¶</a></h2>
 <p>This section details the conversion from the benchmark parameter set in
 <a class="reference internal" href="zreferences.html#meijaard2007">[MPRS07]</a> to the presented parameter set, <a class="reference internal" href="#figbicyclegeometry"><em>Figure
-5.2</em></a>. As mentioned earlier, the Meijaard parameters are not a
+3.2</em></a>. As mentioned earlier, the Meijaard parameters are not a
 good choice when working with the non-linear derivation because most are not
 constant with respect to configuration. So the parameters must be converted to
 a configuration independent set. When the bicycle is in the nominal
@@ -1490,7 +1490,7 @@ DynamicistToolKit bicycle module.</td></tr>
 
     <div class="footer">
         &copy; Copyright 2012, Jason K. Moore.
-      Last updated on Jan 18, 2013.
+      Last updated on Jan 19, 2013.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">

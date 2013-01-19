@@ -95,7 +95,7 @@ weren't necessarily introduced to identify the human control system. The
 following section details efforts that explicitly concern controllers that
 mimic or try to understand the human controller.
 
-:ref:`Figure 12.1<figPubs>` shows a histogram by year of the all the references
+:ref:`Figure 10.1<figPubs>` shows a histogram by year of the all the references
 I've collected in the course of this project. It is interesting to note the
 explosion in the early seventies that probably coincides with the bicycle boom
 and the digital computer age. We've also had a boom in the last decade, with
@@ -421,7 +421,7 @@ plane zero means that the steer angle response from either input will exhibit
 an initial undershoot for a given steer torque input :cite:`Hoagg2007`. This
 phenomenon can be demonstrated by examining the step response of the two
 transfer functions with right half plane zeros :ref:`Figure
-12.2<figStableStepResponse>`.
+10.2<figStableStepResponse>`.
 
 .. _figStableStepResponse:
 
@@ -447,7 +447,7 @@ once the frame rolls in the negative direction, the steering angle reverses and
 puts the bicycle into a steady turn in the negative direction.
 
 If we examine the change in the transfer function zeros as a function of
-forward speed :ref:`Figure 12.3<figZeroWrtSpeed>`, we see that both the steer
+forward speed :ref:`Figure 10.3<figZeroWrtSpeed>`, we see that both the steer
 angle transfer functions in Equation :eq:`eqExampleBicycleTransferFunctions`
 always have a right half plane zero. And for
 :math:`\frac{\delta}{T_\delta}(s)`, the zeros do not change with respect to
@@ -593,7 +593,7 @@ the steer torque in steady turns:
 
 The step response to steer torque at a stable speed shows that for a given roll
 angle departure the natural stability enforces that steer angle must initially
-depart in the opposite direction, :ref:`Figure 12.2<figStableStepResponse>`. In
+depart in the opposite direction, :ref:`Figure 10.2<figStableStepResponse>`. In
 the case of roll torque input, a positive roll torque causes a positive roll
 angle but an initially negative steer angle. Afterwards the bicycle settles
 into a positive steady turn with respect to yaw. For the steer torque input, a
@@ -605,7 +605,7 @@ is needed to make simulations stable. Below the weave critical speed, the
 bicycle can generally be stabilized by a simple feedback gain on roll rate.
 Note that this gain must be negative, giving positive feedback. This implies
 that we apply steer torque in the same sense as the rate of fall\
-[#negativegain]_. :ref:`Figure 12.4<figWeaveStepResponse>` shows the response
+[#negativegain]_. :ref:`Figure 10.4<figWeaveStepResponse>` shows the response
 to a commanded steer torque below the weave speed under simple control. The
 countersteering in the steer angle is evident.
 
@@ -621,7 +621,7 @@ countersteering in the steer angle is evident.
 
 And above the capsize critical speed, the bicycle can be stabilized by a simple
 feedback gain on roll angle which also must be negative. :ref:`Figure
-12.5<figCapsizeResponse>` shows the countering steering required above the
+10.5<figCapsizeResponse>` shows the countering steering required above the
 stable speed range.
 
 .. _figCapsizeResponse:
@@ -944,7 +944,7 @@ The bicycle is modeled using the Whipple model linearized about the nominal
 configuration with the primary control input being steer torque. The inner
 loops are closed with sequential gains starting with the proprioceptive steer
 angle loop, followed by the vestibular roll rate loop, and the visual roll
-angle loop\ [#blind]_, :ref:`Figure 12.6<figInnerLoops>`. The steer angle loop
+angle loop\ [#blind]_, :ref:`Figure 10.6<figInnerLoops>`. The steer angle loop
 in essence captures the force/feel or haptic feedback we use while interacting
 with the handlebars. The need for this loop is readily apparent when trying to
 control a bicycle simulation with a joystick or steering wheel with no haptic
@@ -952,7 +952,7 @@ feedback as demonstrated in :cite:`Lange2011`; the difficultly level is high wit
 it. We found that this proprioceptive loop was essential for stabilization and
 closed loop performance, unlike typical aircraft control models. The outer
 loops are also visual: heading and lateral path deviation, :ref:`Figure
-12.7<figOuterLoops>`.
+10.7<figOuterLoops>`.
 
 .. _figInnerLoops:
 
@@ -1036,7 +1036,7 @@ and mid-range damping ratio.
 To set the damping ratio multiple approaches can be taken. Here I'll show a
 Bode design approach and a root locus based design. For the Bode design we
 select a gain that creates a damped neuromuscular peak near 10 rad/s,
-:ref:`Figure 12.8<figDeltaBode>`. For this bicycle and speed, a gain of ~17.5
+:ref:`Figure 10.8<figDeltaBode>`. For this bicycle and speed, a gain of ~17.5
 will set the inner loop as desired.
 
 .. _figDeltaBode:
@@ -1053,14 +1053,14 @@ will set the inner loop as desired.
 
 By plotting the root locus of the closed loop poles as a function of
 :math:`k_\delta` the desired gain can also easily be picked off on a root locus
-diagram, :ref:`Figure 12.9<figDeltaLocus>`. The root locus of the steer closed
+diagram, :ref:`Figure 10.9<figDeltaLocus>`. The root locus of the steer closed
 loop poles as a function of :math:`k_\delta` gives an idea where we can push
 the poles for the next loop closure. Notice that the poles associated with the
 weave mode at :math:`k_\delta=0` are pushed into the stable regime and back out
 again, crossing the 0.55 damping ratio line twice. There is a range of gains
 between about 4.0 and 17.5 which cause all of the oscillatory modes to have at
 least 0.55 damping ratio. This is very clear when plotting the damping ratio
-versus gain in :ref:`Figure 12.10<figDeltaDamp>`. The best choice typically is
+versus gain in :ref:`Figure 10.10<figDeltaDamp>`. The best choice typically is
 to set the gain such that the pole is at the highest frequency allowable with
 minimum damping, to give typically observed human operator behavior. This will
 set up the bandwidth of the subsequent loops to be high enough for good system
@@ -1122,14 +1122,14 @@ where
 
 The roll rate loop gain, :math:`k_{\dot{\phi}}`, is now chosen such that the
 neuromuscular mode has a minimum damping ratio of 0.15 and frequency is around
-10 rad/s. From Figures :ref:`12.11<figPhiDotLocus>` and
-:ref:`12.12<figPhiDotDamp>` we see that we need to set the roll rate gain to a
+10 rad/s. From Figures :ref:`10.11<figPhiDotLocus>` and
+:ref:`10.12<figPhiDotDamp>` we see that we need to set the roll rate gain to a
 negative values, about -0.44. Since the bicycle with steer control exhibits
 non-minimum phase behavior, we need to introduce a positive feedback on roll
 rate. So it turns out that with a small negative gain we can maintain the
 neuromuscular mode behavior but introduce the required sign change for
 stability. This gives the desired 10 dB peaking in the Bode diagram,
-:ref:`Figure 12.13<figPhiDotBode>`.
+:ref:`Figure 10.13<figPhiDotBode>`.
 
 .. _figPhiDotLocus:
 
@@ -1229,10 +1229,10 @@ where
    unity and the green line uses the gain to give desired crossover. Generated
    by ``src/control/choose_gains.m``.
 
-As can be surmised from the Bode diagram, :ref:`Figure 12.14<figPhiBode>` we've
+As can be surmised from the Bode diagram, :ref:`Figure 10.14<figPhiBode>` we've
 now stabilized the system in roll by forcing the system to behave like the
 crossover model around the crossover frequency, 2 rad/s. We can now command the
-roll angle, :ref:`Figure 12.15<figRollStable>`.
+roll angle, :ref:`Figure 10.15<figRollStable>`.
 
 .. _figRollStable:
 
@@ -1254,7 +1254,7 @@ roll angle, :ref:`Figure 12.15<figRollStable>`.
    {(s+6.881) (s+1.982) (s^2 + 1.864s + 93.21) (s^2 + 50.03s + 1041)}
 
 It is important to note that this system is a Type 0 system and thus exhibits
-steady error as seen in :ref:`Figure 12.15<figRollStable>`. If we were only
+steady error as seen in :ref:`Figure 10.15<figRollStable>`. If we were only
 concerned with roll stabilization, a low frequency integrator would be needed
 to remove the steady state error. This was not included in the model design,
 because the integrator is not needed if the heading loop is closed around the
@@ -1328,7 +1328,7 @@ where
 At this point all the loops are closed and the bicycle can track a given path
 with good performance. The closed loop system bandwidth is approximately equal
 to the open loop crossover frequency of the lateral deviation loop.
-:ref:`Figure 12.18<figTrackPath>` shows the system response to a step commanded
+:ref:`Figure 10.18<figTrackPath>` shows the system response to a step commanded
 input to lateral deviation.
 
 .. _figTrackPath:
@@ -1345,7 +1345,7 @@ input to lateral deviation.
 The gains can be computed across a relevant speed range for the bicycle. We
 developed an algorithm for automatically selecting the appropriate gains for
 difference physical parameter values and at different speeds. :ref:`Figure
-12.19<figGains>` shows how the gains vary with respect to speed for a
+10.19<figGains>` shows how the gains vary with respect to speed for a
 particular bicycle and rider. Notice that at higher speeds the gains change
 somewhat linearly, but at speeds below 3 m/s there is non-linear variation.
 These gains give stable systems which are capable of the lane change maneuver

@@ -83,7 +83,7 @@ normal bicycling focusing on the stabilization task.\ [#]_ We use the term
 "normal" to describe casual bicycling that requires minimal conscious control.
 The identification is done by visual observation of the rider and measurement
 of the motions of the instrumented bicycle, see :ref:`Figure
-9.1<figInstrumentedBicycle>`. In order to observe the human control actions a
+7.1<figInstrumentedBicycle>`. In order to observe the human control actions a
 number of experiments were carried out. First, a typical town ride was
 performed to investigate what sort of actions take place during casual riding
 through an urban environment. After this, experiments were carried out in more
@@ -102,10 +102,10 @@ Instrumented Bicycle
 ====================
 
 A standard Dutch bicycle, 2008 Batavus Browser, was chosen for the experiments
-and is shown in :ref:`Figure 9.1<figInstrumentedBicycle>`. This is a bicycle of
+and is shown in :ref:`Figure 7.1<figInstrumentedBicycle>`. This is a bicycle of
 conventional design, fitted with a 3-speed SRAM rear hub and coaster brakes.
 Some of the peripheral components were removed in order to be able to install
-measurement equipment and sensors (see :ref:`Table 9.1<tabEquipment>`). The
+measurement equipment and sensors (see :ref:`Table 7.1<tabEquipment>`). The
 bicycle was equipped with a 1/3” CCD color bullet-camera with 2.9mm (wide
 angle) lens. The camera was located at the front and directed towards the rider
 and rotated 90 degrees clockwise to get portrait aspect ratio. The video signal
@@ -113,7 +113,7 @@ was recorded, via the AV-in port, on DV tape of a Sony Handycam located on the
 rear rack of the bicycle. The bullet camera was placed horizontally,
 approximately 65 cm in front of the handlebars and 1.2 m above the ground and
 held in place by a carbon-fiber boom connected to the down-tube of the rear
-frame, see :ref:`Figure 9.1<figInstrumentedBicycle>`. This allowed us to view
+frame, see :ref:`Figure 7.1<figInstrumentedBicycle>`. This allowed us to view
 the rider's motion with respect to the bicycle frame.
 
 .. _figInstrumentedBicycle:
@@ -200,7 +200,7 @@ two main observations were made:
    few seconds prior to a sharp corner was an upper body lean angle observed,
    indicating that the lean was carried out because of a sudden heading change.
 
-2. The recorded data, part of which is shown in :ref:`Figure 9.2<figTownData>`,
+2. The recorded data, part of which is shown in :ref:`Figure 7.2<figTownData>`,
    clearly shows that only very small steering actions (± 3 deg) are carried
    out during most of the experiment. Only when the forward speed has dropped,
    prior to making a corner, are large steer angles (± 15 deg) seen.
@@ -223,7 +223,7 @@ bicycle-rider system to many external disturbances such as side wind, traffic
 and road unevenness. To eliminate these disturbances a more controlled
 environment was selected to carry out further studies on human rider control
 for stabilization tasks. The experiments were carried out on a large (3 × 5 m)
-treadmill, shown in :ref:`Figure 9.3<figTreadmill>`. The dynamics of a riderless
+treadmill, shown in :ref:`Figure 7.3<figTreadmill>`. The dynamics of a riderless
 bicycle on a treadmill have been shown to be the same as for on flat level
 ground :cite:`Kooijman2009` for speeds between 4-6 m/s, so we make this assumption
 for the case with a rider too, albeit with caution.
@@ -251,7 +251,7 @@ for the case with a rider too, albeit with caution.
 The experiments were carried out by two male, average ability riders of
 different age and build on the same bicycle. The saddle height was adjusted for
 each rider to ensure proper seating. The rider characteristics are given in
-:ref:`Table 9.2<tabRiders>`. For both riders very similar results were found.
+:ref:`Table 7.2<tabRiders>`. For both riders very similar results were found.
 The data and figures presented in this chapter were collected with rider 1.
 
 .. _figTreadmill:
@@ -271,8 +271,8 @@ front handlebar and fork assembly, and the two wheels. These are connected by
 ideal hinges and the wheels have idealized pure-rolling contact with level
 ground. :cite:`Moore2009a` describes the method used to determine the model
 parameters for the instrumented bicycle-rider system\ [#]_. These parameters are
-given in :ref:`Table 9.3<tabParameters>` and the root locus of the system with
-respect to speed is depicted in :ref:`Figure 9.4<figDelftRootLocus>`. At low speed, the
+given in :ref:`Table 7.3<tabParameters>` and the root locus of the system with
+respect to speed is depicted in :ref:`Figure 7.4<figDelftRootLocus>`. At low speed, the
 dominant mode is the unstable oscillatory weave mode. This weave motion becomes
 stable around 18 km/h, the weave critical speed. At higher speeds, the
 non-oscillatory capsize motion becomes unstable but since its time to double so
@@ -415,7 +415,7 @@ motion. During the low speed runs at 5 km/h, the rider’s upper body was almost
 stationary, i.e. it could be considered to be rigidly attached to the rear
 frame. However at this speed the rider’s knees showed significant lateral
 motion. This lateral knee motion can be seen in the video image in Figure
-:ref:`Figure 9.5<figKnee>`. A third observation was that the rider actuated the
+:ref:`Figure 7.5<figKnee>`. A third observation was that the rider actuated the
 handlebars with higher amplitudes at lower speeds than at higher speeds.
 
 .. _figKnee:
@@ -431,14 +431,14 @@ handlebars with higher amplitudes at lower speeds than at higher speeds.
    body lean.
 
 This third observation is confirmed by the measured steer angle data. Figures
-:ref:`9.6<figSteerNormal20>` and :ref:`9.7<figSteerNormal5>` show the time
+:ref:`7.6<figSteerNormal20>` and :ref:`7.7<figSteerNormal5>` show the time
 history of the steer angle for the experiments carried out at 20 and 5 km/h,
 respectively. The standard deviation of the steer angle during the sixty
 seconds of measurement is also shown in the figures. At speeds above 20 km/h
 the average steer angle remains approximately constant. However the average
 magnitude of the steer angle grows by more than 500% when the speed is
 decreased from 20 km/h to 5 km/h. This increase in steer angle magnitude for
-the decreasing speeds is illustrated in Figure :ref:`Figure 9.8<figSteerSigma>`.
+the decreasing speeds is illustrated in Figure :ref:`Figure 7.8<figSteerSigma>`.
 This jump in steering amplitude could be indicative of a threshold at which the
 system becomes harder to control, but there is no apparent connection to the
 open loop dynamics. For example, the change in both the weave mode time to
@@ -476,14 +476,14 @@ between 10 and 15 km/h.
    the three different experiments.
 
 The frequency content of the steering signal for the different forward speeds
-is shown in :ref:`Figure 9.9<figNormalFreq>`. The grey vertical dashed line
+is shown in :ref:`Figure 7.9<figNormalFreq>`. The grey vertical dashed line
 indicates the rigid rider-bicycle weave frequency. We were not able to
 ascertain any connection between the dominate measured frequencies and the
 natural frequency of the weave mode. We had hypothesized that for speeds in the
 stable speed range, the optimal control frequency of the rider would correspond
 to the weave frequency, due to the fact that an uncontrolled bicycle-rider
 system recovers from perturbations at its natural frequency. The black vertical
-dashed line in each of the plots in Figure :ref:`Figure 9.9<figNormalFreq>`
+dashed line in each of the plots in Figure :ref:`Figure 7.9<figNormalFreq>`
 indicates the measured pedaling frequency. The figure shows that during normal
 pedaling most of steering action takes place at, or around, the pedaling
 frequency, irrespective of the speed that the bicycle is moving. The pedaling
@@ -501,9 +501,9 @@ where practically all of the steering takes place at the pedaling frequency.
    experiment. Solid vertical line indicates the pedaling frequency. Dashed
    vertical grey line indicates the bicycle & rigid rider weave eigenfrequency.
 
-:ref:`Figure 9.10<figMaxAmp>` plots the maximum steering amplitude versus speed. This
+:ref:`Figure 7.10<figMaxAmp>` plots the maximum steering amplitude versus speed. This
 maximum amplitude reduces with increasing speed and is similar in shape to the
-standard deviation plot in :ref:`Figure 9.8<figSteerSigma>`.
+standard deviation plot in :ref:`Figure 7.8<figSteerSigma>`.
 
 .. _figMaxAmp:
 
@@ -525,7 +525,7 @@ However, unlike the normal bicycling experiment, no knee motion was noticed
 from visual inspection of the video footage at any of the speeds, other than
 small remnant motion as a result of slight steering deviations from straight
 ahead. The recorded steer angle data also confirmed that larger steer angles
-were made at decreasing speeds. :ref:`Figure 9.8<figSteerSigma>` shows how the
+were made at decreasing speeds. :ref:`Figure 7.8<figSteerSigma>` shows how the
 standard deviation of the steer angle reduces rapidly with increasing speed up
 to 20 km/h and from then on remains approximately constant. The figure also
 shows that the average steering amplitude at all speeds is lower than that for
@@ -534,7 +534,7 @@ above 10km/h indicating that little to no steer action is required at higher
 speeds.
 
 The steer angle frequency spectrum for each of the speeds is shown in
-:ref:`Figure 9.11<figTowFreq>`. It was once again expected that the rigid
+:ref:`Figure 7.11<figTowFreq>`. It was once again expected that the rigid
 rider/bicycle weave frequency would be a dominant frequency in the frequency
 spectrum, especially with no pedaling. However there appears to be no
 connection with the open loop weave frequency even in the unstable speed range.
@@ -565,7 +565,7 @@ subsequent recovery of the bicycle to the upright, straight ahead position, no
 body lean could be noted other than that as a result of the normal pedaling.
 
 A second phenomenon observable in the video footage, as shown in :ref:`Figure
-9.12<figPerturb>`, is that at all speeds we observed a lateral knee motion
+7.12<figPerturb>`, is that at all speeds we observed a lateral knee motion
 during the short transient recovery process of the bicycle to the upright
 position. The lateral knee motion was very large during the 5 km/h measurement
 and much smaller at the higher speeds, but even at 30 km/h it is visible.
@@ -585,13 +585,13 @@ and much smaller at the higher speeds, but even at 30 km/h it is visible.
 From the video footage we also concluded that the angle that the handlebars are
 turned during and after a perturbation decreased with increasing speed as can
 also be seen in the measured steer angle data as shown in :ref:`Figure
-9.8<figSteerSigma>`.
+7.8<figSteerSigma>`.
 
-:ref:`Figure 9.13<figPerturbFreq>` shows the frequency spectrum of the measured
+:ref:`Figure 7.13<figPerturbFreq>` shows the frequency spectrum of the measured
 steer angle. Once again, for the higher speeds, the steer control action is
 carried out at the pedaling frequency. At the lower speeds (5 - 10 km/h) a
 wider frequency range is again present but the pedaling frequency is dominant.
-:ref:`Figure 9.10<figMaxAmp>` shows the steering amplitude for the frequency
+:ref:`Figure 7.10<figMaxAmp>` shows the steering amplitude for the frequency
 with the maximum amplitude. Again the values for the highest speeds are
 similar to those of the standard deviation of the steer angle.
 
@@ -698,7 +698,7 @@ Steer sensor design
 
 The steer sensor, a simple rotary potentiometer, was mounted with a design that
 is fairly universal for different bicycle designs, :ref:`Figure
-9.14<figSteerSensor>`. It offers axial adjust ability and belt tension. The
+7.14<figSteerSensor>`. It offers axial adjust ability and belt tension. The
 pulley diameters were chosen for +/- 45 degrees of steering angle corresponding
 to about +/- 168 degrees of potentiometer angle. I originally designed it with
 a cord type belt, but it was later switched to a timing belt due to our worry
@@ -725,7 +725,7 @@ This requires some way to synchronize the video data with the sensor data. The
 Sony DCR-TV30E Handycam we used had a LANC output port that potentially provided an
 external signal that could be sampled by the data acquisition unit but we never
 quite figured it out. In the meantime though, I designed a graphical user
-interface in Matlab to interact with the data, :ref:`Figure 9.15<figCamGUI>`, giving the
+interface in Matlab to interact with the data, :ref:`Figure 7.15<figCamGUI>`, giving the
 strip chart capabilities and video playback via the `videoIO
 <http://sourceforge.net/projects/videoio/>`_ package developed by Gerald Dalley.
 All would have worked out well, if we could have synchronized the video and
@@ -750,7 +750,7 @@ source code and data available for download in case it is of use to anyone.
 Rider 2
 -------
 
-:ref:`Table 9.4<tabSecondRiderParameters>` presents the parameters computed
+:ref:`Table 7.4<tabSecondRiderParameters>` presents the parameters computed
 with the methods in :cite:`Moore2009a` for the second rider, Jason, on the
 instrumented Batavus Browser. Only the rear frame and body parameters are
 different as the bicycle is identical. We only presented data in the previous

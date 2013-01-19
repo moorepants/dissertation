@@ -5,21 +5,12 @@ TODO List
 Major
 =====
 
-- Add UCD title page as the first page
-- Numbering should start on the title page as "-i-"
-- Numbering should be in the top right corner
-- Make separate official abstract for submission
-
 Minor
 =====
 
-- The References page doesn't need to show up in the pdf.
-- Make a proper front matter instead of a Chapter for everything (will have to
-  manually fix all figure and table numbers).
-- Remove the release number.
 - Add notation list for the system id chapter.
 - Add m/s to all of the km/h and mph numbers.
-- Write a conclusion.
+- Write an overall conclusion.
 - Try to say more about tables 13.4 5 and 6
 - sphinxcontrib-bibtex is not resolving hyper links in the pdf in the same way
   the footnotes do. I think this only affects the citations, footnotes, and
@@ -39,7 +30,6 @@ Minor
   model numbers are. Maybe make them explicit again in this section.
 - Plot of gains versus speed (theoretical) for the L-P model instead of the
   Whipple model.
-- Add BSD license to source code.
 
 Collected
 =========

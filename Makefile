@@ -106,6 +106,27 @@ latexpdf:
 	make -C $(BUILDDIR)/latex all-pdf
 	@echo "pdflatex finished; the PDF files are in $(BUILDDIR)/latex."
 
+webpdf:
+	$(SPHINXBUILD) -b latex -t latex-web $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	python sphinxmanual_mod.py
+	@echo "Modified _build/latex/sphinxmanual.cls"
+	@echo "Running LaTeX files through pdflatex..."
+	make -C $(BUILDDIR)/latex all-pdf
+	@echo "pdflatex finished; the PDF files are in $(BUILDDIR)/latex."
+
+# The following is the output for the printed version, which spells out the
+# links and all the text is black. I used it to print a hard bound copy of the
+# dissertation.
+printpdf:
+	$(SPHINXBUILD) -b latex -t latex-print $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	python sphinxmanual_mod.py
+	@echo "Modified _build/latex/sphinxmanual.cls"
+	@echo "Running LaTeX files through pdflatex..."
+	make -C $(BUILDDIR)/latex all-pdf
+	@echo "pdflatex finished; the PDF files are in $(BUILDDIR)/latex."
+
+# TODO: Add a ucdpdf option to format the paper for UCD.
+
 text:
 	$(SPHINXBUILD) -b text $(ALLSPHINXOPTS) $(BUILDDIR)/text
 	@echo
@@ -158,8 +179,9 @@ pushpdf:
 	scp _build/latex/HumanControlofaBicycle.pdf biosport@mae.ucdavis.edu:/home/grads/biosport/public_html/jkm/dissertation/
 	@echo "The pdf has been pushed to the mae server."
 
-# this should run all of the scripts before creating the archive to generate
-# all figures
+# TODO: This should run all of the scripts in src/ before creating the archive
+# to generate all figures. Check the generate-all branch for some work on this
+# front.
 pushdata:
 	tar -cvjf dissertation-data.tar.bz2 figures/ data/ tables/
 	scp dissertation-data.tar.bz2 biosport@mae.ucdavis.edu:/home/grads/biosport/public_html/jkm/dissertation/

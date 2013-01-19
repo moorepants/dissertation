@@ -47,10 +47,17 @@ into the ``dissertation`` directory.::
    $ wget http://mae.ucdavis.edu/~biosport/jkm/dissertation/dissertation-data.tar.bz2 # 73 mb
    $ tar -xjf dissertation-data.tar.bz2
 
-Now build::
+Now build the website::
 
    $ make html
-   $ make latexpdf
+
+And the pdf documents::
+
+   $ make webpdf # colored hyperlinks
+
+or::
+
+   $ make printpdf # this one gives black text and inline urls
 
 Open the website in your browser and the pdf in your pdf viewer::
 

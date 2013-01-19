@@ -66,7 +66,7 @@ today_fmt =  '%B %d, %Y at %X %Z'
 # directories to ignore when looking for source files.
 exclude_patterns = ['_build', 'tables', 'data', 'figures', 'src', 'todo.rst',
     'README.rst', 'index-latex.rst']
-if tags.has('latex'):
+if tags.has('latex') or tags.has('latex-web') or tags.has('latex-print'):
     exclude_patterns.remove('index-latex.rst')
     exclude_patterns.append('index.rst')
     exclude_patterns.append('zreferences.rst')
@@ -202,7 +202,10 @@ latex_logo = 'figures/bear-6in.png'
 #latex_show_pagerefs = False
 
 # If true, show URL addresses after external links.
-latex_show_urls = 'inline'
+if tags.has('latex-print'):
+    latex_show_urls = 'inline'
+else:
+    latex_show_urls = False
 
 # Additional stuff for the LaTeX build.
 preamble = \
@@ -220,6 +223,10 @@ preamble = \
 \\if@twocolumn\\hbox{}\\newpage\\fi\\fi\\fi
 }
 \\makeatother
+"""
+if tags.has('latex-print'):
+    preamble += \
+"""
 \\definecolor{TitleColor}{rgb}{0,0,0}
 \\definecolor{InnerLinkColor}{rgb}{0,0,0}
 \\definecolor{OuterLinkColor}{rgb}{0,0,0.}

@@ -64,7 +64,7 @@ with open('_build/latex/HumanControlofaBicycle.tex', 'r') as f:
     text = f.read()
 
 fixed = re.sub(r'\\maketitle',
-    r'\\includepdf[pages={3,{}}]{../../../ucdthesis/skeleton-thesis.pdf}\n\\maketitle',
+    r'\\includepdf[pages={3,{}}]{../../data/ucd-pages.pdf}\n\\maketitle',
     text)
 
 with open('_build/latex/HumanControlofaBicycle.tex', 'w') as f:

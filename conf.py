@@ -198,10 +198,88 @@ latex_logo = 'figures/bear-6in.png'
 #latex_show_pagerefs = False
 
 # If true, show URL addresses after external links.
-latex_show_urls = 'no'
+latex_show_urls = 'inline'
 
-# Additional stuff for the LaTeX preamble.
-#latex_preamble = ""
+# Additional stuff for the LaTeX build.
+preamble = \
+"""
+\\usepackage{pdfpages}
+\\setcounter{tocdepth}{2}
+\\makeatletter
+\\def\\cleardoublepage{
+\\clearpage\\if@twoside \\ifodd\\c@page\\else
+\\hbox{}
+\\vspace*{\\fill}
+\\vspace{\\fill}
+\\thispagestyle{empty}
+\\newpage
+\\if@twocolumn\\hbox{}\\newpage\\fi\\fi\\fi
+}
+\\makeatother
+\\definecolor{TitleColor}{rgb}{0,0,0}
+\\definecolor{InnerLinkColor}{rgb}{0,0,0}
+\\definecolor{OuterLinkColor}{rgb}{0,0,0.}
+"""
+
+texts = ['abstract', 'foreword']
+tex = []
+for text in texts:
+    with open(text + '.rst') as f:
+        full = f.read()
+    if text == 'abstract':
+        rst = full.replace('========\nAbstract\n========\n\n', '')
+    else:
+        rst = full
+    with open(text + '-temp.rst', 'w') as f:
+        f.write(rst)
+    os.system('pandoc -o ' + text + '.tex ' + text + '-temp.rst')
+    os.remove(text + '-temp.rst')
+    with open(text + '.tex') as f:
+        tex.append(f.read())
+    os.remove(text + '.tex')
+
+# This creates thw raw latex for the acknowledgements
+with open('acknowledgements.rst') as f:
+    acknowledgements = f.read().replace('=' * 16 + '\nAcknowledgements\n'
+        + '=' * 16 + '\n\n', '').replace(':cite:`Lange2011`',
+                '[DL11]')
+with open('acknowledgements-temp.rst', 'w') as f:
+    f.write(acknowledgements)
+del acknowledgements
+os.system('pandoc -o acknowledgements.tex acknowledgements-temp.rst')
+os.remove('acknowledgements-temp.rst')
+import codecs
+with codecs.open('acknowledgements.tex', encoding='utf-8') as f:
+    acknowledgements = f.read()
+os.remove('acknowledgements.tex')
+
+toc = \
+"""
+\\pagestyle{frontmatter}
+\\chapter*{Abstract}
+\\thispagestyle{frontmatter}
+%s
+\\chapter*{Foreword}
+\\thispagestyle{frontmatter}
+%s
+\\chapter*{Acknowledgements}
+\\thispagestyle{frontmatter}
+%s
+\\tableofcontents
+\\cleardoublepage
+\\pagestyle{frontmatter}
+\\addtocontents{toc}{\\protect\\thispagestyle{frontmatter}}
+\\listoffigures
+\\addtocontents{lof}{\\protect\\thispagestyle{frontmatter}}
+\\listoftables
+\\addtocontents{lot}{\\protect\\thispagestyle{frontmatter}}
+\\cleardoublepage
+\\pagestyle{normal}
+\\pagenumbering{arabic}
+""" % (tex[0], tex[1], acknowledgements)
+
+latex_elements = {'preamble': preamble,
+                  'tableofcontents': toc}
 
 # Documents to append as an appendix to all manuals.
 #latex_appendices = []

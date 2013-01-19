@@ -3,6 +3,7 @@
 import re
 
 chapters = ['abstract',
+            'foreword',
             'acknowledgements',
             'preface',
             'introduction',

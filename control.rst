@@ -216,7 +216,7 @@ Robot Control
    students riding the robot bicycle and simultaneously applying manual steer
    torques.
 :cite:`Yamaguchi2011`
-   The videos `<http://www.youtube.com/watch?v=mT3vfSQePcs>`_ and
+   The videos `<https://www.youtube.com/watch?v=mT3vfSQePcs>`_ and
    `<http://ai2001.ifdef.jp/>`_ demonstrate an impressive remote controlled
    mini robot bicycle that is similar in nature to the :cite:`Berriah1999`
    design with remote control. He uses a commercially available bipedal robot

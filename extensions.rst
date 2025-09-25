@@ -565,7 +565,7 @@ the steering felt less responsive than one would generally prefer.
 
    <center>
      <iframe width="420" height="315"
-       src="http://www.youtube.com/embed/YmtPNIu4WI0"
+       src="https://www.youtube.com/embed/YmtPNIu4WI0"
        frameborder="0" allowfullscreen>
      </iframe>
    </center>
@@ -1324,7 +1324,7 @@ longitudinally with respect to the bicycle.
 
    <center>
      <iframe width="480" height="360"
-       src="http://www.youtube.com/embed/7KXQPUsA3ds"
+       src="https://www.youtube.com/embed/7KXQPUsA3ds"
        frameborder="0" allowfullscreen>
      </iframe>
    </center>
@@ -1338,12 +1338,12 @@ longitudinally with respect to the bicycle.
 
    The hip trace from run # 3104. This plots the position of the two hip
    markers and the coccyx marker relative to the bicycle's rear frame in space
-   over time. `View the video <http://www.youtube.com/7KXQPUsA3ds>`_.
+   over time. `View the video <https://www.youtube.com/7KXQPUsA3ds>`_.
 
 Gilbert Gede and I began devising a harness that would both constrain the
 rider's motion to the motion observed in :ref:`Figure 22<figHipTrace>` and
 allows us to measure the forces and the kinematics involved. We created a
-`video <http://www.youtube.com/embed/FcAp-DbHp9M>`_ shot from behind and shows
+`video <https://www.youtube.com/embed/FcAp-DbHp9M>`_ shot from behind and shows
 me balancing no-handed on a treadmill. We taped three sticks to my back: one
 across the shoulders, the second to the upper portion of my spine, and the
 third to the lower portion of my spine to visualize the dominant motion of the
@@ -1362,7 +1362,7 @@ longitudinal axis just below the seat).
 
    <center>
      <iframe width="420" height="315"
-       src="http://www.youtube.com/embed/FcAp-DbHp9M"
+       src="https://www.youtube.com/embed/FcAp-DbHp9M"
        frameborder="0" allowfullscreen>
      </iframe>
    </center>

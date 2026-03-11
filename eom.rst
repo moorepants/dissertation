@@ -359,7 +359,7 @@ pitch angle :math:`q_5`.
    &(s_4s_7-s_5c_4c_7)(d_3+r_F(s_4s_7-s_5c_4c_7)/(c_4^2c_5^2+
    (s_4s_7-s_5c_4c_7)^2)^{1/2}) = 0
 
-In this equation, pitch, :math:`q_6`, is defined as the dependent coordinate.
+In this equation, pitch, :math:`q_5`, is defined as the dependent coordinate.
 The choice of pitch has to do with the fact that for "normal" bicycle
 configurations, pitch is practically constant. This is not universal and it may
 be smart to choose the dependent coordinate differently for other cases. The
